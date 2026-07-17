@@ -1,0 +1,71 @@
+claims:
+  - claim_id: implemented-generator-count
+    kind: number
+    value: 17
+    source: src/duckrabbit/generators.py::build_default_registry
+    source_tier: project_source
+    freshness: active
+    claim_level: canonical_stimulus
+  - claim_id: catalog-entry-count
+    kind: number
+    value: 18
+    source: src/duckrabbit/taxonomy.py::_ENTRIES
+    source_tier: project_source
+    freshness: active
+    claim_level: canonical_stimulus
+  - claim_id: evidence-record-count
+    kind: number
+    value: 18
+    source: data/evidence_matrix.json::entries
+    source_tier: source_registry
+    freshness: active
+    claim_level: source_supported
+  - claim_id: scholarly-source-count
+    kind: number
+    value: 36
+    source: data/evidence_matrix.json::sources
+    source_tier: source_registry
+    freshness: active
+    claim_level: source_supported
+  - claim_id: publication-figure-count
+    kind: number
+    value: 15
+    source: src/duckrabbit/publication.py::generate_publication_outputs
+    source_tier: project_source
+    freshness: active
+    claim_level: physical_metric
+  - claim_id: publication-table-count
+    kind: number
+    value: 10
+    source: src/duckrabbit/publication.py::_table_files
+    source_tier: project_source
+    freshness: active
+    claim_level: physical_metric
+  - claim_id: observer-data-boundary
+    kind: boundary
+    value: "No participant data are bundled; observer outputs are synthetic harness records only."
+    source: src/duckrabbit/observer_analysis.py
+    source_tier: project_source
+    freshness: active
+    claim_level: observer_hypothesis
+  - claim_id: caption-spec-count
+    kind: number
+    value: 15
+    source: src/duckrabbit/publication.py::publication_caption_specs
+    source_tier: project_source
+    freshness: active
+    claim_level: physical_metric
+  - claim_id: formalism-definition-count
+    kind: number
+    value: 9
+    source: src/duckrabbit/formalism.py::formalism_registry
+    source_tier: project_source
+    freshness: active
+    claim_level: physical_metric
+  - claim_id: editorial-cover-boundary
+    kind: boundary
+    value: "The cover is an editorial publication artifact, not an experimental stimulus or observer result."
+    source: src/duckrabbit/cover.py::install_cover
+    source_tier: project_source
+    freshness: active
+    claim_level: publication_illustration

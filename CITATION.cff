@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+title: "DuckRabbit: Typed Multimodal Illusion Generator"
+version: 0.5.0
+date-released: '2026-07-15'
+type: software
+license: MIT
+repository-code: "https://github.com/docxology/DuckRabbit"
+abstract: >-
+  DuckRabbit is a typed, deterministic research-software package for generating
+  and auditing visual, auditory, temporal, and audio-visual illusion stimuli.
+  It provides reproducible parameters, canonical media buffers, physical
+  measurements, provenance manifests, and publication-ready source artifacts.
+message: If you use DuckRabbit, cite this project and the underlying illusion literature.
+authors:
+  - family-names: Friedman
+    given-names: Daniel Ari
+    orcid: "https://orcid.org/0000-0001-6232-9096"
+    affiliation: "Active Inference Institute"
+keywords:
+  - perceptual illusions
+  - cognitive taxonomy
+  - audio-visual stimuli
+  - deterministic generation
+  - typed parameters
+  - research software
+  - reproducible research
+  - psychophysics

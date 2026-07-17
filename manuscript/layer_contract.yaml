@@ -1,0 +1,12 @@
+version: 1
+project: duckrabbit
+rules:
+  - name: core-infrastructure-independence
+    paths: [src/duckrabbit/parameters.py, src/duckrabbit/artifacts.py, src/duckrabbit/generators.py, src/duckrabbit/registry.py, src/duckrabbit/taxonomy.py]
+    forbidden_import_prefixes: [infrastructure]
+  - name: thin-scripts
+    paths: [scripts]
+    required_role: orchestration_only
+  - name: generated-output
+    paths: [output]
+    required_role: disposable

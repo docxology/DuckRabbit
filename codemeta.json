@@ -1,0 +1,37 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "author": [
+    {
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0001-6232-9096",
+      "familyName": "Friedman",
+      "givenName": "Daniel Ari",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Active Inference Institute",
+        "url": "https://activeinference.institute/"
+      }
+    }
+  ],
+  "dateModified": "2026-07-15",
+  "description": "Typed, deterministic research software for generating, measuring, and auditing visual, auditory, temporal, and audio-visual illusion stimuli; it does not provide human observer evidence.",
+  "applicationCategory": "Scientific software",
+  "codeRepository": "https://github.com/docxology/DuckRabbit",
+  "url": "https://github.com/docxology/DuckRabbit",
+  "keywords": [
+    "perceptual illusions",
+    "cognitive taxonomy",
+    "audio-visual stimuli",
+    "deterministic generation",
+    "typed parameters",
+    "research software",
+    "reproducible research",
+    "psychophysics"
+  ],
+  "license": "https://spdx.org/licenses/MIT.html",
+  "name": "DuckRabbit: Typed Multimodal Illusion Generator",
+  "programmingLanguage": "Python",
+  "softwareVersion": "0.5.0",
+  "version": "0.5.0"
+}

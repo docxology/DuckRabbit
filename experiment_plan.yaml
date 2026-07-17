@@ -1,0 +1,62 @@
+conditions:
+  - name: canonical_defaults
+    role: reference
+    description: "Generate every implemented catalog entry from its typed defaults."
+  - name: grayscale_sweep
+    role: proposed
+    description: "Sweep luminance and quantization levels while retaining canonical hashes."
+  - name: temporal_discrepancy
+    role: variant
+    description: "Vary frame timing and audio/video synchronization offsets within validated bounds."
+  - name: encoding_profile_sweep
+    role: variant
+    description: "Compare WAV PCM depths while preserving the same canonical float audio digest."
+  - name: canonical_archive_round_trip
+    role: variant
+    description: "Decode NPZ archives and compare exact canonical arrays, shapes, clocks, and hashes."
+metrics:
+  primary:
+    name: canonical_contract_pass_rate
+    direction: maximize
+  secondary:
+    - name: encoded_sha256
+      direction: stable_for_identical_encoded_requests
+    - name: manifest_media_invariants
+      direction: satisfy_declared_dimensions_channels_rates_and_timings
+    - name: objective_stimulus_metrics
+      direction: record_finite_luminance_signal_temporal_and_sync_facts
+protocol: "Use fixed typed parameters and seeds; record canonical buffers, manifests, and encoded artifact metadata."
+expected_figures:
+  - fig:architecture
+  - fig:catalog_matrix
+  - fig:visual_panel
+  - fig:visual_sweep
+  - fig:temporal_sequence
+  - fig:audio_signals
+  - fig:audiovisual_timeline
+  - fig:encoding_verification
+  - fig:synthetic_psychophysics
+  - fig:claim_boundary
+  - fig:scholarship_map
+  - fig:formalism_traceability
+  - fig:metrics_dashboard
+  - fig:parameter_domains
+  - fig:observer_protocol
+expected_tables:
+  - tbl:catalog
+  - tbl:parameters
+  - tbl:encodings
+  - tbl:metrics
+  - tbl:observer_estimands
+  - tbl:verification
+  - tbl:caption_audit
+  - tbl:evidence_audit
+  - tbl:formalism
+  - tbl:claim_ledger
+baselines:
+  - canonical_defaults
+ablations:
+  - grayscale_sweep
+  - temporal_discrepancy
+  - encoding_profile_sweep
+  - canonical_archive_round_trip

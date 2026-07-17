@@ -1,0 +1,13 @@
+.coverage
+.coverage.*
+coverage_project.json
+.pytest_cache/
+__pycache__/
+*.pyc
+.benchmarks/
+
+# Egg-info from local installs (any location — guards against renamed-fork drift).
+**/*.egg-info/
+
+# Project-local virtualenvs (root .venv is shared)
+.venv/

@@ -1,0 +1,57 @@
+domain: multimodal_stimulus_generation
+display_name: DuckRabbit typed illusion generator
+required_packages:
+  - numpy
+  - pillow
+preferred_outputs:
+  - png
+  - wav
+  - gif
+  - mp4
+  - npz
+validation_gates:
+  - typed_parameter_validation
+  - deterministic_canonical_artifacts
+  - taxonomy_registry_consistency
+  - media_round_trip
+  - render_validation
+figure_types:
+  - provenance_pipeline
+  - taxonomy_matrix
+  - ambiguous_figure
+  - contrast_stimulus
+  - temporal_motion_sequence
+  - auditory_signal_profile
+  - audio_visual_timeline
+  - synthetic_psychophysics_diagnostic
+citation_policy: official_or_scholarly
+source_policy: "Prefer primary illusion papers and reviews; every catalog entry requires a source role, supported claim, verified URL, and limitation, and engineering output never substitutes for observer evidence."
+review_gates:
+  - typed_parameter_validation
+  - deterministic_canonical_artifacts
+  - render_validation
+artifact_expectations:
+  - output/data/manuscript_variables.json
+  - output/figures/figure_registry.json
+  - output/reports/publication_report.json
+  - output/media/visual_duck_rabbit.png
+  - output/media/audio_shepard_tone.wav
+  - output/media/visual_apparent_motion.gif
+benchmark_rubric:
+  name: multimodal-stimulus-readiness
+  dimensions:
+    - name: parameter_validity
+      weight: 1.0
+    - name: reproducibility
+      weight: 2.0
+    - name: taxonomy_completeness
+      weight: 1.0
+    - name: media_round_trip
+      weight: 1.0
+    - name: evidence_boundaries
+      weight: 2.0
+    - name: source_verification
+      weight: 2.0
+    - name: publication_output_registry
+      weight: 1.0
+llm_prompt_guidance: "Treat generated artifacts as reproducible stimuli, not as proof of observer-level percepts."

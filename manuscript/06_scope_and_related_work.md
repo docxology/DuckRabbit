@@ -1,0 +1,219 @@
+# Scope, Related Work, and Limitations {#sec:scope}
+
+## Scope and epistemic boundary
+
+DuckRabbit is a typed, reproducible stimulus-construction platform. Its unit of
+work is an immutable request that yields a canonical image, audio buffer, video
+sequence, or audiovisual timeline, together with objective measurements and
+provenance. It is not an exhaustive ontology of all illusions, a perceptual
+theory, a participant database, or a substitute for a controlled psychophysics
+experiment. The live registry is therefore a deliberately bounded catalog: it
+enumerates the families for which this release has both a generator contract
+and a stated evidence boundary. Appendix A gives the complete current matrix;
+the absence of a family from that matrix is not a claim that the family is
+unimportant or unsupported in the wider literature.
+
+The central distinction is between a construction and an observation. A
+DuckRabbit generator can establish the dimensions, pixel values, sample values,
+frequency components, frame clock, declared synchronization offset, encoded
+hash, and decoded media facts of its output. It cannot, from those facts alone,
+establish what a person sees, hears, counts, localizes, groups, or reports.
+Every figure caption, evidence record, and claim-ledger entry preserves this
+boundary. In particular, a literature citation establishes a source-supported
+statement about a stimulus family or result under that source's conditions; it
+does not certify pixel- or task-identical replication by a DuckRabbit artifact.
+
+The historical foundation is intentionally worldwide and layered. The package
+does not present a single invention narrative: it places ancient Greek,
+medieval Arabic, classical Chinese, and early-modern European sources beside
+nineteenth-century psychophysics and modern experimental work. This is a
+scholarly orientation for separating physical construction, interpretation, and
+observer evidence; it is not a claim that the current source set exhausts the
+visual, auditory, or perceptual traditions of any region.
+
+## Visual families
+
+The modern label “visual illusion” sits on a longer experimental history than
+the package's contemporary review sources alone suggest. Oppel's mid-century
+catalogue of geometrical-optical illusions is now accessible with translation
+and commentary [@wade2017oppel], and the primary nineteenth-century records
+include Zöllner's account of crossing-line distortions and Müller-Lyer's report
+of the arrow-wing configuration [@zoellner1860pseudoscopy;
+@mullerlyer1889optical]. These sources are treated as historical anchors, not
+as evidence that a present-day raster is identical to an original plate or
+that its observer effect is invariant across conditions.
+
+Gregory's classification is useful as a historical and conceptual orientation,
+but it is not a universally agreed ontology. DuckRabbit consequently stores
+visual modality, mechanism, perceptual signature, stimulus requirements, and
+evidence status as separate facets rather than treating a single label as an
+explanation [@gregory1997visual]. The visual atlas covers the implemented
+families currently registered in the package: ambiguous figure, contrast,
+apparent motion, Müller-Lyer, Poggendorff, Ponzo, Kanizsa-type subjective
+contour, Ebbinghaus contextual size, and Zöllner/Judd orientation-related
+geometry. “Coverage” here means one deterministic representative per live
+entry, not a claim that one raster captures the historical stimulus space.
+
+The duck/rabbit construction is an explicit example of why that distinction
+matters. Brugger's historical analysis discusses variation among figure
+variants and observers; DuckRabbit therefore exposes a blend parameter and
+labels its output as a construction rather than promising a fixed alternation
+rate or universal bistability [@brugger1999duckrabbit]. The Müller-Lyer entry
+uses typed arrow geometry. Its engineering form is compatible with a family
+whose image statistics have been analyzed as potentially informative about
+image-source relationships, but the implementation does not adjudicate that
+account or infer a perceived-length report [@mullerlyer1889optical;
+@howe2005muller].
+
+The Poggendorff generator makes the occluding geometry and virtual-line
+orientation explicit. This is appropriate to a literature in which orientation
+estimation and filtering accounts are theoretically relevant, while avoiding
+the stronger claim that a particular raster reproduces a published bias
+without the same observers, viewing conditions, and response task
+[@morgan1999poggendorff]. The Ponzo construction is similarly bounded: the
+converging context and test bars are deterministic, whereas the literature
+contains multiple explanations of Ponzo-like effects rather than one settled
+mechanism [@fisher1967ponzo; @yildiz2022ponzo].
+
+Kanizsa-style subjective contours are represented as an illusory-contour
+construction with explicit inducer geometry. The historical account motivates
+the family label, while modern reviews place contour completion within a wider
+literature on grouping, figure-ground organization, attention, and neural
+mechanisms [@kanizsa1976contours; @wagemans2012gestalt]. Neither source licenses
+a claim that the generated mask produces a uniform contour percept across
+observers. The Ebbinghaus entry controls target and surround geometry; classic
+work demonstrates that judged size depends on context, contour, and comparison
+conditions, while later work shows that motion and other parameters can alter
+the effect [@weintraub1979ebbinghaus; @mruczek2015ebbinghaus]. DuckRabbit's
+static default is therefore an engineering baseline rather than a task-identical
+replication. Zöllner/Judd geometry is likewise retained as a source-linked line
+arrangement. Zöllner's 1860 report supplies the historical primary anchor,
+while later work supplies a modern analysis of spatial filtering
+[@zoellner1860pseudoscopy; @earle1995zollner]. Its typed line lengths and
+orientations make the spatial stimulus auditable, while orientation judgments
+remain outside the package contract.
+
+Finally, apparent motion is included in the visual coverage panel because its
+defining engineering object is temporal succession, not merely a static
+pattern. The package verifies frame order, frame rate, timestamps, and
+frame-to-frame differences. Wertheimer's foundational work and Sekuler's later
+analysis motivate the family distinction; neither source turns a generated
+frame strip into a universal report of motion [@wertheimer1912motion;
+@sekuler1996wertheimer].
+
+## Auditory families
+
+The auditory catalog separates harmonic construction, spectral completion,
+pitch-class context, dichotic channel assignment, and continuity/masking. A
+Shepard-like signal is represented through additive partials and explicit
+envelopes, following a historical literature of tone psychology and later work
+on assimilation to an internalized musical scale [@stumpf1883tonpsychology;
+@shepard1984scale]. The canonical buffer exposes
+sample rate, amplitude bounds, channel count, partial frequencies, and envelope
+parameters. It does not determine a listener's perceived pitch height or
+direction.
+
+The missing-fundamental construction removes a low component while retaining
+harmonically related partials. This makes the spectral condition reproducible;
+the associated pitch interpretation remains a listener-level question
+[@zatorre2005missing]. Tritone and octave entries preserve channel structure,
+phase, frequency relationships, and timing in typed parameters. Deutsch's
+foundational accounts and Repp's analysis of spectral-envelope and context
+effects motivate the evidence records, while also making listener and context
+dependence central limitations [@deutsch1986tritone; @repp1997tritone;
+@deutsch1974octave].
+
+Auditory continuity is represented as an interrupted target with a typed masker
+and gap. Warren's classic perceptual-restoration result and Riecke and
+colleagues' separation of sensory and decisional contributions justify the
+family's inclusion, but a generated masker is not evidence that a listener
+will report an uninterrupted sound [@warren1970continuity;
+@riecke2011continuity]. The audio atlas therefore reports RMS, peak, spectral
+centroid, bandwidth, channel layout, and exact sample-level provenance—not
+continuity, pitch, or stream judgments.
+
+## Audiovisual and temporal binding families
+
+Audiovisual constructions require a shared clock and an explicit sign
+convention for offsets. The sound-induced-flash entry creates a typed visual
+event and one or more audio events; the evidence record links it to the primary
+demonstration and to a review of the broader literature [@shams2000sifi;
+@hirst2020sound]. The package can verify event timestamps, sample/frame clocks,
+and declared offsets. It does not infer a reported flash count, and it does not
+assume that the same temporal window applies across displays, headphones,
+latencies, or observers.
+
+The spatial ventriloquist construction treats spatial discrepancy as a
+parameter and records the channel and display requirements. Reviews describe
+the ventriloquist illusion as a tool for studying multisensory processing, but
+the review's scope is not a license to claim spatial capture from a file alone
+[@bruns2019ventriloquist]. More general audiovisual accounts describe
+integration and segregation as a causal-inference problem shaped by temporal
+regularities and signal reliability [@noppeney2018causal]. That framework
+clarifies why a declared offset is an experimental input, not an observer-level
+outcome. Temporal ventriloquism receives a separate
+temporal-binding signature rather than being collapsed into spatial capture.
+Vroomen and de Gelder manipulated sound–flash timing in a flash-lag task and
+reported timing-dependent changes under those experimental conditions;
+Hartcher-O'Brien and Alais studied temporal ventriloquism in a purely temporal
+context [@vroomen2004temporal; @hartcherobrien2011temporal]. DuckRabbit
+implements the stimulus-side timing contract and leaves the observer-side
+temporal-recalibration estimate to a future study.
+
+McGurk remains `input_required`. The classic speech study motivates the family,
+but a lawful and reproducible implementation requires checksummed speech and
+video fixtures, licensing or consent records, a precise preprocessing contract,
+and an ethical validation protocol [@mcgurk1976speech]. Cataloguing the gap is
+more informative than silently substituting an unrelated synthetic voice or
+claiming that a generic audiovisual mismatch is a McGurk replication.
+
+## From literature to engineering contract
+
+For each entry, the evidence matrix records a source role, exact
+source-supported claim, engineering basis, limitation, and audit status. The
+roles distinguish primary demonstration, review or synthesis, theoretical
+account, engineering basis, limitation, and input gap. This prevents three
+common category errors: treating a theory as settled mechanism, treating a
+review as validation of new code, and treating a generator's deterministic
+output as a participant result.
+
+The package's literature fidelity is therefore best described as
+“family-linked, parameterized engineering construction.” Some defaults are
+historically motivated; none should be read as a claim of pixel identity unless
+that identity is separately established. The checked-in scholarship snapshot
+provides offline structural validation, including citation-key and DOI/URL
+format checks. The explicit network audit adds resolver observations and
+metadata matching; reachability alone is not treated as bibliographic
+verification. This is a reproducible evidence boundary, not a claim that every
+source is equally accessible or that theoretical disputes have been resolved.
+
+## Limitations and future observer work
+
+The package does not claim clinical validity, universal effect sizes,
+cross-cultural invariance, perceptual equivalence across displays or
+headphones, or observer-level truth from objective media metrics. Playback
+level, gamma and display calibration, viewing distance, refresh rate, stereo
+separation, room acoustics, audio transducer response, attention, expectation,
+language, expertise, and task can all matter. Codec behavior and device
+latency can introduce additional differences even when decoded media facts
+match within the declared tolerance.
+
+The synthetic observer diagnostic is intentionally not a substitute for a real
+vision model or human data. It is a serialized, hand-specified feature
+function with `training_data=none`, `calibration = analytic`, and
+`human_data=false`; its metamorphic and sensitivity checks test orchestration,
+not visual consciousness or human discrimination. A future observer study must
+pre-register the response scale, reference condition, estimand, exclusions,
+missing-data rule, randomization seed, display and playback controls, and
+uncertainty procedure. It must also report the participant and item sampling
+frame rather than importing a model-output probability as an assumed effect
+size. The observer harness is consequently study-ready scaffolding, not a
+result set.
+
+No participant data are bundled with DuckRabbit. The data-availability boundary
+is intentional: canonical artifacts, encoded fixtures where lawful, source-data
+sidecars, and deterministic synthetic diagnostics are software outputs;
+observer outcomes require separately governed data collection. The package is
+authored by Daniel Ari Friedman and is DOI-forthcoming; release metadata and
+software-citation guidance are generated from the same identity contract as
+the manuscript.

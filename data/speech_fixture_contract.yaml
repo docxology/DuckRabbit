@@ -1,0 +1,21 @@
+contract: duckrabbit/speech-fixture/v1
+status: input_required
+purpose: "Portable metadata contract for a future McGurk fixture; this file is not a media fixture."
+required_fields:
+  - fixture_id
+  - audio_path
+  - video_path
+  - audio_sha256
+  - video_sha256
+  - duration_seconds
+  - sample_rate_hz
+  - channels
+constraints:
+  paths: "relative to the fixture root; no parent traversal or absolute paths"
+  hashes: "lowercase SHA-256 hex digests of the exact media files"
+  timing: "duration_seconds must be finite and positive"
+  audio: "sample_rate_hz is an integer in the package SampleRate range; channels is 1 or 2"
+evidence_gate:
+  - "Verify both file hashes before generation."
+  - "Record speech content, speaker consent, and licensing outside this package."
+  - "Validate the intended perceptual contrast with a preregistered observer protocol."

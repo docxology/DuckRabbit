@@ -1,0 +1,133 @@
+{
+  "conditions": [
+    {
+      "condition_id": "duck_default",
+      "illusion_id": "visual.duck_rabbit",
+      "parameter_overrides": {},
+      "response_kind": "forced_choice",
+      "response_labels": [
+        "duck",
+        "rabbit"
+      ]
+    },
+    {
+      "condition_id": "sifi_one_beep",
+      "illusion_id": "audiovisual.sound_induced_flash",
+      "parameter_overrides": {
+        "beep_count": 1
+      },
+      "response_kind": "forced_choice",
+      "response_labels": [
+        "one",
+        "two"
+      ]
+    },
+    {
+      "condition_id": "sifi_two_beep",
+      "illusion_id": "audiovisual.sound_induced_flash",
+      "parameter_overrides": {
+        "beep_count": 2
+      },
+      "response_kind": "forced_choice",
+      "response_labels": [
+        "one",
+        "two"
+      ]
+    },
+    {
+      "condition_id": "temporal_sync",
+      "illusion_id": "audiovisual.temporal_ventriloquism",
+      "parameter_overrides": {
+        "sync_offset": 0.0
+      },
+      "response_kind": "forced_choice",
+      "response_labels": [
+        "early",
+        "late"
+      ]
+    }
+  ],
+  "estimands": [
+    {
+      "model": "poisson_or_ordinal",
+      "multiplicity": "Holm correction across confirmatory contrasts",
+      "name": "sifi_flash_count_contrast",
+      "primary_contrast": "two-beep minus one-beep event-count response",
+      "reference_condition": "sifi_one_beep",
+      "response_kind": "event_count",
+      "uncertainty": "95% confidence interval"
+    },
+    {
+      "model": "linear_mixed",
+      "multiplicity": "Holm correction across confirmatory contrasts",
+      "name": "temporal_binding_offset_contrast",
+      "primary_contrast": "reported timing shift per declared sync offset",
+      "reference_condition": "temporal_sync",
+      "response_kind": "continuous_magnitude",
+      "uncertainty": "95% confidence interval"
+    }
+  ],
+  "exclusion_rules": [
+    "prespecified technical failure"
+  ],
+  "inclusion_rules": [
+    "complete primary response",
+    "reaction time > 0"
+  ],
+  "model_templates": [
+    {
+      "family": "binomial",
+      "formula": "response ~ condition + (1|participant) + (1|item)",
+      "link": "logit",
+      "model": "logistic_mixed",
+      "random_effects": [
+        "participant",
+        "item"
+      ]
+    },
+    {
+      "family": "Gaussian",
+      "formula": "magnitude ~ condition + (1|participant) + (1|item)",
+      "link": "identity",
+      "model": "linear_mixed",
+      "random_effects": [
+        "participant",
+        "item"
+      ]
+    },
+    {
+      "family": "lognormal",
+      "formula": "log(reaction_time) ~ condition + (1|participant) + (1|item)",
+      "link": "identity",
+      "model": "lognormal_mixed",
+      "random_effects": [
+        "participant",
+        "item"
+      ]
+    },
+    {
+      "family": "Poisson/negative-binomial/ordinal",
+      "formula": "count ~ condition + (1|participant) + (1|item)",
+      "link": "log or cumulative",
+      "model": "poisson_or_ordinal",
+      "random_effects": [
+        "participant",
+        "item"
+      ]
+    },
+    {
+      "family": "survival or transition-rate",
+      "formula": "reversal_transition ~ condition + (1|participant)",
+      "link": "hazard",
+      "model": "transition_rate",
+      "random_effects": [
+        "participant"
+      ]
+    }
+  ],
+  "observer_data_status": "none_bundled",
+  "observers": 24,
+  "randomization_seed": 0,
+  "study_id": "duckrabbit-v04-demo",
+  "trials_per_condition": 8
+}

@@ -1,0 +1,28 @@
+paper:
+  title: "DuckRabbit: Typed Multimodal Illusion Generator"
+  subtitle: "Deterministic multimodal stimulus construction"
+  version: "0.5.0"
+  date: "YYYY-MM-DD"
+  cover:
+    image: "figures/cover_visualization.png"
+authors:
+  - name: "Author Name"
+    orcid: ""
+    corresponding: true
+
+publication:
+  doi: ""
+  doi_status: "forthcoming"
+
+keywords: [perceptual illusions, cognitive taxonomy, audio-visual stimuli]
+metadata:
+  license: "MIT"
+  language: "en"
+render:
+  cover_height_fraction: 0.58
+  formats:
+    pdf: true
+    html: true
+    slides: true
+    docx: false
+    epub: false

@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "duckrabbit"
+version = "0.5.0"
+description = "Typed, deterministic multimodal illusion stimuli with scholarly evidence and publication outputs"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name = "Daniel Ari Friedman"}]
+license = "MIT"
+dependencies = [
+    "numpy>=1.24.0",
+    "pillow>=10.0.0",
+    "typing-extensions>=4.7.0; python_version < '3.11'",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "ruff>=0.6.0",
+]
+
+[project.scripts]
+duckrabbit = "duckrabbit.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/docxology/DuckRabbit"
+Repository = "https://github.com/docxology/DuckRabbit"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+duckrabbit = ["py.typed"]
+
+[tool.pytest.ini_options]
+pythonpath = [".", "src"]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short --strict-markers"
+
+[tool.coverage.run]
+source = ["src/duckrabbit"]
+branch = true
+omit = [
+    "tests/*",
+    "*/__init__.py",
+    "*/__main__.py",
+]
+
+[tool.coverage.report]
+fail_under = 90
+show_missing = true
+precision = 2
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.:",
+]

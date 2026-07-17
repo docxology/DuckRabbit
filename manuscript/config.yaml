@@ -1,0 +1,65 @@
+paper:
+  title: "DuckRabbit: Typed Multimodal Illusion Generator"
+  subtitle: "Deterministic visual, auditory, temporal, and audio-visual stimulus construction"
+  version: "0.5.0"
+  date: "2026-07-15"
+  cover:
+    image: "figures/cover_visualization.png"
+
+authors:
+  - name: "Daniel Ari Friedman"
+    orcid: "0000-0001-6232-9096"
+    affiliation: "Active Inference Institute"
+    corresponding: true
+
+publication:
+  doi: ""
+  doi_status: "forthcoming"
+  repository: "https://github.com/docxology/DuckRabbit"
+
+keywords:
+  - "perceptual illusions"
+  - "cognitive taxonomy"
+  - "audio-visual stimuli"
+  - "deterministic generation"
+  - "typed parameters"
+  - "research software"
+  - "reproducible research"
+  - "psychophysics"
+
+metadata:
+  license: "MIT"
+  language: "en"
+
+analysis:
+  scripts:
+    - generate_publication_outputs.py
+    - z_generate_manuscript_variables.py
+    - validate_scholarship.py
+    - audit_scholarship.py
+
+render:
+  cover_height_fraction: 0.58
+  formats:
+    pdf: true
+    html: true
+    slides: true
+    docx: false
+    epub: false
+
+testing:
+  max_test_failures: 0
+  max_infra_test_failures: 0
+  max_project_test_failures: 0
+
+experiment:
+  catalog_statuses: [implemented, planned, input_required]
+  implemented_generators: 17
+  catalog_entries: 18
+  default_seed: 0
+  evidence_records: 18
+  scholarly_sources: 36
+  publication_figures: 15
+  publication_tables: 10
+  observer_data: "none bundled"
+  synthetic_psychophysics: "model-output diagnostic only; human_data=false"
