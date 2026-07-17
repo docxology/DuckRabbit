@@ -21,6 +21,7 @@
   "title": "DuckRabbit: Typed Multimodal Illusion Generator",
   "upload_type": "software",
   "version": "0.5.0",
+  "doi": "10.5281/zenodo.21419693",
   "related_identifiers": [
     {
       "identifier": "https://github.com/docxology/DuckRabbit",

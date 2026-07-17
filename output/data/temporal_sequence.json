@@ -1,0 +1,34 @@
+{
+  "data": {
+    "frame_count": 6,
+    "frame_rate": 12.0,
+    "frame_rate_rational": {
+      "denominator": 1,
+      "numerator": 12
+    },
+    "temporal_deltas": [
+      0.2421875,
+      0.2421875,
+      0.2421875,
+      0.2421875,
+      0.2421875
+    ],
+    "timestamps_seconds": [
+      0.0,
+      0.08333333333333333,
+      0.16666666666666666,
+      0.25,
+      0.3333333333333333,
+      0.4166666666666667
+    ]
+  },
+  "figure_label": "fig:temporal_sequence",
+  "figure_stem": "temporal_sequence",
+  "generator": "duckrabbit.publication._temporal",
+  "parameters": {
+    "figure_stem": "temporal_sequence",
+    "seed": 0
+  },
+  "schema_version": "duckrabbit/figure-source/v1",
+  "seed": 0
+}

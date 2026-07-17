@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>02_methodology.md.web</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script data-template-mathjax-config>
+window.MathJax = window.MathJax || {};
+window.MathJax.chtml = Object.assign({}, window.MathJax.chtml, {
+  fontURL: "https://cdn.jsdelivr.net/npm/@mathjax/mathjax-newcm-font@4.0.0/chtml/woff2",
+  dynamicPrefix: "https://cdn.jsdelivr.net/npm/@mathjax/mathjax-newcm-font@4.0.0/chtml/dynamic"
+});
+window.normalizeTemplateMathJaxAria = function () {
+  document.querySelectorAll("mjx-speech[aria-roledescription]").forEach(function (node) {
+    var roleDescription = node.getAttribute("aria-roledescription") || "";
+    if (/[-]/.test(roleDescription)) {
+      node.setAttribute("aria-roledescription", "mathematical expression");
+    }
+  });
+};
+window.MathJax.startup = Object.assign({}, window.MathJax.startup, {
+  ready: function () {
+    window.MathJax.startup.defaultReady();
+    window.MathJax.startup.promise.then(window.normalizeTemplateMathJaxAria);
+  }
+});
+</script>
+<script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-chtml.js"
+  type="text/javascript" integrity="sha384-2BWc4dVaHADUocwKrUrK9u3iDwHxVMKXWEcoRmUkXYSFKhAsgVAYClu9ydNuo5Oz" crossorigin="anonymous"></script>
+
+<link data-template-favicon rel="icon" href="favicon.ico">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<main id="main-content" tabindex="-1">
+<h1 id="sec:methodology">Methodology</h1>
+<h2 id="request-and-canonical-artifact">Request and canonical
+artifact</h2>
+<p>DuckRabbit starts from a typed request</p>
+<p><span class="math display">\[
+q = (i, \theta, s, e)
+\]</span> {#eq:typed_request}</p>
+<p>where <span class="math inline">\(i\)</span> is an illusion
+identifier, <span class="math inline">\(\theta\)</span> is an immutable
+parameter object, <span class="math inline">\(s\)</span> is a
+deterministic seed, and <span class="math inline">\(e\)</span> is an
+optional encoding request. A registered generator maps the request to a
+canonical artifact:</p>
+<p><span class="math display">\[
+A = G_i(\theta; s), \qquad A \in \{I, X, V, AV\}
+\]</span> {#eq:canonical_generation}</p>
+<p>The four artifact types are an image frame <span
+class="math inline">\(I\)</span>, audio buffer <span
+class="math inline">\(X\)</span>, video sequence <span
+class="math inline">\(V\)</span>, and audiovisual timeline <span
+class="math inline">\(AV\)</span>. The generator core is independent of
+Pillow, WAV containers, GIF, MP4, and ffmpeg. Each artifact retains its
+shape, dtype, units, clock, channels, and timing offsets.</p>
+<h2 id="typed-parameter-domains">Typed parameter domains</h2>
+<p>Value objects validate finite ranges at construction time. Image
+parameters include dimensions, color mode, luminance bounds, grayscale
+levels, and quantization levels. Audio parameters include frequency,
+phase, amplitude, duration, envelope, sample rate, channel count, and
+PCM depth. Video parameters include dimensions, rational frame rate,
+frame count, and temporal offsets. Audiovisual parameters compose audio
+and video clocks with declared synchronization and spatial
+discrepancies.</p>
+<p>The canonical sample count and frame timestamps are explicit. For
+audio duration <span class="math inline">\(T\)</span> and sample rate
+<span class="math inline">\(f_s\)</span>, <span
+class="math inline">\(N\)</span> is rounded once at construction. For a
+video with frame rate <span class="math inline">\(f_r\)</span>, frame
+index <span class="math inline">\(k\)</span> is timestamped on the
+presentation clock. The audio-minus-video sign convention is
+explicit:</p>
+<p><span class="math display">\[
+N = \operatorname{round}(f_s T), \qquad t_k = k/f_r, \qquad
+\Delta_{AV} = t_{\mathrm{audio}} - t_{\mathrm{video}}
+\]</span> {#eq:clock_definition}</p>
+<p>The package rejects non-finite values, invalid shapes, out-of-range
+samples, aliasing frequencies, incompatible channel layouts, impossible
+frame rates, and contradictory encoding requests.</p>
+<h2 id="canonical-serialization-and-provenance">Canonical serialization
+and provenance</h2>
+<p>Canonical arrays are contiguous little-endian float32 buffers with
+explicit metadata. Serialization includes the array values, shape,
+clock, and units; metadata are part of the identity rather than an
+informal annotation:</p>
+<p><span class="math display">\[
+c(A) = \operatorname{Serialize}_{\mathrm{LE,float32}}
+(A, \mathrm{shape}, \mathrm{clock}, \mathrm{units}),
+\qquad h_c(A) = H(c(A))
+\]</span> {#eq:canonical_digest}</p>
+<p>The canonical digest is independent of PNG, WAV, GIF, MP4, and NPZ
+delivery choices. The v2 manifest records the parameter schema,
+serialized parameters, taxonomy, evidence boundary, canonical facts,
+objective metrics, encoding profile, backend identity, decoded
+inspection, and verification status. A v1 reader remains available and
+marks upconverted records unverified until the encoded file is
+re-inspected.</p>
+<p>This separation follows a reproducibility principle from
+computational research: a result is not made reproducible merely by
+publishing a final file; the executable inputs, transformation steps,
+versioned software, and provenance must remain identifiable
+[sandve2013simple; wilson2014bestpractices]. The manifest therefore
+records the construction identity and delivery identity separately. A
+downstream user can cite the software version and regenerate the
+canonical object, or cite a particular encoded artifact when the
+delivery file itself is the relevant research object
+[smith2016software].</p>
+<p>The distinction also follows the older psychophysical problem of
+relating a controlled physical increment to a measured sensation.
+Fechner’s 1860 treatise made measurement, stimulus control, and response
+comparison explicit parts of the scientific object
+[fechner1860psychophysics]. DuckRabbit adopts the stimulus-control and
+provenance aspects of that tradition, but it does not pretend that a
+canonical digest or media metric is a sensation measurement: observer
+data still require a task, presentation conditions, and a registered
+analysis.</p>
+<h2 id="encoding-and-verification">Encoding and verification</h2>
+<p>For an encoding request <span class="math inline">\(e\)</span>, the
+delivered file <span class="math inline">\(F\)</span> and decoded
+inspection <span class="math inline">\(I\)</span> are:</p>
+<p><span class="math display">\[
+F = E_e(A), \qquad I = D(F), \qquad V(F,M) \in
+\{\mathrm{pass},\mathrm{fail}\}
+\]</span> {#eq:encoding_verification}</p>
+<p>The manifest <span class="math inline">\(M\)</span> binds <span
+class="math inline">\(A\)</span>, <span
+class="math inline">\(F\)</span>, and <span
+class="math inline">\(I\)</span> through hashes, typed summaries, and
+format-specific tolerances. PNG, GIF, WAV, and NPZ use local
+deterministic adapters. MP4 and muxed audiovisual output use an optional
+ffmpeg backend. Missing backends are reported as capability errors.
+Writes are atomic, parent directories are created, overwrite behavior is
+explicit, and a conflicting format argument is rejected.</p>
+<h2 id="sec:objective_metric_definitions">Objective metric
+definitions</h2>
+<p><code>MetricRecord</code> and <code>MetricSuite</code> carry a metric
+name, value, unit, computation version, source artifact, tolerance, and
+claim level. Luminance statistics, quantization levels, RMS and peak
+amplitude, spectral summaries, frame deltas, stream durations, and
+synchronization offsets are physical or decoded-media facts. They are
+not observer responses and cannot by themselves establish an illusion
+effect. For canonical image samples <span
+class="math inline">\(y_1,\ldots,y_n\)</span>, audio samples <span
+class="math inline">\(x_1,\ldots,x_n\)</span>, and adjacent video frames
+<span class="math inline">\(Y_k,Y_{k+1}\)</span>, the principal metrics
+are:</p>
+<p><span class="math display">\[
+\mu_Y = \frac{1}{n}\sum_{j=1}^{n} y_j, \qquad
+\sigma_Y = \sqrt{\frac{1}{n}\sum_{j=1}^{n}(y_j-\mu_Y)^2}, \qquad
+RMS_X = \sqrt{\frac{1}{n}\sum_{j=1}^{n}x_j^2}
+\]</span> {#eq:objective_statistics}</p>
+<p><span class="math display">\[
+D_k = \frac{1}{\lvert Y\rvert}\sum_{p}\lvert Y_{k+1}(p)-Y_k(p)\rvert,
+\qquad
+\mathrm{centroid}(X) = \frac{\sum_f f\,P_X(f)}{\sum_f P_X(f)}
+\]</span> {#eq:temporal_spectral_metrics}</p>
+<p>The level count is the cardinality of the finite-value set after
+canonical quantization; an empty or non-finite artifact is invalid
+rather than assigned a default statistic. Every metric record carries
+units and a deterministic computation version. Observer interpretations
+are represented separately by the typed observer protocol and claim
+levels.</p>
+<p>For a future observer study, the estimand is defined by the protocol
+rather than by the generator itself:</p>
+<p><span class="math display">\[
+\psi = \mathbb{E}[Y \mid \mathrm{condition},\ \mathrm{protocol}]
+\]</span> {#eq:observer_estimand}</p>
+<p>This symbol names a planned analysis target only. DuckRabbit ships no
+human responses, fitted coefficients, or validated observer-level
+estimate.</p>
+<h3 id="synthetic-psychophysics-boundary">Synthetic psychophysics
+boundary</h3>
+<p>DuckRabbit v0.5.0 adds a transparent synthetic-psychophysics
+diagnostic for method orchestration. It is a hand-specified feature
+observer, not a pretrained vision model and not an empirical
+psychophysics substitute. Let <span
+class="math inline">\(\phi(A)\)</span> be the bounded feature vector
+extracted from a canonical artifact, <span
+class="math inline">\(w\)</span> the code-owned feature weights, and
+<span class="math inline">\(\tau&gt;0\)</span> the declared
+temperature:</p>
+<p><span class="math display">\[
+p_M(c\mid A_r,A_c) =
+\sigma\left(\frac{w^\mathsf{T}\phi(A_c)-w^\mathsf{T}\phi(A_r)}{\tau}\right)
+\]</span> {#eq:synthetic_observer}</p>
+<p>The model identity, version, preprocessing features, weights,
+temperature, seed, calibration statement, and the
+<code>human_data=false</code> flag are serialized with each prediction.
+The diagnostic is useful for checking that typed parameter sweeps
+produce deterministic, inspectable model outputs and for exercising
+analysis orchestration end to end. It does not estimate a human
+psychometric function, establish a sensitivity threshold, or support an
+observer-level claim. Human psychophysics remains future work requiring
+a preregistered task, calibrated display/playback, participant data, and
+an analysis contract.</p>
+</main>
+</body>
+</html>

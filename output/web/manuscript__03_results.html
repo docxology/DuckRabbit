@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>03_results.md.web</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+
+<link data-template-favicon rel="icon" href="favicon.ico">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<main id="main-content" tabindex="-1">
+<h1 id="sec:results">Results</h1>
+<h2 id="generated-catalog-metrics-and-outputs">Generated catalog,
+metrics, and outputs</h2>
+<p>The live registry reports 17 implemented generators, 18 catalog
+entries, 18 evidence records, and 36 source records in the checked-in
+scholarship audit snapshot. The complete catalog is generated in
+Appendix A rather than copied into prose. The companion figure keeps the
+categorical registry, source namespace, and implementation statuses
+visible at a glance.</p>
+<figure id="fig:catalog_matrix">
+<img src="../figures/catalog_matrix.png"
+alt="A matrix lists all catalog entries with modality, mechanism, signature, input requirement, and implementation status." />
+<figcaption>A matrix lists all catalog entries with
+modality, mechanism, signature, input requirement, and implementation
+status.</figcaption>
+</figure>
+<p>What this figure shows: A matrix lists all catalog entries with
+modality, mechanism, signature, input requirement, and implementation
+status. The live catalog matrix contains 18 entries and keeps modality,
+mechanism, perceptual signature, input requirement, evidence status, and
+implementation status as separate facets. Source data
+output/data/catalog_matrix.json preserve the exact taxonomy snapshot and
+its source-reference namespace; status is not a proxy for perceptual
+validation. Controls: live taxonomy registry; evidence matrix snapshot;
+seed not applicable to the catalog diagram. Objective facts: 18 catalog
+rows; categorical facets and statuses; no observer-level quantity is
+applicable. Claim level: source_supported. Source data:
+output/data/catalog_matrix.json (SHA-256 digest recorded in the figure
+registry). Evidence lineage: gregory1997visual, hirst2020sound,
+bruns2019ventriloquist. Limitations: Taxonomy facets are engineering
+classifications and remain provisional where the literature supports
+competing accounts. Boundary: Catalog coverage is bounded to this
+registered package and does not enumerate all known illusions.</p>
+<p>The complete catalog matrix [fig:catalog_matrix] is tabulated in the
+standalone Appendix A [sec:appendix_catalog; tbl:catalog]. The
+corresponding machine-readable evidence matrix records the source role,
+exact supported claim, engineering departure, and limitation for every
+entry. Keeping the table in an appendix gives the main results narrative
+room to explain the contract without turning a mutable registry snapshot
+into a prose claim.</p>
+<h2 id="typed-domains-and-delivery-profiles">Typed domains and delivery
+profiles</h2>
+<table id="tbl:parameters">
+<caption>Typed parameter domains and units.</caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Type</th>
+<th>Unit</th>
+<th>Validated domain</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PixelDimension</td>
+<td>pixels</td>
+<td>8–4096</td>
+<td>image/video width and height</td>
+</tr>
+<tr>
+<td>GrayscaleLevels</td>
+<td>levels</td>
+<td>2–256</td>
+<td>representable grayscale levels</td>
+</tr>
+<tr>
+<td>QuantizationLevels</td>
+<td>levels</td>
+<td>2–256</td>
+<td>output quantization buckets</td>
+</tr>
+<tr>
+<td>FrequencyHz</td>
+<td>Hz</td>
+<td>&gt; 0 and finite</td>
+<td>oscillator and harmonic frequencies</td>
+</tr>
+<tr>
+<td>SampleRate</td>
+<td>samples/s</td>
+<td>1,000–384,000</td>
+<td>audio sampling clock</td>
+</tr>
+<tr>
+<td>FrameRate</td>
+<td>frames/s</td>
+<td>1–240</td>
+<td>video presentation clock</td>
+</tr>
+<tr>
+<td>SyncOffsetMs</td>
+<td>ms</td>
+<td>−10,000–10,000</td>
+<td>audio relative to video</td>
+</tr>
+<tr>
+<td>SpatialOffset</td>
+<td>normalized</td>
+<td>−1–1</td>
+<td>declared crossmodal spatial discrepancy</td>
+</tr>
+</tbody>
+</table>
+<p>The parameter contracts are summarized in [tbl:parameters]. They
+constrain physical construction and serialization; they are not
+psychophysical scales.</p>
+<table id="tbl:encodings">
+<caption>Encoding profiles and backend capabilities.</caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Format</th>
+<th>Backend</th>
+<th>Artifact</th>
+<th>Profile</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PNG</td>
+<td>Pillow</td>
+<td>image</td>
+<td>lossless uint8 raster</td>
+<td>available</td>
+</tr>
+<tr>
+<td>WAV</td>
+<td>python wave</td>
+<td>audio</td>
+<td>PCM 8/16/24/32-bit</td>
+<td>available</td>
+</tr>
+<tr>
+<td>GIF</td>
+<td>Pillow</td>
+<td>video</td>
+<td>palette animation with declared duration</td>
+<td>available</td>
+</tr>
+<tr>
+<td>NPZ</td>
+<td>NumPy</td>
+<td>canonical artifact</td>
+<td>exact little-endian float32 archive</td>
+<td>available</td>
+</tr>
+<tr>
+<td>MP4</td>
+<td>ffmpeg</td>
+<td>video/audiovisual</td>
+<td>H.264 or muxed MP4; decode inspected</td>
+<td>available</td>
+</tr>
+</tbody>
+</table>
+<p>The delivery profiles are summarized in [tbl:encodings]. Backend
+availability is environment-dependent and is recorded at generation
+time.</p>
+<p>The catalog distinguishes a physical construction from an observer
+claim. For example, the sound-induced-flash generator establishes one
+flash and one or two beep events on a shared clock; it does not
+establish a reported flash count. Similarly, the temporal-ventriloquism
+generator exposes a declared timing offset, while the literature reports
+observer-dependent temporal judgments under specific tasks and timing
+conditions [vroomen2004temporal].</p>
+<h2 id="pipeline-and-provenance">Pipeline and provenance</h2>
+<figure id="fig:architecture">
+<img src="../figures/architecture.png"
+alt="Five labeled stages connect a typed request to a deterministic canonical artifact, encoded media, decoded inspection, and a verification manifest." />
+<figcaption>Five labeled stages connect a typed
+request to a deterministic canonical artifact, encoded media, decoded
+inspection, and a verification manifest.</figcaption>
+</figure>
+<p>What this figure shows: Five labeled stages connect a typed request
+to a deterministic canonical artifact, encoded media, decoded
+inspection, and a verification manifest. This schematic separates a
+typed request from the canonical artifact it generates, the optional
+delivery encoder, decoded inspection, and the manifest-level
+verification decision. Arrows indicate data and provenance dependencies
+rather than a causal model of perception; the seed is 0 and the complete
+stage record is in source data output/data/architecture.json. Controls:
+typed request q=(i,θ,s,e) with seed s=0; default generator and
+delivery-independent canonicalization. Objective facts: no unit-bearing
+objective quantity is applicable to this architecture diagram; stage
+identities and provenance fields are recorded in the sidecar. Claim
+level: canonical_stimulus. Source data: output/data/architecture.json
+(SHA-256 digest recorded in the figure registry). Evidence lineage:
+formalism:eq:typed_request, formalism:eq:canonical_generation,
+formalism:eq:encoding_verification. Limitations: The schematic abstracts
+implementation boundaries and does not represent an observer study or a
+causal theory of perception. Boundary: The pipeline verifies
+reproducible media facts, not what a person experiences.</p>
+<p>The generated architecture figure [fig:architecture] shows the
+separation between request, canonical artifact, delivery adapter,
+decoded inspection, and manifest. The canonical digest is the identity
+of the in-memory stimulus; an encoded hash is the identity of the
+delivered file. The difference is intentional.</p>
+<h2 id="visual-constructions-and-parameter-sweeps">Visual constructions
+and parameter sweeps</h2>
+<figure id="fig:visual_panel">
+<img src="../figures/visual_panel.png"
+alt="A 9-panel gallery shows every currently implemented visual catalog entry, with stable IDs and physical raster summaries: Duck-rabbit ambiguous figure, Simultaneous contrast stimulus, Apparent-motion frame sequence, Müller-Lyer geometric…" />
+<figcaption>A 9-panel gallery shows every currently
+implemented visual catalog entry, with stable IDs and physical raster
+summaries: Duck-rabbit ambiguous figure, Simultaneous contrast stimulus,
+Apparent-motion frame sequence, Müller-Lyer geometric illusion,
+Poggendorff geometric illusion, Ponzo perspective illusion, Kanizsa
+illusory-contour triangle, Ebbinghaus context-size illusion, Zöllner
+orientation illusion.</figcaption>
+</figure>
+<p>What this figure shows: A 9-panel gallery shows every currently
+implemented visual catalog entry, with stable IDs and physical raster
+summaries: Duck-rabbit ambiguous figure, Simultaneous contrast stimulus,
+Apparent-motion frame sequence, Müller-Lyer geometric illusion,
+Poggendorff geometric illusion, Ponzo perspective illusion, Kanizsa
+illusory-contour triangle, Ebbinghaus context-size illusion, Zöllner
+orientation illusion. This complete gallery presents one deterministic
+representative from each of the 9 currently implemented visual catalog
+entries: Duck-rabbit ambiguous figure, Simultaneous contrast stimulus,
+Apparent-motion frame sequence, Müller-Lyer geometric illusion,
+Poggendorff geometric illusion, Ponzo perspective illusion, Kanizsa
+illusory-contour triangle, Ebbinghaus context-size illusion, Zöllner
+orientation illusion. The panel therefore covers the package’s available
+visual families—ambiguous figure, contrast, apparent motion, geometric
+context, illusory contour, contextual size, and orientation-related
+constructions—using typed defaults at seed 0. For the temporally
+expressed apparent-motion entry, the displayed tile is its first frame
+and the source data preserve the full sequence. The source data sidecar
+output/data/visual_panel.json records the stable ID, generator
+parameters, canonical SHA-256 digest, Rec. 709 or grayscale luminance
+statistics, raster-level counts, and parameter boundary for every tile.
+Controls: one default typed parameter object per implemented visual
+entry; seed s=0; dimensions, luminance bounds, grayscale, and
+quantization controls remain in each generator schema; temporal entries
+display their first frame but retain sequence metrics. Objective facts:
+per tile: mean and standard-deviation relative luminance, unique raster
+levels, and canonical SHA-256 digest; temporal entries additionally
+retain frame count, frame rate, and frame deltas; definitions and units
+are in the source data JSON. Claim level: canonical_stimulus. Source
+data: output/data/visual_panel.json (SHA-256 digest recorded in the
+figure registry). Evidence lineage: gregory1997visual,
+brugger1999duckrabbit, howe2005muller, morgan1999poggendorff,
+fisher1967ponzo, yildiz2022ponzo, kanizsa1976contours,
+mruczek2015ebbinghaus, earle1995zollner, wertheimer1912motion,
+sekuler1996wertheimer. Limitations: The gallery is complete for
+implemented visual entries in this package, not a complete survey of
+visual illusions; literature families, historical displays, and
+DuckRabbit rasters are not pixel-identical by default. Viewing scale,
+display calibration, viewing distance, and observer conditions can
+change the relevance of a construction; the gallery does not measure an
+observer’s perceptual report. Boundary: The figure establishes coverage
+of the package’s implemented visual constructions and their
+deterministic raster facts. It does not establish that any viewer will
+perceive the named signature, nor that the set is exhaustive of the
+visual-illusion literature.</p>
+<p>The visual panel [fig:visual_panel] is deliberately a coverage
+figure: it contains one deterministic representative for every currently
+implemented visual entry, including apparent motion and Zöllner in
+addition to the static ambiguous-figure, contrast, geometric-context,
+illusory-contour, and contextual- size families. Equalities, masks, line
+geometry, luminance bounds, and temporal positions are properties of the
+typed rasters or sequences. They are not observer scores, and the
+gallery is not an exhaustive ontology of visual illusions.</p>
+<figure id="fig:visual_sweep">
+<img src="../figures/visual_sweep.png"
+alt="A labeled grid crosses five duck–rabbit blend weights with five grayscale and quantization settings, with physical metrics recorded for each cell." />
+<figcaption>A labeled grid crosses five duck–rabbit
+blend weights with five grayscale and quantization settings, with
+physical metrics recorded for each cell.</figcaption>
+</figure>
+<p>What this figure shows: A labeled grid crosses five duck–rabbit blend
+weights with five grayscale and quantization settings, with physical
+metrics recorded for each cell. This 5×5 sweep varies duck–rabbit blend
+weight across rows and jointly varies grayscale and quantization levels
+across columns. Each cell is regenerated from an immutable typed
+parameter object at seed 0; source data output/data/visual_sweep.json
+records canonical digests, unique-level counts, normalized luminance,
+and effective dynamic range for every condition. Controls: duck_weight ∈
+{0,.25,.5,.75,1}; grayscale=quantization ∈ {2,4,8,16,32}; seed s=0.
+Objective facts: 25 canonical rasters; unique levels, normalized mean
+luminance, and effective dynamic range per cell. Claim level:
+physical_metric. Source data: output/data/visual_sweep.json (SHA-256
+digest recorded in the figure registry). Evidence lineage:
+brugger1999duckrabbit, gregory1997visual. Limitations: The grid is a
+sensitivity of the construction parameters, not a psychophysical
+sensitivity curve or a validated observer effect. Boundary: The chosen
+grid is an engineering sampling of the parameter domain and does not
+imply an optimal or perceptually uniform spacing.</p>
+<p>The sweep [fig:visual_sweep] varies duck-weight from 0 to 1 and
+jointly varies representable grayscale and quantization levels. The
+source data preserve canonical digests and unique-value counts; no
+perceptual score is assigned to a sweep cell.</p>
+<h2 id="temporal-and-auditory-constructions">Temporal and auditory
+constructions</h2>
+<figure id="fig:temporal_sequence">
+<img src="../figures/temporal_sequence.png"
+alt="Six ordered frames are labeled with timestamps and paired with a line plot of adjacent-frame normalized pixel differences." />
+<figcaption>Six ordered frames are labeled with
+timestamps and paired with a line plot of adjacent-frame normalized
+pixel differences.</figcaption>
+</figure>
+<p>What this figure shows: Six ordered frames are labeled with
+timestamps and paired with a line plot of adjacent-frame normalized
+pixel differences. The frame strip exposes the order and timestamps of
+the apparent-motion construction, while the lower trace reports
+adjacent-frame mean absolute pixel differences. Source data
+output/data/temporal_sequence.json preserve frame count, frame rate,
+reduced rational timebase, timestamps in seconds, and the nonzero
+transition series; seed 0 identifies the generated sequence. Controls:
+visual.apparent_motion default typed parameters; frame rate and frame
+count from the canonical sequence; seed s=0. Objective facts: timestamps
+in seconds, frame rate in frames/s, frame count, rational timebase, and
+adjacent-frame normalized pixel difference. Claim level:
+physical_metric. Source data: output/data/temporal_sequence.json
+(SHA-256 digest recorded in the figure registry). Evidence lineage:
+wertheimer1912motion, sekuler1996wertheimer. Limitations: Frame
+succession and frame deltas are physical file properties; playback
+timing, display persistence, and motion reports require a controlled
+observer task. Boundary: The figure documents temporal structure rather
+than the presence, direction, or strength of perceived motion.</p>
+<p>The temporal figure [fig:temporal_sequence] reports frame succession,
+rational frame rate, and frame-to-frame mean absolute differences. These
+facts establish temporal structure in the file, not the presence or
+strength of perceived motion.</p>
+<figure id="fig:audio_signals">
+<img src="../figures/audio_signals.png"
+alt="Five labeled rows show canonical audio waveforms, relative one-sided spectral bars, RMS and peak in normalized amplitude, and spectral summaries in hertz." />
+<figcaption>Five labeled rows show canonical audio
+waveforms, relative one-sided spectral bars, RMS and peak in normalized
+amplitude, and spectral summaries in hertz.</figcaption>
+</figure>
+<p>What this figure shows: Five labeled rows show canonical audio
+waveforms, relative one-sided spectral bars, RMS and peak in normalized
+amplitude, and spectral summaries in hertz. Five implemented auditory
+constructions—Shepard tone, missing fundamental, tritone paradox, octave
+illusion, and auditory continuity—are shown as canonical waveforms with
+compact one-sided FFT summaries. Source data
+output/data/audio_signals.json records sample rate, channel layout, RMS,
+peak, spectral centroid, bandwidth, crest factor, canonical digest, and
+the declared display-bin convention; no pitch or stream report is
+inferred. Controls: default typed audio parameters; per-generator
+channel layout and sample rate; seed s=0; one-sided FFT display with 48
+sampled bins. Objective facts: RMS and peak in normalized amplitude;
+spectral centroid and bandwidth in Hz; sample rate in samples/s; channel
+layout and canonical SHA-256 digest. Claim level: physical_metric.
+Source data: output/data/audio_signals.json (SHA-256 digest recorded in
+the figure registry). Evidence lineage: shepard1984scale,
+zatorre2005missing, deutsch1986tritone, repp1997tritone,
+deutsch1974octave, warren1970continuity, riecke2011continuity.
+Limitations: Playback level, transducer response, dichotic separation,
+masker design, and listener judgments are external to the canonical
+buffer. Boundary: The figure compares generated signal properties and
+literature-linked families; it does not establish pitch, continuity, or
+stream organization for a listener.</p>
+<p>The auditory figure [fig:audio_signals] shows canonical waveforms and
+spectral summaries for Shepard, missing-fundamental, tritone, octave,
+and continuity constructions. RMS, peak, spectral centroid, bandwidth,
+and channel layout are calculated from the canonical buffer with
+explicit units and windowing rules. Pitch direction, pitch height,
+continuity, and stream organization remain observer-level outcomes that
+depend on playback and task conditions.</p>
+<h2 id="audiovisual-timing-and-encoding">Audiovisual timing and
+encoding</h2>
+<figure id="fig:audiovisual_timeline">
+<img src="../figures/audiovisual_timeline.png"
+alt="Two labeled traces share a normalized time axis: video mean luminance and audio absolute amplitude, with signed synchronization and spatial offsets printed below." />
+<figcaption>Two labeled traces share a normalized
+time axis: video mean luminance and audio absolute amplitude, with
+signed synchronization and spatial offsets printed below.</figcaption>
+</figure>
+<p>What this figure shows: Two labeled traces share a normalized time
+axis: video mean luminance and audio absolute amplitude, with signed
+synchronization and spatial offsets printed below. Video mean luminance
+and rectified audio amplitude are placed on a common normalized time
+axis for the sound-induced-flash construction. Source data
+output/data/audiovisual_timeline.json records the video frame clock,
+audio sampling clock, event traces, signed audio-minus-video
+synchronization offset in milliseconds, and normalized spatial
+discrepancy; alignment is declared by the generator, not estimated from
+perception. Controls: audiovisual.sound_induced_flash default shared
+timeline; declared sync offset ΔAV and spatial offset; seed s=0.
+Objective facts: video luminance and audio envelope on normalized shared
+time; ΔAV in ms; spatial discrepancy in normalized units; frame and
+sample clocks in the sidecar. Claim level: physical_metric. Source data:
+output/data/audiovisual_timeline.json (SHA-256 digest recorded in the
+figure registry). Evidence lineage: shams2000sifi, hirst2020sound,
+vroomen2004temporal, hartcherobrien2011temporal. Limitations: Display
+refresh, audio hardware, event latency, and observer temporal binding
+are not measured by this figure. Boundary: A shared-clock construction
+is not evidence that observers bind the events at the declared or any
+other perceptual time.</p>
+<p>The audiovisual timeline [fig:audiovisual_timeline] displays video
+luminance and audio amplitude against the shared clock, alongside
+declared synchronization and spatial offsets. Ventriloquist stimuli
+require stereo playback and spatially resolved display; temporal binding
+requires controlled timing and an observer task [bruns2019ventriloquist;
+vroomen2004temporal].</p>
+<figure id="fig:encoding_verification">
+<img src="../figures/encoding_verification.png"
+alt="A five-row comparison lists format, backend, preserved canonical facts, and the corresponding decoded verification checks." />
+<figcaption>A five-row comparison lists format,
+backend, preserved canonical facts, and the corresponding decoded
+verification checks.</figcaption>
+</figure>
+<p>What this figure shows: A five-row comparison lists format, backend,
+preserved canonical facts, and the corresponding decoded verification
+checks. The comparison separates the canonical artifact from delivery
+containers: PNG, WAV, GIF, NPZ, and optional MP4/muxed MP4. Source data
+output/data/encoding_verification.json records backend identity,
+preserved canonical facts, decoded inspection targets, and capability
+status as observed in the generation environment; the table therefore
+describes an adapter contract rather than a claim about codec quality.
+Controls: typed encoding profile selected per artifact; overwrite and
+backend capability checks; seed inherited from the stimulus request.
+Objective facts: format availability and verification scope are
+environment observations; NPZ is exact while other formats are decoded
+and tolerance-checked. Claim level: encoded_media. Source data:
+output/data/encoding_verification.json (SHA-256 digest recorded in the
+figure registry). Evidence lineage: engineering:typed_media_adapters.
+Limitations: Backend availability, codec versions, container metadata,
+and lossy tolerances are environment-dependent; playback software can
+expose additional behavior. Boundary: A successful encode or decode does
+not validate an observer effect or guarantee cross-device perceptual
+equivalence.</p>
+<p>The encoding matrix [fig:encoding_verification] makes backend
+capability and verification scope visible. NPZ is the exact canonical
+archive; PNG, WAV, GIF, and MP4 are delivery containers whose decoded
+facts are checked against the manifest.</p>
+<h2 id="sec:objective_metric_results">Objective metric results</h2>
+<table id="tbl:metrics">
+<caption>Objective metric definitions and epistemic boundary.</caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Unit</th>
+<th>Definition</th>
+<th>Tolerance</th>
+<th>Claim level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mean_luminance</td>
+<td>normalized_luminance</td>
+<td>mean Rec. 709 relative luminance (grayscale is identity)</td>
+<td>exact canonical</td>
+<td>physical_metric</td>
+</tr>
+<tr>
+<td>unique_values</td>
+<td>levels</td>
+<td>count of distinct canonical image values</td>
+<td>exact integer</td>
+<td>physical_metric</td>
+</tr>
+<tr>
+<td>rms</td>
+<td>normalized_amplitude</td>
+<td>root-mean-square audio amplitude</td>
+<td>finite scalar</td>
+<td>physical_metric</td>
+</tr>
+<tr>
+<td>peak</td>
+<td>normalized_amplitude</td>
+<td>maximum absolute audio amplitude</td>
+<td>finite scalar</td>
+<td>physical_metric</td>
+</tr>
+<tr>
+<td>spectral_centroid_hz</td>
+<td>Hz</td>
+<td>energy-weighted one-sided spectral centroid</td>
+<td>finite scalar</td>
+<td>physical_metric</td>
+</tr>
+<tr>
+<td>spectral_bandwidth_hz</td>
+<td>Hz</td>
+<td>spectral standard deviation around the one-sided centroid</td>
+<td>finite scalar</td>
+<td>physical_metric</td>
+</tr>
+<tr>
+<td>crest_factor</td>
+<td>ratio</td>
+<td>audio peak divided by RMS with zero-RMS guard</td>
+<td>finite scalar</td>
+<td>physical_metric</td>
+</tr>
+<tr>
+<td>mean_temporal_delta</td>
+<td>normalized_pixel_difference</td>
+<td>mean adjacent-frame absolute difference</td>
+<td>finite scalar</td>
+<td>physical_metric</td>
+</tr>
+<tr>
+<td>sync_offset</td>
+<td>ms</td>
+<td>declared audio-minus-video offset</td>
+<td>typed value</td>
+<td>physical_metric</td>
+</tr>
+</tbody>
+</table>
+<p>The metric definitions in [tbl:metrics] are computed from canonical
+or decoded artifacts and do not encode observer interpretations.</p>
+<p>The default duck-rabbit artifact contains 3 unique raster levels and
+has mean normalized luminance 0.7770. These values are live generated
+facts, not perceptual effect sizes.</p>
+<h2 id="observer-estimands-and-verification-controls">Observer estimands
+and verification controls</h2>
+<table id="tbl:observer_estimands">
+<caption>Data-free observer outcomes and preregistered
+estimands.</caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Estimand</th>
+<th>Response and model</th>
+<th>Reference and contrast</th>
+<th>Uncertainty</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sifi flash count contrast</td>
+<td>event count; poisson or ordinal</td>
+<td>sifi one beep; two-beep minus one-beep event-count response</td>
+<td>95% confidence interval</td>
+</tr>
+<tr>
+<td>temporal binding offset contrast</td>
+<td>continuous magnitude; linear mixed</td>
+<td>temporal sync; reported timing shift per declared sync offset</td>
+<td>95% confidence interval</td>
+</tr>
+</tbody>
+</table>
+<p>The analysis contract in [tbl:observer_estimands] specifies estimands
+and uncertainty procedures without asserting any result.</p>
+<table id="tbl:verification">
+<caption>Verification failure modes and negative controls.</caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Failure mode</th>
+<th>Control</th>
+<th>Expected result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>altered encoded file</td>
+<td>recompute encoded SHA-256</td>
+<td>fail</td>
+</tr>
+<tr>
+<td>stale canonical digest</td>
+<td>recompute canonical little-endian float32 digest</td>
+<td>fail</td>
+</tr>
+<tr>
+<td>incorrect decoded dimensions</td>
+<td>compare inspection facts with manifest summary</td>
+<td>fail</td>
+</tr>
+<tr>
+<td>stream timing mismatch</td>
+<td>compare duration/timebase and declared sync offset</td>
+<td>fail</td>
+</tr>
+<tr>
+<td>unsupported backend</td>
+<td>capability probe before encoding</td>
+<td>explicit capability error</td>
+</tr>
+<tr>
+<td>conflicting format requests</td>
+<td>reject format_name/output_spec disagreement</td>
+<td>parameter error</td>
+</tr>
+</tbody>
+</table>
+<p>The negative controls in [tbl:verification] test package integrity
+and media contracts; they are not null findings about perception.</p>
+<h2 id="synthetic-psychophysics-model-diagnostic">Synthetic
+psychophysics model diagnostic</h2>
+<figure id="fig:synthetic_psychophysics">
+<img src="../figures/synthetic_psychophysics.png"
+alt="A narrow-range line plot shows deterministic model probability across duck_weight values beside the model identity, temperature, no-training-data statement, and human-data boundary." />
+<figcaption>A narrow-range line plot shows
+deterministic model probability across duck_weight values beside the
+model identity, temperature, no-training-data statement, and human-data
+boundary.</figcaption>
+</figure>
+<p>What this figure shows: A narrow-range line plot shows deterministic
+model probability across duck_weight values beside the model identity,
+temperature, no-training-data statement, and human-data boundary. The
+hand-specified feature observer compares duck_weight variants with a
+fixed canonical reference. Its probability trace is computed
+analytically from serialized features, weights, and temperature; source
+data output/data/synthetic_psychophysics.json records model ID/version,
+reference and comparison digests, seed, calibration,
+<code>training_data=none</code>, and <code>human_data=false</code>. The
+y-axis is deliberately a narrow model-output range rather than a human
+psychometric scale. Controls: duck_weight comparison against fixed
+reference; serialized feature weights and temperature; seed s=0.
+Objective facts: model probability and score delta on the displayed
+model-output scale; canonical stimulus digests; human_data=false;
+training_data=none. Claim level: synthetic_model_output. Source data:
+output/data/synthetic_psychophysics.json (SHA-256 digest recorded in the
+figure registry). Evidence lineage: observer:preregistered_estimands.
+Limitations: The model is hand-specified, has no training data, has not
+been calibrated against observers, and does not estimate a human
+threshold or effect size. Its probabilities are model outputs, not
+participant responses or a psychometric function. Boundary: This
+diagnostic tests deterministic orchestration and metamorphic
+input-output behavior only; empirical psychophysics remains future
+work.</p>
+<p>The diagnostic [fig:synthetic_psychophysics] evaluates a fully
+serialized, hand-specified feature observer against a fixed canonical
+reference while varying <code>duck_weight</code>. Its logistic
+probabilities are model outputs generated from explicit features,
+weights, temperature, and seed; they are not a pretrained vision-model
+score, a human psychometric function, an assumed human effect size, or
+participant data. A future human study would require a preregistered
+task, calibrated display and playback, consented participants, exclusion
+and missingness rules, and an analysis contract before any observer
+claim could be made.</p>
+</main>
+</body>
+</html>

@@ -1,0 +1,220 @@
+{
+  "data": {
+    "definitions": [
+      {
+        "claim_level": "canonical_stimulus",
+        "equation": "q = (i, \u03b8, s, e)",
+        "figures": [
+          "fig:architecture",
+          "fig:formalism_traceability"
+        ],
+        "implementation": [
+          "registry.py",
+          "schema.py"
+        ],
+        "label": "eq:typed_request",
+        "symbols": [
+          "i",
+          "\u03b8",
+          "s",
+          "e"
+        ],
+        "tests": [
+          "test_generators.py"
+        ]
+      },
+      {
+        "claim_level": "canonical_stimulus",
+        "equation": "A = G\u1d62(\u03b8; s)",
+        "figures": [
+          "fig:architecture",
+          "fig:visual_panel"
+        ],
+        "implementation": [
+          "registry.py",
+          "generators.py"
+        ],
+        "label": "eq:canonical_generation",
+        "symbols": [
+          "A",
+          "G\u1d62",
+          "\u03b8",
+          "s"
+        ],
+        "tests": [
+          "test_generators.py",
+          "test_v03_contracts.py"
+        ]
+      },
+      {
+        "claim_level": "physical_metric",
+        "equation": "c(A) = Serialize_LE,float32(A, shape, clock, units); h_c(A) = H(c(A))",
+        "figures": [
+          "fig:architecture",
+          "fig:encoding_verification"
+        ],
+        "implementation": [
+          "canonical.py",
+          "manifest.py"
+        ],
+        "label": "eq:canonical_digest",
+        "symbols": [
+          "c(A)",
+          "h_c",
+          "H"
+        ],
+        "tests": [
+          "test_v03_contracts.py"
+        ]
+      },
+      {
+        "claim_level": "encoded_media",
+        "equation": "F = E\u2091(A), I = D(F), V(F, M) \u2208 {pass, fail}",
+        "figures": [
+          "fig:encoding_verification"
+        ],
+        "implementation": [
+          "render.py",
+          "inspection.py",
+          "manifest.py"
+        ],
+        "label": "eq:encoding_verification",
+        "symbols": [
+          "F",
+          "E\u2091",
+          "D",
+          "I",
+          "V",
+          "M"
+        ],
+        "tests": [
+          "test_media_and_render.py",
+          "test_v03_contracts.py"
+        ]
+      },
+      {
+        "claim_level": "physical_metric",
+        "equation": "N = round(f_s T), t_k = k/f_r, \u0394_AV = t_audio \u2212 t_video",
+        "figures": [
+          "fig:temporal_sequence",
+          "fig:audiovisual_timeline"
+        ],
+        "implementation": [
+          "parameters.py",
+          "artifacts.py"
+        ],
+        "label": "eq:clock_definition",
+        "symbols": [
+          "N",
+          "f_s",
+          "T",
+          "t_k",
+          "f_r",
+          "\u0394_AV"
+        ],
+        "tests": [
+          "test_parameters.py",
+          "test_media_and_render.py"
+        ]
+      },
+      {
+        "claim_level": "physical_metric",
+        "equation": "\u03bc_Y, \u03c3_Y, RMS_X = M(A; units, tolerance, version)",
+        "figures": [
+          "fig:metrics_dashboard",
+          "fig:audio_signals"
+        ],
+        "implementation": [
+          "metrics.py",
+          "publication.py"
+        ],
+        "label": "eq:objective_statistics",
+        "symbols": [
+          "\u03bc_Y",
+          "\u03c3_Y",
+          "RMS_X",
+          "M"
+        ],
+        "tests": [
+          "test_v04_scholarly.py"
+        ]
+      },
+      {
+        "claim_level": "physical_metric",
+        "equation": "D_k = mean absolute difference of adjacent frames; centroid(X) = \u03a3 fP_X(f)/\u03a3P_X(f)",
+        "figures": [
+          "fig:temporal_sequence",
+          "fig:metrics_dashboard"
+        ],
+        "implementation": [
+          "metrics.py",
+          "artifacts.py"
+        ],
+        "label": "eq:temporal_spectral_metrics",
+        "symbols": [
+          "D_k",
+          "P_X",
+          "f"
+        ],
+        "tests": [
+          "test_v04_scholarly.py"
+        ]
+      },
+      {
+        "claim_level": "observer_hypothesis",
+        "equation": "\u03c8 = E[Y conditional on condition and protocol]",
+        "figures": [
+          "fig:synthetic_psychophysics",
+          "fig:observer_protocol"
+        ],
+        "implementation": [
+          "observer_analysis.py",
+          "observer.py"
+        ],
+        "label": "eq:observer_estimand",
+        "symbols": [
+          "\u03c8",
+          "Y",
+          "condition",
+          "protocol"
+        ],
+        "tests": [
+          "test_v04_scholarly.py"
+        ]
+      },
+      {
+        "claim_level": "synthetic_model_output",
+        "equation": "p_M(c|A_r,A_c) = \u03c3((w\u00b7\u03c6(A_c) \u2212 w\u00b7\u03c6(A_r))/\u03c4)",
+        "figures": [
+          "fig:synthetic_psychophysics"
+        ],
+        "implementation": [
+          "synthetic_psychophysics.py",
+          "metrics.py"
+        ],
+        "label": "eq:synthetic_observer",
+        "symbols": [
+          "p_M",
+          "c",
+          "A_r",
+          "A_c",
+          "w",
+          "\u03c6",
+          "\u03c4"
+        ],
+        "tests": [
+          "test_synthetic_psychophysics.py"
+        ]
+      }
+    ]
+  },
+  "figure_label": "fig:formalism_traceability",
+  "figure_stem": "formalism_traceability",
+  "generator": "duckrabbit.publication._formalism_traceability",
+  "parameters": {
+    "figure_stem": "formalism_traceability",
+    "seed": 0
+  },
+  "schema_version": "duckrabbit/figure-source/v1",
+  "seed": 0
+}

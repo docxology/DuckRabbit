@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>01_introduction.md.web</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+
+<link data-template-favicon rel="icon" href="favicon.ico">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<main id="main-content" tabindex="-1">
+<h1 id="sec:introduction">Introduction</h1>
+<p>An illusion stimulus is not the same thing as an illusion report. A
+stimulus can be physically specified, generated, encoded, and inspected
+without establishing what every observer will see or hear. This
+distinction is central to reproducible cognitive science: the physical
+manipulation must be auditable, while observer-level effects require a
+task, calibrated presentation conditions, randomization, and data.</p>
+<p>Visual illusion classifications are useful maps rather than
+exhaustive or universally agreed ontologies [gregory1997visual].
+Auditory and audiovisual families add spectral structure, channel
+separation, temporal coincidence, and spatial alignment. The
+Sound-Induced Flash literature illustrates the boundary particularly
+clearly: the physical contrast is a flash paired with different beep
+counts, while the perceptual claim requires a listener, timing, and a
+response task [hirst2020sound; shams2000sifi].</p>
+<p>DuckRabbit therefore treats an illusion as a typed
+stimulus-construction problem. Each catalog entry declares modality,
+mechanism, perceptual signature, cognitive process, requirements,
+evidence status, output kind, and implementation status. The taxonomy is
+orthogonal and explicitly provisional; it is an engineering index linked
+to sources, not a replacement for domain-specific theory.</p>
+<p>The release also treats the package as research software rather than
+as an unannotated collection of media files. Reproducible computational
+research depends on preserving the code, inputs, environment
+assumptions, and execution path needed to recreate a result
+[sandve2013simple; wilson2014bestpractices]. The FAIR literature extends
+that responsibility to algorithms, tools, and workflows, while
+software-citation guidance emphasizes identifying the exact software
+object and version used [wilkinson2016fair; lamprecht2020fairsoftware;
+smith2016software]. DuckRabbit applies these principles narrowly: it
+makes the construction pipeline and its generated artifacts citable and
+inspectable, but it does not treat metadata quality as evidence of a
+perceptual effect.</p>
+<p>The package is organized around three falsifiable engineering
+hypotheses:</p>
+<ol type="1">
+<li>Identical typed requests produce identical canonical arrays and
+canonical digests.</li>
+<li>Encoders and decoders preserve declared media facts within an
+explicit format-specific tolerance, or verification fails.</li>
+<li>Parameter manipulations change measurable physical stimulus
+properties; any observer-level interpretation remains a preregistered
+hypothesis until data exist.</li>
+</ol>
+<p>This boundary has a nineteenth-century scientific lineage. Fechner’s
+<em>Elemente der Psychophysik</em> formalized the problem of relating
+controlled stimulus differences to measured sensation, while
+Wheatstone’s binocular-vision experiments made the distinction between
+the physical images delivered to two eyes and the resulting depth
+interpretation experimentally explicit [fechner1860psychophysics;
+wheatstone1838binocular]. Helmholtz’s physiological optics then
+integrated measurement of the eye, visual geometry, and theories of
+perceptual inference [helmholtz1867optics]. DuckRabbit does not
+reproduce those historical experiments; it inherits their methodological
+lesson that stimulus conditions and observer inferences must be
+represented as distinct objects.</p>
+<p>That lineage has deeper and less geographically narrow roots.
+Ptolemy’s ancient <em>Optics</em>, Ibn al-Haytham’s medieval Arabic
+optics, and the Mohist Canon’s early Chinese discussions of optics and
+mechanics show that questions about image formation, geometry,
+knowledge, and evidence were developed across multiple intellectual
+traditions [ptolemy1996optics; alhazen1989optics; mozi2023canons;
+dai2015chinesescience]. Early-modern discussions sharpened the
+distinction between a physical presentation and an inferred percept:
+Kircher documented optical display, Berkeley analyzed learned spatial
+inference, and the Molyneux–Cheselden record made cross-sensory transfer
+and observer testimony explicit problems [kircher1646light;
+berkeley1709vision; molyneux2020problem; cheselden1728sight]. DuckRabbit
+cites these sources as historical and methodological precedents, not as
+evidence that its generated files reproduce ancient, early-modern, or
+clinical observations.</p>
+<p>The present catalog contains 18 entries, of which 17 are implemented,
+0 are planned, and 1 require external fixtures. This status vocabulary
+makes breadth visible without claiming that a finite package covers all
+known phenomena.</p>
+</main>
+</body>
+</html>

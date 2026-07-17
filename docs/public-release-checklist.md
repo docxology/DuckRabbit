@@ -4,6 +4,12 @@ DuckRabbit is maintained in a private sidecar and rendered through the sibling
 template checkout. This checklist defines the handoff from a verified release
 candidate to a public repository or archival deposit.
 
+**v0.5.0 status: released.** Public repository:
+[docxology/DuckRabbit](https://github.com/docxology/DuckRabbit). Concept DOI:
+[10.5281/zenodo.21419693](https://doi.org/10.5281/zenodo.21419693). Version
+DOI: [10.5281/zenodo.21419694](https://doi.org/10.5281/zenodo.21419694). The
+steps below remain the checklist for the *next* release.
+
 ## Required source state
 
 - The public source contains the package, tests, manuscript, bibliography,
@@ -11,11 +17,12 @@ candidate to a public repository or archival deposit.
   changelog.
 - Author identity is Daniel Ari Friedman, Active Inference Institute, ORCID
   `0000-0001-6232-9096`.
-- The intended public software repository is
+- The public software repository is
   `https://github.com/docxology/DuckRabbit`.
 - Version, title, license, and DOI status agree across all metadata files.
-- The DOI is empty and marked `forthcoming` until a real public identifier is
-  minted.
+- Between releases the DOI is empty and marked `forthcoming` until the next
+  real public identifier is minted; once minted, `doi_status` becomes
+  `published` and the DOI is real (never a placeholder).
 - No participant data, private fixtures, credentials, or generated review
   state are included.
 

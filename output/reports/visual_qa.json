@@ -1,0 +1,236 @@
+{
+  "figure_count": 15,
+  "figures": [
+    {
+      "height_px": 760,
+      "label": "fig:architecture",
+      "mode": "RGB",
+      "path": "output/figures/architecture.png",
+      "scales": [
+        "full",
+        "publication_column",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 135,
+      "thumbnail_sha256": "bbb7177df8812f791dc45e50c77f8ff998fc10f4bea8cb5e453046fd1bec628c",
+      "thumbnail_width_px": 320,
+      "width_px": 1800
+    },
+    {
+      "height_px": 1700,
+      "label": "fig:catalog_matrix",
+      "mode": "RGB",
+      "path": "output/figures/catalog_matrix.png",
+      "scales": [
+        "full",
+        "publication_column",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 286,
+      "thumbnail_sha256": "b48ec7d20851466480f7b7107e6df2ff57813680d85449c0967fdadb8e73864a",
+      "thumbnail_width_px": 320,
+      "width_px": 1900
+    },
+    {
+      "height_px": 1770,
+      "label": "fig:visual_panel",
+      "mode": "RGB",
+      "path": "output/figures/visual_panel.png",
+      "scales": [
+        "full",
+        "publication_column",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 298,
+      "thumbnail_sha256": "562609cd1a5e6c6c23b2e3c10dcb7d5b625c2f4e1b2028b54ce42aa4fc0fb13c",
+      "thumbnail_width_px": 320,
+      "width_px": 1900
+    },
+    {
+      "height_px": 1050,
+      "label": "fig:visual_sweep",
+      "mode": "RGB",
+      "path": "output/figures/visual_sweep.png",
+      "scales": [
+        "full",
+        "publication_column",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 187,
+      "thumbnail_sha256": "f7700f461fc277cbef6e500718de8bf27015709e0b16cde71bb16a4b805939fb",
+      "thumbnail_width_px": 320,
+      "width_px": 1800
+    },
+    {
+      "height_px": 820,
+      "label": "fig:temporal_sequence",
+      "mode": "RGB",
+      "path": "output/figures/temporal_sequence.png",
+      "scales": [
+        "full",
+        "publication_column",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 138,
+      "thumbnail_sha256": "b5dc1c3e3b4e3319fd8ef67a632201305fadc834204d9b19b7f7901f1a940ab4",
+      "thumbnail_width_px": 320,
+      "width_px": 1900
+    },
+    {
+      "height_px": 1650,
+      "label": "fig:audio_signals",
+      "mode": "RGB",
+      "path": "output/figures/audio_signals.png",
+      "scales": [
+        "full",
+        "publication_column",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 278,
+      "thumbnail_sha256": "595cdf664eb32cf30c47b92238846fb2b34809a8744621c1c388fb67b45572f0",
+      "thumbnail_width_px": 320,
+      "width_px": 1900
+    },
+    {
+      "height_px": 1020,
+      "label": "fig:audiovisual_timeline",
+      "mode": "RGB",
+      "path": "output/figures/audiovisual_timeline.png",
+      "scales": [
+        "full",
+        "publication_column",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 172,
+      "thumbnail_sha256": "59a740911dd1f48cf353800f6a1690367f469b5ed536f212e2e8bc4ac4836ad0",
+      "thumbnail_width_px": 320,
+      "width_px": 1900
+    },
+    {
+      "height_px": 900,
+      "label": "fig:encoding_verification",
+      "mode": "RGB",
+      "path": "output/figures/encoding_verification.png",
+      "scales": [
+        "full",
+        "publication_column",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 152,
+      "thumbnail_sha256": "74b0de292589f3c7a69a786d4f6b63d2c0cef705d6c6fcf0ab51eccd8c5193b2",
+      "thumbnail_width_px": 320,
+      "width_px": 1900
+    },
+    {
+      "height_px": 1050,
+      "label": "fig:synthetic_psychophysics",
+      "mode": "RGB",
+      "path": "output/figures/synthetic_psychophysics.png",
+      "scales": [
+        "full",
+        "publication_column",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 177,
+      "thumbnail_sha256": "c312233c61f8cee844e59779339dc6dc23922bbc5714912c1466670c2d394a9a",
+      "thumbnail_width_px": 320,
+      "width_px": 1900
+    },
+    {
+      "height_px": 1050,
+      "label": "fig:claim_boundary",
+      "mode": "RGB",
+      "path": "output/figures/claim_boundary.png",
+      "scales": [
+        "full",
+        "publication_column",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 177,
+      "thumbnail_sha256": "99bd268c774bd8cf2dff080063c40637fd9a98b24af38f41b2785a3364c04759",
+      "thumbnail_width_px": 320,
+      "width_px": 1900
+    },
+    {
+      "height_px": 2320,
+      "label": "fig:scholarship_map",
+      "mode": "RGB",
+      "path": "output/figures/scholarship_map.png",
+      "scales": [
+        "full",
+        "publication_column",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 320,
+      "thumbnail_sha256": "ab97c58aa1ac16a579cf6ce329aa96689f35e4dce77189c2c746d5921699dbb4",
+      "thumbnail_width_px": 283,
+      "width_px": 2050
+    },
+    {
+      "height_px": 1700,
+      "label": "fig:formalism_traceability",
+      "mode": "RGB",
+      "path": "output/figures/formalism_traceability.png",
+      "scales": [
+        "full",
+        "publication_column",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 265,
+      "thumbnail_sha256": "4809d27ebecf12d26eafe87ad8a512c2b84ef4df048a34eb2403d5b04d76b541",
+      "thumbnail_width_px": 320,
+      "width_px": 2050
+    },
+    {
+      "height_px": 1250,
+      "label": "fig:metrics_dashboard",
+      "mode": "RGB",
+      "path": "output/figures/metrics_dashboard.png",
+      "scales": [
+        "full",
+        "publication_column",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 205,
+      "thumbnail_sha256": "34f8a6119d159b4fab7d3c580bc7a70c952641fd747eba4412aea4b4450294db",
+      "thumbnail_width_px": 320,
+      "width_px": 1950
+    },
+    {
+      "height_px": 1300,
+      "label": "fig:parameter_domains",
+      "mode": "RGB",
+      "path": "output/figures/parameter_domains.png",
+      "scales": [
+        "full",
+        "publication_column",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 213,
+      "thumbnail_sha256": "3e4f4627f4fa5fa69509861840f03ad582f067907f29610da447b0cbdfb59d08",
+      "thumbnail_width_px": 320,
+      "width_px": 1950
+    },
+    {
+      "height_px": 1320,
+      "label": "fig:observer_protocol",
+      "mode": "RGB",
+      "path": "output/figures/observer_protocol.png",
+      "scales": [
+        "full",
+        "publication_column",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 206,
+      "thumbnail_sha256": "3983506582bfe95161a154694706d8896d13434e7e717e376cfa28e44c14ac92",
+      "thumbnail_width_px": 320,
+      "width_px": 2050
+    }
+  ],
+  "scales": [
+    "full",
+    "publication_column",
+    "thumbnail"
+  ],
+  "schema_version": "duckrabbit/visual-qa/v1"
+}

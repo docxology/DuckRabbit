@@ -1,0 +1,36 @@
+
+OUTPUT STATISTICS REPORT
+============================================================
+
+Output Directory: output
+
+Total Files: 184
+Total Size: 12.40 MB
+
+Files by Category:
+  • pdf: 10 files (4.19 MB)
+  • web: 14 files (0.50 MB)
+  • slides: 86 files (2.72 MB)
+  • figures: 19 files (3.92 MB)
+  • data: 36 files (0.38 MB)
+  • reports: 18 files (0.69 MB)
+  • logs: 1 files (0.00 MB)
+
+Largest Files:
+  • DuckRabbit_combined.pdf: 3.76 MB (pdf)
+  • cover_visualization.png: 2.12 MB (figures)
+  • 03_results_slides.pdf: 0.77 MB (slides)
+  • 07_publication_audit_slides.pdf: 0.77 MB (slides)
+  • scholarship_audit.json: 0.52 MB (reports)
+
+File Types:
+  • .json: 43 file(s)
+  • .png: 17 file(s)
+  • .md: 14 file(s)
+  • .log: 14 file(s)
+  • .tex: 13 file(s)
+  • .aux: 12 file(s)
+  • .pdf: 12 file(s)
+  • .toc: 12 file(s)
+  • .html: 12 file(s)
+  • .nav: 11 file(s)

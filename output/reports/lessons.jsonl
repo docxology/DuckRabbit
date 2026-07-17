@@ -1,0 +1,2 @@
+{"category": "pause_recommendation", "message": "pause recommended", "severity": "info", "source": "reports/pause_recommendations.json", "stage_name": "PDF Rendering", "stage_num": 0, "timestamp": "2026-07-17T20:41:35+00:00"}
+{"category": "slow_telemetry", "message": "Stage 'PDF Rendering' took 41.7s (2.0\u00d7 the average 13.4s)", "severity": "warning", "source": "reports/telemetry.json", "stage_name": "PDF Rendering", "stage_num": 0, "timestamp": "2026-07-17T20:41:35+00:00"}

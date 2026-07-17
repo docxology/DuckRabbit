@@ -1,0 +1,51 @@
+{
+  "body": "| PNG | Pillow | image | lossless uint8 raster | available |\n| WAV | python wave | audio | PCM 8/16/24/32-bit | available |\n| GIF | Pillow | video | palette animation with declared duration | available |\n| NPZ | NumPy | canonical artifact | exact little-endian float32 archive | available |\n| MP4 | ffmpeg | video/audiovisual | H.264 or muxed MP4; decode inspected | available |",
+  "caption": "Backend status is environment-dependent; encoded files are inspected after delivery.",
+  "headers": [
+    "Format",
+    "Backend",
+    "Artifact",
+    "Profile",
+    "Status"
+  ],
+  "label": "tbl:encodings",
+  "records": [
+    {
+      "artifact": "image",
+      "backend": "Pillow",
+      "format": "PNG",
+      "profile": "lossless uint8 raster",
+      "status": "available"
+    },
+    {
+      "artifact": "audio",
+      "backend": "python wave",
+      "format": "WAV",
+      "profile": "PCM 8/16/24/32-bit",
+      "status": "available"
+    },
+    {
+      "artifact": "video",
+      "backend": "Pillow",
+      "format": "GIF",
+      "profile": "palette animation with declared duration",
+      "status": "available"
+    },
+    {
+      "artifact": "canonical artifact",
+      "backend": "NumPy",
+      "format": "NPZ",
+      "profile": "exact little-endian float32 archive",
+      "status": "available"
+    },
+    {
+      "artifact": "video/audiovisual",
+      "backend": "ffmpeg",
+      "format": "MP4",
+      "profile": "H.264 or muxed MP4; decode inspected",
+      "status": "available"
+    }
+  ],
+  "schema_version": "duckrabbit/table/v1",
+  "title": "Encoding profiles and backend capabilities"
+}

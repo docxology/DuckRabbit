@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>09_appendix_catalog.md.web</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+
+<link data-template-favicon rel="icon" href="favicon.ico">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<main id="main-content" tabindex="-1">
+<h1 id="sec:appendix_catalog">Appendix A. Complete catalog, source
+tiers, and evidence/implementation boundaries</h1>
+<p>This appendix is the authoritative rendered snapshot of DuckRabbit’s
+live catalog. It is generated from the taxonomy registry and evidence
+matrix during the publication build; the table is not hand-maintained.
+The snapshot records the package’s current scope, not a claim to
+enumerate every illusion described in the literature.</p>
+<h2 id="how-to-read-the-matrix">How to read the matrix</h2>
+<p>Each row identifies a registered illusion family and separates five
+questions that are often collapsed in informal catalogs:</p>
+<ol type="1">
+<li>What modality, mechanism, and signature does the package assign to
+the construction?</li>
+<li>What evidence and implementation status does the checked-in record
+support?</li>
+<li>Which sources support the exact statement written in the row?</li>
+<li>What physical claim is supported by the row?</li>
+<li>What full source role, resolver, DOI status, and claim level are
+retained in the machine-readable record?</li>
+</ol>
+<p><code>implemented</code> means that DuckRabbit has a deterministic
+generator and a validated canonical artifact contract. It does not mean
+that the generated stimulus is a pixel-identical reproduction of a
+historical experiment or that an observer effect has been
+re-established. <code>input_required</code> means that the family
+remains catalogued but lacks a lawful, checksummed input fixture and/or
+the validation contract required for deterministic generation. Evidence
+status and implementation status are deliberately independent.</p>
+<p>The source column is a compact citation-key view. The full source
+role, resolver or DOI status, exact supported claim, engineering
+departure, and limitation are retained in the machine-readable evidence
+matrix and in the generated evidence audit [tbl:evidence_audit]. A
+source supports only the narrow claim recorded for it; a review or
+theory record is not evidence that a DuckRabbit rendering produces a
+universal perceptual effect.</p>
+<table id="tbl:catalog">
+<caption>DuckRabbit catalog entries, source tiers, and
+evidence/implementation boundaries.</caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>ID</th>
+<th>Construction</th>
+<th>Evidence / status</th>
+<th>Sources</th>
+<th>Supported claim</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>visual.duck rabbit</td>
+<td>visual; ambiguity; bistability</td>
+<td>literature backed engineering entry; implemented</td>
+<td>brugger 1999 duckrabbit; gregory 1997 visual</td>
+<td>The entry instantiates a controllable ambiguous-figure stimulus
+family.</td>
+</tr>
+<tr>
+<td>visual.simultaneous contrast</td>
+<td>visual; contrast and context; contrast distortion</td>
+<td>literature backed engineering entry; implemented</td>
+<td>gregory 1997 visual</td>
+<td>The physical center patches are matched while surround luminance
+differs.</td>
+</tr>
+<tr>
+<td>visual.apparent motion</td>
+<td>visual; temporal motion; illusory motion</td>
+<td>literature backed engineering entry; implemented</td>
+<td>wertheimer 1912 motion; sekuler 1996 wertheimer</td>
+<td>The sequence contains controlled successive spatial events.</td>
+</tr>
+<tr>
+<td>audio.shepard tone</td>
+<td>auditory; spectral harmonic; continuity</td>
+<td>literature backed engineering entry; implemented</td>
+<td>shepard 1984 scale</td>
+<td>The audio contains octave-related partials with controlled sweep
+parameters.</td>
+</tr>
+<tr>
+<td>audio.missing fundamental</td>
+<td>auditory; spectral harmonic; filling in</td>
+<td>literature backed engineering entry; implemented</td>
+<td>zatorre 2005 missing</td>
+<td>The nominal fundamental component is absent from the canonical
+spectrum.</td>
+</tr>
+<tr>
+<td>audiovisual.sound induced flash</td>
+<td>audio_visual; crossmodal temporal; fusion or fission</td>
+<td>review backed engineering entry; implemented</td>
+<td>shams 2000 sifi; hirst 2020 sound</td>
+<td>The declared beep/flash event counts and offsets are physically
+encoded.</td>
+</tr>
+<tr>
+<td>audiovisual.ventriloquist</td>
+<td>audio_visual; crossmodal spatial; spatial capture</td>
+<td>review backed engineering entry; implemented</td>
+<td>bruns 2019 ventriloquist; noppeney 2018 causal</td>
+<td>The audio and visual channels carry a declared spatial
+discrepancy.</td>
+</tr>
+<tr>
+<td>visual.muller lyer</td>
+<td>visual; geometric alignment; geometric distortion</td>
+<td>literature backed engineering entry; implemented</td>
+<td>gregory 1997 visual; howe 2005 muller</td>
+<td>The two bar lengths are equal in the canonical raster while wing
+geometry varies.</td>
+</tr>
+<tr>
+<td>visual.poggendorff</td>
+<td>visual; geometric alignment; geometric distortion</td>
+<td>literature backed engineering entry; implemented</td>
+<td>gregory 1997 visual; morgan 1999 poggendorff</td>
+<td>The occluder and diagonal continuation are generated from explicit
+geometry.</td>
+</tr>
+<tr>
+<td>visual.ponzo</td>
+<td>visual; geometric alignment; geometric distortion</td>
+<td>literature backed engineering entry; implemented</td>
+<td>fisher 1967 ponzo; yildiz 2022 ponzo</td>
+<td>Target bars are physically equal and rails converge toward a
+vanishing region.</td>
+</tr>
+<tr>
+<td>visual.kanizsa triangle</td>
+<td>visual; contrast and context, geometric alignment; filling in</td>
+<td>literature backed engineering entry; implemented</td>
+<td>kanizsa 1976 contours; wagemans 2012 gestalt</td>
+<td>The image contains incomplete inducers with no explicitly drawn
+triangle edge.</td>
+</tr>
+<tr>
+<td>visual.ebbinghaus</td>
+<td>visual; contrast and context, geometric alignment; geometric
+distortion</td>
+<td>literature backed engineering entry; implemented</td>
+<td>mruczek 2015 ebbinghaus; weintraub 1979 ebbinghaus</td>
+<td>Central target geometry is held equal while contextual circle
+geometry differs.</td>
+</tr>
+<tr>
+<td>visual.zollner</td>
+<td>visual; geometric alignment; geometric distortion</td>
+<td>literature backed engineering entry; implemented</td>
+<td>zoellner 1860 pseudoscopy; earle 1995 zollner; gregory 1997
+visual</td>
+<td>The entry instantiates a controlled crossing-line orientation
+stimulus family.</td>
+</tr>
+<tr>
+<td>audio.tritone paradox</td>
+<td>auditory; spectral harmonic; categorical recoding</td>
+<td>literature backed engineering entry; implemented</td>
+<td>deutsch 1986 tritone; repp 1997 tritone</td>
+<td>The canonical pair has an explicit half-octave frequency
+relation.</td>
+</tr>
+<tr>
+<td>audio.octave illusion</td>
+<td>auditory; stream segregation; fusion or fission</td>
+<td>literature backed engineering entry; implemented</td>
+<td>deutsch 1974 octave</td>
+<td>The two channels receive alternating octave-related tones.</td>
+</tr>
+<tr>
+<td>audio.auditory continuity</td>
+<td>auditory; stream segregation; continuity</td>
+<td>literature backed engineering entry; implemented</td>
+<td>warren 1970 continuity; riecke 2011 continuity</td>
+<td>The canonical audio contains a reproducible interruption interval
+and masker family.</td>
+</tr>
+<tr>
+<td>audiovisual.temporal ventriloquism</td>
+<td>audio_visual; crossmodal temporal; temporal binding or
+recalibration</td>
+<td>review backed engineering entry; implemented</td>
+<td>vroomen 2004 temporal; hartcherobrien 2011 temporal; hirst 2020
+sound; noppeney 2018 causal</td>
+<td>Audio and video event timing and declared offset are deterministic
+and inspectable.</td>
+</tr>
+<tr>
+<td>audiovisual.mcgurk</td>
+<td>audio_visual; speech categorization; categorical recoding</td>
+<td>literature backed input dependent entry; input required</td>
+<td>mcgurk 1976 speech</td>
+<td>The catalog identifies a speech-dependent audiovisual family without
+claiming implementation.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="evidence-boundary-and-future-expansion">Evidence boundary and
+future expansion</h2>
+<p>The matrix is intentionally a living registry snapshot. New families
+may be added when the package can state a typed parameter contract,
+deterministic canonicalization rule, validation invariant, and evidence
+boundary. Planned or input-dependent families are not silently promoted
+because a source exists: promotion requires an implementable contract,
+reproducible fixtures where needed, and an explicit statement of what
+remains unvalidated. McGurk therefore remains
+<code>input_required</code> pending a consented or licensed, checksummed
+speech/ video fixture and a study-ready validation protocol. The
+candidate-future catalog is documented separately from this live matrix
+so that absence is not misread as a claim that a phenomenon is unknown
+or unimportant.</p>
+</main>
+</body>
+</html>

@@ -1,0 +1,399 @@
+{
+  "timestamp": "2026-07-17T13:41:35.472691",
+  "total_duration": 107.31553435325623,
+  "stages": [
+    {
+      "name": "Clean Output Directories",
+      "exit_code": 0,
+      "duration": 0.05013585090637207,
+      "timestamp": "",
+      "completed": true,
+      "status": "passed",
+      "context": {}
+    },
+    {
+      "name": "Environment Setup",
+      "exit_code": 0,
+      "duration": 0.29805517196655273,
+      "timestamp": "",
+      "completed": true,
+      "status": "passed",
+      "context": {}
+    },
+    {
+      "name": "Infrastructure Tests",
+      "exit_code": 0,
+      "duration": 18.779865980148315,
+      "timestamp": "",
+      "completed": true,
+      "status": "passed",
+      "context": {}
+    },
+    {
+      "name": "Project Tests",
+      "exit_code": 0,
+      "duration": 24.054787158966064,
+      "timestamp": "",
+      "completed": true,
+      "status": "passed",
+      "context": {}
+    },
+    {
+      "name": "Project Analysis",
+      "exit_code": 0,
+      "duration": 21.40158486366272,
+      "timestamp": "",
+      "completed": true,
+      "status": "passed",
+      "context": {}
+    },
+    {
+      "name": "PDF Rendering",
+      "exit_code": 0,
+      "duration": 41.71127915382385,
+      "timestamp": "",
+      "completed": true,
+      "status": "passed",
+      "context": {}
+    },
+    {
+      "name": "Output Validation",
+      "exit_code": 0,
+      "duration": 0.505979061126709,
+      "timestamp": "",
+      "completed": true,
+      "status": "passed",
+      "context": {}
+    },
+    {
+      "name": "Copy Outputs",
+      "exit_code": 0,
+      "duration": 0.5138471126556396,
+      "timestamp": "",
+      "completed": true,
+      "status": "passed",
+      "context": {}
+    }
+  ],
+  "test_results": null,
+  "validation_results": null,
+  "performance_metrics": null,
+  "error_summary": null,
+  "output_statistics": {
+    "directories": {
+      "pdf": {
+        "exists": true,
+        "file_count": 10,
+        "size_mb": "4.19",
+        "total_size_bytes": 4396210,
+        "largest_files": [
+          {
+            "name": "DuckRabbit_combined.pdf",
+            "size_mb": "3.76",
+            "path": "pdf/DuckRabbit_combined.pdf"
+          },
+          {
+            "name": "_combined_manuscript.tex",
+            "size_mb": "0.16",
+            "path": "pdf/_combined_manuscript.tex"
+          },
+          {
+            "name": "_combined_manuscript.md",
+            "size_mb": "0.13",
+            "path": "pdf/_combined_manuscript.md"
+          }
+        ],
+        "extensions": {
+          ".md": 1,
+          ".log": 2,
+          ".aux": 1,
+          ".blg": 1,
+          ".bib": 1,
+          ".pdf": 1,
+          ".tex": 1,
+          ".toc": 1,
+          ".bbl": 1
+        }
+      },
+      "web": {
+        "exists": true,
+        "file_count": 14,
+        "size_mb": "0.50",
+        "total_size_bytes": 526714,
+        "largest_files": [
+          {
+            "name": "index.html",
+            "size_mb": "0.19",
+            "path": "web/index.html"
+          },
+          {
+            "name": "_combined_manuscript.md",
+            "size_mb": "0.13",
+            "path": "web/_combined_manuscript.md"
+          },
+          {
+            "name": "manuscript__07_publication_audit.html",
+            "size_mb": "0.07",
+            "path": "web/manuscript__07_publication_audit.html"
+          }
+        ],
+        "extensions": {
+          ".html": 12,
+          ".md": 1,
+          ".ico": 1
+        }
+      },
+      "slides": {
+        "exists": true,
+        "file_count": 86,
+        "size_mb": "2.72",
+        "total_size_bytes": 2848685,
+        "largest_files": [
+          {
+            "name": "03_results_slides.pdf",
+            "size_mb": "0.77",
+            "path": "slides/03_results_slides.pdf"
+          },
+          {
+            "name": "07_publication_audit_slides.pdf",
+            "size_mb": "0.77",
+            "path": "slides/07_publication_audit_slides.pdf"
+          },
+          {
+            "name": "07_publication_audit_slides.log",
+            "size_mb": "0.07",
+            "path": "slides/07_publication_audit_slides.log"
+          }
+        ],
+        "extensions": {
+          ".nav": 11,
+          ".tex": 12,
+          ".toc": 11,
+          ".pdf": 11,
+          ".vrb": 8,
+          ".log": 11,
+          ".snm": 11,
+          ".aux": 11
+        }
+      },
+      "figures": {
+        "exists": true,
+        "file_count": 19,
+        "size_mb": "3.92",
+        "total_size_bytes": 4108894,
+        "largest_files": [
+          {
+            "name": "cover_visualization.png",
+            "size_mb": "2.12",
+            "path": "figures/cover_visualization.png"
+          },
+          {
+            "name": "scholarship_map.png",
+            "size_mb": "0.25",
+            "path": "figures/scholarship_map.png"
+          },
+          {
+            "name": "audio_signals.png",
+            "size_mb": "0.18",
+            "path": "figures/audio_signals.png"
+          }
+        ],
+        "extensions": {
+          ".png": 17,
+          ".json": 1,
+          ".webp": 1
+        }
+      },
+      "data": {
+        "exists": true,
+        "file_count": 36,
+        "size_mb": "0.38",
+        "total_size_bytes": 394898,
+        "largest_files": [
+          {
+            "name": "manuscript_variables.json",
+            "size_mb": "0.08",
+            "path": "data/manuscript_variables.json"
+          },
+          {
+            "name": "evidence_source_audit_table.json",
+            "size_mb": "0.04",
+            "path": "data/evidence_source_audit_table.json"
+          },
+          {
+            "name": "claim_ledger_table.json",
+            "size_mb": "0.03",
+            "path": "data/claim_ledger_table.json"
+          }
+        ],
+        "extensions": {
+          ".md": 10,
+          ".json": 26
+        }
+      },
+      "reports": {
+        "exists": true,
+        "file_count": 27,
+        "size_mb": "0.72",
+        "total_size_bytes": 752961,
+        "largest_files": [
+          {
+            "name": "scholarship_audit.json",
+            "size_mb": "0.52",
+            "path": "reports/scholarship_audit.json"
+          },
+          {
+            "name": "evidence_registry.json",
+            "size_mb": "0.08",
+            "path": "reports/evidence_registry.json"
+          },
+          {
+            "name": "artifact_manifest.json",
+            "size_mb": "0.03",
+            "path": "reports/artifact_manifest.json"
+          }
+        ],
+        "extensions": {
+          ".json": 20,
+          ".jsonl": 1,
+          ".txt": 2,
+          ".md": 4
+        }
+      },
+      "simulations": {
+        "exists": true,
+        "file_count": 0,
+        "size_mb": "0.00",
+        "total_size_bytes": 0,
+        "largest_files": [],
+        "extensions": {}
+      },
+      "llm": {
+        "exists": true,
+        "file_count": 0,
+        "size_mb": "0.00",
+        "total_size_bytes": 0,
+        "largest_files": [],
+        "extensions": {}
+      },
+      "logs": {
+        "exists": true,
+        "file_count": 1,
+        "size_mb": "0.00",
+        "total_size_bytes": 145,
+        "largest_files": [
+          {
+            "name": "pipeline.log",
+            "size_mb": "0.00",
+            "path": "logs/pipeline.log"
+          }
+        ],
+        "extensions": {
+          ".log": 1
+        }
+      }
+    },
+    "total_files": 193,
+    "total_size_mb": 12.424952507019043,
+    "largest_files": [
+      {
+        "name": "DuckRabbit_combined.pdf",
+        "size_mb": "3.76",
+        "category": "pdf",
+        "path": "pdf/DuckRabbit_combined.pdf"
+      },
+      {
+        "name": "cover_visualization.png",
+        "size_mb": "2.12",
+        "category": "figures",
+        "path": "figures/cover_visualization.png"
+      },
+      {
+        "name": "03_results_slides.pdf",
+        "size_mb": "0.77",
+        "category": "slides",
+        "path": "slides/03_results_slides.pdf"
+      },
+      {
+        "name": "07_publication_audit_slides.pdf",
+        "size_mb": "0.77",
+        "category": "slides",
+        "path": "slides/07_publication_audit_slides.pdf"
+      },
+      {
+        "name": "scholarship_audit.json",
+        "size_mb": "0.52",
+        "category": "reports",
+        "path": "reports/scholarship_audit.json"
+      },
+      {
+        "name": "scholarship_map.png",
+        "size_mb": "0.25",
+        "category": "figures",
+        "path": "figures/scholarship_map.png"
+      },
+      {
+        "name": "index.html",
+        "size_mb": "0.19",
+        "category": "web",
+        "path": "web/index.html"
+      },
+      {
+        "name": "audio_signals.png",
+        "size_mb": "0.18",
+        "category": "figures",
+        "path": "figures/audio_signals.png"
+      },
+      {
+        "name": "_combined_manuscript.tex",
+        "size_mb": "0.16",
+        "category": "pdf",
+        "path": "pdf/_combined_manuscript.tex"
+      },
+      {
+        "name": "_combined_manuscript.md",
+        "size_mb": "0.13",
+        "category": "pdf",
+        "path": "pdf/_combined_manuscript.md"
+      }
+    ],
+    "missing_expected_files": [],
+    "sizes_by_category": {
+      "pdf": 4.19255256652832,
+      "web": 0.5023136138916016,
+      "slides": 2.7167177200317383,
+      "figures": 3.918546676635742,
+      "data": 0.3766040802001953,
+      "reports": 0.7180795669555664,
+      "simulations": 0.0,
+      "llm": 0.0,
+      "logs": 0.00013828277587890625
+    },
+    "file_counts_by_type": {
+      ".md": 16,
+      ".log": 14,
+      ".aux": 12,
+      ".blg": 1,
+      ".bib": 1,
+      ".pdf": 12,
+      ".tex": 13,
+      ".toc": 12,
+      ".bbl": 1,
+      ".html": 12,
+      ".ico": 1,
+      ".nav": 11,
+      ".vrb": 8,
+      ".snm": 11,
+      ".png": 17,
+      ".json": 47,
+      ".webp": 1,
+      ".jsonl": 1,
+      ".txt": 2
+    },
+    "log_file": {
+      "exists": true,
+      "size": 145,
+      "path": "output/logs/pipeline.log"
+    }
+  }
+}

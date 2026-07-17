@@ -1,0 +1,364 @@
+{
+  "data": {
+    "cards": [
+      {
+        "artifact": "image",
+        "canonical_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+        "metrics": {
+          "artifact_type": "image",
+          "computation_version": "duckrabbit/metrics/v2",
+          "records": [
+            {
+              "claim_level": "physical_metric",
+              "name": "width",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "height",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "channels",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "channels",
+              "value": 1
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "mean_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.7769991755485535
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "std_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.370724618434906
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "unique_values",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "levels",
+              "value": 3
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "min_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.0
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "max_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 1.0
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "effective_dynamic_range",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 1.0
+            }
+          ],
+          "values": {
+            "channels": 1,
+            "effective_dynamic_range": 1.0,
+            "height": 256,
+            "max_luminance": 1.0,
+            "mean_luminance": 0.7769991755485535,
+            "min_luminance": 0.0,
+            "std_luminance": 0.370724618434906,
+            "unique_values": 3,
+            "width": 256
+          }
+        }
+      },
+      {
+        "artifact": "audio",
+        "canonical_digest": "947a119b486bb50da8a12b5a866681b3c3a9a53130db9279d93a24ca2d4a66c5",
+        "metrics": {
+          "artifact_type": "audio",
+          "computation_version": "duckrabbit/metrics/v2",
+          "records": [
+            {
+              "claim_level": "physical_metric",
+              "name": "samples",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "samples",
+              "value": 4000
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "channels",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "channels",
+              "value": 1
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "sample_rate",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "Hz",
+              "value": 8000
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "duration_seconds",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "seconds",
+              "value": 0.5
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "peak",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_amplitude",
+              "value": 0.3480047881603241
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "rms",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_amplitude",
+              "value": 0.11280280351638794
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "spectral_centroid_hz",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "Hz",
+              "value": 1699.5395381631536
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "dominant_frequency_hz",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "Hz",
+              "value": 614.0
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "spectral_bandwidth_hz",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "Hz",
+              "value": 870.3279683301824
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "crest_factor",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "ratio",
+              "value": 3.0850721552303098
+            }
+          ],
+          "values": {
+            "channels": 1,
+            "crest_factor": 3.0850721552303098,
+            "dominant_frequency_hz": 614.0,
+            "duration_seconds": 0.5,
+            "peak": 0.3480047881603241,
+            "rms": 0.11280280351638794,
+            "sample_rate": 8000,
+            "samples": 4000,
+            "spectral_bandwidth_hz": 870.3279683301824,
+            "spectral_centroid_hz": 1699.5395381631536
+          }
+        }
+      },
+      {
+        "artifact": "video",
+        "canonical_digest": "acc31937b46e7e39b36d44b6c119971734374beb87b644e5f541d77451174eff",
+        "metrics": {
+          "artifact_type": "video",
+          "computation_version": "duckrabbit/metrics/v2",
+          "records": [
+            {
+              "claim_level": "physical_metric",
+              "name": "width",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "height",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "frames",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "frames",
+              "value": 6
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "frame_rate",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "frames/second",
+              "value": 12.0
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "duration_seconds",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "seconds",
+              "value": 0.5
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "mean_temporal_delta",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_pixel_difference",
+              "value": 0.2421875
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "temporal_deltas",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_pixel_difference",
+              "value": [
+                0.2421875,
+                0.2421875,
+                0.2421875,
+                0.2421875,
+                0.2421875
+              ]
+            }
+          ],
+          "values": {
+            "duration_seconds": 0.5,
+            "frame_rate": 12.0,
+            "frames": 6,
+            "height": 256,
+            "mean_temporal_delta": 0.2421875,
+            "temporal_deltas": [
+              0.2421875,
+              0.2421875,
+              0.2421875,
+              0.2421875,
+              0.2421875
+            ],
+            "width": 256
+          }
+        }
+      },
+      {
+        "artifact": "audiovisual",
+        "canonical_digest": "474ee8f0e8d904a220d79ed949de3da393390e379ca0a92dc2feed643fb8903c",
+        "metrics": {
+          "artifact_type": "audiovisual",
+          "computation_version": "duckrabbit/metrics/v2",
+          "records": [
+            {
+              "claim_level": "physical_metric",
+              "name": "duration_seconds",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "seconds",
+              "value": 0.5
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "presentation_duration_seconds",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "seconds",
+              "value": 0.5
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "sync_offset_ms",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "milliseconds",
+              "value": 0.0
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "spatial_offset",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_spatial_offset",
+              "value": 0.0
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "video_mean_temporal_delta",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_pixel_difference",
+              "value": 0.36765551567077637
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "audio_rms",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_amplitude",
+              "value": 0.08242791891098022
+            }
+          ],
+          "values": {
+            "audio_rms": 0.08242791891098022,
+            "duration_seconds": 0.5,
+            "presentation_duration_seconds": 0.5,
+            "spatial_offset": 0.0,
+            "sync_offset_ms": 0.0,
+            "video_mean_temporal_delta": 0.36765551567077637
+          }
+        }
+      }
+    ],
+    "computation_version": "duckrabbit/metrics/v2"
+  },
+  "figure_label": "fig:metrics_dashboard",
+  "figure_stem": "metrics_dashboard",
+  "generator": "duckrabbit.publication._metrics_dashboard",
+  "parameters": {
+    "figure_stem": "metrics_dashboard",
+    "seed": 0
+  },
+  "schema_version": "duckrabbit/figure-source/v1",
+  "seed": 0
+}

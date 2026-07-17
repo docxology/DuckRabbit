@@ -1,0 +1,527 @@
+{
+  "data": {
+    "seed": 0,
+    "signals": [
+      {
+        "canonical_digest": "947a119b486bb50da8a12b5a866681b3c3a9a53130db9279d93a24ca2d4a66c5",
+        "illusion_id": "audio.shepard_tone",
+        "metrics": {
+          "artifact_type": "audio",
+          "computation_version": "duckrabbit/metrics/v2",
+          "records": [
+            {
+              "claim_level": "physical_metric",
+              "name": "samples",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "samples",
+              "value": 4000
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "channels",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "channels",
+              "value": 1
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "sample_rate",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "Hz",
+              "value": 8000
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "duration_seconds",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "seconds",
+              "value": 0.5
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "peak",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_amplitude",
+              "value": 0.3480047881603241
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "rms",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_amplitude",
+              "value": 0.11280280351638794
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "spectral_centroid_hz",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "Hz",
+              "value": 1699.5395381631536
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "dominant_frequency_hz",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "Hz",
+              "value": 614.0
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "spectral_bandwidth_hz",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "Hz",
+              "value": 870.3279683301824
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "crest_factor",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "ratio",
+              "value": 3.0850721552303098
+            }
+          ],
+          "values": {
+            "channels": 1,
+            "crest_factor": 3.0850721552303098,
+            "dominant_frequency_hz": 614.0,
+            "duration_seconds": 0.5,
+            "peak": 0.3480047881603241,
+            "rms": 0.11280280351638794,
+            "sample_rate": 8000,
+            "samples": 4000,
+            "spectral_bandwidth_hz": 870.3279683301824,
+            "spectral_centroid_hz": 1699.5395381631536
+          }
+        }
+      },
+      {
+        "canonical_digest": "6d37ffc494b304c7cab5840eb9d69dcb302861a7a739e9c9baa0ff1d3756b6e8",
+        "illusion_id": "audio.missing_fundamental",
+        "metrics": {
+          "artifact_type": "audio",
+          "computation_version": "duckrabbit/metrics/v2",
+          "records": [
+            {
+              "claim_level": "physical_metric",
+              "name": "samples",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "samples",
+              "value": 4000
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "channels",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "channels",
+              "value": 1
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "sample_rate",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "Hz",
+              "value": 8000
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "duration_seconds",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "seconds",
+              "value": 0.5
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "peak",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_amplitude",
+              "value": 0.5573328137397766
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "rms",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_amplitude",
+              "value": 0.14741699397563934
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "spectral_centroid_hz",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "Hz",
+              "value": 685.7146494705655
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "dominant_frequency_hz",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "Hz",
+              "value": 440.0
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "spectral_bandwidth_hz",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "Hz",
+              "value": 240.41372156967662
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "crest_factor",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "ratio",
+              "value": 3.7806551246858002
+            }
+          ],
+          "values": {
+            "channels": 1,
+            "crest_factor": 3.7806551246858002,
+            "dominant_frequency_hz": 440.0,
+            "duration_seconds": 0.5,
+            "peak": 0.5573328137397766,
+            "rms": 0.14741699397563934,
+            "sample_rate": 8000,
+            "samples": 4000,
+            "spectral_bandwidth_hz": 240.41372156967662,
+            "spectral_centroid_hz": 685.7146494705655
+          }
+        }
+      },
+      {
+        "canonical_digest": "5cf3a5eb621068c42a077ccf5715921a1120bff858d882d5a3606d14524f4409",
+        "illusion_id": "audio.tritone_paradox",
+        "metrics": {
+          "artifact_type": "audio",
+          "computation_version": "duckrabbit/metrics/v2",
+          "records": [
+            {
+              "claim_level": "physical_metric",
+              "name": "samples",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "samples",
+              "value": 4000
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "channels",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "channels",
+              "value": 1
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "sample_rate",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "Hz",
+              "value": 8000
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "duration_seconds",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "seconds",
+              "value": 0.5
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "peak",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_amplitude",
+              "value": 0.23871171474456787
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "rms",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_amplitude",
+              "value": 0.08211836218833923
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "spectral_centroid_hz",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "Hz",
+              "value": 1019.1775769205626
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "dominant_frequency_hz",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "Hz",
+              "value": 440.0
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "spectral_bandwidth_hz",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "Hz",
+              "value": 715.2943882385533
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "crest_factor",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "ratio",
+              "value": 2.9069225004400394
+            }
+          ],
+          "values": {
+            "channels": 1,
+            "crest_factor": 2.9069225004400394,
+            "dominant_frequency_hz": 440.0,
+            "duration_seconds": 0.5,
+            "peak": 0.23871171474456787,
+            "rms": 0.08211836218833923,
+            "sample_rate": 8000,
+            "samples": 4000,
+            "spectral_bandwidth_hz": 715.2943882385533,
+            "spectral_centroid_hz": 1019.1775769205626
+          }
+        }
+      },
+      {
+        "canonical_digest": "93f07cc7c225157256d33300380d91707602c04275556a366f7ffeb9c92c1a7b",
+        "illusion_id": "audio.octave_illusion",
+        "metrics": {
+          "artifact_type": "audio",
+          "computation_version": "duckrabbit/metrics/v2",
+          "records": [
+            {
+              "claim_level": "physical_metric",
+              "name": "samples",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "samples",
+              "value": 4000
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "channels",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "channels",
+              "value": 2
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "sample_rate",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "Hz",
+              "value": 8000
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "duration_seconds",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "seconds",
+              "value": 0.5
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "peak",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_amplitude",
+              "value": 0.4999133348464966
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "rms",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_amplitude",
+              "value": 0.21639807522296906
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "spectral_centroid_hz",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "Hz",
+              "value": 510.8201769350808
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "dominant_frequency_hz",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "Hz",
+              "value": 440.0
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "spectral_bandwidth_hz",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "Hz",
+              "value": 623.4489969207474
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "crest_factor",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "ratio",
+              "value": 2.310156106201052
+            }
+          ],
+          "values": {
+            "channels": 2,
+            "crest_factor": 2.310156106201052,
+            "dominant_frequency_hz": 440.0,
+            "duration_seconds": 0.5,
+            "peak": 0.4999133348464966,
+            "rms": 0.21639807522296906,
+            "sample_rate": 8000,
+            "samples": 4000,
+            "spectral_bandwidth_hz": 623.4489969207474,
+            "spectral_centroid_hz": 510.8201769350808
+          }
+        }
+      },
+      {
+        "canonical_digest": "b6f6b8e22ac3a0b53bea0680a30547126c4e5d8c721a54c72862bb5316eedb4b",
+        "illusion_id": "audio.auditory_continuity",
+        "metrics": {
+          "artifact_type": "audio",
+          "computation_version": "duckrabbit/metrics/v2",
+          "records": [
+            {
+              "claim_level": "physical_metric",
+              "name": "samples",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "samples",
+              "value": 4000
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "channels",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "channels",
+              "value": 1
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "sample_rate",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "Hz",
+              "value": 8000
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "duration_seconds",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "seconds",
+              "value": 0.5
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "peak",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_amplitude",
+              "value": 0.4201456904411316
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "rms",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_amplitude",
+              "value": 0.13809026777744293
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "spectral_centroid_hz",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "Hz",
+              "value": 1333.0540812520157
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "dominant_frequency_hz",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "Hz",
+              "value": 440.0
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "spectral_bandwidth_hz",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "Hz",
+              "value": 1179.3628124876848
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "crest_factor",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "ratio",
+              "value": 3.042543817195512
+            }
+          ],
+          "values": {
+            "channels": 1,
+            "crest_factor": 3.042543817195512,
+            "dominant_frequency_hz": 440.0,
+            "duration_seconds": 0.5,
+            "peak": 0.4201456904411316,
+            "rms": 0.13809026777744293,
+            "sample_rate": 8000,
+            "samples": 4000,
+            "spectral_bandwidth_hz": 1179.3628124876848,
+            "spectral_centroid_hz": 1333.0540812520157
+          }
+        }
+      }
+    ],
+    "spectral_definition": "one-sided FFT magnitude sampled into 48 display bins"
+  },
+  "figure_label": "fig:audio_signals",
+  "figure_stem": "audio_signals",
+  "generator": "duckrabbit.publication._audio",
+  "parameters": {
+    "figure_stem": "audio_signals",
+    "seed": 0
+  },
+  "schema_version": "duckrabbit/figure-source/v1",
+  "seed": 0
+}

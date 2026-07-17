@@ -30,11 +30,14 @@ entry records backed by {{SCHOLARLY_SOURCES}} source records. The publication
 workflow produces {{PUBLICATION_FIGURES}} figures and {{PUBLICATION_TABLES}}
 tables from the live registry.
 
-The intended public software record is
+The public software record is
 [the DuckRabbit public GitHub repository](https://github.com/docxology/DuckRabbit),
-with Daniel Ari Friedman of the Active Inference Institute as author. Until
-that public repository and a DOI are created, the private sidecar remains the
-release source and the DOI field correctly remains forthcoming.
+with Daniel Ari Friedman of the Active Inference Institute as author. The
+release is archived on Zenodo at
+[10.5281/zenodo.21419693](https://doi.org/10.5281/zenodo.21419693) (concept
+DOI, always resolves to the latest version), with
+[10.5281/zenodo.21419694](https://doi.org/10.5281/zenodo.21419694) identifying
+this v0.5.0 release specifically.
 
 The canonical buffer is the primary identity of a stimulus. Encoded files are
 delivery artifacts with format-specific tolerances. The observer protocol is a
@@ -75,5 +78,6 @@ Friedman and the release metadata in `CITATION.cff`, together with the
 source-specific scholarship in `references.bib`. Software-citation principles
 recommend citing the software object itself, with enough version and identity
 information to distinguish one release from another [@smith2016software]. The
-DOI field remains empty with status `forthcoming` until a real DOI is minted;
-the release must not manufacture a resolver URL before that identifier exists.
+DOI field carries the real, minted concept DOI
+(`10.5281/zenodo.21419693`) and `doi_status` is `published`; no resolver URL
+was manufactured before that identifier existed.

@@ -1,0 +1,31 @@
+{
+  "body": "| sifi flash count contrast | event count; poisson or ordinal | sifi one beep; two-beep minus one-beep event-count response | 95% confidence interval |\n| temporal binding offset contrast | continuous magnitude; linear mixed | temporal sync; reported timing shift per declared sync offset | 95% confidence interval |",
+  "caption": "This is a data-free analysis design; no participant result is included.",
+  "headers": [
+    "Estimand",
+    "Response and model",
+    "Reference and contrast",
+    "Uncertainty"
+  ],
+  "label": "tbl:observer_estimands",
+  "records": [
+    {
+      "contrast": "two-beep minus one-beep event-count response",
+      "estimand": "sifi_flash_count_contrast",
+      "model": "poisson_or_ordinal",
+      "reference": "sifi_one_beep",
+      "response": "event_count",
+      "uncertainty": "95% confidence interval"
+    },
+    {
+      "contrast": "reported timing shift per declared sync offset",
+      "estimand": "temporal_binding_offset_contrast",
+      "model": "linear_mixed",
+      "reference": "temporal_sync",
+      "response": "continuous_magnitude",
+      "uncertainty": "95% confidence interval"
+    }
+  ],
+  "schema_version": "duckrabbit/table/v1",
+  "title": "Observer outcomes and preregistered estimands"
+}

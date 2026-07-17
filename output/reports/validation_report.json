@@ -1,0 +1,189 @@
+{
+  "timestamp": "2026-07-17T20:41:30Z",
+  "checks": {
+    "PDF validation": true,
+    "Transmission bookends": true,
+    "Markdown validation": true,
+    "Output structure": true,
+    "Figure registry": true,
+    "Evidence registry": true,
+    "Project design overlays": true,
+    "Artifact manifest": true
+  },
+  "figure_issues": [],
+  "output_statistics": {
+    "detailed_validation": {
+      "structure": {
+        "valid": true,
+        "issues": [],
+        "missing_files": [],
+        "suspicious_sizes": [],
+        "warnings": [],
+        "directory_structure": {
+          "combined_pdf": {
+            "exists": true,
+            "size_mb": 3.76,
+            "readable": true
+          },
+          "pdf": {
+            "exists": true,
+            "files": 10,
+            "size_mb": 4.19,
+            "readable": true,
+            "optional": false
+          },
+          "web": {
+            "exists": true,
+            "files": 14,
+            "size_mb": 0.5,
+            "readable": true,
+            "optional": false
+          },
+          "slides": {
+            "exists": true,
+            "files": 86,
+            "size_mb": 2.72,
+            "readable": true,
+            "optional": false
+          },
+          "figures": {
+            "exists": true,
+            "files": 19,
+            "size_mb": 3.92,
+            "readable": true,
+            "optional": false
+          },
+          "data": {
+            "exists": true,
+            "files": 36,
+            "size_mb": 0.38,
+            "readable": true,
+            "optional": false
+          },
+          "reports": {
+            "exists": true,
+            "files": 14,
+            "size_mb": 0.59,
+            "readable": true,
+            "optional": false
+          },
+          "simulations": {
+            "exists": true,
+            "files": 0,
+            "size_mb": 0.0,
+            "readable": true,
+            "optional": true
+          },
+          "llm": {
+            "exists": true,
+            "files": 0,
+            "size_mb": 0.0,
+            "readable": true,
+            "optional": true
+          },
+          "logs": {
+            "exists": true,
+            "files": 1,
+            "size_mb": 0.0,
+            "readable": true,
+            "optional": true
+          }
+        }
+      },
+      "directories": {
+        "pdf": {
+          "exists": true,
+          "file_count": 10,
+          "size_mb": "4.19",
+          "largest_file": "DuckRabbit_combined.pdf"
+        },
+        "web": {
+          "exists": true,
+          "file_count": 14,
+          "size_mb": "0.50",
+          "largest_file": "index.html"
+        },
+        "slides": {
+          "exists": true,
+          "file_count": 86,
+          "size_mb": "2.72",
+          "largest_file": "03_results_slides.pdf"
+        },
+        "figures": {
+          "exists": true,
+          "file_count": 19,
+          "size_mb": "3.92",
+          "largest_file": "cover_visualization.png"
+        },
+        "data": {
+          "exists": true,
+          "file_count": 36,
+          "size_mb": "0.38",
+          "largest_file": "manuscript_variables.json"
+        },
+        "reports": {
+          "exists": true,
+          "file_count": 14,
+          "size_mb": "0.59",
+          "largest_file": "scholarship_audit.json"
+        },
+        "simulations": {
+          "exists": true,
+          "file_count": 0,
+          "size_mb": "0.00",
+          "largest_file": null
+        },
+        "llm": {
+          "exists": true,
+          "file_count": 0,
+          "size_mb": "0.00",
+          "largest_file": null
+        },
+        "logs": {
+          "exists": true,
+          "file_count": 1,
+          "size_mb": "0.00",
+          "largest_file": "pipeline.log"
+        }
+      },
+      "file_counts": {
+        "pdf": 10,
+        "web": 14,
+        "slides": 86,
+        "figures": 19,
+        "data": 36,
+        "reports": 14,
+        "simulations": 0,
+        "llm": 0,
+        "logs": 1
+      },
+      "total_size_mb": 12.295931816101074,
+      "issues_by_severity": {
+        "critical": [],
+        "warning": [],
+        "info": []
+      },
+      "recommendations": []
+    },
+    "pdf": {
+      "files": 10,
+      "size_mb": 4.19255256652832
+    },
+    "figures": {
+      "files": 19,
+      "size_mb": 3.918546676635742
+    },
+    "data": {
+      "files": 36,
+      "size_mb": 0.3766040802001953
+    }
+  },
+  "summary": {
+    "total_checks": 8,
+    "passed": 8,
+    "failed": 0,
+    "figure_issues_count": 0,
+    "all_passed": true
+  },
+  "recommendations": []
+}

@@ -1,27 +1,37 @@
 # DuckRabbit
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21419693.svg)](https://doi.org/10.5281/zenodo.21419693)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 DuckRabbit is a typed, deterministic Python package for generating
 visual, auditory, temporal, and audio-visual illusion stimuli. It separates
 canonical in-memory media from optional encoders so the same typed request can
 be reproduced, inspected, hashed, and exported as PNG, WAV, GIF, MP4, or an
 exact canonical NPZ archive.
 
-This private `working/` sidecar is the release source for the intended public
+This private `working/` sidecar is the release source for the public
 DuckRabbit GitHub repository at https://github.com/docxology/DuckRabbit. The
-public repository will carry the software, manuscript, evidence matrix, and
-release bundle. DuckRabbit is released under the MIT License. It is an
-extensible v0.5.0, not a claim that every known illusion has already been
-implemented; the catalog distinguishes
-`implemented`, `planned`, and `input_required` entries.
+public repository carries the software, manuscript, evidence matrix, and
+release bundle (including the DOI-bearing PDF under `output/pdf/`). DuckRabbit
+is released under the MIT License. It is an extensible v0.5.0, not a claim
+that every known illusion has already been implemented; the catalog
+distinguishes `implemented`, `planned`, and `input_required` entries.
 
 ## Authorship and citation
 
 DuckRabbit is authored by Daniel Ari Friedman of the Active Inference Institute
 (ORCID
-[`0000-0001-6232-9096`](https://orcid.org/0000-0001-6232-9096)). The DOI is
-forthcoming; the project deliberately does not publish a fabricated DOI
-placeholder. Cite the release metadata in `CITATION.cff`, the intended public
-repository, and the underlying scholarship listed in `manuscript/references.bib`.
+[`0000-0001-6232-9096`](https://orcid.org/0000-0001-6232-9096)). The release
+is archived on Zenodo:
+
+- Concept DOI (always resolves to the latest version):
+  [10.5281/zenodo.21419693](https://doi.org/10.5281/zenodo.21419693)
+- Version DOI for v0.5.0:
+  [10.5281/zenodo.21419694](https://doi.org/10.5281/zenodo.21419694)
+  ([Zenodo record](https://zenodo.org/records/21419694))
+
+Cite the release metadata in `CITATION.cff`, the public repository, and the
+underlying scholarship listed in `manuscript/references.bib`.
 
 ## Quick start
 

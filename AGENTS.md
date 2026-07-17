@@ -45,8 +45,12 @@ Pillow; ffmpeg remains a system-level optional encoder.
   DOI metadata matches, access control, mismatch, and unavailable outcomes;
   URL reachability alone is never scholarly verification.
 - Cross-file identity is release-critical: Daniel Ari Friedman, ORCID
-  `0000-0001-6232-9096`, version `0.5.0`, and an empty forthcoming DOI must
-  agree across package, manuscript, citation, codemeta, and Zenodo metadata.
+  `0000-0001-6232-9096`, and version `0.5.0` must agree across package,
+  manuscript, citation, codemeta, and Zenodo metadata. The DOI must be either
+  empty with `doi_status: forthcoming` (no release minted yet) or a real,
+  well-formed Zenodo DOI with `doi_status: published` (never a placeholder) —
+  `src/duckrabbit/metadata.py` enforces this pairing. v0.5.0 is published under
+  concept DOI `10.5281/zenodo.21419693`.
 
 ## Workflow
 

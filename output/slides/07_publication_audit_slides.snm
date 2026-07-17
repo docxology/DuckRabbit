@@ -1,0 +1,15 @@
+\beamer@slide {claim-level-visualization}{3}
+\beamer@slide {fig:claim_boundary}{3}
+\beamer@slide {scholarship-map-and-lineage}{5}
+\beamer@slide {fig:scholarship_map}{5}
+\beamer@slide {formal-traceability-and-objective-metrics}{7}
+\beamer@slide {fig:formalism_traceability}{7}
+\beamer@slide {fig:metrics_dashboard}{7}
+\beamer@slide {fig:parameter_domains}{7}
+\beamer@slide {observer-design-boundary}{9}
+\beamer@slide {fig:observer_protocol}{9}
+\beamer@slide {generated-audit-tables}{12}
+\beamer@slide {tbl:caption_audit}{12}
+\beamer@slide {tbl:evidence_audit}{12}
+\beamer@slide {tbl:formalism}{12}
+\beamer@slide {tbl:claim_ledger}{12}

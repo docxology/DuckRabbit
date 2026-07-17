@@ -1,0 +1,220 @@
+{
+  "body": "| eq:typed request | q = (i, \u03b8, s, e) Symbols: i, \u03b8, s, e | Code: registry.py, schema.py; Tests: test generators.py | Figures: fig:architecture, fig:formalism traceability; Level: canonical stimulus |\n| eq:canonical generation | A = G\u1d62(\u03b8; s) Symbols: A, G\u1d62, \u03b8, s | Code: registry.py, generators.py; Tests: test generators.py, test v03 contracts.py | Figures: fig:architecture, fig:visual panel; Level: canonical stimulus |\n| eq:canonical digest | c(A) = Serialize_LE,float32(A, shape, clock, units); h_c(A) = H(c(A)) Symbols: c(A), h_c, H | Code: canonical.py, manifest.py; Tests: test v03 contracts.py | Figures: fig:architecture, fig:encoding verification; Level: physical metric |\n| eq:encoding verification | F = E\u2091(A), I = D(F), V(F, M) \u2208 {pass, fail} Symbols: F, E\u2091, D, I, V, M | Code: render.py, inspection.py, manifest.py; Tests: test media and render.py, test v03 contracts.py | Figures: fig:encoding verification; Level: encoded media |\n| eq:clock definition | N = round(f_s T), t_k = k/f_r, \u0394_AV = t_audio \u2212 t_video Symbols: N, f_s, T, t_k, f_r, \u0394_AV | Code: parameters.py, artifacts.py; Tests: test parameters.py, test media and render.py | Figures: fig:temporal sequence, fig:audiovisual timeline; Level: physical metric |\n| eq:objective statistics | \u03bc_Y, \u03c3_Y, RMS_X = M(A; units, tolerance, version) Symbols: \u03bc_Y, \u03c3_Y, RMS_X, M | Code: metrics.py, publication.py; Tests: test v04 scholarly.py | Figures: fig:metrics dashboard, fig:audio signals; Level: physical metric |\n| eq:temporal spectral metrics | D_k = mean absolute difference of adjacent frames; centroid(X) = \u03a3 fP_X(f)/\u03a3P_X(f) Symbols: D_k, P_X, f | Code: metrics.py, artifacts.py; Tests: test v04 scholarly.py | Figures: fig:temporal sequence, fig:metrics dashboard; Level: physical metric |\n| eq:observer estimand | \u03c8 = E[Y conditional on condition and protocol] Symbols: \u03c8, Y, condition, protocol | Code: observer analysis.py, observer.py; Tests: test v04 scholarly.py | Figures: fig:synthetic psychophysics, fig:observer protocol; Level: observer hypothesis |\n| eq:synthetic observer | p_M(c given A_r,A_c) = \u03c3((w\u00b7\u03c6(A_c) \u2212 w\u00b7\u03c6(A_r))/\u03c4) Symbols: p_M, c, A_r, A_c, w, \u03c6, \u03c4 | Code: synthetic psychophysics.py, metrics.py; Tests: test synthetic psychophysics.py | Figures: fig:synthetic psychophysics; Level: synthetic model output |",
+  "caption": "Formal definitions connect implementation and tests without converting engineering traceability into empirical evidence.",
+  "headers": [
+    "Label",
+    "Definition and symbols",
+    "Implementation and tests",
+    "Figures and claim level"
+  ],
+  "label": "tbl:formalism",
+  "records": [
+    {
+      "claim_level": "canonical_stimulus",
+      "equation": "q = (i, \u03b8, s, e)",
+      "figures": [
+        "fig:architecture",
+        "fig:formalism_traceability"
+      ],
+      "implementation": [
+        "registry.py",
+        "schema.py"
+      ],
+      "label": "eq:typed_request",
+      "symbols": [
+        "i",
+        "\u03b8",
+        "s",
+        "e"
+      ],
+      "tests": [
+        "test_generators.py"
+      ]
+    },
+    {
+      "claim_level": "canonical_stimulus",
+      "equation": "A = G\u1d62(\u03b8; s)",
+      "figures": [
+        "fig:architecture",
+        "fig:visual_panel"
+      ],
+      "implementation": [
+        "registry.py",
+        "generators.py"
+      ],
+      "label": "eq:canonical_generation",
+      "symbols": [
+        "A",
+        "G\u1d62",
+        "\u03b8",
+        "s"
+      ],
+      "tests": [
+        "test_generators.py",
+        "test_v03_contracts.py"
+      ]
+    },
+    {
+      "claim_level": "physical_metric",
+      "equation": "c(A) = Serialize_LE,float32(A, shape, clock, units); h_c(A) = H(c(A))",
+      "figures": [
+        "fig:architecture",
+        "fig:encoding_verification"
+      ],
+      "implementation": [
+        "canonical.py",
+        "manifest.py"
+      ],
+      "label": "eq:canonical_digest",
+      "symbols": [
+        "c(A)",
+        "h_c",
+        "H"
+      ],
+      "tests": [
+        "test_v03_contracts.py"
+      ]
+    },
+    {
+      "claim_level": "encoded_media",
+      "equation": "F = E\u2091(A), I = D(F), V(F, M) \u2208 {pass, fail}",
+      "figures": [
+        "fig:encoding_verification"
+      ],
+      "implementation": [
+        "render.py",
+        "inspection.py",
+        "manifest.py"
+      ],
+      "label": "eq:encoding_verification",
+      "symbols": [
+        "F",
+        "E\u2091",
+        "D",
+        "I",
+        "V",
+        "M"
+      ],
+      "tests": [
+        "test_media_and_render.py",
+        "test_v03_contracts.py"
+      ]
+    },
+    {
+      "claim_level": "physical_metric",
+      "equation": "N = round(f_s T), t_k = k/f_r, \u0394_AV = t_audio \u2212 t_video",
+      "figures": [
+        "fig:temporal_sequence",
+        "fig:audiovisual_timeline"
+      ],
+      "implementation": [
+        "parameters.py",
+        "artifacts.py"
+      ],
+      "label": "eq:clock_definition",
+      "symbols": [
+        "N",
+        "f_s",
+        "T",
+        "t_k",
+        "f_r",
+        "\u0394_AV"
+      ],
+      "tests": [
+        "test_parameters.py",
+        "test_media_and_render.py"
+      ]
+    },
+    {
+      "claim_level": "physical_metric",
+      "equation": "\u03bc_Y, \u03c3_Y, RMS_X = M(A; units, tolerance, version)",
+      "figures": [
+        "fig:metrics_dashboard",
+        "fig:audio_signals"
+      ],
+      "implementation": [
+        "metrics.py",
+        "publication.py"
+      ],
+      "label": "eq:objective_statistics",
+      "symbols": [
+        "\u03bc_Y",
+        "\u03c3_Y",
+        "RMS_X",
+        "M"
+      ],
+      "tests": [
+        "test_v04_scholarly.py"
+      ]
+    },
+    {
+      "claim_level": "physical_metric",
+      "equation": "D_k = mean absolute difference of adjacent frames; centroid(X) = \u03a3 fP_X(f)/\u03a3P_X(f)",
+      "figures": [
+        "fig:temporal_sequence",
+        "fig:metrics_dashboard"
+      ],
+      "implementation": [
+        "metrics.py",
+        "artifacts.py"
+      ],
+      "label": "eq:temporal_spectral_metrics",
+      "symbols": [
+        "D_k",
+        "P_X",
+        "f"
+      ],
+      "tests": [
+        "test_v04_scholarly.py"
+      ]
+    },
+    {
+      "claim_level": "observer_hypothesis",
+      "equation": "\u03c8 = E[Y conditional on condition and protocol]",
+      "figures": [
+        "fig:synthetic_psychophysics",
+        "fig:observer_protocol"
+      ],
+      "implementation": [
+        "observer_analysis.py",
+        "observer.py"
+      ],
+      "label": "eq:observer_estimand",
+      "symbols": [
+        "\u03c8",
+        "Y",
+        "condition",
+        "protocol"
+      ],
+      "tests": [
+        "test_v04_scholarly.py"
+      ]
+    },
+    {
+      "claim_level": "synthetic_model_output",
+      "equation": "p_M(c|A_r,A_c) = \u03c3((w\u00b7\u03c6(A_c) \u2212 w\u00b7\u03c6(A_r))/\u03c4)",
+      "figures": [
+        "fig:synthetic_psychophysics"
+      ],
+      "implementation": [
+        "synthetic_psychophysics.py",
+        "metrics.py"
+      ],
+      "label": "eq:synthetic_observer",
+      "symbols": [
+        "p_M",
+        "c",
+        "A_r",
+        "A_c",
+        "w",
+        "\u03c6",
+        "\u03c4"
+      ],
+      "tests": [
+        "test_synthetic_psychophysics.py"
+      ]
+    }
+  ],
+  "schema_version": "duckrabbit/table/v1",
+  "title": "Formalism traceability registry"
+}

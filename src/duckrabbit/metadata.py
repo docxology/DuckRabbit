@@ -195,10 +195,14 @@ def validate_project_metadata(project_root: Path | None = None) -> MetadataAudit
         for source, value in licenses.items():
             if value != EXPECTED_LICENSE:
                 errors.append(f"{source} license disagrees with {EXPECTED_LICENSE}: {value!r}")
-        if config["doi"] != "":
-            errors.append("publication DOI must remain empty until minted")
-        if config["doi_status"] != "forthcoming":
-            errors.append("publication doi_status must be forthcoming")
+        if config["doi"] == "":
+            if config["doi_status"] != "forthcoming":
+                errors.append("publication doi_status must be forthcoming while DOI is empty")
+        else:
+            if not re.fullmatch(r"10\.5281/zenodo\.\d+", config["doi"]):
+                errors.append(f"publication DOI does not look like a real Zenodo DOI: {config['doi']!r}")
+            if config["doi_status"] == "forthcoming":
+                errors.append("publication doi_status must not be forthcoming once a DOI is set")
         if "XXXX" in config["doi"] or "placeholder" in config["doi"].lower():
             errors.append("fake DOI placeholder detected")
     except (OSError, KeyError, TypeError, ValueError, tomllib.TOMLDecodeError) as exc:

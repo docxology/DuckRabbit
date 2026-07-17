@@ -1,0 +1,25 @@
+========================================================================
+ TELEMETRY REPORT: working/DuckRabbit
+========================================================================
+
+Total Duration : 108.1s
+Total Stages   : 8
+Failed Stages  : 0
+
+Stage                                   Time   Mem MB   CPU%   Status
+------------------------------------------------------------------------
+Clean Output Directories                0.1s       0   0.0     ✓ OK
+Environment Setup                       0.3s       0   0.0     ✓ OK
+Infrastructure Tests                   18.8s       0   0.0     ✓ OK
+Project Tests                          24.1s       0   0.0     ✓ OK
+Project Analysis                       21.4s       0   0.0     ✓ OK
+PDF Rendering                          41.7s       0   0.0     ✓ OK
+Output Validation                       0.5s       0   0.0     ✓ OK
+Copy Outputs                            0.5s       0   0.0     ✓ OK
+
+Performance Warnings (1):
+------------------------------------------------------------------------
+  ⚠ [slow_stage] Stage 'PDF Rendering' took 41.7s (2.0× the average 13.4s)
+    → Consider optimizing this stage or running it in parallel
+
+========================================================================

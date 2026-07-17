@@ -1,0 +1,66 @@
+\frametitle{Objective metric definitions}
+\protect\phantomsection\label{sec:objective_metric_definitions}
+\texttt{MetricRecord} and \texttt{MetricSuite} carry a metric name,
+value, unit, computation version, source artifact, tolerance, and claim
+level. Luminance statistics, quantization levels, RMS and peak
+amplitude, spectral summaries, frame deltas, stream durations, and
+synchronization offsets are physical or decoded-media facts. They are
+not observer responses and cannot by themselves establish an illusion
+effect. For canonical image samples \(y_1,\ldots,y_n\), audio samples
+\(x_1,\ldots,x_n\), and adjacent video frames \(Y_k,Y_{k+1}\), the
+principal metrics are:
+
+\[
+\mu_Y = \frac{1}{n}\sum_{j=1}^{n} y_j, \qquad
+\sigma_Y = \sqrt{\frac{1}{n}\sum_{j=1}^{n}(y_j-\mu_Y)^2}, \qquad
+RMS_X = \sqrt{\frac{1}{n}\sum_{j=1}^{n}x_j^2}
+\] \{\#eq:objective\_statistics\}
+
+\[
+D_k = \frac{1}{\lvert Y\rvert}\sum_{p}\lvert Y_{k+1}(p)-Y_k(p)\rvert, \qquad
+\mathrm{centroid}(X) = \frac{\sum_f f\,P_X(f)}{\sum_f P_X(f)}
+\] \{\#eq:temporal\_spectral\_metrics\}
+
+The level count is the cardinality of the finite-value set after
+canonical quantization; an empty or non-finite artifact is invalid
+rather than assigned a default statistic. Every metric record carries
+units and a deterministic computation version. Observer interpretations
+are represented separately by the typed observer protocol and claim
+levels.
+
+For a future observer study, the estimand is defined by the protocol
+rather than by the generator itself:
+
+\[
+\psi = \mathbb{E}[Y \mid \mathrm{condition},\ \mathrm{protocol}]
+\] \{\#eq:observer\_estimand\}
+
+This symbol names a planned analysis target only. DuckRabbit ships no
+human responses, fitted coefficients, or validated observer-level
+estimate.
+
+\begin{block}{Synthetic psychophysics boundary}
+\protect\phantomsection\label{synthetic-psychophysics-boundary}
+DuckRabbit v0.5.0 adds a transparent synthetic-psychophysics diagnostic
+for method orchestration. It is a hand-specified feature observer, not a
+pretrained vision model and not an empirical psychophysics substitute.
+Let \(\phi(A)\) be the bounded feature vector extracted from a canonical
+artifact, \(w\) the code-owned feature weights, and \(\tau>0\) the
+declared temperature:
+
+\[
+p_M(c\mid A_r,A_c) =
+\sigma\left(\frac{w^\mathsf{T}\phi(A_c)-w^\mathsf{T}\phi(A_r)}{\tau}\right)
+\] \{\#eq:synthetic\_observer\}
+
+The model identity, version, preprocessing features, weights,
+temperature, seed, calibration statement, and the
+\breaktt{human\_data=false} flag are serialized with each prediction. The
+diagnostic is useful for checking that typed parameter sweeps produce
+deterministic, inspectable model outputs and for exercising analysis
+orchestration end to end. It does not estimate a human psychometric
+function, establish a sensitivity threshold, or support an
+observer-level claim. Human psychophysics remains future work requiring
+a preregistered task, calibrated display/playback, participant data, and
+an analysis contract.
+\end{block}

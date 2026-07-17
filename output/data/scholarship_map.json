@@ -1,0 +1,294 @@
+{
+  "data": {
+    "entry_count": 18,
+    "rows": [
+      {
+        "engineering_basis": "Parameterized ambiguous silhouette; not a pixel-identical reproduction of a historical plate.",
+        "gap": false,
+        "illusion_id": "visual.duck_rabbit",
+        "limitations": [
+          "The generator verifies geometry and luminance, not bistable reports."
+        ],
+        "primary": [
+          "brugger1999duckrabbit"
+        ],
+        "review": [
+          "gregory1997visual"
+        ],
+        "supported_claim": "The entry instantiates a controllable ambiguous-figure stimulus family.",
+        "theory": []
+      },
+      {
+        "engineering_basis": "Equal central patches on unequal luminance surrounds.",
+        "gap": false,
+        "illusion_id": "visual.simultaneous_contrast",
+        "limitations": [
+          "Display calibration and observer adaptation are not modeled."
+        ],
+        "primary": [],
+        "review": [
+          "gregory1997visual"
+        ],
+        "supported_claim": "The physical center patches are matched while surround luminance differs.",
+        "theory": []
+      },
+      {
+        "engineering_basis": "Alternating rectangular masks at a fixed rational frame rate.",
+        "gap": false,
+        "illusion_id": "visual.apparent_motion",
+        "limitations": [
+          "The artifact establishes temporal succession, not perceived motion."
+        ],
+        "primary": [
+          "wertheimer1912motion"
+        ],
+        "review": [
+          "sekuler1996wertheimer"
+        ],
+        "supported_claim": "The sequence contains controlled successive spatial events.",
+        "theory": []
+      },
+      {
+        "engineering_basis": "Additive octave-spaced partials with a deterministic envelope.",
+        "gap": false,
+        "illusion_id": "audio.shepard_tone",
+        "limitations": [
+          "Playback transducers and listener pitch judgments are external."
+        ],
+        "primary": [
+          "shepard1984scale"
+        ],
+        "review": [],
+        "supported_claim": "The audio contains octave-related partials with controlled sweep parameters.",
+        "theory": []
+      },
+      {
+        "engineering_basis": "Harmonic components are synthesized while the nominal fundamental is omitted.",
+        "gap": false,
+        "illusion_id": "audio.missing_fundamental",
+        "limitations": [
+          "Pitch completion is an observer-level inference."
+        ],
+        "primary": [],
+        "review": [
+          "zatorre2005missing"
+        ],
+        "supported_claim": "The nominal fundamental component is absent from the canonical spectrum.",
+        "theory": []
+      },
+      {
+        "engineering_basis": "One flash paired with one or two timed beeps on a shared clock.",
+        "gap": false,
+        "illusion_id": "audiovisual.sound_induced_flash",
+        "limitations": [
+          "The stimulus does not establish a reported flash count."
+        ],
+        "primary": [
+          "shams2000sifi"
+        ],
+        "review": [
+          "hirst2020sound"
+        ],
+        "supported_claim": "The declared beep/flash event counts and offsets are physically encoded.",
+        "theory": []
+      },
+      {
+        "engineering_basis": "Stereo panning and visual displacement encode a spatial discrepancy.",
+        "gap": false,
+        "illusion_id": "audiovisual.ventriloquist",
+        "limitations": [
+          "Perceived localization depends on room, headphones, display, and observer."
+        ],
+        "primary": [],
+        "review": [
+          "bruns2019ventriloquist",
+          "noppeney2018causal"
+        ],
+        "supported_claim": "The audio and visual channels carry a declared spatial discrepancy.",
+        "theory": []
+      },
+      {
+        "engineering_basis": "Equal bars with controlled arrow-wing geometry.",
+        "gap": false,
+        "illusion_id": "visual.muller_lyer",
+        "limitations": [
+          "The chosen normalized geometry is one engineering variant."
+        ],
+        "primary": [],
+        "review": [
+          "gregory1997visual"
+        ],
+        "supported_claim": "The two bar lengths are equal in the canonical raster while wing geometry varies.",
+        "theory": [
+          "howe2005muller"
+        ]
+      },
+      {
+        "engineering_basis": "A diagonal continuation is separated by a rectangular occluder.",
+        "gap": false,
+        "illusion_id": "visual.poggendorff",
+        "limitations": [
+          "Alignment judgments and orientation filters are not measured."
+        ],
+        "primary": [],
+        "review": [
+          "gregory1997visual"
+        ],
+        "supported_claim": "The occluder and diagonal continuation are generated from explicit geometry.",
+        "theory": [
+          "morgan1999poggendorff"
+        ]
+      },
+      {
+        "engineering_basis": "Equal target bars are placed inside converging rails.",
+        "gap": false,
+        "illusion_id": "visual.ponzo",
+        "limitations": [
+          "Perspective interpretation is observer- and display-dependent."
+        ],
+        "primary": [
+          "fisher1967ponzo"
+        ],
+        "review": [
+          "yildiz2022ponzo"
+        ],
+        "supported_claim": "Target bars are physically equal and rails converge toward a vanishing region.",
+        "theory": []
+      },
+      {
+        "engineering_basis": "Three incomplete circular inducers are rasterized around a triangular gap.",
+        "gap": false,
+        "illusion_id": "visual.kanizsa_triangle",
+        "limitations": [
+          "Illusory contour completion is not directly measured."
+        ],
+        "primary": [
+          "kanizsa1976contours"
+        ],
+        "review": [
+          "wagemans2012gestalt"
+        ],
+        "supported_claim": "The image contains incomplete inducers with no explicitly drawn triangle edge.",
+        "theory": []
+      },
+      {
+        "engineering_basis": "Equal central targets are surrounded by different context-circle sizes.",
+        "gap": false,
+        "illusion_id": "visual.ebbinghaus",
+        "limitations": [
+          "Perceived size depends on viewing scale and context."
+        ],
+        "primary": [
+          "mruczek2015ebbinghaus",
+          "weintraub1979ebbinghaus"
+        ],
+        "review": [],
+        "supported_claim": "Central target geometry is held equal while contextual circle geometry differs.",
+        "theory": []
+      },
+      {
+        "engineering_basis": "Vertical long lines crossed by short oblique inducers with explicit normalized spacing and angle.",
+        "gap": false,
+        "illusion_id": "visual.zollner",
+        "limitations": [
+          "The raster verifies line geometry, not orientation judgments or a pixel-identical historical reproduction."
+        ],
+        "primary": [
+          "zoellner1860pseudoscopy",
+          "earle1995zollner"
+        ],
+        "review": [
+          "gregory1997visual"
+        ],
+        "supported_claim": "The entry instantiates a controlled crossing-line orientation stimulus family.",
+        "theory": []
+      },
+      {
+        "engineering_basis": "Two octave-complex tones are separated by a half-octave interval.",
+        "gap": false,
+        "illusion_id": "audio.tritone_paradox",
+        "limitations": [
+          "Ascending/descending reports vary across listeners and contexts."
+        ],
+        "primary": [
+          "deutsch1986tritone",
+          "repp1997tritone"
+        ],
+        "review": [],
+        "supported_claim": "The canonical pair has an explicit half-octave frequency relation.",
+        "theory": []
+      },
+      {
+        "engineering_basis": "Alternating high and low tones are assigned to opposite stereo channels.",
+        "gap": false,
+        "illusion_id": "audio.octave_illusion",
+        "limitations": [
+          "The auditory percept depends on dichotic presentation and listener."
+        ],
+        "primary": [
+          "deutsch1974octave"
+        ],
+        "review": [],
+        "supported_claim": "The two channels receive alternating octave-related tones.",
+        "theory": []
+      },
+      {
+        "engineering_basis": "An interrupted sinusoidal carrier is replaced during a declared gap by a deterministic tone or white-noise masker with typed amplitude.",
+        "gap": false,
+        "illusion_id": "audio.auditory_continuity",
+        "limitations": [
+          "The generator reports the physical interruption and masker, not a listener's continuity judgment or sensory-versus-decisional effect."
+        ],
+        "primary": [
+          "warren1970continuity",
+          "riecke2011continuity"
+        ],
+        "review": [],
+        "supported_claim": "The canonical audio contains a reproducible interruption interval and masker family.",
+        "theory": []
+      },
+      {
+        "engineering_basis": "A visual flash and audio click share a clock with explicit offset.",
+        "gap": false,
+        "illusion_id": "audiovisual.temporal_ventriloquism",
+        "limitations": [
+          "The generated single-event pair is a simplified engineering stimulus."
+        ],
+        "primary": [
+          "vroomen2004temporal",
+          "hartcherobrien2011temporal"
+        ],
+        "review": [
+          "hirst2020sound",
+          "noppeney2018causal"
+        ],
+        "supported_claim": "Audio and video event timing and declared offset are deterministic and inspectable.",
+        "theory": []
+      },
+      {
+        "engineering_basis": "Requires validated speech audio/video fixtures and licensing records.",
+        "gap": true,
+        "illusion_id": "audiovisual.mcgurk",
+        "limitations": [
+          "No fixture, consent record, or perceptual validation contract is bundled."
+        ],
+        "primary": [
+          "mcgurk1976speech"
+        ],
+        "review": [],
+        "supported_claim": "The catalog identifies a speech-dependent audiovisual family without claiming implementation.",
+        "theory": []
+      }
+    ],
+    "source_count": 36
+  },
+  "figure_label": "fig:scholarship_map",
+  "figure_stem": "scholarship_map",
+  "generator": "duckrabbit.publication._scholarship_map",
+  "parameters": {
+    "figure_stem": "scholarship_map",
+    "seed": 0
+  },
+  "schema_version": "duckrabbit/figure-source/v1",
+  "seed": 0
+}

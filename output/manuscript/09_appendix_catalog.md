@@ -1,0 +1,69 @@
+# Appendix A. Complete catalog, source tiers, and evidence/implementation boundaries {#sec:appendix_catalog}
+
+This appendix is the authoritative rendered snapshot of DuckRabbit's live
+catalog. It is generated from the taxonomy registry and evidence matrix during
+the publication build; the table is not hand-maintained. The snapshot records
+the package's current scope, not a claim to enumerate every illusion described
+in the literature.
+
+## How to read the matrix
+
+Each row identifies a registered illusion family and separates five questions
+that are often collapsed in informal catalogs:
+
+1. What modality, mechanism, and signature does the package assign to the construction?
+2. What evidence and implementation status does the checked-in record support?
+3. Which sources support the exact statement written in the row?
+4. What physical claim is supported by the row?
+5. What full source role, resolver, DOI status, and claim level are retained in the machine-readable record?
+
+`implemented` means that DuckRabbit has a deterministic generator and a
+validated canonical artifact contract. It does not mean that the generated
+stimulus is a pixel-identical reproduction of a historical experiment or that
+an observer effect has been re-established. `input_required` means that the
+family remains catalogued but lacks a lawful, checksummed input fixture and/or
+the validation contract required for deterministic generation. Evidence status
+and implementation status are deliberately independent.
+
+The source column is a compact citation-key view. The full source role,
+resolver or DOI status, exact supported claim, engineering departure, and
+limitation are retained in the machine-readable evidence matrix and in the
+generated evidence audit [@tbl:evidence_audit]. A source supports only the
+narrow claim recorded for it; a review or theory record is not evidence that a
+DuckRabbit rendering produces a universal perceptual effect.
+
+| ID | Construction | Evidence / status | Sources | Supported claim |
+|---|---|---|---|---|
+| visual.duck rabbit | visual; ambiguity; bistability | literature backed engineering entry; implemented | brugger 1999 duckrabbit; gregory 1997 visual | The entry instantiates a controllable ambiguous-figure stimulus family. |
+| visual.simultaneous contrast | visual; contrast and context; contrast distortion | literature backed engineering entry; implemented | gregory 1997 visual | The physical center patches are matched while surround luminance differs. |
+| visual.apparent motion | visual; temporal motion; illusory motion | literature backed engineering entry; implemented | wertheimer 1912 motion; sekuler 1996 wertheimer | The sequence contains controlled successive spatial events. |
+| audio.shepard tone | auditory; spectral harmonic; continuity | literature backed engineering entry; implemented | shepard 1984 scale | The audio contains octave-related partials with controlled sweep parameters. |
+| audio.missing fundamental | auditory; spectral harmonic; filling in | literature backed engineering entry; implemented | zatorre 2005 missing | The nominal fundamental component is absent from the canonical spectrum. |
+| audiovisual.sound induced flash | audio_visual; crossmodal temporal; fusion or fission | review backed engineering entry; implemented | shams 2000 sifi; hirst 2020 sound | The declared beep/flash event counts and offsets are physically encoded. |
+| audiovisual.ventriloquist | audio_visual; crossmodal spatial; spatial capture | review backed engineering entry; implemented | bruns 2019 ventriloquist; noppeney 2018 causal | The audio and visual channels carry a declared spatial discrepancy. |
+| visual.muller lyer | visual; geometric alignment; geometric distortion | literature backed engineering entry; implemented | gregory 1997 visual; howe 2005 muller | The two bar lengths are equal in the canonical raster while wing geometry varies. |
+| visual.poggendorff | visual; geometric alignment; geometric distortion | literature backed engineering entry; implemented | gregory 1997 visual; morgan 1999 poggendorff | The occluder and diagonal continuation are generated from explicit geometry. |
+| visual.ponzo | visual; geometric alignment; geometric distortion | literature backed engineering entry; implemented | fisher 1967 ponzo; yildiz 2022 ponzo | Target bars are physically equal and rails converge toward a vanishing region. |
+| visual.kanizsa triangle | visual; contrast and context, geometric alignment; filling in | literature backed engineering entry; implemented | kanizsa 1976 contours; wagemans 2012 gestalt | The image contains incomplete inducers with no explicitly drawn triangle edge. |
+| visual.ebbinghaus | visual; contrast and context, geometric alignment; geometric distortion | literature backed engineering entry; implemented | mruczek 2015 ebbinghaus; weintraub 1979 ebbinghaus | Central target geometry is held equal while contextual circle geometry differs. |
+| visual.zollner | visual; geometric alignment; geometric distortion | literature backed engineering entry; implemented | zoellner 1860 pseudoscopy; earle 1995 zollner; gregory 1997 visual | The entry instantiates a controlled crossing-line orientation stimulus family. |
+| audio.tritone paradox | auditory; spectral harmonic; categorical recoding | literature backed engineering entry; implemented | deutsch 1986 tritone; repp 1997 tritone | The canonical pair has an explicit half-octave frequency relation. |
+| audio.octave illusion | auditory; stream segregation; fusion or fission | literature backed engineering entry; implemented | deutsch 1974 octave | The two channels receive alternating octave-related tones. |
+| audio.auditory continuity | auditory; stream segregation; continuity | literature backed engineering entry; implemented | warren 1970 continuity; riecke 2011 continuity | The canonical audio contains a reproducible interruption interval and masker family. |
+| audiovisual.temporal ventriloquism | audio_visual; crossmodal temporal; temporal binding or recalibration | review backed engineering entry; implemented | vroomen 2004 temporal; hartcherobrien 2011 temporal; hirst 2020 sound; noppeney 2018 causal | Audio and video event timing and declared offset are deterministic and inspectable. |
+| audiovisual.mcgurk | audio_visual; speech categorization; categorical recoding | literature backed input dependent entry; input required | mcgurk 1976 speech | The catalog identifies a speech-dependent audiovisual family without claiming implementation. |
+
+: DuckRabbit catalog entries, source tiers, and evidence/implementation boundaries. {#tbl:catalog}
+
+## Evidence boundary and future expansion
+
+The matrix is intentionally a living registry snapshot. New families may be
+added when the package can state a typed parameter contract, deterministic
+canonicalization rule, validation invariant, and evidence boundary. Planned or
+input-dependent families are not silently promoted because a source exists:
+promotion requires an implementable contract, reproducible fixtures where
+needed, and an explicit statement of what remains unvalidated. McGurk therefore
+remains `input_required` pending a consented or licensed, checksummed speech/
+video fixture and a study-ready validation protocol. The candidate-future
+catalog is documented separately from this live matrix so that absence is not
+misread as a claim that a phenomenon is unknown or unimportant.

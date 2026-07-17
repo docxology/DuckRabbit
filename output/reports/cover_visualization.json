@@ -1,0 +1,38 @@
+{
+  "alt_text": "Charcoal duck-rabbit silhouette surrounded by burnt-sienna and deep-purple waveform traces, geometric guides, and provenance-like grid marks.",
+  "caption": "Editorial cover illustration combining an ambiguous duck/rabbit silhouette with waveform and construction motifs. It is a publication artifact, not an experimental stimulus or observer result. Source data are not applicable; generation provenance is recorded here.",
+  "claim_level": "publication_illustration",
+  "dimensions_px": {
+    "height": 1402,
+    "width": 1122
+  },
+  "model": "image_gen",
+  "previewed": true,
+  "prompt_sha256": "224b3791f71d68011ddc6f8cb9fee6d735246c375d90d94c8f7b3236a0a3632d",
+  "provenance_boundary": "The image communicates the project's subject and methods aesthetic; it does not establish a perceptual effect, stimulus fidelity, or participant result.",
+  "schema_version": "duckrabbit/cover/v1",
+  "selected_candidate": 4,
+  "source_asset": "duckrabbit-cover-v2.png",
+  "source_asset_dimensions_px": {
+    "height": 1402,
+    "width": 1122
+  },
+  "source_asset_path": "assets/cover/duckrabbit-cover-v2.png",
+  "source_asset_sha256": "e42859f364316e1be4b23aba20de45fb7f578ffaa6fcb7b2c23bfb7a2d19d4d8",
+  "source_kind": "editorial_charcoal_image_generation_v2",
+  "source_scope": "project_asset",
+  "variants": {
+    "png": {
+      "path": "output/figures/cover_visualization.png",
+      "sha256": "133a5f82e4e107b0572881795a950574f08a73e82b88f44288fc8ed4df6aea4d"
+    },
+    "thumbnail": {
+      "path": "output/figures/cover_visualization-thumb.png",
+      "sha256": "e70667f898755e72504e0890b98c5aa288c5d680e8ddefd2897b2736223068cd"
+    },
+    "webp": {
+      "path": "output/figures/cover_visualization.webp",
+      "sha256": "c61911f0aabd89435e3428ff76bece27da3e26ae70dd1e2f77ac32854a47eb96"
+    }
+  }
+}

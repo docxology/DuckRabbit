@@ -1,0 +1,402 @@
+\begin{thebibliography}{47}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[al~Haytham(1989)]{alhazen1989optics}
+Ibn al~Haytham.
+\newblock \emph{The Optics of Ibn al-Haytham. Books I--III, On Direct Vision}.
+\newblock Number~40 in Studies of the Warburg Institute. Warburg Institute,
+  University of London, London, 1989.
+\newblock URL
+  \url{https://www.cca.qc.ca/en/search/details/library/publication/21530166}.
+
+\bibitem[Berkeley(1709)]{berkeley1709vision}
+George Berkeley.
+\newblock \emph{An Essay Towards a New Theory of Vision}.
+\newblock Aaron Rhames for Jeremy Pepyat, Dublin, 1709.
+\newblock URL \url{https://www.maths.tcd.ie/~dwilkins/Berkeley/Vision/}.
+
+\bibitem[Brugger(1999)]{brugger1999duckrabbit}
+Peter Brugger.
+\newblock One hundred years of an ambiguous figure: happy birthday,
+  duck/rabbit.
+\newblock \emph{Perceptual and Motor Skills}, 89\penalty0 (3):\penalty0
+  973--977, 1999.
+\newblock \doi{10.2466/pms.1999.89.3.973}.
+\newblock URL \url{https://pubmed.ncbi.nlm.nih.gov/10665033/}.
+
+\bibitem[Bruns(2019)]{bruns2019ventriloquist}
+Patrick Bruns.
+\newblock The ventriloquist illusion as a tool to study multisensory
+  processing: an update.
+\newblock \emph{Frontiers in Integrative Neuroscience}, 13:\penalty0 51, 2019.
+\newblock \doi{10.3389/fnint.2019.00051}.
+\newblock URL \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC6751356/}.
+
+\bibitem[Cheselden(1728)]{cheselden1728sight}
+William Cheselden.
+\newblock An account of some observations made by a young gentleman who was
+  born blind, or lost his sight so early that he had no remembrance of ever
+  having seen, and was couch'd between 13 and 14 years of age.
+\newblock \emph{Philosophical Transactions of the Royal Society of London},
+  35\penalty0 (402):\penalty0 447--450, 1728.
+\newblock URL \url{https://archive.org/details/jstor-103697}.
+
+\bibitem[Dai(2015)]{dai2015chinesescience}
+Nianzu Dai.
+\newblock Physics.
+\newblock In Yongxiang Lu, editor, \emph{A History of Chinese Science and
+  Technology}. Springer, Berlin, 2015.
+\newblock \doi{10.1007/978-3-662-44257-9_5}.
+\newblock URL
+  \url{https://link.springer.com/chapter/10.1007/978-3-662-44257-9_5}.
+
+\bibitem[Degenaar and Lokhorst(2020)]{molyneux2020problem}
+Marjolein Degenaar and Gert-Jan Lokhorst.
+\newblock Molyneux's problem.
+\newblock \emph{The Stanford Encyclopedia of Philosophy}, 2020.
+\newblock URL
+  \url{https://plato.stanford.edu/archives/fall2020/entries/molyneux-problem/}.
+
+\bibitem[Deutsch(1974)]{deutsch1974octave}
+Diana Deutsch.
+\newblock An auditory illusion.
+\newblock \emph{Journal of the Acoustical Society of America}, 55\penalty0
+  (S1):\penalty0 S18--S19, 1974.
+\newblock \doi{10.1121/1.1919587}.
+\newblock URL \url{https://doi.org/10.1121/1.1919587}.
+
+\bibitem[Deutsch(1986)]{deutsch1986tritone}
+Diana Deutsch.
+\newblock A musical paradox.
+\newblock \emph{Music Perception}, 3\penalty0 (3):\penalty0 275--280, 1986.
+\newblock \doi{10.2307/40285337}.
+\newblock URL
+  \url{https://online.ucpress.edu/mp/article-abstract/3/3/275/62718/A-Musical-Paradox}.
+
+\bibitem[Earle and Maskell(1995)]{earle1995zollner}
+David~C. Earle and Stephen~J. Maskell.
+\newblock Spatial filtering and the {Z}{\"o}llner--{J}udd geometrical illusion:
+  Further studies.
+\newblock \emph{Perception}, 24\penalty0 (12):\penalty0 1397--1406, 1995.
+\newblock \doi{10.1068/p241397}.
+\newblock URL \url{https://journals.sagepub.com/doi/10.1068/p241397}.
+
+\bibitem[Fechner(1860)]{fechner1860psychophysics}
+Gustav~Theodor Fechner.
+\newblock \emph{Elemente der Psychophysik}.
+\newblock Breitkopf und Härtel, Leipzig, 1860.
+\newblock URL \url{https://archive.org/details/elementederpsyc00fechgoog}.
+
+\bibitem[Fisher(1967)]{fisher1967ponzo}
+Gerald~H. Fisher.
+\newblock Detection of visual stimuli located within angles.
+\newblock \emph{Nature}, 215:\penalty0 553--554, 1967.
+\newblock \doi{10.1038/215553a0}.
+\newblock URL \url{https://www.nature.com/articles/215553a0}.
+
+\bibitem[Gregory(1997)]{gregory1997visual}
+Richard~L. Gregory.
+\newblock Visual illusions classified.
+\newblock \emph{Trends in Cognitive Sciences}, 1\penalty0 (5):\penalty0
+  190--194, 1997.
+\newblock \doi{10.1016/S1364-6613(97)01060-7}.
+\newblock URL \url{https://pubmed.ncbi.nlm.nih.gov/21223901/}.
+
+\bibitem[Hartcher-O'Brien and Alais(2011)]{hartcherobrien2011temporal}
+Jessica Hartcher-O'Brien and David Alais.
+\newblock Temporal ventriloquism in a purely temporal context.
+\newblock \emph{Journal of Experimental Psychology: Human Perception and
+  Performance}, 37\penalty0 (5):\penalty0 1383--1395, 2011.
+\newblock \doi{10.1037/a0024234}.
+\newblock URL \url{https://pubmed.ncbi.nlm.nih.gov/21728465/}.
+
+\bibitem[Helmholtz(1867)]{helmholtz1867optics}
+Hermann~von Helmholtz.
+\newblock \emph{Handbuch der physiologischen Optik}.
+\newblock Leopold Voss, Leipzig, 1867.
+\newblock URL \url{https://www.e-rara.ch/zut/content/titleinfo/6569728}.
+
+\bibitem[Hirst et~al.(2020)Hirst, McGovern, Setti, Shams, and
+  Newell]{hirst2020sound}
+Rebecca~J. Hirst, David~P. McGovern, Annalisa Setti, Ladan Shams, and Fiona~N.
+  Newell.
+\newblock What you see is what you hear: Twenty years of research using the
+  sound-induced flash illusion.
+\newblock \emph{Neuroscience and Biobehavioral Reviews}, 118:\penalty0
+  759--774, 2020.
+\newblock \doi{10.1016/j.neubiorev.2020.09.006}.
+\newblock URL
+  \url{https://www.sciencedirect.com/science/article/pii/S0149763420305637}.
+
+\bibitem[Howe and Purves(2005)]{howe2005muller}
+Catherine~Q. Howe and Dale Purves.
+\newblock The {M}{\"u}ller-{L}yer illusion explained by the statistics of
+  image-source relationships.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 102\penalty0
+  (4):\penalty0 1234--1239, 2005.
+\newblock \doi{10.1073/pnas.0409314102}.
+\newblock URL \url{https://doi.org/10.1073/pnas.0409314102}.
+
+\bibitem[Kanizsa(1976)]{kanizsa1976contours}
+Gaetano Kanizsa.
+\newblock Subjective contours.
+\newblock \emph{Scientific American}, 234\penalty0 (4):\penalty0 48--52, 1976.
+\newblock \doi{10.1038/scientificamerican0476-48}.
+\newblock URL \url{https://pubmed.ncbi.nlm.nih.gov/1257734/}.
+
+\bibitem[Kircher(1646)]{kircher1646light}
+Athanasius Kircher.
+\newblock \emph{Ars Magna Lucis et Umbrae}.
+\newblock Ludovico Grignani for Hermann Scheuss, Rome, 1646.
+\newblock URL
+  \url{https://collections.st-andrews.ac.uk/item/ars-magna-lucis-et-umbrae/606862}.
+
+\bibitem[Lamprecht et~al.(2020)Lamprecht, Garcia, Kuzak, Martinez, Arcila,
+  Martin Del~Pico, Dominguez Del~Angel, van~de Sandt, Ison, Martinez,
+  McQuilton, Valencia, Harrow, Psomopoulos, Gelpi, Chue~Hong, Goble, and
+  Capella-Gutierrez]{lamprecht2020fairsoftware}
+Anna-Lena Lamprecht, Leyla Garcia, Mateusz Kuzak, Carlos Martinez, Ricardo
+  Arcila, Eva Martin Del~Pico, Victoria Dominguez Del~Angel, Stephanie van~de
+  Sandt, Jon Ison, Paula~Andrea Martinez, Peter McQuilton, Alfonso Valencia,
+  Jennifer Harrow, Fotis Psomopoulos, Josep~Ll. Gelpi, Neil Chue~Hong, Carole
+  Goble, and Salvador Capella-Gutierrez.
+\newblock Towards {FAIR} principles for research software.
+\newblock \emph{Data Science}, 3\penalty0 (1):\penalty0 37--59, 2020.
+\newblock \doi{10.3233/DS-190026}.
+\newblock URL \url{https://doi.org/10.3233/DS-190026}.
+
+\bibitem[McGurk and MacDonald(1976)]{mcgurk1976speech}
+Harry McGurk and John MacDonald.
+\newblock Hearing lips and seeing voices.
+\newblock \emph{Nature}, 264\penalty0 (5588):\penalty0 746--748, 1976.
+\newblock \doi{10.1038/264746a0}.
+\newblock URL \url{https://doi.org/10.1038/264746a0}.
+
+\bibitem[Morgan(1999)]{morgan1999poggendorff}
+M.~J. Morgan.
+\newblock The {P}oggendorff illusion: a bias in the estimation of the
+  orientation of virtual lines by second-stage filters.
+\newblock \emph{Vision Research}, 39\penalty0 (14):\penalty0 2361--2380, 1999.
+\newblock \doi{10.1016/S0042-6989(98)00243-0}.
+\newblock URL \url{https://doi.org/10.1016/S0042-6989(98)00243-0}.
+
+\bibitem[Mruczek et~al.(2015)Mruczek, Blair, Strother, and
+  Caplovitz]{mruczek2015ebbinghaus}
+Ryan E.~B. Mruczek, Christopher~D. Blair, Lars Strother, and Gideon~P.
+  Caplovitz.
+\newblock The dynamic ebbinghaus: motion dynamics greatly enhance the classic
+  contextual size illusion.
+\newblock \emph{Frontiers in Human Neuroscience}, 9:\penalty0 77, 2015.
+\newblock \doi{10.3389/fnhum.2015.00077}.
+\newblock URL \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC4332331/}.
+
+\bibitem[Müller-Lyer(1889)]{mullerlyer1889optical}
+Franz~Carl Müller-Lyer.
+\newblock Optische urtheilstäuschungen.
+\newblock \emph{Archiv für Physiologie}, pages 263--270, 1889.
+\newblock URL
+  \url{https://www.psychologie.hu-berlin.de/de/institut/kabinett/ausstellungen/mueller_lyer.pdf}.
+
+\bibitem[Noppeney and Lee(2018)]{noppeney2018causal}
+Uta Noppeney and Hwee~Ling Lee.
+\newblock Causal inference and temporal predictions in audiovisual perception
+  of speech and music.
+\newblock \emph{Annals of the New York Academy of Sciences}, 1423:\penalty0
+  102--116, 2018.
+\newblock \doi{10.1111/nyas.13615}.
+\newblock URL \url{https://doi.org/10.1111/nyas.13615}.
+
+\bibitem[Ptolemy(1996)]{ptolemy1996optics}
+Ptolemy.
+\newblock \emph{Ptolemy's Theory of Visual Perception: An English Translation
+  of the Optics with Introduction and Commentary}, volume~86 of
+  \emph{Transactions of the American Philosophical Society}.
+\newblock American Philosophical Society, Philadelphia, 1996.
+\newblock URL \url{https://sites.dlib.nyu.edu/viewer/books/isaw_aphs000027}.
+
+\bibitem[Repp(1997)]{repp1997tritone}
+Bruno~H. Repp.
+\newblock Spectral envelope and context effects in the tritone paradox.
+\newblock \emph{Perception}, 26\penalty0 (5):\penalty0 645--665, 1997.
+\newblock \doi{10.1068/p260645}.
+\newblock URL \url{https://pubmed.ncbi.nlm.nih.gov/9488887/}.
+
+\bibitem[Riecke et~al.(2011)Riecke, Micheyl, Vanbussel, Schreiner, Mendelsohn,
+  and Formisano]{riecke2011continuity}
+Lars Riecke, Christophe Micheyl, Mieke Vanbussel, Claudia~S. Schreiner, Daniel
+  Mendelsohn, and Elia Formisano.
+\newblock Recalibration of the auditory continuity illusion: sensory and
+  decisional effects.
+\newblock \emph{Hearing Research}, 277\penalty0 (1--2):\penalty0 152--162,
+  2011.
+\newblock \doi{10.1016/j.heares.2011.01.013}.
+\newblock URL \url{https://doi.org/10.1016/j.heares.2011.01.013}.
+
+\bibitem[Sandve et~al.(2013)Sandve, Nekrutenko, Taylor, and
+  Hovig]{sandve2013simple}
+Geir~Kjetil Sandve, Anton Nekrutenko, James Taylor, and Eivind Hovig.
+\newblock Ten simple rules for reproducible computational research.
+\newblock \emph{PLOS Computational Biology}, 9\penalty0 (10):\penalty0
+  e1003285, 2013.
+\newblock \doi{10.1371/journal.pcbi.1003285}.
+\newblock URL \url{https://doi.org/10.1371/journal.pcbi.1003285}.
+
+\bibitem[Schemmel and Boltz(2022)]{mozi2023canons}
+Matthias Schemmel and William~G. Boltz.
+\newblock Text and translation.
+\newblock In \emph{Theoretical Knowledge in the Mohist Canon}, pages 71--173.
+  Springer, 2022.
+\newblock \doi{10.1007/978-3-031-08797-4_3}.
+\newblock URL
+  \url{https://link.springer.com/chapter/10.1007/978-3-031-08797-4_3}.
+
+\bibitem[Sekuler(1996)]{sekuler1996wertheimer}
+Robert Sekuler.
+\newblock Motion perception: A modern view of wertheimer's 1912 monograph.
+\newblock \emph{Perception}, 25\penalty0 (10), 1996.
+\newblock \doi{10.1068/p251243}.
+\newblock URL \url{https://journals.sagepub.com/doi/10.1068/p251243}.
+
+\bibitem[Shams et~al.(2000)Shams, Kamitani, and Shimojo]{shams2000sifi}
+Ladan Shams, Yukiyasu Kamitani, and Shinsuke Shimojo.
+\newblock What you see is what you hear.
+\newblock \emph{Nature}, 408:\penalty0 788, 2000.
+\newblock \doi{10.1038/35048669}.
+\newblock URL \url{https://doi.org/10.1038/35048669}.
+
+\bibitem[Shepard and Jordan(1984)]{shepard1984scale}
+Roger~N. Shepard and D.~S. Jordan.
+\newblock Auditory illusions demonstrating that tones are assimilated to an
+  internalized musical scale.
+\newblock \emph{Science}, 226\penalty0 (4680):\penalty0 1333--1334, 1984.
+\newblock \doi{10.1126/science.226.4680.1333}.
+\newblock URL \url{https://doi.org/10.1126/science.226.4680.1333}.
+
+\bibitem[Smith et~al.(2016)Smith, Katz, Niemeyer, and
+  Chue~Hong]{smith2016software}
+Arfon~M. Smith, Daniel~S. Katz, Kyle~E. Niemeyer, and Neil Chue~Hong.
+\newblock Software citation principles.
+\newblock \emph{PeerJ Computer Science}, 2:\penalty0 e86, 2016.
+\newblock \doi{10.7717/peerj-cs.86}.
+\newblock URL \url{https://peerj.com/articles/cs-86/}.
+
+\bibitem[Stumpf(1883)]{stumpf1883tonpsychology}
+Carl Stumpf.
+\newblock \emph{Tonpsychologie. Band 1}.
+\newblock S. Hirzel, Leipzig, 1883.
+\newblock URL \url{https://search.rsl.ru/ru/record/01004444057}.
+
+\bibitem[Vroomen and de~Gelder(2004)]{vroomen2004temporal}
+Jean Vroomen and Beatrice de~Gelder.
+\newblock Temporal ventriloquism: Sound modulates the flash-lag effect.
+\newblock \emph{Journal of Experimental Psychology: Human Perception and
+  Performance}, 30\penalty0 (3):\penalty0 513--518, 2004.
+\newblock \doi{10.1037/0096-1523.30.3.513}.
+\newblock URL \url{https://pubmed.ncbi.nlm.nih.gov/15161383/}.
+
+\bibitem[Wade et~al.(2017)Wade, Todorović, Phillips, and
+  Lingelbach]{wade2017oppel}
+Nicholas~J. Wade, Dejan Todorović, David Phillips, and Bernd Lingelbach.
+\newblock Johann joseph oppel (1855) on geometrical--optical illusions: A
+  translation and commentary.
+\newblock \emph{i-Perception}, 8\penalty0 (5), 2017.
+\newblock \doi{10.1177/2041669517712724}.
+\newblock URL \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC5484433/}.
+
+\bibitem[Wagemans et~al.(2012)Wagemans, Elder, Kubovy, Palmer, Peterson, Singh,
+  and von~der Heydt]{wagemans2012gestalt}
+Johan Wagemans, James~H. Elder, Michael Kubovy, Stephen~E. Palmer, Mary~A.
+  Peterson, Manish Singh, and R{"u}diger von~der Heydt.
+\newblock A century of {G}estalt psychology in visual perception: {I}.
+  perceptual grouping and figure-ground organization.
+\newblock \emph{Psychological Bulletin}, 138\penalty0 (6):\penalty0 1172--1217,
+  2012.
+\newblock \doi{10.1037/a0029333}.
+\newblock URL \url{https://pubmed.ncbi.nlm.nih.gov/22845751/}.
+
+\bibitem[Warren(1970)]{warren1970continuity}
+Richard~M. Warren.
+\newblock Perceptual restoration of missing speech sounds.
+\newblock \emph{Science}, 167\penalty0 (3917):\penalty0 392--393, 1970.
+\newblock \doi{10.1126/science.167.3917.392}.
+\newblock URL \url{https://doi.org/10.1126/science.167.3917.392}.
+
+\bibitem[Weintraub(1979)]{weintraub1979ebbinghaus}
+D.~J. Weintraub.
+\newblock Ebbinghaus illusion: context, contour, and age influence the judged
+  size of a circle amidst circles.
+\newblock \emph{Journal of Experimental Psychology: Human Perception and
+  Performance}, 5\penalty0 (2):\penalty0 353--364, 1979.
+\newblock \doi{10.1037/0096-1523.5.2.353}.
+\newblock URL \url{https://pubmed.ncbi.nlm.nih.gov/528945/}.
+
+\bibitem[Wertheimer(1912)]{wertheimer1912motion}
+Max Wertheimer.
+\newblock Experimentelle studien {"u}ber das sehen von bewegung.
+\newblock \emph{Zeitschrift f{"u}r Psychologie}, 61:\penalty0 161--265, 1912.
+\newblock URL
+  \url{https://bibbase.org/network/publication/wertheimer-experimentellestudienberdassehenvonbewegung-1912}.
+
+\bibitem[Wheatstone(1838)]{wheatstone1838binocular}
+Charles Wheatstone.
+\newblock Contributions to the physiology of vision. part the first. on some
+  remarkable, and hitherto unobserved, phenomena of binocular vision.
+\newblock \emph{Philosophical Transactions of the Royal Society of London},
+  128:\penalty0 371--394, 1838.
+\newblock \doi{10.1098/rstl.1838.0019}.
+\newblock URL
+  \url{https://echo-old.mpiwg-berlin.mpg.de/ECHOdocuView?pn=26&url=%2Fpermanent%2Fvision%2Felib%2FWheatstone_Stereoscope_1838%2Findex.meta&viewMode=index}.
+
+\bibitem[Wilkinson et~al.(2016)Wilkinson, Dumontier, Aalbersberg, Appleton,
+  Axton, Baak, Blomberg, Boiten, da~Silva~Santos, Bourne,
+  et~al.]{wilkinson2016fair}
+Mark~D. Wilkinson, Michel Dumontier, IJsbrand~Jan Aalbersberg, Gabrielle
+  Appleton, Myles Axton, Arie Baak, Niklas Blomberg, Jan-Willem Boiten,
+  Luiz~Bonino da~Silva~Santos, Philip~E. Bourne, et~al.
+\newblock The {FAIR} guiding principles for scientific data management and
+  stewardship.
+\newblock \emph{Scientific Data}, 3:\penalty0 160018, 2016.
+\newblock \doi{10.1038/sdata.2016.18}.
+\newblock URL \url{https://doi.org/10.1038/sdata.2016.18}.
+
+\bibitem[Wilson et~al.(2014)Wilson, Aruliah, Brown, Chue~Hong, Davis, Guy,
+  Haddock, Huff, Mitchell, Plumbley, Waugh, White, and
+  Wilson]{wilson2014bestpractices}
+Greg Wilson, D.~A. Aruliah, C.~Titus Brown, Neil~P. Chue~Hong, Matt Davis,
+  Richard~T. Guy, Steven~D. Haddock, Kathryn~D. Huff, Ian~M. Mitchell, Mark~D.
+  Plumbley, Ben Waugh, Ethan~P. White, and Paul Wilson.
+\newblock Best practices for scientific computing.
+\newblock \emph{PLOS Biology}, 12\penalty0 (1):\penalty0 e1001745, 2014.
+\newblock \doi{10.1371/journal.pbio.1001745}.
+\newblock URL \url{https://pubmed.ncbi.nlm.nih.gov/24415924/}.
+
+\bibitem[Yildiz et~al.(2022)Yildiz, Sperandio, Kettle, and
+  Chouinard]{yildiz2022ponzo}
+Gizem~Y. Yildiz, Irene Sperandio, Christine Kettle, and Philippe~A. Chouinard.
+\newblock A review on various explanations of ponzo-like illusions.
+\newblock \emph{Psychonomic Bulletin and Review}, 29\penalty0 (2):\penalty0
+  293--320, 2022.
+\newblock \doi{10.3758/s13423-021-02007-7}.
+\newblock URL \url{https://pubmed.ncbi.nlm.nih.gov/34613601/}.
+
+\bibitem[Zatorre(2005)]{zatorre2005missing}
+Robert~J. Zatorre.
+\newblock Finding the missing fundamental.
+\newblock \emph{Nature}, 436:\penalty0 1093--1094, 2005.
+\newblock \doi{10.1038/4361093a}.
+\newblock URL \url{https://doi.org/10.1038/4361093a}.
+
+\bibitem[Zöllner(1860)]{zoellner1860pseudoscopy}
+Friedrich Zöllner.
+\newblock Ueber eine neue art von pseudoskopie und ihre beziehungen zu den von
+  plateau und oppel beschriebenen bewegungsphänomenen.
+\newblock \emph{Annalen der Physik}, 186:\penalty0 500--523, 1860.
+\newblock \doi{10.1002/andp.18601860712}.
+\newblock URL
+  \url{https://onlinelibrary.wiley.com/doi/10.1002/andp.18601860712}.
+
+\end{thebibliography}

@@ -1,0 +1,214 @@
+{
+  "body": "| visual.duck rabbit | visual; ambiguity; bistability | literature backed engineering entry; implemented | brugger 1999 duckrabbit; gregory 1997 visual | The entry instantiates a controllable ambiguous-figure stimulus family. |\n| visual.simultaneous contrast | visual; contrast and context; contrast distortion | literature backed engineering entry; implemented | gregory 1997 visual | The physical center patches are matched while surround luminance differs. |\n| visual.apparent motion | visual; temporal motion; illusory motion | literature backed engineering entry; implemented | wertheimer 1912 motion; sekuler 1996 wertheimer | The sequence contains controlled successive spatial events. |\n| audio.shepard tone | auditory; spectral harmonic; continuity | literature backed engineering entry; implemented | shepard 1984 scale | The audio contains octave-related partials with controlled sweep parameters. |\n| audio.missing fundamental | auditory; spectral harmonic; filling in | literature backed engineering entry; implemented | zatorre 2005 missing | The nominal fundamental component is absent from the canonical spectrum. |\n| audiovisual.sound induced flash | audio_visual; crossmodal temporal; fusion or fission | review backed engineering entry; implemented | shams 2000 sifi; hirst 2020 sound | The declared beep/flash event counts and offsets are physically encoded. |\n| audiovisual.ventriloquist | audio_visual; crossmodal spatial; spatial capture | review backed engineering entry; implemented | bruns 2019 ventriloquist; noppeney 2018 causal | The audio and visual channels carry a declared spatial discrepancy. |\n| visual.muller lyer | visual; geometric alignment; geometric distortion | literature backed engineering entry; implemented | gregory 1997 visual; howe 2005 muller | The two bar lengths are equal in the canonical raster while wing geometry varies. |\n| visual.poggendorff | visual; geometric alignment; geometric distortion | literature backed engineering entry; implemented | gregory 1997 visual; morgan 1999 poggendorff | The occluder and diagonal continuation are generated from explicit geometry. |\n| visual.ponzo | visual; geometric alignment; geometric distortion | literature backed engineering entry; implemented | fisher 1967 ponzo; yildiz 2022 ponzo | Target bars are physically equal and rails converge toward a vanishing region. |\n| visual.kanizsa triangle | visual; contrast and context, geometric alignment; filling in | literature backed engineering entry; implemented | kanizsa 1976 contours; wagemans 2012 gestalt | The image contains incomplete inducers with no explicitly drawn triangle edge. |\n| visual.ebbinghaus | visual; contrast and context, geometric alignment; geometric distortion | literature backed engineering entry; implemented | mruczek 2015 ebbinghaus; weintraub 1979 ebbinghaus | Central target geometry is held equal while contextual circle geometry differs. |\n| visual.zollner | visual; geometric alignment; geometric distortion | literature backed engineering entry; implemented | zoellner 1860 pseudoscopy; earle 1995 zollner; gregory 1997 visual | The entry instantiates a controlled crossing-line orientation stimulus family. |\n| audio.tritone paradox | auditory; spectral harmonic; categorical recoding | literature backed engineering entry; implemented | deutsch 1986 tritone; repp 1997 tritone | The canonical pair has an explicit half-octave frequency relation. |\n| audio.octave illusion | auditory; stream segregation; fusion or fission | literature backed engineering entry; implemented | deutsch 1974 octave | The two channels receive alternating octave-related tones. |\n| audio.auditory continuity | auditory; stream segregation; continuity | literature backed engineering entry; implemented | warren 1970 continuity; riecke 2011 continuity | The canonical audio contains a reproducible interruption interval and masker family. |\n| audiovisual.temporal ventriloquism | audio_visual; crossmodal temporal; temporal binding or recalibration | review backed engineering entry; implemented | vroomen 2004 temporal; hartcherobrien 2011 temporal; hirst 2020 sound; noppeney 2018 causal | Audio and video event timing and declared offset are deterministic and inspectable. |\n| audiovisual.mcgurk | audio_visual; speech categorization; categorical recoding | literature backed input dependent entry; input required | mcgurk 1976 speech | The catalog identifies a speech-dependent audiovisual family without claiming implementation. |",
+  "caption": "Catalog entries and source-supported physical claims; implementation status does not imply observer validation. Full source roles and URLs remain in the machine-readable evidence matrix.",
+  "headers": [
+    "ID",
+    "Construction",
+    "Evidence / status",
+    "Sources",
+    "Supported claim"
+  ],
+  "label": "tbl:catalog",
+  "records": [
+    {
+      "claim_level": "source_supported",
+      "evidence": "literature_backed_engineering_entry",
+      "id": "visual.duck_rabbit",
+      "mechanism": "ambiguity",
+      "modality": "visual",
+      "signature": "bistability",
+      "sources": "brugger1999duckrabbit, gregory1997visual",
+      "status": "implemented",
+      "supported_claim": "The entry instantiates a controllable ambiguous-figure stimulus family."
+    },
+    {
+      "claim_level": "source_supported",
+      "evidence": "literature_backed_engineering_entry",
+      "id": "visual.simultaneous_contrast",
+      "mechanism": "contrast_and_context",
+      "modality": "visual",
+      "signature": "contrast_distortion",
+      "sources": "gregory1997visual",
+      "status": "implemented",
+      "supported_claim": "The physical center patches are matched while surround luminance differs."
+    },
+    {
+      "claim_level": "source_supported",
+      "evidence": "literature_backed_engineering_entry",
+      "id": "visual.apparent_motion",
+      "mechanism": "temporal_motion",
+      "modality": "visual",
+      "signature": "illusory_motion",
+      "sources": "wertheimer1912motion, sekuler1996wertheimer",
+      "status": "implemented",
+      "supported_claim": "The sequence contains controlled successive spatial events."
+    },
+    {
+      "claim_level": "source_supported",
+      "evidence": "literature_backed_engineering_entry",
+      "id": "audio.shepard_tone",
+      "mechanism": "spectral_harmonic",
+      "modality": "auditory",
+      "signature": "continuity",
+      "sources": "shepard1984scale",
+      "status": "implemented",
+      "supported_claim": "The audio contains octave-related partials with controlled sweep parameters."
+    },
+    {
+      "claim_level": "source_supported",
+      "evidence": "literature_backed_engineering_entry",
+      "id": "audio.missing_fundamental",
+      "mechanism": "spectral_harmonic",
+      "modality": "auditory",
+      "signature": "filling_in",
+      "sources": "zatorre2005missing",
+      "status": "implemented",
+      "supported_claim": "The nominal fundamental component is absent from the canonical spectrum."
+    },
+    {
+      "claim_level": "source_supported",
+      "evidence": "review_backed_engineering_entry",
+      "id": "audiovisual.sound_induced_flash",
+      "mechanism": "crossmodal_temporal",
+      "modality": "audio_visual",
+      "signature": "fusion_or_fission",
+      "sources": "shams2000sifi, hirst2020sound",
+      "status": "implemented",
+      "supported_claim": "The declared beep/flash event counts and offsets are physically encoded."
+    },
+    {
+      "claim_level": "source_supported",
+      "evidence": "review_backed_engineering_entry",
+      "id": "audiovisual.ventriloquist",
+      "mechanism": "crossmodal_spatial",
+      "modality": "audio_visual",
+      "signature": "spatial_capture",
+      "sources": "bruns2019ventriloquist, noppeney2018causal",
+      "status": "implemented",
+      "supported_claim": "The audio and visual channels carry a declared spatial discrepancy."
+    },
+    {
+      "claim_level": "source_supported",
+      "evidence": "literature_backed_engineering_entry",
+      "id": "visual.muller_lyer",
+      "mechanism": "geometric_alignment",
+      "modality": "visual",
+      "signature": "geometric_distortion",
+      "sources": "gregory1997visual, howe2005muller",
+      "status": "implemented",
+      "supported_claim": "The two bar lengths are equal in the canonical raster while wing geometry varies."
+    },
+    {
+      "claim_level": "source_supported",
+      "evidence": "literature_backed_engineering_entry",
+      "id": "visual.poggendorff",
+      "mechanism": "geometric_alignment",
+      "modality": "visual",
+      "signature": "geometric_distortion",
+      "sources": "gregory1997visual, morgan1999poggendorff",
+      "status": "implemented",
+      "supported_claim": "The occluder and diagonal continuation are generated from explicit geometry."
+    },
+    {
+      "claim_level": "source_supported",
+      "evidence": "literature_backed_engineering_entry",
+      "id": "visual.ponzo",
+      "mechanism": "geometric_alignment",
+      "modality": "visual",
+      "signature": "geometric_distortion",
+      "sources": "fisher1967ponzo, yildiz2022ponzo",
+      "status": "implemented",
+      "supported_claim": "Target bars are physically equal and rails converge toward a vanishing region."
+    },
+    {
+      "claim_level": "source_supported",
+      "evidence": "literature_backed_engineering_entry",
+      "id": "visual.kanizsa_triangle",
+      "mechanism": "contrast_and_context, geometric_alignment",
+      "modality": "visual",
+      "signature": "filling_in",
+      "sources": "kanizsa1976contours, wagemans2012gestalt",
+      "status": "implemented",
+      "supported_claim": "The image contains incomplete inducers with no explicitly drawn triangle edge."
+    },
+    {
+      "claim_level": "source_supported",
+      "evidence": "literature_backed_engineering_entry",
+      "id": "visual.ebbinghaus",
+      "mechanism": "contrast_and_context, geometric_alignment",
+      "modality": "visual",
+      "signature": "geometric_distortion",
+      "sources": "mruczek2015ebbinghaus, weintraub1979ebbinghaus",
+      "status": "implemented",
+      "supported_claim": "Central target geometry is held equal while contextual circle geometry differs."
+    },
+    {
+      "claim_level": "source_supported",
+      "evidence": "literature_backed_engineering_entry",
+      "id": "visual.zollner",
+      "mechanism": "geometric_alignment",
+      "modality": "visual",
+      "signature": "geometric_distortion",
+      "sources": "zoellner1860pseudoscopy, earle1995zollner, gregory1997visual",
+      "status": "implemented",
+      "supported_claim": "The entry instantiates a controlled crossing-line orientation stimulus family."
+    },
+    {
+      "claim_level": "source_supported",
+      "evidence": "literature_backed_engineering_entry",
+      "id": "audio.tritone_paradox",
+      "mechanism": "spectral_harmonic",
+      "modality": "auditory",
+      "signature": "categorical_recoding",
+      "sources": "deutsch1986tritone, repp1997tritone",
+      "status": "implemented",
+      "supported_claim": "The canonical pair has an explicit half-octave frequency relation."
+    },
+    {
+      "claim_level": "source_supported",
+      "evidence": "literature_backed_engineering_entry",
+      "id": "audio.octave_illusion",
+      "mechanism": "stream_segregation",
+      "modality": "auditory",
+      "signature": "fusion_or_fission",
+      "sources": "deutsch1974octave",
+      "status": "implemented",
+      "supported_claim": "The two channels receive alternating octave-related tones."
+    },
+    {
+      "claim_level": "source_supported",
+      "evidence": "literature_backed_engineering_entry",
+      "id": "audio.auditory_continuity",
+      "mechanism": "stream_segregation",
+      "modality": "auditory",
+      "signature": "continuity",
+      "sources": "warren1970continuity, riecke2011continuity",
+      "status": "implemented",
+      "supported_claim": "The canonical audio contains a reproducible interruption interval and masker family."
+    },
+    {
+      "claim_level": "source_supported",
+      "evidence": "review_backed_engineering_entry",
+      "id": "audiovisual.temporal_ventriloquism",
+      "mechanism": "crossmodal_temporal",
+      "modality": "audio_visual",
+      "signature": "temporal_binding_or_recalibration",
+      "sources": "vroomen2004temporal, hartcherobrien2011temporal, hirst2020sound, noppeney2018causal",
+      "status": "implemented",
+      "supported_claim": "Audio and video event timing and declared offset are deterministic and inspectable."
+    },
+    {
+      "claim_level": "source_supported",
+      "evidence": "literature_backed_input_dependent_entry",
+      "id": "audiovisual.mcgurk",
+      "mechanism": "speech_categorization",
+      "modality": "audio_visual",
+      "signature": "categorical_recoding",
+      "sources": "mcgurk1976speech",
+      "status": "input_required",
+      "supported_claim": "The catalog identifies a speech-dependent audiovisual family without claiming implementation."
+    }
+  ],
+  "schema_version": "duckrabbit/table/v1",
+  "title": "Catalog and source-tiered evidence matrix"
+}

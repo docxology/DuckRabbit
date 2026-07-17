@@ -1,0 +1,187 @@
+{
+  "data": {
+    "model": {
+      "calibration": "analytic logistic calibration; no human or pretrained-model fit",
+      "claim_level": "synthetic_model_output",
+      "epistemic_status": "model_output_not_human_data",
+      "feature_weights": {
+        "crest_factor_fraction": 0.15,
+        "dynamic_range": 0.2,
+        "edge_energy": 0.3,
+        "frame_rate_fraction": 0.15,
+        "mean_luminance": 0.1,
+        "peak": 0.15,
+        "quantization_fraction": 0.15,
+        "rms": 0.25,
+        "spatial_offset_fraction": 0.2,
+        "spectral_bandwidth_fraction": 0.2,
+        "spectral_centroid_fraction": 0.25,
+        "std_luminance": 0.25,
+        "sync_offset_fraction": 0.25,
+        "temporal_delta": 0.4
+      },
+      "human_validation": "not performed",
+      "model_id": "duckrabbit.synthetic.feature_observer",
+      "seed": 0,
+      "temperature": 0.05,
+      "training_data": "none",
+      "version": "1.0"
+    },
+    "points": [
+      {
+        "prediction": {
+          "choice": "comparison",
+          "claim_level": "synthetic_model_output",
+          "comparison_digest": "d2fb1b8250107af3a8312d0859faf7891bb29a7bfdf67ae19055dbceafd6231c",
+          "condition_id": "duck_weight",
+          "feature_schema": [
+            "dynamic_range",
+            "edge_energy",
+            "mean_luminance",
+            "quantization_fraction",
+            "std_luminance"
+          ],
+          "human_data": false,
+          "model_id": "duckrabbit.synthetic.feature_observer",
+          "probability_comparison": 0.559480601560351,
+          "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+          "score_comparison": 0.3858262307010591,
+          "score_delta": 0.01195271871984005,
+          "score_reference": 0.37387351198121904,
+          "seed": 0,
+          "trial_id": "duck_weight:0"
+        },
+        "x_label": "0.00",
+        "x_value": 0.0
+      },
+      {
+        "prediction": {
+          "choice": "comparison",
+          "claim_level": "synthetic_model_output",
+          "comparison_digest": "3a2f4bfb68c45800fd6a08ce23e9a7854544330ddc9839ecc914f583f25f04e8",
+          "condition_id": "duck_weight",
+          "feature_schema": [
+            "dynamic_range",
+            "edge_energy",
+            "mean_luminance",
+            "quantization_fraction",
+            "std_luminance"
+          ],
+          "human_data": false,
+          "model_id": "duckrabbit.synthetic.feature_observer",
+          "probability_comparison": 0.5212406144258287,
+          "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+          "score_comparison": 0.37812419310212136,
+          "score_delta": 0.004250681120902322,
+          "score_reference": 0.37387351198121904,
+          "seed": 0,
+          "trial_id": "duck_weight:1"
+        },
+        "x_label": "0.25",
+        "x_value": 0.25
+      },
+      {
+        "prediction": {
+          "choice": "comparison",
+          "claim_level": "synthetic_model_output",
+          "comparison_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+          "condition_id": "duck_weight",
+          "feature_schema": [
+            "dynamic_range",
+            "edge_energy",
+            "mean_luminance",
+            "quantization_fraction",
+            "std_luminance"
+          ],
+          "human_data": false,
+          "model_id": "duckrabbit.synthetic.feature_observer",
+          "probability_comparison": 0.5,
+          "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+          "score_comparison": 0.37387351198121904,
+          "score_delta": 0.0,
+          "score_reference": 0.37387351198121904,
+          "seed": 0,
+          "trial_id": "duck_weight:2"
+        },
+        "x_label": "0.50",
+        "x_value": 0.5
+      },
+      {
+        "prediction": {
+          "choice": "comparison",
+          "claim_level": "synthetic_model_output",
+          "comparison_digest": "8d8581e0bfe584b39458cd0d23bd0605781dfe81335577b0da8884fb9912940a",
+          "condition_id": "duck_weight",
+          "feature_schema": [
+            "dynamic_range",
+            "edge_energy",
+            "mean_luminance",
+            "quantization_fraction",
+            "std_luminance"
+          ],
+          "human_data": false,
+          "model_id": "duckrabbit.synthetic.feature_observer",
+          "probability_comparison": 0.5141158681464516,
+          "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+          "score_comparison": 0.3766974360216409,
+          "score_delta": 0.0028239240404218657,
+          "score_reference": 0.37387351198121904,
+          "seed": 0,
+          "trial_id": "duck_weight:3"
+        },
+        "x_label": "0.75",
+        "x_value": 0.75
+      },
+      {
+        "prediction": {
+          "choice": "comparison",
+          "claim_level": "synthetic_model_output",
+          "comparison_digest": "c18318b777f9a99afb1da0a4ba868e543be53ed10853ff08377bffa04a9be99d",
+          "condition_id": "duck_weight",
+          "feature_schema": [
+            "dynamic_range",
+            "edge_energy",
+            "mean_luminance",
+            "quantization_fraction",
+            "std_luminance"
+          ],
+          "human_data": false,
+          "model_id": "duckrabbit.synthetic.feature_observer",
+          "probability_comparison": 0.5474111306721864,
+          "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+          "score_comparison": 0.38338431147858504,
+          "score_delta": 0.009510799497365996,
+          "score_reference": 0.37387351198121904,
+          "seed": 0,
+          "trial_id": "duck_weight:4"
+        },
+        "x_label": "1.00",
+        "x_value": 1.0
+      }
+    ],
+    "reference": {
+      "canonical_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+      "label": "duck_weight=0.50"
+    },
+    "summary": {
+      "claim_level": "synthetic_model_output",
+      "epistemic_status": "model_output_not_human_data",
+      "evaluation_boundary": "A deterministic feature observer is a diagnostic; it is not a pretrained vision model and not a human psychophysics result.",
+      "human_data": false,
+      "model_id": "duckrabbit.synthetic.feature_observer",
+      "point_count": 5,
+      "probability_max": 0.559480601560351,
+      "probability_mean": 0.5284496429609635,
+      "probability_min": 0.5
+    }
+  },
+  "figure_label": "fig:synthetic_psychophysics",
+  "figure_stem": "synthetic_psychophysics",
+  "generator": "duckrabbit.publication._observer",
+  "parameters": {
+    "figure_stem": "synthetic_psychophysics",
+    "seed": 0
+  },
+  "schema_version": "duckrabbit/figure-source/v1",
+  "seed": 0
+}

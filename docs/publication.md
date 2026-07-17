@@ -4,10 +4,12 @@ DuckRabbit is authored by Daniel Ari Friedman of the Active Inference Institute
 (ORCID
 [`0000-0001-6232-9096`](https://orcid.org/0000-0001-6232-9096)). The package
 version is synchronized at `0.5.0` across `pyproject.toml`, the manuscript,
-CITATION.cff, codemeta, and Zenodo metadata. A DOI is intentionally not minted
-in this checkout: the publication metadata contains an empty DOI and
-`doi_status: forthcoming` until a real identifier is issued.
-The intended public software repository is
+CITATION.cff, codemeta, and Zenodo metadata. v0.5.0 is published: the
+publication metadata carries the real, minted concept DOI
+[`10.5281/zenodo.21419693`](https://doi.org/10.5281/zenodo.21419693)
+(version DOI [`10.5281/zenodo.21419694`](https://doi.org/10.5281/zenodo.21419694))
+and `doi_status: published`.
+The public software repository is
 the [DuckRabbit public GitHub repository](https://github.com/docxology/DuckRabbit).
 
 The publication bundle is code-owned. Run:
@@ -46,25 +48,26 @@ hash, and no unresolved manuscript token. A future observer study needs its own
 preregistration, consent/data-governance record, playback and display controls,
 estimand, and analysis report.
 
-## Public-release checklist
+## Public-release checklist (completed for v0.5.0)
 
-This checkout is a release candidate, not a claim that a public repository or
-DOI already exists. Before publishing externally, the maintainer should:
+For v0.5.0, the maintainer:
 
-1. transfer or mirror the source to the intended public repository and confirm
-   that the MIT license, author identity, citation files, and release notes are
-   visible there;
-2. run the source tests, offline scholarship validation, network scholarship
+1. transferred the source to the public repository
+   ([docxology/DuckRabbit](https://github.com/docxology/DuckRabbit)) and
+   confirmed the MIT license, author identity, citation files, and release
+   notes are visible there;
+2. ran the source tests, offline scholarship validation, network scholarship
    audit, package release audit, and sibling-template output validation from a
    clean release worktree;
-3. review the generated PDF, HTML, and slide outputs, including reference
+3. reviewed the generated PDF, HTML, and slide outputs, including reference
    anchors and resolver links, rather than relying only on machine checks;
-4. create the immutable public version tag and archive the exact source and
+4. created the `v0.5.0` GitHub release and archived the exact source and
    generated release bundle; and
-5. mint a DOI only after the public record exists, then replace the empty DOI
-   and `forthcoming` status atomically across `manuscript/config.yaml`,
-   `CITATION.cff`, and any repository deposit metadata.
+5. minted the DOI from the public record, then replaced the empty DOI and
+   `forthcoming` status atomically across `manuscript/config.yaml`,
+   `CITATION.cff`, `.zenodo.json`, and `codemeta.json`.
 
-The DOI step is intentionally external to this private sidecar. Until it is
-performed, an empty DOI is the correct metadata value; a plausible-looking
-placeholder would make citations non-resolving and would weaken provenance.
+For the *next* release, repeat this same sequence with a new version tag. An
+empty DOI and `doi_status: forthcoming` remain the correct metadata values
+between releases — a plausible-looking placeholder would make citations
+non-resolving and would weaken provenance.

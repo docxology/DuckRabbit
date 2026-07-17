@@ -1,0 +1,79 @@
+{
+  "body": "| mean_luminance | normalized_luminance | mean Rec. 709 relative luminance (grayscale is identity) | exact canonical | physical_metric |\n| unique_values | levels | count of distinct canonical image values | exact integer | physical_metric |\n| rms | normalized_amplitude | root-mean-square audio amplitude | finite scalar | physical_metric |\n| peak | normalized_amplitude | maximum absolute audio amplitude | finite scalar | physical_metric |\n| spectral_centroid_hz | Hz | energy-weighted one-sided spectral centroid | finite scalar | physical_metric |\n| spectral_bandwidth_hz | Hz | spectral standard deviation around the one-sided centroid | finite scalar | physical_metric |\n| crest_factor | ratio | audio peak divided by RMS with zero-RMS guard | finite scalar | physical_metric |\n| mean_temporal_delta | normalized_pixel_difference | mean adjacent-frame absolute difference | finite scalar | physical_metric |\n| sync_offset | ms | declared audio-minus-video offset | typed value | physical_metric |",
+  "caption": "Metrics are deterministic artifact properties and do not report observer outcomes.",
+  "headers": [
+    "Metric",
+    "Unit",
+    "Definition",
+    "Tolerance",
+    "Claim level"
+  ],
+  "label": "tbl:metrics",
+  "records": [
+    {
+      "claim_level": "physical_metric",
+      "definition": "mean Rec. 709 relative luminance (grayscale is identity)",
+      "metric": "mean_luminance",
+      "tolerance": "exact canonical",
+      "unit": "normalized_luminance"
+    },
+    {
+      "claim_level": "physical_metric",
+      "definition": "count of distinct canonical image values",
+      "metric": "unique_values",
+      "tolerance": "exact integer",
+      "unit": "levels"
+    },
+    {
+      "claim_level": "physical_metric",
+      "definition": "root-mean-square audio amplitude",
+      "metric": "rms",
+      "tolerance": "finite scalar",
+      "unit": "normalized_amplitude"
+    },
+    {
+      "claim_level": "physical_metric",
+      "definition": "maximum absolute audio amplitude",
+      "metric": "peak",
+      "tolerance": "finite scalar",
+      "unit": "normalized_amplitude"
+    },
+    {
+      "claim_level": "physical_metric",
+      "definition": "energy-weighted one-sided spectral centroid",
+      "metric": "spectral_centroid_hz",
+      "tolerance": "finite scalar",
+      "unit": "Hz"
+    },
+    {
+      "claim_level": "physical_metric",
+      "definition": "spectral standard deviation around the one-sided centroid",
+      "metric": "spectral_bandwidth_hz",
+      "tolerance": "finite scalar",
+      "unit": "Hz"
+    },
+    {
+      "claim_level": "physical_metric",
+      "definition": "audio peak divided by RMS with zero-RMS guard",
+      "metric": "crest_factor",
+      "tolerance": "finite scalar",
+      "unit": "ratio"
+    },
+    {
+      "claim_level": "physical_metric",
+      "definition": "mean adjacent-frame absolute difference",
+      "metric": "mean_temporal_delta",
+      "tolerance": "finite scalar",
+      "unit": "normalized_pixel_difference"
+    },
+    {
+      "claim_level": "physical_metric",
+      "definition": "declared audio-minus-video offset",
+      "metric": "sync_offset",
+      "tolerance": "typed value",
+      "unit": "ms"
+    }
+  ],
+  "schema_version": "duckrabbit/table/v1",
+  "title": "Objective metric definitions"
+}

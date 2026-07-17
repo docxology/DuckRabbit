@@ -5,12 +5,12 @@ exhaustive ontology of all known illusions; it is a typed, evidence-bounded
 stimulus-construction platform.
 
 The `0.5.0` version stamped in `pyproject.toml`, `CITATION.cff`, `codemeta.json`,
-and `.zenodo.json` is a pre-release working version, not a published/citable
-release. "Completed through v0.5.0" below describes work already merged into
-that in-progress version; "External publication actions" lists what remains
-after the local release gates pass.
-The local release candidate is internally complete; this sidecar does not claim
-that a public tag, repository mirror, archive deposit, or DOI already exists.
+and `.zenodo.json` is a published, citable release. Public repository:
+https://github.com/docxology/DuckRabbit (tag `v0.5.0`). Concept DOI:
+`10.5281/zenodo.21419693`; version DOI: `10.5281/zenodo.21419694`.
+"Completed through v0.5.0" below describes work merged into that release;
+"External publication actions" (now complete for v0.5.0) lists the handoff
+steps to repeat for the next version bump.
 
 ## Completed through v0.5.0
 
@@ -33,17 +33,17 @@ that a public tag, repository mirror, archive deposit, or DOI already exists.
 - Methods-paper manuscript, source-tiered bibliography, evidence matrix,
   limitations, reproducibility documentation, and sibling-template rendering.
 
-## External publication actions
+## External publication actions (completed for v0.5.0)
 
-The local source and publication gates are complete. These actions require an
-external repository or archive and therefore cannot be completed inside this
-private sidecar:
-
-- publish or mirror the exact release source to the intended public repository;
-- create the immutable public version tag and archive the generated bundle;
-- mint a DOI only after the public record exists; and
-- replace the empty DOI and `forthcoming` status atomically, then rerun all
+- published the exact release source to the public repository
+  (https://github.com/docxology/DuckRabbit);
+- created the `v0.5.0` GitHub release and archived the generated bundle;
+- minted the DOI from the public record (concept `10.5281/zenodo.21419693`,
+  version `10.5281/zenodo.21419694`); and
+- replaced the empty DOI and `forthcoming` status atomically, then reran all
   metadata, scholarship, rendering, and release checks.
+
+Repeat this same sequence for the next version bump.
 
 ## Future research and optional improvements
 
@@ -97,9 +97,11 @@ universal perceptual claims, or estimates of observer sensitivity.
 
 ## Release gate
 
-The release is ready only when all metadata names Daniel Ari Friedman with ORCID
-`0000-0001-6232-9096`, the DOI is explicitly forthcoming, the live catalog is
-17 implemented / 0 planned / 1 input-required, all 15 figures and 10 tables
-regenerate byte-identically, scholarship statuses are independently auditable,
-captions and claim lineage are complete, and package plus sibling-template
-checks pass without participant data or universal perceptual claims.
+A release is ready only when all metadata names Daniel Ari Friedman with ORCID
+`0000-0001-6232-9096`, the DOI is either explicitly forthcoming (pre-release)
+or a real minted Zenodo DOI (published), the live catalog is 17 implemented /
+0 planned / 1 input-required, all 15 figures and 10 tables regenerate
+byte-identically, scholarship statuses are independently auditable, captions
+and claim lineage are complete, and package plus sibling-template checks pass
+without participant data or universal perceptual claims. v0.5.0 meets this
+gate and is published under DOI `10.5281/zenodo.21419693`.

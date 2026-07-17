@@ -1,0 +1,45 @@
+{
+  "data": {
+    "profiles": [
+      {
+        "backend": "Pillow",
+        "canonical fact preserved": "image shape + float32 digest",
+        "format": "PNG",
+        "verification": "decoded dimensions"
+      },
+      {
+        "backend": "wave",
+        "canonical fact preserved": "sample count + clock",
+        "format": "WAV",
+        "verification": "rate/channels/samples"
+      },
+      {
+        "backend": "Pillow",
+        "canonical fact preserved": "frame count + timing",
+        "format": "GIF",
+        "verification": "decoded frames"
+      },
+      {
+        "backend": "NumPy",
+        "canonical fact preserved": "exact arrays + digest",
+        "format": "NPZ",
+        "verification": "exact canonical round trip"
+      },
+      {
+        "backend": "ffmpeg",
+        "canonical fact preserved": "canonical artifact + stream facts",
+        "format": "MP4",
+        "verification": "optional capability"
+      }
+    ]
+  },
+  "figure_label": "fig:encoding_verification",
+  "figure_stem": "encoding_verification",
+  "generator": "duckrabbit.publication._encoding",
+  "parameters": {
+    "figure_stem": "encoding_verification",
+    "seed": 0
+  },
+  "schema_version": "duckrabbit/figure-source/v1",
+  "seed": 0
+}

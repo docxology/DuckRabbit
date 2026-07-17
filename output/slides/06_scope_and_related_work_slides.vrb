@@ -1,0 +1,32 @@
+\frametitle{Limitations and future observer work}
+\protect\phantomsection\label{limitations-and-future-observer-work}
+The package does not claim clinical validity, universal effect sizes,
+cross-cultural invariance, perceptual equivalence across displays or
+headphones, or observer-level truth from objective media metrics.
+Playback level, gamma and display calibration, viewing distance, refresh
+rate, stereo separation, room acoustics, audio transducer response,
+attention, expectation, language, expertise, and task can all matter.
+Codec behavior and device latency can introduce additional differences
+even when decoded media facts match within the declared tolerance.
+
+The synthetic observer diagnostic is intentionally not a substitute for
+a real vision model or human data. It is a serialized, hand-specified
+feature function with \breaktt{training\_data=none},
+\breaktt{calibration\ =\ analytic}, and \breaktt{human\_data=false}; its
+metamorphic and sensitivity checks test orchestration, not visual
+consciousness or human discrimination. A future observer study must
+pre-register the response scale, reference condition, estimand,
+exclusions, missing-data rule, randomization seed, display and playback
+controls, and uncertainty procedure. It must also report the participant
+and item sampling frame rather than importing a model-output probability
+as an assumed effect size. The observer harness is consequently
+study-ready scaffolding, not a result set.
+
+No participant data are bundled with DuckRabbit. The data-availability
+boundary is intentional: canonical artifacts, encoded fixtures where
+lawful, source-data sidecars, and deterministic synthetic diagnostics
+are software outputs; observer outcomes require separately governed data
+collection. The package is authored by Daniel Ari Friedman and is
+archived under DOI \breaktt{10.5281/zenodo.21419693}; release metadata
+and software-citation guidance are generated from the same identity
+contract as the manuscript.

@@ -1,7 +1,12 @@
 # Changelog
 
-## 0.5.0 — publication-readiness cycle
+## 0.5.0 — publication-readiness cycle, published
 
+- Published to the public repository
+  [docxology/DuckRabbit](https://github.com/docxology/DuckRabbit) (tag
+  `v0.5.0`) and archived on Zenodo: concept DOI
+  [10.5281/zenodo.21419693](https://doi.org/10.5281/zenodo.21419693), version
+  DOI [10.5281/zenodo.21419694](https://doi.org/10.5281/zenodo.21419694).
 - Added the 15-figure visualization atlas, 10 generated tables, cover
   provenance, source-data sidecars, and visual-QA metadata.
 - Added typed claim lineage, source verification statuses, explicit evidence
@@ -13,7 +18,7 @@
 - Added prose and metadata checks that keep source links, rendered citation
   anchors, resolver links, and live package counts aligned.
 - Synchronized authorship to Daniel Ari Friedman and ORCID
-  `0000-0001-6232-9096`; DOI remains forthcoming without a fabricated value.
+  `0000-0001-6232-9096`; DOI is real and minted, never a fabricated value.
 - Preserved the synthetic observer as deterministic model output only with no
   participant data.
 

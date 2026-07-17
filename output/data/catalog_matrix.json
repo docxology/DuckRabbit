@@ -1,0 +1,588 @@
+{
+  "data": {
+    "entries": [
+      {
+        "claim_levels": [
+          "canonical_stimulus",
+          "physical_metric"
+        ],
+        "cognitive_processes": [
+          "perceptual_organization"
+        ],
+        "description": "A controllable ambiguous silhouette with a continuous duck/rabbit blend.",
+        "evidence_references": [
+          "gregory1997visual",
+          "brugger1999duckrabbit"
+        ],
+        "evidence_status": "literature_backed_engineering_entry",
+        "illusion_id": "visual.duck_rabbit",
+        "implementation_status": "implemented",
+        "input_requirement": "none",
+        "mechanisms": [
+          "ambiguity"
+        ],
+        "modalities": [
+          "visual"
+        ],
+        "name": "Duck-rabbit ambiguous figure",
+        "output_kind": "image",
+        "signatures": [
+          "bistability"
+        ],
+        "stimulus_requirements": [
+          "display with sufficient contrast"
+        ]
+      },
+      {
+        "claim_levels": [
+          "canonical_stimulus",
+          "physical_metric"
+        ],
+        "cognitive_processes": [
+          "contextual_inference"
+        ],
+        "description": "Matched central patches embedded in different luminance surrounds.",
+        "evidence_references": [
+          "gregory1997visual"
+        ],
+        "evidence_status": "literature_backed_engineering_entry",
+        "illusion_id": "visual.simultaneous_contrast",
+        "implementation_status": "implemented",
+        "input_requirement": "none",
+        "mechanisms": [
+          "contrast_and_context"
+        ],
+        "modalities": [
+          "visual"
+        ],
+        "name": "Simultaneous contrast stimulus",
+        "output_kind": "image",
+        "signatures": [
+          "contrast_distortion"
+        ],
+        "stimulus_requirements": [
+          "stable display luminance"
+        ]
+      },
+      {
+        "claim_levels": [
+          "canonical_stimulus",
+          "physical_metric"
+        ],
+        "cognitive_processes": [
+          "temporal_inference"
+        ],
+        "description": "Alternating spatial positions designed to probe apparent motion.",
+        "evidence_references": [
+          "gregory1997visual",
+          "sekuler1996wertheimer",
+          "wertheimer1912motion"
+        ],
+        "evidence_status": "literature_backed_engineering_entry",
+        "illusion_id": "visual.apparent_motion",
+        "implementation_status": "implemented",
+        "input_requirement": "none",
+        "mechanisms": [
+          "temporal_motion"
+        ],
+        "modalities": [
+          "visual"
+        ],
+        "name": "Apparent-motion frame sequence",
+        "output_kind": "video",
+        "signatures": [
+          "illusory_motion"
+        ],
+        "stimulus_requirements": [
+          "fixed frame timing"
+        ]
+      },
+      {
+        "claim_levels": [
+          "canonical_stimulus",
+          "physical_metric"
+        ],
+        "cognitive_processes": [
+          "spectral_inference"
+        ],
+        "description": "Overlapping octave-spaced partials with a deterministic spectral envelope.",
+        "evidence_references": [
+          "shepard1984scale"
+        ],
+        "evidence_status": "literature_backed_engineering_entry",
+        "illusion_id": "audio.shepard_tone",
+        "implementation_status": "implemented",
+        "input_requirement": "none",
+        "mechanisms": [
+          "spectral_harmonic"
+        ],
+        "modalities": [
+          "auditory"
+        ],
+        "name": "Shepard-tone continuity stimulus",
+        "output_kind": "audio",
+        "signatures": [
+          "continuity"
+        ],
+        "stimulus_requirements": [
+          "headphones or controlled playback"
+        ]
+      },
+      {
+        "claim_levels": [
+          "canonical_stimulus",
+          "physical_metric"
+        ],
+        "cognitive_processes": [
+          "spectral_inference"
+        ],
+        "description": "Harmonic partials are rendered while the fundamental component is omitted.",
+        "evidence_references": [
+          "zatorre2005missing"
+        ],
+        "evidence_status": "literature_backed_engineering_entry",
+        "illusion_id": "audio.missing_fundamental",
+        "implementation_status": "implemented",
+        "input_requirement": "none",
+        "mechanisms": [
+          "spectral_harmonic"
+        ],
+        "modalities": [
+          "auditory"
+        ],
+        "name": "Missing-fundamental stimulus",
+        "output_kind": "audio",
+        "signatures": [
+          "filling_in"
+        ],
+        "stimulus_requirements": [
+          "controlled playback level"
+        ]
+      },
+      {
+        "claim_levels": [
+          "canonical_stimulus",
+          "physical_metric"
+        ],
+        "cognitive_processes": [
+          "multisensory_integration"
+        ],
+        "description": "A flash and one- or two-beep timing contrast on a shared timeline.",
+        "evidence_references": [
+          "hirst2020sound"
+        ],
+        "evidence_status": "review_backed_engineering_entry",
+        "illusion_id": "audiovisual.sound_induced_flash",
+        "implementation_status": "implemented",
+        "input_requirement": "controlled_playback",
+        "mechanisms": [
+          "crossmodal_temporal"
+        ],
+        "modalities": [
+          "audio_visual"
+        ],
+        "name": "Sound-induced flash stimulus",
+        "output_kind": "audiovisual",
+        "signatures": [
+          "fusion_or_fission"
+        ],
+        "stimulus_requirements": [
+          "stable audio/video clock"
+        ]
+      },
+      {
+        "claim_levels": [
+          "canonical_stimulus",
+          "physical_metric"
+        ],
+        "cognitive_processes": [
+          "multisensory_integration"
+        ],
+        "description": "A moving visual marker is paired with a stereo spatial discrepancy.",
+        "evidence_references": [
+          "bruns2019ventriloquist"
+        ],
+        "evidence_status": "review_backed_engineering_entry",
+        "illusion_id": "audiovisual.ventriloquist",
+        "implementation_status": "implemented",
+        "input_requirement": "stereo_playback",
+        "mechanisms": [
+          "crossmodal_spatial"
+        ],
+        "modalities": [
+          "audio_visual"
+        ],
+        "name": "Ventriloquist spatial-discrepancy stimulus",
+        "output_kind": "audiovisual",
+        "signatures": [
+          "spatial_capture"
+        ],
+        "stimulus_requirements": [
+          "stereo playback and spatially resolved display"
+        ]
+      },
+      {
+        "claim_levels": [
+          "canonical_stimulus",
+          "physical_metric"
+        ],
+        "cognitive_processes": [
+          "contextual_inference"
+        ],
+        "description": "Two equal-length bars with controllable inward or outward arrow wings.",
+        "evidence_references": [
+          "howe2005muller",
+          "gregory1997visual"
+        ],
+        "evidence_status": "literature_backed_engineering_entry",
+        "illusion_id": "visual.muller_lyer",
+        "implementation_status": "implemented",
+        "input_requirement": "none",
+        "mechanisms": [
+          "geometric_alignment"
+        ],
+        "modalities": [
+          "visual"
+        ],
+        "name": "M\u00fcller-Lyer geometric illusion",
+        "output_kind": "image",
+        "signatures": [
+          "geometric_distortion"
+        ],
+        "stimulus_requirements": [
+          "stable display geometry"
+        ]
+      },
+      {
+        "claim_levels": [
+          "canonical_stimulus",
+          "physical_metric"
+        ],
+        "cognitive_processes": [
+          "contextual_inference"
+        ],
+        "description": "An occluded diagonal-line alignment stimulus with controllable geometry.",
+        "evidence_references": [
+          "morgan1999poggendorff",
+          "gregory1997visual"
+        ],
+        "evidence_status": "literature_backed_engineering_entry",
+        "illusion_id": "visual.poggendorff",
+        "implementation_status": "implemented",
+        "input_requirement": "none",
+        "mechanisms": [
+          "geometric_alignment"
+        ],
+        "modalities": [
+          "visual"
+        ],
+        "name": "Poggendorff geometric illusion",
+        "output_kind": "image",
+        "signatures": [
+          "geometric_distortion"
+        ],
+        "stimulus_requirements": [
+          "stable display geometry"
+        ]
+      },
+      {
+        "claim_levels": [
+          "canonical_stimulus",
+          "physical_metric"
+        ],
+        "cognitive_processes": [
+          "contextual_inference"
+        ],
+        "description": "Equal target bars embedded in converging perspective lines.",
+        "evidence_references": [
+          "gregory1997visual",
+          "yildiz2022ponzo"
+        ],
+        "evidence_status": "literature_backed_engineering_entry",
+        "illusion_id": "visual.ponzo",
+        "implementation_status": "implemented",
+        "input_requirement": "none",
+        "mechanisms": [
+          "geometric_alignment"
+        ],
+        "modalities": [
+          "visual"
+        ],
+        "name": "Ponzo perspective illusion",
+        "output_kind": "image",
+        "signatures": [
+          "geometric_distortion"
+        ],
+        "stimulus_requirements": [
+          "stable display geometry"
+        ]
+      },
+      {
+        "claim_levels": [
+          "canonical_stimulus",
+          "physical_metric"
+        ],
+        "cognitive_processes": [
+          "perceptual_organization"
+        ],
+        "description": "Pacman-like inducers arranged to support an illusory triangular contour.",
+        "evidence_references": [
+          "gregory1997visual",
+          "kanizsa1976contours"
+        ],
+        "evidence_status": "literature_backed_engineering_entry",
+        "illusion_id": "visual.kanizsa_triangle",
+        "implementation_status": "implemented",
+        "input_requirement": "none",
+        "mechanisms": [
+          "contrast_and_context",
+          "geometric_alignment"
+        ],
+        "modalities": [
+          "visual"
+        ],
+        "name": "Kanizsa illusory-contour triangle",
+        "output_kind": "image",
+        "signatures": [
+          "filling_in"
+        ],
+        "stimulus_requirements": [
+          "stable display contrast"
+        ]
+      },
+      {
+        "claim_levels": [
+          "canonical_stimulus",
+          "physical_metric"
+        ],
+        "cognitive_processes": [
+          "contextual_inference"
+        ],
+        "description": "Equal central circles surrounded by differently sized contextual circles.",
+        "evidence_references": [
+          "gregory1997visual",
+          "mruczek2015ebbinghaus"
+        ],
+        "evidence_status": "literature_backed_engineering_entry",
+        "illusion_id": "visual.ebbinghaus",
+        "implementation_status": "implemented",
+        "input_requirement": "none",
+        "mechanisms": [
+          "contrast_and_context",
+          "geometric_alignment"
+        ],
+        "modalities": [
+          "visual"
+        ],
+        "name": "Ebbinghaus context-size illusion",
+        "output_kind": "image",
+        "signatures": [
+          "geometric_distortion"
+        ],
+        "stimulus_requirements": [
+          "stable display geometry"
+        ]
+      },
+      {
+        "claim_levels": [
+          "canonical_stimulus",
+          "physical_metric"
+        ],
+        "cognitive_processes": [
+          "contextual_inference"
+        ],
+        "description": "Crossing oblique-line construction with explicit line spacing and inducer angle.",
+        "evidence_references": [
+          "gregory1997visual",
+          "earle1995zollner"
+        ],
+        "evidence_status": "literature_backed_engineering_entry",
+        "illusion_id": "visual.zollner",
+        "implementation_status": "implemented",
+        "input_requirement": "none",
+        "mechanisms": [
+          "geometric_alignment"
+        ],
+        "modalities": [
+          "visual"
+        ],
+        "name": "Z\u00f6llner orientation illusion",
+        "output_kind": "image",
+        "signatures": [
+          "geometric_distortion"
+        ],
+        "stimulus_requirements": [
+          "stable display geometry"
+        ]
+      },
+      {
+        "claim_levels": [
+          "canonical_stimulus",
+          "physical_metric"
+        ],
+        "cognitive_processes": [
+          "spectral_inference"
+        ],
+        "description": "Two Shepard-like pitch complexes separated by a tritone interval.",
+        "evidence_references": [
+          "deutsch1986tritone",
+          "repp1997tritone"
+        ],
+        "evidence_status": "literature_backed_engineering_entry",
+        "illusion_id": "audio.tritone_paradox",
+        "implementation_status": "implemented",
+        "input_requirement": "none",
+        "mechanisms": [
+          "spectral_harmonic"
+        ],
+        "modalities": [
+          "auditory"
+        ],
+        "name": "Tritone paradox pitch pair",
+        "output_kind": "audio",
+        "signatures": [
+          "categorical_recoding"
+        ],
+        "stimulus_requirements": [
+          "controlled playback level"
+        ]
+      },
+      {
+        "claim_levels": [
+          "canonical_stimulus",
+          "physical_metric"
+        ],
+        "cognitive_processes": [
+          "spectral_inference"
+        ],
+        "description": "Alternating high and low tones presented dichotically across stereo channels.",
+        "evidence_references": [
+          "deutsch1974octave"
+        ],
+        "evidence_status": "literature_backed_engineering_entry",
+        "illusion_id": "audio.octave_illusion",
+        "implementation_status": "implemented",
+        "input_requirement": "stereo_playback",
+        "mechanisms": [
+          "stream_segregation"
+        ],
+        "modalities": [
+          "auditory"
+        ],
+        "name": "Deutsch octave illusion stimulus",
+        "output_kind": "audio",
+        "signatures": [
+          "fusion_or_fission"
+        ],
+        "stimulus_requirements": [
+          "stereo headphones with channel separation"
+        ]
+      },
+      {
+        "claim_levels": [
+          "canonical_stimulus",
+          "physical_metric"
+        ],
+        "cognitive_processes": [
+          "spectral_inference"
+        ],
+        "description": "Interrupted carrier with a deterministic tone or white-noise masker.",
+        "evidence_references": [
+          "warren1970continuity",
+          "riecke2011continuity"
+        ],
+        "evidence_status": "literature_backed_engineering_entry",
+        "illusion_id": "audio.auditory_continuity",
+        "implementation_status": "implemented",
+        "input_requirement": "none",
+        "mechanisms": [
+          "stream_segregation"
+        ],
+        "modalities": [
+          "auditory"
+        ],
+        "name": "Auditory continuity illusion",
+        "output_kind": "audio",
+        "signatures": [
+          "continuity"
+        ],
+        "stimulus_requirements": [
+          "controlled playback level and masker calibration"
+        ]
+      },
+      {
+        "claim_levels": [
+          "canonical_stimulus",
+          "physical_metric"
+        ],
+        "cognitive_processes": [
+          "temporal_inference"
+        ],
+        "description": "A visual event is paired with an audio click at a controlled temporal offset.",
+        "evidence_references": [
+          "hirst2020sound",
+          "vroomen2004temporal",
+          "hartcherobrien2011temporal"
+        ],
+        "evidence_status": "review_backed_engineering_entry",
+        "illusion_id": "audiovisual.temporal_ventriloquism",
+        "implementation_status": "implemented",
+        "input_requirement": "controlled_playback",
+        "mechanisms": [
+          "crossmodal_temporal"
+        ],
+        "modalities": [
+          "audio_visual"
+        ],
+        "name": "Temporal ventriloquism stimulus",
+        "output_kind": "audiovisual",
+        "signatures": [
+          "temporal_binding_or_recalibration"
+        ],
+        "stimulus_requirements": [
+          "stable audio/video clock"
+        ]
+      },
+      {
+        "claim_levels": [
+          "canonical_stimulus",
+          "physical_metric"
+        ],
+        "cognitive_processes": [
+          "speech_perception"
+        ],
+        "description": "Catalogued for a future fixture-backed speech/audio-visual adapter.",
+        "evidence_references": [
+          "mcgurk1976speech"
+        ],
+        "evidence_status": "literature_backed_input_dependent_entry",
+        "illusion_id": "audiovisual.mcgurk",
+        "implementation_status": "input_required",
+        "input_requirement": "validated_speech_fixture",
+        "mechanisms": [
+          "speech_categorization"
+        ],
+        "modalities": [
+          "audio_visual"
+        ],
+        "name": "McGurk speech stimulus",
+        "output_kind": "audiovisual",
+        "signatures": [
+          "categorical_recoding"
+        ],
+        "stimulus_requirements": [
+          "validated speech audio and face/video input"
+        ]
+      }
+    ]
+  },
+  "figure_label": "fig:catalog_matrix",
+  "figure_stem": "catalog_matrix",
+  "generator": "duckrabbit.publication._catalog",
+  "parameters": {
+    "figure_stem": "catalog_matrix",
+    "seed": 0
+  },
+  "schema_version": "duckrabbit/figure-source/v1",
+  "seed": 0
+}

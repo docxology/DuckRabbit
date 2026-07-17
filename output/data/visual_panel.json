@@ -1,0 +1,864 @@
+{
+  "data": {
+    "stimuli": [
+      {
+        "canonical_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+        "illusion_id": "visual.duck_rabbit",
+        "metrics": {
+          "artifact_type": "image",
+          "computation_version": "duckrabbit/metrics/v2",
+          "records": [
+            {
+              "claim_level": "physical_metric",
+              "name": "width",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "height",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "channels",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "channels",
+              "value": 1
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "mean_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.7769991755485535
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "std_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.370724618434906
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "unique_values",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "levels",
+              "value": 3
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "min_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.0
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "max_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 1.0
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "effective_dynamic_range",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 1.0
+            }
+          ],
+          "values": {
+            "channels": 1,
+            "effective_dynamic_range": 1.0,
+            "height": 256,
+            "max_luminance": 1.0,
+            "mean_luminance": 0.7769991755485535,
+            "min_luminance": 0.0,
+            "std_luminance": 0.370724618434906,
+            "unique_values": 3,
+            "width": 256
+          }
+        },
+        "parameter_boundary": "typed default parameters",
+        "seed": 0
+      },
+      {
+        "canonical_digest": "696ba38b0a6172f8d8a44f14d0a917179efaa7badd30b1b03ac52e1f8341c294",
+        "illusion_id": "visual.simultaneous_contrast",
+        "metrics": {
+          "artifact_type": "image",
+          "computation_version": "duckrabbit/metrics/v2",
+          "records": [
+            {
+              "claim_level": "physical_metric",
+              "name": "width",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "height",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "channels",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "channels",
+              "value": 1
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "mean_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.5002451539039612
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "std_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.3283127546310425
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "unique_values",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "levels",
+              "value": 3
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "min_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.14901961386203766
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "max_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.8509804010391235
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "effective_dynamic_range",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.7019608020782471
+            }
+          ],
+          "values": {
+            "channels": 1,
+            "effective_dynamic_range": 0.7019608020782471,
+            "height": 256,
+            "max_luminance": 0.8509804010391235,
+            "mean_luminance": 0.5002451539039612,
+            "min_luminance": 0.14901961386203766,
+            "std_luminance": 0.3283127546310425,
+            "unique_values": 3,
+            "width": 256
+          }
+        },
+        "parameter_boundary": "typed default parameters",
+        "seed": 0
+      },
+      {
+        "canonical_digest": "acc31937b46e7e39b36d44b6c119971734374beb87b644e5f541d77451174eff",
+        "illusion_id": "visual.apparent_motion",
+        "metrics": {
+          "artifact_type": "video",
+          "computation_version": "duckrabbit/metrics/v2",
+          "records": [
+            {
+              "claim_level": "physical_metric",
+              "name": "width",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "height",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "frames",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "frames",
+              "value": 6
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "frame_rate",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "frames/second",
+              "value": 12.0
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "duration_seconds",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "seconds",
+              "value": 0.5
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "mean_temporal_delta",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_pixel_difference",
+              "value": 0.2421875
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "temporal_deltas",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_pixel_difference",
+              "value": [
+                0.2421875,
+                0.2421875,
+                0.2421875,
+                0.2421875,
+                0.2421875
+              ]
+            }
+          ],
+          "values": {
+            "duration_seconds": 0.5,
+            "frame_rate": 12.0,
+            "frames": 6,
+            "height": 256,
+            "mean_temporal_delta": 0.2421875,
+            "temporal_deltas": [
+              0.2421875,
+              0.2421875,
+              0.2421875,
+              0.2421875,
+              0.2421875
+            ],
+            "width": 256
+          }
+        },
+        "parameter_boundary": "typed default parameters",
+        "seed": 0
+      },
+      {
+        "canonical_digest": "3e97a33e2710f392f8b4742909d5fdf50e09a479bd3b065ea9a5dc1d5d0f545b",
+        "illusion_id": "visual.muller_lyer",
+        "metrics": {
+          "artifact_type": "image",
+          "computation_version": "duckrabbit/metrics/v2",
+          "records": [
+            {
+              "claim_level": "physical_metric",
+              "name": "width",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "height",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "channels",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "channels",
+              "value": 1
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "mean_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.02691650390625
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "std_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.16183944046497345
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "unique_values",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "levels",
+              "value": 2
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "min_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.0
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "max_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 1.0
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "effective_dynamic_range",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 1.0
+            }
+          ],
+          "values": {
+            "channels": 1,
+            "effective_dynamic_range": 1.0,
+            "height": 256,
+            "max_luminance": 1.0,
+            "mean_luminance": 0.02691650390625,
+            "min_luminance": 0.0,
+            "std_luminance": 0.16183944046497345,
+            "unique_values": 2,
+            "width": 256
+          }
+        },
+        "parameter_boundary": "typed default parameters",
+        "seed": 0
+      },
+      {
+        "canonical_digest": "21d6b959d4826fad5d0f342cc24e2eaa0b2b8433decb91495ec8189ff7b2a09e",
+        "illusion_id": "visual.poggendorff",
+        "metrics": {
+          "artifact_type": "image",
+          "computation_version": "duckrabbit/metrics/v2",
+          "records": [
+            {
+              "claim_level": "physical_metric",
+              "name": "width",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "height",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "channels",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "channels",
+              "value": 1
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "mean_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.9886016845703125
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "std_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.10615269839763641
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "unique_values",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "levels",
+              "value": 2
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "min_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.0
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "max_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 1.0
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "effective_dynamic_range",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 1.0
+            }
+          ],
+          "values": {
+            "channels": 1,
+            "effective_dynamic_range": 1.0,
+            "height": 256,
+            "max_luminance": 1.0,
+            "mean_luminance": 0.9886016845703125,
+            "min_luminance": 0.0,
+            "std_luminance": 0.10615269839763641,
+            "unique_values": 2,
+            "width": 256
+          }
+        },
+        "parameter_boundary": "typed default parameters",
+        "seed": 0
+      },
+      {
+        "canonical_digest": "e5a04c8921001f4740de3eb46327122f9d650e13587bdcee547a282ac603f4fc",
+        "illusion_id": "visual.ponzo",
+        "metrics": {
+          "artifact_type": "image",
+          "computation_version": "duckrabbit/metrics/v2",
+          "records": [
+            {
+              "claim_level": "physical_metric",
+              "name": "width",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "height",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "channels",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "channels",
+              "value": 1
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "mean_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.95794677734375
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "std_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.20071060955524445
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "unique_values",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "levels",
+              "value": 2
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "min_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.0
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "max_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 1.0
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "effective_dynamic_range",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 1.0
+            }
+          ],
+          "values": {
+            "channels": 1,
+            "effective_dynamic_range": 1.0,
+            "height": 256,
+            "max_luminance": 1.0,
+            "mean_luminance": 0.95794677734375,
+            "min_luminance": 0.0,
+            "std_luminance": 0.20071060955524445,
+            "unique_values": 2,
+            "width": 256
+          }
+        },
+        "parameter_boundary": "typed default parameters",
+        "seed": 0
+      },
+      {
+        "canonical_digest": "db5f2b297b3c00dd49059c928609c1705f7bbddad8e994a8af485cd5dfeeb690",
+        "illusion_id": "visual.kanizsa_triangle",
+        "metrics": {
+          "artifact_type": "image",
+          "computation_version": "duckrabbit/metrics/v2",
+          "records": [
+            {
+              "claim_level": "physical_metric",
+              "name": "width",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "height",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "channels",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "channels",
+              "value": 1
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "mean_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.920806884765625
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "std_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.27003994584083557
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "unique_values",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "levels",
+              "value": 2
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "min_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.0
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "max_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 1.0
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "effective_dynamic_range",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 1.0
+            }
+          ],
+          "values": {
+            "channels": 1,
+            "effective_dynamic_range": 1.0,
+            "height": 256,
+            "max_luminance": 1.0,
+            "mean_luminance": 0.920806884765625,
+            "min_luminance": 0.0,
+            "std_luminance": 0.27003994584083557,
+            "unique_values": 2,
+            "width": 256
+          }
+        },
+        "parameter_boundary": "typed default parameters",
+        "seed": 0
+      },
+      {
+        "canonical_digest": "1560d4130763a2f0b9b2ebc7eae6c59cfd54747d54494de14550d2d167043a82",
+        "illusion_id": "visual.ebbinghaus",
+        "metrics": {
+          "artifact_type": "image",
+          "computation_version": "duckrabbit/metrics/v2",
+          "records": [
+            {
+              "claim_level": "physical_metric",
+              "name": "width",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "height",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "channels",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "channels",
+              "value": 1
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "mean_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.3466096520423889
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "std_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.15168803930282593
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "unique_values",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "levels",
+              "value": 3
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "min_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.14901961386203766
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "max_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.6509804129600525
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "effective_dynamic_range",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.501960813999176
+            }
+          ],
+          "values": {
+            "channels": 1,
+            "effective_dynamic_range": 0.501960813999176,
+            "height": 256,
+            "max_luminance": 0.6509804129600525,
+            "mean_luminance": 0.3466096520423889,
+            "min_luminance": 0.14901961386203766,
+            "std_luminance": 0.15168803930282593,
+            "unique_values": 3,
+            "width": 256
+          }
+        },
+        "parameter_boundary": "typed default parameters",
+        "seed": 0
+      },
+      {
+        "canonical_digest": "917daad5dcb02ed3cc5c125888f865240b272d3b81cd1a936af8c05ca4223c6a",
+        "illusion_id": "visual.zollner",
+        "metrics": {
+          "artifact_type": "image",
+          "computation_version": "duckrabbit/metrics/v2",
+          "records": [
+            {
+              "claim_level": "physical_metric",
+              "name": "width",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "height",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "channels",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "channels",
+              "value": 1
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "mean_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.9374847412109375
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "std_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.24208903312683105
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "unique_values",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "levels",
+              "value": 2
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "min_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.0
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "max_luminance",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 1.0
+            },
+            {
+              "claim_level": "physical_metric",
+              "name": "effective_dynamic_range",
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 1.0
+            }
+          ],
+          "values": {
+            "channels": 1,
+            "effective_dynamic_range": 1.0,
+            "height": 256,
+            "max_luminance": 1.0,
+            "mean_luminance": 0.9374847412109375,
+            "min_luminance": 0.0,
+            "std_luminance": 0.24208903312683105,
+            "unique_values": 2,
+            "width": 256
+          }
+        },
+        "parameter_boundary": "typed default parameters",
+        "seed": 0
+      }
+    ]
+  },
+  "figure_label": "fig:visual_panel",
+  "figure_stem": "visual_panel",
+  "generator": "duckrabbit.publication._visual_panel",
+  "parameters": {
+    "figure_stem": "visual_panel",
+    "seed": 0
+  },
+  "schema_version": "duckrabbit/figure-source/v1",
+  "seed": 0
+}

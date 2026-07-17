@@ -22,12 +22,12 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_metadata_identity_is_cross_file_consistent_and_serializable() -> None:
     report = validate_project_metadata(ROOT)
-    assert report.status == "passed"
+    assert report.status == "passed", json.dumps(report.to_dict(), indent=2)
     assert report.metadata.author == "Daniel Ari Friedman"
     assert report.metadata.orcid == "0000-0001-6232-9096"
     assert report.metadata.version == "0.5.0"
-    assert report.metadata.doi == ""
-    assert report.metadata.doi_status == "forthcoming"
+    assert report.metadata.doi == "10.5281/zenodo.21419693"
+    assert report.metadata.doi_status == "published"
     assert report.to_dict()["schema_version"] == "duckrabbit/metadata-audit/v1"
     assert MetadataAuditReport("passed", PublicationMetadata("a", "b", "c", "d", "e", "", "forthcoming"), (), ()).to_dict()["errors"] == []
     with pytest.raises(ValueError, match="status"):
@@ -40,10 +40,26 @@ def test_metadata_audit_fails_on_drift_without_network(tmp_path: Path) -> None:
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy(ROOT / name, destination)
     config = tmp_path / "manuscript" / "config.yaml"
-    config.write_text(config.read_text(encoding="utf-8").replace("doi_status: \"forthcoming\"", "doi_status: \"minted\""), encoding="utf-8")
+    # A real DOI is set (checked-in release state) — reverting doi_status to
+    # "forthcoming" while the DOI stays populated must be caught as drift.
+    config.write_text(config.read_text(encoding="utf-8").replace("doi_status: \"published\"", "doi_status: \"forthcoming\""), encoding="utf-8")
     report = validate_project_metadata(tmp_path)
     assert report.status == "failed"
     assert any("doi_status" in error for error in report.errors)
+
+
+def test_metadata_audit_fails_when_doi_empty_but_status_not_forthcoming(tmp_path: Path) -> None:
+    for name in ("pyproject.toml", "manuscript/config.yaml", "CITATION.cff", "codemeta.json", ".zenodo.json"):
+        destination = tmp_path / name
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy(ROOT / name, destination)
+    config = tmp_path / "manuscript" / "config.yaml"
+    text = config.read_text(encoding="utf-8")
+    text = text.replace('doi: "10.5281/zenodo.21419693"', 'doi: ""')
+    config.write_text(text, encoding="utf-8")
+    report = validate_project_metadata(tmp_path)
+    assert report.status == "failed"
+    assert any("doi_status must be forthcoming" in error for error in report.errors)
 
 
 def test_metadata_audit_catches_each_identity_field(tmp_path: Path) -> None:
@@ -64,8 +80,8 @@ def test_metadata_audit_catches_each_identity_field(tmp_path: Path) -> None:
     check_config('version: "0.5.0"', 'version: "0.4.0"', "version")
     check_config('title: "DuckRabbit: Typed Multimodal Illusion Generator"', 'title: "Other title"', "title")
     check_config('license: "MIT"', 'license: "GPL"', "license")
-    check_config('doi: ""', 'doi: "10.5281/zenodo.XXXX"', "publication DOI")
-    check_config('doi_status: "forthcoming"', 'doi_status: "minted"', "doi_status")
+    check_config('doi: "10.5281/zenodo.21419693"', 'doi: "10.5281/zenodo.XXXX"', "placeholder")
+    check_config('doi_status: "published"', 'doi_status: "forthcoming"', "doi_status")
 
     (tmp_path / "codemeta.json").write_text("[]", encoding="utf-8")
     malformed = validate_project_metadata(tmp_path)

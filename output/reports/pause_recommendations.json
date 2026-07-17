@@ -1,0 +1,18 @@
+{
+  "generated_at": "2026-07-17T20:41:32+00:00",
+  "recommendations": [
+    {
+      "evidence": [
+        "slow_telemetry: Stage 'PDF Rendering' took 41.7s (2.0\u00d7 the average 13.4s)"
+      ],
+      "reason_codes": [
+        "slow_telemetry"
+      ],
+      "score": 1.0,
+      "stage_name": "PDF Rendering",
+      "stage_num": 0,
+      "suggested_action": "review before continuing",
+      "timestamp": "2026-07-17T20:41:32+00:00"
+    }
+  ]
+}

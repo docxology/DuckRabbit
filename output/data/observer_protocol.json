@@ -1,0 +1,97 @@
+{
+  "data": {
+    "human_study": {
+      "participant_data": false,
+      "status": "future"
+    },
+    "models": [
+      {
+        "family": "binomial",
+        "formula": "response ~ condition + (1|participant) + (1|item)",
+        "link": "logit",
+        "model": "logistic_mixed",
+        "random_effects": [
+          "participant",
+          "item"
+        ]
+      },
+      {
+        "family": "Gaussian",
+        "formula": "magnitude ~ condition + (1|participant) + (1|item)",
+        "link": "identity",
+        "model": "linear_mixed",
+        "random_effects": [
+          "participant",
+          "item"
+        ]
+      },
+      {
+        "family": "lognormal",
+        "formula": "log(reaction_time) ~ condition + (1|participant) + (1|item)",
+        "link": "identity",
+        "model": "lognormal_mixed",
+        "random_effects": [
+          "participant",
+          "item"
+        ]
+      },
+      {
+        "family": "Poisson/negative-binomial/ordinal",
+        "formula": "count ~ condition + (1|participant) + (1|item)",
+        "link": "log or cumulative",
+        "model": "poisson_or_ordinal",
+        "random_effects": [
+          "participant",
+          "item"
+        ]
+      },
+      {
+        "family": "survival or transition-rate",
+        "formula": "reversal_transition ~ condition + (1|participant)",
+        "link": "hazard",
+        "model": "transition_rate",
+        "random_effects": [
+          "participant"
+        ]
+      }
+    ],
+    "randomization_seed": 0,
+    "steps": [
+      {
+        "detail": "pseudonym + condition + index",
+        "name": "trial identity"
+      },
+      {
+        "detail": "seed=0; counterbalanced",
+        "name": "randomization"
+      },
+      {
+        "detail": "canonical + encoded SHA-256",
+        "name": "stimulus manifest"
+      },
+      {
+        "detail": "typed value + missingness",
+        "name": "response"
+      },
+      {
+        "detail": "contrast + uncertainty interval",
+        "name": "estimand"
+      }
+    ],
+    "study_id": "duckrabbit-v04-demo",
+    "synthetic_model": {
+      "human_data": false,
+      "model_id": "duckrabbit.synthetic.feature_observer",
+      "training_data": "none"
+    }
+  },
+  "figure_label": "fig:observer_protocol",
+  "figure_stem": "observer_protocol",
+  "generator": "duckrabbit.publication._observer_protocol",
+  "parameters": {
+    "figure_stem": "observer_protocol",
+    "seed": 0
+  },
+  "schema_version": "duckrabbit/figure-source/v1",
+  "seed": 0
+}

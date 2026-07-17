@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99e (TeX Live 2026)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: _combined_manuscript.aux
+The style file: plainnat.bst
+Database file #1: references.bib
+Warning--can't use both volume and number fields in ptolemy1996optics
+You've used 47 entries,
+            2773 wiz_defined-function locations,
+            975 strings with 15971 characters,
+and the built_in function-call counts, 22954 in all, are:
+= -- 2176
+> -- 1235
+< -- 39
++ -- 429
+- -- 382
+* -- 1938
+:= -- 3660
+add.period$ -- 227
+call.type$ -- 47
+change.case$ -- 260
+chr.to.int$ -- 47
+cite$ -- 95
+duplicate$ -- 974
+empty$ -- 1808
+format.name$ -- 447
+if$ -- 4750
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 54
+newline$ -- 326
+num.names$ -- 190
+pop$ -- 421
+preamble$ -- 1
+purify$ -- 220
+quote$ -- 0
+skip$ -- 722
+stack$ -- 0
+substring$ -- 954
+swap$ -- 67
+text.length$ -- 4
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 482
+warning$ -- 1
+while$ -- 209
+width$ -- 0
+write$ -- 787
+(There was 1 warning)
