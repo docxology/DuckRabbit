@@ -105,3 +105,17 @@ byte-identically, scholarship statuses are independently auditable, captions
 and claim lineage are complete, and package plus sibling-template checks pass
 without participant data or universal perceptual claims. v0.5.0 meets this
 gate and is published under DOI `10.5281/zenodo.21419693`.
+
+## Agent-ergonomics pass (2026-08-31)
+
+- Fixed 16 stale `../output/figures/` relative links in
+  `docs/manuscript/03_results.md`, `docs/manuscript/07_publication_audit.md`,
+  and `docs/manuscript/SYNTAX.md` after the `docs/manuscript/` relocation
+  (Medium, fixed this pass).
+- Updated stale `working/` sidecar-location claims in `README.md`,
+  `AGENTS.md`, `STANDALONE.md` (Medium, fixed this pass).
+- Added orientation ladder and performance note to `AGENTS.md` (Minor, fixed).
+- Deferred: replace prose catalog counts ("17 implemented / 0 planned /
+  1 input-required") above and in README with a live registry assertion —
+  the in-repo TODO already lists this; blocked this pass only by
+  external-drive cold-import cost, not by any design problem.

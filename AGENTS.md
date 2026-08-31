@@ -1,7 +1,22 @@
 # AGENTS.md — DuckRabbit
 
-DuckRabbit is a private sidecar project under `working/`. Read this file and
+DuckRabbit is a private sidecar project (currently under
+`projects/ongoing/docxology/DuckRabbit` in the private monorepo). Read this file and
 the relevant directory guidance before editing.
+
+## Orientation ladder (cold start)
+
+1. **What is this?** Read `README.md` (first 30 lines suffice).
+2. **Current state:** `TODO.md` (backlog + release gate) and `CHANGELOG.md`
+   (version history) are the canonical status surfaces. v0.5.0 is published
+   (DOI `10.5281/zenodo.21419693`); verify with
+   `grep -n version pyproject.toml CITATION.cff codemeta.json .zenodo.json`.
+3. **What to do next:** `TODO.md` "Future research and optional improvements"
+   and "Evidence gates" sections are the single authoritative pointer.
+4. **Primary verification:** `uv run pytest tests/ --cov=src/duckrabbit
+   --cov-fail-under=90` (from the project root; slow cold start on external
+   drives — see "Performance note" below). Fast sanity check:
+   `uv run python -m duckrabbit list`.
 
 ## Layer contract
 
@@ -82,8 +97,8 @@ uv run pytest tests/ --cov=src/duckrabbit --cov-fail-under=90
 
 Before handoff, compare the local and remote branch with
 `git rev-list --left-right --count codex/duckrabbit...origin/codex/duckrabbit`,
-push only the project branch, and then refresh the parent worktree's
-`working/DuckRabbit` path without staging unrelated parent changes. A test run
+push only the project branch (the default branch for this checkout is `main`; and then refresh the parent worktree's
+project path without staging unrelated parent changes. A test run
 whose source tree changes during collection is invalid evidence, even if some
 tests passed.
 
@@ -100,3 +115,11 @@ The package generates reproducible stimuli intended to probe named mechanisms.
 It does not infer observer reports, clinical effects, or universal percepts
 from an encoded file alone. Input-dependent families remain explicitly
 catalogued as `input_required` until fixtures and validation are available.
+
+## Performance note (external-drive checkouts)
+
+This checkout lives on `/Volumes/external_drive`. First `uv run` or a cold
+`import duckrabbit` can take minutes (drive-bound I/O). For bounded commands
+use generous timeouts; for the audit CLI prefer a background invocation. This
+is an environment property, not a package defect — a fast local SSD checkout
+does not exhibit it.

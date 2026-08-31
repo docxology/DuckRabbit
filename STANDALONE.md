@@ -14,7 +14,7 @@ From `/Users/4d/Documents/GitHub/template`:
 ```bash
 uv run python scripts/audit/copy_exemplar.py \
   --source templates/template_code_project \
-  --dest /Users/4d/Documents/GitHub/projects/working/DuckRabbit \
+  --dest /Users/4d/Documents/GitHub/projects/ongoing/Art/DuckRabbit \
   --new-name duckrabbit \
   --project-only
 ```

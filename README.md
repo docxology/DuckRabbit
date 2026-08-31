@@ -9,7 +9,10 @@ canonical in-memory media from optional encoders so the same typed request can
 be reproduced, inspected, hashed, and exported as PNG, WAV, GIF, MP4, or an
 exact canonical NPZ archive.
 
-This private `working/` sidecar is the release source for the public
+This private sidecar checkout (located at
+`projects/ongoing/docxology/DuckRabbit` in the private monorepo and mirrored
+into the template checkout at `projects/ongoing/Art/DuckRabbit`) is the
+release source for the public
 DuckRabbit GitHub repository at https://github.com/docxology/DuckRabbit. The
 public repository carries the software, manuscript, evidence matrix, and
 release bundle (including the DOI-bearing PDF under `output/pdf/`). DuckRabbit
@@ -31,7 +34,7 @@ is archived on Zenodo:
   ([Zenodo record](https://zenodo.org/records/21419694))
 
 Cite the release metadata in `CITATION.cff`, the public repository, and the
-underlying scholarship listed in `manuscript/references.bib`.
+underlying scholarship listed in `docs/manuscript/references.bib`.
 
 ## Quick start
 
@@ -63,7 +66,7 @@ validated figure registry, 10 tables, and reports under disposable `output/`.
 It uses NumPy/Pillow primitives and does not require Matplotlib. The cover is
 an editorial illustration, not an experimental stimulus or observer result.
 The complete source-tiered catalog matrix is rendered in the standalone
-`manuscript/09_appendix_catalog.md` appendix, while the visual atlas is generated
+`docs/manuscript/09_appendix_catalog.md` appendix, while the visual atlas is generated
 from every currently implemented visual entry in the live registry.
 
 ## Compact glossary
@@ -239,7 +242,7 @@ original fork used the private-safe command:
 cd /Users/4d/Documents/GitHub/template
 uv run python scripts/audit/copy_exemplar.py \
   --source templates/template_code_project \
-  --dest /Users/4d/Documents/GitHub/projects/working/DuckRabbit \
+  --dest /Users/4d/Documents/GitHub/projects/ongoing/Art/DuckRabbit \
   --new-name duckrabbit \
   --project-only
 ```
