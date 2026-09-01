@@ -50,7 +50,7 @@ def test_all_implemented_catalog_entries_have_specs():
     }
     assert all(isinstance(entry.evidence_status, EvidenceStatus) for entry in taxonomy_entries())
     assert all(entry.evidence_references for entry in taxonomy_entries())
-    bibliography = (Path(__file__).parents[1] / "manuscript" / "references.bib").read_text(encoding="utf-8")
+    bibliography = (Path(__file__).parents[1] / "docs" / "manuscript" / "references.bib").read_text(encoding="utf-8")
     assert all(f"{{{reference}," in bibliography for entry in taxonomy_entries() for reference in entry.evidence_references)
     assert duckrabbit.default_registry.status_counts() == {
         status: sum(entry.implementation_status is status for entry in taxonomy_entries())

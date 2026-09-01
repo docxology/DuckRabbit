@@ -57,8 +57,8 @@ def test_visual_panel_caption_and_source_data_cover_live_visual_registry():
 
 
 def test_catalog_is_referenced_by_standalone_appendix():
-    appendix = Path(__file__).parents[1] / "manuscript" / "09_appendix_catalog.md"
-    results = Path(__file__).parents[1] / "manuscript" / "03_results.md"
+    appendix = Path(__file__).parents[1] / "docs" / "manuscript" / "09_appendix_catalog.md"
+    results = Path(__file__).parents[1] / "docs" / "manuscript" / "03_results.md"
     appendix_text = appendix.read_text(encoding="utf-8")
     results_text = results.read_text(encoding="utf-8")
     assert "{#tbl:catalog}" in appendix_text

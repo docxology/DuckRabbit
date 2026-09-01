@@ -126,14 +126,31 @@ def _normalized_author(value: object) -> str:
     return " ".join(value.split())
 
 
+def default_manuscript_dir(project_root: Path | None = None) -> Path:
+    """Canonical manuscript directory with legacy fallback.
+
+    The manuscript lives at ``docs/manuscript/``; the legacy top-level
+    ``manuscript/`` path is still accepted for checkouts that have not been
+    relocated. docs-first matches the resolver convention used across the
+    sibling template ecosystem. ``project_root`` defaults to this package's
+    own repository; audits over a copied tree must pass the copy's root so the
+    copied tree's own manuscript directory is audited, not this repo's.
+    """
+    root = Path(project_root) if project_root is not None else Path(__file__).resolve().parents[2]
+    relocated = root / "docs" / "manuscript"
+    if relocated.is_dir():
+        return relocated
+    return root / "manuscript"
+
+
 def validate_project_metadata(project_root: Path | None = None) -> MetadataAuditReport:
     """Validate identity, version, license, and DOI status across sidecars."""
     root = Path(project_root) if project_root is not None else Path(__file__).resolve().parents[2]
     errors: list[str] = []
-    files = ("pyproject.toml", "manuscript/config.yaml", "CITATION.cff", "codemeta.json", ".zenodo.json")
+    files = ("pyproject.toml", "CITATION.cff", "codemeta.json", ".zenodo.json")
     try:
         pyproject = tomllib.loads((root / "pyproject.toml").read_text(encoding="utf-8"))
-        config_text = (root / "manuscript/config.yaml").read_text(encoding="utf-8")
+        config_text = (default_manuscript_dir(root) / "config.yaml").read_text(encoding="utf-8")
         cff = _cff((root / "CITATION.cff").read_text(encoding="utf-8"))
         codemeta = _json(root, "codemeta.json")
         zenodo = _json(root, ".zenodo.json")

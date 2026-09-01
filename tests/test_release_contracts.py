@@ -35,11 +35,11 @@ def test_metadata_identity_is_cross_file_consistent_and_serializable() -> None:
 
 
 def test_metadata_audit_fails_on_drift_without_network(tmp_path: Path) -> None:
-    for name in ("pyproject.toml", "manuscript/config.yaml", "CITATION.cff", "codemeta.json", ".zenodo.json"):
+    for name in ("pyproject.toml", "docs/manuscript/config.yaml", "CITATION.cff", "codemeta.json", ".zenodo.json"):
         destination = tmp_path / name
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy(ROOT / name, destination)
-    config = tmp_path / "manuscript" / "config.yaml"
+    config = tmp_path / "docs" / "manuscript" / "config.yaml"
     # A real DOI is set (checked-in release state) — reverting doi_status to
     # "forthcoming" while the DOI stays populated must be caught as drift.
     config.write_text(config.read_text(encoding="utf-8").replace("doi_status: \"published\"", "doi_status: \"forthcoming\""), encoding="utf-8")
@@ -49,11 +49,11 @@ def test_metadata_audit_fails_on_drift_without_network(tmp_path: Path) -> None:
 
 
 def test_metadata_audit_fails_when_doi_empty_but_status_not_forthcoming(tmp_path: Path) -> None:
-    for name in ("pyproject.toml", "manuscript/config.yaml", "CITATION.cff", "codemeta.json", ".zenodo.json"):
+    for name in ("pyproject.toml", "docs/manuscript/config.yaml", "CITATION.cff", "codemeta.json", ".zenodo.json"):
         destination = tmp_path / name
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy(ROOT / name, destination)
-    config = tmp_path / "manuscript" / "config.yaml"
+    config = tmp_path / "docs" / "manuscript" / "config.yaml"
     text = config.read_text(encoding="utf-8")
     text = text.replace('doi: "10.5281/zenodo.21419693"', 'doi: ""')
     config.write_text(text, encoding="utf-8")
@@ -63,14 +63,14 @@ def test_metadata_audit_fails_when_doi_empty_but_status_not_forthcoming(tmp_path
 
 
 def test_metadata_audit_catches_each_identity_field(tmp_path: Path) -> None:
-    for name in ("pyproject.toml", "manuscript/config.yaml", "CITATION.cff", "codemeta.json", ".zenodo.json"):
+    for name in ("pyproject.toml", "docs/manuscript/config.yaml", "CITATION.cff", "codemeta.json", ".zenodo.json"):
         destination = tmp_path / name
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy(ROOT / name, destination)
 
     def check_config(old: str, new: str, expected: str) -> None:
-        path = tmp_path / "manuscript" / "config.yaml"
-        original = (ROOT / "manuscript" / "config.yaml").read_text(encoding="utf-8")
+        path = tmp_path / "docs" / "manuscript" / "config.yaml"
+        original = (ROOT / "docs" / "manuscript" / "config.yaml").read_text(encoding="utf-8")
         path.write_text(original.replace(old, new), encoding="utf-8")
         result = validate_project_metadata(tmp_path)
         assert result.status == "failed" and any(expected in error for error in result.errors)
