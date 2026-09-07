@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import json
+import re
+import shutil
 from pathlib import Path
 from collections.abc import Mapping
 
@@ -73,3 +75,32 @@ def save_variables(variables: Mapping[str, object], path: Path) -> Path:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     return atomic_write_text(path, json.dumps(variables, indent=2, sort_keys=True) + "\n")
+
+
+def hydrate_manuscript_files(variables: Mapping[str, object], project_root: Path) -> Path:
+    """Hydrate manuscript files when the sibling template extras are absent."""
+    source_dir = project_root / "docs" / "manuscript"
+    if not source_dir.is_dir():
+        source_dir = project_root / "manuscript"
+    output_dir = project_root / "output" / "manuscript"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    for stale in output_dir.glob("*.md"):
+        stale.unlink()
+    for stale in output_dir.glob("*.bib"):
+        stale.unlink()
+    token_pattern = re.compile(r"\{\{([A-Z][A-Z0-9_]*)\}\}")
+    replacements = {key: str(value) for key, value in variables.items()}
+    excluded = {"AGENTS.md", "README.md", "SYNTAX.md"}
+    for manuscript_file in sorted(source_dir.glob("*.md")):
+        if manuscript_file.name in excluded:
+            continue
+        text = manuscript_file.read_text(encoding="utf-8")
+        hydrated = token_pattern.sub(lambda match: replacements.get(match.group(1), match.group(0)), text)
+        atomic_write_text(output_dir / manuscript_file.name, hydrated)
+    for auxiliary in ("config.yaml", "preamble.md"):
+        source = source_dir / auxiliary
+        if source.is_file():
+            shutil.copy2(source, output_dir / auxiliary)
+    for bibliography in source_dir.glob("*.bib"):
+        shutil.copy2(bibliography, output_dir / bibliography.name)
+    return output_dir

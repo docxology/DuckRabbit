@@ -76,7 +76,9 @@ def validate_formalism_registry(
         for relative in definition.tests:
             if not (tests_root / relative).is_file():
                 raise ValueError(f"formalism test path does not exist: {relative}")
-    manuscript = root / "manuscript"
+    manuscript = root / "docs" / "manuscript"
+    if not manuscript.is_dir():
+        manuscript = root / "manuscript"
     missing_equations = [
         definition.label
         for definition in selected

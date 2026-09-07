@@ -185,6 +185,21 @@ class EvidenceRecord:
         return tuple(rows)
 
 
+def default_manuscript_dir() -> Path:
+    """Canonical manuscript directory with legacy fallback.
+
+    The manuscript lives at ``docs/manuscript/``; the legacy top-level
+    ``manuscript/`` path is still accepted for checkouts that have not been
+    relocated. docs-first matches the resolver convention used across the
+    sibling template ecosystem.
+    """
+    root = Path(__file__).resolve().parents[2]
+    relocated = root / "docs" / "manuscript"
+    if relocated.is_dir():
+        return relocated
+    return root / "manuscript"
+
+
 def _default_matrix_path() -> Path:
     return Path(__file__).resolve().parents[2] / "data" / "evidence_matrix.json"
 
@@ -295,7 +310,7 @@ def load_evidence_matrix(path: Path | None = None) -> tuple[dict[str, SourceReco
 
 def validate_citation_keys(sources: Mapping[str, SourceRecord], bibliography_path: Path | None = None) -> None:
     """Verify that every evidence source has a matching BibTeX citation key."""
-    path = Path(bibliography_path) if bibliography_path is not None else Path(__file__).resolve().parents[2] / "manuscript" / "references.bib"
+    path = Path(bibliography_path) if bibliography_path is not None else default_manuscript_dir() / "references.bib"
     try:
         text = path.read_text(encoding="utf-8")
     except OSError as exc:
@@ -314,7 +329,7 @@ def validate_bibliography_links(sources: Mapping[str, SourceRecord], bibliograph
     Keeping both values equal to the evidence matrix prevents a readable but
     stale bibliography from silently drifting away from the audited source.
     """
-    path = Path(bibliography_path) if bibliography_path is not None else Path(__file__).resolve().parents[2] / "manuscript" / "references.bib"
+    path = Path(bibliography_path) if bibliography_path is not None else default_manuscript_dir() / "references.bib"
     try:
         text = path.read_text(encoding="utf-8")
     except OSError as exc:
@@ -341,7 +356,7 @@ def validate_bibliography_links(sources: Mapping[str, SourceRecord], bibliograph
 
 def _bibliography_entries(bibliography_path: Path | None = None) -> dict[str, dict[str, str | None]]:
     """Parse the small, controlled BibTeX surface used by the manuscript."""
-    path = Path(bibliography_path) if bibliography_path is not None else Path(__file__).resolve().parents[2] / "manuscript" / "references.bib"
+    path = Path(bibliography_path) if bibliography_path is not None else default_manuscript_dir() / "references.bib"
     try:
         text = path.read_text(encoding="utf-8")
     except OSError as exc:
@@ -368,7 +383,7 @@ def _bibliography_entries(bibliography_path: Path | None = None) -> dict[str, di
 
 def _manuscript_citation_keys(manuscript_dir: Path | None = None) -> set[str]:
     """Return Pandoc citation keys from numbered manuscript sections only."""
-    root = Path(manuscript_dir) if manuscript_dir is not None else Path(__file__).resolve().parents[2] / "manuscript"
+    root = Path(manuscript_dir) if manuscript_dir is not None else default_manuscript_dir()
     keys: set[str] = set()
     for path in sorted(root.glob("*.md")):
         if not re.match(r"(?:0[0-9]|99)_", path.name):
