@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from dataclasses import replace
 from fractions import Fraction
+import functools
 import hashlib
 import io
 import json
@@ -49,15 +50,35 @@ AMBER = (211, 139, 37)
 RED = (177, 61, 61)
 
 
-def _font(size: int) -> ImageFont.ImageFont:
-    font_path = os.environ.get("DUCKRABBIT_FONT_PATH", "/System/Library/Fonts/Supplemental/Arial.ttf")
-    # The atlas is often read at publication-column scale.  A modest global
-    # enlargement improves legibility while preserving the code-owned layouts.
+_FONT_CANDIDATES = (
+    "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "/Library/Fonts/Arial.ttf",
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+    "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
+    "C:/Windows/Fonts/arial.ttf",
+)
+
+
+@functools.lru_cache(maxsize=64)
+def _font(size: int) -> ImageFont.FreeTypeFont:
+    """Resolve the figure font deterministically for the running platform.
+
+    ``DUCKRABBIT_FONT_PATH`` wins when set; otherwise the first available
+    candidate is used. The renderer never falls back to a bitmap default:
+    every layout coordinate assumes TrueType metrics, so a silent downgrade
+    would corrupt figures instead of failing loudly.
+    """
     size = max(1, int(round(size * 1.10)))
-    try:
-        return ImageFont.truetype(font_path, size)
-    except OSError:
-        return ImageFont.load_default()
+    env_path = os.environ.get("DUCKRABBIT_FONT_PATH")
+    for font_path in ((env_path,) if env_path else ()) + _FONT_CANDIDATES:
+        try:
+            return ImageFont.truetype(font_path, size)
+        except OSError:
+            continue
+    raise RuntimeError(
+        "no TrueType font found for publication figures; "
+        "set DUCKRABBIT_FONT_PATH to an absolute .ttf path"
+    )
 
 
 def _image(artifact: object) -> Image.Image:
@@ -97,9 +118,25 @@ def _text_block(
     draw.multiline_text(xy, _wrapped(value, width), font=_font(size), fill=fill, spacing=4)
 
 
+def _cell_text(value: object) -> str:
+    """Fit a catalog cell into its fixed column, keeping whole tokens.
+
+    Composite values are cut at a comma boundary with an explicit ellipsis;
+    the complete value stays available in the source-data sidecar.
+    """
+    text = str(value)
+    if len(text) <= 34:
+        return text
+    head, separator, _ = text.partition(",")
+    if separator:
+        return head[:31].rstrip(",") + ",…"
+    return text[:33] + "…"
+
+
 def _save(image: Image.Image, path: Path) -> str:
     path.parent.mkdir(parents=True, exist_ok=True)
-    image.save(path, format="PNG", optimize=False)
+    # A fixed 300 dpi pHYs chunk keeps print/layout sizing deterministic.
+    image.save(path, format="PNG", optimize=False, dpi=(300, 300))
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
@@ -117,7 +154,7 @@ def _visual_qa(path: Path) -> dict[str, object]:
             "thumbnail_width_px": thumbnail.width,
             "thumbnail_height_px": thumbnail.height,
             "thumbnail_sha256": hashlib.sha256(buffer.getvalue()).hexdigest(),
-            "scales": ["full", "publication_column", "thumbnail"],
+            "scales": ["full", "thumbnail"],
         }
 
 
@@ -167,16 +204,19 @@ def _axes(
     draw.line((left, top, left, bottom), fill=MUTED, width=2)
     x_low, x_high = x_range
     y_low, y_high = y_range
+    tick_font = _font(15)
     for value, label in x_ticks:
         fraction = (value - x_low) / (x_high - x_low or 1.0)
         x = int(left + fraction * (right - left))
         draw.line((x, bottom, x, bottom + 8), fill=MUTED, width=2)
-        _text(draw, (x - 20, bottom + 13), label, 15, MUTED)
+        width = draw.textlength(label, font=tick_font)
+        draw.text((x - width / 2, bottom + 13), label, font=tick_font, fill=MUTED)
     for value, label in y_ticks:
         fraction = (value - y_low) / (y_high - y_low or 1.0)
         y = int(bottom - fraction * (bottom - top))
         draw.line((left - 8, y, left, y), fill=MUTED, width=2)
-        _text(draw, (max(0, left - 72), y - 10), label, 15, MUTED)
+        width = draw.textlength(label, font=tick_font)
+        draw.text((max(0, int(left - 12 - width)), y - 10), label, font=tick_font, fill=MUTED)
         if value not in {y_low, y_high}:
             draw.line((left, y, right, y), fill=(232, 236, 240), width=1)
     _text(draw, (left + (right - left) // 2 - 55, bottom + 43), x_label, 16, MUTED)
@@ -189,9 +229,9 @@ def _panel(draw: ImageDraw.ImageDraw, box: tuple[int, int, int, int], *, accent:
     draw.line((box[0], box[1] + 46, box[2], box[1] + 46), fill=accent, width=4)
 
 
-def _footer(draw: ImageDraw.ImageDraw, text: str, *, y: int, color: tuple[int, int, int] = MUTED) -> None:
+def _footer(draw: ImageDraw.ImageDraw, text: str, *, y: int, color: tuple[int, int, int] = MUTED, right: int = 1850) -> None:
     """Place a compact epistemic note in the figure's lower margin."""
-    draw.line((50, y - 18, 1850, y - 18), fill=(225, 229, 234), width=1)
+    draw.line((50, y - 18, right, y - 18), fill=(225, 229, 234), width=1)
     _text(draw, (55, y), text, 16, color)
 
 
@@ -259,7 +299,7 @@ def _catalog(path: Path) -> tuple[str, dict[str, object]]:
             entry.implementation_status.value,
         )
         for pos, value in zip(x, values):
-            _text(draw, (pos, y), value[:34], 15, status_color if pos == x[-1] else INK)
+            _text(draw, (pos, y), _cell_text(value), 15, status_color if pos == x[-1] else INK)
         draw.line((45, y + 31, 1840, y + 31), fill=(224, 228, 233), width=1)
         y += 72
     data = {"entries": [jsonable(entry) for entry in entries]}
@@ -279,6 +319,7 @@ def _visual_panel(path: Path) -> tuple[str, dict[str, object]]:
     records = []
     for index, illusion_id in enumerate(ids):
         artifact = _generate(illusion_id)
+        digest_text = canonical_digest(artifact)
         metrics = measure_artifact(artifact).to_dict()
         # A visual-family entry may be temporally expressed.  Show its first
         # frame as the representative raster while retaining the sequence
@@ -295,15 +336,15 @@ def _visual_panel(path: Path) -> tuple[str, dict[str, object]]:
         if "mean_luminance" in values:
             kind = "canonical raster"
             summary = f"Luminance mean: {float(values['mean_luminance']):.3f} · SD: {float(values['std_luminance']):.3f}"
-            detail = f"Levels: {int(values['unique_values'])} · digest: {canonical_digest(artifact)[:10]}…"
+            detail = f"Levels: {int(values['unique_values'])} · digest: {digest_text[:10]}…"
         else:
             kind = "representative first frame; sequence in source data"
             summary = f"Frames: {int(values['frames'])} · rate: {float(values['frame_rate']):.1f} frames/s"
-            detail = f"Frame delta: {float(values['mean_temporal_delta']):.3f} normalized · digest: {canonical_digest(artifact)[:10]}…"
+            detail = f"Frame delta: {float(values['mean_temporal_delta']):.3f} normalized · digest: {digest_text[:10]}…"
         _text(draw, (x + 20, y + 347), kind, 16, ACCENT if "first frame" in kind else MUTED)
         _text(draw, (x + 20, y + 378), summary, 17, MUTED)
         _text(draw, (x + 20, y + 409), detail, 17, MUTED)
-        records.append({"illusion_id": illusion_id, "canonical_digest": canonical_digest(artifact), "metrics": metrics, "seed": 0, "parameter_boundary": "typed default parameters"})
+        records.append({"illusion_id": illusion_id, "canonical_digest": digest_text, "metrics": metrics, "seed": 0, "parameter_boundary": "typed default parameters"})
     _footer(draw, "Physical image metrics: relative luminance (Rec. 709 for RGB), normalized raster levels, and canonical digest. The panel is complete for currently implemented visual entries, not exhaustive of visual illusions in the literature.", y=1665)
     digest = _save(image, path)
     return digest, {"stimuli": records}
@@ -318,7 +359,7 @@ def _visual_sweep(path: Path) -> tuple[str, dict[str, object]]:
     image = Image.new("RGB", (1800, 1050), CANVAS)
     draw = ImageDraw.Draw(image)
     _text(draw, (50, 25), "Duck-rabbit parameter sweep", 36)
-    _text(draw, (50, 72), "Rows vary blend weight; columns vary grayscale and quantization levels. Each cell is a physical construction.", 20, MUTED)
+    _text(draw, (50, 68), "Rows vary blend weight; columns vary grayscale and quantization levels. Each cell is a physical construction.", 20, MUTED)
     records = []
     for row, weight in enumerate(weights):
         for column, level in enumerate(levels):
@@ -326,15 +367,17 @@ def _visual_sweep(path: Path) -> tuple[str, dict[str, object]]:
             artifact = _generate("visual.duck_rabbit", replace(base, config=config, duck_weight=type(base.duck_weight)(weight)))
             thumbnail = _image(artifact).convert("RGB")
             thumbnail.thumbnail((250, 170), Image.Resampling.NEAREST)
-            x, y = 50 + column * 340, 140 + row * 170
+            x, y = 130 + column * 340, 140 + row * 170
             draw.rectangle((x - 3, y - 3, x + 253, y + 143), outline=(218, 224, 230), width=1)
             image.paste(thumbnail, (x, y))
             values = measure_artifact(artifact).values
             records.append({"duck_weight": weight, "grayscale_levels": level, "quantization_levels": level, "digest": canonical_digest(artifact), "unique_values": int(np.unique(artifact.pixels).size), "mean_luminance": float(values["mean_luminance"]), "effective_dynamic_range": float(values["effective_dynamic_range"])})
-    _text(draw, (50, 118), "grayscale / quantization →", 16, MUTED)
+    # Header band: axis notes stacked above the gutter/labels so no text
+    # overprints the first tile column.
+    _text(draw, (50, 96), "grayscale / quantization →", 16, MUTED)
+    _text(draw, (50, 118), "duck_weight ↓", 16, MUTED)
     for column, level in enumerate(levels):
-        _text(draw, (120 + column * 340, 112), f"{level} levels", 16, INK)
-    _text(draw, (50, 205), "duck_weight ↓", 16, MUTED)
+        _text(draw, (200 + column * 340, 118), f"{level} levels", 16, INK)
     for row, weight in enumerate(weights):
         _text(draw, (50, 140 + row * 170), f"{weight:.2f}", 15, INK)
     _footer(draw, "The sweep reports canonical digests, unique levels, luminance, and dynamic range; it does not estimate perceptual sensitivity.", y=1010)
@@ -472,7 +515,7 @@ def _observer(path: Path) -> tuple[str, dict[str, object]]:
         y = int(plot_box[3] - (point.prediction.probability_comparison - model_low) / (model_high - model_low) * (plot_box[3] - plot_box[1]))
         _text(draw, (x - 25, y - 28), f"{point.prediction.probability_comparison:.2f}", 15, INK)
     _panel(draw, (1330, 175, 1840, 675), accent=GREEN)
-    _text(draw, (1360, 205), "Model contract", 24, GREEN)
+    _text(draw, (1360, 187), "Model contract", 24, GREEN)
     contract_lines = (
         f"model = {model.model_id}",
         f"version = {model.version}",
@@ -564,7 +607,7 @@ def _scholarship_map(path: Path) -> tuple[str, dict[str, object]]:
 
 def _formalism_traceability(path: Path) -> tuple[str, dict[str, object]]:
     definitions = formalism_registry()
-    image = Image.new("RGB", (2050, 1700), CANVAS)
+    image = Image.new("RGB", (2050, 205 + len(definitions) * 175 + 60), CANVAS)
     draw = ImageDraw.Draw(image)
     _text(draw, (50, 30), "Formalism traceability", 36)
     _text(draw, (50, 88), "Equation labels resolve to implementation modules, tests, figures, and claim levels.", 21, MUTED)
@@ -604,11 +647,12 @@ def _metrics_dashboard(path: Path) -> tuple[str, dict[str, object]]:
         draw.rounded_rectangle((x, y, x + 850, y + 400), radius=22, fill=(248, 250, 252), outline=ACCENT, width=4)
         metrics = measure_artifact(artifact).to_dict()
         _text(draw, (x + 30, y + 28), kind, 28, ACCENT)
-        selected = ("mean_luminance", "unique_values", "rms", "peak") if kind == "image" else ("rms", "peak", "spectral_centroid_hz", "dominant_frequency_hz") if kind == "audio" else ("frames", "frame_rate", "duration_seconds", "mean_temporal_delta") if kind == "video" else ("duration_seconds", "sync_offset_ms", "spatial_offset", "audio_rms")
+        selected = ("mean_luminance", "unique_values", "effective_dynamic_range") if kind == "image" else ("rms", "peak", "spectral_centroid_hz", "dominant_frequency_hz") if kind == "audio" else ("frames", "frame_rate", "duration_seconds", "mean_temporal_delta") if kind == "video" else ("duration_seconds", "sync_offset_ms", "spatial_offset", "audio_rms")
         for metric_index, metric in enumerate(selected):
             value = metrics["values"].get(metric, "n/a")
             unit = next((record["unit"] for record in metrics["records"] if record["name"] == metric), "")
-            _text(draw, (x + 35, y + 100 + metric_index * 58), f"{metric}: {value} {unit}", 18, INK)
+            rendered = str(value) if isinstance(value, int) and not isinstance(value, bool) else f"{float(value):.4f}" if isinstance(value, (int, float)) and not isinstance(value, bool) else str(value)
+            _text(draw, (x + 35, y + 100 + metric_index * 58), f"{metric}: {rendered} {unit}", 18, INK)
         cards.append({"artifact": kind, "canonical_digest": canonical_digest(artifact), "metrics": metrics})
     digest = _save(image, path)
     return digest, {"cards": cards, "computation_version": "duckrabbit/metrics/v2"}
@@ -667,7 +711,7 @@ def _observer_protocol(path: Path) -> tuple[str, dict[str, object]]:
     _text(draw, (60, 1080), "Model templates for future human analysis", 25, ACCENT)
     for index, model in enumerate(default_model_specs()):
         _text(draw, (60 + (index % 2) * 970, 1130 + (index // 2) * 45), f"{model.model.value}: {model.family} / {model.link}", 16, INK)
-    _footer(draw, "No participant records, fitted coefficients, or observer-level result is bundled; the included endpoint is model output only.", y=1280, color=RED)
+    _footer(draw, "No participant records, fitted coefficients, or observer-level result is bundled; the included endpoint is model output only.", y=1280, color=RED, right=2000)
     digest = _save(image, path)
     return digest, {"study_id": design.study_id, "randomization_seed": design.randomization_seed, "steps": [{"name": name, "detail": detail} for name, detail in steps], "synthetic_model": {"model_id": "duckrabbit.synthetic.feature_observer", "training_data": "none", "human_data": False}, "human_study": {"status": "future", "participant_data": False}, "models": [model.to_dict() for model in default_model_specs()]}
 
