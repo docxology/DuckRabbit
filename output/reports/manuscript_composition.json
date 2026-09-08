@@ -1,0 +1,79 @@
+{
+  "algorithm": "web-renderer-combine-v1",
+  "binding_sha256": "e2aedc33a8b8dd086db50c340584cf3a397b41104fdd5f7d2bea52129168612e",
+  "combined_path": "output/web/_combined_manuscript.md",
+  "combined_sha256": "8f497eb7c904e779f1932cae8b683c6b5b4008f4b4324269cdb24a4010639c78",
+  "combined_size_bytes": 133222,
+  "input_root_kind": "hydrated",
+  "ordered_inputs": [
+    {
+      "ordinal": 1,
+      "path": "output/manuscript/00_abstract.md",
+      "sha256": "916c2f585de6c3172332f724e86e79d1d4a40e23110967eea4d29d7ecfd3b436",
+      "size_bytes": 2391
+    },
+    {
+      "ordinal": 2,
+      "path": "output/manuscript/01_introduction.md",
+      "sha256": "4fd48b041c82ba41ae6e1cd3b1993c238939643cc3e34f059de38ab1826b05a4",
+      "size_bytes": 4555
+    },
+    {
+      "ordinal": 3,
+      "path": "output/manuscript/02_methodology.md",
+      "sha256": "d232139d9112e810edadb74e30d9f06b27dc825ed67d7b226ad0eaac488923a6",
+      "size_bytes": 7353
+    },
+    {
+      "ordinal": 4,
+      "path": "output/manuscript/03_results.md",
+      "sha256": "2c10f2da8607acfe2925fd67239e5c3ea06378ac1236fa5c0af5133128ce8287",
+      "size_bytes": 25027
+    },
+    {
+      "ordinal": 5,
+      "path": "output/manuscript/04_experimental_setup.md",
+      "sha256": "c0d13a4d3061ac07270ea30147e38600ddf7e244fad9b35a286c303d17459f40",
+      "size_bytes": 2922
+    },
+    {
+      "ordinal": 6,
+      "path": "output/manuscript/05_reproducibility.md",
+      "sha256": "2062e1ed5ebb9d46c52be5ca3486efe677b2a1de77e7f6c4d9f97f9828be9ed6",
+      "size_bytes": 4925
+    },
+    {
+      "ordinal": 7,
+      "path": "output/manuscript/06_scope_and_related_work.md",
+      "sha256": "5b039b23dc57d9b10551906f4cdac7fdfc411c3329978f11bf9a2de3e48e2e85",
+      "size_bytes": 13662
+    },
+    {
+      "ordinal": 8,
+      "path": "output/manuscript/07_publication_audit.md",
+      "sha256": "a9956850ebc97163ebbeaeadc18deffffdf114b3f8dc848eca96612500ab2d3a",
+      "size_bytes": 61579
+    },
+    {
+      "ordinal": 9,
+      "path": "output/manuscript/08_discussion_and_conclusion.md",
+      "sha256": "2cd437cd0852892f9407b7ff12e0a9abb0d2b241d9e648d96172141313975951",
+      "size_bytes": 3400
+    },
+    {
+      "ordinal": 10,
+      "path": "output/manuscript/09_appendix_catalog.md",
+      "sha256": "4ea46806677b9c4f8e0f2ec7b977c123d91013871c6bd848c1d5ebdf090e6b9f",
+      "size_bytes": 7427
+    },
+    {
+      "ordinal": 11,
+      "path": "output/manuscript/99_references.md",
+      "sha256": "20f4a91ee979db68b8c62777d4518e3a6bd40994562308aa12f827ba621567a0",
+      "size_bytes": 31
+    }
+  ],
+  "ordered_inputs_sha256": "c8d03048d156f026705adfd5b09f1db7484193bae2110a157b5db18d4508d388",
+  "project": "ongoing/Art/DuckRabbit",
+  "schema_version": "template-manuscript-composition-v1"
+}

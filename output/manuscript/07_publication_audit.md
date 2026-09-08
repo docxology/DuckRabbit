@@ -8,7 +8,7 @@ is not a stimulus, a participant result, or evidence of a perceptual effect.
 
 ## Claim-level visualization
 
-![Four numbered boxes separate canonical stimulus, physical metric, encoded media, and observer hypothesis, with a boundary rule stating that observer effects require a separate study.](../output/figures/claim_boundary.png){#fig:claim_boundary}
+![Four numbered boxes separate canonical stimulus, physical metric, encoded media, and observer hypothesis, with a boundary rule stating that observer effects require a separate study.](../../output/figures/claim_boundary.png){#fig:claim_boundary}
 
 What this figure shows: Four numbered boxes separate canonical stimulus, physical metric, encoded media, and observer hypothesis, with a boundary rule stating that observer effects require a separate study. The four-stage boundary distinguishes what DuckRabbit can establish directly—canonical stimulus identity, physical/media metrics, and decoded encoded-media facts—from a future observer hypothesis. Source data output/data/claim_boundary.json records the stage definitions and boundary rule; the arrows describe increasing evidential requirements, not an inference that one stage establishes the next. Controls: claim levels in the taxonomy and manifest; seed not applicable to the explanatory diagram. Objective facts: no unit-bearing objective quantity is applicable; stage definitions and evidence boundaries are preserved in the sidecar. Claim level: source_supported. Source data: output/data/claim_boundary.json (SHA-256 digest recorded in the figure registry). Evidence lineage: formalism:eq:observer_estimand, formalism:eq:canonical_digest. Limitations: The diagram is a documentation contract and does not replace a preregistered observer study or empirical data. Boundary: A deterministic artifact can support a future hypothesis but cannot supply the observer data required to test it.
 
@@ -20,7 +20,7 @@ own protocol, estimand, and uncertainty interval.
 
 ## Scholarship map and lineage
 
-![Rows map catalog entries to source tiers, exact supported claims, engineering bases, limitations, and implementation status.](../output/figures/scholarship_map.png){#fig:scholarship_map}
+![Rows map catalog entries to source tiers, exact supported claims, engineering bases, limitations, and implementation status.](../../output/figures/scholarship_map.png){#fig:scholarship_map}
 
 What this figure shows: Rows map catalog entries to source tiers, exact supported claims, engineering bases, limitations, and implementation status. The map links every catalog entry to its primary, review, and theory records, then preserves the exact source-supported claim, engineering departure, limitation, and implementation status. Source data output/data/scholarship_map.json are generated from the checked-in evidence matrix; a source record supports only the statement written in that record and does not certify pixel- or task-identical replication. Controls: checked-in evidence matrix; source roles and entry statuses; audit date recorded in data/evidence_matrix.json. Objective facts: one evidence row per catalog entry (18 entries); source-tier counts, exact claim text, engineering basis, limitation, and gap status. Claim level: source_supported. Source data: output/data/scholarship_map.json (SHA-256 digest recorded in the figure registry). Evidence lineage: gregory1997visual, brugger1999duckrabbit, yildiz2022ponzo, hirst2020sound, bruns2019ventriloquist. Limitations: The offline snapshot validates citation and lineage structure; live resolver status is a separate audit, and classifications can remain contested. Boundary: Scholarship coverage bounds the package’s evidence record and does not establish that any generated stimulus produces a universal percept.
 
@@ -44,15 +44,15 @@ CodeMeta, Zenodo metadata, versioned manifests, source-data sidecars, and
 resolver-linked bibliography entries. These improve discoverability and
 attribution; they do not increase the evidential level of any perceptual claim.
 
-The intended public software identity is explicit: DuckRabbit will be released
+The public software identity is explicit: DuckRabbit is published and citable
 at the [DuckRabbit public GitHub repository](https://github.com/docxology/DuckRabbit)
 under the authorship of Daniel Ari Friedman, Active Inference Institute. The
-repository URL identifies the future citable software object; it is not a claim
-that the private sidecar has already been publicly mirrored.
+generated bundle in this repository remains the authoritative release candidate
+until the external template handoff is completed.
 
 ## Formal traceability and objective metrics
 
-![Rows connect equation labels to their mathematical definition, implementation paths, tests, figure labels, and claim levels.](../output/figures/formalism_traceability.png){#fig:formalism_traceability}
+![Rows connect equation labels to their mathematical definition, implementation paths, tests, figure labels, and claim levels.](../../output/figures/formalism_traceability.png){#fig:formalism_traceability}
 
 What this figure shows: Rows connect equation labels to their mathematical definition, implementation paths, tests, figure labels, and claim levels. The traceability registry connects the nine numbered equations to symbols, implementation modules, tests, and registered figures. Source data output/data/formalism_traceability.json is the machine-readable crosswalk used by the manuscript; it demonstrates contract coverage and test linkage without converting formal notation into empirical evidence. Controls: formalism registry version; seed not applicable to the traceability diagram. Objective facts: nine equation records with implementation, test, figure, and claim-level fields; no unit-bearing measurement is plotted. Claim level: physical_metric. Source data: output/data/formalism_traceability.json (SHA-256 digest recorded in the figure registry). Evidence lineage: formalism:eq:canonical_digest, formalism:eq:clock_definition, formalism:eq:objective_statistics. Limitations: Traceability records documentation and verification scope; it does not establish the truth of an observer-level theory. Boundary: A linked equation and test can show an implemented contract, not a validated perceptual law.
 
@@ -62,7 +62,7 @@ to implementation modules, tests, and figures. The contract is intentionally
 auditable: equation labels point to code-owned records, while empirical claims
 remain outside the generator's authority.
 
-![Four artifact cards list image, audio, video, and audiovisual metrics with units, computation provenance, and claim level.](../output/figures/metrics_dashboard.png){#fig:metrics_dashboard}
+![Four artifact cards list image, audio, video, and audiovisual metrics with units, computation provenance, and claim level.](../../output/figures/metrics_dashboard.png){#fig:metrics_dashboard}
 
 What this figure shows: Four artifact cards list image, audio, video, and audiovisual metrics with units, computation provenance, and claim level. The dashboard presents representative measurements from image, audio, video, and audiovisual canonical artifacts. Source data output/data/metrics_dashboard.json retains metric name, value, unit, computation version, tolerance, claim level, and canonical digest; luminance is normalized, amplitude is normalized, spectra are in hertz, frame differences are normalized pixel differences, and synchronization is in milliseconds. Controls: default canonical artifacts; metric computation version and tolerance recorded in the source-data sidecar; seed s=0. Objective facts: finite objective values with units: normalized luminance/amplitude, Hz, normalized pixel difference, ms, counts, and durations. Claim level: physical_metric. Source data: output/data/metrics_dashboard.json (SHA-256 digest recorded in the figure registry). Evidence lineage: formalism:eq:objective_statistics, formalism:eq:temporal_spectral_metrics. Limitations: Metrics are media properties and do not encode pitch, size, motion, localization, binding, or other observer interpretations. Boundary: Metric reproducibility is a package property; interpretation as perception requires a separate observer design and data.
 
@@ -72,7 +72,7 @@ properties; RMS and peak are normalized-amplitude properties; spectral values
 are in Hz; frame deltas are normalized pixel differences; and synchronization
 offsets are in milliseconds. None is a psychophysical score.
 
-![Horizontal interval markers show typed domains for dimensions, luminance, levels, frequency, sampling, frame rate, synchronization, and spatial discrepancy.](../output/figures/parameter_domains.png){#fig:parameter_domains}
+![Horizontal interval markers show typed domains for dimensions, luminance, levels, frequency, sampling, frame rate, synchronization, and spatial discrepancy.](../../output/figures/parameter_domains.png){#fig:parameter_domains}
 
 What this figure shows: Horizontal interval markers show typed domains for dimensions, luminance, levels, frequency, sampling, frame rate, synchronization, and spatial discrepancy. The domain map shows the validated ranges for dimensions, luminance, grayscale and quantization levels, frequency, sampling rate, frame rate, synchronization offset, and spatial discrepancy. Source data output/data/parameter_domains.json records the type name, unit, interval, and engineering role; intervals prevent malformed media and are not proposed as sensitivity thresholds. Controls: parameter schema version and validated scalar domains; seed not applicable to the domain diagram. Objective facts: dimensionless, pixel, level, Hz, samples/s, frames/s, ms, and normalized spatial units as listed per parameter. Claim level: canonical_stimulus. Source data: output/data/parameter_domains.json (SHA-256 digest recorded in the figure registry). Evidence lineage: formalism:eq:typed_request. Limitations: The intervals are software validation bounds and do not encode safe listening levels, display limits, or psychophysical thresholds. Boundary: A valid parameter is a reproducible construction request, not evidence that the requested value is perceptually effective.
 
@@ -82,7 +82,7 @@ viewer, listener, or participant's sensitivity.
 
 ## Observer-design boundary
 
-![A flow diagram connects trial identity, randomization, stimulus manifest, response, aggregate estimand, and analysis-model templates, with a synthetic-only boundary.](../output/figures/observer_protocol.png){#fig:observer_protocol}
+![A flow diagram connects trial identity, randomization, stimulus manifest, response, aggregate estimand, and analysis-model templates, with a synthetic-only boundary.](../../output/figures/observer_protocol.png){#fig:observer_protocol}
 
 What this figure shows: A flow diagram connects trial identity, randomization, stimulus manifest, response, aggregate estimand, and analysis-model templates, with a synthetic-only boundary. The study-ready scaffold moves from pseudonymous trial identity and deterministic randomization to a stimulus manifest and encoded-file hash, typed response or missingness, and a preregistered estimand. Source data output/data/observer_protocol.json records the study design, randomization seed, model templates, and synthetic-only status; no participant record is included. Controls: study design and deterministic randomization seed recorded in the sidecar; synthetic response generation is separate from human data. Objective facts: trial counts, condition structure, estimand templates, response schemas, and model families; participant outcomes are not applicable. Claim level: observer_hypothesis. Source data: output/data/observer_protocol.json (SHA-256 digest recorded in the figure registry). Evidence lineage: observer:preregistered_estimands. Limitations: The scaffold specifies future data collection and analysis but supplies no participant responses, fitted coefficients, power claim, or validated observer effect. Boundary: The protocol is ready for ethical and preregistered extension, not evidence that the proposed effect exists.
 

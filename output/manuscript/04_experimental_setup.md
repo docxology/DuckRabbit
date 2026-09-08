@@ -1,7 +1,10 @@
 # Experimental and Computational Setup {#sec:experimental_setup}
 
 Core generation uses Python, NumPy, Pillow, and the standard library. The
-default seed is 0 and generation is offline. PNG, GIF, WAV, and NPZ are
+default seed is 0 and generation is offline. The generators are analytic in
+their typed parameters: the seed is recorded in manifests and study plans but
+does not yet alter artifact bytes; seed-driven stimulus randomization awaits a
+stochastic generator. PNG, GIF, WAV, and NPZ are
 available without ffmpeg; MP4 and muxed audiovisual output require both
 ffmpeg and ffprobe. Optional capabilities fail explicitly rather than silently
 changing the requested artifact.

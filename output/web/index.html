@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="pandoc 3.10" />
+  <meta name="generator" content="pandoc 3.11" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="Daniel Ari Friedman" />
   <meta name="description" content="Deterministic visual, auditory, temporal, and audio-visual stimulus construction" />
@@ -43,7 +43,6 @@
       body {
         background-color: transparent;
         color: black;
-        font-size: 12pt;
       }
       p, h2, h3 {
         orphans: 3;
@@ -500,6 +499,47 @@ mjx-container[display="true"] {
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
+/* A reading column keeps prose comfortable, but dense scientific figures need
+   a larger inspection surface.  The rendered image remains responsive and the
+   explicit link opens its source-resolution asset without changing the PDF. */
+.figure-full-size-link {
+  color: inherit;
+  display: block;
+  max-width: 100%;
+  text-align: center;
+}
+
+.figure-full-size-link img {
+  cursor: zoom-in;
+  margin-bottom: 0.45rem;
+}
+
+.figure-full-size-label {
+  color: #1f6f8b;
+  display: inline-block;
+  font-family: sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
+}
+
+.figure-full-size-link:focus-visible {
+  outline: 3px solid #1f6f8b;
+  outline-offset: 4px;
+}
+
+@media (min-width: 1000px) {
+  .figure-full-size-link {
+    left: 50%;
+    max-width: none;
+    position: relative;
+    transform: translateX(-50%);
+    width: min(1080px, calc(100vw - 3rem));
+  }
+}
+
 .figure-caption {
   font-style: italic;
   color: #4b5563;
@@ -672,13 +712,11 @@ id="toc-sec:references">References</a></li>
 <main id="main-content" tabindex="-1">
 <h1 data-number="1" id="sec:abstract"><span
 class="header-section-number">1</span> Abstract</h1>
-<p>DuckRabbit is typed, deterministic research software by Daniel Ari
-Friedman (Active Inference Institute) for constructing reproducible
-visual, auditory, temporal, and audiovisual stimulus families. The
-intended public release will be available at the following
-repository:</p>
-<p><code>https://github.com/docxology/DuckRabbit</code></p>
-<p>DuckRabbit is released under the MIT License.</p>
+<p>DuckRabbit is typed, deterministic research software for constructing
+reproducible visual, auditory, temporal, and audiovisual stimulus
+families. It is published and citable at <a
+href="https://github.com/docxology/DuckRabbit">the DuckRabbit public
+GitHub repository</a> and released under the MIT License.</p>
 <p>Its basic unit is an immutable request containing an illusion
 identifier, validated parameters, a seed, and an encoding specification.
 The request yields a canonical artifact, objective media measurements,
@@ -1007,8 +1045,8 @@ Appendix A rather than copied into prose. The companion figure keeps the
 categorical registry, source namespace, and implementation statuses
 visible at a glance.</p>
 <figure id="fig:catalog_matrix">
-<img src="../figures/catalog_matrix.png"
-alt="Figure 1: A matrix lists all catalog entries with modality, mechanism, signature, input requirement, and implementation status." />
+<a class="figure-full-size-link" href="../figures/catalog_matrix.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/catalog_matrix.png"
+alt="A matrix lists all catalog entries with modality, mechanism, signature, input requirement, and implementation status." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 1: A matrix lists all catalog
 entries with modality, mechanism, signature, input requirement, and
 implementation status.</figcaption>
@@ -1032,12 +1070,12 @@ competing accounts. Boundary: Catalog coverage is bounded to this
 registered package and does not enumerate all known illusions.</p>
 <p>The complete catalog matrix fig. <a href="#fig:catalog_matrix">1</a>
 is tabulated in the standalone Appendix A sec. <a
-href="#sec:appendix_catalog">10</a>, tbl. <a href="#tbl:catalog">10</a>.
-The corresponding machine-readable evidence matrix records the source
-role, exact supported claim, engineering departure, and limitation for
-every entry. Keeping the table in an appendix gives the main results
-narrative room to explain the contract without turning a mutable
-registry snapshot into a prose claim.</p>
+href="#sec:appendix_catalog">10</a> and in tbl. <a
+href="#tbl:catalog">10</a>. The corresponding machine-readable evidence
+matrix records the source role, exact supported claim, engineering
+departure, and limitation for every entry. Keeping the table in an
+appendix gives the main results narrative room to explain the contract
+without turning a mutable registry snapshot into a prose claim.</p>
 <h2 data-number="4.2" id="typed-domains-and-delivery-profiles"><span
 class="header-section-number">4.2</span> Typed domains and delivery
 profiles</h2>
@@ -1182,8 +1220,8 @@ href="#ref-vroomen2004temporal" role="doc-biblioref">Vroomen and Gelder
 <h2 data-number="4.3" id="pipeline-and-provenance"><span
 class="header-section-number">4.3</span> Pipeline and provenance</h2>
 <figure id="fig:architecture">
-<img src="../figures/architecture.png"
-alt="Figure 2: Five labeled stages connect a typed request to a deterministic canonical artifact, encoded media, decoded inspection, and a verification manifest." />
+<a class="figure-full-size-link" href="../figures/architecture.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/architecture.png"
+alt="Five labeled stages connect a typed request to a deterministic canonical artifact, encoded media, decoded inspection, and a verification manifest." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 2: Five labeled stages connect a
 typed request to a deterministic canonical artifact, encoded media,
 decoded inspection, and a verification manifest.</figcaption>
@@ -1218,8 +1256,8 @@ id="visual-constructions-and-parameter-sweeps"><span
 class="header-section-number">4.4</span> Visual constructions and
 parameter sweeps</h2>
 <figure id="fig:visual_panel">
-<img src="../figures/visual_panel.png"
-alt="Figure 3: A 9-panel gallery shows every currently implemented visual catalog entry, with stable IDs and physical raster summaries: Duck-rabbit ambiguous figure, Simultaneous contrast stimulus, Apparent-motion frame sequence, Müller-Lyer…" />
+<a class="figure-full-size-link" href="../figures/visual_panel.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/visual_panel.png"
+alt="A 9-panel gallery shows every currently implemented visual catalog entry, with stable IDs and physical raster summaries: Duck-rabbit ambiguous figure, Simultaneous contrast stimulus, Apparent-motion frame sequence, Müller-Lyer geometric illusion, Poggendorff geometric illusion, Ponzo perspective illusion, Kanizsa illusory-contour triangle, Ebbinghaus context-size illusion, Zöllner orientation illusion." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 3: A 9-panel gallery shows every
 currently implemented visual catalog entry, with stable IDs and physical
 raster summaries: Duck-rabbit ambiguous figure, Simultaneous contrast
@@ -1283,8 +1321,8 @@ temporal positions are properties of the typed rasters or sequences.
 They are not observer scores, and the gallery is not an exhaustive
 ontology of visual illusions.</p>
 <figure id="fig:visual_sweep">
-<img src="../figures/visual_sweep.png"
-alt="Figure 4: A labeled grid crosses five duck–rabbit blend weights with five grayscale and quantization settings, with physical metrics recorded for each cell." />
+<a class="figure-full-size-link" href="../figures/visual_sweep.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/visual_sweep.png"
+alt="A labeled grid crosses five duck–rabbit blend weights with five grayscale and quantization settings, with physical metrics recorded for each cell." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 4: A labeled grid crosses five
 duck–rabbit blend weights with five grayscale and quantization settings,
 with physical metrics recorded for each cell.</figcaption>
@@ -1315,8 +1353,8 @@ counts; no perceptual score is assigned to a sweep cell.</p>
 class="header-section-number">4.5</span> Temporal and auditory
 constructions</h2>
 <figure id="fig:temporal_sequence">
-<img src="../figures/temporal_sequence.png"
-alt="Figure 5: Six ordered frames are labeled with timestamps and paired with a line plot of adjacent-frame normalized pixel differences." />
+<a class="figure-full-size-link" href="../figures/temporal_sequence.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/temporal_sequence.png"
+alt="Six ordered frames are labeled with timestamps and paired with a line plot of adjacent-frame normalized pixel differences." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 5: Six ordered frames are labeled
 with timestamps and paired with a line plot of adjacent-frame normalized
 pixel differences.</figcaption>
@@ -1345,8 +1383,8 @@ reports frame succession, rational frame rate, and frame-to-frame mean
 absolute differences. These facts establish temporal structure in the
 file, not the presence or strength of perceived motion.</p>
 <figure id="fig:audio_signals">
-<img src="../figures/audio_signals.png"
-alt="Figure 6: Five labeled rows show canonical audio waveforms, relative one-sided spectral bars, RMS and peak in normalized amplitude, and spectral summaries in hertz." />
+<a class="figure-full-size-link" href="../figures/audio_signals.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/audio_signals.png"
+alt="Five labeled rows show canonical audio waveforms, relative one-sided spectral bars, RMS and peak in normalized amplitude, and spectral summaries in hertz." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 6: Five labeled rows show
 canonical audio waveforms, relative one-sided spectral bars, RMS and
 peak in normalized amplitude, and spectral summaries in
@@ -1386,8 +1424,8 @@ observer-level outcomes that depend on playback and task conditions.</p>
 class="header-section-number">4.6</span> Audiovisual timing and
 encoding</h2>
 <figure id="fig:audiovisual_timeline">
-<img src="../figures/audiovisual_timeline.png"
-alt="Figure 7: Two labeled traces share a normalized time axis: video mean luminance and audio absolute amplitude, with signed synchronization and spatial offsets printed below." />
+<a class="figure-full-size-link" href="../figures/audiovisual_timeline.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/audiovisual_timeline.png"
+alt="Two labeled traces share a normalized time axis: video mean luminance and audio absolute amplitude, with signed synchronization and spatial offsets printed below." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 7: Two labeled traces share a
 normalized time axis: video mean luminance and audio absolute amplitude,
 with signed synchronization and spatial offsets printed
@@ -1425,8 +1463,8 @@ href="#ref-bruns2019ventriloquist" role="doc-biblioref">Bruns 2019</a>;
 <a href="#ref-vroomen2004temporal" role="doc-biblioref">Vroomen and
 Gelder 2004</a>)</span>.</p>
 <figure id="fig:encoding_verification">
-<img src="../figures/encoding_verification.png"
-alt="Figure 8: A five-row comparison lists format, backend, preserved canonical facts, and the corresponding decoded verification checks." />
+<a class="figure-full-size-link" href="../figures/encoding_verification.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/encoding_verification.png"
+alt="A five-row comparison lists format, backend, preserved canonical facts, and the corresponding decoded verification checks." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 8: A five-row comparison lists
 format, backend, preserved canonical facts, and the corresponding
 decoded verification checks.</figcaption>
@@ -1643,8 +1681,8 @@ id="synthetic-psychophysics-model-diagnostic"><span
 class="header-section-number">4.9</span> Synthetic psychophysics model
 diagnostic</h2>
 <figure id="fig:synthetic_psychophysics">
-<img src="../figures/synthetic_psychophysics.png"
-alt="Figure 9: A narrow-range line plot shows deterministic model probability across duck_weight values beside the model identity, temperature, no-training-data statement, and human-data boundary." />
+<a class="figure-full-size-link" href="../figures/synthetic_psychophysics.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/synthetic_psychophysics.png"
+alt="A narrow-range line plot shows deterministic model probability across duck_weight values beside the model identity, temperature, no-training-data statement, and human-data boundary." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 9: A narrow-range line plot shows
 deterministic model probability across duck_weight values beside the
 model identity, temperature, no-training-data statement, and human-data
@@ -1689,10 +1727,13 @@ before any observer claim could be made.</p>
 class="header-section-number">5</span> Experimental and Computational
 Setup</h1>
 <p>Core generation uses Python, NumPy, Pillow, and the standard library.
-The default seed is 0 and generation is offline. PNG, GIF, WAV, and NPZ
-are available without ffmpeg; MP4 and muxed audiovisual output require
-both ffmpeg and ffprobe. Optional capabilities fail explicitly rather
-than silently changing the requested artifact.</p>
+The default seed is 0 and generation is offline. The generators are
+analytic in their typed parameters: the seed is recorded in manifests
+and study plans but does not yet alter artifact bytes; seed-driven
+stimulus randomization awaits a stochastic generator. PNG, GIF, WAV, and
+NPZ are available without ffmpeg; MP4 and muxed audiovisual output
+require both ffmpeg and ffprobe. Optional capabilities fail explicitly
+rather than silently changing the requested artifact.</p>
 <p>The deterministic validation suite executes real NumPy synthesis and
 real temporary-file media round trips. It checks finite normalized
 arrays, typed parameter boundaries, canonical hashes, dimensions,
@@ -1746,7 +1787,11 @@ request;</li>
 dimensions, channels, rates, frame counts, durations, timing offsets,
 and encoded hash;</li>
 <li>retain the v2 manifest and source-data sidecars with the generated
-figure or table.</li>
+figure or table. Note that in this release the generators are analytic
+in their typed parameters: the request seed <em>s</em> is recorded in
+manifests and study plans and excluded from the canonical digest, but it
+does not yet alter artifact bytes; seed-driven stimulus randomization
+awaits a stochastic generator.</li>
 </ol>
 <p>The contract is deliberately stronger than “the file can be
 downloaded.” Research-software guidance treats versioned code,
@@ -1769,10 +1814,10 @@ typed metadata, deterministic hashes, source-data sidecars, explicit
 licenses, and release gates rather than by implying that a generated
 media file is a complete scientific replication.</p>
 <p>The package reports implemented, planned, input_required as its
-catalog status vocabulary and currently covers audio_visual, auditory,
+catalog status vocabulary and currently covers audio-visual, auditory,
 visual. The evidence layer contains 18 entry records backed by 36 source
-records. The publication workflow produces 15 figures and 10 tables from
-the live registry.</p>
+records, covering 18/18 catalog entries. The publication workflow
+produces 15 figures and 10 tables from the live registry.</p>
 <p>The public software record is <a
 href="https://github.com/docxology/DuckRabbit">the DuckRabbit public
 GitHub repository</a>, with Daniel Ari Friedman of the Active Inference
@@ -1785,9 +1830,12 @@ identifying this v0.5.0 release specifically.</p>
 files are delivery artifacts with format-specific tolerances. The
 observer protocol is a separate evidence layer: a manifest can prove
 what was presented without proving what an observer experienced.</p>
-<p>Synthetic psychophysics is a third, deliberately bounded object. The
-model identity, version, feature schema, weights, temperature, seed,
-calibration statement, canonical reference/comparison digests, and
+<p>Synthetic psychophysics is a third, deliberately bounded object: the
+model is a hand-specified deterministic feature observer; no training
+data; human_data=false, registered as
+<code>duckrabbit.synthetic.feature_observer</code>. The model version,
+feature schema, weights, temperature, seed, calibration statement,
+canonical reference/comparison digests, and
 <code>human_data=false</code> flag are retained in
 <code>output/data/synthetic_psychophysics.json</code>. Re-running this
 diagnostic checks deterministic model orchestration and stimulus-feature
@@ -1806,7 +1854,7 @@ being silently downgraded.</p>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run pytest <span class="at">-q</span> <span class="at">--cov</span><span class="op">=</span>src/duckrabbit <span class="at">--cov-fail-under</span><span class="op">=</span>90</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python scripts/generate_publication_outputs.py</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python scripts/z_generate_manuscript_variables.py</span></code></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python scripts/generate_manuscript_variables.py</span></code></pre></div>
 <h2 data-number="6.1" id="data-availability-and-software-citation"><span
 class="header-section-number">6.1</span> Data availability and software
 citation</h2>
@@ -2121,8 +2169,8 @@ effect.</p>
 <h2 data-number="8.1" id="claim-level-visualization"><span
 class="header-section-number">8.1</span> Claim-level visualization</h2>
 <figure id="fig:claim_boundary">
-<img src="../figures/claim_boundary.png"
-alt="Figure 10: Four numbered boxes separate canonical stimulus, physical metric, encoded media, and observer hypothesis, with a boundary rule stating that observer effects require a separate study." />
+<a class="figure-full-size-link" href="../figures/claim_boundary.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/claim_boundary.png"
+alt="Four numbered boxes separate canonical stimulus, physical metric, encoded media, and observer hypothesis, with a boundary rule stating that observer effects require a separate study." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 10: Four numbered boxes separate
 canonical stimulus, physical metric, encoded media, and observer
 hypothesis, with a boundary rule stating that observer effects require a
@@ -2158,8 +2206,8 @@ estimand, and uncertainty interval.</p>
 class="header-section-number">8.2</span> Scholarship map and
 lineage</h2>
 <figure id="fig:scholarship_map">
-<img src="../figures/scholarship_map.png"
-alt="Figure 11: Rows map catalog entries to source tiers, exact supported claims, engineering bases, limitations, and implementation status." />
+<a class="figure-full-size-link" href="../figures/scholarship_map.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/scholarship_map.png"
+alt="Rows map catalog entries to source tiers, exact supported claims, engineering bases, limitations, and implementation status." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 11: Rows map catalog entries to
 source tiers, exact supported claims, engineering bases, limitations,
 and implementation status.</figcaption>
@@ -2216,20 +2264,20 @@ href="#ref-smith2016software" role="doc-biblioref">Smith et al.
 manifests, source-data sidecars, and resolver-linked bibliography
 entries. These improve discoverability and attribution; they do not
 increase the evidential level of any perceptual claim.</p>
-<p>The intended public software identity is explicit: DuckRabbit will be
-released at the <a
+<p>The public software identity is explicit: DuckRabbit is published and
+citable at the <a
 href="https://github.com/docxology/DuckRabbit">DuckRabbit public GitHub
 repository</a> under the authorship of Daniel Ari Friedman, Active
-Inference Institute. The repository URL identifies the future citable
-software object; it is not a claim that the private sidecar has already
-been publicly mirrored.</p>
+Inference Institute. The generated bundle in this repository remains the
+authoritative release candidate until the external template handoff is
+completed.</p>
 <h2 data-number="8.3"
 id="formal-traceability-and-objective-metrics"><span
 class="header-section-number">8.3</span> Formal traceability and
 objective metrics</h2>
 <figure id="fig:formalism_traceability">
-<img src="../figures/formalism_traceability.png"
-alt="Figure 12: Rows connect equation labels to their mathematical definition, implementation paths, tests, figure labels, and claim levels." />
+<a class="figure-full-size-link" href="../figures/formalism_traceability.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/formalism_traceability.png"
+alt="Rows connect equation labels to their mathematical definition, implementation paths, tests, figure labels, and claim levels." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 12: Rows connect equation labels
 to their mathematical definition, implementation paths, tests, figure
 labels, and claim levels.</figcaption>
@@ -2259,8 +2307,8 @@ implementation modules, tests, and figures. The contract is
 intentionally auditable: equation labels point to code-owned records,
 while empirical claims remain outside the generator’s authority.</p>
 <figure id="fig:metrics_dashboard">
-<img src="../figures/metrics_dashboard.png"
-alt="Figure 13: Four artifact cards list image, audio, video, and audiovisual metrics with units, computation provenance, and claim level." />
+<a class="figure-full-size-link" href="../figures/metrics_dashboard.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/metrics_dashboard.png"
+alt="Four artifact cards list image, audio, video, and audiovisual metrics with units, computation provenance, and claim level." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 13: Four artifact cards list
 image, audio, video, and audiovisual metrics with units, computation
 provenance, and claim level.</figcaption>
@@ -2292,8 +2340,8 @@ normalized-amplitude properties; spectral values are in Hz; frame deltas
 are normalized pixel differences; and synchronization offsets are in
 milliseconds. None is a psychophysical score.</p>
 <figure id="fig:parameter_domains">
-<img src="../figures/parameter_domains.png"
-alt="Figure 14: Horizontal interval markers show typed domains for dimensions, luminance, levels, frequency, sampling, frame rate, synchronization, and spatial discrepancy." />
+<a class="figure-full-size-link" href="../figures/parameter_domains.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/parameter_domains.png"
+alt="Horizontal interval markers show typed domains for dimensions, luminance, levels, frequency, sampling, frame rate, synchronization, and spatial discrepancy." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 14: Horizontal interval markers
 show typed domains for dimensions, luminance, levels, frequency,
 sampling, frame rate, synchronization, and spatial
@@ -2325,8 +2373,8 @@ participant’s sensitivity.</p>
 <h2 data-number="8.4" id="observer-design-boundary"><span
 class="header-section-number">8.4</span> Observer-design boundary</h2>
 <figure id="fig:observer_protocol">
-<img src="../figures/observer_protocol.png"
-alt="Figure 15: A flow diagram connects trial identity, randomization, stimulus manifest, response, aggregate estimand, and analysis-model templates, with a synthetic-only boundary." />
+<a class="figure-full-size-link" href="../figures/observer_protocol.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/observer_protocol.png"
+alt="A flow diagram connects trial identity, randomization, stimulus manifest, response, aggregate estimand, and analysis-model templates, with a synthetic-only boundary." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Figure 15: A flow diagram connects trial
 identity, randomization, stimulus manifest, response, aggregate
 estimand, and analysis-model templates, with a synthetic-only
@@ -3615,12 +3663,11 @@ class="nocase">Wilkinson et al.</span> 2016</a>; <a
 href="#ref-lamprecht2020fairsoftware" role="doc-biblioref">Lamprecht et
 al. 2020</a>)</span>.</p>
 <p>The release is authored by Daniel Ari Friedman of the Active
-Inference Institute, and its intended public home is <a
+Inference Institute and is published and citable at <a
 href="https://github.com/docxology/DuckRabbit">the DuckRabbit public
-GitHub repository</a>. That repository statement is part of the
-software’s citation identity; until the external handoff occurs, the
-private sidecar and its generated bundle are the authoritative release
-candidate.</p>
+GitHub repository</a>. The generated bundle in this repository remains
+the authoritative release candidate until the external template handoff
+is completed.</p>
 <h2 data-number="9.1" id="sec:conclusion"><span
 class="header-section-number">9.1</span> Conclusion</h2>
 <p>DuckRabbit v0.5.0 turns multimodal illusion generation into an

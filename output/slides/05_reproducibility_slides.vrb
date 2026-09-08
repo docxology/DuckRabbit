@@ -7,8 +7,8 @@ Reuse should cite Daniel Ari Friedman and the release metadata in
 \texttt{CITATION.cff}, together with the source-specific scholarship in
 \texttt{references.bib}. Software-citation principles recommend citing
 the software object itself, with enough version and identity information
-to distinguish one release from another \breakseq{[@smith2016software]}. The
-DOI field carries the real, minted concept DOI
+to distinguish one release from another (Smith et al. 2016). The DOI
+field carries the real, minted concept DOI
 (\breaktt{10.5281/zenodo.21419693}) and \texttt{doi\_status} is
 \texttt{published}; no resolver URL was manufactured before that
 identifier existed.

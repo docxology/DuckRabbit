@@ -32,7 +32,7 @@
       },
       "path": "output/figures/architecture.png",
       "seed": 0,
-      "sha256": "b65f4442a3defb6b1402f3b78ad6ead47e26cc62a03a4865e03b09161c0ad1bc",
+      "sha256": "45aecca2a17f5add3801efa00ea4b1db0aab64e91202a167213977495792ff83",
       "source_data": "output/data/architecture.json",
       "source_data_sha256": "56dfe00d4ab4a94c4ec186860adb6f6443b8aaa3826c5e40eddbaca92d590814",
       "title": "Architecture and provenance pipeline",
@@ -41,7 +41,6 @@
         "mode": "RGB",
         "scales": [
           "full",
-          "publication_column",
           "thumbnail"
         ],
         "thumbnail_height_px": 135,
@@ -81,7 +80,7 @@
       },
       "path": "output/figures/catalog_matrix.png",
       "seed": 0,
-      "sha256": "d4168599b6ba2b6131b52abd42f8631a283b4fd4e58dd52ac29ff304cb053860",
+      "sha256": "f448ea743a0c6994c67cf90258f2239a3ba95c6bd7058f1bc4cfe6f5fbec5490",
       "source_data": "output/data/catalog_matrix.json",
       "source_data_sha256": "eb9b709b1f5074c18806ae516f7f64f15b7b21127ebaa728cb91c1a661390d6d",
       "title": "Catalog taxonomy and scholarship",
@@ -90,11 +89,10 @@
         "mode": "RGB",
         "scales": [
           "full",
-          "publication_column",
           "thumbnail"
         ],
         "thumbnail_height_px": 286,
-        "thumbnail_sha256": "b48ec7d20851466480f7b7107e6df2ff57813680d85449c0967fdadb8e73864a",
+        "thumbnail_sha256": "960fada2d4401fcc3e7066bc40f47ebe69f898f92facb60f232796725361cd6f",
         "thumbnail_width_px": 320,
         "width_px": 1900
       }
@@ -139,16 +137,15 @@
       },
       "path": "output/figures/visual_panel.png",
       "seed": 0,
-      "sha256": "0b8b4c28f94019552e441444f51afa69fc2ecceb24e0ebc6c5b5b80fc58b8a77",
+      "sha256": "6817b889d589bf480aea0ae128b377279c82b0e6de0c60e8c967bc1373e80d41",
       "source_data": "output/data/visual_panel.json",
-      "source_data_sha256": "9177f29c0768fdf4ea35cbcc8ae3ca94b752bdb2043e2dfeb224ef1cbf793571",
+      "source_data_sha256": "506b54c1eb89866f914dac1ceae0c160a5c008936d861a33ff0e0e44a43fea26",
       "title": "Complete panel of implemented visual constructions",
       "visual_qa": {
         "height_px": 1770,
         "mode": "RGB",
         "scales": [
           "full",
-          "publication_column",
           "thumbnail"
         ],
         "thumbnail_height_px": 298,
@@ -187,7 +184,7 @@
       },
       "path": "output/figures/visual_sweep.png",
       "seed": 0,
-      "sha256": "bd9f7b8a444ecccabe48d30a021f71cdba211180008a29932a0e4289d4364835",
+      "sha256": "2f9d0dee01c817943d9e94c5ef86f6978ed154f4b03d6be60d8059d1b4e9b14a",
       "source_data": "output/data/visual_sweep.json",
       "source_data_sha256": "67d9ecff4ccaba01d7f9f0a0cd3dcce967e274447fcf84e7b491d9ac9224741b",
       "title": "Visual parameter sweep with physical readouts",
@@ -196,11 +193,10 @@
         "mode": "RGB",
         "scales": [
           "full",
-          "publication_column",
           "thumbnail"
         ],
         "thumbnail_height_px": 187,
-        "thumbnail_sha256": "f7700f461fc277cbef6e500718de8bf27015709e0b16cde71bb16a4b805939fb",
+        "thumbnail_sha256": "cba995eb9344db10fc5d837963fe6d44d8f38354891c5f6a0bd68d418ba64a3b",
         "thumbnail_width_px": 320,
         "width_px": 1800
       }
@@ -235,7 +231,7 @@
       },
       "path": "output/figures/temporal_sequence.png",
       "seed": 0,
-      "sha256": "6132e06b2c16937de6c5c8f39160a95bd768a082748f349470ac92b3c517b349",
+      "sha256": "b5cad92b79a2f5595c824430ec5b4f9fd0216059446b4b43db72b0f04c9d7fe2",
       "source_data": "output/data/temporal_sequence.json",
       "source_data_sha256": "de8158e5d09d8e5868b5c566223a51dafca6cc0b4e5b3d11284d64b5bc854a06",
       "title": "Temporal sequence, clock, and frame deltas",
@@ -244,11 +240,10 @@
         "mode": "RGB",
         "scales": [
           "full",
-          "publication_column",
           "thumbnail"
         ],
         "thumbnail_height_px": 138,
-        "thumbnail_sha256": "b5dc1c3e3b4e3319fd8ef67a632201305fadc834204d9b19b7f7901f1a940ab4",
+        "thumbnail_sha256": "be831ca2cc5ae53be4b2de63beab18c9106aea98dcda5f19de6313a922e91f81",
         "thumbnail_width_px": 320,
         "width_px": 1900
       }
@@ -288,7 +283,7 @@
       },
       "path": "output/figures/audio_signals.png",
       "seed": 0,
-      "sha256": "24aaedc85c7d92db6e7cecece5fa46055f360d94738ed3b72ae49648e28a435a",
+      "sha256": "195f6b1e369df77f06d960c74dea4d7cdf9e9fb5b4552dae45683a7c4cfc6c98",
       "source_data": "output/data/audio_signals.json",
       "source_data_sha256": "50feaa0adb88cd991ddcfc3e3e75d6d03f06d0c3ca363537295ca79266765c9f",
       "title": "Auditory canonical signals and spectral summaries",
@@ -297,11 +292,10 @@
         "mode": "RGB",
         "scales": [
           "full",
-          "publication_column",
           "thumbnail"
         ],
         "thumbnail_height_px": 278,
-        "thumbnail_sha256": "595cdf664eb32cf30c47b92238846fb2b34809a8744621c1c388fb67b45572f0",
+        "thumbnail_sha256": "f3f008f54da796bbdeaff5aee212c6f2c147a4904f640dac3c5cf1bb1bf44270",
         "thumbnail_width_px": 320,
         "width_px": 1900
       }
@@ -338,7 +332,7 @@
       },
       "path": "output/figures/audiovisual_timeline.png",
       "seed": 0,
-      "sha256": "036120ec37207e1e44e3068b7f38fb1f72cee6ecbde2209d9bdeb224f7c6b69b",
+      "sha256": "7c2b013a00d2414595946b59e07a59d695f6285e3eb4e71319c60d74e528a51e",
       "source_data": "output/data/audiovisual_timeline.json",
       "source_data_sha256": "4abf26bd6d464ec8e359319c7e0e9974d5d320f611bdd2295689bb4f37dc8190",
       "title": "Audiovisual shared-clock timeline and declared offsets",
@@ -347,11 +341,10 @@
         "mode": "RGB",
         "scales": [
           "full",
-          "publication_column",
           "thumbnail"
         ],
         "thumbnail_height_px": 172,
-        "thumbnail_sha256": "59a740911dd1f48cf353800f6a1690367f469b5ed536f212e2e8bc4ac4836ad0",
+        "thumbnail_sha256": "77359144dc3ceab0daba61d461191cb6a6e5b12beb49a8f7c3d7441ac4d92511",
         "thumbnail_width_px": 320,
         "width_px": 1900
       }
@@ -385,7 +378,7 @@
       },
       "path": "output/figures/encoding_verification.png",
       "seed": 0,
-      "sha256": "94ab236ff9da448914353dcbddb94efba1421985aaf0df6474f452a71ef02bc3",
+      "sha256": "d6e3a1d448c3e07e1295a805514bce5a74803a8142679ea1e133d3686d4d1121",
       "source_data": "output/data/encoding_verification.json",
       "source_data_sha256": "33954944c7ff9556e9c64f77f91767a7f9176b222384b520a9a646372ca6d441",
       "title": "Encoding profiles and verification scope",
@@ -394,7 +387,6 @@
         "mode": "RGB",
         "scales": [
           "full",
-          "publication_column",
           "thumbnail"
         ],
         "thumbnail_height_px": 152,
@@ -433,7 +425,7 @@
       },
       "path": "output/figures/synthetic_psychophysics.png",
       "seed": 0,
-      "sha256": "e33cc74c3f1c4f3b0b0e0751992d0bb4a190a6d434aa76364d728ae922f31603",
+      "sha256": "363ae9b572038dc1d3049ee1a80eacafe4500d8498714b2c289ba1c7e3e7de53",
       "source_data": "output/data/synthetic_psychophysics.json",
       "source_data_sha256": "cad6fc73e34c89c0cf0a44f3343f2dd21693cdb33c27c982bfc7485248c9b25d",
       "title": "Synthetic observer diagnostic\u2014model output, not human psychophysics",
@@ -442,11 +434,10 @@
         "mode": "RGB",
         "scales": [
           "full",
-          "publication_column",
           "thumbnail"
         ],
         "thumbnail_height_px": 177,
-        "thumbnail_sha256": "c312233c61f8cee844e59779339dc6dc23922bbc5714912c1466670c2d394a9a",
+        "thumbnail_sha256": "a7ec650be86b831791ed67e4d462792bf954ee56d663b4b932ab948d288f2231",
         "thumbnail_width_px": 320,
         "width_px": 1900
       }
@@ -481,7 +472,7 @@
       },
       "path": "output/figures/claim_boundary.png",
       "seed": 0,
-      "sha256": "a387af71890ea5b378e930ad8f5593e7eb3a773eb2f974d41fd3630fb67fc9e3",
+      "sha256": "04631b9f34be2ecf6d7571788e7c4522786c0256b53d13f6062e3680822162b4",
       "source_data": "output/data/claim_boundary.json",
       "source_data_sha256": "2e90af87b66b943bc02516d3e5d38cbd17fc4f476887ac1a8c6c92416aa50d3f",
       "title": "Claim-level boundary from artifact to observer hypothesis",
@@ -490,7 +481,6 @@
         "mode": "RGB",
         "scales": [
           "full",
-          "publication_column",
           "thumbnail"
         ],
         "thumbnail_height_px": 177,
@@ -532,7 +522,7 @@
       },
       "path": "output/figures/scholarship_map.png",
       "seed": 0,
-      "sha256": "b4ed68e016100741991f1c5625527ff715076938e1c40f1ef0b2dc927fa65fd9",
+      "sha256": "85e5ce57d17aa43982d4f1f424b58699b5d7a8d21de05f3e3a1afae575ca4f80",
       "source_data": "output/data/scholarship_map.json",
       "source_data_sha256": "2eeb7d1962e8181f07d359a66605356558b334a9b1e5920d090bbe75d94ff679",
       "title": "Source-tiered scholarship map and evidence gaps",
@@ -541,7 +531,6 @@
         "mode": "RGB",
         "scales": [
           "full",
-          "publication_column",
           "thumbnail"
         ],
         "thumbnail_height_px": 320,
@@ -581,20 +570,19 @@
       },
       "path": "output/figures/formalism_traceability.png",
       "seed": 0,
-      "sha256": "b582d8da1f56e8b15abb7ead5e79f511c41c51de90f501e76244b70155b75a58",
+      "sha256": "b1a389d515150e4036ecedf340b0e5312944e6f718a8168a2e348e1b987ef66f",
       "source_data": "output/data/formalism_traceability.json",
       "source_data_sha256": "98482521beda63189a30da0469cd69c1acadea1bdd459839b844fd384264ace4",
       "title": "Formal definitions and implementation traceability",
       "visual_qa": {
-        "height_px": 1700,
+        "height_px": 1840,
         "mode": "RGB",
         "scales": [
           "full",
-          "publication_column",
           "thumbnail"
         ],
-        "thumbnail_height_px": 265,
-        "thumbnail_sha256": "4809d27ebecf12d26eafe87ad8a512c2b84ef4df048a34eb2403d5b04d76b541",
+        "thumbnail_height_px": 287,
+        "thumbnail_sha256": "f788daf5311015f35d1059efc1b4351a3d83c32fe7365464450f72b702050867",
         "thumbnail_width_px": 320,
         "width_px": 2050
       }
@@ -629,7 +617,7 @@
       },
       "path": "output/figures/metrics_dashboard.png",
       "seed": 0,
-      "sha256": "e23665d2f0d858b567693ed40c9f11b5be8e7180685325a84c1fca7f4e0cd2d9",
+      "sha256": "089206adbbe5d9d42e2d99f6c974ffd0377319582c90b94ba141792424e3b47d",
       "source_data": "output/data/metrics_dashboard.json",
       "source_data_sha256": "a06007220b998c05136c2a8fe29890588cdb8b4db54117c4e53a78c8d9f20b04",
       "title": "Objective metrics dashboard with units and provenance",
@@ -638,11 +626,10 @@
         "mode": "RGB",
         "scales": [
           "full",
-          "publication_column",
           "thumbnail"
         ],
         "thumbnail_height_px": 205,
-        "thumbnail_sha256": "34f8a6119d159b4fab7d3c580bc7a70c952641fd747eba4412aea4b4450294db",
+        "thumbnail_sha256": "f5999af7b73b3fa956c501127bc6097ffd5b18aedc6a71f27fd602dd0ed5a928",
         "thumbnail_width_px": 320,
         "width_px": 1950
       }
@@ -676,7 +663,7 @@
       },
       "path": "output/figures/parameter_domains.png",
       "seed": 0,
-      "sha256": "97c3d5513c69693f3253f32a7a73a410e336c099b08af6edb34a64bb5486d198",
+      "sha256": "38efcfe5e90744985ea911c426524033fb2c70f18c7ef18a804363533650107f",
       "source_data": "output/data/parameter_domains.json",
       "source_data_sha256": "6f27254af2e3cfa8a35a0d7aaa3a1ab3bda61e5bf490e21d795979efc16c8ab4",
       "title": "Typed parameter domains and units",
@@ -685,7 +672,6 @@
         "mode": "RGB",
         "scales": [
           "full",
-          "publication_column",
           "thumbnail"
         ],
         "thumbnail_height_px": 213,
@@ -723,7 +709,7 @@
       },
       "path": "output/figures/observer_protocol.png",
       "seed": 0,
-      "sha256": "4983b3d23b41a139303d287e3fef65a8ffac0da3ced6ce2033d311ba9639e1a8",
+      "sha256": "a43fa678a81ab18e1c93b9d8cd58146eda7054a0afe673e96b29b710cdbab4a0",
       "source_data": "output/data/observer_protocol.json",
       "source_data_sha256": "e39ac2a51d58e17e0868f6afe17ad9d9968c790c84c171a5284ff7f88df80109",
       "title": "Observer protocol scaffold and estimand boundary",
@@ -732,11 +718,10 @@
         "mode": "RGB",
         "scales": [
           "full",
-          "publication_column",
           "thumbnail"
         ],
         "thumbnail_height_px": 206,
-        "thumbnail_sha256": "3983506582bfe95161a154694706d8896d13434e7e717e376cfa28e44c14ac92",
+        "thumbnail_sha256": "a6551a47a67300e2430188e52ef0af864563183807a968135292fc8616e2a705",
         "thumbnail_width_px": 320,
         "width_px": 2050
       }

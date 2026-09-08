@@ -1,14 +1,16 @@
 {
-  "timestamp": "2026-07-17T20:41:30Z",
+  "timestamp": "2026-09-08T23:10:22Z",
   "checks": {
     "PDF validation": true,
     "Transmission bookends": true,
+    "Enabled render outputs": true,
     "Markdown validation": true,
     "Output structure": true,
     "Figure registry": true,
     "Evidence registry": true,
     "Project design overlays": true,
-    "Artifact manifest": true
+    "Artifact manifest": true,
+    "Rendered provenance inputs": false
   },
   "figure_issues": [],
   "output_statistics": {
@@ -27,163 +29,271 @@
           },
           "pdf": {
             "exists": true,
-            "files": 10,
-            "size_mb": 4.19,
+            "files": 3,
+            "size_mb": 3.76,
             "readable": true,
-            "optional": false
+            "optional": false,
+            "required": true
           },
           "web": {
             "exists": true,
-            "files": 14,
-            "size_mb": 0.5,
+            "files": 16,
+            "size_mb": 0.56,
             "readable": true,
-            "optional": false
+            "optional": false,
+            "required": true
           },
           "slides": {
             "exists": true,
-            "files": 86,
-            "size_mb": 2.72,
+            "files": 13,
+            "size_mb": 1.76,
             "readable": true,
-            "optional": false
+            "optional": false,
+            "required": true
+          },
+          "docx": {
+            "exists": false,
+            "files": 0,
+            "size_mb": 0.0,
+            "optional": true,
+            "required": false
+          },
+          "epub": {
+            "exists": false,
+            "files": 0,
+            "size_mb": 0.0,
+            "optional": true,
+            "required": false
           },
           "figures": {
             "exists": true,
-            "files": 19,
+            "files": 21,
             "size_mb": 3.92,
             "readable": true,
-            "optional": false
+            "optional": false,
+            "required": true
           },
           "data": {
             "exists": true,
-            "files": 36,
-            "size_mb": 0.38,
+            "files": 35,
+            "size_mb": 0.3,
             "readable": true,
-            "optional": false
+            "optional": false,
+            "required": true
           },
           "reports": {
             "exists": true,
-            "files": 14,
-            "size_mb": 0.59,
+            "files": 19,
+            "size_mb": 0.56,
             "readable": true,
-            "optional": false
+            "optional": false,
+            "required": true
           },
           "simulations": {
-            "exists": true,
+            "exists": false,
             "files": 0,
             "size_mb": 0.0,
-            "readable": true,
-            "optional": true
+            "optional": true,
+            "required": false
           },
           "llm": {
-            "exists": true,
+            "exists": false,
             "files": 0,
             "size_mb": 0.0,
-            "readable": true,
-            "optional": true
+            "optional": true,
+            "required": false
           },
           "logs": {
+            "exists": false,
+            "files": 0,
+            "size_mb": 0.0,
+            "optional": true,
+            "required": false
+          },
+          "manuscript": {
             "exists": true,
-            "files": 1,
+            "files": 15,
+            "size_mb": 0.15,
+            "readable": true,
+            "optional": false,
+            "required": true
+          },
+          "root": {
+            "exists": true,
+            "files": 2,
             "size_mb": 0.0,
             "readable": true,
-            "optional": true
+            "optional": false,
+            "required": true
           }
-        }
+        },
+        "inventory_mode": "stable-local-output-v1"
       },
       "directories": {
         "pdf": {
           "exists": true,
-          "file_count": 10,
-          "size_mb": "4.19",
-          "largest_file": "DuckRabbit_combined.pdf"
+          "file_count": 3,
+          "size_mb": "3.76",
+          "largest_file": "DuckRabbit_combined.pdf",
+          "largest_file_path": "pdf/DuckRabbit_combined.pdf"
         },
         "web": {
           "exists": true,
-          "file_count": 14,
-          "size_mb": "0.50",
-          "largest_file": "index.html"
+          "file_count": 16,
+          "size_mb": "0.56",
+          "largest_file": "index.html",
+          "largest_file_path": "web/index.html"
         },
         "slides": {
           "exists": true,
-          "file_count": 86,
-          "size_mb": "2.72",
-          "largest_file": "03_results_slides.pdf"
+          "file_count": 13,
+          "size_mb": "1.76",
+          "largest_file": "03_results_slides.pdf",
+          "largest_file_path": "slides/03_results_slides.pdf"
+        },
+        "docx": {
+          "exists": false,
+          "file_count": 0,
+          "size_mb": "0.00"
+        },
+        "epub": {
+          "exists": false,
+          "file_count": 0,
+          "size_mb": "0.00"
         },
         "figures": {
           "exists": true,
-          "file_count": 19,
+          "file_count": 21,
           "size_mb": "3.92",
-          "largest_file": "cover_visualization.png"
+          "largest_file": "cover_visualization.png",
+          "largest_file_path": "figures/cover_visualization.png"
         },
         "data": {
           "exists": true,
-          "file_count": 36,
-          "size_mb": "0.38",
-          "largest_file": "manuscript_variables.json"
+          "file_count": 35,
+          "size_mb": "0.30",
+          "largest_file": "evidence_source_audit_table.json",
+          "largest_file_path": "data/evidence_source_audit_table.json"
         },
         "reports": {
           "exists": true,
-          "file_count": 14,
-          "size_mb": "0.59",
-          "largest_file": "scholarship_audit.json"
+          "file_count": 19,
+          "size_mb": "0.56",
+          "largest_file": "scholarship_audit.json",
+          "largest_file_path": "reports/scholarship_audit.json"
         },
         "simulations": {
-          "exists": true,
+          "exists": false,
           "file_count": 0,
-          "size_mb": "0.00",
-          "largest_file": null
+          "size_mb": "0.00"
         },
         "llm": {
-          "exists": true,
+          "exists": false,
           "file_count": 0,
-          "size_mb": "0.00",
-          "largest_file": null
+          "size_mb": "0.00"
         },
         "logs": {
+          "exists": false,
+          "file_count": 0,
+          "size_mb": "0.00"
+        },
+        "manuscript": {
           "exists": true,
-          "file_count": 1,
+          "file_count": 15,
+          "size_mb": "0.15",
+          "largest_file": "07_publication_audit.md",
+          "largest_file_path": "manuscript/07_publication_audit.md"
+        },
+        "root": {
+          "exists": true,
+          "file_count": 2,
           "size_mb": "0.00",
-          "largest_file": "pipeline.log"
+          "largest_file": "AGENTS.md",
+          "largest_file_path": "AGENTS.md"
         }
       },
       "file_counts": {
-        "pdf": 10,
-        "web": 14,
-        "slides": 86,
-        "figures": 19,
-        "data": 36,
-        "reports": 14,
-        "simulations": 0,
-        "llm": 0,
-        "logs": 1
+        "pdf": 3,
+        "web": 16,
+        "slides": 13,
+        "figures": 21,
+        "data": 35,
+        "reports": 19,
+        "manuscript": 15,
+        "root": 2
       },
-      "total_size_mb": 12.295931816101074,
+      "total_size_mb": 11.006239891052246,
       "issues_by_severity": {
         "critical": [],
         "warning": [],
         "info": []
       },
-      "recommendations": []
+      "recommendations": [],
+      "inventory_mode": "stable-local-output-v1"
+    },
+    "inventory_mode": "stable-local-output-v1",
+    "stable_inventory": {
+      "mode": "stable-local-output-v1",
+      "total_files": 124,
+      "total_size_bytes": 11540879,
+      "categories": {
+        "data": {
+          "files": 35,
+          "size_bytes": 314488
+        },
+        "figures": {
+          "files": 21,
+          "size_bytes": 4107375
+        },
+        "manuscript": {
+          "files": 15,
+          "size_bytes": 156500
+        },
+        "pdf": {
+          "files": 3,
+          "size_bytes": 3943405
+        },
+        "reports": {
+          "files": 19,
+          "size_bytes": 585089
+        },
+        "root": {
+          "files": 2,
+          "size_bytes": 1316
+        },
+        "slides": {
+          "files": 13,
+          "size_bytes": 1843952
+        },
+        "web": {
+          "files": 16,
+          "size_bytes": 588754
+        }
+      }
     },
     "pdf": {
-      "files": 10,
-      "size_mb": 4.19255256652832
+      "files": 3,
+      "size_mb": 3.7607240676879883
     },
     "figures": {
-      "files": 19,
-      "size_mb": 3.918546676635742
+      "files": 21,
+      "size_mb": 3.917098045349121
     },
     "data": {
-      "files": 36,
-      "size_mb": 0.3766040802001953
+      "files": 35,
+      "size_mb": 0.29991912841796875
+    },
+    "rendered_provenance_issue": {
+      "code": "PROJECT_LINK_INVALID",
+      "message": "project source has an intermediate symlink: /Volumes/external_drive/Git/template/projects/ongoing/Art"
     }
   },
   "summary": {
-    "total_checks": 8,
-    "passed": 8,
-    "failed": 0,
+    "total_checks": 10,
+    "passed": 9,
+    "failed": 1,
     "figure_issues_count": 0,
-    "all_passed": true
+    "all_passed": false
   },
   "recommendations": []
 }

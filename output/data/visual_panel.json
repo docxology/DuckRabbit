@@ -173,12 +173,12 @@
               "source": "canonical_artifact",
               "tolerance": null,
               "unit": "normalized_luminance",
-              "value": 0.7019608020782471
+              "value": 0.7019607871770859
             }
           ],
           "values": {
             "channels": 1,
-            "effective_dynamic_range": 0.7019608020782471,
+            "effective_dynamic_range": 0.7019607871770859,
             "height": 256,
             "max_luminance": 0.8509804010391235,
             "mean_luminance": 0.5002451539039612,
@@ -737,12 +737,12 @@
               "source": "canonical_artifact",
               "tolerance": null,
               "unit": "normalized_luminance",
-              "value": 0.501960813999176
+              "value": 0.5019607990980148
             }
           ],
           "values": {
             "channels": 1,
-            "effective_dynamic_range": 0.501960813999176,
+            "effective_dynamic_range": 0.5019607990980148,
             "height": 256,
             "max_luminance": 0.6509804129600525,
             "mean_luminance": 0.3466096520423889,

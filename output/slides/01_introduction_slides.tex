@@ -74,6 +74,16 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
+\usepackage{longtable,booktabs,array}
+\usepackage{caption}
+\captionsetup[table]{skip=6pt}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+\usepackage{caption}
+% Make caption package work with longtable
+\makeatletter
+\def\fnum@table{\tablename~\thetable}
+\makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -82,6 +92,35 @@
 % as the combined-PDF path. Adjust the manuscript's preamble.md to change the font globally.
 \usepackage{unicode-math}
 \setmathfont{latinmodern-math.otf}
+
+% Manuscript macro/package fallbacks (newcommand -> providecommand).
+% Core mathematics
+\usepackage{amsmath}
+\usepackage{amssymb}
+% Document layout
+% Tables
+\usepackage{booktabs}
+% Algorithm typesetting
+% Code listings
+\usepackage{listings}
+% Typography and formatting
+% Cross-references and citations
+% ── Unicode-capable mono font for code listings ──────────────────────
+% JuliaMono (TeX Live 2026) covers the full math/Greek glyph set used in
+% scientific code blocks; the default lmmono lacks \alpha/\mu/\partial/\nabla.
+%
+% The hardcoded TeX Live 2026 path below is portable to most macOS / Linux
+% TeX Live installs that placed JuliaMono under the default texmf-dist path.
+% If your TeX Live version differs (e.g., 2025, 2027) or your distribution
+% installs fonts elsewhere, comment out the explicit Path = line — fontspec
+% will then search the system font path. If JuliaMono is not installed at
+% all, comment out the whole block; xelatex falls back to lmmono with
+% reduced Unicode coverage but the document still compiles.
+% Math font for unicode-math: Latin Modern Math (TeX Live) has full BMP
+% coverage including U+2223 (\mid), U+226A/226B (\ll/\gg), and the Greek/
+% blackboard letters used in equations. Without an explicit \setmathfont,
+% unicode-math falls back to lmroman text font which lacks several glyphs
+% and emits "Missing character" warnings on every \mid in math mode.
 
 % Slide layout defaults for warning-clean scientific decks.
 \usepackage{etoolbox}
@@ -96,6 +135,33 @@
 \setlength{\tabcolsep}{2pt}
 \AtBeginEnvironment{longtable}{\tiny\renewcommand{\arraystretch}{0.86}\setlength{\tabcolsep}{1pt}}
 \AtBeginEnvironment{tabular}{\tiny\renewcommand{\arraystretch}{0.86}\setlength{\tabcolsep}{1pt}}
+\AtBeginEnvironment{equation}{\tiny}
+\AtBeginEnvironment{equation*}{\tiny}
+\AtBeginEnvironment{align}{\tiny}
+\AtBeginEnvironment{align*}{\tiny}
+\AtBeginEnvironment{itemize}{\footnotesize}
+\AtBeginEnvironment{enumerate}{\footnotesize}
+\AtBeginEnvironment{description}{\footnotesize}
+\setbeamerfont{caption}{size=\tiny}
+\setbeamerfont{caption name}{size=\tiny}
+\setbeamerfont{normal text}{size=\small}
+\setbeamerfont{frametitle}{size=\small}
+\setbeamerfont{section title}{size=\footnotesize}
+\setbeamerfont{subsection title}{size=\footnotesize}
+\setbeamertemplate{section page}{%
+  \centering
+  \begin{beamercolorbox}[sep=12pt,center,wd=\paperwidth]{section title}
+    \parbox{0.86\paperwidth}{\centering\usebeamerfont{section title}\insertsection\par}
+  \end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{%
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,wd=\paperwidth]{subsection title}
+    \parbox{0.86\paperwidth}{\centering\usebeamerfont{subsection title}\insertsubsection\par}
+  \end{beamercolorbox}
+}
+\setlength{\abovecaptionskip}{2pt}
+\setlength{\belowcaptionskip}{0pt}
 
 % Natbib and cross-reference fallbacks — slides don't load natbib
 % or cleveref, but combined-PDF manuscript prose may emit these
@@ -110,9 +176,15 @@
 \providecommand{\citeyear}[1]{#1}
 \providecommand{\cref}[1]{\texttt{\detokenize{#1}}}
 \providecommand{\Cref}[1]{\texttt{\detokenize{#1}}}
+\providecommand{\crefrange}[2]{\texttt{\detokenize{#1}}--\texttt{\detokenize{#2}}}
+\providecommand{\Crefrange}[2]{\texttt{\detokenize{#1}}--\texttt{\detokenize{#2}}}
+\providecommand{\paragraph}[1]{\textbf{#1}\ }
 
 \newtheorem{proposition}{Proposition}
 \newtheorem{hypothesis}{Hypothesis}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{axiom}{Axiom}
+\newtheorem{property}{Property}
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
@@ -140,13 +212,16 @@ manipulation must be auditable, while observer-level effects require a
 task, calibrated presentation conditions, randomization, and data.
 
 Visual illusion classifications are useful maps rather than exhaustive
-or universally agreed ontologies \breakseq{[@gregory1997visual]}. Auditory and
+or universally agreed ontologies (Gregory 1997). Auditory and
 audiovisual families add spectral structure, channel separation,
 temporal coincidence, and spatial alignment. The Sound-Induced Flash
 literature illustrates the boundary particularly clearly: the physical
 contrast is a flash paired with different beep counts, while the
-perceptual claim requires a listener, timing, and a response task
-\breakseq{[@hirst2020sound; @shams2000sifi]}.
+perceptual claim requires a listener, timing, and a response task (Hirst
+et al. 2020; Shams et al. 2000).
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Introduction}
 
 DuckRabbit therefore treats an illusion as a typed stimulus-construction
 problem. Each catalog entry declares modality, mechanism, perceptual
@@ -158,19 +233,25 @@ not a replacement for domain-specific theory.
 The release also treats the package as research software rather than as
 an unannotated collection of media files. Reproducible computational
 research depends on preserving the code, inputs, environment
-assumptions, and execution path needed to recreate a result
-\breakseq{[@sandve2013simple; @wilson2014bestpractices]}. The FAIR literature
-extends that responsibility to algorithms, tools, and workflows, while
+assumptions, and execution path needed to recreate a result (Sandve et
+al. 2013; Wilson et al. 2014). The FAIR literature extends that
+responsibility to algorithms, tools, and workflows, while
 software-citation guidance emphasizes identifying the exact software
-object and version used \breakseq{[@wilkinson2016fair;
-@lamprecht2020fairsoftware; @smith2016software]}. DuckRabbit applies
-these principles narrowly: it makes the construction pipeline and its
-generated artifacts citable and inspectable, but it does not treat
-metadata quality as evidence of a perceptual effect.
+object and version used ({Wilkinson et al.} 2016; Lamprecht et al. 2020;
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Introduction}
+Smith et al. 2016). DuckRabbit applies these principles narrowly: it
+makes the construction pipeline and its generated artifacts citable and
+inspectable, but it does not treat metadata quality as evidence of a
+perceptual effect.
 
 The package is organized around three falsifiable engineering
 hypotheses:
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Introduction}
 \begin{enumerate}
 \tightlist
 \item
@@ -185,33 +266,40 @@ hypotheses:
   hypothesis until data exist.
 \end{enumerate}
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Introduction}
 This boundary has a nineteenth-century scientific lineage. Fechner's
 \emph{Elemente der Psychophysik} formalized the problem of relating
 controlled stimulus differences to measured sensation, while
 Wheatstone's binocular-vision experiments made the distinction between
 the physical images delivered to two eyes and the resulting depth
-interpretation experimentally explicit \breakseq{[@fechner1860psychophysics;
-@wheatstone1838binocular]}. Helmholtz's physiological optics then
-integrated measurement of the eye, visual geometry, and theories of
-perceptual inference \breakseq{[@helmholtz1867optics]}. DuckRabbit does not
-reproduce those historical experiments; it inherits their methodological
-lesson that stimulus conditions and observer inferences must be
-represented as distinct objects.
+interpretation experimentally explicit (Fechner 1860; Wheatstone 1838).
+Helmholtz's physiological optics then integrated measurement of the eye,
+visual geometry, and theories of perceptual inference (Helmholtz 1867).
+DuckRabbit does not reproduce those historical experiments; it inherits
+their methodological lesson that stimulus conditions and observer
+inferences must be represented as distinct objects.
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Introduction}
 That lineage has deeper and less geographically narrow roots. Ptolemy's
 ancient \emph{Optics}, Ibn al-Haytham's medieval Arabic optics, and the
 Mohist Canon's early Chinese discussions of optics and mechanics show
 that questions about image formation, geometry, knowledge, and evidence
-were developed across multiple intellectual traditions
-\breakseq{[@ptolemy1996optics; @alhazen1989optics; @mozi2023canons;
-@dai2015chinesescience]}. Early-modern discussions sharpened the
-distinction between a physical presentation and an inferred percept:
-Kircher documented optical display, Berkeley analyzed learned spatial
-inference, and the Molyneux--Cheselden record made cross-sensory
-transfer and observer testimony explicit problems \breakseq{[@kircher1646light;
-@berkeley1709vision; @molyneux2020problem; @cheselden1728sight]}.
-DuckRabbit cites these sources as historical and methodological
+were developed across multiple intellectual traditions (Ptolemy 1996;
+{al-Haytham} 1989; Schemmel and Boltz 2022; Dai 2015). Early-modern
+discussions sharpened the distinction between a physical presentation
+and an inferred percept: Kircher documented optical display, Berkeley
+analyzed learned spatial inference, and the Molyneux--Cheselden record
+made cross-sensory transfer and observer testimony explicit problems
+(Kircher 1646; Berkeley 1709; Degenaar and Lokhorst 2020; Cheselden
+1728). DuckRabbit cites these sources as historical and methodological
 precedents, not as evidence that its generated files reproduce ancient,
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Introduction}
 early-modern, or clinical observations.
 
 The present catalog contains 18 entries, of which 17 are implemented, 0

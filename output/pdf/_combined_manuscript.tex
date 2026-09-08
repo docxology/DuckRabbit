@@ -76,6 +76,8 @@
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs,array}
+\usepackage{caption}
+\captionsetup[table]{skip=6pt}
 \newcounter{none} % for unnumbered tables
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -184,7 +186,7 @@
 
 % Document layout
 \usepackage{geometry}
-\geometry{margin=0.25in}
+\geometry{margin=0.6in}
 \usepackage{float}
 \usepackage{graphicx}
 
@@ -193,7 +195,7 @@
 \usepackage{longtable}
 \usepackage{array}
 
-% Algorithm typesetting (for pseudocode in §2 Methodology)
+% Algorithm typesetting
 \usepackage[ruled,vlined,linesnumbered]{algorithm2e}
 
 % Code listings
@@ -208,7 +210,9 @@
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
-    allcolors=red
+    linkcolor=[rgb]{0.10,0.25,0.55},
+    citecolor=[rgb]{0.10,0.25,0.55},
+    urlcolor=[rgb]{0.10,0.35,0.65}
 }
 \usepackage[capitalise,noabbrev]{cleveref}
 \usepackage{natbib}
@@ -250,11 +254,15 @@
 \vspace{0.4em}
 {\Large\sffamily Deterministic visual, auditory, temporal, and audio-visual stimulus construction\par}
 \vspace{0.75em}
+\begingroup
+\setlength{\parskip}{0pt}
+\linespread{0.92}\selectfont
 {\large\sffamily\bfseries Daniel Ari Friedman\par}
 {\small\sffamily Active Inference Institute\par}
 {\small\sffamily\href{https://orcid.org/0000-0001-6232-9096}{ORCID: 0000-0001-6232-9096}\par}
 \vspace{0.08em}
 {\small\sffamily DOI: \href{https://doi.org/10.5281/zenodo.21419693}{10.5281/zenodo.21419693}\par}
+\endgroup
 \vspace{0.35em}
 \makeatletter
 {\@date\par}
@@ -269,14 +277,11 @@
 
 \section{Abstract}\label{sec:abstract}
 
-DuckRabbit is typed, deterministic research software by Daniel Ari
-Friedman (Active Inference Institute) for constructing reproducible
-visual, auditory, temporal, and audiovisual stimulus families. The
-intended public release will be available at the following repository:
-
-\breaktt{https://github.com/docxology/DuckRabbit}
-
-DuckRabbit is released under the MIT License.
+DuckRabbit is typed, deterministic research software for constructing
+reproducible visual, auditory, temporal, and audiovisual stimulus
+families. It is published and citable at
+\href{https://github.com/docxology/DuckRabbit}{the DuckRabbit public
+GitHub repository} and released under the MIT License.
 
 Its basic unit is an immutable request containing an illusion
 identifier, validated parameters, a seed, and an encoding specification.
@@ -628,7 +633,7 @@ competing accounts. Boundary: Catalog coverage is bounded to this
 registered package and does not enumerate all known illusions.
 
 The complete catalog matrix fig.~\ref{fig:catalog_matrix} is tabulated
-in the standalone Appendix A sec.~\ref{sec:appendix_catalog},
+in the standalone Appendix A sec.~\ref{sec:appendix_catalog} and in
 tbl.~\ref{tbl:catalog}. The corresponding machine-readable evidence
 matrix records the source role, exact supported claim, engineering
 departure, and limitation for every entry. Keeping the table in an
@@ -1251,10 +1256,13 @@ claim could be made.
 Setup}\label{sec:experimental_setup}
 
 Core generation uses Python, NumPy, Pillow, and the standard library.
-The default seed is 0 and generation is offline. PNG, GIF, WAV, and NPZ
-are available without ffmpeg; MP4 and muxed audiovisual output require
-both ffmpeg and ffprobe. Optional capabilities fail explicitly rather
-than silently changing the requested artifact.
+The default seed is 0 and generation is offline. The generators are
+analytic in their typed parameters: the seed is recorded in manifests
+and study plans but does not yet alter artifact bytes; seed-driven
+stimulus randomization awaits a stochastic generator. PNG, GIF, WAV, and
+NPZ are available without ffmpeg; MP4 and muxed audiovisual output
+require both ffmpeg and ffprobe. Optional capabilities fail explicitly
+rather than silently changing the requested artifact.
 
 The deterministic validation suite executes real NumPy synthesis and
 real temporary-file media round trips. It checks finite normalized
@@ -1321,7 +1329,11 @@ The reproducibility contract is:
   and encoded hash;
 \item
   retain the v2 manifest and source-data sidecars with the generated
-  figure or table.
+  figure or table. Note that in this release the generators are analytic
+  in their typed parameters: the request seed \emph{s} is recorded in
+  manifests and study plans and excluded from the canonical digest, but
+  it does not yet alter artifact bytes; seed-driven stimulus
+  randomization awaits a stochastic generator.
 \end{enumerate}
 
 The contract is deliberately stronger than ``the file can be
@@ -1338,10 +1350,10 @@ release gates rather than by implying that a generated media file is a
 complete scientific replication.
 
 The package reports implemented, planned, input\_required as its catalog
-status vocabulary and currently covers audio\_visual, auditory, visual.
+status vocabulary and currently covers audio-visual, auditory, visual.
 The evidence layer contains 18 entry records backed by 36 source
-records. The publication workflow produces 15 figures and 10 tables from
-the live registry.
+records, covering 18/18 catalog entries. The publication workflow
+produces 15 figures and 10 tables from the live registry.
 
 The public software record is
 \href{https://github.com/docxology/DuckRabbit}{the DuckRabbit public
@@ -1357,14 +1369,16 @@ files are delivery artifacts with format-specific tolerances. The
 observer protocol is a separate evidence layer: a manifest can prove
 what was presented without proving what an observer experienced.
 
-Synthetic psychophysics is a third, deliberately bounded object. The
-model identity, version, feature schema, weights, temperature, seed,
-calibration statement, canonical reference/comparison digests, and
-\breaktt{human\_data=false} flag are retained in
-\breaktt{output/data/synthetic\_psychophysics.json}. Re-running this
-diagnostic checks deterministic model orchestration and stimulus-feature
-sensitivity; it does not estimate a human observer or replace empirical
-psychophysics.
+Synthetic psychophysics is a third, deliberately bounded object: the
+model is a hand-specified deterministic feature observer; no training
+data; human\_data=false, registered as
+\breaktt{duckrabbit.synthetic.feature\_observer}. The model version,
+feature schema, weights, temperature, seed, calibration statement,
+canonical reference/comparison digests, and \breaktt{human\_data=false}
+flag are retained in \breaktt{output/data/synthetic\_psychophysics.json}.
+Re-running this diagnostic checks deterministic model orchestration and
+stimulus-feature sensitivity; it does not estimate a human observer or
+replace empirical psychophysics.
 
 The v2 verifier is a relational check rather than a field-presence
 check. It rejects summaries whose dimensions, dtype, byte count, rates,
@@ -1382,7 +1396,7 @@ The minimal regeneration commands are:
 \begin{Highlighting}[]
 \ExtensionTok{uv}\NormalTok{ run pytest }\AttributeTok{{-}q} \AttributeTok{{-}{-}cov}\OperatorTok{=}\NormalTok{src/duckrabbit }\AttributeTok{{-}{-}cov{-}fail{-}under}\OperatorTok{=}\NormalTok{90}
 \ExtensionTok{uv}\NormalTok{ run python scripts/generate\_publication\_outputs.py}
-\ExtensionTok{uv}\NormalTok{ run python scripts/z\_generate\_manuscript\_variables.py}
+\ExtensionTok{uv}\NormalTok{ run python scripts/generate\_manuscript\_variables.py}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1753,13 +1767,12 @@ manifests, source-data sidecars, and resolver-linked bibliography
 entries. These improve discoverability and attribution; they do not
 increase the evidential level of any perceptual claim.
 
-The intended public software identity is explicit: DuckRabbit will be
-released at the
-\href{https://github.com/docxology/DuckRabbit}{DuckRabbit public GitHub
-repository} under the authorship of Daniel Ari Friedman, Active
-Inference Institute. The repository URL identifies the future citable
-software object; it is not a claim that the private sidecar has already
-been publicly mirrored.
+The public software identity is explicit: DuckRabbit is published and
+citable at the \href{https://github.com/docxology/DuckRabbit}{DuckRabbit
+public GitHub repository} under the authorship of Daniel Ari Friedman,
+Active Inference Institute. The generated bundle in this repository
+remains the authoritative release candidate until the external template
+handoff is completed.
 
 \subsection{Formal traceability and objective
 metrics}\label{formal-traceability-and-objective-metrics}
@@ -2836,12 +2849,11 @@ of the research record
 \citep{smith2016software, wilkinson2016fair, lamprecht2020fairsoftware}.
 
 The release is authored by Daniel Ari Friedman of the Active Inference
-Institute, and its intended public home is
+Institute and is published and citable at
 \href{https://github.com/docxology/DuckRabbit}{the DuckRabbit public
-GitHub repository}. That repository statement is part of the software's
-citation identity; until the external handoff occurs, the private
-sidecar and its generated bundle are the authoritative release
-candidate.
+GitHub repository}. The generated bundle in this repository remains the
+authoritative release candidate until the external template handoff is
+completed.
 
 \subsection{Conclusion}\label{sec:conclusion}
 

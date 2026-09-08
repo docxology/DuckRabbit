@@ -74,6 +74,16 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
+\usepackage{longtable,booktabs,array}
+\usepackage{caption}
+\captionsetup[table]{skip=6pt}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+\usepackage{caption}
+% Make caption package work with longtable
+\makeatletter
+\def\fnum@table{\tablename~\thetable}
+\makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -82,6 +92,35 @@
 % as the combined-PDF path. Adjust the manuscript's preamble.md to change the font globally.
 \usepackage{unicode-math}
 \setmathfont{latinmodern-math.otf}
+
+% Manuscript macro/package fallbacks (newcommand -> providecommand).
+% Core mathematics
+\usepackage{amsmath}
+\usepackage{amssymb}
+% Document layout
+% Tables
+\usepackage{booktabs}
+% Algorithm typesetting
+% Code listings
+\usepackage{listings}
+% Typography and formatting
+% Cross-references and citations
+% ── Unicode-capable mono font for code listings ──────────────────────
+% JuliaMono (TeX Live 2026) covers the full math/Greek glyph set used in
+% scientific code blocks; the default lmmono lacks \alpha/\mu/\partial/\nabla.
+%
+% The hardcoded TeX Live 2026 path below is portable to most macOS / Linux
+% TeX Live installs that placed JuliaMono under the default texmf-dist path.
+% If your TeX Live version differs (e.g., 2025, 2027) or your distribution
+% installs fonts elsewhere, comment out the explicit Path = line — fontspec
+% will then search the system font path. If JuliaMono is not installed at
+% all, comment out the whole block; xelatex falls back to lmmono with
+% reduced Unicode coverage but the document still compiles.
+% Math font for unicode-math: Latin Modern Math (TeX Live) has full BMP
+% coverage including U+2223 (\mid), U+226A/226B (\ll/\gg), and the Greek/
+% blackboard letters used in equations. Without an explicit \setmathfont,
+% unicode-math falls back to lmroman text font which lacks several glyphs
+% and emits "Missing character" warnings on every \mid in math mode.
 
 % Slide layout defaults for warning-clean scientific decks.
 \usepackage{etoolbox}
@@ -96,6 +135,33 @@
 \setlength{\tabcolsep}{2pt}
 \AtBeginEnvironment{longtable}{\tiny\renewcommand{\arraystretch}{0.86}\setlength{\tabcolsep}{1pt}}
 \AtBeginEnvironment{tabular}{\tiny\renewcommand{\arraystretch}{0.86}\setlength{\tabcolsep}{1pt}}
+\AtBeginEnvironment{equation}{\tiny}
+\AtBeginEnvironment{equation*}{\tiny}
+\AtBeginEnvironment{align}{\tiny}
+\AtBeginEnvironment{align*}{\tiny}
+\AtBeginEnvironment{itemize}{\footnotesize}
+\AtBeginEnvironment{enumerate}{\footnotesize}
+\AtBeginEnvironment{description}{\footnotesize}
+\setbeamerfont{caption}{size=\tiny}
+\setbeamerfont{caption name}{size=\tiny}
+\setbeamerfont{normal text}{size=\small}
+\setbeamerfont{frametitle}{size=\small}
+\setbeamerfont{section title}{size=\footnotesize}
+\setbeamerfont{subsection title}{size=\footnotesize}
+\setbeamertemplate{section page}{%
+  \centering
+  \begin{beamercolorbox}[sep=12pt,center,wd=\paperwidth]{section title}
+    \parbox{0.86\paperwidth}{\centering\usebeamerfont{section title}\insertsection\par}
+  \end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{%
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,wd=\paperwidth]{subsection title}
+    \parbox{0.86\paperwidth}{\centering\usebeamerfont{subsection title}\insertsubsection\par}
+  \end{beamercolorbox}
+}
+\setlength{\abovecaptionskip}{2pt}
+\setlength{\belowcaptionskip}{0pt}
 
 % Natbib and cross-reference fallbacks — slides don't load natbib
 % or cleveref, but combined-PDF manuscript prose may emit these
@@ -110,9 +176,15 @@
 \providecommand{\citeyear}[1]{#1}
 \providecommand{\cref}[1]{\texttt{\detokenize{#1}}}
 \providecommand{\Cref}[1]{\texttt{\detokenize{#1}}}
+\providecommand{\crefrange}[2]{\texttt{\detokenize{#1}}--\texttt{\detokenize{#2}}}
+\providecommand{\Crefrange}[2]{\texttt{\detokenize{#1}}--\texttt{\detokenize{#2}}}
+\providecommand{\paragraph}[1]{\textbf{#1}\ }
 
 \newtheorem{proposition}{Proposition}
 \newtheorem{hypothesis}{Hypothesis}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{axiom}{Axiom}
+\newtheorem{property}{Property}
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
@@ -145,6 +217,9 @@ evidence boundary. Appendix A gives the complete current matrix; the
 absence of a family from that matrix is not a claim that the family is
 unimportant or unsupported in the wider literature.
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Scope and epistemic boundary}
 The central distinction is between a construction and an observation. A
 DuckRabbit generator can establish the dimensions, pixel values, sample
 values, frequency components, frame clock, declared synchronization
@@ -156,6 +231,9 @@ literature citation establishes a source-supported statement about a
 stimulus family or result under that source's conditions; it does not
 certify pixel- or task-identical replication by a DuckRabbit artifact.
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Scope and epistemic boundary}
 The historical foundation is intentionally worldwide and layered. The
 package does not present a single invention narrative: it places ancient
 Greek, medieval Arabic, classical Chinese, and early-modern European
@@ -171,67 +249,80 @@ traditions of any region.
 The modern label ``visual illusion'' sits on a longer experimental
 history than the package's contemporary review sources alone suggest.
 Oppel's mid-century catalogue of geometrical-optical illusions is now
-accessible with translation and commentary \breakseq{[@wade2017oppel]}, and the
+accessible with translation and commentary (Wade et al. 2017), and the
 primary nineteenth-century records include Zöllner's account of
 crossing-line distortions and Müller-Lyer's report of the arrow-wing
-configuration \breakseq{[@zoellner1860pseudoscopy; @mullerlyer1889optical]}.
-These sources are treated as historical anchors, not as evidence that a
-present-day raster is identical to an original plate or that its
-observer effect is invariant across conditions.
+configuration (Zöllner 1860; Müller-Lyer 1889). These sources are
+treated as historical anchors, not as evidence that a present-day raster
+is identical to an original plate or that its observer effect is
+invariant across conditions.
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Visual families}
 Gregory's classification is useful as a historical and conceptual
 orientation, but it is not a universally agreed ontology. DuckRabbit
 consequently stores visual modality, mechanism, perceptual signature,
 stimulus requirements, and evidence status as separate facets rather
-than treating a single label as an explanation \breakseq{[@gregory1997visual]}.
-The visual atlas covers the implemented families currently registered in
-the package: ambiguous figure, contrast, apparent motion, Müller-Lyer,
+than treating a single label as an explanation (Gregory 1997). The
+visual atlas covers the implemented families currently registered in the
+package: ambiguous figure, contrast, apparent motion, Müller-Lyer,
 Poggendorff, Ponzo, Kanizsa-type subjective contour, Ebbinghaus
 contextual size, and Zöllner/Judd orientation-related geometry.
 ``Coverage'' here means one deterministic representative per live entry,
 not a claim that one raster captures the historical stimulus space.
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Visual families}
 The duck/rabbit construction is an explicit example of why that
 distinction matters. Brugger's historical analysis discusses variation
 among figure variants and observers; DuckRabbit therefore exposes a
 blend parameter and labels its output as a construction rather than
-promising a fixed alternation rate or universal bistability
-\breakseq{[@brugger1999duckrabbit]}. The Müller-Lyer entry uses typed arrow
-geometry. Its engineering form is compatible with a family whose image
-statistics have been analyzed as potentially informative about
-image-source relationships, but the implementation does not adjudicate
-that account or infer a perceived-length report
-\breakseq{[@mullerlyer1889optical; @howe2005muller]}.
+promising a fixed alternation rate or universal bistability (Brugger
+1999). The Müller-Lyer entry uses typed arrow geometry. Its engineering
+form is compatible with a family whose image statistics have been
+analyzed as potentially informative about image-source relationships,
+but the implementation does not adjudicate that account or infer a
+perceived-length report (Müller-Lyer 1889; Howe and Purves 2005).
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Visual families}
 The Poggendorff generator makes the occluding geometry and virtual-line
 orientation explicit. This is appropriate to a literature in which
 orientation estimation and filtering accounts are theoretically
 relevant, while avoiding the stronger claim that a particular raster
 reproduces a published bias without the same observers, viewing
-conditions, and response task \breakseq{[@morgan1999poggendorff]}. The Ponzo
-construction is similarly bounded: the converging context and test bars
-are deterministic, whereas the literature contains multiple explanations
-of Ponzo-like effects rather than one settled mechanism
-\breakseq{[@fisher1967ponzo; @yildiz2022ponzo]}.
+conditions, and response task (Morgan 1999). The Ponzo construction is
+similarly bounded: the converging context and test bars are
+deterministic, whereas the literature contains multiple explanations of
+Ponzo-like effects rather than one settled mechanism (Fisher 1967;
+Yildiz et al. 2022).
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Visual families}
 Kanizsa-style subjective contours are represented as an illusory-contour
 construction with explicit inducer geometry. The historical account
 motivates the family label, while modern reviews place contour
 completion within a wider literature on grouping, figure-ground
-organization, attention, and neural mechanisms \breakseq{[@kanizsa1976contours;
-@wagemans2012gestalt]}. Neither source licenses a claim that the
-generated mask produces a uniform contour percept across observers. The
-Ebbinghaus entry controls target and surround geometry; classic work
-demonstrates that judged size depends on context, contour, and
-comparison conditions, while later work shows that motion and other
-parameters can alter the effect \breakseq{[@weintraub1979ebbinghaus;
-@mruczek2015ebbinghaus]}. DuckRabbit's static default is therefore an
-engineering baseline rather than a task-identical replication.
-Zöllner/Judd geometry is likewise retained as a source-linked line
-arrangement. Zöllner's 1860 report supplies the historical primary
-anchor, while later work supplies a modern analysis of spatial filtering
-\breakseq{[@zoellner1860pseudoscopy; @earle1995zollner]}. Its typed line
-lengths and orientations make the spatial stimulus auditable, while
+organization, attention, and neural mechanisms (Kanizsa 1976; Wagemans
+et al. 2012). Neither source licenses a claim that the generated mask
+produces a uniform contour percept across observers. The Ebbinghaus
+entry controls target and surround geometry; classic work demonstrates
+that judged size depends on context, contour, and comparison conditions,
+while later work shows that motion and other parameters can alter the
+effect (Weintraub 1979; Mruczek et al. 2015). DuckRabbit's static
+default is therefore an engineering baseline rather than a
+task-identical replication. Zöllner/Judd geometry is likewise retained
+as a source-linked line arrangement. Zöllner's 1860 report supplies the
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Visual families}
+historical primary anchor, while later work supplies a modern analysis
+of spatial filtering (Zöllner 1860; Earle and Maskell 1995). Its typed
+line lengths and orientations make the spatial stimulus auditable, while
 orientation judgments remain outside the package contract.
 
 Finally, apparent motion is included in the visual coverage panel
@@ -240,7 +331,7 @@ merely a static pattern. The package verifies frame order, frame rate,
 timestamps, and frame-to-frame differences. Wertheimer's foundational
 work and Sekuler's later analysis motivate the family distinction;
 neither source turns a generated frame strip into a universal report of
-motion \breakseq{[@wertheimer1912motion; @sekuler1996wertheimer]}.
+motion (Wertheimer 1912; Sekuler 1996).
 \end{frame}
 
 \begin{frame}[allowframebreaks]{Auditory families}
@@ -250,32 +341,35 @@ completion, pitch-class context, dichotic channel assignment, and
 continuity/masking. A Shepard-like signal is represented through
 additive partials and explicit envelopes, following a historical
 literature of tone psychology and later work on assimilation to an
-internalized musical scale \breakseq{[@stumpf1883tonpsychology;
-@shepard1984scale]}. The canonical buffer exposes sample rate,
-amplitude bounds, channel count, partial frequencies, and envelope
-parameters. It does not determine a listener's perceived pitch height or
-direction.
+internalized musical scale (Stumpf 1883; Shepard and Jordan 1984). The
+canonical buffer exposes sample rate, amplitude bounds, channel count,
+partial frequencies, and envelope parameters. It does not determine a
+listener's perceived pitch height or direction.
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Auditory families}
 The missing-fundamental construction removes a low component while
 retaining harmonically related partials. This makes the spectral
 condition reproducible; the associated pitch interpretation remains a
-listener-level question \breakseq{[@zatorre2005missing]}. Tritone and octave
-entries preserve channel structure, phase, frequency relationships, and
-timing in typed parameters. Deutsch's foundational accounts and Repp's
-analysis of spectral-envelope and context effects motivate the evidence
-records, while also making listener and context dependence central
-limitations \breakseq{[@deutsch1986tritone; @repp1997tritone;
-@deutsch1974octave]}.
+listener-level question (Zatorre 2005). Tritone and octave entries
+preserve channel structure, phase, frequency relationships, and timing
+in typed parameters. Deutsch's foundational accounts and Repp's analysis
+of spectral-envelope and context effects motivate the evidence records,
+while also making listener and context dependence central limitations
+(Deutsch 1986, 1974; Repp 1997).
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Auditory families}
 Auditory continuity is represented as an interrupted target with a typed
 masker and gap. Warren's classic perceptual-restoration result and
 Riecke and colleagues' separation of sensory and decisional
 contributions justify the family's inclusion, but a generated masker is
-not evidence that a listener will report an uninterrupted sound
-\breakseq{[@warren1970continuity; @riecke2011continuity]}. The audio atlas
-therefore reports RMS, peak, spectral centroid, bandwidth, channel
-layout, and exact sample-level provenance---not continuity, pitch, or
-stream judgments.
+not evidence that a listener will report an uninterrupted sound (Warren
+1970; Riecke et al. 2011). The audio atlas therefore reports RMS, peak,
+spectral centroid, bandwidth, channel layout, and exact sample-level
+provenance---not continuity, pitch, or stream judgments.
 \end{frame}
 
 \begin{frame}[fragile,allowframebreaks]{Audiovisual and temporal binding
@@ -285,35 +379,42 @@ Audiovisual constructions require a shared clock and an explicit sign
 convention for offsets. The sound-induced-flash entry creates a typed
 visual event and one or more audio events; the evidence record links it
 to the primary demonstration and to a review of the broader literature
-\breakseq{[@shams2000sifi; @hirst2020sound]}. The package can verify event
+(Shams et al. 2000; Hirst et al. 2020). The package can verify event
 timestamps, sample/frame clocks, and declared offsets. It does not infer
 a reported flash count, and it does not assume that the same temporal
 window applies across displays, headphones, latencies, or observers.
 
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Audiovisual and temporal binding
+families}
 The spatial ventriloquist construction treats spatial discrepancy as a
 parameter and records the channel and display requirements. Reviews
 describe the ventriloquist illusion as a tool for studying multisensory
 processing, but the review's scope is not a license to claim spatial
-capture from a file alone \breakseq{[@bruns2019ventriloquist]}. More general
-audiovisual accounts describe integration and segregation as a
-causal-inference problem shaped by temporal regularities and signal
-reliability \breakseq{[@noppeney2018causal]}. That framework clarifies why a
-declared offset is an experimental input, not an observer-level outcome.
-Temporal ventriloquism receives a separate temporal-binding signature
-rather than being collapsed into spatial capture. Vroomen and de Gelder
-manipulated sound--flash timing in a flash-lag task and reported
-timing-dependent changes under those experimental conditions;
-Hartcher-O'Brien and Alais studied temporal ventriloquism in a purely
-temporal context \breakseq{[@vroomen2004temporal;
-@hartcherobrien2011temporal]}. DuckRabbit implements the stimulus-side
-timing contract and leaves the observer-side temporal-recalibration
-estimate to a future study.
+capture from a file alone (Bruns 2019). More general audiovisual
+accounts describe integration and segregation as a causal-inference
+problem shaped by temporal regularities and signal reliability (Noppeney
+and Lee 2018). That framework clarifies why a declared offset is an
+experimental input, not an observer-level outcome. Temporal
+ventriloquism receives a separate temporal-binding signature rather than
+being collapsed into spatial capture. Vroomen and de Gelder manipulated
+sound--flash timing in a flash-lag task and reported timing-dependent
+changes under those experimental conditions; Hartcher-O'Brien and Alais
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Audiovisual and temporal binding
+families}
+studied temporal ventriloquism in a purely temporal context (Vroomen and
+Gelder 2004; Hartcher-O'Brien and Alais 2011). DuckRabbit implements the
+stimulus-side timing contract and leaves the observer-side
+temporal-recalibration estimate to a future study.
 
 McGurk remains \texttt{input\_required}. The classic speech study
 motivates the family, but a lawful and reproducible implementation
 requires checksummed speech and video fixtures, licensing or consent
 records, a precise preprocessing contract, and an ethical validation
-protocol \breakseq{[@mcgurk1976speech]}. Cataloguing the gap is more
+protocol (McGurk and MacDonald 1976). Cataloguing the gap is more
 informative than silently substituting an unrelated synthetic voice or
 claiming that a generic audiovisual mismatch is a McGurk replication.
 \end{frame}
@@ -328,6 +429,9 @@ prevents three common category errors: treating a theory as settled
 mechanism, treating a review as validation of new code, and treating a
 generator's deterministic output as a participant result.
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{From literature to engineering contract}
 The package's literature fidelity is therefore best described as
 ``family-linked, parameterized engineering construction.'' Some defaults
 are historically motivated; none should be read as a claim of pixel
@@ -352,6 +456,10 @@ attention, expectation, language, expertise, and task can all matter.
 Codec behavior and device latency can introduce additional differences
 even when decoded media facts match within the declared tolerance.
 
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Limitations and future observer
+work}
 The synthetic observer diagnostic is intentionally not a substitute for
 a real vision model or human data. It is a serialized, hand-specified
 feature function with \breaktt{training\_data=none},
@@ -365,6 +473,10 @@ and item sampling frame rather than importing a model-output probability
 as an assumed effect size. The observer harness is consequently
 study-ready scaffolding, not a result set.
 
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Limitations and future observer
+work}
 No participant data are bundled with DuckRabbit. The data-availability
 boundary is intentional: canonical artifacts, encoded fixtures where
 lawful, source-data sidecars, and deterministic synthetic diagnostics

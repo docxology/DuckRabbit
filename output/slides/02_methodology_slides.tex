@@ -74,6 +74,16 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
+\usepackage{longtable,booktabs,array}
+\usepackage{caption}
+\captionsetup[table]{skip=6pt}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+\usepackage{caption}
+% Make caption package work with longtable
+\makeatletter
+\def\fnum@table{\tablename~\thetable}
+\makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -82,6 +92,35 @@
 % as the combined-PDF path. Adjust the manuscript's preamble.md to change the font globally.
 \usepackage{unicode-math}
 \setmathfont{latinmodern-math.otf}
+
+% Manuscript macro/package fallbacks (newcommand -> providecommand).
+% Core mathematics
+\usepackage{amsmath}
+\usepackage{amssymb}
+% Document layout
+% Tables
+\usepackage{booktabs}
+% Algorithm typesetting
+% Code listings
+\usepackage{listings}
+% Typography and formatting
+% Cross-references and citations
+% ── Unicode-capable mono font for code listings ──────────────────────
+% JuliaMono (TeX Live 2026) covers the full math/Greek glyph set used in
+% scientific code blocks; the default lmmono lacks \alpha/\mu/\partial/\nabla.
+%
+% The hardcoded TeX Live 2026 path below is portable to most macOS / Linux
+% TeX Live installs that placed JuliaMono under the default texmf-dist path.
+% If your TeX Live version differs (e.g., 2025, 2027) or your distribution
+% installs fonts elsewhere, comment out the explicit Path = line — fontspec
+% will then search the system font path. If JuliaMono is not installed at
+% all, comment out the whole block; xelatex falls back to lmmono with
+% reduced Unicode coverage but the document still compiles.
+% Math font for unicode-math: Latin Modern Math (TeX Live) has full BMP
+% coverage including U+2223 (\mid), U+226A/226B (\ll/\gg), and the Greek/
+% blackboard letters used in equations. Without an explicit \setmathfont,
+% unicode-math falls back to lmroman text font which lacks several glyphs
+% and emits "Missing character" warnings on every \mid in math mode.
 
 % Slide layout defaults for warning-clean scientific decks.
 \usepackage{etoolbox}
@@ -96,6 +135,33 @@
 \setlength{\tabcolsep}{2pt}
 \AtBeginEnvironment{longtable}{\tiny\renewcommand{\arraystretch}{0.86}\setlength{\tabcolsep}{1pt}}
 \AtBeginEnvironment{tabular}{\tiny\renewcommand{\arraystretch}{0.86}\setlength{\tabcolsep}{1pt}}
+\AtBeginEnvironment{equation}{\tiny}
+\AtBeginEnvironment{equation*}{\tiny}
+\AtBeginEnvironment{align}{\tiny}
+\AtBeginEnvironment{align*}{\tiny}
+\AtBeginEnvironment{itemize}{\footnotesize}
+\AtBeginEnvironment{enumerate}{\footnotesize}
+\AtBeginEnvironment{description}{\footnotesize}
+\setbeamerfont{caption}{size=\tiny}
+\setbeamerfont{caption name}{size=\tiny}
+\setbeamerfont{normal text}{size=\small}
+\setbeamerfont{frametitle}{size=\small}
+\setbeamerfont{section title}{size=\footnotesize}
+\setbeamerfont{subsection title}{size=\footnotesize}
+\setbeamertemplate{section page}{%
+  \centering
+  \begin{beamercolorbox}[sep=12pt,center,wd=\paperwidth]{section title}
+    \parbox{0.86\paperwidth}{\centering\usebeamerfont{section title}\insertsection\par}
+  \end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{%
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,wd=\paperwidth]{subsection title}
+    \parbox{0.86\paperwidth}{\centering\usebeamerfont{subsection title}\insertsubsection\par}
+  \end{beamercolorbox}
+}
+\setlength{\abovecaptionskip}{2pt}
+\setlength{\belowcaptionskip}{0pt}
 
 % Natbib and cross-reference fallbacks — slides don't load natbib
 % or cleveref, but combined-PDF manuscript prose may emit these
@@ -110,9 +176,15 @@
 \providecommand{\citeyear}[1]{#1}
 \providecommand{\cref}[1]{\texttt{\detokenize{#1}}}
 \providecommand{\Cref}[1]{\texttt{\detokenize{#1}}}
+\providecommand{\crefrange}[2]{\texttt{\detokenize{#1}}--\texttt{\detokenize{#2}}}
+\providecommand{\Crefrange}[2]{\texttt{\detokenize{#1}}--\texttt{\detokenize{#2}}}
+\providecommand{\paragraph}[1]{\textbf{#1}\ }
 
 \newtheorem{proposition}{Proposition}
 \newtheorem{hypothesis}{Hypothesis}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{axiom}{Axiom}
+\newtheorem{property}{Property}
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
@@ -131,22 +203,24 @@
 
 \section{Methodology}\label{sec:methodology}
 
+\subsection{Request and canonical
+artifact}\label{request-and-canonical-artifact}
+
 \begin{frame}[allowframebreaks]{Request and canonical artifact}
-\protect\phantomsection\label{request-and-canonical-artifact}
 DuckRabbit starts from a typed request
 
-\[
+\begin{equation}\protect\phantomsection\label{eq:typed_request}{
 q = (i, \theta, s, e)
-\] \{\#eq:typed\_request\}
+}\end{equation}
 
 where \(i\) is an illusion identifier, \(\theta\) is an immutable
 parameter object, \(s\) is a deterministic seed, and \(e\) is an
 optional encoding request. A registered generator maps the request to a
 canonical artifact:
 
-\[
+\begin{equation}\protect\phantomsection\label{eq:canonical_generation}{
 A = G_i(\theta; s), \qquad A \in \{I, X, V, AV\}
-\] \{\#eq:canonical\_generation\}
+}\end{equation}
 
 The four artifact types are an image frame \(I\), audio buffer \(X\),
 video sequence \(V\), and audiovisual timeline \(AV\). The generator
@@ -155,8 +229,9 @@ Each artifact retains its shape, dtype, units, clock, channels, and
 timing offsets.
 \end{frame}
 
+\subsection{Typed parameter domains}\label{typed-parameter-domains}
+
 \begin{frame}[allowframebreaks]{Typed parameter domains}
-\protect\phantomsection\label{typed-parameter-domains}
 Value objects validate finite ranges at construction time. Image
 parameters include dimensions, color mode, luminance bounds, grayscale
 levels, and quantization levels. Audio parameters include frequency,
@@ -166,34 +241,39 @@ frame count, and temporal offsets. Audiovisual parameters compose audio
 and video clocks with declared synchronization and spatial
 discrepancies.
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Typed parameter domains}
 The canonical sample count and frame timestamps are explicit. For audio
 duration \(T\) and sample rate \(f_s\), \(N\) is rounded once at
 construction. For a video with frame rate \(f_r\), frame index \(k\) is
 timestamped on the presentation clock. The audio-minus-video sign
 convention is explicit:
 
-\[
+\begin{equation}\protect\phantomsection\label{eq:clock_definition}{
 N = \operatorname{round}(f_s T), \qquad t_k = k/f_r, \qquad
 \Delta_{AV} = t_{\mathrm{audio}} - t_{\mathrm{video}}
-\] \{\#eq:clock\_definition\}
+}\end{equation}
 
 The package rejects non-finite values, invalid shapes, out-of-range
 samples, aliasing frequencies, incompatible channel layouts, impossible
 frame rates, and contradictory encoding requests.
 \end{frame}
 
+\subsection{Canonical serialization and
+provenance}\label{canonical-serialization-and-provenance}
+
 \begin{frame}[allowframebreaks]{Canonical serialization and provenance}
-\protect\phantomsection\label{canonical-serialization-and-provenance}
 Canonical arrays are contiguous little-endian float32 buffers with
 explicit metadata. Serialization includes the array values, shape,
 clock, and units; metadata are part of the identity rather than an
 informal annotation:
 
-\[
+\begin{equation}\protect\phantomsection\label{eq:canonical_digest}{
 c(A) = \operatorname{Serialize}_{\mathrm{LE,float32}}
  (A, \mathrm{shape}, \mathrm{clock}, \mathrm{units}),
 \qquad h_c(A) = H(c(A))
-\] \{\#eq:canonical\_digest\}
+}\end{equation}
 
 The canonical digest is independent of PNG, WAV, GIF, MP4, and NPZ
 delivery choices. The v2 manifest records the parameter schema,
@@ -203,35 +283,41 @@ inspection, and verification status. A v1 reader remains available and
 marks upconverted records unverified until the encoded file is
 re-inspected.
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Canonical serialization and provenance}
 This separation follows a reproducibility principle from computational
 research: a result is not made reproducible merely by publishing a final
 file; the executable inputs, transformation steps, versioned software,
-and provenance must remain identifiable \breakseq{[@sandve2013simple;
-@wilson2014bestpractices]}. The manifest therefore records the
-construction identity and delivery identity separately. A downstream
-user can cite the software version and regenerate the canonical object,
-or cite a particular encoded artifact when the delivery file itself is
-the relevant research object \breakseq{[@smith2016software]}.
+and provenance must remain identifiable (Sandve et al. 2013; Wilson et
+al. 2014). The manifest therefore records the construction identity and
+delivery identity separately. A downstream user can cite the software
+version and regenerate the canonical object, or cite a particular
+encoded artifact when the delivery file itself is the relevant research
+object (Smith et al. 2016).
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Canonical serialization and provenance}
 The distinction also follows the older psychophysical problem of
 relating a controlled physical increment to a measured sensation.
 Fechner's 1860 treatise made measurement, stimulus control, and response
-comparison explicit parts of the scientific object
-\breakseq{[@fechner1860psychophysics]}. DuckRabbit adopts the stimulus-control
-and provenance aspects of that tradition, but it does not pretend that a
-canonical digest or media metric is a sensation measurement: observer
-data still require a task, presentation conditions, and a registered
-analysis.
+comparison explicit parts of the scientific object (Fechner 1860).
+DuckRabbit adopts the stimulus-control and provenance aspects of that
+tradition, but it does not pretend that a canonical digest or media
+metric is a sensation measurement: observer data still require a task,
+presentation conditions, and a registered analysis.
 \end{frame}
 
+\subsection{Encoding and verification}\label{encoding-and-verification}
+
 \begin{frame}[allowframebreaks]{Encoding and verification}
-\protect\phantomsection\label{encoding-and-verification}
 For an encoding request \(e\), the delivered file \(F\) and decoded
 inspection \(I\) are:
 
-\[
+\begin{equation}\protect\phantomsection\label{eq:encoding_verification}{
 F = E_e(A), \qquad I = D(F), \qquad V(F,M) \in \{\mathrm{pass},\mathrm{fail}\}
-\] \{\#eq:encoding\_verification\}
+}\end{equation}
 
 The manifest \(M\) binds \(A\), \(F\), and \(I\) through hashes, typed
 summaries, and format-specific tolerances. PNG, GIF, WAV, and NPZ use
@@ -241,8 +327,10 @@ errors. Writes are atomic, parent directories are created, overwrite
 behavior is explicit, and a conflicting format argument is rejected.
 \end{frame}
 
+\subsection{Objective metric
+definitions}\label{sec:objective_metric_definitions}
+
 \begin{frame}[fragile,allowframebreaks]{Objective metric definitions}
-\protect\phantomsection\label{sec:objective_metric_definitions}
 \texttt{MetricRecord} and \texttt{MetricSuite} carry a metric name,
 value, unit, computation version, source artifact, tolerance, and claim
 level. Luminance statistics, quantization levels, RMS and peak
@@ -253,16 +341,19 @@ effect. For canonical image samples \(y_1,\ldots,y_n\), audio samples
 \(x_1,\ldots,x_n\), and adjacent video frames \(Y_k,Y_{k+1}\), the
 principal metrics are:
 
-\[
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Objective metric definitions}
+\begin{equation}\protect\phantomsection\label{eq:objective_statistics}{
 \mu_Y = \frac{1}{n}\sum_{j=1}^{n} y_j, \qquad
 \sigma_Y = \sqrt{\frac{1}{n}\sum_{j=1}^{n}(y_j-\mu_Y)^2}, \qquad
 RMS_X = \sqrt{\frac{1}{n}\sum_{j=1}^{n}x_j^2}
-\] \{\#eq:objective\_statistics\}
+}\end{equation}
 
-\[
+\begin{equation}\protect\phantomsection\label{eq:temporal_spectral_metrics}{
 D_k = \frac{1}{\lvert Y\rvert}\sum_{p}\lvert Y_{k+1}(p)-Y_k(p)\rvert, \qquad
 \mathrm{centroid}(X) = \frac{\sum_f f\,P_X(f)}{\sum_f P_X(f)}
-\] \{\#eq:temporal\_spectral\_metrics\}
+}\end{equation}
 
 The level count is the cardinality of the finite-value set after
 canonical quantization; an empty or non-finite artifact is invalid
@@ -271,18 +362,23 @@ units and a deterministic computation version. Observer interpretations
 are represented separately by the typed observer protocol and claim
 levels.
 
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Objective metric definitions}
 For a future observer study, the estimand is defined by the protocol
 rather than by the generator itself:
 
-\[
+\begin{equation}\protect\phantomsection\label{eq:observer_estimand}{
 \psi = \mathbb{E}[Y \mid \mathrm{condition},\ \mathrm{protocol}]
-\] \{\#eq:observer\_estimand\}
+}\end{equation}
 
 This symbol names a planned analysis target only. DuckRabbit ships no
 human responses, fitted coefficients, or validated observer-level
 estimate.
+\end{frame}
 
-\begin{block}{Synthetic psychophysics boundary}
+\begin{frame}[fragile,allowframebreaks]{Synthetic psychophysics
+boundary}
 \protect\phantomsection\label{synthetic-psychophysics-boundary}
 DuckRabbit v0.5.0 adds a transparent synthetic-psychophysics diagnostic
 for method orchestration. It is a hand-specified feature observer, not a
@@ -291,11 +387,15 @@ Let \(\phi(A)\) be the bounded feature vector extracted from a canonical
 artifact, \(w\) the code-owned feature weights, and \(\tau>0\) the
 declared temperature:
 
-\[
+\begin{equation}\protect\phantomsection\label{eq:synthetic_observer}{
 p_M(c\mid A_r,A_c) =
 \sigma\left(\frac{w^\mathsf{T}\phi(A_c)-w^\mathsf{T}\phi(A_r)}{\tau}\right)
-\] \{\#eq:synthetic\_observer\}
+}\end{equation}
 
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Synthetic psychophysics
+boundary}
 The model identity, version, preprocessing features, weights,
 temperature, seed, calibration statement, and the
 \breaktt{human\_data=false} flag are serialized with each prediction. The
@@ -306,7 +406,6 @@ function, establish a sensitivity threshold, or support an
 observer-level claim. Human psychophysics remains future work requiring
 a preregistered task, calibrated display/playback, participant data, and
 an analysis contract.
-\end{block}
 \end{frame}
 
 \end{document}

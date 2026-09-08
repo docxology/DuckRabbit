@@ -36,7 +36,7 @@ metadata:
 analysis:
   scripts:
     - generate_publication_outputs.py
-    - z_generate_manuscript_variables.py
+    - generate_manuscript_variables.py
     - validate_scholarship.py
     - audit_scholarship.py
 

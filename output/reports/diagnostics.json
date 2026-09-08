@@ -1,5 +1,5 @@
 {
-  "project_name": "working/DuckRabbit",
+  "project_name": "ongoing/Art/DuckRabbit",
   "total_events": 2,
   "errors": 0,
   "warnings": 2,
@@ -9,7 +9,7 @@
       "category": "MARKDOWN_LINK",
       "message": "Non-informative link text for https://doi.org/10.5281/zenodo.21419693",
       "code": "MARKDOWN.LINK_BAD_TEXT",
-      "file_path": "<home>/Documents/GitHub/projects/working/DuckRabbit/manuscript/05_reproducibility.md",
+      "file_path": "/Volumes/external_drive/Git/projects/ongoing/docxology/DuckRabbit/docs/manuscript/05_reproducibility.md",
       "line_number": null,
       "fix_suggestion": "Replace '10.5281/zenodo.21419693' with descriptive text about the link destination.",
       "context": {}
@@ -19,7 +19,7 @@
       "category": "MARKDOWN_LINK",
       "message": "Non-informative link text for https://doi.org/10.5281/zenodo.21419694",
       "code": "MARKDOWN.LINK_BAD_TEXT",
-      "file_path": "<home>/Documents/GitHub/projects/working/DuckRabbit/manuscript/05_reproducibility.md",
+      "file_path": "/Volumes/external_drive/Git/projects/ongoing/docxology/DuckRabbit/docs/manuscript/05_reproducibility.md",
       "line_number": null,
       "fix_suggestion": "Replace '10.5281/zenodo.21419694' with descriptive text about the link destination.",
       "context": {}

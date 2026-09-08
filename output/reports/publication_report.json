@@ -38,19 +38,19 @@
     }
   },
   "figure_count": 15,
-  "registry": "<home>/Documents/GitHub/projects/working/DuckRabbit/output/figures/figure_registry.json",
-  "sha256": "083ebd9d715fbe790b85a8f5ab4fbff386b0ca8b8d3fd2fa57768f8f19b54aaa",
+  "registry": "/Volumes/external_drive/Git/projects/ongoing/docxology/DuckRabbit/output/figures/figure_registry.json",
+  "sha256": "42f55e111566b2960dd5555304c9df28276a602b4977dcc9cd4c08facd478c55",
   "table_count": 10,
   "table_files": [
-    "<home>/Documents/GitHub/projects/working/DuckRabbit/output/data/catalog_table.md",
-    "<home>/Documents/GitHub/projects/working/DuckRabbit/output/data/parameter_domains_table.md",
-    "<home>/Documents/GitHub/projects/working/DuckRabbit/output/data/encoding_profiles_table.md",
-    "<home>/Documents/GitHub/projects/working/DuckRabbit/output/data/metrics_table.md",
-    "<home>/Documents/GitHub/projects/working/DuckRabbit/output/data/observer_estimands_table.md",
-    "<home>/Documents/GitHub/projects/working/DuckRabbit/output/data/verification_failure_modes_table.md",
-    "<home>/Documents/GitHub/projects/working/DuckRabbit/output/data/caption_audit_table.md",
-    "<home>/Documents/GitHub/projects/working/DuckRabbit/output/data/evidence_source_audit_table.md",
-    "<home>/Documents/GitHub/projects/working/DuckRabbit/output/data/formalism_traceability_table.md",
-    "<home>/Documents/GitHub/projects/working/DuckRabbit/output/data/claim_ledger_table.md"
+    "/Volumes/external_drive/Git/projects/ongoing/docxology/DuckRabbit/output/data/catalog_table.md",
+    "/Volumes/external_drive/Git/projects/ongoing/docxology/DuckRabbit/output/data/parameter_domains_table.md",
+    "/Volumes/external_drive/Git/projects/ongoing/docxology/DuckRabbit/output/data/encoding_profiles_table.md",
+    "/Volumes/external_drive/Git/projects/ongoing/docxology/DuckRabbit/output/data/metrics_table.md",
+    "/Volumes/external_drive/Git/projects/ongoing/docxology/DuckRabbit/output/data/observer_estimands_table.md",
+    "/Volumes/external_drive/Git/projects/ongoing/docxology/DuckRabbit/output/data/verification_failure_modes_table.md",
+    "/Volumes/external_drive/Git/projects/ongoing/docxology/DuckRabbit/output/data/caption_audit_table.md",
+    "/Volumes/external_drive/Git/projects/ongoing/docxology/DuckRabbit/output/data/evidence_source_audit_table.md",
+    "/Volumes/external_drive/Git/projects/ongoing/docxology/DuckRabbit/output/data/formalism_traceability_table.md",
+    "/Volumes/external_drive/Git/projects/ongoing/docxology/DuckRabbit/output/data/claim_ledger_table.md"
   ]
 }
