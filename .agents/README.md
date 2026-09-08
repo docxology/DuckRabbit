@@ -4,4 +4,4 @@ In-repo agent skills tree for the DuckRabbit project (`skills/duckrabbit/SKILL.m
 
 Contents: skills/, AGENTS.md
 
-Part of the DataTools lane (local-only, never committed). Parent: `../README.md`.
+Tracked project documentation. Parent: `../README.md`.

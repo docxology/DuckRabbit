@@ -15,7 +15,7 @@ visible at a glance.
 {{FIGURE_CAPTION_CATALOG_MATRIX}}
 
 The complete catalog matrix [@fig:catalog_matrix] is tabulated in the standalone
-Appendix A [@sec:appendix_catalog; @tbl:catalog]. The corresponding
+Appendix A [@sec:appendix_catalog] and in [@tbl:catalog]. The corresponding
 machine-readable evidence matrix records the source role, exact supported claim,
 engineering departure, and limitation for every entry. Keeping the table in an
 appendix gives the main results narrative room to explain the contract without

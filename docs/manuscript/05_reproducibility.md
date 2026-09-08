@@ -11,6 +11,10 @@ The reproducibility contract is:
    channels, rates, frame counts, durations, timing offsets, and encoded hash;
 6. retain the v2 manifest and source-data sidecars with the generated figure or
    table.
+Note that in this release the generators are analytic in their typed
+parameters: the request seed *s* is recorded in manifests and study plans and
+excluded from the canonical digest, but it does not yet alter artifact bytes;
+seed-driven stimulus randomization awaits a stochastic generator.
 
 The contract is deliberately stronger than “the file can be downloaded.”
 Research-software guidance treats versioned code, executable procedures,
@@ -26,7 +30,8 @@ complete scientific replication.
 
 The package reports {{STATUS_LABELS}} as its catalog status vocabulary and
 currently covers {{MODALITIES}}. The evidence layer contains {{EVIDENCE_RECORDS}}
-entry records backed by {{SCHOLARLY_SOURCES}} source records. The publication
+entry records backed by {{SCHOLARLY_SOURCES}} source records, covering
+{{SCHOLARSHIP_AUDIT_COVERAGE}}. The publication
 workflow produces {{PUBLICATION_FIGURES}} figures and {{PUBLICATION_TABLES}}
 tables from the live registry.
 
@@ -44,8 +49,9 @@ delivery artifacts with format-specific tolerances. The observer protocol is a
 separate evidence layer: a manifest can prove what was presented without
 proving what an observer experienced.
 
-Synthetic psychophysics is a third, deliberately bounded object. The model
-identity, version, feature schema, weights, temperature, seed, calibration
+Synthetic psychophysics is a third, deliberately bounded object: the model is
+a {{SYNTHETIC_PSYCHOPHYSICS_STATUS}}, registered as `{{SYNTHETIC_MODEL_ID}}`.
+The model version, feature schema, weights, temperature, seed, calibration
 statement, canonical reference/comparison digests, and `human_data=false` flag
 are retained in `output/data/synthetic_psychophysics.json`. Re-running this
 diagnostic checks deterministic model orchestration and stimulus-feature
@@ -66,7 +72,7 @@ The minimal regeneration commands are:
 ```bash
 uv run pytest -q --cov=src/duckrabbit --cov-fail-under=90
 uv run python scripts/generate_publication_outputs.py
-uv run python scripts/z_generate_manuscript_variables.py
+uv run python scripts/generate_manuscript_variables.py
 ```
 
 ## Data availability and software citation

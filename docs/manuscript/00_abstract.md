@@ -1,13 +1,10 @@
 # Abstract {#sec:abstract}
 
-DuckRabbit is typed, deterministic research software by Daniel Ari Friedman
-(Active Inference Institute) for constructing reproducible visual, auditory,
-temporal, and audiovisual stimulus families. The intended public release will
-be available at the following repository:
-
-`https://github.com/docxology/DuckRabbit`
-
-DuckRabbit is released under the MIT License.
+DuckRabbit is typed, deterministic research software for constructing
+reproducible visual, auditory, temporal, and audiovisual stimulus families. It
+is published and citable at
+[the DuckRabbit public GitHub repository](https://github.com/docxology/DuckRabbit)
+and released under the MIT License.
 
 Its basic unit is an immutable request containing an illusion identifier,
 validated parameters, a seed, and an encoding specification. The request yields

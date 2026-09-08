@@ -44,11 +44,11 @@ CodeMeta, Zenodo metadata, versioned manifests, source-data sidecars, and
 resolver-linked bibliography entries. These improve discoverability and
 attribution; they do not increase the evidential level of any perceptual claim.
 
-The intended public software identity is explicit: DuckRabbit will be released
+The public software identity is explicit: DuckRabbit is published and citable
 at the [DuckRabbit public GitHub repository](https://github.com/docxology/DuckRabbit)
 under the authorship of Daniel Ari Friedman, Active Inference Institute. The
-repository URL identifies the future citable software object; it is not a claim
-that the private sidecar has already been publicly mirrored.
+generated bundle in this repository remains the authoritative release candidate
+until the external template handoff is completed.
 
 ## Formal traceability and objective metrics
 

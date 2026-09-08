@@ -15,12 +15,16 @@ the [DuckRabbit public GitHub repository](https://github.com/docxology/DuckRabbi
 The publication bundle is code-owned. Run:
 
 ```bash
-uv run python -m duckrabbit publish --output-dir output
-uv run python -m duckrabbit audit --output-root output --release
+uv run python scripts/generate_publication_outputs.py [--clean]
+uv run python scripts/generate_manuscript_variables.py
 uv run python scripts/validate_scholarship.py
+uv run python scripts/audit_scholarship.py --output output/reports/scholarship_audit.json
+uv run python -m duckrabbit synthetic-psychophysics
+uv run python -m duckrabbit audit --output-root output --release
 ```
 
-`publish` regenerates the 15 scientific figures, 10 tables, source-data
+`generate_publication_outputs.py` (also exposed as `duckrabbit publish`)
+regenerates the 15 scientific figures, 10 tables, source-data
 sidecars, figure registry, cover variants, and visual-QA report. The cover is
 an editorial charcoal illustration with recorded provenance; it is not a
 scientific stimulus or observer result. Scientific captions state controls,

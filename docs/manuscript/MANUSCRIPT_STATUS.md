@@ -2,6 +2,6 @@
 
 - **Project:** DuckRabbit
 - **Manuscript title:** DuckRabbit: Typed Multimodal Illusion Generator
-- **Location:** `docs/manuscript/` (canonical default; legacy `docs/manuscript/` fallback resolved by `infrastructure.core.project_paths.resolve_manuscript_dir`)
+- **Location:** `docs/manuscript/` (canonical; fallback `manuscript/` resolved by `src/duckrabbit/manuscript_variables.py::hydrate_manuscript_files`)
 - **Type:** Active publication-target manuscript (11 section files)
-- **Status file purpose:** Tracks publication-readiness of the manuscript content in this directory. Migrated from legacy `docs/manuscript/` location.
+- **Status file purpose:** Tracks publication-readiness of the manuscript content in this directory.
