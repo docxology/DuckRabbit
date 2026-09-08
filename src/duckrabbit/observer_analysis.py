@@ -449,14 +449,21 @@ def build_trial_sequence(design: StudyDesign, observer_keys: Sequence[str]) -> t
     trials: list[TrialSpec] = []
     for observer_index, observer_key in enumerate(observer_keys):
         local: list[TrialSpec] = []
-        for condition in design.conditions:
+        for condition_index, condition in enumerate(design.conditions):
             for repetition in range(design.trials_per_condition):
                 local.append(
                     TrialSpec(
                         trial_id=f"{design.study_id}:{observer_key}:{condition.condition_id}:{repetition}",
                         illusion_id=condition.illusion_id,
                         condition=condition.condition_id,
-                        seed=Seed(int(design.randomization_seed) + observer_index * 1009 + repetition),
+                        # Mix condition into the seed so parallel conditions never
+                        # share a stream and collisions need >1e4 trials/condition.
+                        seed=Seed(
+                            int(design.randomization_seed)
+                            + observer_index * 1_000_003
+                            + condition_index * 10_007
+                            + repetition
+                        ),
                         expected_response_labels=condition.response_labels,
                         parameter_overrides=condition.parameter_overrides,
                     )
@@ -467,7 +474,12 @@ def build_trial_sequence(design: StudyDesign, observer_keys: Sequence[str]) -> t
     return tuple(trials)
 
 
-def _wilson(count: int, total: int, z: float = 1.96) -> tuple[float, float]:
+def _wilson(count: int, total: int, alpha: float = 0.05) -> tuple[float, float]:
+    if total <= 0 or not 0 <= count <= total:
+        raise ParameterValidationError("Wilson interval requires total > 0 and 0 <= count <= total")
+    if not 0 < alpha < 1:
+        raise ParameterValidationError("Wilson interval confidence level must be between 0 and 1")
+    z = statistics.NormalDist().inv_cdf(1 - alpha / 2)
     p = count / total
     denominator = 1 + z * z / total
     center = (p + z * z / (2 * total)) / denominator
@@ -535,14 +547,12 @@ def simulate_power(
     for _ in range(repetitions):
         reference = sum(rng.random() < baseline for _ in range(sample_size)) / sample_size
         treatment = sum(rng.random() < alternative for _ in range(sample_size)) / sample_size
-        pooled = max((reference * (1 - reference) + treatment * (1 - treatment)) / (2 * sample_size), 1e-12)
+        pooled = max((reference * (1 - reference) + treatment * (1 - treatment)) / sample_size, 1e-12)
         if abs(treatment - reference) / math.sqrt(pooled) >= critical:
             detected += 1
     return PowerEstimate(effect, detected / repetitions, repetitions)
 
 
-def _synthetic_trials(design: StudyDesign, observer_keys: Sequence[str]) -> tuple[TrialSpec, ...]:
-    return build_trial_sequence(design, observer_keys)
 
 
 def simulate_continuous_responses(
@@ -564,7 +574,7 @@ def simulate_continuous_responses(
         raise ParameterValidationError("continuous means must be finite numbers")
     rng = _deterministic_rng(seed)
     result = []
-    for trial in _synthetic_trials(design, observer_keys):
+    for trial in build_trial_sequence(design, observer_keys):
         if trial.condition not in means:
             raise ParameterValidationError(f"missing synthetic mean for {trial.condition}")
         value = float(means[trial.condition]) + rng.gauss(0.0, noise)
@@ -597,7 +607,7 @@ def simulate_event_counts(
         raise ParameterValidationError("event rates must be finite and non-negative")
     rng = _deterministic_rng(seed)
     result = []
-    for trial in _synthetic_trials(design, observer_keys):
+    for trial in build_trial_sequence(design, observer_keys):
         if trial.condition not in rates:
             raise ParameterValidationError(f"missing synthetic rate for {trial.condition}")
         value = _poisson(rng, float(rates[trial.condition]))
@@ -618,7 +628,7 @@ def simulate_reaction_times(
         raise ParameterValidationError("reaction-time medians and sigma are invalid")
     rng = _deterministic_rng(seed)
     result = []
-    for trial in _synthetic_trials(design, observer_keys):
+    for trial in build_trial_sequence(design, observer_keys):
         if trial.condition not in medians:
             raise ParameterValidationError(f"missing synthetic reaction-time median for {trial.condition}")
         value = rng.lognormvariate(math.log(float(medians[trial.condition])), sigma)
