@@ -111,6 +111,8 @@ def measure_artifact(artifact: CanonicalArtifact) -> MetricSuite:
     if isinstance(artifact, ImageFrame):
         values = artifact.pixels
         luminance = _relative_luminance(values)
+        luminance_low = float(np.min(luminance))
+        luminance_high = float(np.max(luminance))
         return _suite(
             "image",
             {
@@ -120,9 +122,9 @@ def measure_artifact(artifact: CanonicalArtifact) -> MetricSuite:
                 "mean_luminance": float(np.mean(luminance)),
                 "std_luminance": float(np.std(luminance)),
                 "unique_values": int(np.unique(values).size),
-                "min_luminance": float(np.min(luminance)),
-                "max_luminance": float(np.max(luminance)),
-                "effective_dynamic_range": float(np.max(luminance) - np.min(luminance)),
+                "min_luminance": luminance_low,
+                "max_luminance": luminance_high,
+                "effective_dynamic_range": luminance_high - luminance_low,
             },
             {
                 "width": "pixels",

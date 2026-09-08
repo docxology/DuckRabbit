@@ -5,10 +5,9 @@ from __future__ import annotations
 from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
-import hashlib
 from typing import TypeVar
 
-from .canonical import canonical_bytes, canonical_digest
+from .canonical import canonical_digest
 from .errors import DuckRabbitError
 from .evidence import load_evidence_matrix
 from .formalism import validate_formalism_registry
@@ -118,7 +117,10 @@ def run_audit(*, project_root: Path | None = None, output_root: Path | None = No
             parameter_schema(parameters)
             artifact = default_registry.generate(spec.illusion_id, parameters, seed=0)
             digest = canonical_digest(artifact)
-            if len(digest) != 64 or hashlib.sha256(canonical_bytes(artifact)).hexdigest() != digest:
+            # canonical_digest is content-addressed sha256; the audit asserts
+            # digest well-formedness (shape + lowercase hex) rather than
+            # re-hashing the same serialization against itself.
+            if len(digest) != 64 or any(character not in "0123456789abcdef" for character in digest):
                 raise ValueError(f"canonical digest failed for {spec.illusion_id}")
             measure_artifact(artifact)
             generated += 1

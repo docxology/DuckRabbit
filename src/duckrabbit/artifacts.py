@@ -9,10 +9,6 @@ from collections.abc import Mapping
 from enum import Enum
 from typing import Iterator, Literal, TypedDict
 
-try:
-    from typing import NotRequired
-except ImportError:  # Python 3.10 compatibility
-    from typing_extensions import NotRequired
 
 import numpy as np
 
@@ -310,12 +306,6 @@ class AudiovisualSummary(TypedDict):
 
 ArtifactSummary = ImageSummary | AudioSummary | VideoSummary | AudiovisualSummary
 
-
-class ManifestFields(TypedDict, total=False):
-    output: NotRequired[str | None]
-    manifest: NotRequired[str | None]
-    artifact: NotRequired[ArtifactSummary]
-    encoding: NotRequired[dict[str, object] | None]
 
 
 class ArtifactKind(str, Enum):

@@ -21,7 +21,7 @@ from .artifacts import (
 )
 from .canonical import canonical_bytes, canonical_digest
 from .errors import UnsupportedFormatError
-from .io import atomic_write_text
+from .io import atomic_write_text, sha256_file
 from .generators import default_parameters, default_registry
 from .inspection import inspect_media
 from .manifest import CanonicalRecord, DecodedInspection, Manifest, RenderResult, VerificationReport, VerificationStatus
@@ -189,6 +189,7 @@ def build_manifest(illusion_id: str, parameters: object, artifact: CanonicalArti
 def build_manifest_v2(illusion_id: str, parameters: object, artifact: CanonicalArtifact, *, seed: int = 0) -> Manifest:
     """Build the fully typed v2 manifest before optional encoding."""
     entry = default_registry.get(illusion_id).taxonomy
+    canonical_payload = canonical_bytes(artifact)
     return Manifest(
         package_version=__version__,
         generator_version=f"duckrabbit/{__version__}",
@@ -205,10 +206,10 @@ def build_manifest_v2(illusion_id: str, parameters: object, artifact: CanonicalA
         canonical=CanonicalRecord(
             schema_version="duckrabbit/canonical/v1",
             algorithm="sha256",
-            digest=artifact_digest(artifact),
+            digest=hashlib.sha256(canonical_payload).hexdigest(),
             byte_order="little",
             dtype="<f4",
-            byte_count=len(canonical_bytes(artifact)),
+            byte_count=len(canonical_payload),
         ),
         verification=VerificationReport(VerificationStatus.UNVERIFIED),
         metrics=measure_artifact(artifact).to_dict(),
@@ -272,7 +273,7 @@ def generate_artifact(
             format=selected_format,
             media_type=_media_type(selected_format),
             size_bytes=output_path.stat().st_size,
-            sha256=hashlib.sha256(output_path.read_bytes()).hexdigest(),
+            sha256=sha256_file(output_path),
             backend=_backend_for_format(selected_format),
             profile=jsonable(
                 {

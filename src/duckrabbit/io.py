@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import os
 from pathlib import Path
 from tempfile import NamedTemporaryFile
@@ -26,6 +27,18 @@ def atomic_write_text(path: Path, text: str, *, encoding: str = "utf-8") -> Path
         if temporary is not None:
             temporary.unlink(missing_ok=True)
     return destination
+
+
+def sha256_file(path: Path, chunk_size: int = 1 << 20) -> str:
+    """Hash a file in chunks so large encoded media never loads fully."""
+    digest = hashlib.sha256()
+    with open(path, "rb") as handle:
+        while chunk := handle.read(chunk_size):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+__all__ = ["atomic_write_text", "sha256_file"]
 
 
 __all__ = ["atomic_write_text"]

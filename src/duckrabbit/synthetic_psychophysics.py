@@ -253,6 +253,39 @@ def _score(model: SyntheticModelSpec, features: Mapping[str, float]) -> float:
     return sum(float(model.feature_weights[name]) * _finite(features[name], name) for name in features)
 
 
+def _predict_from_features(
+    model: SyntheticModelSpec,
+    reference_features: tuple[str, ...],
+    reference_digest: str,
+    comparison: CanonicalArtifact,
+    *,
+    trial_id: str,
+    condition_id: str,
+    seed: int,
+) -> SyntheticPrediction:
+    """Score one comparison against precomputed reference state."""
+    comparison_features = extract_features(comparison)
+    if set(reference_features) != set(comparison_features):
+        raise ParameterValidationError("synthetic pair must have the same feature schema")
+    score_reference = _score(model, reference_features)
+    score_comparison = _score(model, comparison_features)
+    delta = (score_comparison - score_reference) / model.temperature
+    probability = 1.0 / (1.0 + math.exp(-max(-60.0, min(60.0, delta))))
+    return SyntheticPrediction(
+        trial_id,
+        condition_id,
+        reference_digest,
+        canonical_digest(comparison),
+        score_reference,
+        score_comparison,
+        probability,
+        "comparison" if probability >= 0.5 else "reference",
+        model.model_id,
+        tuple(reference_features),
+        seed,
+    )
+
+
 def predict_pair(
     model: SyntheticModelSpec,
     reference: CanonicalArtifact,
@@ -265,26 +298,14 @@ def predict_pair(
     """Compare two artifacts with an explicit deterministic logistic rule."""
     if not isinstance(model, SyntheticModelSpec):
         raise ParameterValidationError("predict_pair requires SyntheticModelSpec")
-    reference_features = extract_features(reference)
-    comparison_features = extract_features(comparison)
-    if set(reference_features) != set(comparison_features):
-        raise ParameterValidationError("synthetic pair must have the same feature schema")
-    score_reference = _score(model, reference_features)
-    score_comparison = _score(model, comparison_features)
-    delta = (score_comparison - score_reference) / model.temperature
-    probability = 1.0 / (1.0 + math.exp(-max(-60.0, min(60.0, delta))))
-    return SyntheticPrediction(
-        trial_id,
-        condition_id,
+    return _predict_from_features(
+        model,
+        extract_features(reference),
         canonical_digest(reference),
-        canonical_digest(comparison),
-        score_reference,
-        score_comparison,
-        probability,
-        "comparison" if probability >= 0.5 else "reference",
-        model.model_id,
-        tuple(reference_features),
-        model.seed if seed is None else seed,
+        comparison,
+        trial_id=trial_id,
+        condition_id=condition_id,
+        seed=model.seed if seed is None else seed,
     )
 
 
@@ -298,11 +319,21 @@ def sensitivity_curve(
     """Generate a deterministic model-output curve over named stimuli."""
     if not comparisons:
         raise ParameterValidationError("synthetic sensitivity curve requires comparisons")
+    reference_features = extract_features(reference)
+    reference_digest = canonical_digest(reference)
     return tuple(
         SyntheticCurvePoint(
             label,
             x_value,
-            predict_pair(model, reference, artifact, trial_id=f"{condition_id}:{index}", condition_id=condition_id),
+            _predict_from_features(
+                model,
+                reference_features,
+                reference_digest,
+                artifact,
+                trial_id=f"{condition_id}:{index}",
+                condition_id=condition_id,
+                seed=model.seed,
+            ),
         )
         for index, (label, x_value, artifact) in enumerate(comparisons)
     )
