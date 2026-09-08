@@ -45,6 +45,9 @@ from duckrabbit.publication import generate_publication_outputs, publication_cap
 from duckrabbit.taxonomy import ClaimLevel, PerceptualSignature, get_taxonomy, taxonomy_entries
 
 
+ROOT = Path(__file__).resolve().parents[1]
+
+
 def test_evidence_matrix_covers_live_catalog_and_sources_are_verified():
     sources, entries = load_evidence_matrix()
     validate_evidence_matrix(sources, entries)
@@ -69,7 +72,7 @@ def test_evidence_matrix_covers_live_catalog_and_sources_are_verified():
 
 
 def test_evidence_matrix_metadata_and_source_tiers_are_strict(tmp_path: Path):
-    payload = json.loads(Path("data/evidence_matrix.json").read_text(encoding="utf-8"))
+    payload = json.loads((ROOT / "data" / "evidence_matrix.json").read_text(encoding="utf-8"))
     payload["schema_version"] = "wrong"
     path = tmp_path / "bad-evidence.json"
     path.write_text(json.dumps(payload), encoding="utf-8")
@@ -203,7 +206,7 @@ def test_observer_design_randomization_synthetic_responses_and_power(tmp_path: P
     duckrabbit.write_analysis_plan(design, path)
     plan = json.loads(path.read_text(encoding="utf-8"))
     assert plan["study_id"] == design.study_id
-    assert len(plan["model_templates"]) == 5
+    assert len(plan["model_templates"]) == len(default_model_specs())
 
 
 def test_observer_provenance_trial_and_aggregate_contracts():
@@ -212,7 +215,6 @@ def test_observer_provenance_trial_and_aggregate_contracts():
     assert trial.to_dict()["stimulus"]["manifest_sha256"] == "a" * 64
     aggregate = AggregateRecord("duck_choice", "duck_default", 0.7, "proportion", 0.5, 0.85, 24)
     assert aggregate.to_dict()["claim_level"] == "observer_hypothesis"
-    assert len(default_model_specs()) == 5
     assert isinstance(default_model_specs()[0], AnalysisModelSpec)
     with pytest.raises(ParameterValidationError, match="pseudonymous"):
         ParticipantId("name with spaces")

@@ -13,8 +13,11 @@ from duckrabbit.evidence import EvidenceRecord, SourceRecord, evidence_for, load
 from duckrabbit.taxonomy import ClaimLevel, EvidenceStatus, ImplementationStatus
 
 
+ROOT = Path(__file__).resolve().parents[1]
+
+
 def _matrix(tmp_path: Path) -> tuple[dict[str, object], Path]:
-    payload = json.loads(Path("data/evidence_matrix.json").read_text(encoding="utf-8"))
+    payload = json.loads((ROOT / "data" / "evidence_matrix.json").read_text(encoding="utf-8"))
     path = tmp_path / "evidence.json"
     path.write_text(json.dumps(payload), encoding="utf-8")
     return payload, path
