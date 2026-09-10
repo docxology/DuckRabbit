@@ -18,6 +18,13 @@ jobs:
       - name: Sync dependencies
         run: uv sync --extra dev
 
+      # ubuntu-latest runners ship without ffmpeg/ffprobe, which gates the
+      # MP4/audiovisual tests (test_media_and_render.py, test_v03_contracts.py)
+      # and drops coverage below the 90% gate. Installing ffmpeg makes those
+      # tests run headless instead of skipping.
+      - name: Install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg
+
       - name: Lint
         run: uv run ruff check src scripts tests
 
