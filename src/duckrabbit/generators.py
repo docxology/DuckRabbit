@@ -76,9 +76,10 @@ class DuckRabbitParams:
 def generate_duck_rabbit(parameters: DuckRabbitParams, *, seed: int = 0) -> ImageFrame:
     """Generate a deterministic ambiguous duck/rabbit silhouette."""
     del seed
-    y, x = np.mgrid[0 : parameters.config.height, 0 : parameters.config.width]
-    x = x / max(parameters.config.width - 1, 1)
-    y = y / max(parameters.config.height - 1, 1)
+    # Normalized float32 coordinate grids (broadcast row/column vectors)
+    # avoid two full-size int64 mgrid allocations per request.
+    x = np.arange(parameters.config.width, dtype=np.float32)[None, :] / max(parameters.config.width - 1, 1)
+    y = np.arange(parameters.config.height, dtype=np.float32)[:, None] / max(parameters.config.height - 1, 1)
     rabbit = _rabbit_mask(x, y)
     duck = _duck_mask(x, y)
     weight = parameters.duck_weight.value
@@ -205,13 +206,18 @@ class ApparentMotionParams:
 def generate_apparent_motion(parameters: ApparentMotionParams, *, seed: int = 0) -> VideoSequence:
     """Generate a deterministic sequence with alternating bar positions."""
     del seed
-    frames: list[ImageFrame] = []
-    for index in range(parameters.config.frame_count):
-        y, x = np.mgrid[0 : parameters.config.height, 0 : parameters.config.width]
-        x = x / max(parameters.config.width - 1, 1)
-        position = 0.2 if index % 2 == 0 else 0.2 + parameters.displacement.value
-        mask = (np.abs(x - position) <= parameters.bar_width.value / 2).astype(np.float32)
-        frames.append(_image_from_mask(mask, ImageConfig(width=parameters.config.width, height=parameters.config.height)))
+    # The bar only ever occupies two positions, so both masks are computed
+    # once and reused; per-frame mgrid allocation would redo identical work.
+    x = np.arange(parameters.config.width, dtype=np.float64)[None, :] / max(parameters.config.width - 1, 1)
+    positions = (0.2, 0.2 + parameters.displacement.value)
+    masks = tuple(
+        np.broadcast_to((np.abs(x - position) <= parameters.bar_width.value / 2), (parameters.config.height, parameters.config.width)).astype(np.float32)
+        for position in positions
+    )
+    frames = [
+        _image_from_mask(masks[index % 2], ImageConfig(width=parameters.config.width, height=parameters.config.height))
+        for index in range(parameters.config.frame_count)
+    ]
     return VideoSequence(tuple(frames), parameters.config.frame_rate)
 
 

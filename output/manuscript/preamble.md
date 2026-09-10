@@ -2,7 +2,10 @@
 
 This file contains LaTeX packages and commands that are automatically injected into the document compilation process.
 
-> **Infrastructure Note**: This file is parsed by `infrastructure/rendering/latex_utils.py` and combined with the configuration output by `infrastructure/rendering/pdf_renderer.py` before final Pandoc execution to generate the physical PDF holding this text.
+> **Infrastructure Note**: This directory is hydrated by
+> `src/duckrabbit/manuscript_variables.py` into `output/manuscript/`. PDF, HTML,
+> and slide assembly belong to the sibling template checkout (see root
+> README.md, "Template integration").
 
 ```latex
 % Core mathematics
@@ -16,7 +19,7 @@ This file contains LaTeX packages and commands that are automatically injected i
 
 % Document layout
 \usepackage{geometry}
-\geometry{margin=0.25in}
+\geometry{margin=0.6in}
 \usepackage{float}
 \usepackage{graphicx}
 
@@ -25,7 +28,7 @@ This file contains LaTeX packages and commands that are automatically injected i
 \usepackage{longtable}
 \usepackage{array}
 
-% Algorithm typesetting (for pseudocode in §2 Methodology)
+% Algorithm typesetting
 \usepackage[ruled,vlined,linesnumbered]{algorithm2e}
 
 % Code listings
@@ -40,7 +43,9 @@ This file contains LaTeX packages and commands that are automatically injected i
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
-    allcolors=red
+    linkcolor=[rgb]{0.10,0.25,0.55},
+    citecolor=[rgb]{0.10,0.25,0.55},
+    urlcolor=[rgb]{0.10,0.35,0.65}
 }
 \usepackage[capitalise,noabbrev]{cleveref}
 \usepackage{natbib}

@@ -33,11 +33,16 @@ Run from the project root:
 ```bash
 uv run ruff check src scripts tests
 uv run pytest tests/ --cov=src/duckrabbit --cov-fail-under=90
+uv run python scripts/generate_publication_outputs.py --clean
+uv run python scripts/generate_manuscript_variables.py
 uv run python scripts/validate_scholarship.py
 uv run python scripts/audit_scholarship.py --output output/reports/scholarship_audit.json
-uv run python -m duckrabbit publish --output-dir output --clean
+uv run python -m duckrabbit synthetic-psychophysics
 uv run python -m duckrabbit audit --output-root output --release
 ```
+
+The `audit_scholarship.py` step is a network audit and is required at
+release time only.
 
 Then render and validate through the sibling template checkout. Review the PDF,
 HTML, and slides visually; confirm that every in-text citation reaches its

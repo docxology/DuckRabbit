@@ -10,7 +10,7 @@ Technical specification for the DuckRabbit project's scripts.
 | `generate_publication_outputs.py` | Thin Orchestrator | `duckrabbit.publication.generate_publication_outputs` | `output/figures/`, `output/data/` |
 | `validate_scholarship.py` | Thin Orchestrator | `duckrabbit.evidence` loaders and validators | JSON summary on stdout |
 | `audit_scholarship.py` | Thin Orchestrator | `duckrabbit.scholarship.run_scholarship_audit` | `output/reports/scholarship_audit.json` |
-| `z_generate_manuscript_variables.py` | Thin Orchestrator | `duckrabbit.manuscript_variables` | `output/data/manuscript_variables.json`, hydrated `output/manuscript/*` |
+| `generate_manuscript_variables.py` | Thin Orchestrator | `duckrabbit.manuscript_variables` (`generate_variables` → `save_variables`); script-level hydrator selection (sibling template engine if importable, package fallback) | `output/data/manuscript_variables.json`, hydrated `output/manuscript/*` |
 | `_project.py` | Shared bootstrap | — | `PROJECT_ROOT` constant |
 
 ## Design Contract

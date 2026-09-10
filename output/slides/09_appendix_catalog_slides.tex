@@ -75,6 +75,8 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{longtable,booktabs,array}
+\usepackage{caption}
+\captionsetup[table]{skip=6pt}
 \newcounter{none} % for unnumbered tables
 \usepackage{calc} % for calculating minipage widths
 \usepackage{caption}
@@ -91,6 +93,35 @@
 \usepackage{unicode-math}
 \setmathfont{latinmodern-math.otf}
 
+% Manuscript macro/package fallbacks (newcommand -> providecommand).
+% Core mathematics
+\usepackage{amsmath}
+\usepackage{amssymb}
+% Document layout
+% Tables
+\usepackage{booktabs}
+% Algorithm typesetting
+% Code listings
+\usepackage{listings}
+% Typography and formatting
+% Cross-references and citations
+% ── Unicode-capable mono font for code listings ──────────────────────
+% JuliaMono (TeX Live 2026) covers the full math/Greek glyph set used in
+% scientific code blocks; the default lmmono lacks \alpha/\mu/\partial/\nabla.
+%
+% The hardcoded TeX Live 2026 path below is portable to most macOS / Linux
+% TeX Live installs that placed JuliaMono under the default texmf-dist path.
+% If your TeX Live version differs (e.g., 2025, 2027) or your distribution
+% installs fonts elsewhere, comment out the explicit Path = line — fontspec
+% will then search the system font path. If JuliaMono is not installed at
+% all, comment out the whole block; xelatex falls back to lmmono with
+% reduced Unicode coverage but the document still compiles.
+% Math font for unicode-math: Latin Modern Math (TeX Live) has full BMP
+% coverage including U+2223 (\mid), U+226A/226B (\ll/\gg), and the Greek/
+% blackboard letters used in equations. Without an explicit \setmathfont,
+% unicode-math falls back to lmroman text font which lacks several glyphs
+% and emits "Missing character" warnings on every \mid in math mode.
+
 % Slide layout defaults for warning-clean scientific decks.
 \usepackage{etoolbox}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{}
@@ -104,6 +135,33 @@
 \setlength{\tabcolsep}{2pt}
 \AtBeginEnvironment{longtable}{\tiny\renewcommand{\arraystretch}{0.86}\setlength{\tabcolsep}{1pt}}
 \AtBeginEnvironment{tabular}{\tiny\renewcommand{\arraystretch}{0.86}\setlength{\tabcolsep}{1pt}}
+\AtBeginEnvironment{equation}{\tiny}
+\AtBeginEnvironment{equation*}{\tiny}
+\AtBeginEnvironment{align}{\tiny}
+\AtBeginEnvironment{align*}{\tiny}
+\AtBeginEnvironment{itemize}{\footnotesize}
+\AtBeginEnvironment{enumerate}{\footnotesize}
+\AtBeginEnvironment{description}{\footnotesize}
+\setbeamerfont{caption}{size=\tiny}
+\setbeamerfont{caption name}{size=\tiny}
+\setbeamerfont{normal text}{size=\small}
+\setbeamerfont{frametitle}{size=\small}
+\setbeamerfont{section title}{size=\footnotesize}
+\setbeamerfont{subsection title}{size=\footnotesize}
+\setbeamertemplate{section page}{%
+  \centering
+  \begin{beamercolorbox}[sep=12pt,center,wd=\paperwidth]{section title}
+    \parbox{0.86\paperwidth}{\centering\usebeamerfont{section title}\insertsection\par}
+  \end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{%
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,wd=\paperwidth]{subsection title}
+    \parbox{0.86\paperwidth}{\centering\usebeamerfont{subsection title}\insertsubsection\par}
+  \end{beamercolorbox}
+}
+\setlength{\abovecaptionskip}{2pt}
+\setlength{\belowcaptionskip}{0pt}
 
 % Natbib and cross-reference fallbacks — slides don't load natbib
 % or cleveref, but combined-PDF manuscript prose may emit these
@@ -118,9 +176,15 @@
 \providecommand{\citeyear}[1]{#1}
 \providecommand{\cref}[1]{\texttt{\detokenize{#1}}}
 \providecommand{\Cref}[1]{\texttt{\detokenize{#1}}}
+\providecommand{\crefrange}[2]{\texttt{\detokenize{#1}}--\texttt{\detokenize{#2}}}
+\providecommand{\Crefrange}[2]{\texttt{\detokenize{#1}}--\texttt{\detokenize{#2}}}
+\providecommand{\paragraph}[1]{\textbf{#1}\ }
 
 \newtheorem{proposition}{Proposition}
 \newtheorem{hypothesis}{Hypothesis}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{axiom}{Axiom}
+\newtheorem{property}{Property}
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
@@ -154,6 +218,9 @@ enumerate every illusion described in the literature.
 Each row identifies a registered illusion family and separates five
 questions that are often collapsed in informal catalogs:
 
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{How to read the matrix}
 \begin{enumerate}
 \tightlist
 \item
@@ -171,6 +238,9 @@ questions that are often collapsed in informal catalogs:
   retained in the machine-readable record?
 \end{enumerate}
 
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{How to read the matrix}
 \texttt{implemented} means that DuckRabbit has a deterministic generator
 and a validated canonical artifact contract. It does not mean that the
 generated stimulus is a pixel-identical reproduction of a historical
@@ -180,14 +250,20 @@ lacks a lawful, checksummed input fixture and/or the validation contract
 required for deterministic generation. Evidence status and
 implementation status are deliberately independent.
 
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{How to read the matrix}
 The source column is a compact citation-key view. The full source role,
 resolver or DOI status, exact supported claim, engineering departure,
 and limitation are retained in the machine-readable evidence matrix and
-in the generated evidence audit \breakseq{[@tbl:evidence\_audit]}. A source
+in the generated evidence audit tbl.~7. A source
 supports only the narrow claim recorded for it; a review or theory
 record is not evidence that a DuckRabbit rendering produces a universal
 perceptual effect.
 
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{How to read the matrix}
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}

@@ -40,17 +40,16 @@ where = ["src"]
 duckrabbit = ["py.typed"]
 
 [tool.pytest.ini_options]
-pythonpath = [".", "src"]
+pythonpath = ["src"]
 testpaths = ["tests"]
 python_files = ["test_*.py"]
 python_functions = ["test_*"]
-addopts = "-v --tb=short --strict-markers"
+addopts = "--tb=short --strict-markers"
 
 [tool.coverage.run]
 source = ["src/duckrabbit"]
 branch = true
 omit = [
-    "tests/*",
     "*/__init__.py",
     "*/__main__.py",
 ]
@@ -62,4 +61,9 @@ precision = 2
 exclude_lines = [
     "pragma: no cover",
     "if __name__ == .__main__.:",
+]
+
+[dependency-groups]
+dev = [
+    "pyyaml>=6.0.3",
 ]

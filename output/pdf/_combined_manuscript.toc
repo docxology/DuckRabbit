@@ -1,11 +1,11 @@
-\babel@toc {english}{}\relax 
+\babel@toc {english}{}\relax
 \contentsline {section}{\numberline {1}Abstract}{2}{section.1}%
 \contentsline {section}{\numberline {2}Introduction}{3}{section.2}%
 \contentsline {section}{\numberline {3}Methodology}{4}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Request and canonical artifact}{4}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Typed parameter domains}{4}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}Canonical serialization and provenance}{4}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Encoding and verification}{4}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.4}Encoding and verification}{5}{subsection.3.4}%
 \contentsline {subsection}{\numberline {3.5}Objective metric definitions}{5}{subsection.3.5}%
 \contentsline {subsubsection}{\numberline {3.5.1}Synthetic psychophysics boundary}{5}{subsubsection.3.5.1}%
 \contentsline {section}{\numberline {4}Results}{6}{section.4}%
@@ -14,10 +14,10 @@
 \contentsline {subsection}{\numberline {4.3}Pipeline and provenance}{7}{subsection.4.3}%
 \contentsline {subsection}{\numberline {4.4}Visual constructions and parameter sweeps}{8}{subsection.4.4}%
 \contentsline {subsection}{\numberline {4.5}Temporal and auditory constructions}{10}{subsection.4.5}%
-\contentsline {subsection}{\numberline {4.6}Audiovisual timing and encoding}{11}{subsection.4.6}%
-\contentsline {subsection}{\numberline {4.7}Objective metric results}{14}{subsection.4.7}%
+\contentsline {subsection}{\numberline {4.6}Audiovisual timing and encoding}{12}{subsection.4.6}%
+\contentsline {subsection}{\numberline {4.7}Objective metric results}{13}{subsection.4.7}%
 \contentsline {subsection}{\numberline {4.8}Observer estimands and verification controls}{14}{subsection.4.8}%
-\contentsline {subsection}{\numberline {4.9}Synthetic psychophysics model diagnostic}{15}{subsection.4.9}%
+\contentsline {subsection}{\numberline {4.9}Synthetic psychophysics model diagnostic}{14}{subsection.4.9}%
 \contentsline {section}{\numberline {5}Experimental and Computational Setup}{16}{section.5}%
 \contentsline {section}{\numberline {6}Reproducibility and Provenance}{17}{section.6}%
 \contentsline {subsection}{\numberline {6.1}Data availability and software citation}{17}{subsection.6.1}%
@@ -27,15 +27,15 @@
 \contentsline {subsection}{\numberline {7.3}Auditory families}{19}{subsection.7.3}%
 \contentsline {subsection}{\numberline {7.4}Audiovisual and temporal binding families}{19}{subsection.7.4}%
 \contentsline {subsection}{\numberline {7.5}From literature to engineering contract}{19}{subsection.7.5}%
-\contentsline {subsection}{\numberline {7.6}Limitations and future observer work}{19}{subsection.7.6}%
+\contentsline {subsection}{\numberline {7.6}Limitations and future observer work}{20}{subsection.7.6}%
 \contentsline {section}{\numberline {8}Publication Atlas, Caption Contract, and Scholarship Audit}{21}{section.8}%
 \contentsline {subsection}{\numberline {8.1}Claim-level visualization}{21}{subsection.8.1}%
 \contentsline {subsection}{\numberline {8.2}Scholarship map and lineage}{21}{subsection.8.2}%
 \contentsline {subsection}{\numberline {8.3}Formal traceability and objective metrics}{23}{subsection.8.3}%
-\contentsline {subsection}{\numberline {8.4}Observer-design boundary}{27}{subsection.8.4}%
+\contentsline {subsection}{\numberline {8.4}Observer-design boundary}{26}{subsection.8.4}%
 \contentsline {subsection}{\numberline {8.5}Generated audit tables}{27}{subsection.8.5}%
-\contentsline {section}{\numberline {9}Discussion and Conclusion}{48}{section.9}%
-\contentsline {subsection}{\numberline {9.1}Conclusion}{48}{subsection.9.1}%
-\contentsline {section}{\numberline {10}Appendix A. Complete catalog, source tiers, and evidence/implementation boundaries}{49}{section.10}%
-\contentsline {subsection}{\numberline {10.1}How to read the matrix}{49}{subsection.10.1}%
-\contentsline {subsection}{\numberline {10.2}Evidence boundary and future expansion}{50}{subsection.10.2}%
+\contentsline {section}{\numberline {9}Discussion and Conclusion}{53}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Conclusion}{53}{subsection.9.1}%
+\contentsline {section}{\numberline {10}Appendix A. Complete catalog, source tiers, and evidence/implementation boundaries}{54}{section.10}%
+\contentsline {subsection}{\numberline {10.1}How to read the matrix}{54}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}Evidence boundary and future expansion}{56}{subsection.10.2}%

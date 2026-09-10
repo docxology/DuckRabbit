@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="pandoc 3.10" />
+  <meta name="generator" content="pandoc 3.11" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>03_results.md.web</title>
   <style>
@@ -41,7 +41,6 @@
       body {
         background-color: transparent;
         color: black;
-        font-size: 12pt;
       }
       p, h2, h3 {
         orphans: 3;
@@ -175,6 +174,270 @@
   </style>
 
 <link data-template-favicon rel="icon" href="favicon.ico">
+
+<style>
+:root {
+  --brand-1: #5b6ee0;
+  --web-bg: #f8f8f8;
+  --web-surface: #ffffff;
+  --web-text: #2c3e50;
+  --web-border: #bdc3c7;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --brand-1: #7e8ce8;
+    --web-bg: #0f1420;
+    --web-surface: #161c2b;
+    --web-text: #e6eaf2;
+    --web-border: #2a3447;
+  }
+}
+.theorem-box {
+  border-left: 4px solid var(--brand-1);
+  background: var(--web-surface);
+  padding: 0.6em 1em;
+  margin: 1.1em 0;
+  border-radius: 0 4px 4px 0;
+}
+.theorem-box.definition { border-left-style: dashed; }
+.theorem-box > p:first-child { margin-top: 0; }
+.theorem-box > p:last-child { margin-bottom: 0; }
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  max-width: 100%;
+}
+
+body {
+  font-family: 'Liberation Serif', 'Times New Roman', serif;
+  line-height: 1.6;
+  width: min(100%, 800px);
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f8f8;
+  color: #1a1a1a;
+  overflow-x: visible;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 0.65rem 0.9rem;
+  transform: translateY(-120%);
+  background-color: #1a1a1a;
+  color: #ffffff;
+  font-family: sans-serif;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.skip-link:visited {
+  color: #ffffff;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+  body {
+    width: 100%;
+    max-width: 100%;
+    padding: 16px;
+  }
+
+  figure img {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 800px) {
+  body {
+    width: 100%;
+    max-width: 100vw;
+    margin: 0 auto;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #2c3e50;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 5px;
+  overflow-wrap: anywhere;
+}
+
+code {
+  background-color: #ecf0f1;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: 'Liberation Mono', 'Courier New', monospace;
+}
+
+pre {
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  padding: 15px;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 20px 0;
+}
+
+figure {
+  max-width: 100%;
+  margin: 1.5rem 0;
+}
+
+th, td {
+  border: 1px solid #bdc3c7;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #1f6f8b;
+  color: white;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #bdc3c7;
+  border-radius: 5px;
+  margin: 20px 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+a {
+  color: #b91c1c;
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+  overflow-wrap: anywhere;
+}
+
+a:visited {
+  color: #8f1d1d;
+}
+
+a:hover {
+  text-decoration-thickness: 0.14em;
+}
+
+a:focus-visible {
+  outline: 3px solid #1f6f8b;
+  outline-offset: 3px;
+}
+
+.toc {
+  background-color: #ecf0f1;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 30px;
+}
+
+.toc a,
+#TOC a {
+  color: #b91c1c;
+  display: inline-block;
+  min-height: 28px;
+  line-height: 1.5;
+  padding-block: 2px;
+}
+
+.toc li,
+#TOC li {
+  margin-block: 1px;
+}
+
+.math {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 1.1em;
+}
+
+mjx-container[display="true"] {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.25rem;
+}
+
+.figure {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.figure img {
+  max-width: 100%;
+  height: auto;
+  border: 2px solid #3498db;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* A reading column keeps prose comfortable, but dense scientific figures need
+   a larger inspection surface.  The rendered image remains responsive and the
+   explicit link opens its source-resolution asset without changing the PDF. */
+.figure-full-size-link {
+  color: inherit;
+  display: block;
+  max-width: 100%;
+  text-align: center;
+}
+
+.figure-full-size-link img {
+  cursor: zoom-in;
+  margin-bottom: 0.45rem;
+}
+
+.figure-full-size-label {
+  color: #1f6f8b;
+  display: inline-block;
+  font-family: sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
+}
+
+.figure-full-size-link:focus-visible {
+  outline: 3px solid #1f6f8b;
+  outline-offset: 4px;
+}
+
+@media (min-width: 1000px) {
+  .figure-full-size-link {
+    left: 50%;
+    max-width: none;
+    position: relative;
+    transform: translateX(-50%);
+    width: min(1080px, calc(100vw - 3rem));
+  }
+}
+
+.figure-caption {
+  font-style: italic;
+  color: #4b5563;
+  margin-top: 10px;
+  text-align: center;
+}
+
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -189,8 +452,8 @@ Appendix A rather than copied into prose. The companion figure keeps the
 categorical registry, source namespace, and implementation statuses
 visible at a glance.</p>
 <figure id="fig:catalog_matrix">
-<img src="../figures/catalog_matrix.png"
-alt="A matrix lists all catalog entries with modality, mechanism, signature, input requirement, and implementation status." />
+<a class="figure-full-size-link" href="../figures/catalog_matrix.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/catalog_matrix.png"
+alt="A matrix lists all catalog entries with modality, mechanism, signature, input requirement, and implementation status." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>A matrix lists all catalog entries with
 modality, mechanism, signature, input requirement, and implementation
 status.</figcaption>
@@ -212,13 +475,16 @@ bruns2019ventriloquist. Limitations: Taxonomy facets are engineering
 classifications and remain provisional where the literature supports
 competing accounts. Boundary: Catalog coverage is bounded to this
 registered package and does not enumerate all known illusions.</p>
-<p>The complete catalog matrix [fig:catalog_matrix] is tabulated in the
-standalone Appendix A [sec:appendix_catalog; tbl:catalog]. The
-corresponding machine-readable evidence matrix records the source role,
-exact supported claim, engineering departure, and limitation for every
-entry. Keeping the table in an appendix gives the main results narrative
-room to explain the contract without turning a mutable registry snapshot
-into a prose claim.</p>
+<p>The complete catalog matrix <span class="citation"
+data-cites="fig:catalog_matrix">[@fig:catalog_matrix]</span> is
+tabulated in the standalone Appendix A <span class="citation"
+data-cites="sec:appendix_catalog">[@sec:appendix_catalog]</span> and in
+<span class="citation" data-cites="tbl:catalog">[@tbl:catalog]</span>.
+The corresponding machine-readable evidence matrix records the source
+role, exact supported claim, engineering departure, and limitation for
+every entry. Keeping the table in an appendix gives the main results
+narrative room to explain the contract without turning a mutable
+registry snapshot into a prose claim.</p>
 <h2 id="typed-domains-and-delivery-profiles">Typed domains and delivery
 profiles</h2>
 <table id="tbl:parameters">
@@ -288,9 +554,10 @@ profiles</h2>
 </tr>
 </tbody>
 </table>
-<p>The parameter contracts are summarized in [tbl:parameters]. They
-constrain physical construction and serialization; they are not
-psychophysical scales.</p>
+<p>The parameter contracts are summarized in <span class="citation"
+data-cites="tbl:parameters">[@tbl:parameters]</span>. They constrain
+physical construction and serialization; they are not psychophysical
+scales.</p>
 <table id="tbl:encodings">
 <caption>Encoding profiles and backend capabilities.</caption>
 <colgroup>
@@ -347,9 +614,9 @@ psychophysical scales.</p>
 </tr>
 </tbody>
 </table>
-<p>The delivery profiles are summarized in [tbl:encodings]. Backend
-availability is environment-dependent and is recorded at generation
-time.</p>
+<p>The delivery profiles are summarized in <span class="citation"
+data-cites="tbl:encodings">[@tbl:encodings]</span>. Backend availability
+is environment-dependent and is recorded at generation time.</p>
 <p>The catalog distinguishes a physical construction from an observer
 claim. For example, the sound-induced-flash generator establishes one
 flash and one or two beep events on a shared clock; it does not
@@ -359,8 +626,8 @@ observer-dependent temporal judgments under specific tasks and timing
 conditions [vroomen2004temporal].</p>
 <h2 id="pipeline-and-provenance">Pipeline and provenance</h2>
 <figure id="fig:architecture">
-<img src="../figures/architecture.png"
-alt="Five labeled stages connect a typed request to a deterministic canonical artifact, encoded media, decoded inspection, and a verification manifest." />
+<a class="figure-full-size-link" href="../figures/architecture.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/architecture.png"
+alt="Five labeled stages connect a typed request to a deterministic canonical artifact, encoded media, decoded inspection, and a verification manifest." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Five labeled stages connect a typed
 request to a deterministic canonical artifact, encoded media, decoded
 inspection, and a verification manifest.</figcaption>
@@ -384,7 +651,8 @@ formalism:eq:encoding_verification. Limitations: The schematic abstracts
 implementation boundaries and does not represent an observer study or a
 causal theory of perception. Boundary: The pipeline verifies
 reproducible media facts, not what a person experiences.</p>
-<p>The generated architecture figure [fig:architecture] shows the
+<p>The generated architecture figure <span class="citation"
+data-cites="fig:architecture">[@fig:architecture]</span> shows the
 separation between request, canonical artifact, delivery adapter,
 decoded inspection, and manifest. The canonical digest is the identity
 of the in-memory stimulus; an encoded hash is the identity of the
@@ -392,8 +660,8 @@ delivered file. The difference is intentional.</p>
 <h2 id="visual-constructions-and-parameter-sweeps">Visual constructions
 and parameter sweeps</h2>
 <figure id="fig:visual_panel">
-<img src="../figures/visual_panel.png"
-alt="A 9-panel gallery shows every currently implemented visual catalog entry, with stable IDs and physical raster summaries: Duck-rabbit ambiguous figure, Simultaneous contrast stimulus, Apparent-motion frame sequence, Müller-Lyer geometric…" />
+<a class="figure-full-size-link" href="../figures/visual_panel.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/visual_panel.png"
+alt="A 9-panel gallery shows every currently implemented visual catalog entry, with stable IDs and physical raster summaries: Duck-rabbit ambiguous figure, Simultaneous contrast stimulus, Apparent-motion frame sequence, Müller-Lyer geometric illusion, Poggendorff geometric illusion, Ponzo perspective illusion, Kanizsa illusory-contour triangle, Ebbinghaus context-size illusion, Zöllner orientation illusion." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>A 9-panel gallery shows every currently
 implemented visual catalog entry, with stable IDs and physical raster
 summaries: Duck-rabbit ambiguous figure, Simultaneous contrast stimulus,
@@ -447,17 +715,19 @@ of the package’s implemented visual constructions and their
 deterministic raster facts. It does not establish that any viewer will
 perceive the named signature, nor that the set is exhaustive of the
 visual-illusion literature.</p>
-<p>The visual panel [fig:visual_panel] is deliberately a coverage
-figure: it contains one deterministic representative for every currently
-implemented visual entry, including apparent motion and Zöllner in
-addition to the static ambiguous-figure, contrast, geometric-context,
-illusory-contour, and contextual- size families. Equalities, masks, line
-geometry, luminance bounds, and temporal positions are properties of the
-typed rasters or sequences. They are not observer scores, and the
-gallery is not an exhaustive ontology of visual illusions.</p>
+<p>The visual panel <span class="citation"
+data-cites="fig:visual_panel">[@fig:visual_panel]</span> is deliberately
+a coverage figure: it contains one deterministic representative for
+every currently implemented visual entry, including apparent motion and
+Zöllner in addition to the static ambiguous-figure, contrast,
+geometric-context, illusory-contour, and contextual- size families.
+Equalities, masks, line geometry, luminance bounds, and temporal
+positions are properties of the typed rasters or sequences. They are not
+observer scores, and the gallery is not an exhaustive ontology of visual
+illusions.</p>
 <figure id="fig:visual_sweep">
-<img src="../figures/visual_sweep.png"
-alt="A labeled grid crosses five duck–rabbit blend weights with five grayscale and quantization settings, with physical metrics recorded for each cell." />
+<a class="figure-full-size-link" href="../figures/visual_sweep.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/visual_sweep.png"
+alt="A labeled grid crosses five duck–rabbit blend weights with five grayscale and quantization settings, with physical metrics recorded for each cell." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>A labeled grid crosses five duck–rabbit
 blend weights with five grayscale and quantization settings, with
 physical metrics recorded for each cell.</figcaption>
@@ -480,15 +750,17 @@ sensitivity of the construction parameters, not a psychophysical
 sensitivity curve or a validated observer effect. Boundary: The chosen
 grid is an engineering sampling of the parameter domain and does not
 imply an optimal or perceptually uniform spacing.</p>
-<p>The sweep [fig:visual_sweep] varies duck-weight from 0 to 1 and
-jointly varies representable grayscale and quantization levels. The
-source data preserve canonical digests and unique-value counts; no
-perceptual score is assigned to a sweep cell.</p>
+<p>The sweep <span class="citation"
+data-cites="fig:visual_sweep">[@fig:visual_sweep]</span> varies
+duck-weight from 0 to 1 and jointly varies representable grayscale and
+quantization levels. The source data preserve canonical digests and
+unique-value counts; no perceptual score is assigned to a sweep
+cell.</p>
 <h2 id="temporal-and-auditory-constructions">Temporal and auditory
 constructions</h2>
 <figure id="fig:temporal_sequence">
-<img src="../figures/temporal_sequence.png"
-alt="Six ordered frames are labeled with timestamps and paired with a line plot of adjacent-frame normalized pixel differences." />
+<a class="figure-full-size-link" href="../figures/temporal_sequence.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/temporal_sequence.png"
+alt="Six ordered frames are labeled with timestamps and paired with a line plot of adjacent-frame normalized pixel differences." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Six ordered frames are labeled with
 timestamps and paired with a line plot of adjacent-frame normalized
 pixel differences.</figcaption>
@@ -512,13 +784,14 @@ succession and frame deltas are physical file properties; playback
 timing, display persistence, and motion reports require a controlled
 observer task. Boundary: The figure documents temporal structure rather
 than the presence, direction, or strength of perceived motion.</p>
-<p>The temporal figure [fig:temporal_sequence] reports frame succession,
-rational frame rate, and frame-to-frame mean absolute differences. These
-facts establish temporal structure in the file, not the presence or
-strength of perceived motion.</p>
+<p>The temporal figure <span class="citation"
+data-cites="fig:temporal_sequence">[@fig:temporal_sequence]</span>
+reports frame succession, rational frame rate, and frame-to-frame mean
+absolute differences. These facts establish temporal structure in the
+file, not the presence or strength of perceived motion.</p>
 <figure id="fig:audio_signals">
-<img src="../figures/audio_signals.png"
-alt="Five labeled rows show canonical audio waveforms, relative one-sided spectral bars, RMS and peak in normalized amplitude, and spectral summaries in hertz." />
+<a class="figure-full-size-link" href="../figures/audio_signals.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/audio_signals.png"
+alt="Five labeled rows show canonical audio waveforms, relative one-sided spectral bars, RMS and peak in normalized amplitude, and spectral summaries in hertz." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Five labeled rows show canonical audio
 waveforms, relative one-sided spectral bars, RMS and peak in normalized
 amplitude, and spectral summaries in hertz.</figcaption>
@@ -546,18 +819,19 @@ masker design, and listener judgments are external to the canonical
 buffer. Boundary: The figure compares generated signal properties and
 literature-linked families; it does not establish pitch, continuity, or
 stream organization for a listener.</p>
-<p>The auditory figure [fig:audio_signals] shows canonical waveforms and
-spectral summaries for Shepard, missing-fundamental, tritone, octave,
-and continuity constructions. RMS, peak, spectral centroid, bandwidth,
-and channel layout are calculated from the canonical buffer with
-explicit units and windowing rules. Pitch direction, pitch height,
-continuity, and stream organization remain observer-level outcomes that
-depend on playback and task conditions.</p>
+<p>The auditory figure <span class="citation"
+data-cites="fig:audio_signals">[@fig:audio_signals]</span> shows
+canonical waveforms and spectral summaries for Shepard,
+missing-fundamental, tritone, octave, and continuity constructions. RMS,
+peak, spectral centroid, bandwidth, and channel layout are calculated
+from the canonical buffer with explicit units and windowing rules. Pitch
+direction, pitch height, continuity, and stream organization remain
+observer-level outcomes that depend on playback and task conditions.</p>
 <h2 id="audiovisual-timing-and-encoding">Audiovisual timing and
 encoding</h2>
 <figure id="fig:audiovisual_timeline">
-<img src="../figures/audiovisual_timeline.png"
-alt="Two labeled traces share a normalized time axis: video mean luminance and audio absolute amplitude, with signed synchronization and spatial offsets printed below." />
+<a class="figure-full-size-link" href="../figures/audiovisual_timeline.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/audiovisual_timeline.png"
+alt="Two labeled traces share a normalized time axis: video mean luminance and audio absolute amplitude, with signed synchronization and spatial offsets printed below." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Two labeled traces share a normalized
 time axis: video mean luminance and audio absolute amplitude, with
 signed synchronization and spatial offsets printed below.</figcaption>
@@ -583,15 +857,16 @@ refresh, audio hardware, event latency, and observer temporal binding
 are not measured by this figure. Boundary: A shared-clock construction
 is not evidence that observers bind the events at the declared or any
 other perceptual time.</p>
-<p>The audiovisual timeline [fig:audiovisual_timeline] displays video
-luminance and audio amplitude against the shared clock, alongside
-declared synchronization and spatial offsets. Ventriloquist stimuli
-require stereo playback and spatially resolved display; temporal binding
-requires controlled timing and an observer task [bruns2019ventriloquist;
-vroomen2004temporal].</p>
+<p>The audiovisual timeline <span class="citation"
+data-cites="fig:audiovisual_timeline">[@fig:audiovisual_timeline]</span>
+displays video luminance and audio amplitude against the shared clock,
+alongside declared synchronization and spatial offsets. Ventriloquist
+stimuli require stereo playback and spatially resolved display; temporal
+binding requires controlled timing and an observer task
+[bruns2019ventriloquist; vroomen2004temporal].</p>
 <figure id="fig:encoding_verification">
-<img src="../figures/encoding_verification.png"
-alt="A five-row comparison lists format, backend, preserved canonical facts, and the corresponding decoded verification checks." />
+<a class="figure-full-size-link" href="../figures/encoding_verification.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/encoding_verification.png"
+alt="A five-row comparison lists format, backend, preserved canonical facts, and the corresponding decoded verification checks." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>A five-row comparison lists format,
 backend, preserved canonical facts, and the corresponding decoded
 verification checks.</figcaption>
@@ -616,10 +891,11 @@ and lossy tolerances are environment-dependent; playback software can
 expose additional behavior. Boundary: A successful encode or decode does
 not validate an observer effect or guarantee cross-device perceptual
 equivalence.</p>
-<p>The encoding matrix [fig:encoding_verification] makes backend
-capability and verification scope visible. NPZ is the exact canonical
-archive; PNG, WAV, GIF, and MP4 are delivery containers whose decoded
-facts are checked against the manifest.</p>
+<p>The encoding matrix <span class="citation"
+data-cites="fig:encoding_verification">[@fig:encoding_verification]</span>
+makes backend capability and verification scope visible. NPZ is the
+exact canonical archive; PNG, WAV, GIF, and MP4 are delivery containers
+whose decoded facts are checked against the manifest.</p>
 <h2 id="sec:objective_metric_results">Objective metric results</h2>
 <table id="tbl:metrics">
 <caption>Objective metric definitions and epistemic boundary.</caption>
@@ -705,8 +981,10 @@ facts are checked against the manifest.</p>
 </tr>
 </tbody>
 </table>
-<p>The metric definitions in [tbl:metrics] are computed from canonical
-or decoded artifacts and do not encode observer interpretations.</p>
+<p>The metric definitions in <span class="citation"
+data-cites="tbl:metrics">[@tbl:metrics]</span> are computed from
+canonical or decoded artifacts and do not encode observer
+interpretations.</p>
 <p>The default duck-rabbit artifact contains 3 unique raster levels and
 has mean normalized luminance 0.7770. These values are live generated
 facts, not perceptual effect sizes.</p>
@@ -744,8 +1022,10 @@ estimands.</caption>
 </tr>
 </tbody>
 </table>
-<p>The analysis contract in [tbl:observer_estimands] specifies estimands
-and uncertainty procedures without asserting any result.</p>
+<p>The analysis contract in <span class="citation"
+data-cites="tbl:observer_estimands">[@tbl:observer_estimands]</span>
+specifies estimands and uncertainty procedures without asserting any
+result.</p>
 <table id="tbl:verification">
 <caption>Verification failure modes and negative controls.</caption>
 <colgroup>
@@ -793,13 +1073,15 @@ and uncertainty procedures without asserting any result.</p>
 </tr>
 </tbody>
 </table>
-<p>The negative controls in [tbl:verification] test package integrity
-and media contracts; they are not null findings about perception.</p>
+<p>The negative controls in <span class="citation"
+data-cites="tbl:verification">[@tbl:verification]</span> test package
+integrity and media contracts; they are not null findings about
+perception.</p>
 <h2 id="synthetic-psychophysics-model-diagnostic">Synthetic
 psychophysics model diagnostic</h2>
 <figure id="fig:synthetic_psychophysics">
-<img src="../figures/synthetic_psychophysics.png"
-alt="A narrow-range line plot shows deterministic model probability across duck_weight values beside the model identity, temperature, no-training-data statement, and human-data boundary." />
+<a class="figure-full-size-link" href="../figures/synthetic_psychophysics.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/synthetic_psychophysics.png"
+alt="A narrow-range line plot shows deterministic model probability across duck_weight values beside the model identity, temperature, no-training-data statement, and human-data boundary." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>A narrow-range line plot shows
 deterministic model probability across duck_weight values beside the
 model identity, temperature, no-training-data statement, and human-data
@@ -829,16 +1111,17 @@ participant responses or a psychometric function. Boundary: This
 diagnostic tests deterministic orchestration and metamorphic
 input-output behavior only; empirical psychophysics remains future
 work.</p>
-<p>The diagnostic [fig:synthetic_psychophysics] evaluates a fully
-serialized, hand-specified feature observer against a fixed canonical
-reference while varying <code>duck_weight</code>. Its logistic
-probabilities are model outputs generated from explicit features,
-weights, temperature, and seed; they are not a pretrained vision-model
-score, a human psychometric function, an assumed human effect size, or
-participant data. A future human study would require a preregistered
-task, calibrated display and playback, consented participants, exclusion
-and missingness rules, and an analysis contract before any observer
-claim could be made.</p>
+<p>The diagnostic <span class="citation"
+data-cites="fig:synthetic_psychophysics">[@fig:synthetic_psychophysics]</span>
+evaluates a fully serialized, hand-specified feature observer against a
+fixed canonical reference while varying <code>duck_weight</code>. Its
+logistic probabilities are model outputs generated from explicit
+features, weights, temperature, and seed; they are not a pretrained
+vision-model score, a human psychometric function, an assumed human
+effect size, or participant data. A future human study would require a
+preregistered task, calibrated display and playback, consented
+participants, exclusion and missingness rules, and an analysis contract
+before any observer claim could be made.</p>
 </main>
 </body>
 </html>

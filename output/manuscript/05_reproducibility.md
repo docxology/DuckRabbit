@@ -11,6 +11,10 @@ The reproducibility contract is:
    channels, rates, frame counts, durations, timing offsets, and encoded hash;
 6. retain the v2 manifest and source-data sidecars with the generated figure or
    table.
+Note that in this release the generators are analytic in their typed
+parameters: the request seed *s* is recorded in manifests and study plans and
+excluded from the canonical digest, but it does not yet alter artifact bytes;
+seed-driven stimulus randomization awaits a stochastic generator.
 
 The contract is deliberately stronger than “the file can be downloaded.”
 Research-software guidance treats versioned code, executable procedures,
@@ -25,8 +29,9 @@ and release gates rather than by implying that a generated media file is a
 complete scientific replication.
 
 The package reports implemented, planned, input_required as its catalog status vocabulary and
-currently covers audio_visual, auditory, visual. The evidence layer contains 18
-entry records backed by 36 source records. The publication
+currently covers audio-visual, auditory, visual. The evidence layer contains 18
+entry records backed by 36 source records, covering
+18/18 catalog entries. The publication
 workflow produces 15 figures and 10
 tables from the live registry.
 
@@ -44,8 +49,9 @@ delivery artifacts with format-specific tolerances. The observer protocol is a
 separate evidence layer: a manifest can prove what was presented without
 proving what an observer experienced.
 
-Synthetic psychophysics is a third, deliberately bounded object. The model
-identity, version, feature schema, weights, temperature, seed, calibration
+Synthetic psychophysics is a third, deliberately bounded object: the model is
+a hand-specified deterministic feature observer; no training data; human_data=false, registered as `duckrabbit.synthetic.feature_observer`.
+The model version, feature schema, weights, temperature, seed, calibration
 statement, canonical reference/comparison digests, and `human_data=false` flag
 are retained in `output/data/synthetic_psychophysics.json`. Re-running this
 diagnostic checks deterministic model orchestration and stimulus-feature
@@ -66,7 +72,7 @@ The minimal regeneration commands are:
 ```bash
 uv run pytest -q --cov=src/duckrabbit --cov-fail-under=90
 uv run python scripts/generate_publication_outputs.py
-uv run python scripts/z_generate_manuscript_variables.py
+uv run python scripts/generate_manuscript_variables.py
 ```
 
 ## Data availability and software citation

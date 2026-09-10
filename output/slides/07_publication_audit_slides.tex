@@ -75,6 +75,8 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{longtable,booktabs,array}
+\usepackage{caption}
+\captionsetup[table]{skip=6pt}
 \newcounter{none} % for unnumbered tables
 \usepackage{calc} % for calculating minipage widths
 \usepackage{caption}
@@ -106,6 +108,35 @@
 \usepackage{unicode-math}
 \setmathfont{latinmodern-math.otf}
 
+% Manuscript macro/package fallbacks (newcommand -> providecommand).
+% Core mathematics
+\usepackage{amsmath}
+\usepackage{amssymb}
+% Document layout
+% Tables
+\usepackage{booktabs}
+% Algorithm typesetting
+% Code listings
+\usepackage{listings}
+% Typography and formatting
+% Cross-references and citations
+% ── Unicode-capable mono font for code listings ──────────────────────
+% JuliaMono (TeX Live 2026) covers the full math/Greek glyph set used in
+% scientific code blocks; the default lmmono lacks \alpha/\mu/\partial/\nabla.
+%
+% The hardcoded TeX Live 2026 path below is portable to most macOS / Linux
+% TeX Live installs that placed JuliaMono under the default texmf-dist path.
+% If your TeX Live version differs (e.g., 2025, 2027) or your distribution
+% installs fonts elsewhere, comment out the explicit Path = line — fontspec
+% will then search the system font path. If JuliaMono is not installed at
+% all, comment out the whole block; xelatex falls back to lmmono with
+% reduced Unicode coverage but the document still compiles.
+% Math font for unicode-math: Latin Modern Math (TeX Live) has full BMP
+% coverage including U+2223 (\mid), U+226A/226B (\ll/\gg), and the Greek/
+% blackboard letters used in equations. Without an explicit \setmathfont,
+% unicode-math falls back to lmroman text font which lacks several glyphs
+% and emits "Missing character" warnings on every \mid in math mode.
+
 % Slide layout defaults for warning-clean scientific decks.
 \usepackage{etoolbox}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{}
@@ -119,6 +150,33 @@
 \setlength{\tabcolsep}{2pt}
 \AtBeginEnvironment{longtable}{\tiny\renewcommand{\arraystretch}{0.86}\setlength{\tabcolsep}{1pt}}
 \AtBeginEnvironment{tabular}{\tiny\renewcommand{\arraystretch}{0.86}\setlength{\tabcolsep}{1pt}}
+\AtBeginEnvironment{equation}{\tiny}
+\AtBeginEnvironment{equation*}{\tiny}
+\AtBeginEnvironment{align}{\tiny}
+\AtBeginEnvironment{align*}{\tiny}
+\AtBeginEnvironment{itemize}{\footnotesize}
+\AtBeginEnvironment{enumerate}{\footnotesize}
+\AtBeginEnvironment{description}{\footnotesize}
+\setbeamerfont{caption}{size=\tiny}
+\setbeamerfont{caption name}{size=\tiny}
+\setbeamerfont{normal text}{size=\small}
+\setbeamerfont{frametitle}{size=\small}
+\setbeamerfont{section title}{size=\footnotesize}
+\setbeamerfont{subsection title}{size=\footnotesize}
+\setbeamertemplate{section page}{%
+  \centering
+  \begin{beamercolorbox}[sep=12pt,center,wd=\paperwidth]{section title}
+    \parbox{0.86\paperwidth}{\centering\usebeamerfont{section title}\insertsection\par}
+  \end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{%
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,wd=\paperwidth]{subsection title}
+    \parbox{0.86\paperwidth}{\centering\usebeamerfont{subsection title}\insertsubsection\par}
+  \end{beamercolorbox}
+}
+\setlength{\abovecaptionskip}{2pt}
+\setlength{\belowcaptionskip}{0pt}
 
 % Natbib and cross-reference fallbacks — slides don't load natbib
 % or cleveref, but combined-PDF manuscript prose may emit these
@@ -133,9 +191,15 @@
 \providecommand{\citeyear}[1]{#1}
 \providecommand{\cref}[1]{\texttt{\detokenize{#1}}}
 \providecommand{\Cref}[1]{\texttt{\detokenize{#1}}}
+\providecommand{\crefrange}[2]{\texttt{\detokenize{#1}}--\texttt{\detokenize{#2}}}
+\providecommand{\Crefrange}[2]{\texttt{\detokenize{#1}}--\texttt{\detokenize{#2}}}
+\providecommand{\paragraph}[1]{\textbf{#1}\ }
 
 \newtheorem{proposition}{Proposition}
 \newtheorem{hypothesis}{Hypothesis}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{axiom}{Axiom}
+\newtheorem{property}{Property}
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
@@ -167,6 +231,9 @@ effect.
 
 \begin{frame}[allowframebreaks]{Claim-level visualization}
 \protect\phantomsection\label{claim-level-visualization}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Claim-level visualization}
 \begin{figure}
 \centering
 \pandocbounded{\includegraphics[keepaspectratio,alt={Four numbered boxes separate canonical stimulus, physical metric, encoded media, and observer hypothesis, with a boundary rule stating that observer effects require a separate study.}]{../figures/claim_boundary.png}}
@@ -176,6 +243,9 @@ stating that observer effects require a separate
 study.}\label{fig:claim_boundary}
 \end{figure}
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Claim-level visualization}
 What this figure shows: Four numbered boxes separate canonical stimulus,
 physical metric, encoded media, and observer hypothesis, with a boundary
 rule stating that observer effects require a separate study. The
@@ -190,6 +260,9 @@ explanatory diagram. Objective facts: no unit-bearing objective quantity
 is applicable; stage definitions and evidence boundaries are preserved
 in the sidecar. Claim level: source\_supported. Source data:
 output/data/claim\_boundary.json (SHA-256 digest recorded in the figure
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Claim-level visualization}
 registry). Evidence lineage: formalism:eq:observer\_estimand,
 formalism:eq:canonical\_digest. Limitations: The diagram is a
 documentation contract and does not replace a preregistered observer
@@ -197,7 +270,7 @@ study or empirical data. Boundary: A deterministic artifact can support
 a future hypothesis but cannot supply the observer data required to test
 it.
 
-The claim boundary in \breakseq{[@fig:claim\_boundary]} is a typed epistemic
+The claim boundary in fig.~\ref{fig:claim_boundary} is a typed epistemic
 interface. A canonical digest identifies a deterministic buffer;
 objective metrics identify properties of that buffer; encoded-media
 verification identifies facts of the delivered file. A future observer
@@ -207,6 +280,9 @@ uncertainty interval.
 
 \begin{frame}[fragile,allowframebreaks]{Scholarship map and lineage}
 \protect\phantomsection\label{scholarship-map-and-lineage}
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Scholarship map and lineage}
 \begin{figure}
 \centering
 \pandocbounded{\includegraphics[keepaspectratio,alt={Rows map catalog entries to source tiers, exact supported claims, engineering bases, limitations, and implementation status.}]{../figures/scholarship_map.png}}
@@ -215,6 +291,9 @@ claims, engineering bases, limitations, and implementation
 status.}\label{fig:scholarship_map}
 \end{figure}
 
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Scholarship map and lineage}
 What this figure shows: Rows map catalog entries to source tiers, exact
 supported claims, engineering bases, limitations, and implementation
 status. The map links every catalog entry to its primary, review, and
@@ -228,6 +307,9 @@ audit date recorded in data/evidence\_matrix.json. Objective facts: one
 evidence row per catalog entry (18 entries); source-tier counts, exact
 claim text, engineering basis, limitation, and gap status. Claim level:
 source\_supported. Source data: output/data/scholarship\_map.json
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Scholarship map and lineage}
 (SHA-256 digest recorded in the figure registry). Evidence lineage:
 gregory1997visual, brugger1999duckrabbit, yildiz2022ponzo,
 hirst2020sound, bruns2019ventriloquist. Limitations: The offline
@@ -236,40 +318,52 @@ is a separate audit, and classifications can remain contested. Boundary:
 Scholarship coverage bounds the package's evidence record and does not
 establish that any generated stimulus produces a universal percept.
 
-The source map \breakseq{[@fig:scholarship\_map]} and
-\breakseq{[@tbl:evidence\_audit]} make five distinctions explicit: a primary
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Scholarship map and lineage}
+The source map fig.~\ref{fig:scholarship_map} and
+tbl.~\ref{tbl:evidence_audit} make five distinctions explicit: a primary
 demonstration, a review, a theoretical account, DuckRabbit's engineering
 basis, and an evidence limitation. Brugger's duck/rabbit study documents
 variation across figure variants and observers; this supports a careful
-ambiguity-family record, not a universal bistability claim
-\breakseq{[@brugger1999duckrabbit]}. Yildiz et al.~review competing
-explanations of Ponzo-like illusions, so the catalog retains both a
-geometric construction and an unresolved theoretical boundary
-\breakseq{[@yildiz2022ponzo]}. Repp's tritone analysis likewise motivates
-listener- and context-sensitive limitations \breakseq{[@repp1997tritone]}.
+ambiguity-family record, not a universal bistability claim (Brugger
+1999). Yildiz et al.~review competing explanations of Ponzo-like
+illusions, so the catalog retains both a geometric construction and an
+unresolved theoretical boundary (Yildiz et al. 2022). Repp's tritone
+analysis likewise motivates listener- and context-sensitive limitations
+(Repp 1997).
 
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Scholarship map and lineage}
 The audit also treats software and its metadata as part of the scholarly
 record. FAIR guidance emphasizes machine-actionable provenance and
 reuse, and software-citation principles emphasize crediting an
 identifiable version rather than citing an undifferentiated project name
-\breakseq{[@wilkinson2016fair; @smith2016software]}. Accordingly, the release
+({Wilkinson et al.} 2016; Smith et al. 2016). Accordingly, the release
 includes \texttt{CITATION.cff}, CodeMeta, Zenodo metadata, versioned
 manifests, source-data sidecars, and resolver-linked bibliography
 entries. These improve discoverability and attribution; they do not
 increase the evidential level of any perceptual claim.
 
-The intended public software identity is explicit: DuckRabbit will be
-released at the
-\href{https://github.com/docxology/DuckRabbit}{DuckRabbit public GitHub
-repository} under the authorship of Daniel Ari Friedman, Active
-Inference Institute. The repository URL identifies the future citable
-software object; it is not a claim that the private sidecar has already
-been publicly mirrored.
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Scholarship map and lineage}
+The public software identity is explicit: DuckRabbit is published and
+citable at the \href{https://github.com/docxology/DuckRabbit}{DuckRabbit
+public GitHub repository} under the authorship of Daniel Ari Friedman,
+Active Inference Institute. The generated bundle in this repository
+remains the authoritative release candidate until the external template
+handoff is completed.
 \end{frame}
 
 \begin{frame}[allowframebreaks]{Formal traceability and objective
 metrics}
 \protect\phantomsection\label{formal-traceability-and-objective-metrics}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Formal traceability and objective
+metrics}
 \begin{figure}
 \centering
 \pandocbounded{\includegraphics[keepaspectratio,alt={Rows connect equation labels to their mathematical definition, implementation paths, tests, figure labels, and claim levels.}]{../figures/formalism_traceability.png}}
@@ -278,6 +372,10 @@ implementation paths, tests, figure labels, and claim
 levels.}\label{fig:formalism_traceability}
 \end{figure}
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Formal traceability and objective
+metrics}
 What this figure shows: Rows connect equation labels to their
 mathematical definition, implementation paths, tests, figure labels, and
 claim levels. The traceability registry connects the nine numbered
@@ -292,21 +390,26 @@ unit-bearing measurement is plotted. Claim level: physical\_metric.
 Source data: output/data/formalism\_traceability.json (SHA-256 digest
 recorded in the figure registry). Evidence lineage:
 formalism:eq:canonical\_digest, formalism:eq:clock\_definition,
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Formal traceability and objective
+metrics}
 formalism:eq:objective\_statistics. Limitations: Traceability records
 documentation and verification scope; it does not establish the truth of
 an observer-level theory. Boundary: A linked equation and test can show
 an implemented contract, not a validated perceptual law.
 
-The formalism registry \breakseq{[@fig:formalism\_traceability]} links
-equations \breakseq{[@eq:typed\_request; @eq:canonical\_generation;
-@eq:canonical\_digest; @eq:encoding\_verification;
-@eq:clock\_definition; @eq:objective\_statistics;
-@eq:temporal\_spectral\_metrics; @eq:observer\_estimand;
-@eq:synthetic\_observer]} to implementation modules, tests, and
-figures. The contract is intentionally auditable: equation labels point
-to code-owned records, while empirical claims remain outside the
-generator's authority.
+The formalism registry fig.~\ref{fig:formalism_traceability} links
+equations
+eqns.~1, 2, 4, 5, 3, 6, 7, 8, 9
+to implementation modules, tests, and figures. The contract is
+intentionally auditable: equation labels point to code-owned records,
+while empirical claims remain outside the generator's authority.
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Formal traceability and objective
+metrics}
 \begin{figure}
 \centering
 \pandocbounded{\includegraphics[keepaspectratio,alt={Four artifact cards list image, audio, video, and audiovisual metrics with units, computation provenance, and claim level.}]{../figures/metrics_dashboard.png}}
@@ -315,6 +418,10 @@ metrics with units, computation provenance, and claim
 level.}\label{fig:metrics_dashboard}
 \end{figure}
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Formal traceability and objective
+metrics}
 What this figure shows: Four artifact cards list image, audio, video,
 and audiovisual metrics with units, computation provenance, and claim
 level. The dashboard presents representative measurements from image,
@@ -329,6 +436,10 @@ seed s=0. Objective facts: finite objective values with units:
 normalized luminance/amplitude, Hz, normalized pixel difference, ms,
 counts, and durations. Claim level: physical\_metric. Source data:
 output/data/metrics\_dashboard.json (SHA-256 digest recorded in the
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Formal traceability and objective
+metrics}
 figure registry). Evidence lineage: formalism:eq:objective\_statistics,
 formalism:eq:temporal\_spectral\_metrics. Limitations: Metrics are media
 properties and do not encode pitch, size, motion, localization, binding,
@@ -336,13 +447,17 @@ or other observer interpretations. Boundary: Metric reproducibility is a
 package property; interpretation as perception requires a separate
 observer design and data.
 
-The metrics dashboard \breakseq{[@fig:metrics\_dashboard]} reports units,
+The metrics dashboard fig.~\ref{fig:metrics_dashboard} reports units,
 computation version, and canonical digests. Luminance statistics are
 normalized raster properties; RMS and peak are normalized-amplitude
 properties; spectral values are in Hz; frame deltas are normalized pixel
 differences; and synchronization offsets are in milliseconds. None is a
 psychophysical score.
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Formal traceability and objective
+metrics}
 \begin{figure}
 \centering
 \pandocbounded{\includegraphics[keepaspectratio,alt={Horizontal interval markers show typed domains for dimensions, luminance, levels, frequency, sampling, frame rate, synchronization, and spatial discrepancy.}]{../figures/parameter_domains.png}}
@@ -351,6 +466,10 @@ luminance, levels, frequency, sampling, frame rate, synchronization, and
 spatial discrepancy.}\label{fig:parameter_domains}
 \end{figure}
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Formal traceability and objective
+metrics}
 What this figure shows: Horizontal interval markers show typed domains
 for dimensions, luminance, levels, frequency, sampling, frame rate,
 synchronization, and spatial discrepancy. The domain map shows the
@@ -364,6 +483,10 @@ not applicable to the domain diagram. Objective facts: dimensionless,
 pixel, level, Hz, samples/s, frames/s, ms, and normalized spatial units
 as listed per parameter. Claim level: canonical\_stimulus. Source data:
 output/data/parameter\_domains.json (SHA-256 digest recorded in the
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Formal traceability and objective
+metrics}
 figure registry). Evidence lineage: formalism:eq:typed\_request.
 Limitations: The intervals are software validation bounds and do not
 encode safe listening levels, display limits, or psychophysical
@@ -371,7 +494,7 @@ thresholds. Boundary: A valid parameter is a reproducible construction
 request, not evidence that the requested value is perceptually
 effective.
 
-The domain map \breakseq{[@fig:parameter\_domains]} is a validation
+The domain map fig.~\ref{fig:parameter_domains} is a validation
 visualization. Bounds are chosen to prevent malformed media and unsafe
 encodings, not to predict a viewer, listener, or participant's
 sensitivity.
@@ -379,6 +502,9 @@ sensitivity.
 
 \begin{frame}[fragile,allowframebreaks]{Observer-design boundary}
 \protect\phantomsection\label{observer-design-boundary}
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Observer-design boundary}
 \begin{figure}
 \centering
 \pandocbounded{\includegraphics[keepaspectratio,alt={A flow diagram connects trial identity, randomization, stimulus manifest, response, aggregate estimand, and analysis-model templates, with a synthetic-only boundary.}]{../figures/observer_protocol.png}}
@@ -387,6 +513,9 @@ manifest, response, aggregate estimand, and analysis-model templates,
 with a synthetic-only boundary.}\label{fig:observer_protocol}
 \end{figure}
 
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Observer-design boundary}
 What this figure shows: A flow diagram connects trial identity,
 randomization, stimulus manifest, response, aggregate estimand, and
 analysis-model templates, with a synthetic-only boundary. The
@@ -401,6 +530,9 @@ response generation is separate from human data. Objective facts: trial
 counts, condition structure, estimand templates, response schemas, and
 model families; participant outcomes are not applicable. Claim level:
 observer\_hypothesis. Source data: output/data/observer\_protocol.json
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Observer-design boundary}
 (SHA-256 digest recorded in the figure registry). Evidence lineage:
 observer:preregistered\_estimands. Limitations: The scaffold specifies
 future data collection and analysis but supplies no participant
@@ -408,20 +540,26 @@ responses, fitted coefficients, power claim, or validated observer
 effect. Boundary: The protocol is ready for ethical and preregistered
 extension, not evidence that the proposed effect exists.
 
-The observer scaffold \breakseq{[@fig:observer\_protocol]} starts with a
+The observer scaffold fig.~\ref{fig:observer_protocol} starts with a
 pseudonymous trial identity and deterministic randomization, binds the
 stimulus manifest and encoded hash, records a typed response or
 missingness state, and ends at a preregistered estimand. The companion
-diagnostic \breakseq{[@fig:synthetic\_psychophysics]} is a deterministic,
+diagnostic fig.~9 is a deterministic,
 hand-specified feature observer with \breaktt{training\_data=none} and
 \breaktt{human\_data=false}; it is not a pretrained vision model,
 psychometric function, or participant result. Human psychophysics
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Observer-design boundary}
 remains a future evidence layer requiring calibrated playback, consent,
 preregistration, and observed responses.
 \end{frame}
 
 \begin{frame}[fragile,allowframebreaks]{Generated audit tables}
 \protect\phantomsection\label{generated-audit-tables}
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Generated audit tables}
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
   >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
@@ -1285,10 +1423,13 @@ manuscript/07 publication audit.md \\
 \bottomrule\noalign{}
 \end{longtable}
 
-The source-tiered evidence table \breakseq{[@tbl:evidence\_audit]}, caption
-audit \breakseq{[@tbl:caption\_audit]}, formalism registry
-\breakseq{[@tbl:formalism]}, and claim ledger \breakseq{[@tbl:claim\_ledger]} are
-generated sidecars. They provide a publication appendix without
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Generated audit tables}
+The source-tiered evidence table tbl.~\ref{tbl:evidence_audit}, caption
+audit tbl.~\ref{tbl:caption_audit}, formalism registry
+tbl.~\ref{tbl:formalism}, and claim ledger tbl.~\ref{tbl:claim_ledger}
+are generated sidecars. They provide a publication appendix without
 duplicating mutable counts or silently converting literature statements
 into package results.
 
@@ -1301,6 +1442,9 @@ provenance boundary are recorded in
 \breaktt{output/reports/cover\_visualization.json}. Neither boundary is
 an observer result, and neither substitutes for display calibration or
 behavioral data.
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Generated audit tables}
 
 The publication audit additionally resolves every formalism edge to a
 real package module, test file, manuscript equation label, and

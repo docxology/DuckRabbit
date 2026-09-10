@@ -4,10 +4,11 @@ from __future__ import annotations
 
 import json
 
+import pytest
+
 import duckrabbit
 from duckrabbit.audit import AuditIssue, AuditReport, _check, run_audit
 from duckrabbit.cli import main
-from duckrabbit.publication import generate_publication_outputs
 
 
 def test_audit_covers_every_implemented_generator_without_generated_output(tmp_path, capsys) -> None:
@@ -29,9 +30,7 @@ def test_audit_contracts_are_immutable_and_fail_closed() -> None:
     assert report.to_dict()["warning_count"] == 1
 
 
-def test_audit_contract_rejects_malformed_records_and_captures_errors(tmp_path) -> None:
-    import pytest
-
+def test_audit_contract_rejects_malformed_records_and_captures_errors(publication_bundle) -> None:
     with pytest.raises(ValueError, match="audit issue"):
         AuditIssue("", "warning", "surface", "message")
     with pytest.raises(ValueError, match="audit report"):
@@ -42,8 +41,6 @@ def test_audit_contract_rejects_malformed_records_and_captures_errors(tmp_path) 
     assert _check(issues, checks, "exploding", lambda: (_ for _ in ()).throw(RuntimeError("boom"))) is None
     assert issues[0].severity == "error"
     assert "boom" in issues[0].message
-    output = tmp_path / "publication"
-    generate_publication_outputs(output)
-    report = run_audit(output_root=output)
+    report = run_audit(output_root=publication_bundle)
     assert report.status == "passed"
     assert not any(issue.code == "figure_registry.not_generated" for issue in report.issues)

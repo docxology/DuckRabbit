@@ -1,6 +1,10 @@
-\beamer@slide {request-and-canonical-artifact}{2}
-\beamer@slide {typed-parameter-domains}{4}
-\beamer@slide {canonical-serialization-and-provenance}{6}
-\beamer@slide {encoding-and-verification}{9}
-\beamer@slide {sec:objective_metric_definitions}{10}
-\beamer@slide {synthetic-psychophysics-boundary}{10}
+\beamer@slide {eq:typed_request}{3}
+\beamer@slide {eq:canonical_generation}{3}
+\beamer@slide {eq:clock_definition}{6}
+\beamer@slide {eq:canonical_digest}{8}
+\beamer@slide {eq:encoding_verification}{12}
+\beamer@slide {eq:objective_statistics}{15}
+\beamer@slide {eq:temporal_spectral_metrics}{15}
+\beamer@slide {eq:observer_estimand}{16}
+\beamer@slide {synthetic-psychophysics-boundary}{17}
+\beamer@slide {eq:synthetic_observer}{17}

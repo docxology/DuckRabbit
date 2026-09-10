@@ -23,7 +23,7 @@ def generate_variables() -> dict[str, object]:
     """Build manuscript values from the live registry, not prose constants."""
     entries = taxonomy_entries()
     implemented = [spec.illusion_id for spec in default_registry.list()]
-    modalities = sorted({modality.value for entry in entries for modality in entry.modalities})
+    modality_labels = sorted({modality.value.replace("_", "-") for entry in entries for modality in entry.modalities})
     sources, evidence = load_evidence_matrix()
     default_metrics = measure_artifact(default_registry.generate("visual.duck_rabbit", default_parameters("visual.duck_rabbit")))
     unique_values = default_metrics.record("unique_values").value
@@ -37,7 +37,7 @@ def generate_variables() -> dict[str, object]:
         "CATALOG_ENTRIES": len(entries),
         "IMPLEMENTED_GENERATORS": len(implemented),
         "IMPLEMENTED_IDS": ", ".join(implemented),
-        "MODALITIES": ", ".join(modalities),
+        "MODALITIES": ", ".join(modality_labels),
         "STATUS_LABELS": "implemented, planned, input_required",
         "IMPLEMENTED_COUNT": status_counts[ImplementationStatus.IMPLEMENTED],
         "PLANNED_COUNT": status_counts[ImplementationStatus.PLANNED],
@@ -90,7 +90,7 @@ def hydrate_manuscript_files(variables: Mapping[str, object], project_root: Path
         stale.unlink()
     token_pattern = re.compile(r"\{\{([A-Z][A-Z0-9_]*)\}\}")
     replacements = {key: str(value) for key, value in variables.items()}
-    excluded = {"AGENTS.md", "README.md", "SYNTAX.md"}
+    excluded = {"AGENTS.md", "MANUSCRIPT_STATUS.md", "README.md", "SYNTAX.md"}
     for manuscript_file in sorted(source_dir.glob("*.md")):
         if manuscript_file.name in excluded:
             continue

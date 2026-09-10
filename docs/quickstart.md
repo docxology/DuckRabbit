@@ -11,9 +11,13 @@ uv run python -m duckrabbit inspect output/media/visual_apparent_motion.gif
 uv run python -m duckrabbit verify output/media/visual_apparent_motion.gif.json
 uv run python -m duckrabbit capabilities
 uv run python scripts/generate_publication_outputs.py
-uv run python scripts/z_generate_manuscript_variables.py
-uv run pytest tests/ --cov=src/duckrabbit --cov-fail-under=90
+uv run python scripts/generate_manuscript_variables.py
+uv run python scripts/validate_scholarship.py
 ```
+
+The canonical end-to-end release sequence, including the network scholarship
+audit (release-time only) and the release audit gate, is documented in
+`docs/publication.md`.
 
 For JSON overrides:
 

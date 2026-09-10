@@ -10,6 +10,7 @@ from __future__ import annotations
 import json
 import re
 from datetime import date
+from typing import IO
 from urllib.error import HTTPError, URLError
 from urllib.parse import quote, urlsplit
 from urllib.request import Request, urlopen
@@ -20,7 +21,7 @@ from .urls import CROSSREF_API_PREFIX, DOI_RESOLVER_PREFIX
 _ALLOWED_SCHEMES = frozenset({"http", "https"})
 
 
-def _open_http(request: Request, *, timeout: float):
+def _open_http(request: Request, *, timeout: float) -> IO[bytes]:
     """Open a request after rejecting non-HTTP(S) schemes (CWE-22 hardening)."""
     scheme = urlsplit(request.full_url).scheme.lower()
     if scheme not in _ALLOWED_SCHEMES:

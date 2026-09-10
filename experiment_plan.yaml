@@ -16,7 +16,7 @@ conditions:
     description: "Decode NPZ archives and compare exact canonical arrays, shapes, clocks, and hashes."
 metrics:
   primary:
-    name: canonical_contract_pass_rate
+    name: deterministic_digest_match_rate
     direction: maximize
   secondary:
     - name: encoded_sha256

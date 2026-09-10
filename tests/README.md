@@ -18,6 +18,10 @@ The modules are intentionally organized by contract surface:
 | `test_metrics_statistics.py` | Objective units, luminance semantics, synthetic response families, and future-study power scenarios |
 | `test_publication_v05.py`, `test_project_audit.py` | Figure/caption/formalism contracts and the independent verifier |
 | `test_cli.py`, `test_fixtures.py` | User-facing commands and input-dependent fixture boundaries |
+| `test_catalog_contracts.py`, `test_release_contracts.py` | Live registry snapshots, release identity, claim lineage, and strict publication audits |
+| `test_scholarship_audit.py` | Scholarship audit network transport, DOI classification, and offline snapshot assembly |
+| `test_synthetic_psychophysics.py` | Model-output-only synthetic psychophysics layers and their typed boundaries |
+| `test_io.py`, `test_manuscript_hydration.py` | Atomic file writes and fallback manuscript hydration when template extras are absent |
 
 When the parent monorepo may be switching branches, run this suite from the
 isolated worktree documented in `../AGENTS.md`; a source tree that changes

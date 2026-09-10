@@ -1,5 +1,23 @@
 # Changelog
 
+## Unreleased — documentation and robustness improvement pass
+
+- Fixed the methodology power-calculation path so future-study power
+  scenarios derive from the declared estimand rather than a hard-coded
+  approximation.
+- Hardened figure font fallback (explicit `DUCKRABBIT_FONT_PATH` pinning
+  plus platform font search) and fixed label-collision issues in the atlas.
+- Corrected script paths and thin-contract boundaries; renamed
+  `scripts/z_generate_manuscript_variables.py` to
+  `scripts/generate_manuscript_variables.py` with the manuscript-variables
+  flow living in `duckrabbit.manuscript_variables`.
+- Aligned `docs/publication.md`, `docs/public-release-checklist.md`, and
+  `docs/quickstart.md` on one canonical regeneration sequence; removed stale
+  local-only claims and personal paths from the boilerplate READMEs.
+- Added a CI workflow and drift-guard tests that enforce
+  `experiment_plan.yaml`, `domain_profile.yaml`, and the claim ledger
+  against the live registries.
+
 ## 0.5.0 — publication-readiness cycle, published
 
 - Published to the public repository

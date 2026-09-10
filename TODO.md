@@ -56,8 +56,8 @@ Repeat this same sequence for the next version bump.
 - Expand the synthetic observer with feature ablations, metamorphic tests,
   zero-difference baselines, model-parameter sensitivity, and explicit model
   uncertainty without presenting it as human psychophysics.
-- Improve the atlas with frequency axes, explicit units, color-independent
-  annotations, visual-QA reports, and optional deterministic SVG companions.
+- Improve the atlas with frequency axes and optional deterministic SVG
+  companions.
 - Extend the methods/software paper with additional empirical literature and
   domain-specific stimulus-fidelity audits as the catalog grows.
 - Replace duplicated mutable test counts with live registry assertions plus one
@@ -115,7 +115,7 @@ gate and is published under DOI `10.5281/zenodo.21419693`.
 - Updated stale `working/` sidecar-location claims in `README.md`,
   `AGENTS.md`, `STANDALONE.md` (Medium, fixed this pass).
 - Added orientation ladder and performance note to `AGENTS.md` (Minor, fixed).
-- Deferred: replace prose catalog counts ("17 implemented / 0 planned /
-  1 input-required") above and in README with a live registry assertion —
-  the in-repo TODO already lists this; blocked this pass only by
-  external-drive cold-import cost, not by any design problem.
+- Addressed: the prose catalog counts ("17 implemented / 0 planned /
+  1 input-required") above and in README are now guarded by a drift-guard
+  test that enforces `experiment_plan.yaml`, `domain_profile.yaml`, and the
+  claim ledger against the live registries (added this pass).

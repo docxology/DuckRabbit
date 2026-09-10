@@ -1,1 +1,6 @@
 \beamer@sectionintoc {1}{Methodology}{1}{0}{1}
+\beamer@subsectionintoc {1}{1}{Request and canonical artifact}{2}{0}{1}
+\beamer@subsectionintoc {1}{2}{Typed parameter domains}{4}{0}{1}
+\beamer@subsectionintoc {1}{3}{Canonical serialization and provenance}{7}{0}{1}
+\beamer@subsectionintoc {1}{4}{Encoding and verification}{11}{0}{1}
+\beamer@subsectionintoc {1}{5}{Objective metric definitions}{13}{0}{1}

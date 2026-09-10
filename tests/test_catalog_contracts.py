@@ -40,8 +40,7 @@ def test_strict_release_mode_fails_without_publication_bundle(tmp_path) -> None:
     assert report.issues, "strict release audit must fail without publication outputs"
 
 
-def test_strict_release_mode_accepts_generated_bundle(tmp_path) -> None:
-    duckrabbit.generate_publication_outputs(tmp_path)
-    report = run_audit(output_root=tmp_path, release=True)
+def test_strict_release_mode_accepts_generated_bundle(publication_bundle) -> None:
+    report = run_audit(output_root=publication_bundle, release=True)
     blocking = [issue for issue in report.issues if issue.severity == "error"]
     assert not blocking, [issue.message for issue in blocking]

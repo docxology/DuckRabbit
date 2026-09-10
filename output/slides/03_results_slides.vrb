@@ -1,40 +1,5 @@
 \frametitle{Synthetic psychophysics model diagnostic}
-\protect\phantomsection\label{synthetic-psychophysics-model-diagnostic}
-\begin{figure}
-\centering
-\pandocbounded{\includegraphics[keepaspectratio,alt={A narrow-range line plot shows deterministic model probability across duck\_weight values beside the model identity, temperature, no-training-data statement, and human-data boundary.}]{../figures/synthetic_psychophysics.png}}
-\caption{A narrow-range line plot shows deterministic model probability
-across duck\_weight values beside the model identity, temperature,
-no-training-data statement, and human-data
-boundary.}\label{fig:synthetic_psychophysics}
-\end{figure}
-
-What this figure shows: A narrow-range line plot shows deterministic
-model probability across duck\_weight values beside the model identity,
-temperature, no-training-data statement, and human-data boundary. The
-hand-specified feature observer compares duck\_weight variants with a
-fixed canonical reference. Its probability trace is computed
-analytically from serialized features, weights, and temperature; source
-data output/data/synthetic\_psychophysics.json records model ID/version,
-reference and comparison digests, seed, calibration,
-\breaktt{training\_data=none}, and \breaktt{human\_data=false}. The y-axis
-is deliberately a narrow model-output range rather than a human
-psychometric scale. Controls: duck\_weight comparison against fixed
-reference; serialized feature weights and temperature; seed s=0.
-Objective facts: model probability and score delta on the displayed
-model-output scale; canonical stimulus digests; human\_data=false;
-training\_data=none. Claim level: synthetic\_model\_output. Source data:
-output/data/synthetic\_psychophysics.json (SHA-256 digest recorded in
-the figure registry). Evidence lineage:
-observer:preregistered\_estimands. Limitations: The model is
-hand-specified, has no training data, has not been calibrated against
-observers, and does not estimate a human threshold or effect size. Its
-probabilities are model outputs, not participant responses or a
-psychometric function. Boundary: This diagnostic tests deterministic
-orchestration and metamorphic input-output behavior only; empirical
-psychophysics remains future work.
-
-The diagnostic \breakseq{[@fig:synthetic\_psychophysics]} evaluates a fully
+The diagnostic fig.~\ref{fig:synthetic_psychophysics} evaluates a fully
 serialized, hand-specified feature observer against a fixed canonical
 reference while varying \texttt{duck\_weight}. Its logistic
 probabilities are model outputs generated from explicit features,

@@ -75,6 +75,8 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{longtable,booktabs,array}
+\usepackage{caption}
+\captionsetup[table]{skip=6pt}
 \newcounter{none} % for unnumbered tables
 \usepackage{calc} % for calculating minipage widths
 \usepackage{caption}
@@ -106,6 +108,35 @@
 \usepackage{unicode-math}
 \setmathfont{latinmodern-math.otf}
 
+% Manuscript macro/package fallbacks (newcommand -> providecommand).
+% Core mathematics
+\usepackage{amsmath}
+\usepackage{amssymb}
+% Document layout
+% Tables
+\usepackage{booktabs}
+% Algorithm typesetting
+% Code listings
+\usepackage{listings}
+% Typography and formatting
+% Cross-references and citations
+% ── Unicode-capable mono font for code listings ──────────────────────
+% JuliaMono (TeX Live 2026) covers the full math/Greek glyph set used in
+% scientific code blocks; the default lmmono lacks \alpha/\mu/\partial/\nabla.
+%
+% The hardcoded TeX Live 2026 path below is portable to most macOS / Linux
+% TeX Live installs that placed JuliaMono under the default texmf-dist path.
+% If your TeX Live version differs (e.g., 2025, 2027) or your distribution
+% installs fonts elsewhere, comment out the explicit Path = line — fontspec
+% will then search the system font path. If JuliaMono is not installed at
+% all, comment out the whole block; xelatex falls back to lmmono with
+% reduced Unicode coverage but the document still compiles.
+% Math font for unicode-math: Latin Modern Math (TeX Live) has full BMP
+% coverage including U+2223 (\mid), U+226A/226B (\ll/\gg), and the Greek/
+% blackboard letters used in equations. Without an explicit \setmathfont,
+% unicode-math falls back to lmroman text font which lacks several glyphs
+% and emits "Missing character" warnings on every \mid in math mode.
+
 % Slide layout defaults for warning-clean scientific decks.
 \usepackage{etoolbox}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{}
@@ -119,6 +150,33 @@
 \setlength{\tabcolsep}{2pt}
 \AtBeginEnvironment{longtable}{\tiny\renewcommand{\arraystretch}{0.86}\setlength{\tabcolsep}{1pt}}
 \AtBeginEnvironment{tabular}{\tiny\renewcommand{\arraystretch}{0.86}\setlength{\tabcolsep}{1pt}}
+\AtBeginEnvironment{equation}{\tiny}
+\AtBeginEnvironment{equation*}{\tiny}
+\AtBeginEnvironment{align}{\tiny}
+\AtBeginEnvironment{align*}{\tiny}
+\AtBeginEnvironment{itemize}{\footnotesize}
+\AtBeginEnvironment{enumerate}{\footnotesize}
+\AtBeginEnvironment{description}{\footnotesize}
+\setbeamerfont{caption}{size=\tiny}
+\setbeamerfont{caption name}{size=\tiny}
+\setbeamerfont{normal text}{size=\small}
+\setbeamerfont{frametitle}{size=\small}
+\setbeamerfont{section title}{size=\footnotesize}
+\setbeamerfont{subsection title}{size=\footnotesize}
+\setbeamertemplate{section page}{%
+  \centering
+  \begin{beamercolorbox}[sep=12pt,center,wd=\paperwidth]{section title}
+    \parbox{0.86\paperwidth}{\centering\usebeamerfont{section title}\insertsection\par}
+  \end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{%
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,wd=\paperwidth]{subsection title}
+    \parbox{0.86\paperwidth}{\centering\usebeamerfont{subsection title}\insertsubsection\par}
+  \end{beamercolorbox}
+}
+\setlength{\abovecaptionskip}{2pt}
+\setlength{\belowcaptionskip}{0pt}
 
 % Natbib and cross-reference fallbacks — slides don't load natbib
 % or cleveref, but combined-PDF manuscript prose may emit these
@@ -133,9 +191,15 @@
 \providecommand{\citeyear}[1]{#1}
 \providecommand{\cref}[1]{\texttt{\detokenize{#1}}}
 \providecommand{\Cref}[1]{\texttt{\detokenize{#1}}}
+\providecommand{\crefrange}[2]{\texttt{\detokenize{#1}}--\texttt{\detokenize{#2}}}
+\providecommand{\Crefrange}[2]{\texttt{\detokenize{#1}}--\texttt{\detokenize{#2}}}
+\providecommand{\paragraph}[1]{\textbf{#1}\ }
 
 \newtheorem{proposition}{Proposition}
 \newtheorem{hypothesis}{Hypothesis}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{axiom}{Axiom}
+\newtheorem{property}{Property}
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
@@ -163,6 +227,9 @@ than copied into prose. The companion figure keeps the categorical
 registry, source namespace, and implementation statuses visible at a
 glance.
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Generated catalog, metrics, and outputs}
 \begin{figure}
 \centering
 \pandocbounded{\includegraphics[keepaspectratio,alt={A matrix lists all catalog entries with modality, mechanism, signature, input requirement, and implementation status.}]{../figures/catalog_matrix.png}}
@@ -171,6 +238,9 @@ signature, input requirement, and implementation
 status.}\label{fig:catalog_matrix}
 \end{figure}
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Generated catalog, metrics, and outputs}
 What this figure shows: A matrix lists all catalog entries with
 modality, mechanism, signature, input requirement, and implementation
 status. The live catalog matrix contains 18 entries and keeps modality,
@@ -185,21 +255,27 @@ applicable. Claim level: source\_supported. Source data:
 output/data/catalog\_matrix.json (SHA-256 digest recorded in the figure
 registry). Evidence lineage: gregory1997visual, hirst2020sound,
 bruns2019ventriloquist. Limitations: Taxonomy facets are engineering
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Generated catalog, metrics, and outputs}
 classifications and remain provisional where the literature supports
 competing accounts. Boundary: Catalog coverage is bounded to this
 registered package and does not enumerate all known illusions.
 
-The complete catalog matrix \breakseq{[@fig:catalog\_matrix]} is tabulated in
-the standalone Appendix A \breakseq{[@sec:appendix\_catalog; @tbl:catalog]}.
-The corresponding machine-readable evidence matrix records the source
-role, exact supported claim, engineering departure, and limitation for
-every entry. Keeping the table in an appendix gives the main results
-narrative room to explain the contract without turning a mutable
-registry snapshot into a prose claim.
+The complete catalog matrix fig.~\ref{fig:catalog_matrix} is tabulated
+in the standalone Appendix A sec.~10 and in
+tbl.~10. The corresponding machine-readable evidence
+matrix records the source role, exact supported claim, engineering
+departure, and limitation for every entry. Keeping the table in an
+appendix gives the main results narrative room to explain the contract
+without turning a mutable registry snapshot into a prose claim.
 \end{frame}
 
 \begin{frame}[allowframebreaks]{Typed domains and delivery profiles}
 \protect\phantomsection\label{typed-domains-and-delivery-profiles}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Typed domains and delivery profiles}
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
   >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
@@ -244,10 +320,16 @@ discrepancy \\
 \bottomrule\noalign{}
 \end{longtable}
 
-The parameter contracts are summarized in \breakseq{[@tbl:parameters]}. They
-constrain physical construction and serialization; they are not
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Typed domains and delivery profiles}
+The parameter contracts are summarized in tbl.~\ref{tbl:parameters}.
+They constrain physical construction and serialization; they are not
 psychophysical scales.
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Typed domains and delivery profiles}
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
@@ -295,9 +377,12 @@ MP4 & ffmpeg & video/audiovisual & H.264 or muxed MP4; decode inspected
 \bottomrule\noalign{}
 \end{longtable}
 
-The delivery profiles are summarized in \breakseq{[@tbl:encodings]}. Backend
-availability is environment-dependent and is recorded at generation
-time.
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Typed domains and delivery profiles}
+The delivery profiles are summarized in tbl.~\ref{tbl:encodings}.
+Backend availability is environment-dependent and is recorded at
+generation time.
 
 The catalog distinguishes a physical construction from an observer
 claim. For example, the sound-induced-flash generator establishes one
@@ -305,11 +390,14 @@ flash and one or two beep events on a shared clock; it does not
 establish a reported flash count. Similarly, the temporal-ventriloquism
 generator exposes a declared timing offset, while the literature reports
 observer-dependent temporal judgments under specific tasks and timing
-conditions \breakseq{[@vroomen2004temporal]}.
+conditions (Vroomen and Gelder 2004).
 \end{frame}
 
 \begin{frame}[allowframebreaks]{Pipeline and provenance}
 \protect\phantomsection\label{pipeline-and-provenance}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Pipeline and provenance}
 \begin{figure}
 \centering
 \pandocbounded{\includegraphics[keepaspectratio,alt={Five labeled stages connect a typed request to a deterministic canonical artifact, encoded media, decoded inspection, and a verification manifest.}]{../figures/architecture.png}}
@@ -318,6 +406,9 @@ canonical artifact, encoded media, decoded inspection, and a
 verification manifest.}\label{fig:architecture}
 \end{figure}
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Pipeline and provenance}
 What this figure shows: Five labeled stages connect a typed request to a
 deterministic canonical artifact, encoded media, decoded inspection, and
 a verification manifest. This schematic separates a typed request from
@@ -331,6 +422,9 @@ canonicalization. Objective facts: no unit-bearing objective quantity is
 applicable to this architecture diagram; stage identities and provenance
 fields are recorded in the sidecar. Claim level: canonical\_stimulus.
 Source data: output/data/architecture.json (SHA-256 digest recorded in
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Pipeline and provenance}
 the figure registry). Evidence lineage: formalism:eq:typed\_request,
 formalism:eq:canonical\_generation, formalism:eq:encoding\_verification.
 Limitations: The schematic abstracts implementation boundaries and does
@@ -338,7 +432,7 @@ not represent an observer study or a causal theory of perception.
 Boundary: The pipeline verifies reproducible media facts, not what a
 person experiences.
 
-The generated architecture figure \breakseq{[@fig:architecture]} shows the
+The generated architecture figure fig.~\ref{fig:architecture} shows the
 separation between request, canonical artifact, delivery adapter,
 decoded inspection, and manifest. The canonical digest is the identity
 of the in-memory stimulus; an encoded hash is the identity of the
@@ -348,6 +442,10 @@ delivered file. The difference is intentional.
 \begin{frame}[allowframebreaks]{Visual constructions and parameter
 sweeps}
 \protect\phantomsection\label{visual-constructions-and-parameter-sweeps}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Visual constructions and parameter
+sweeps}
 \begin{figure}
 \centering
 \pandocbounded{\includegraphics[keepaspectratio,alt={A 9-panel gallery shows every currently implemented visual catalog entry, with stable IDs and physical raster summaries: Duck-rabbit ambiguous figure, Simultaneous contrast stimulus, Apparent-motion frame sequence, Müller-Lyer geometric illusion, Poggendorff geometric illusion, Ponzo perspective illusion, Kanizsa illusory-contour triangle, Ebbinghaus context-size illusion, Zöllner orientation illusion.}]{../figures/visual_panel.png}}
@@ -360,6 +458,10 @@ illusory-contour triangle, Ebbinghaus context-size illusion, Zöllner
 orientation illusion.}\label{fig:visual_panel}
 \end{figure}
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Visual constructions and parameter
+sweeps}
 What this figure shows: A 9-panel gallery shows every currently
 implemented visual catalog entry, with stable IDs and physical raster
 summaries: Duck-rabbit ambiguous figure, Simultaneous contrast stimulus,
@@ -374,6 +476,10 @@ Poggendorff geometric illusion, Ponzo perspective illusion, Kanizsa
 illusory-contour triangle, Ebbinghaus context-size illusion, Zöllner
 orientation illusion. The panel therefore covers the package's available
 visual families---ambiguous figure, contrast, apparent motion, geometric
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Visual constructions and parameter
+sweeps}
 context, illusory contour, contextual size, and orientation-related
 constructions---using typed defaults at seed 0. For the temporally
 expressed apparent-motion entry, the displayed tile is its first frame
@@ -388,6 +494,10 @@ display their first frame but retain sequence metrics. Objective facts:
 per tile: mean and standard-deviation relative luminance, unique raster
 levels, and canonical SHA-256 digest; temporal entries additionally
 retain frame count, frame rate, and frame deltas; definitions and units
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Visual constructions and parameter
+sweeps}
 are in the source data JSON. Claim level: canonical\_stimulus. Source
 data: output/data/visual\_panel.json (SHA-256 digest recorded in the
 figure registry). Evidence lineage: gregory1997visual,
@@ -402,11 +512,15 @@ display calibration, viewing distance, and observer conditions can
 change the relevance of a construction; the gallery does not measure an
 observer's perceptual report. Boundary: The figure establishes coverage
 of the package's implemented visual constructions and their
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Visual constructions and parameter
+sweeps}
 deterministic raster facts. It does not establish that any viewer will
 perceive the named signature, nor that the set is exhaustive of the
 visual-illusion literature.
 
-The visual panel \breakseq{[@fig:visual\_panel]} is deliberately a coverage
+The visual panel fig.~\ref{fig:visual_panel} is deliberately a coverage
 figure: it contains one deterministic representative for every currently
 implemented visual entry, including apparent motion and Zöllner in
 addition to the static ambiguous-figure, contrast, geometric-context,
@@ -415,6 +529,10 @@ geometry, luminance bounds, and temporal positions are properties of the
 typed rasters or sequences. They are not observer scores, and the
 gallery is not an exhaustive ontology of visual illusions.
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Visual constructions and parameter
+sweeps}
 \begin{figure}
 \centering
 \pandocbounded{\includegraphics[keepaspectratio,alt={A labeled grid crosses five duck--rabbit blend weights with five grayscale and quantization settings, with physical metrics recorded for each cell.}]{../figures/visual_sweep.png}}
@@ -423,6 +541,10 @@ five grayscale and quantization settings, with physical metrics recorded
 for each cell.}\label{fig:visual_sweep}
 \end{figure}
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Visual constructions and parameter
+sweeps}
 What this figure shows: A labeled grid crosses five duck--rabbit blend
 weights with five grayscale and quantization settings, with physical
 metrics recorded for each cell. This 5×5 sweep varies duck--rabbit blend
@@ -437,12 +559,16 @@ mean luminance, and effective dynamic range per cell. Claim level:
 physical\_metric. Source data: output/data/visual\_sweep.json (SHA-256
 digest recorded in the figure registry). Evidence lineage:
 brugger1999duckrabbit, gregory1997visual. Limitations: The grid is a
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Visual constructions and parameter
+sweeps}
 sensitivity of the construction parameters, not a psychophysical
 sensitivity curve or a validated observer effect. Boundary: The chosen
 grid is an engineering sampling of the parameter domain and does not
 imply an optimal or perceptually uniform spacing.
 
-The sweep \breakseq{[@fig:visual\_sweep]} varies duck-weight from 0 to 1 and
+The sweep fig.~\ref{fig:visual_sweep} varies duck-weight from 0 to 1 and
 jointly varies representable grayscale and quantization levels. The
 source data preserve canonical digests and unique-value counts; no
 perceptual score is assigned to a sweep cell.
@@ -450,6 +576,9 @@ perceptual score is assigned to a sweep cell.
 
 \begin{frame}[allowframebreaks]{Temporal and auditory constructions}
 \protect\phantomsection\label{temporal-and-auditory-constructions}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Temporal and auditory constructions}
 \begin{figure}
 \centering
 \pandocbounded{\includegraphics[keepaspectratio,alt={Six ordered frames are labeled with timestamps and paired with a line plot of adjacent-frame normalized pixel differences.}]{../figures/temporal_sequence.png}}
@@ -458,6 +587,9 @@ a line plot of adjacent-frame normalized pixel
 differences.}\label{fig:temporal_sequence}
 \end{figure}
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Temporal and auditory constructions}
 What this figure shows: Six ordered frames are labeled with timestamps
 and paired with a line plot of adjacent-frame normalized pixel
 differences. The frame strip exposes the order and timestamps of the
@@ -472,17 +604,23 @@ in seconds, frame rate in frames/s, frame count, rational timebase, and
 adjacent-frame normalized pixel difference. Claim level:
 physical\_metric. Source data: output/data/temporal\_sequence.json
 (SHA-256 digest recorded in the figure registry). Evidence lineage:
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Temporal and auditory constructions}
 wertheimer1912motion, sekuler1996wertheimer. Limitations: Frame
 succession and frame deltas are physical file properties; playback
 timing, display persistence, and motion reports require a controlled
 observer task. Boundary: The figure documents temporal structure rather
 than the presence, direction, or strength of perceived motion.
 
-The temporal figure \breakseq{[@fig:temporal\_sequence]} reports frame
+The temporal figure fig.~\ref{fig:temporal_sequence} reports frame
 succession, rational frame rate, and frame-to-frame mean absolute
 differences. These facts establish temporal structure in the file, not
 the presence or strength of perceived motion.
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Temporal and auditory constructions}
 \begin{figure}
 \centering
 \pandocbounded{\includegraphics[keepaspectratio,alt={Five labeled rows show canonical audio waveforms, relative one-sided spectral bars, RMS and peak in normalized amplitude, and spectral summaries in hertz.}]{../figures/audio_signals.png}}
@@ -491,6 +629,9 @@ one-sided spectral bars, RMS and peak in normalized amplitude, and
 spectral summaries in hertz.}\label{fig:audio_signals}
 \end{figure}
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Temporal and auditory constructions}
 What this figure shows: Five labeled rows show canonical audio
 waveforms, relative one-sided spectral bars, RMS and peak in normalized
 amplitude, and spectral summaries in hertz. Five implemented auditory
@@ -505,6 +646,9 @@ channel layout and sample rate; seed s=0; one-sided FFT display with 48
 sampled bins. Objective facts: RMS and peak in normalized amplitude;
 spectral centroid and bandwidth in Hz; sample rate in samples/s; channel
 layout and canonical SHA-256 digest. Claim level: physical\_metric.
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Temporal and auditory constructions}
 Source data: output/data/audio\_signals.json (SHA-256 digest recorded in
 the figure registry). Evidence lineage: shepard1984scale,
 zatorre2005missing, deutsch1986tritone, repp1997tritone,
@@ -515,17 +659,23 @@ buffer. Boundary: The figure compares generated signal properties and
 literature-linked families; it does not establish pitch, continuity, or
 stream organization for a listener.
 
-The auditory figure \breakseq{[@fig:audio\_signals]} shows canonical waveforms
-and spectral summaries for Shepard, missing-fundamental, tritone,
-octave, and continuity constructions. RMS, peak, spectral centroid,
-bandwidth, and channel layout are calculated from the canonical buffer
-with explicit units and windowing rules. Pitch direction, pitch height,
-continuity, and stream organization remain observer-level outcomes that
-depend on playback and task conditions.
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Temporal and auditory constructions}
+The auditory figure fig.~\ref{fig:audio_signals} shows canonical
+waveforms and spectral summaries for Shepard, missing-fundamental,
+tritone, octave, and continuity constructions. RMS, peak, spectral
+centroid, bandwidth, and channel layout are calculated from the
+canonical buffer with explicit units and windowing rules. Pitch
+direction, pitch height, continuity, and stream organization remain
+observer-level outcomes that depend on playback and task conditions.
 \end{frame}
 
 \begin{frame}[allowframebreaks]{Audiovisual timing and encoding}
 \protect\phantomsection\label{audiovisual-timing-and-encoding}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Audiovisual timing and encoding}
 \begin{figure}
 \centering
 \pandocbounded{\includegraphics[keepaspectratio,alt={Two labeled traces share a normalized time axis: video mean luminance and audio absolute amplitude, with signed synchronization and spatial offsets printed below.}]{../figures/audiovisual_timeline.png}}
@@ -534,6 +684,9 @@ luminance and audio absolute amplitude, with signed synchronization and
 spatial offsets printed below.}\label{fig:audiovisual_timeline}
 \end{figure}
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Audiovisual timing and encoding}
 What this figure shows: Two labeled traces share a normalized time axis:
 video mean luminance and audio absolute amplitude, with signed
 synchronization and spatial offsets printed below. Video mean luminance
@@ -548,6 +701,9 @@ timeline; declared sync offset ΔAV and spatial offset; seed s=0.
 Objective facts: video luminance and audio envelope on normalized shared
 time; ΔAV in ms; spatial discrepancy in normalized units; frame and
 sample clocks in the sidecar. Claim level: physical\_metric. Source
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Audiovisual timing and encoding}
 data: output/data/audiovisual\_timeline.json (SHA-256 digest recorded in
 the figure registry). Evidence lineage: shams2000sifi, hirst2020sound,
 vroomen2004temporal, hartcherobrien2011temporal. Limitations: Display
@@ -556,13 +712,16 @@ are not measured by this figure. Boundary: A shared-clock construction
 is not evidence that observers bind the events at the declared or any
 other perceptual time.
 
-The audiovisual timeline \breakseq{[@fig:audiovisual\_timeline]} displays video
-luminance and audio amplitude against the shared clock, alongside
+The audiovisual timeline fig.~\ref{fig:audiovisual_timeline} displays
+video luminance and audio amplitude against the shared clock, alongside
 declared synchronization and spatial offsets. Ventriloquist stimuli
 require stereo playback and spatially resolved display; temporal binding
-requires controlled timing and an observer task
-\breakseq{[@bruns2019ventriloquist; @vroomen2004temporal]}.
+requires controlled timing and an observer task (Bruns 2019; Vroomen and
+Gelder 2004).
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Audiovisual timing and encoding}
 \begin{figure}
 \centering
 \pandocbounded{\includegraphics[keepaspectratio,alt={A five-row comparison lists format, backend, preserved canonical facts, and the corresponding decoded verification checks.}]{../figures/encoding_verification.png}}
@@ -571,6 +730,9 @@ canonical facts, and the corresponding decoded verification
 checks.}\label{fig:encoding_verification}
 \end{figure}
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Audiovisual timing and encoding}
 What this figure shows: A five-row comparison lists format, backend,
 preserved canonical facts, and the corresponding decoded verification
 checks. The comparison separates the canonical artifact from delivery
@@ -585,6 +747,9 @@ Objective facts: format availability and verification scope are
 environment observations; NPZ is exact while other formats are decoded
 and tolerance-checked. Claim level: encoded\_media. Source data:
 output/data/encoding\_verification.json (SHA-256 digest recorded in the
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Audiovisual timing and encoding}
 figure registry). Evidence lineage: engineering:typed\_media\_adapters.
 Limitations: Backend availability, codec versions, container metadata,
 and lossy tolerances are environment-dependent; playback software can
@@ -592,7 +757,7 @@ expose additional behavior. Boundary: A successful encode or decode does
 not validate an observer effect or guarantee cross-device perceptual
 equivalence.
 
-The encoding matrix \breakseq{[@fig:encoding\_verification]} makes backend
+The encoding matrix fig.~\ref{fig:encoding_verification} makes backend
 capability and verification scope visible. NPZ is the exact canonical
 archive; PNG, WAV, GIF, and MP4 are delivery containers whose decoded
 facts are checked against the manifest.
@@ -600,6 +765,9 @@ facts are checked against the manifest.
 
 \begin{frame}[allowframebreaks]{Objective metric results}
 \protect\phantomsection\label{sec:objective_metric_results}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Objective metric results}
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
@@ -658,8 +826,12 @@ physical\_metric \\
 \bottomrule\noalign{}
 \end{longtable}
 
-The metric definitions in \breakseq{[@tbl:metrics]} are computed from canonical
-or decoded artifacts and do not encode observer interpretations.
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Objective metric results}
+The metric definitions in tbl.~\ref{tbl:metrics} are computed from
+canonical or decoded artifacts and do not encode observer
+interpretations.
 
 The default duck-rabbit artifact contains 3 unique raster levels and has
 mean normalized luminance 0.7770. These values are live generated facts,
@@ -669,6 +841,10 @@ not perceptual effect sizes.
 \begin{frame}[allowframebreaks]{Observer estimands and verification
 controls}
 \protect\phantomsection\label{observer-estimands-and-verification-controls}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Observer estimands and verification
+controls}
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
   >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
@@ -709,9 +885,17 @@ confidence interval \\
 \bottomrule\noalign{}
 \end{longtable}
 
-The analysis contract in \breakseq{[@tbl:observer\_estimands]} specifies
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Observer estimands and verification
+controls}
+The analysis contract in tbl.~\ref{tbl:observer_estimands} specifies
 estimands and uncertainty procedures without asserting any result.
 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Observer estimands and verification
+controls}
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
@@ -752,13 +936,22 @@ disagreement & parameter error \\
 \bottomrule\noalign{}
 \end{longtable}
 
-The negative controls in \breakseq{[@tbl:verification]} test package integrity
-and media contracts; they are not null findings about perception.
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Observer estimands and verification
+controls}
+The negative controls in tbl.~\ref{tbl:verification} test package
+integrity and media contracts; they are not null findings about
+perception.
 \end{frame}
 
 \begin{frame}[fragile,allowframebreaks]{Synthetic psychophysics model
 diagnostic}
 \protect\phantomsection\label{synthetic-psychophysics-model-diagnostic}
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Synthetic psychophysics model
+diagnostic}
 \begin{figure}
 \centering
 \pandocbounded{\includegraphics[keepaspectratio,alt={A narrow-range line plot shows deterministic model probability across duck\_weight values beside the model identity, temperature, no-training-data statement, and human-data boundary.}]{../figures/synthetic_psychophysics.png}}
@@ -768,6 +961,10 @@ no-training-data statement, and human-data
 boundary.}\label{fig:synthetic_psychophysics}
 \end{figure}
 
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Synthetic psychophysics model
+diagnostic}
 What this figure shows: A narrow-range line plot shows deterministic
 model probability across duck\_weight values beside the model identity,
 temperature, no-training-data statement, and human-data boundary. The
@@ -782,6 +979,10 @@ psychometric scale. Controls: duck\_weight comparison against fixed
 reference; serialized feature weights and temperature; seed s=0.
 Objective facts: model probability and score delta on the displayed
 model-output scale; canonical stimulus digests; human\_data=false;
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Synthetic psychophysics model
+diagnostic}
 training\_data=none. Claim level: synthetic\_model\_output. Source data:
 output/data/synthetic\_psychophysics.json (SHA-256 digest recorded in
 the figure registry). Evidence lineage:
@@ -793,7 +994,11 @@ psychometric function. Boundary: This diagnostic tests deterministic
 orchestration and metamorphic input-output behavior only; empirical
 psychophysics remains future work.
 
-The diagnostic \breakseq{[@fig:synthetic\_psychophysics]} evaluates a fully
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Synthetic psychophysics model
+diagnostic}
+The diagnostic fig.~\ref{fig:synthetic_psychophysics} evaluates a fully
 serialized, hand-specified feature observer against a fixed canonical
 reference while varying \texttt{duck\_weight}. Its logistic
 probabilities are model outputs generated from explicit features,

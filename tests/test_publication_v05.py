@@ -15,6 +15,20 @@ from duckrabbit.publication_specs import CaptionSpec, caption_variable_name
 from duckrabbit.taxonomy import CognitiveProcess, ClaimLevel, ImplementationStatus, Mechanism, Modality, taxonomy_entries
 
 
+EXPECTED_PUBLICATION_TABLES_V0_5_0 = frozenset({
+    "caption_audit_table",
+    "catalog_table",
+    "claim_ledger_table",
+    "encoding_profiles_table",
+    "evidence_source_audit_table",
+    "formalism_traceability_table",
+    "metrics_table",
+    "observer_estimands_table",
+    "parameter_domains_table",
+    "verification_failure_modes_table",
+})
+
+
 def test_caption_contract_is_complete_and_rejects_overclaims():
     assert Mechanism.AMBIGUITY.value in {entry.mechanisms[0].value for entry in taxonomy_entries()}
     assert CognitiveProcess.PERCEPTUAL_ORGANIZATION.value in {entry.cognitive_processes[0].value for entry in taxonomy_entries()}
@@ -25,7 +39,7 @@ def test_caption_contract_is_complete_and_rejects_overclaims():
     assert all("controls:" in spec.rendered_caption.lower() for spec in specs)
     assert all("objective facts:" in spec.rendered_caption.lower() for spec in specs)
     assert all("boundary:" in spec.rendered_caption.lower() for spec in specs)
-    assert all("boundary:" in spec.rendered_caption.lower() and spec.boundary_statement.strip() for spec in specs)
+    assert all(spec.boundary_statement.strip() for spec in specs)
     assert all(spec.limitations and spec.accessibility_notes for spec in specs)
     assert any(spec.claim_level is ClaimLevel.OBSERVER_HYPOTHESIS for spec in specs)
     assert caption_variable_name("duck_rabbit", "caption") == "FIGURE_CAPTION_DUCK_RABBIT"
@@ -62,13 +76,12 @@ def test_catalog_is_referenced_by_standalone_appendix():
     appendix_text = appendix.read_text(encoding="utf-8")
     results_text = results.read_text(encoding="utf-8")
     assert "{#tbl:catalog}" in appendix_text
-    assert "[@sec:appendix_catalog; @tbl:catalog]" in results_text
+    assert "[@sec:appendix_catalog] and in [@tbl:catalog]" in results_text
     assert "{{CATALOG_TABLE_ROWS}}" not in results_text
 
 
 def test_formalism_registry_is_traceable_and_typed():
     records = formalism_registry()
-    assert len(records) == 9
     assert {record.label for record in records} == {"eq:typed_request", "eq:canonical_generation", "eq:canonical_digest", "eq:encoding_verification", "eq:clock_definition", "eq:objective_statistics", "eq:temporal_spectral_metrics", "eq:observer_estimand", "eq:synthetic_observer"}
     assert all(record.tests and record.figures and record.claim_level for record in records)
     assert any(record.claim_level is ClaimLevel.OBSERVER_HYPOTHESIS for record in records)
@@ -80,8 +93,7 @@ def test_formalism_registry_is_traceable_and_typed():
 
 def test_publication_tables_expand_with_audit_lineage():
     payloads = publication_table_payloads()
-    assert len(payloads) == 10
-    assert {"caption_audit_table", "evidence_source_audit_table", "formalism_traceability_table", "claim_ledger_table"} <= set(payloads)
+    assert set(payloads) == EXPECTED_PUBLICATION_TABLES_V0_5_0
     assert all(payload["records"] for payload in payloads.values())
     assert all(payload["label"].startswith("tbl:") for payload in payloads.values())
     assert len(payloads["catalog_table"]["headers"]) == 5
@@ -193,11 +205,10 @@ def test_figure_registry_is_an_independent_hash_and_caption_oracle(tmp_path: Pat
         validate_figure_registry(bad_source, output_dir=tmp_path)
 
 
-def test_figure_registry_rejects_structural_and_lineage_corruption(tmp_path: Path):
-    generate_publication_outputs(tmp_path)
-    registry_path = tmp_path / "figures" / "figure_registry.json"
+def test_figure_registry_rejects_structural_and_lineage_corruption(tmp_path: Path, publication_bundle: Path):
+    registry_path = publication_bundle / "figures" / "figure_registry.json"
     original = json.loads(registry_path.read_text(encoding="utf-8"))
-    assert validate_figure_registry(registry_path)["figure_count"] == len(publication_caption_specs())
+    assert validate_figure_registry(registry_path, output_dir=publication_bundle)["figure_count"] == len(publication_caption_specs())
 
     def invalid(mutator, message: str, name: str) -> None:
         payload = json.loads(json.dumps(original))
@@ -205,7 +216,7 @@ def test_figure_registry_rejects_structural_and_lineage_corruption(tmp_path: Pat
         path = tmp_path / f"{name}.json"
         path.write_text(json.dumps(payload), encoding="utf-8")
         with pytest.raises(ValueError, match=message):
-            validate_figure_registry(path, output_dir=tmp_path)
+            validate_figure_registry(path, output_dir=publication_bundle)
 
     invalid(lambda payload: payload.update({"schema_version": "bad"}), "schema version", "bad-schema")
     invalid(lambda payload: payload.update({"figures": {}}), "figures must be a list", "bad-figures")
@@ -230,18 +241,21 @@ def test_figure_registry_rejects_structural_and_lineage_corruption(tmp_path: Pat
     with pytest.raises(ValueError, match="cannot read figure registry"):
         validate_figure_registry(bad_registry_json, output_dir=tmp_path)
 
+    # The tamper probes below mutate real files, so they need a disposable bundle.
+    generate_publication_outputs(tmp_path)
+    mutable_registry = tmp_path / "figures" / "figure_registry.json"
     source_path = tmp_path / "data" / "architecture.json"
     source_path.write_bytes(source_path.read_bytes() + b"tampered")
     with pytest.raises(ValueError, match="source-data hash is stale"):
-        validate_figure_registry(registry_path, output_dir=tmp_path)
+        validate_figure_registry(mutable_registry, output_dir=tmp_path)
 
     figure_path = tmp_path / "figures" / "architecture.png"
     original_figure_bytes = figure_path.read_bytes()
     figure_path.write_bytes(original_figure_bytes + b"tampered")
     with pytest.raises(ValueError, match="figure hash is stale"):
-        validate_figure_registry(registry_path, output_dir=tmp_path)
+        validate_figure_registry(mutable_registry, output_dir=tmp_path)
 
     figure_path.write_bytes(original_figure_bytes)
     source_path.unlink()
     with pytest.raises(ValueError, match="missing output"):
-        validate_figure_registry(registry_path, output_dir=tmp_path)
+        validate_figure_registry(mutable_registry, output_dir=tmp_path)

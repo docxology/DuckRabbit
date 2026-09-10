@@ -1,7 +1,9 @@
 # AGENTS.md — DuckRabbit
 
 DuckRabbit is a private sidecar project (currently under
-`projects/ongoing/docxology/DuckRabbit` in the private monorepo). Read this file and
+`projects/ongoing/docxology/DuckRabbit` in the private workspace). This
+checkout is its own git repository, mirrored to
+https://github.com/docxology/DuckRabbit. Read this file and
 the relevant directory guidance before editing.
 
 ## Orientation ladder (cold start)
@@ -88,19 +90,20 @@ moving parent worktree. Use a disposable isolated worktree for the project:
 
 ```bash
 git fetch origin
-git worktree add /private/tmp/duckrabbit-cycle codex/duckrabbit
-cd /private/tmp/duckrabbit-cycle/working/DuckRabbit
+git worktree add /private/tmp/duckrabbit-cycle main
+cd /private/tmp/duckrabbit-cycle
 uv sync --extra dev
 uv run ruff check src tests
 uv run pytest tests/ --cov=src/duckrabbit --cov-fail-under=90
 ```
 
 Before handoff, compare the local and remote branch with
-`git rev-list --left-right --count codex/duckrabbit...origin/codex/duckrabbit`,
-push only the project branch (the default branch for this checkout is `main`; and then refresh the parent worktree's
+`git rev-list --left-right --count main...origin/main`,
+push only the project branch (`main`, the default branch for this checkout),
+and then refresh the parent worktree's
 project path without staging unrelated parent changes. A test run
-whose source tree changes during collection is invalid evidence, even if some
-tests passed.
+whose source tree changes during collection is invalid evidence, even if
+some tests passed.
 
 The independent verifier is `uv run python -m duckrabbit audit`. It checks the
 live taxonomy/evidence graph, every registered generator, canonical digests,

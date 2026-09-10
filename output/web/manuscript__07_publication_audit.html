@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="pandoc 3.10" />
+  <meta name="generator" content="pandoc 3.11" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>07_publication_audit.md.web</title>
   <style>
@@ -41,7 +41,6 @@
       body {
         background-color: transparent;
         color: black;
-        font-size: 12pt;
       }
       p, h2, h3 {
         orphans: 3;
@@ -175,6 +174,270 @@
   </style>
 
 <link data-template-favicon rel="icon" href="favicon.ico">
+
+<style>
+:root {
+  --brand-1: #5b6ee0;
+  --web-bg: #f8f8f8;
+  --web-surface: #ffffff;
+  --web-text: #2c3e50;
+  --web-border: #bdc3c7;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --brand-1: #7e8ce8;
+    --web-bg: #0f1420;
+    --web-surface: #161c2b;
+    --web-text: #e6eaf2;
+    --web-border: #2a3447;
+  }
+}
+.theorem-box {
+  border-left: 4px solid var(--brand-1);
+  background: var(--web-surface);
+  padding: 0.6em 1em;
+  margin: 1.1em 0;
+  border-radius: 0 4px 4px 0;
+}
+.theorem-box.definition { border-left-style: dashed; }
+.theorem-box > p:first-child { margin-top: 0; }
+.theorem-box > p:last-child { margin-bottom: 0; }
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  max-width: 100%;
+}
+
+body {
+  font-family: 'Liberation Serif', 'Times New Roman', serif;
+  line-height: 1.6;
+  width: min(100%, 800px);
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f8f8;
+  color: #1a1a1a;
+  overflow-x: visible;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 0.65rem 0.9rem;
+  transform: translateY(-120%);
+  background-color: #1a1a1a;
+  color: #ffffff;
+  font-family: sans-serif;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.skip-link:visited {
+  color: #ffffff;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+  body {
+    width: 100%;
+    max-width: 100%;
+    padding: 16px;
+  }
+
+  figure img {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 800px) {
+  body {
+    width: 100%;
+    max-width: 100vw;
+    margin: 0 auto;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #2c3e50;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 5px;
+  overflow-wrap: anywhere;
+}
+
+code {
+  background-color: #ecf0f1;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: 'Liberation Mono', 'Courier New', monospace;
+}
+
+pre {
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  padding: 15px;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 20px 0;
+}
+
+figure {
+  max-width: 100%;
+  margin: 1.5rem 0;
+}
+
+th, td {
+  border: 1px solid #bdc3c7;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #1f6f8b;
+  color: white;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #bdc3c7;
+  border-radius: 5px;
+  margin: 20px 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+a {
+  color: #b91c1c;
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+  overflow-wrap: anywhere;
+}
+
+a:visited {
+  color: #8f1d1d;
+}
+
+a:hover {
+  text-decoration-thickness: 0.14em;
+}
+
+a:focus-visible {
+  outline: 3px solid #1f6f8b;
+  outline-offset: 3px;
+}
+
+.toc {
+  background-color: #ecf0f1;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 30px;
+}
+
+.toc a,
+#TOC a {
+  color: #b91c1c;
+  display: inline-block;
+  min-height: 28px;
+  line-height: 1.5;
+  padding-block: 2px;
+}
+
+.toc li,
+#TOC li {
+  margin-block: 1px;
+}
+
+.math {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 1.1em;
+}
+
+mjx-container[display="true"] {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.25rem;
+}
+
+.figure {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.figure img {
+  max-width: 100%;
+  height: auto;
+  border: 2px solid #3498db;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* A reading column keeps prose comfortable, but dense scientific figures need
+   a larger inspection surface.  The rendered image remains responsive and the
+   explicit link opens its source-resolution asset without changing the PDF. */
+.figure-full-size-link {
+  color: inherit;
+  display: block;
+  max-width: 100%;
+  text-align: center;
+}
+
+.figure-full-size-link img {
+  cursor: zoom-in;
+  margin-bottom: 0.45rem;
+}
+
+.figure-full-size-label {
+  color: #1f6f8b;
+  display: inline-block;
+  font-family: sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
+}
+
+.figure-full-size-link:focus-visible {
+  outline: 3px solid #1f6f8b;
+  outline-offset: 4px;
+}
+
+@media (min-width: 1000px) {
+  .figure-full-size-link {
+    left: 50%;
+    max-width: none;
+    position: relative;
+    transform: translateX(-50%);
+    width: min(1080px, calc(100vw - 3rem));
+  }
+}
+
+.figure-caption {
+  font-style: italic;
+  color: #4b5563;
+  margin-top: 10px;
+  text-align: center;
+}
+
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -189,8 +452,8 @@ not a stimulus, a participant result, or evidence of a perceptual
 effect.</p>
 <h2 id="claim-level-visualization">Claim-level visualization</h2>
 <figure id="fig:claim_boundary">
-<img src="../figures/claim_boundary.png"
-alt="Four numbered boxes separate canonical stimulus, physical metric, encoded media, and observer hypothesis, with a boundary rule stating that observer effects require a separate study." />
+<a class="figure-full-size-link" href="../figures/claim_boundary.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/claim_boundary.png"
+alt="Four numbered boxes separate canonical stimulus, physical metric, encoded media, and observer hypothesis, with a boundary rule stating that observer effects require a separate study." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Four numbered boxes separate canonical
 stimulus, physical metric, encoded media, and observer hypothesis, with
 a boundary rule stating that observer effects require a separate
@@ -216,16 +479,17 @@ documentation contract and does not replace a preregistered observer
 study or empirical data. Boundary: A deterministic artifact can support
 a future hypothesis but cannot supply the observer data required to test
 it.</p>
-<p>The claim boundary in [fig:claim_boundary] is a typed epistemic
-interface. A canonical digest identifies a deterministic buffer;
-objective metrics identify properties of that buffer; encoded-media
-verification identifies facts of the delivered file. A future observer
-hypothesis is a different object with its own protocol, estimand, and
-uncertainty interval.</p>
+<p>The claim boundary in <span class="citation"
+data-cites="fig:claim_boundary">[@fig:claim_boundary]</span> is a typed
+epistemic interface. A canonical digest identifies a deterministic
+buffer; objective metrics identify properties of that buffer;
+encoded-media verification identifies facts of the delivered file. A
+future observer hypothesis is a different object with its own protocol,
+estimand, and uncertainty interval.</p>
 <h2 id="scholarship-map-and-lineage">Scholarship map and lineage</h2>
 <figure id="fig:scholarship_map">
-<img src="../figures/scholarship_map.png"
-alt="Rows map catalog entries to source tiers, exact supported claims, engineering bases, limitations, and implementation status." />
+<a class="figure-full-size-link" href="../figures/scholarship_map.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/scholarship_map.png"
+alt="Rows map catalog entries to source tiers, exact supported claims, engineering bases, limitations, and implementation status." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Rows map catalog entries to source tiers,
 exact supported claims, engineering bases, limitations, and
 implementation status.</figcaption>
@@ -251,14 +515,17 @@ resolver status is a separate audit, and classifications can remain
 contested. Boundary: Scholarship coverage bounds the package’s evidence
 record and does not establish that any generated stimulus produces a
 universal percept.</p>
-<p>The source map [fig:scholarship_map] and [tbl:evidence_audit] make
-five distinctions explicit: a primary demonstration, a review, a
-theoretical account, DuckRabbit’s engineering basis, and an evidence
-limitation. Brugger’s duck/rabbit study documents variation across
-figure variants and observers; this supports a careful ambiguity-family
-record, not a universal bistability claim [brugger1999duckrabbit].
-Yildiz et al. review competing explanations of Ponzo-like illusions, so
-the catalog retains both a geometric construction and an unresolved
+<p>The source map <span class="citation"
+data-cites="fig:scholarship_map">[@fig:scholarship_map]</span> and <span
+class="citation"
+data-cites="tbl:evidence_audit">[@tbl:evidence_audit]</span> make five
+distinctions explicit: a primary demonstration, a review, a theoretical
+account, DuckRabbit’s engineering basis, and an evidence limitation.
+Brugger’s duck/rabbit study documents variation across figure variants
+and observers; this supports a careful ambiguity-family record, not a
+universal bistability claim [brugger1999duckrabbit]. Yildiz et
+al. review competing explanations of Ponzo-like illusions, so the
+catalog retains both a geometric construction and an unresolved
 theoretical boundary [yildiz2022ponzo]. Repp’s tritone analysis likewise
 motivates listener- and context-sensitive limitations
 [repp1997tritone].</p>
@@ -271,18 +538,18 @@ includes <code>CITATION.cff</code>, CodeMeta, Zenodo metadata, versioned
 manifests, source-data sidecars, and resolver-linked bibliography
 entries. These improve discoverability and attribution; they do not
 increase the evidential level of any perceptual claim.</p>
-<p>The intended public software identity is explicit: DuckRabbit will be
-released at the <a
+<p>The public software identity is explicit: DuckRabbit is published and
+citable at the <a
 href="https://github.com/docxology/DuckRabbit">DuckRabbit public GitHub
 repository</a> under the authorship of Daniel Ari Friedman, Active
-Inference Institute. The repository URL identifies the future citable
-software object; it is not a claim that the private sidecar has already
-been publicly mirrored.</p>
+Inference Institute. The generated bundle in this repository remains the
+authoritative release candidate until the external template handoff is
+completed.</p>
 <h2 id="formal-traceability-and-objective-metrics">Formal traceability
 and objective metrics</h2>
 <figure id="fig:formalism_traceability">
-<img src="../figures/formalism_traceability.png"
-alt="Rows connect equation labels to their mathematical definition, implementation paths, tests, figure labels, and claim levels." />
+<a class="figure-full-size-link" href="../figures/formalism_traceability.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/formalism_traceability.png"
+alt="Rows connect equation labels to their mathematical definition, implementation paths, tests, figure labels, and claim levels." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Rows connect equation labels to their
 mathematical definition, implementation paths, tests, figure labels, and
 claim levels.</figcaption>
@@ -305,17 +572,20 @@ formalism:eq:objective_statistics. Limitations: Traceability records
 documentation and verification scope; it does not establish the truth of
 an observer-level theory. Boundary: A linked equation and test can show
 an implemented contract, not a validated perceptual law.</p>
-<p>The formalism registry [fig:formalism_traceability] links equations
-[eq:typed_request; eq:canonical_generation; eq:canonical_digest;
-eq:encoding_verification; eq:clock_definition; eq:objective_statistics;
-eq:temporal_spectral_metrics; eq:observer_estimand;
-eq:synthetic_observer] to implementation modules, tests, and figures.
-The contract is intentionally auditable: equation labels point to
-code-owned records, while empirical claims remain outside the
-generator’s authority.</p>
+<p>The formalism registry <span class="citation"
+data-cites="fig:formalism_traceability">[@fig:formalism_traceability]</span>
+links equations <span class="citation"
+data-cites="eq:typed_request eq:canonical_generation eq:canonical_digest eq:encoding_verification eq:clock_definition eq:objective_statistics eq:temporal_spectral_metrics eq:observer_estimand eq:synthetic_observer">[@eq:typed_request;
+@eq:canonical_generation; @eq:canonical_digest;
+@eq:encoding_verification; @eq:clock_definition;
+@eq:objective_statistics; @eq:temporal_spectral_metrics;
+@eq:observer_estimand; @eq:synthetic_observer]</span> to implementation
+modules, tests, and figures. The contract is intentionally auditable:
+equation labels point to code-owned records, while empirical claims
+remain outside the generator’s authority.</p>
 <figure id="fig:metrics_dashboard">
-<img src="../figures/metrics_dashboard.png"
-alt="Four artifact cards list image, audio, video, and audiovisual metrics with units, computation provenance, and claim level." />
+<a class="figure-full-size-link" href="../figures/metrics_dashboard.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/metrics_dashboard.png"
+alt="Four artifact cards list image, audio, video, and audiovisual metrics with units, computation provenance, and claim level." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Four artifact cards list image, audio,
 video, and audiovisual metrics with units, computation provenance, and
 claim level.</figcaption>
@@ -340,15 +610,16 @@ properties and do not encode pitch, size, motion, localization, binding,
 or other observer interpretations. Boundary: Metric reproducibility is a
 package property; interpretation as perception requires a separate
 observer design and data.</p>
-<p>The metrics dashboard [fig:metrics_dashboard] reports units,
-computation version, and canonical digests. Luminance statistics are
-normalized raster properties; RMS and peak are normalized-amplitude
-properties; spectral values are in Hz; frame deltas are normalized pixel
-differences; and synchronization offsets are in milliseconds. None is a
-psychophysical score.</p>
+<p>The metrics dashboard <span class="citation"
+data-cites="fig:metrics_dashboard">[@fig:metrics_dashboard]</span>
+reports units, computation version, and canonical digests. Luminance
+statistics are normalized raster properties; RMS and peak are
+normalized-amplitude properties; spectral values are in Hz; frame deltas
+are normalized pixel differences; and synchronization offsets are in
+milliseconds. None is a psychophysical score.</p>
 <figure id="fig:parameter_domains">
-<img src="../figures/parameter_domains.png"
-alt="Horizontal interval markers show typed domains for dimensions, luminance, levels, frequency, sampling, frame rate, synchronization, and spatial discrepancy." />
+<a class="figure-full-size-link" href="../figures/parameter_domains.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/parameter_domains.png"
+alt="Horizontal interval markers show typed domains for dimensions, luminance, levels, frequency, sampling, frame rate, synchronization, and spatial discrepancy." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>Horizontal interval markers show typed
 domains for dimensions, luminance, levels, frequency, sampling, frame
 rate, synchronization, and spatial discrepancy.</figcaption>
@@ -372,13 +643,15 @@ encode safe listening levels, display limits, or psychophysical
 thresholds. Boundary: A valid parameter is a reproducible construction
 request, not evidence that the requested value is perceptually
 effective.</p>
-<p>The domain map [fig:parameter_domains] is a validation visualization.
-Bounds are chosen to prevent malformed media and unsafe encodings, not
-to predict a viewer, listener, or participant’s sensitivity.</p>
+<p>The domain map <span class="citation"
+data-cites="fig:parameter_domains">[@fig:parameter_domains]</span> is a
+validation visualization. Bounds are chosen to prevent malformed media
+and unsafe encodings, not to predict a viewer, listener, or
+participant’s sensitivity.</p>
 <h2 id="observer-design-boundary">Observer-design boundary</h2>
 <figure id="fig:observer_protocol">
-<img src="../figures/observer_protocol.png"
-alt="A flow diagram connects trial identity, randomization, stimulus manifest, response, aggregate estimand, and analysis-model templates, with a synthetic-only boundary." />
+<a class="figure-full-size-link" href="../figures/observer_protocol.png" target="_blank" rel="noopener" aria-label="Open full-size figure"><img src="../figures/observer_protocol.png"
+alt="A flow diagram connects trial identity, randomization, stimulus manifest, response, aggregate estimand, and analysis-model templates, with a synthetic-only boundary." /><span class="figure-full-size-label" aria-hidden="true">Open full-size figure</span></a>
 <figcaption>A flow diagram connects trial identity,
 randomization, stimulus manifest, response, aggregate estimand, and
 analysis-model templates, with a synthetic-only boundary.</figcaption>
@@ -403,16 +676,19 @@ future data collection and analysis but supplies no participant
 responses, fitted coefficients, power claim, or validated observer
 effect. Boundary: The protocol is ready for ethical and preregistered
 extension, not evidence that the proposed effect exists.</p>
-<p>The observer scaffold [fig:observer_protocol] starts with a
-pseudonymous trial identity and deterministic randomization, binds the
-stimulus manifest and encoded hash, records a typed response or
-missingness state, and ends at a preregistered estimand. The companion
-diagnostic [fig:synthetic_psychophysics] is a deterministic,
-hand-specified feature observer with <code>training_data=none</code> and
-<code>human_data=false</code>; it is not a pretrained vision model,
-psychometric function, or participant result. Human psychophysics
-remains a future evidence layer requiring calibrated playback, consent,
-preregistration, and observed responses.</p>
+<p>The observer scaffold <span class="citation"
+data-cites="fig:observer_protocol">[@fig:observer_protocol]</span>
+starts with a pseudonymous trial identity and deterministic
+randomization, binds the stimulus manifest and encoded hash, records a
+typed response or missingness state, and ends at a preregistered
+estimand. The companion diagnostic <span class="citation"
+data-cites="fig:synthetic_psychophysics">[@fig:synthetic_psychophysics]</span>
+is a deterministic, hand-specified feature observer with
+<code>training_data=none</code> and <code>human_data=false</code>; it is
+not a pretrained vision model, psychometric function, or participant
+result. Human psychophysics remains a future evidence layer requiring
+calibrated playback, consent, preregistration, and observed
+responses.</p>
 <h2 id="generated-audit-tables">Generated audit tables</h2>
 <table id="tbl:caption_audit">
 <caption>Code-owned caption, source-data, and accessibility
@@ -1607,11 +1883,17 @@ Manuscript: manuscript/07 publication audit.md</td>
 </tr>
 </tbody>
 </table>
-<p>The source-tiered evidence table [tbl:evidence_audit], caption audit
-[tbl:caption_audit], formalism registry [tbl:formalism], and claim
-ledger [tbl:claim_ledger] are generated sidecars. They provide a
-publication appendix without duplicating mutable counts or silently
-converting literature statements into package results.</p>
+<p>The source-tiered evidence table <span class="citation"
+data-cites="tbl:evidence_audit">[@tbl:evidence_audit]</span>, caption
+audit <span class="citation"
+data-cites="tbl:caption_audit">[@tbl:caption_audit]</span>, formalism
+registry <span class="citation"
+data-cites="tbl:formalism">[@tbl:formalism]</span>, and claim ledger
+<span class="citation"
+data-cites="tbl:claim_ledger">[@tbl:claim_ledger]</span> are generated
+sidecars. They provide a publication appendix without duplicating
+mutable counts or silently converting literature statements into package
+results.</p>
 <p>The publication artifacts have two distinct provenance boundaries.
 Scientific figures are deterministic PNG renders whose source-data JSON
 and SHA-256 digests are checked against the code-owned registry. The

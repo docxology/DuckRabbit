@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.22)  17 JUL 2026 13:41
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.22)  8 SEP 2026 16:08
 entering extended mode
  %&-line parsing enabled.
 **_combined_manuscript.tex
@@ -127,7 +127,7 @@ Package: iftex 2024/12/12 v1.0g TeX engine tests
 )
 (/usr/local/texlive/2026/texmf-dist/tex/latex/unicode-math/unicode-math.sty
 (/usr/local/texlive/2026/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2026-01-19 L3 programming layer (loader) 
+Package: expl3 2026-01-19 L3 programming layer (loader)
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
 File: l3backend-xetex.def 2025-10-09 L3 backend support: XeTeX
@@ -179,7 +179,7 @@ File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding TS1 on input line 47.
 LaTeX Encoding Info:    Redeclaring text command \capitalcedilla (encoding TS1)
  on input line 49.
-LaTeX Encoding Info:    Redeclaring text command \capitalogonek (encoding TS1) 
+LaTeX Encoding Info:    Redeclaring text command \capitalogonek (encoding TS1)
 on input line 52.
 LaTeX Encoding Info:    Redeclaring text command \capitalgrave (encoding TS1) o
 n input line 55.
@@ -199,17 +199,17 @@ LaTeX Encoding Info:    Redeclaring text command \capitalcaron (encoding TS1) o
 n input line 62.
 LaTeX Encoding Info:    Redeclaring text command \capitalbreve (encoding TS1) o
 n input line 63.
-LaTeX Encoding Info:    Redeclaring text command \capitalmacron (encoding TS1) 
+LaTeX Encoding Info:    Redeclaring text command \capitalmacron (encoding TS1)
 on input line 64.
 LaTeX Encoding Info:    Redeclaring text command \capitaldotaccent (encoding TS
 1) on input line 65.
 LaTeX Encoding Info:    Redeclaring text command \t (encoding TS1) on input lin
 e 66.
-LaTeX Encoding Info:    Redeclaring text command \capitaltie (encoding TS1) on 
+LaTeX Encoding Info:    Redeclaring text command \capitaltie (encoding TS1) on
 input line 67.
 LaTeX Encoding Info:    Redeclaring text command \newtie (encoding TS1) on inpu
 t line 68.
-LaTeX Encoding Info:    Redeclaring text command \capitalnewtie (encoding TS1) 
+LaTeX Encoding Info:    Redeclaring text command \capitalnewtie (encoding TS1)
 on input line 69.
 LaTeX Encoding Info:    Redeclaring text symbol \textcapitalcompwordmark (encod
 ing TS1) on input line 70.
@@ -225,7 +225,7 @@ LaTeX Encoding Info:    Redeclaring text symbol \textthreequartersemdash (encod
 ing TS1) on input line 75.
 LaTeX Encoding Info:    Redeclaring text symbol \textleftarrow (encoding TS1) o
 n input line 76.
-LaTeX Encoding Info:    Redeclaring text symbol \textrightarrow (encoding TS1) 
+LaTeX Encoding Info:    Redeclaring text symbol \textrightarrow (encoding TS1)
 on input line 77.
 LaTeX Encoding Info:    Redeclaring text symbol \textblank (encoding TS1) on in
 put line 78.
@@ -237,7 +237,7 @@ LaTeX Encoding Info:    Redeclaring text command \textasteriskcentered (encodin
 g TS1) on input line 81.
 LaTeX Encoding Info:    Redeclaring text symbol \textdblhyphen (encoding TS1) o
 n input line 92.
-LaTeX Encoding Info:    Redeclaring text symbol \textfractionsolidus (encoding 
+LaTeX Encoding Info:    Redeclaring text symbol \textfractionsolidus (encoding
 TS1) on input line 93.
 LaTeX Encoding Info:    Redeclaring text symbol \textzerooldstyle (encoding TS1
 ) on input line 94.
@@ -277,11 +277,11 @@ LaTeX Encoding Info:    Redeclaring text symbol \textlbrackdbl (encoding TS1) o
 n input line 116.
 LaTeX Encoding Info:    Redeclaring text symbol \textrbrackdbl (encoding TS1) o
 n input line 117.
-LaTeX Encoding Info:    Redeclaring text symbol \textuparrow (encoding TS1) on 
+LaTeX Encoding Info:    Redeclaring text symbol \textuparrow (encoding TS1) on
 input line 118.
 LaTeX Encoding Info:    Redeclaring text symbol \textdownarrow (encoding TS1) o
 n input line 119.
-LaTeX Encoding Info:    Redeclaring text symbol \textasciigrave (encoding TS1) 
+LaTeX Encoding Info:    Redeclaring text symbol \textasciigrave (encoding TS1)
 on input line 120.
 LaTeX Encoding Info:    Redeclaring text symbol \textborn (encoding TS1) on inp
 ut line 121.
@@ -291,7 +291,7 @@ LaTeX Encoding Info:    Redeclaring text symbol \textdied (encoding TS1) on inp
 ut line 123.
 LaTeX Encoding Info:    Redeclaring text symbol \textleaf (encoding TS1) on inp
 ut line 124.
-LaTeX Encoding Info:    Redeclaring text symbol \textmarried (encoding TS1) on 
+LaTeX Encoding Info:    Redeclaring text symbol \textmarried (encoding TS1) on
 input line 125.
 LaTeX Encoding Info:    Redeclaring text symbol \textmusicalnote (encoding TS1)
  on input line 126.
@@ -299,9 +299,9 @@ LaTeX Encoding Info:    Redeclaring text symbol \texttildelow (encoding TS1) on
  input line 127.
 LaTeX Encoding Info:    Redeclaring text symbol \textdblhyphenchar (encoding TS
 1) on input line 128.
-LaTeX Encoding Info:    Redeclaring text symbol \textasciibreve (encoding TS1) 
+LaTeX Encoding Info:    Redeclaring text symbol \textasciibreve (encoding TS1)
 on input line 129.
-LaTeX Encoding Info:    Redeclaring text symbol \textasciicaron (encoding TS1) 
+LaTeX Encoding Info:    Redeclaring text symbol \textasciicaron (encoding TS1)
 on input line 130.
 LaTeX Encoding Info:    Redeclaring text symbol \textacutedbl (encoding TS1) on
  input line 131.
@@ -317,7 +317,7 @@ LaTeX Encoding Info:    Redeclaring text symbol \textperthousand (encoding TS1)
  on input line 136.
 LaTeX Encoding Info:    Redeclaring text symbol \textbullet (encoding TS1) on i
 nput line 137.
-LaTeX Encoding Info:    Redeclaring text symbol \textcelsius (encoding TS1) on 
+LaTeX Encoding Info:    Redeclaring text symbol \textcelsius (encoding TS1) on
 input line 138.
 LaTeX Encoding Info:    Redeclaring text symbol \textdollaroldstyle (encoding T
 S1) on input line 139.
@@ -331,7 +331,7 @@ LaTeX Encoding Info:    Redeclaring text symbol \textwon (encoding TS1) on inpu
 t line 143.
 LaTeX Encoding Info:    Redeclaring text symbol \textnaira (encoding TS1) on in
 put line 144.
-LaTeX Encoding Info:    Redeclaring text symbol \textguarani (encoding TS1) on 
+LaTeX Encoding Info:    Redeclaring text symbol \textguarani (encoding TS1) on
 input line 145.
 LaTeX Encoding Info:    Redeclaring text symbol \textpeso (encoding TS1) on inp
 ut line 146.
@@ -341,7 +341,7 @@ LaTeX Encoding Info:    Redeclaring text symbol \textrecipe (encoding TS1) on i
 nput line 148.
 LaTeX Encoding Info:    Redeclaring text symbol \textinterrobang (encoding TS1)
  on input line 149.
-LaTeX Encoding Info:    Redeclaring text symbol \textinterrobangdown (encoding 
+LaTeX Encoding Info:    Redeclaring text symbol \textinterrobangdown (encoding
 TS1) on input line 150.
 LaTeX Encoding Info:    Redeclaring text symbol \textdong (encoding TS1) on inp
 ut line 151.
@@ -349,7 +349,7 @@ LaTeX Encoding Info:    Redeclaring text symbol \texttrademark (encoding TS1) o
 n input line 152.
 LaTeX Encoding Info:    Redeclaring text symbol \textpertenthousand (encoding T
 S1) on input line 153.
-LaTeX Encoding Info:    Redeclaring text symbol \textpilcrow (encoding TS1) on 
+LaTeX Encoding Info:    Redeclaring text symbol \textpilcrow (encoding TS1) on
 input line 154.
 LaTeX Encoding Info:    Redeclaring text symbol \textbaht (encoding TS1) on inp
 ut line 155.
@@ -359,7 +359,7 @@ LaTeX Encoding Info:    Redeclaring text symbol \textdiscount (encoding TS1) on
  input line 157.
 LaTeX Encoding Info:    Redeclaring text symbol \textestimated (encoding TS1) o
 n input line 158.
-LaTeX Encoding Info:    Redeclaring text symbol \textopenbullet (encoding TS1) 
+LaTeX Encoding Info:    Redeclaring text symbol \textopenbullet (encoding TS1)
 on input line 159.
 LaTeX Encoding Info:    Redeclaring text symbol \textservicemark (encoding TS1)
  on input line 160.
@@ -377,7 +377,7 @@ LaTeX Encoding Info:    Redeclaring text symbol \textyen (encoding TS1) on inpu
 t line 166.
 LaTeX Encoding Info:    Redeclaring text symbol \textbrokenbar (encoding TS1) o
 n input line 167.
-LaTeX Encoding Info:    Redeclaring text symbol \textsection (encoding TS1) on 
+LaTeX Encoding Info:    Redeclaring text symbol \textsection (encoding TS1) on
 input line 168.
 LaTeX Encoding Info:    Redeclaring text symbol \textasciidieresis (encoding TS
 1) on input line 169.
@@ -391,7 +391,7 @@ LaTeX Encoding Info:    Redeclaring text symbol \textlnot (encoding TS1) on inp
 ut line 173.
 LaTeX Encoding Info:    Redeclaring text symbol \textcircledP (encoding TS1) on
  input line 174.
-LaTeX Encoding Info:    Redeclaring text symbol \textregistered (encoding TS1) 
+LaTeX Encoding Info:    Redeclaring text symbol \textregistered (encoding TS1)
 on input line 175.
 LaTeX Encoding Info:    Redeclaring text symbol \textasciimacron (encoding TS1)
  on input line 176.
@@ -403,7 +403,7 @@ LaTeX Encoding Info:    Redeclaring text symbol \texttwosuperior (encoding TS1)
  on input line 179.
 LaTeX Encoding Info:    Redeclaring text symbol \textthreesuperior (encoding TS
 1) on input line 180.
-LaTeX Encoding Info:    Redeclaring text symbol \textasciiacute (encoding TS1) 
+LaTeX Encoding Info:    Redeclaring text symbol \textasciiacute (encoding TS1)
 on input line 181.
 LaTeX Encoding Info:    Redeclaring text symbol \textmu (encoding TS1) on input
  line 182.
@@ -419,9 +419,9 @@ LaTeX Encoding Info:    Redeclaring text symbol \textordmasculine (encoding TS1
 ) on input line 187.
 LaTeX Encoding Info:    Redeclaring text symbol \textsurd (encoding TS1) on inp
 ut line 188.
-LaTeX Encoding Info:    Redeclaring text symbol \textonequarter (encoding TS1) 
+LaTeX Encoding Info:    Redeclaring text symbol \textonequarter (encoding TS1)
 on input line 189.
-LaTeX Encoding Info:    Redeclaring text symbol \textonehalf (encoding TS1) on 
+LaTeX Encoding Info:    Redeclaring text symbol \textonehalf (encoding TS1) on
 input line 190.
 LaTeX Encoding Info:    Redeclaring text symbol \textthreequarters (encoding TS
 1) on input line 191.
@@ -552,25 +552,47 @@ Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
 \backup@length=\skip60
 \ar@cellbox=\box63
 )
-\c@none=\count323
+(/usr/local/texlive/2026/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen178
+\captionmargin=\dimen179
+\caption@leftmargin=\dimen180
+\caption@rightmargin=\dimen181
+\caption@width=\dimen182
+\caption@indent=\dimen183
+\caption@parindent=\dimen184
+\caption@hangindent=\dimen185
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count323
+\c@continuedfloat=\count324
+Package caption Info: longtable package is loaded.
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
+))
+\c@none=\count325
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2025/03/01 v4.3b Infix arithmetic (KKT,FJ)
-\calc@Acount=\count324
-\calc@Bcount=\count325
-\calc@Adimen=\dimen178
-\calc@Bdimen=\dimen179
+\calc@Acount=\count326
+\calc@Bcount=\count327
+\calc@Adimen=\dimen186
+\calc@Bdimen=\dimen187
 \calc@Askip=\skip61
 \calc@Bskip=\skip62
 LaTeX Info: Redefining \setlength on input line 86.
 LaTeX Info: Redefining \addtolength on input line 87.
-\calc@Ccount=\count326
+\calc@Ccount=\count328
 \calc@Cskip=\skip63
 )
 (/usr/local/texlive/2026/texmf-dist/tex/latex/footnotehyper/footnotehyper.sty
 Package: footnotehyper 2025/11/15 v1.1f hyperref aware footnote.sty (JFB)
 \FNH@notes=\box64
-\FNH@width=\dimen180
+\FNH@width=\dimen188
 \FNH@toks=\toks27
 )
 (/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/graphicx.sty
@@ -587,15 +609,15 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: xetex.def on input line 106.
 )
-\Gin@req@height=\dimen181
-\Gin@req@width=\dimen182
+\Gin@req@height=\dimen189
+\Gin@req@width=\dimen190
 )
 \pandoc@box=\box65
 
 (/usr/local/texlive/2026/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2026/03/08 v26.4 The multilingual framework for LuaLaTeX, pdfLaT
 eX and XeLaTeX
-\babel@savecnt=\count327
+\babel@savecnt=\count329
 LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input li
 ne 2078.
 LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input li
@@ -604,18 +626,18 @@ LaTeX Encoding Info:    Redeclaring text command \ij (encoding T1) on input lin
 e 2082.
 LaTeX Encoding Info:    Redeclaring text command \IJ (encoding T1) on input lin
 e 2083.
-LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?) 
+LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?)
 on input line 2084.
-LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) 
+LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?)
 on input line 2086.
-LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) 
+LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?)
 on input line 2111.
-\U@D=\dimen183
+\U@D=\dimen191
 \l@unhyphenated=\language91
 
 (/usr/local/texlive/2026/texmf-dist/tex/generic/babel/xebabel.def)
 \bbl@readstream=\read3
-\bbl@dirlevel=\count328
+\bbl@dirlevel=\count330
 
 (/usr/local/texlive/2026/texmf-dist/tex/generic/babel/locale/en/babel-english.t
 ex)
@@ -634,33 +656,10 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip64
 \bibsep=\skip65
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count329
+\c@NAT@ctr=\count331
 )
 (/usr/local/texlive/2026/texmf-dist/tex/latex/caption/subcaption.sty
 Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
-
-(/usr/local/texlive/2026/texmf-dist/tex/latex/caption/caption.sty
-Package: caption 2023/08/05 v3.6o Customizing captions (AR)
-
-(/usr/local/texlive/2026/texmf-dist/tex/latex/caption/caption3.sty
-Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
-\caption@tempdima=\dimen184
-\captionmargin=\dimen185
-\caption@leftmargin=\dimen186
-\caption@rightmargin=\dimen187
-\caption@width=\dimen188
-\caption@indent=\dimen189
-\caption@parindent=\dimen190
-\caption@hangindent=\dimen191
-Package caption Info: Standard document class detected.
-)
-\c@caption@flags=\count330
-\c@continuedfloat=\count331
-Package caption Info: longtable package is loaded.
-
-(/usr/local/texlive/2026/texmf-dist/tex/latex/caption/ltcaption.sty
-Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
-))
 Package caption Info: New subtype `subfigure' on input line 238.
 \c@subfigure=\count332
 Package caption Info: New subtype `subtable' on input line 238.
@@ -800,11 +799,11 @@ File: bkm-dvipdfm.def 2023-12-10 v1.31 bookmark driver for dvipdfm (HO)
 (/usr/local/texlive/2026/texmf-dist/tex/latex/xurl/xurl.sty
 Package: xurl 2022/01/09 v 0.10 modify URL breaks
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 163.
+Package hyperref Info: Option `colorlinks' set `true' on input line 165.
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/seqsplit/seqsplit.sty
 Package: seqsplit 2006/08/07 v0.1 Splitting long sequences (DNA, RNA, proteins,
- etc.) 
+ etc.)
 )
 (/usr/local/texlive/2026/texmf-dist/tex/latex/amscls/amsthm.sty
 Package: amsthm 2020/05/29 v2.20.6
@@ -973,7 +972,7 @@ Package siunitx Warning: Option "binary-units" has been removed in this
 (siunitx)                release.
 
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 212.
+Package hyperref Info: Option `colorlinks' set `true' on input line 216.
  (/usr/local/texlive/2026/texmf-dist/tex/latex/cleveref/cleveref.sty
 Package: cleveref 2018/03/27 v0.21.4 Intelligent cross-referencing
 Package cleveref Info: `hyperref' support loaded on input line 2370.
@@ -998,79 +997,79 @@ Package cleveref Info: no abbreviation of names on input line 7852.
 )
 ==> First Aid for cleveref.sty applied!
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-Regular scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-Regular scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-Regular scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-Regular scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-Regular scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-Regular scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-Bold scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-Bold scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-Bold scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-Bold scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-RegularItalic scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-RegularItalic scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-RegularItalic scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-RegularItalic scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-BoldItalic scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-BoldItalic scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-BoldItalic scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-BoldItalic scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Font family 'JuliaMono-Regular(0)' created for font
 (fontspec)             'JuliaMono-Regular' with options
 (fontspec)             [Scale=MatchLowercase,WordSpace={1,0,0},HyphenChar=None,
@@ -1082,10 +1081,10 @@ PunctuationSpace=WordSpace,Path
 (fontspec)             JuliaMono-Bold,ItalicFont =
 (fontspec)             JuliaMono-RegularItalic,BoldItalicFont =
 (fontspec)             JuliaMono-BoldItalic,Scale = MatchLowercase].
-(fontspec)              
+(fontspec)
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
-(fontspec)              
+(fontspec)
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
 (fontspec)             <->s*[0.7836337456894041]"[/usr/local/texlive/2026/texmf
 -dist/fonts/truetype/public/juliamono/JuliaMono-Regular.ttf]/OT:script=latn;lan
@@ -1098,7 +1097,7 @@ guage=dflt;+smcp;"
 (fontspec)             \fontdimen 2\font =1\fontdimen 2\font \fontdimen 3\font
 (fontspec)             =0\fontdimen 3\font \fontdimen 4\font =0\fontdimen
 (fontspec)             4\font \fontdimen 7\font =0\fontdimen 2\font
-(fontspec)             \tex_hyphenchar:D \font =-1\scan_stop: 
+(fontspec)             \tex_hyphenchar:D \font =-1\scan_stop:
 (fontspec)             - 'bold' (b/n) with NFSS spec.:
 (fontspec)             <->s*[0.7836337456894041]"[/usr/local/texlive/2026/texmf
 -dist/fonts/truetype/public/juliamono/JuliaMono-Bold.ttf]/OT:script=latn;langua
@@ -1111,7 +1110,7 @@ ge=dflt;+smcp;"
 (fontspec)             \fontdimen 2\font =1\fontdimen 2\font \fontdimen 3\font
 (fontspec)             =0\fontdimen 3\font \fontdimen 4\font =0\fontdimen
 (fontspec)             4\font \fontdimen 7\font =0\fontdimen 2\font
-(fontspec)             \tex_hyphenchar:D \font =-1\scan_stop: 
+(fontspec)             \tex_hyphenchar:D \font =-1\scan_stop:
 (fontspec)             - 'italic' (m/it) with NFSS spec.:
 (fontspec)             <->s*[0.7836337456894041]"[/usr/local/texlive/2026/texmf
 -dist/fonts/truetype/public/juliamono/JuliaMono-RegularItalic.ttf]/OT:script=la
@@ -1124,7 +1123,7 @@ tn;language=dflt;+smcp;"
 (fontspec)             \fontdimen 2\font =1\fontdimen 2\font \fontdimen 3\font
 (fontspec)             =0\fontdimen 3\font \fontdimen 4\font =0\fontdimen
 (fontspec)             4\font \fontdimen 7\font =0\fontdimen 2\font
-(fontspec)             \tex_hyphenchar:D \font =-1\scan_stop: 
+(fontspec)             \tex_hyphenchar:D \font =-1\scan_stop:
 (fontspec)             - 'bold italic' (b/it) with NFSS spec.:
 (fontspec)             <->s*[0.7836337456894041]"[/usr/local/texlive/2026/texmf
 -dist/fonts/truetype/public/juliamono/JuliaMono-BoldItalic.ttf]/OT:script=latn;
@@ -1137,82 +1136,82 @@ language=dflt;+smcp;"
 (fontspec)             \fontdimen 2\font =1\fontdimen 2\font \fontdimen 3\font
 (fontspec)             =0\fontdimen 3\font \fontdimen 4\font =0\fontdimen
 (fontspec)             4\font \fontdimen 7\font =0\fontdimen 2\font
-(fontspec)             \tex_hyphenchar:D \font =-1\scan_stop: 
+(fontspec)             \tex_hyphenchar:D \font =-1\scan_stop:
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-Regular scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-Regular scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-Regular scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-Regular scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-Regular scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-Regular scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-Bold scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-Bold scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-Bold scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-Bold scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-RegularItalic scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-RegularItalic scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-RegularItalic scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-RegularItalic scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-BoldItalic scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-BoldItalic scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-BoldItalic scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             JuliaMono-BoldItalic scale = 0.7836337456894041.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Font family 'JuliaMono-Regular(1)' created for font
 (fontspec)             'JuliaMono-Regular' with options
 (fontspec)             [Scale=MatchLowercase,Path =
@@ -1222,10 +1221,10 @@ Package fontspec Info:
 (fontspec)             JuliaMono-Bold,ItalicFont =
 (fontspec)             JuliaMono-RegularItalic,BoldItalicFont =
 (fontspec)             JuliaMono-BoldItalic,Scale = MatchLowercase].
-(fontspec)              
+(fontspec)
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
-(fontspec)              
+(fontspec)
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
 (fontspec)             <->s*[0.7836337456894041]"[/usr/local/texlive/2026/texmf
 -dist/fonts/truetype/public/juliamono/JuliaMono-Regular.ttf]/OT:script=latn;lan
@@ -1261,62 +1260,62 @@ language=dflt;+smcp;"
 
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
 (Font)                  OT1/cmtt/m/n --> TU/JuliaMono-Regular(1)/m/n on input l
-ine 236.
+ine 240.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/JuliaMono-Regular(1)/bx/n on input 
-line 236.
+(Font)                  OT1/cmtt/m/n --> TU/JuliaMono-Regular(1)/bx/n on input
+line 240.
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             latinmodern-math scale = 0.9999964596882403.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             latinmodern-math scale = 0.9999964596882403.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Font family 'latinmodern-math.otf(0)' created for font
 (fontspec)             'latinmodern-math.otf' with options
 (fontspec)             [Scale=MatchLowercase,BoldItalicFont={},ItalicFont={},Sm
 allCapsFont={},Script=Math].
-(fontspec)              
+(fontspec)
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
-(fontspec)              
+(fontspec)
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
 (fontspec)             <->s*[0.9999964596882403]"[latinmodern-math.otf]/OT:scri
 pt=math;language=dflt;"
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(0)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 244.
+(Font)              scaled to size 10.0pt on input line 248.
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             latinmodern-math scale = 0.9999964596882403.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             latinmodern-math scale = 0.9999964596882403.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             latinmodern-math scale = 0.9999964596882403.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             latinmodern-math scale = 0.9999964596882403.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Font family 'latinmodern-math.otf(1)' created for font
 (fontspec)             'latinmodern-math.otf' with options
 (fontspec)             [Scale=MatchLowercase,BoldItalicFont={},ItalicFont={},Sm
 allCapsFont={},Script=Math,SizeFeatures={{Size=8.5-},{Size=6-8.5,Font=latinmode
 rn-math.otf,Style=MathScript},{Size=-6,Font=latinmodern-math.otf,Style=MathScri
 ptScript}}].
-(fontspec)              
+(fontspec)
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
-(fontspec)              
+(fontspec)
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
 (fontspec)             <8.5->s*[0.9999964596882403]"[latinmodern-math.otf]/OT:s
 cript=math;language=dflt;"<6-8.5>s*[0.9999964596882403]"[latinmodern-math.otf]/
@@ -1324,52 +1323,52 @@ OT:script=math;language=dflt;+ssty=0;"<-6>s*[0.9999964596882403]"[latinmodern-m
 ath.otf]/OT:script=math;language=dflt;+ssty=1;"
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 244.
+(Font)              scaled to size 10.0pt on input line 248.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 244.
+(Font)              `operators' in the math version `normal' on input line 248.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> TU/latinmodern-math.otf(1)/m/n on input
- line 244.
+ line 248.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 244.
+(Font)              `operators' in the math version `bold' on input line 248.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  OT1/cmr/bx/n --> TU/latinmodern-math.otf(1)/b/n on inpu
-t line 244.
+t line 248.
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             latinmodern-math scale = 0.9999964596882403.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             latinmodern-math scale = 1.000096459334209.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             latinmodern-math scale = 0.9999964596882403.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             latinmodern-math scale = 1.000096459334209.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             latinmodern-math scale = 0.9999964596882403.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             latinmodern-math scale = 1.000096459334209.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             latinmodern-math scale = 0.9999964596882403.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             latinmodern-math scale = 1.000096459334209.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Font family 'latinmodern-math.otf(2)' created for font
 (fontspec)             'latinmodern-math.otf' with options
 (fontspec)             [Scale=MatchLowercase,BoldItalicFont={},ItalicFont={},Sm
@@ -1386,10 +1385,10 @@ ptScript}},ScaleAgain=1.0001,FontAdjustment={\fontdimen
 (fontspec)             \fontdimen 19\font =2.0pt\relax \fontdimen 22\font
 (fontspec)             =2.5pt\relax \fontdimen 20\font =0pt\relax \fontdimen
 (fontspec)             21\font =0pt\relax }].
-(fontspec)              
+(fontspec)
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
-(fontspec)              
+(fontspec)
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
 (fontspec)             <8.5->s*[1.000096459334209]"[latinmodern-math.otf]/OT:sc
 ript=math;language=dflt;"<6-8.5>s*[1.000096459334209]"[latinmodern-math.otf]/OT
@@ -1397,49 +1396,49 @@ ript=math;language=dflt;"<6-8.5>s*[1.000096459334209]"[latinmodern-math.otf]/OT
 .otf]/OT:script=math;language=dflt;+ssty=1;"
 
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `normal' on input line 244.
+(Font)              `symbols' in the math version `normal' on input line 248.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
 (Font)                  OMS/cmsy/m/n --> TU/latinmodern-math.otf(2)/m/n on inpu
-t line 244.
+t line 248.
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `bold' on input line 244.
+(Font)              `symbols' in the math version `bold' on input line 248.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
 (Font)                  OMS/cmsy/b/n --> TU/latinmodern-math.otf(2)/b/n on inpu
-t line 244.
+t line 248.
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             latinmodern-math scale = 0.9999964596882403.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             latinmodern-math scale = 0.9998964600422715.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             latinmodern-math scale = 0.9999964596882403.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             latinmodern-math scale = 0.9998964600422715.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             latinmodern-math scale = 0.9999964596882403.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             latinmodern-math scale = 0.9998964600422715.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             latinmodern-math scale = 0.9999964596882403.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             latinmodern-math scale = 0.9998964600422715.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Font family 'latinmodern-math.otf(3)' created for font
 (fontspec)             'latinmodern-math.otf' with options
 (fontspec)             [Scale=MatchLowercase,BoldItalicFont={},ItalicFont={},Sm
@@ -1450,10 +1449,10 @@ ptScript}},ScaleAgain=0.9999,FontAdjustment={\fontdimen
 (fontspec)             \fontdimen 10\font =1.67pt\relax \fontdimen 11\font
 (fontspec)             =1.11pt\relax \fontdimen 12\font =6.0pt\relax
 (fontspec)             \fontdimen 13\font =0pt\relax }].
-(fontspec)              
+(fontspec)
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
-(fontspec)              
+(fontspec)
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
 (fontspec)             <8.5->s*[0.9998964600422715]"[latinmodern-math.otf]/OT:s
 cript=math;language=dflt;"<6-8.5>s*[0.9998964600422715]"[latinmodern-math.otf]/
@@ -1462,57 +1461,57 @@ ath.otf]/OT:script=math;language=dflt;+ssty=1;"
 
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
 (Font)              `largesymbols' in the math version `normal' on input line 2
-44.
+48.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
 (Font)                  OMX/cmex/m/n --> TU/latinmodern-math.otf(3)/m/n on inpu
-t line 244.
+t line 248.
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `bold' on input line 244
+(Font)              `largesymbols' in the math version `bold' on input line 248
 .
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
 (Font)                  OMX/cmex/m/n --> TU/latinmodern-math.otf(3)/b/n on inpu
-t line 244.
+t line 248.
 (./_combined_manuscript.aux)
 \openout1 = `_combined_manuscript.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 245.
-LaTeX Font Info:    ... okay on input line 245.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 245.
-LaTeX Font Info:    ... okay on input line 245.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 245.
-LaTeX Font Info:    ... okay on input line 245.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 245.
-LaTeX Font Info:    ... okay on input line 245.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 245.
-LaTeX Font Info:    ... okay on input line 245.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 245.
-LaTeX Font Info:    ... okay on input line 245.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 245.
-LaTeX Font Info:    ... okay on input line 245.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 245.
-LaTeX Font Info:    ... okay on input line 245.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 245.
-LaTeX Font Info:    ... okay on input line 245.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 245.
-LaTeX Font Info:    ... okay on input line 245.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 249.
+LaTeX Font Info:    ... okay on input line 249.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 249.
+LaTeX Font Info:    ... okay on input line 249.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 249.
+LaTeX Font Info:    ... okay on input line 249.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 249.
+LaTeX Font Info:    ... okay on input line 249.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 249.
+LaTeX Font Info:    ... okay on input line 249.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 249.
+LaTeX Font Info:    ... okay on input line 249.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 249.
+LaTeX Font Info:    ... okay on input line 249.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 249.
+LaTeX Font Info:    ... okay on input line 249.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 249.
+LaTeX Font Info:    ... okay on input line 249.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 249.
+LaTeX Font Info:    ... okay on input line 249.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  TU/latinmodern-math.otf(1)/m/n --> TU/lmr/m/n on input 
-line 245.
+(Font)                  TU/latinmodern-math.otf(1)/m/n --> TU/lmr/m/n on input
+line 249.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 245.
+(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 249.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/bx/n on input line 245.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/bx/n on input line 249.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 245.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 249.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/bx/n on input line 245.
-LaTeX Info: Redefining \microtypecontext on input line 245.
-Package microtype Info: Applying patch `item' on input line 245.
-Package microtype Info: Applying patch `toc' on input line 245.
-Package microtype Info: Applying patch `eqnum' on input line 245.
-Package microtype Info: Applying patch `footnote' on input line 245.
-Package microtype Info: Applying patch `verbatim' on input line 245.
-LaTeX Info: Redefining \microtypesetup on input line 245.
+(Font)                  OT1/cmss/bx/n --> TU/lmss/bx/n on input line 249.
+LaTeX Info: Redefining \microtypecontext on input line 249.
+Package microtype Info: Applying patch `item' on input line 249.
+Package microtype Info: Applying patch `toc' on input line 249.
+Package microtype Info: Applying patch `eqnum' on input line 249.
+Package microtype Info: Applying patch `footnote' on input line 249.
+Package microtype Info: Applying patch `verbatim' on input line 249.
+LaTeX Info: Redefining \microtypesetup on input line 249.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
 Package microtype Info: No adjustment of tracking.
@@ -1523,17 +1522,17 @@ Package microtype Info: No adjustment of kerning.
 File: mt-LatinModernRoman.cfg 2026/02/26 v1.2 microtype config. file: Latin Mod
 ern Roman (RS)
 )
-Package footnotehyper Info: Using the \@makefntext{} approach (see doc).
-(footnotehyper)    In case of dysfunctional footnote environments, you can
-(footnotehyper)    try sending the author a small illustrative document.
-(footnotehyper)    To turn off this message, add \footnotehyperwarnfalse
-(footnotehyper)    to the preamble.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring ON on input line 245.
+Package footnotehyper Info: Using the \@makefntext{} approach (see doc).
+(footnotehyper)    In case of dysfunctional footnote environments, you can
+(footnotehyper)    try sending the author a small illustrative document.
+(footnotehyper)    To turn off this message, add \footnotehyperwarnfalse
+(footnotehyper)    to the preamble.
+Package hyperref Info: Link coloring ON on input line 249.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -1542,16 +1541,16 @@ Package hyperref Info: Link coloring ON on input line 245.
 * paper: <default>
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: 
-* h-part:(L,W,R)=(18.06749pt, 578.16002pt, 18.06749pt)
-* v-part:(T,H,B)=(18.06749pt, 758.835pt, 18.06749pt)
+* modes:
+* h-part:(L,W,R)=(43.36243pt, 527.57014pt, 43.36243pt)
+* v-part:(T,H,B)=(43.36243pt, 708.24513pt, 43.36243pt)
 * \paperwidth=614.295pt
 * \paperheight=794.96999pt
-* \textwidth=578.16002pt
-* \textheight=758.835pt
-* \oddsidemargin=-54.2025pt
-* \evensidemargin=-54.2025pt
-* \topmargin=-91.2025pt
+* \textwidth=527.57014pt
+* \textheight=708.24513pt
+* \oddsidemargin=-28.90756pt
+* \evensidemargin=-28.90756pt
+* \topmargin=-65.90756pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=10.0pt
@@ -1577,7 +1576,7 @@ File: translations-basic-dictionary-english.trsl (english translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `english'. on input line 245.
+or `english'. on input line 249.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: TU).
 (microtype)             For optimal results, create family-specific settings.
@@ -1625,7 +1624,7 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 
  [1]
 LaTeX Font Info:    Font shape `TU/JuliaMono-Regular(0)/m/n' will be
-(Font)              scaled to size 7.8363pt on input line 277.
+(Font)              scaled to size 7.8363pt on input line 308.
 
 [2] [3] [4] [5]
 File: ../figures/catalog_matrix.png Graphic file (type bmp)
@@ -1633,9 +1632,9 @@ File: ../figures/catalog_matrix.png Graphic file (type bmp)
  [6]
 File: ../figures/architecture.png Graphic file (type bmp)
 <../figures/architecture.png>
+ [7]
 File: ../figures/visual_panel.png Graphic file (type bmp)
 <../figures/visual_panel.png>
- [7]
 File: ../figures/visual_sweep.png Graphic file (type bmp)
 <../figures/visual_sweep.png>
  [8] [9]
@@ -1643,17 +1642,43 @@ File: ../figures/temporal_sequence.png Graphic file (type bmp)
 <../figures/temporal_sequence.png>
 File: ../figures/audio_signals.png Graphic file (type bmp)
 <../figures/audio_signals.png>
- [10]
+ [10] [11]
 File: ../figures/audiovisual_timeline.png Graphic file (type bmp)
 <../figures/audiovisual_timeline.png>
 File: ../figures/encoding_verification.png Graphic file (type bmp)
 <../figures/encoding_verification.png>
-
-Overfull \hbox (19.02962pt too wide) in paragraph at lines 1094--1094
-[]|\TU/lmr/m/n/10 normalized_pixel_difference|  
+ [12]
+Overfull \hbox (3.84746pt too wide) in paragraph at lines 1084--1084
+[]|\TU/lmr/m/n/10 normalized_luminance|
  []
 
-[11] [12] [13]
+
+Overfull \hbox (3.29745pt too wide) in paragraph at lines 1089--1089
+[]|\TU/lmr/m/n/10 normalized_amplitude|
+ []
+
+
+Overfull \hbox (3.29745pt too wide) in paragraph at lines 1091--1091
+[]|\TU/lmr/m/n/10 normalized_amplitude|
+ []
+
+
+Overfull \hbox (10.02745pt too wide) in paragraph at lines 1095--1095
+[]|\TU/lmr/m/n/10 spectral_bandwidth_hz|
+ []
+
+
+Overfull \hbox (3.28745pt too wide) in paragraph at lines 1099--1099
+[]|\TU/lmr/m/n/10 mean_temporal_delta|
+ []
+
+
+Overfull \hbox (29.14745pt too wide) in paragraph at lines 1099--1099
+[]|\TU/lmr/m/n/10 normalized_pixel_difference|
+ []
+
+
+ignored: Infinite glue shrinkage found in box being split [13]
 File: ../figures/synthetic_psychophysics.png Graphic file (type bmp)
 <../figures/synthetic_psychophysics.png>
  [14] [15] [16] [17] [18] [19] [20]
@@ -1668,148 +1693,160 @@ File: ../figures/metrics_dashboard.png Graphic file (type bmp)
 <../figures/metrics_dashboard.png>
 File: ../figures/parameter_domains.png Graphic file (type bmp)
 <../figures/parameter_domains.png>
+ [23] [24] [25]
 File: ../figures/observer_protocol.png Graphic file (type bmp)
 <../figures/observer_protocol.png>
- [23] [24] [25]
-[26] [27]
-ignored: Infinite glue shrinkage found in box being split [28]
-ignored: Infinite glue shr
-inkage found in box being split [29]
-ignored: Infinite glue shrinkage found in box being 
-split [30]
-ignored: Infinite glue shrinkage found in box being split [31]
-Overfull \hbox (4.00963pt too wide) in paragraph at lines 2183--2184
-\TU/lmr/m/n/10 pubmed.ncbi.nlm.nih.gov|  
+ [26]
+Overfull \hbox (9.74747pt too wide) in paragraph at lines 1960--1962
+[]|\TU/lmr/m/n/10 output/data/architecture.json;
  []
 
 
-Overfull \hbox (4.00963pt too wide) in paragraph at lines 2201--2202
-\TU/lmr/m/n/10 pubmed.ncbi.nlm.nih.gov|  
+ignored: Infinite glue shrinkage found in box being split [27]
+ignored: Infinite glue shrinkage fo
+und in box being split [28]
+ignored: Infinite glue shrinkage found in box being split [29
+]
+ignored: Infinite glue shrinkage found in box being split [30]
+ignored: Infinite glue shrinkage f
+ound in box being split [31]
+Overfull \hbox (14.12746pt too wide) in paragraph at lines 2196--2197
+\TU/lmr/m/n/10 pubmed.ncbi.nlm.nih.gov|
  []
 
 
-Overfull \hbox (4.00963pt too wide) in paragraph at lines 2238--2239
-\TU/lmr/m/n/10 pubmed.ncbi.nlm.nih.gov|  
+Overfull \hbox (3.78745pt too wide) in paragraph at lines 2200--2201
+\TU/lmr/m/n/10 www.sciencedirect.com|
  []
 
 
-Overfull \hbox (4.00963pt too wide) in paragraph at lines 2250--2251
-\TU/lmr/m/n/10 pubmed.ncbi.nlm.nih.gov|  
+Overfull \hbox (14.12746pt too wide) in paragraph at lines 2214--2215
+\TU/lmr/m/n/10 pubmed.ncbi.nlm.nih.gov|
  []
 
 
-Overfull \hbox (4.00963pt too wide) in paragraph at lines 2254--2255
-\TU/lmr/m/n/10 pubmed.ncbi.nlm.nih.gov|  
+Overfull \hbox (14.12746pt too wide) in paragraph at lines 2251--2252
+\TU/lmr/m/n/10 pubmed.ncbi.nlm.nih.gov|
  []
 
 
-Overfull \hbox (4.00963pt too wide) in paragraph at lines 2258--2259
-\TU/lmr/m/n/10 pubmed.ncbi.nlm.nih.gov|  
+Overfull \hbox (14.12746pt too wide) in paragraph at lines 2263--2264
+\TU/lmr/m/n/10 pubmed.ncbi.nlm.nih.gov|
  []
 
 
-Overfull \hbox (4.00963pt too wide) in paragraph at lines 2263--2263
-\TU/lmr/m/n/10 pubmed.ncbi.nlm.nih.gov|  
+Overfull \hbox (14.12746pt too wide) in paragraph at lines 2267--2268
+\TU/lmr/m/n/10 pubmed.ncbi.nlm.nih.gov|
  []
 
 
-Overfull \hbox (4.00963pt too wide) in paragraph at lines 2278--2279
-\TU/lmr/m/n/10 pubmed.ncbi.nlm.nih.gov|  
+Overfull \hbox (14.12746pt too wide) in paragraph at lines 2271--2272
+\TU/lmr/m/n/10 pubmed.ncbi.nlm.nih.gov|
  []
 
 
-Overfull \hbox (4.00963pt too wide) in paragraph at lines 2282--2283
-\TU/lmr/m/n/10 pubmed.ncbi.nlm.nih.gov|  
+Overfull \hbox (14.12746pt too wide) in paragraph at lines 2276--2276
+\TU/lmr/m/n/10 pubmed.ncbi.nlm.nih.gov|
  []
 
 
-Overfull \hbox (12.39963pt too wide) in paragraph at lines 2332--2333
-\TU/lmr/m/n/10 data/evidence_matrix.json|  
+Overfull \hbox (14.12746pt too wide) in paragraph at lines 2291--2292
+\TU/lmr/m/n/10 pubmed.ncbi.nlm.nih.gov|
  []
 
 
-Overfull \hbox (12.39963pt too wide) in paragraph at lines 2340--2341
-\TU/lmr/m/n/10 data/evidence_matrix.json|  
+Overfull \hbox (14.12746pt too wide) in paragraph at lines 2295--2296
+\TU/lmr/m/n/10 pubmed.ncbi.nlm.nih.gov|
  []
 
 
-Overfull \hbox (12.39963pt too wide) in paragraph at lines 2347--2348
-\TU/lmr/m/n/10 data/evidence_matrix.json|  
+Overfull \hbox (22.51746pt too wide) in paragraph at lines 2345--2346
+\TU/lmr/m/n/10 data/evidence_matrix.json|
  []
 
 
-Overfull \hbox (12.39963pt too wide) in paragraph at lines 2354--2354
-\TU/lmr/m/n/10 data/evidence_matrix.json|  
+Overfull \hbox (22.51746pt too wide) in paragraph at lines 2353--2354
+\TU/lmr/m/n/10 data/evidence_matrix.json|
  []
 
 
-Overfull \hbox (12.39963pt too wide) in paragraph at lines 2361--2362
-\TU/lmr/m/n/10 data/evidence_matrix.json|  
+Overfull \hbox (22.51746pt too wide) in paragraph at lines 2360--2361
+\TU/lmr/m/n/10 data/evidence_matrix.json|
  []
 
 
-Overfull \hbox (12.39963pt too wide) in paragraph at lines 2368--2369
-\TU/lmr/m/n/10 data/evidence_matrix.json|  
+Overfull \hbox (22.51746pt too wide) in paragraph at lines 2367--2367
+\TU/lmr/m/n/10 data/evidence_matrix.json|
  []
 
 
-Overfull \hbox (12.39963pt too wide) in paragraph at lines 2375--2376
-\TU/lmr/m/n/10 data/evidence_matrix.json|  
+Overfull \hbox (22.51746pt too wide) in paragraph at lines 2374--2375
+\TU/lmr/m/n/10 data/evidence_matrix.json|
  []
 
 
-Overfull \hbox (12.39963pt too wide) in paragraph at lines 2382--2383
-\TU/lmr/m/n/10 data/evidence_matrix.json|  
+Overfull \hbox (22.51746pt too wide) in paragraph at lines 2381--2382
+\TU/lmr/m/n/10 data/evidence_matrix.json|
  []
 
 
-Overfull \hbox (12.39963pt too wide) in paragraph at lines 2389--2390
-\TU/lmr/m/n/10 data/evidence_matrix.json|  
+Overfull \hbox (22.51746pt too wide) in paragraph at lines 2388--2389
+\TU/lmr/m/n/10 data/evidence_matrix.json|
  []
 
 
-Overfull \hbox (12.39963pt too wide) in paragraph at lines 2396--2397
-\TU/lmr/m/n/10 data/evidence_matrix.json|  
+Overfull \hbox (22.51746pt too wide) in paragraph at lines 2395--2396
+\TU/lmr/m/n/10 data/evidence_matrix.json|
  []
 
 
-Overfull \hbox (12.39963pt too wide) in paragraph at lines 2403--2404
-\TU/lmr/m/n/10 data/evidence_matrix.json|  
+Overfull \hbox (22.51746pt too wide) in paragraph at lines 2402--2403
+\TU/lmr/m/n/10 data/evidence_matrix.json|
  []
 
 
-Overfull \hbox (12.39963pt too wide) in paragraph at lines 2410--2411
-\TU/lmr/m/n/10 data/evidence_matrix.json|  
+Overfull \hbox (22.51746pt too wide) in paragraph at lines 2409--2410
+\TU/lmr/m/n/10 data/evidence_matrix.json|
  []
 
 
-Overfull \hbox (12.39963pt too wide) in paragraph at lines 2417--2418
-\TU/lmr/m/n/10 data/evidence_matrix.json|  
+Overfull \hbox (22.51746pt too wide) in paragraph at lines 2416--2417
+\TU/lmr/m/n/10 data/evidence_matrix.json|
  []
 
 
-Overfull \hbox (12.39963pt too wide) in paragraph at lines 2425--2426
-\TU/lmr/m/n/10 data/evidence_matrix.json|  
+Overfull \hbox (22.51746pt too wide) in paragraph at lines 2423--2424
+\TU/lmr/m/n/10 data/evidence_matrix.json|
  []
 
 
-Overfull \hbox (12.39963pt too wide) in paragraph at lines 2432--2432
-\TU/lmr/m/n/10 data/evidence_matrix.json|  
+Overfull \hbox (22.51746pt too wide) in paragraph at lines 2430--2431
+\TU/lmr/m/n/10 data/evidence_matrix.json|
  []
 
 
-Overfull \hbox (12.39963pt too wide) in paragraph at lines 2439--2440
-\TU/lmr/m/n/10 data/evidence_matrix.json|  
+Overfull \hbox (22.51746pt too wide) in paragraph at lines 2438--2439
+\TU/lmr/m/n/10 data/evidence_matrix.json|
  []
 
 
-Overfull \hbox (12.39963pt too wide) in paragraph at lines 2450--2451
-\TU/lmr/m/n/10 data/evidence_matrix.json|  
+Overfull \hbox (22.51746pt too wide) in paragraph at lines 2445--2445
+\TU/lmr/m/n/10 data/evidence_matrix.json|
  []
 
 
-Overfull \hbox (12.39963pt too wide) in paragraph at lines 2457--2457
-\TU/lmr/m/n/10 data/evidence_matrix.json|  
+Overfull \hbox (22.51746pt too wide) in paragraph at lines 2452--2453
+\TU/lmr/m/n/10 data/evidence_matrix.json|
+ []
+
+
+Overfull \hbox (22.51746pt too wide) in paragraph at lines 2463--2464
+\TU/lmr/m/n/10 data/evidence_matrix.json|
+ []
+
+
+Overfull \hbox (22.51746pt too wide) in paragraph at lines 2470--2470
+\TU/lmr/m/n/10 data/evidence_matrix.json|
  []
 
 
@@ -1824,64 +1861,103 @@ ound in box being split [36]
 ignored: Infinite glue shrinkage found in box being split [3
 7]
 ignored: Infinite glue shrinkage found in box being split [38]
-ignored: Infinite glue shrinkage 
+ignored: Infinite glue shrinkage
 found in box being split [39]
 ignored: Infinite glue shrinkage found in box being split [
 40]
-Overfull \hbox (5.54001pt too wide) in paragraph at lines 2606--2613
-\TU/lmr/m/n/10 sources=brugger1999duckrabbit; 
- []
-
-
-Overfull \hbox (4.09001pt too wide) in paragraph at lines 2623--2630
-\TU/lmr/m/n/10 sources=wertheimer1912motion; 
- []
-
-
-Overfull \hbox (10.74pt too wide) in paragraph at lines 2654--2654
-[]|\TU/lmr/m/n/10 evidence:audiovisual.ventriloquist|  
- []
-
-
-Overfull \hbox (4.23001pt too wide) in paragraph at lines 2656--2663
-\TU/lmr/m/n/10 sources=bruns2019ventriloquist; 
- []
-
-
-Overfull \hbox (10.24pt too wide) in paragraph at lines 2700--2706
-\TU/lmr/m/n/10 sources=mruczek2015ebbinghaus; 
- []
-
-
-Overfull \hbox (12.51001pt too wide) in paragraph at lines 2708--2716
-\TU/lmr/m/n/10 sources=zoellner1860pseudoscopy; 
- []
-
-
-Overfull \hbox (1.88pt too wide) in paragraph at lines 2748--2756
-\TU/lmr/m/n/10 sources=vroomen2004temporal; 
- []
-
-
 ignored: Infinite glue shrinkage found in box being split [41]
-ignored: Infinite glue shrinkage fo
-und in box being split [42]
-ignored: Infinite glue shrinkage found in box being split [43
-]
-ignored: Infinite glue shrinkage found in box being split [44]
-ignored: Infinite glue shrinkage f
-ound in box being split [45]
-ignored: Infinite glue shrinkage found in box being split [4
-6] [47] [48]
-Overfull \hbox (0.52962pt too wide) in paragraph at lines 2986--2986
-[]|\TU/lmr/m/n/10 audiovisual.ventriloquist|  
+ignored: Infinite glue shrinkage
+ found in box being split [42]
+ignored: Infinite glue shrinkage found in box being split
+[43]
+Overfull \hbox (18.18747pt too wide) in paragraph at lines 2619--2626
+\TU/lmr/m/n/10 sources=brugger1999duckrabbit;
  []
 
 
-ignored: Infinite glue shrinkage found in box being split [49] [50] (./_combined_manuscr
-ipt.bbl [51
+Overfull \hbox (1.44746pt too wide) in paragraph at lines 2626--2626
+[]|\TU/lmr/m/n/10 evidence:visual.simultaneous
+ []
 
-] [52]) [53]
+
+Overfull \hbox (16.73747pt too wide) in paragraph at lines 2636--2643
+\TU/lmr/m/n/10 sources=wertheimer1912motion;
+ []
+
+
+Overfull \hbox (23.38747pt too wide) in paragraph at lines 2667--2667
+[]|\TU/lmr/m/n/10 evidence:audiovisual.ventriloquist|
+ []
+
+
+Overfull \hbox (16.87747pt too wide) in paragraph at lines 2669--2676
+\TU/lmr/m/n/10 sources=bruns2019ventriloquist;
+ []
+
+
+Overfull \hbox (6.54747pt too wide) in paragraph at lines 2704--2711
+\TU/lmr/m/n/10 sources=kanizsa1976contours;
+ []
+
+
+Overfull \hbox (22.88747pt too wide) in paragraph at lines 2713--2719
+\TU/lmr/m/n/10 sources=mruczek2015ebbinghaus;
+ []
+
+
+Overfull \hbox (25.15747pt too wide) in paragraph at lines 2721--2729
+\TU/lmr/m/n/10 sources=zoellner1860pseudoscopy;
+ []
+
+
+Overfull \hbox (11.19746pt too wide) in paragraph at lines 2749--2759
+\TU/lmr/m/n/10 sources=warren1970continuity;
+ []
+
+
+Overfull \hbox (7.76747pt too wide) in paragraph at lines 2759--2759
+[]|\TU/lmr/m/n/10 evidence:audiovisual.temporal
+ []
+
+
+Overfull \hbox (14.52747pt too wide) in paragraph at lines 2761--2769
+\TU/lmr/m/n/10 sources=vroomen2004temporal;
+ []
+
+
+Overfull \hbox (1.09747pt too wide) in paragraph at lines 2769--2769
+[]|\TU/lmr/m/n/10 evidence:audiovisual.mcgurk|
+ []
+
+
+ignored: Infinite glue shrinkage found in box being split [44]
+ignored: Infinite glue shrinkage fo
+und in box being split [45]
+ignored: Infinite glue shrinkage found in box being split [46
+]
+ignored: Infinite glue shrinkage found in box being split [47]
+ignored: Infinite glue shrinkage f
+ound in box being split [48]
+ignored: Infinite glue shrinkage found in box being split [4
+9]
+ignored: Infinite glue shrinkage found in box being split [50]
+ignored: Infinite glue shrinkage
+found in box being split [51] [52] [53]
+Overfull \hbox (22.5529pt too wide) in paragraph at lines 2888--2888
+[]\TU/lmr/bx/n/14.4 Appendix A. Complete catalog, source tiers, and evidence/im
+plementation
+ []
+
+
+Overfull \hbox (10.64745pt too wide) in paragraph at lines 2998--2998
+[]|\TU/lmr/m/n/10 audiovisual.ventriloquist|
+ []
+
+
+ignored: Infinite glue shrinkage found in box being split [54] [55] [56] (./_combined_ma
+nuscript.bbl [57
+
+] [58]) [59]
 (./_combined_manuscript.aux
 Package cleveref Info: loaded `english' language definitions on input line 9.
 )
@@ -1889,14 +1965,14 @@ Package cleveref Info: loaded `english' language definitions on input line 9.
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
- ) 
+ )
 Here is how much of TeX's memory you used:
  30577 strings out of 468168
- 619766 string characters out of 5432815
- 1307124 words of memory out of 5000000
- 58936 multiletter control sequences out of 15000+600000
+ 619780 string characters out of 5432815
+ 1310323 words of memory out of 5000000
+ 58937 multiletter control sequences out of 15000+600000
  630322 words of font info for 86 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 90i,9n,117p,1017b,1146s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,9n,117p,1017b,1136s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on _combined_manuscript.pdf (54 pages).
+Output written on _combined_manuscript.pdf (60 pages).

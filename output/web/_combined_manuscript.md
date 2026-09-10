@@ -1,13 +1,10 @@
 # Abstract {#sec:abstract}
 
-DuckRabbit is typed, deterministic research software by Daniel Ari Friedman
-(Active Inference Institute) for constructing reproducible visual, auditory,
-temporal, and audiovisual stimulus families. The intended public release will
-be available at the following repository:
-
-`https://github.com/docxology/DuckRabbit`
-
-DuckRabbit is released under the MIT License.
+DuckRabbit is typed, deterministic research software for constructing
+reproducible visual, auditory, temporal, and audiovisual stimulus families. It
+is published and citable at
+[the DuckRabbit public GitHub repository](https://github.com/docxology/DuckRabbit)
+and released under the MIT License.
 
 Its basic unit is an immutable request containing an illusion identifier,
 validated parameters, a seed, and an encoding specification. The request yields
@@ -315,7 +312,7 @@ visible at a glance.
 What this figure shows: A matrix lists all catalog entries with modality, mechanism, signature, input requirement, and implementation status. The live catalog matrix contains 18 entries and keeps modality, mechanism, perceptual signature, input requirement, evidence status, and implementation status as separate facets. Source data output/data/catalog_matrix.json preserve the exact taxonomy snapshot and its source-reference namespace; status is not a proxy for perceptual validation. Controls: live taxonomy registry; evidence matrix snapshot; seed not applicable to the catalog diagram. Objective facts: 18 catalog rows; categorical facets and statuses; no observer-level quantity is applicable. Claim level: source_supported. Source data: output/data/catalog_matrix.json (SHA-256 digest recorded in the figure registry). Evidence lineage: gregory1997visual, hirst2020sound, bruns2019ventriloquist. Limitations: Taxonomy facets are engineering classifications and remain provisional where the literature supports competing accounts. Boundary: Catalog coverage is bounded to this registered package and does not enumerate all known illusions.
 
 The complete catalog matrix [@fig:catalog_matrix] is tabulated in the standalone
-Appendix A [@sec:appendix_catalog; @tbl:catalog]. The corresponding
+Appendix A [@sec:appendix_catalog] and in [@tbl:catalog]. The corresponding
 machine-readable evidence matrix records the source role, exact supported claim,
 engineering departure, and limitation for every entry. Keeping the table in an
 appendix gives the main results narrative room to explain the contract without
@@ -508,7 +505,10 @@ claim could be made.
 # Experimental and Computational Setup {#sec:experimental_setup}
 
 Core generation uses Python, NumPy, Pillow, and the standard library. The
-default seed is 0 and generation is offline. PNG, GIF, WAV, and NPZ are
+default seed is 0 and generation is offline. The generators are analytic in
+their typed parameters: the seed is recorded in manifests and study plans but
+does not yet alter artifact bytes; seed-driven stimulus randomization awaits a
+stochastic generator. PNG, GIF, WAV, and NPZ are
 available without ffmpeg; MP4 and muxed audiovisual output require both
 ffmpeg and ffprobe. Optional capabilities fail explicitly rather than silently
 changing the requested artifact.
@@ -571,6 +571,10 @@ The reproducibility contract is:
    channels, rates, frame counts, durations, timing offsets, and encoded hash;
 6. retain the v2 manifest and source-data sidecars with the generated figure or
    table.
+Note that in this release the generators are analytic in their typed
+parameters: the request seed *s* is recorded in manifests and study plans and
+excluded from the canonical digest, but it does not yet alter artifact bytes;
+seed-driven stimulus randomization awaits a stochastic generator.
 
 The contract is deliberately stronger than “the file can be downloaded.”
 Research-software guidance treats versioned code, executable procedures,
@@ -585,8 +589,9 @@ and release gates rather than by implying that a generated media file is a
 complete scientific replication.
 
 The package reports implemented, planned, input_required as its catalog status vocabulary and
-currently covers audio_visual, auditory, visual. The evidence layer contains 18
-entry records backed by 36 source records. The publication
+currently covers audio-visual, auditory, visual. The evidence layer contains 18
+entry records backed by 36 source records, covering
+18/18 catalog entries. The publication
 workflow produces 15 figures and 10
 tables from the live registry.
 
@@ -604,8 +609,9 @@ delivery artifacts with format-specific tolerances. The observer protocol is a
 separate evidence layer: a manifest can prove what was presented without
 proving what an observer experienced.
 
-Synthetic psychophysics is a third, deliberately bounded object. The model
-identity, version, feature schema, weights, temperature, seed, calibration
+Synthetic psychophysics is a third, deliberately bounded object: the model is
+a hand-specified deterministic feature observer; no training data; human_data=false, registered as `duckrabbit.synthetic.feature_observer`.
+The model version, feature schema, weights, temperature, seed, calibration
 statement, canonical reference/comparison digests, and `human_data=false` flag
 are retained in `output/data/synthetic_psychophysics.json`. Re-running this
 diagnostic checks deterministic model orchestration and stimulus-feature
@@ -626,7 +632,7 @@ The minimal regeneration commands are:
 ```bash
 uv run pytest -q --cov=src/duckrabbit --cov-fail-under=90
 uv run python scripts/generate_publication_outputs.py
-uv run python scripts/z_generate_manuscript_variables.py
+uv run python scripts/generate_manuscript_variables.py
 ```
 
 ## Data availability and software citation
@@ -920,11 +926,11 @@ CodeMeta, Zenodo metadata, versioned manifests, source-data sidecars, and
 resolver-linked bibliography entries. These improve discoverability and
 attribution; they do not increase the evidential level of any perceptual claim.
 
-The intended public software identity is explicit: DuckRabbit will be released
+The public software identity is explicit: DuckRabbit is published and citable
 at the [DuckRabbit public GitHub repository](https://github.com/docxology/DuckRabbit)
 under the authorship of Daniel Ari Friedman, Active Inference Institute. The
-repository URL identifies the future citable software object; it is not a claim
-that the private sidecar has already been publicly mirrored.
+generated bundle in this repository remains the authoritative release candidate
+until the external template handoff is completed.
 
 ## Formal traceability and objective metrics
 
@@ -1152,11 +1158,10 @@ part of the research record [@smith2016software; @wilkinson2016fair;
 @lamprecht2020fairsoftware].
 
 The release is authored by Daniel Ari Friedman of the Active Inference
-Institute, and its intended public home is
+Institute and is published and citable at
 [the DuckRabbit public GitHub repository](https://github.com/docxology/DuckRabbit).
-That repository statement is part of the software's citation identity; until
-the external handoff occurs, the private sidecar and its generated bundle are
-the authoritative release candidate.
+The generated bundle in this repository remains the authoritative release
+candidate until the external template handoff is completed.
 
 ## Conclusion {#sec:conclusion}
 

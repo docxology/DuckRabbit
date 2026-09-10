@@ -14,7 +14,7 @@ from duckrabbit.claims import ClaimBasis, ClaimRecord, default_claim_registry, v
 from duckrabbit.evidence import EvidenceLineage, EvidenceRole, SourceRecord, SourceVerificationStatus
 from duckrabbit.metadata import MetadataAuditReport, PublicationMetadata, validate_project_metadata
 from duckrabbit.taxonomy import ClaimLevel
-from duckrabbit.publication import generate_publication_outputs
+from duckrabbit.version import __version__
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -25,7 +25,7 @@ def test_metadata_identity_is_cross_file_consistent_and_serializable() -> None:
     assert report.status == "passed", json.dumps(report.to_dict(), indent=2)
     assert report.metadata.author == "Daniel Ari Friedman"
     assert report.metadata.orcid == "0000-0001-6232-9096"
-    assert report.metadata.version == "0.5.0"
+    assert report.metadata.version == __version__
     assert report.metadata.doi == "10.5281/zenodo.21419693"
     assert report.metadata.doi_status == "published"
     assert report.to_dict()["schema_version"] == "duckrabbit/metadata-audit/v1"
@@ -120,11 +120,10 @@ def test_typed_claim_registry_and_evidence_lineage_are_fail_closed() -> None:
             SourceRecord("bad", "bad", "A source", "review", "https://example.org/x", None, "a claim", **kwargs)
 
 
-def test_release_audit_requires_and_accepts_publication_bundle(tmp_path: Path) -> None:
+def test_release_audit_requires_and_accepts_publication_bundle(tmp_path: Path, publication_bundle) -> None:
     missing = run_audit(project_root=ROOT, output_root=tmp_path / "missing", release=True)
     assert missing.status == "failed"
     assert any(issue.code == "figure_registry.not_generated" and issue.severity == "error" for issue in missing.issues)
-    generate_publication_outputs(tmp_path / "ready")
-    ready = run_audit(project_root=ROOT, output_root=tmp_path / "ready", release=True)
+    ready = run_audit(project_root=ROOT, output_root=publication_bundle, release=True)
     assert ready.status == "passed", json.dumps(ready.to_dict(), indent=2)
     assert "publication_bundle" in ready.checks

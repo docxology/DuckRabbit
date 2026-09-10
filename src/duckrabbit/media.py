@@ -11,6 +11,7 @@ from dataclasses import dataclass
 from importlib.util import find_spec
 from pathlib import Path
 from contextlib import contextmanager
+from collections.abc import Iterator
 from tempfile import NamedTemporaryFile
 from tempfile import TemporaryDirectory
 
@@ -72,7 +73,7 @@ def backend_capabilities() -> tuple[BackendCapability, ...]:
 
 
 @contextmanager
-def _atomic_destination(path: Path, *, overwrite: bool = True):
+def _atomic_destination(path: Path, *, overwrite: bool = True) -> Iterator[Path]:
     """Yield a same-directory temporary path and atomically publish it on success."""
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)

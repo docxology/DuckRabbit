@@ -1,14 +1,16 @@
 # Validation Report
 
-**Generated:** 2026-07-17T20:41:30Z
+**Generated:** 2026-09-08T23:10:22Z
 
 ## Validation Checks
 
 - ✅ PASS: PDF validation
 - ✅ PASS: Transmission bookends
+- ✅ PASS: Enabled render outputs
 - ✅ PASS: Markdown validation
 - ✅ PASS: Output structure
 - ✅ PASS: Figure registry
 - ✅ PASS: Evidence registry
 - ✅ PASS: Project design overlays
 - ✅ PASS: Artifact manifest
+- ❌ FAIL: Rendered provenance inputs

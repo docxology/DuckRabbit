@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+
+      - name: Sync dependencies
+        run: uv sync --extra dev
+
+      - name: Lint
+        run: uv run ruff check src scripts tests
+
+      - name: Test suite with coverage gate
+        run: uv run pytest tests/ --cov=src/duckrabbit --cov-report=term-missing --cov-fail-under=90
+
+      - name: Validate scholarship (offline)
+        run: uv run python scripts/validate_scholarship.py
+
+      # DejaVu Sans is present on GitHub runners, so the figure font
+      # resolution in src/duckrabbit/publication.py succeeds without
+      # DUCKRABBIT_FONT_PATH. Digests are only comparable within one
+      # platform/font (see README "Figure rendering environment").
+      - name: Regenerate publication outputs
+        run: uv run python -m duckrabbit publish --output-dir output --clean
+
+      - name: Release audit
+        run: uv run python -m duckrabbit audit --output-root output --release

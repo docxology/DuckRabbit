@@ -26,11 +26,10 @@ part of the research record [@smith2016software; @wilkinson2016fair;
 @lamprecht2020fairsoftware].
 
 The release is authored by Daniel Ari Friedman of the Active Inference
-Institute, and its intended public home is
+Institute and is published and citable at
 [the DuckRabbit public GitHub repository](https://github.com/docxology/DuckRabbit).
-That repository statement is part of the software's citation identity; until
-the external handoff occurs, the private sidecar and its generated bundle are
-the authoritative release candidate.
+The generated bundle in this repository remains the authoritative release
+candidate until the external template handoff is completed.
 
 ## Conclusion {#sec:conclusion}
 

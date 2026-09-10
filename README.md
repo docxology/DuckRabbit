@@ -50,11 +50,16 @@ uv run python -m duckrabbit inspect output/media/visual_duck_rabbit.png
 uv run python -m duckrabbit verify output/media/visual_duck_rabbit.png.json
 uv run python -m duckrabbit capabilities
 uv run python scripts/generate_publication_outputs.py
+uv run python scripts/generate_manuscript_variables.py
 uv run python scripts/validate_scholarship.py
 uv run python scripts/audit_scholarship.py --output output/reports/scholarship_audit.json
+uv run python -m duckrabbit synthetic-psychophysics
 uv run python -m duckrabbit audit --output-root output
 uv run python -m duckrabbit audit --output-root output --release
 ```
+
+`docs/publication.md` documents the canonical end-to-end release sequence
+(network scholarship audit included, release-time only).
 
 `Pillow` writes PNG and GIF image/animation assets; the standard-library WAV
 adapter writes PCM audio. MP4 output requires an installed `ffmpeg` executable;
@@ -196,6 +201,13 @@ matrix for Pillow, the standard-library WAV path, NumPy NPZ archives, and
 ffmpeg/ffprobe. A missing optional backend is a typed capability result before
 encoding is attempted.
 
+Figure rendering environment: the publication figures render with Pillow
+using the first available TrueType font — `$DUCKRABBIT_FONT_PATH` when set,
+otherwise common platform fonts (Arial on macOS/Windows, DejaVu Sans or
+Liberation Sans on Linux). Byte-identical regeneration is guaranteed within
+one platform/font combination; set `DUCKRABBIT_FONT_PATH` to pin the font
+explicitly.
+
 `duckrabbit synthetic-psychophysics` writes the end-to-end model diagnostic
 sidecar. Its output includes the feature schema, weights, temperature, seed,
 canonical digests, predictions, `human_data: false`, and the explicit statement
@@ -239,13 +251,16 @@ The project is rendered through the sibling public template checkout. The
 original fork used the private-safe command:
 
 ```bash
-cd /Users/4d/Documents/GitHub/template
+cd <template-checkout>
 uv run python scripts/audit/copy_exemplar.py \
   --source templates/template_code_project \
-  --dest /Users/4d/Documents/GitHub/projects/ongoing/Art/DuckRabbit \
+  --dest <projects-root>/ongoing/Art/DuckRabbit \
   --new-name duckrabbit \
   --project-only
 ```
 
 `--project-only` is intentional: it keeps the shared template engine outside
 this private project tree.
+
+The active checkout lives at `projects/ongoing/docxology/DuckRabbit` in the
+private workspace.

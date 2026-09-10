@@ -112,6 +112,16 @@
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{caption}
+\captionsetup[table]{skip=6pt}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+\usepackage{caption}
+% Make caption package work with longtable
+\makeatletter
+\def\fnum@table{\tablename~\thetable}
+\makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -120,6 +130,35 @@
 % as the combined-PDF path. Adjust the manuscript's preamble.md to change the font globally.
 \usepackage{unicode-math}
 \setmathfont{latinmodern-math.otf}
+
+% Manuscript macro/package fallbacks (newcommand -> providecommand).
+% Core mathematics
+\usepackage{amsmath}
+\usepackage{amssymb}
+% Document layout
+% Tables
+\usepackage{booktabs}
+% Algorithm typesetting
+% Code listings
+\usepackage{listings}
+% Typography and formatting
+% Cross-references and citations
+% ── Unicode-capable mono font for code listings ──────────────────────
+% JuliaMono (TeX Live 2026) covers the full math/Greek glyph set used in
+% scientific code blocks; the default lmmono lacks \alpha/\mu/\partial/\nabla.
+%
+% The hardcoded TeX Live 2026 path below is portable to most macOS / Linux
+% TeX Live installs that placed JuliaMono under the default texmf-dist path.
+% If your TeX Live version differs (e.g., 2025, 2027) or your distribution
+% installs fonts elsewhere, comment out the explicit Path = line — fontspec
+% will then search the system font path. If JuliaMono is not installed at
+% all, comment out the whole block; xelatex falls back to lmmono with
+% reduced Unicode coverage but the document still compiles.
+% Math font for unicode-math: Latin Modern Math (TeX Live) has full BMP
+% coverage including U+2223 (\mid), U+226A/226B (\ll/\gg), and the Greek/
+% blackboard letters used in equations. Without an explicit \setmathfont,
+% unicode-math falls back to lmroman text font which lacks several glyphs
+% and emits "Missing character" warnings on every \mid in math mode.
 
 % Slide layout defaults for warning-clean scientific decks.
 \usepackage{etoolbox}
@@ -134,6 +173,33 @@
 \setlength{\tabcolsep}{2pt}
 \AtBeginEnvironment{longtable}{\tiny\renewcommand{\arraystretch}{0.86}\setlength{\tabcolsep}{1pt}}
 \AtBeginEnvironment{tabular}{\tiny\renewcommand{\arraystretch}{0.86}\setlength{\tabcolsep}{1pt}}
+\AtBeginEnvironment{equation}{\tiny}
+\AtBeginEnvironment{equation*}{\tiny}
+\AtBeginEnvironment{align}{\tiny}
+\AtBeginEnvironment{align*}{\tiny}
+\AtBeginEnvironment{itemize}{\footnotesize}
+\AtBeginEnvironment{enumerate}{\footnotesize}
+\AtBeginEnvironment{description}{\footnotesize}
+\setbeamerfont{caption}{size=\tiny}
+\setbeamerfont{caption name}{size=\tiny}
+\setbeamerfont{normal text}{size=\small}
+\setbeamerfont{frametitle}{size=\small}
+\setbeamerfont{section title}{size=\footnotesize}
+\setbeamerfont{subsection title}{size=\footnotesize}
+\setbeamertemplate{section page}{%
+  \centering
+  \begin{beamercolorbox}[sep=12pt,center,wd=\paperwidth]{section title}
+    \parbox{0.86\paperwidth}{\centering\usebeamerfont{section title}\insertsection\par}
+  \end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{%
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,wd=\paperwidth]{subsection title}
+    \parbox{0.86\paperwidth}{\centering\usebeamerfont{subsection title}\insertsubsection\par}
+  \end{beamercolorbox}
+}
+\setlength{\abovecaptionskip}{2pt}
+\setlength{\belowcaptionskip}{0pt}
 
 % Natbib and cross-reference fallbacks — slides don't load natbib
 % or cleveref, but combined-PDF manuscript prose may emit these
@@ -148,9 +214,15 @@
 \providecommand{\citeyear}[1]{#1}
 \providecommand{\cref}[1]{\texttt{\detokenize{#1}}}
 \providecommand{\Cref}[1]{\texttt{\detokenize{#1}}}
+\providecommand{\crefrange}[2]{\texttt{\detokenize{#1}}--\texttt{\detokenize{#2}}}
+\providecommand{\Crefrange}[2]{\texttt{\detokenize{#1}}--\texttt{\detokenize{#2}}}
+\providecommand{\paragraph}[1]{\textbf{#1}\ }
 
 \newtheorem{proposition}{Proposition}
 \newtheorem{hypothesis}{Hypothesis}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{axiom}{Axiom}
+\newtheorem{property}{Property}
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
@@ -172,6 +244,9 @@
 \begin{frame}[fragile,allowframebreaks]{Reproducibility and Provenance}
 The reproducibility contract is:
 
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Reproducibility and Provenance}
 \begin{enumerate}
 \tightlist
 \item
@@ -190,27 +265,37 @@ The reproducibility contract is:
   and encoded hash;
 \item
   retain the v2 manifest and source-data sidecars with the generated
-  figure or table.
+  figure or table. Note that in this release the generators are analytic
+  in their typed parameters: the request seed \emph{s} is recorded in
+  manifests and study plans and excluded from the canonical digest, but
+  it does not yet alter artifact bytes; seed-driven stimulus
+  randomization awaits a stochastic generator.
 \end{enumerate}
 
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Reproducibility and Provenance}
 The contract is deliberately stronger than ``the file can be
 downloaded.'' Research-software guidance treats versioned code,
 executable procedures, dependencies, and retained inputs as part of the
-reproducible object \breakseq{[@sandve2013simple; @wilson2014bestpractices]}.
-FAIR guidance further asks that digital research objects be findable,
+reproducible object (Sandve et al. 2013; Wilson et al. 2014). FAIR
+guidance further asks that digital research objects be findable,
 accessible, interoperable, and reusable, while noting that software has
 lifecycle and maintenance constraints that are not identical to those of
-static data \breakseq{[@wilkinson2016fair; @lamprecht2020fairsoftware]}.
-DuckRabbit operationalizes those principles with typed metadata,
-deterministic hashes, source-data sidecars, explicit licenses, and
-release gates rather than by implying that a generated media file is a
-complete scientific replication.
+static data ({Wilkinson et al.} 2016; Lamprecht et al. 2020). DuckRabbit
+operationalizes those principles with typed metadata, deterministic
+hashes, source-data sidecars, explicit licenses, and release gates
+rather than by implying that a generated media file is a complete
+scientific replication.
 
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Reproducibility and Provenance}
 The package reports implemented, planned, input\_required as its catalog
-status vocabulary and currently covers audio\_visual, auditory, visual.
+status vocabulary and currently covers audio-visual, auditory, visual.
 The evidence layer contains 18 entry records backed by 36 source
-records. The publication workflow produces 15 figures and 10 tables from
-the live registry.
+records, covering 18/18 catalog entries. The publication workflow
+produces 15 figures and 10 tables from the live registry.
 
 The public software record is
 \href{https://github.com/docxology/DuckRabbit}{the DuckRabbit public
@@ -221,19 +306,27 @@ Institute as author. The release is archived on Zenodo at
 \href{https://doi.org/10.5281/zenodo.21419694}{10.5281/zenodo.21419694}
 identifying this v0.5.0 release specifically.
 
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Reproducibility and Provenance}
 The canonical buffer is the primary identity of a stimulus. Encoded
 files are delivery artifacts with format-specific tolerances. The
 observer protocol is a separate evidence layer: a manifest can prove
 what was presented without proving what an observer experienced.
 
-Synthetic psychophysics is a third, deliberately bounded object. The
-model identity, version, feature schema, weights, temperature, seed,
-calibration statement, canonical reference/comparison digests, and
-\breaktt{human\_data=false} flag are retained in
-\breaktt{output/data/synthetic\_psychophysics.json}. Re-running this
-diagnostic checks deterministic model orchestration and stimulus-feature
-sensitivity; it does not estimate a human observer or replace empirical
-psychophysics.
+Synthetic psychophysics is a third, deliberately bounded object: the
+model is a hand-specified deterministic feature observer; no training
+data; human\_data=false, registered as
+\breaktt{duckrabbit.synthetic.feature\_observer}. The model version,
+feature schema, weights, temperature, seed, calibration statement,
+canonical reference/comparison digests, and \breaktt{human\_data=false}
+flag are retained in \breaktt{output/data/synthetic\_psychophysics.json}.
+Re-running this diagnostic checks deterministic model orchestration and
+stimulus-feature sensitivity; it does not estimate a human observer or
+replace empirical psychophysics.
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Reproducibility and Provenance}
 
 The v2 verifier is a relational check rather than a field-presence
 check. It rejects summaries whose dimensions, dtype, byte count, rates,
@@ -245,13 +338,16 @@ Pillow, NumPy, ffmpeg, or ffprobe are available in the current
 environment; unavailable delivery paths remain explicit rather than
 being silently downgraded.
 
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Reproducibility and Provenance}
 The minimal regeneration commands are:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \ExtensionTok{uv}\NormalTok{ run pytest }\AttributeTok{{-}q} \AttributeTok{{-}{-}cov}\OperatorTok{=}\NormalTok{src/duckrabbit }\AttributeTok{{-}{-}cov{-}fail{-}under}\OperatorTok{=}\NormalTok{90}
 \ExtensionTok{uv}\NormalTok{ run python scripts/generate\_publication\_outputs.py}
-\ExtensionTok{uv}\NormalTok{ run python scripts/z\_generate\_manuscript\_variables.py}
+\ExtensionTok{uv}\NormalTok{ run python scripts/generate\_manuscript\_variables.py}
 \end{Highlighting}
 \end{Shaded}
 \end{frame}
@@ -266,8 +362,8 @@ Reuse should cite Daniel Ari Friedman and the release metadata in
 \texttt{CITATION.cff}, together with the source-specific scholarship in
 \texttt{references.bib}. Software-citation principles recommend citing
 the software object itself, with enough version and identity information
-to distinguish one release from another \breakseq{[@smith2016software]}. The
-DOI field carries the real, minted concept DOI
+to distinguish one release from another (Smith et al. 2016). The DOI
+field carries the real, minted concept DOI
 (\breaktt{10.5281/zenodo.21419693}) and \texttt{doi\_status} is
 \texttt{published}; no resolver URL was manufactured before that
 identifier existed.

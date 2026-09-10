@@ -2,9 +2,14 @@
 
 from __future__ import annotations
 
+import json
+import re
 from pathlib import Path
 
-from duckrabbit.manuscript_variables import hydrate_manuscript_files
+from duckrabbit.manuscript_variables import generate_variables, hydrate_manuscript_files, save_variables
+
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_hydrate_manuscript_files_substitutes_copies_and_cleans(tmp_path: Path):
@@ -38,3 +43,30 @@ def test_hydrate_manuscript_files_falls_back_to_legacy_manuscript_dir(tmp_path: 
     result = hydrate_manuscript_files({"CATALOG_ENTRIES": 7}, tmp_path)
 
     assert (result / "only.md").read_text(encoding="utf-8") == "count 7\n"
+
+
+def test_save_variables_writes_sorted_json_with_trailing_newline(tmp_path: Path):
+    variables = generate_variables()
+    path = save_variables(variables, tmp_path / "nested" / "manuscript_variables.json")
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    assert payload == variables
+    text = path.read_text(encoding="utf-8")
+    assert text.endswith("}\n")
+    serialized_keys = [line.strip().removesuffix('": {').lstrip('"') for line in text.splitlines() if line.strip().startswith('"')]
+    assert serialized_keys == sorted(serialized_keys)
+
+
+def test_every_manuscript_template_token_is_a_generated_variable():
+    variables = generate_variables()
+    token_pattern = re.compile(r"\{\{([A-Z][A-Z0-9_]*)\}\}")
+    # The hydrator excludes these documentation files; SYNTAX.md documents
+    # the token syntax itself, so its literal {{TOKEN}} is not a real use.
+    excluded = {"AGENTS.md", "README.md", "SYNTAX.md"}
+    used = {
+        match
+        for manuscript_file in (ROOT / "docs" / "manuscript").glob("*.md")
+        if manuscript_file.name not in excluded
+        for match in token_pattern.findall(manuscript_file.read_text(encoding="utf-8"))
+    }
+    missing = used - set(variables)
+    assert not missing, f"manuscript tokens without a generated variable: {sorted(missing)}"

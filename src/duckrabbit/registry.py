@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import Generic, Protocol, TypeVar
 
 from .artifacts import CanonicalArtifact
-from .errors import ParameterValidationError, UnknownIllusionError
+from .errors import ParameterValidationError, RegistryFrozenError, UnknownIllusionError
 from .parameters import Seed
 from .taxonomy import ImplementationStatus, TaxonomyEntry, taxonomy_entries
 
@@ -58,7 +58,7 @@ class IllusionRegistry:
 
     def register(self, spec: GeneratorSpec[object, object]) -> None:
         if self._frozen:
-            raise RuntimeError("registry is frozen")
+            raise RegistryFrozenError("registry is frozen")
         if spec.illusion_id in self._specs:
             raise ValueError(f"illusion already registered: {spec.illusion_id}")
         self._specs[spec.illusion_id] = spec

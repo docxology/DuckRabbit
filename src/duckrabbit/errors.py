@@ -35,3 +35,7 @@ class VerificationError(DuckRabbitError, ValueError):
 
 class UnsupportedFormatError(DuckRabbitError, ValueError):
     """A requested format is unknown or incompatible with a canonical artifact."""
+
+
+class RegistryFrozenError(DuckRabbitError, RuntimeError):
+    """The generator registry is frozen and rejects new registrations."""
