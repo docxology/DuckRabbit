@@ -27,6 +27,11 @@ from .taxonomy import ImplementationStatus, get_taxonomy, validate_taxonomy_cata
 
 
 def _image_from_mask(mask: np.ndarray, config: ImageConfig) -> ImageFrame:
+    """Convert a binary foreground mask into a grayscale image.
+
+    The mask uses 1.0 for foreground (dark) and 0.0 for background (light),
+    so the image is produced by inverting the mask into luminance values.
+    """
     return _image_from_values(1.0 - np.asarray(mask, dtype=np.float32), config)
 
 
@@ -208,7 +213,7 @@ def generate_apparent_motion(parameters: ApparentMotionParams, *, seed: int = 0)
     del seed
     # The bar only ever occupies two positions, so both masks are computed
     # once and reused; per-frame mgrid allocation would redo identical work.
-    x = np.arange(parameters.config.width, dtype=np.float64)[None, :] / max(parameters.config.width - 1, 1)
+    x = np.arange(parameters.config.width, dtype=np.float32)[None, :] / max(parameters.config.width - 1, 1)
     positions = (0.2, 0.2 + parameters.displacement.value)
     masks = tuple(
         np.broadcast_to((np.abs(x - position) <= parameters.bar_width.value / 2), (parameters.config.height, parameters.config.width)).astype(np.float32)

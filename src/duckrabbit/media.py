@@ -134,15 +134,23 @@ def write_gif(video: VideoSequence, path: Path, *, encoding: GifEncoding = GifEn
 
 
 def _pcm_bytes(audio: AudioBuffer, bit_depth: PcmBitDepth) -> bytes:
-    """Convert canonical float audio into little-endian PCM bytes."""
+    """Convert canonical float audio into little-endian PCM bytes.
+
+    8-bit PCM is unsigned (offset binary), while 16/24/32-bit PCM are
+    signed little-endian.  24-bit values are computed as 32-bit integers
+    and truncated to 3 bytes per sample.
+    """
     samples = np.clip(audio.samples, -1.0, 1.0)
     if bit_depth == 8:
+        # Unsigned 8-bit: map [-1, 1] to [0, 255]
         return np.rint((samples + 1.0) * 127.5).astype("u1").tobytes()
     if bit_depth == 16:
         return np.rint(samples * 32767.0).astype("<i2").tobytes()
     if bit_depth == 24:
+        # Compute as 32-bit signed, then take the low 3 bytes (little-endian)
         values = np.rint(samples * 8388607.0).astype("<i4")
         return values.view("u1").reshape(-1, 4)[:, :3].tobytes()
+    # 32-bit signed
     return np.rint(samples * 2147483647.0).astype("<i4").tobytes()
 
 

@@ -1,4 +1,11 @@
-"""Typed claim lineage for prose, publication outputs, and model diagnostics."""
+"""Typed claim lineage for prose, publication outputs, and model diagnostics.
+
+This module defines the claim registry that tracks the epistemic basis
+of every claim made in the package. Claims are typed with their basis
+(code-derived, scholarship-checked, synthetic model output, etc.) and
+claim level (canonical stimulus, physical metric, observer hypothesis,
+etc.) to prevent overclaiming.
+"""
 
 from __future__ import annotations
 

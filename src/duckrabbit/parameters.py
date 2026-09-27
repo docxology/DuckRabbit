@@ -519,6 +519,7 @@ class ImageConfig:
     mode: ColorMode = ColorMode.GRAYSCALE
 
     def __post_init__(self) -> None:
+        # Coerce width/height from raw integers to PixelDimension
         try:
             if not isinstance(self.width, PixelDimension):
                 object.__setattr__(self, "width", PixelDimension(self.width))
@@ -526,6 +527,7 @@ class ImageConfig:
                 object.__setattr__(self, "height", PixelDimension(self.height))
         except ParameterValidationError as exc:
             raise ParameterValidationError(f"image width/height: {exc}") from exc
+        # Validate nested typed fields
         if not isinstance(self.grayscale_levels, GrayscaleLevels):
             raise ParameterValidationError("grayscale_levels must be GrayscaleLevels")
         if not isinstance(self.quantization_levels, QuantizationLevels):

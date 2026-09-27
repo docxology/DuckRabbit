@@ -39,6 +39,3 @@ def sha256_file(path: Path, chunk_size: int = 1 << 20) -> str:
 
 
 __all__ = ["atomic_write_text", "sha256_file"]
-
-
-__all__ = ["atomic_write_text"]

@@ -111,7 +111,12 @@ def parameter_payload(parameters: object) -> dict[str, object]:
 
 
 def _validate_json_value(path: str, expected: object, value: object) -> None:
-    """Validate one serialized value against the observed typed default."""
+    """Validate one serialized value against the observed typed default.
+
+    This function validates JSON-decoded parameter values against the
+    typed default from the parameter dataclass. It handles enums,
+    nested dataclasses, primitives, and arrays.
+    """
     if isinstance(expected, Enum):
         choices = {member.value for member in type(expected)}
         if value not in choices:

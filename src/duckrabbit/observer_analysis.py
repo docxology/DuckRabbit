@@ -88,7 +88,12 @@ class StimulusReference:
 
 @dataclass(frozen=True)
 class TrialRecord:
-    """Study-ready trial identity, stimulus provenance, response, and missingness."""
+    """Study-ready trial identity, stimulus provenance, response, and missingness.
+
+    This record is a schema for future human-observer studies. It is not
+    a record of actual observer data. The randomization_seed links the
+    trial to a specific stimulus presentation order.
+    """
 
     trial_id: str
     participant: ParticipantId

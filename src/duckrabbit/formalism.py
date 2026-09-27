@@ -1,4 +1,10 @@
-"""Machine-readable formalism-to-code traceability for the methods paper."""
+"""Machine-readable formalism-to-code traceability for the methods paper.
+
+This module provides formal definitions that link mathematical notation
+to specific code implementations, tests, and figures. Each definition
+includes the equation, symbols, implementation files, test files, and
+figure labels, ensuring complete traceability from theory to code.
+"""
 
 from __future__ import annotations
 

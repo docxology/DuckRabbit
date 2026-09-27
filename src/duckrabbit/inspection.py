@@ -328,6 +328,14 @@ def _compare_npz_audiovisual(expected: Mapping[str, object], facts: Mapping[str,
 
 
 def _compare_encoded_audiovisual(expected: Mapping[str, object], inspection: InspectionResult, errors: list[str], checks: list[str]) -> None:
+    """Compare expected audiovisual facts against ffprobe stream inspection.
+
+    The sync offset is encoded as an itsoffset delay on the later stream,
+    so the observed presentation end-time must account for the delayed
+    stream's start.  The observed sync offset is derived from the
+    difference in stream start times (or durations when one stream is
+    delayed).
+    """
     facts = inspection.facts
     audio_inspection = _audio_inspection(facts)
     video_inspection = _video_inspection(facts)

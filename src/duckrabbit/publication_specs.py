@@ -1,4 +1,10 @@
-"""Typed, code-owned caption and publication metadata contracts."""
+"""Typed, code-owned caption and publication metadata contracts.
+
+This module defines the caption and publication metadata contracts that
+ensure figures and tables maintain their epistemic boundaries. The
+overclaim patterns prevent observer-level claims from appearing in
+captions that only describe canonical stimulus properties.
+"""
 
 from __future__ import annotations
 
@@ -8,6 +14,9 @@ import re
 from .taxonomy import ClaimLevel
 
 
+# Patterns that indicate observer-level overclaiming in captions.
+# These are rejected to prevent canonical stimulus descriptions from
+# being misinterpreted as observer-level perceptual claims.
 _OVERCLAIM_PATTERNS = (
     r"\bcauses?\b",
     r"\bproves?\b",
