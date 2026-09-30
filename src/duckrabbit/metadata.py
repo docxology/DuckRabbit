@@ -84,7 +84,7 @@ def _yaml_scalar(text: str, key: str, *, allow_empty: bool = False) -> str:
     value_pattern = r"([^\"'\n#]*?)" if allow_empty else r"([^\"'\n#]+?)"
     match = re.search(rf"^\s*{re.escape(key)}:\s*[\"']?{value_pattern}[\"']?\s*$", text, re.MULTILINE)
     if not match:
-        raise ValueError(f"manuscript/config.yaml is missing {key}")
+        raise ValueError(f"docs/manuscript/config.yaml is missing {key}")
     return match.group(1).strip()
 
 
@@ -95,7 +95,7 @@ def _yaml_author(text: str) -> tuple[str, str]:
         re.MULTILINE | re.DOTALL,
     )
     if not match:
-        raise ValueError("manuscript/config.yaml must declare author name and ORCID")
+        raise ValueError("docs/manuscript/config.yaml must declare author name and ORCID")
     return match.group(1).strip(), match.group(2).strip()
 
 
@@ -130,10 +130,10 @@ def validate_project_metadata(project_root: Path | None = None) -> MetadataAudit
     """Validate identity, version, license, and DOI status across sidecars."""
     root = Path(project_root) if project_root is not None else Path(__file__).resolve().parents[2]
     errors: list[str] = []
-    files = ("pyproject.toml", "manuscript/config.yaml", "CITATION.cff", "codemeta.json", ".zenodo.json")
+    files = ("pyproject.toml", "docs/manuscript/config.yaml", "CITATION.cff", "codemeta.json", ".zenodo.json")
     try:
         pyproject = tomllib.loads((root / "pyproject.toml").read_text(encoding="utf-8"))
-        config_text = (root / "manuscript/config.yaml").read_text(encoding="utf-8")
+        config_text = (root / "docs/manuscript/config.yaml").read_text(encoding="utf-8")
         cff = _cff((root / "CITATION.cff").read_text(encoding="utf-8"))
         codemeta = _json(root, "codemeta.json")
         zenodo = _json(root, ".zenodo.json")

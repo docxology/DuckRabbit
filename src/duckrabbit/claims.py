@@ -81,7 +81,7 @@ def default_claim_registry() -> tuple[ClaimRecord, ...]:
             ClaimLevel.CANONICAL_STIMULUS,
             ("taxonomy_entries()",),
             "Catalog membership is not a completeness claim about all known illusions.",
-            "manuscript/09_appendix_catalog.md",
+            "docs/manuscript/09_appendix_catalog.md",
         ),
         ClaimRecord(
             "evidence:source_count",
@@ -90,7 +90,7 @@ def default_claim_registry() -> tuple[ClaimRecord, ...]:
             ClaimLevel.SOURCE_SUPPORTED,
             ("data/evidence_matrix.json::sources",),
             "The offline snapshot does not imply that every URL is currently reachable or that a source supports more than its exact record.",
-            "manuscript/06_scope_and_related_work.md",
+            "docs/manuscript/06_scope_and_related_work.md",
         ),
         ClaimRecord(
             "scope:no_participant_data",
@@ -99,7 +99,7 @@ def default_claim_registry() -> tuple[ClaimRecord, ...]:
             ClaimLevel.OBSERVER_HYPOTHESIS,
             ("experiments/observer_protocol.md", "output/data/synthetic_psychophysics.json"),
             "Future observer studies require preregistration, consent, calibrated presentation, and separate data governance.",
-            "manuscript/07_publication_audit.md",
+            "docs/manuscript/07_publication_audit.md",
         ),
         ClaimRecord(
             "synthetic:diagnostic_boundary",
@@ -108,7 +108,7 @@ def default_claim_registry() -> tuple[ClaimRecord, ...]:
             ClaimLevel.SYNTHETIC_MODEL_OUTPUT,
             ("src/duckrabbit/synthetic_psychophysics.py", "output/data/synthetic_psychophysics.json"),
             "The hand-specified model has no training data and has not been calibrated against observers.",
-            "manuscript/02_methodology.md",
+            "docs/manuscript/02_methodology.md",
         ),
         ClaimRecord(
             "cover:editorial_boundary",
@@ -117,7 +117,7 @@ def default_claim_registry() -> tuple[ClaimRecord, ...]:
             ClaimLevel.PUBLICATION_ILLUSTRATION,
             ("output/reports/cover_visualization.json",),
             "The editorial asset is not part of the deterministic scientific stimulus registry.",
-            "manuscript/07_publication_audit.md",
+            "docs/manuscript/07_publication_audit.md",
         ),
     ]
     for entry in taxonomy_entries():
@@ -130,7 +130,7 @@ def default_claim_registry() -> tuple[ClaimRecord, ...]:
                 record.supported_claim_level,
                 tuple(record.primary_sources + record.review_sources + record.theory_sources) + ("data/evidence_matrix.json",),
                 " ".join(record.evidence_limitations),
-                "manuscript/06_scope_and_related_work.md",
+                "docs/manuscript/06_scope_and_related_work.md",
             )
         )
     return validate_claim_registry(records)

@@ -35,7 +35,7 @@ def test_metadata_identity_is_cross_file_consistent_and_serializable() -> None:
 
 
 def test_metadata_audit_fails_on_drift_without_network(tmp_path: Path) -> None:
-    for name in ("pyproject.toml", "manuscript/config.yaml", "CITATION.cff", "codemeta.json", ".zenodo.json"):
+    for name in ("pyproject.toml", "docs/manuscript/config.yaml", "CITATION.cff", "codemeta.json", ".zenodo.json"):
         destination = tmp_path / name
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy(ROOT / name, destination)
@@ -49,7 +49,7 @@ def test_metadata_audit_fails_on_drift_without_network(tmp_path: Path) -> None:
 
 
 def test_metadata_audit_fails_when_doi_empty_but_status_not_forthcoming(tmp_path: Path) -> None:
-    for name in ("pyproject.toml", "manuscript/config.yaml", "CITATION.cff", "codemeta.json", ".zenodo.json"):
+    for name in ("pyproject.toml", "docs/manuscript/config.yaml", "CITATION.cff", "codemeta.json", ".zenodo.json"):
         destination = tmp_path / name
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy(ROOT / name, destination)
@@ -63,7 +63,7 @@ def test_metadata_audit_fails_when_doi_empty_but_status_not_forthcoming(tmp_path
 
 
 def test_metadata_audit_catches_each_identity_field(tmp_path: Path) -> None:
-    for name in ("pyproject.toml", "manuscript/config.yaml", "CITATION.cff", "codemeta.json", ".zenodo.json"):
+    for name in ("pyproject.toml", "docs/manuscript/config.yaml", "CITATION.cff", "codemeta.json", ".zenodo.json"):
         destination = tmp_path / name
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy(ROOT / name, destination)
@@ -94,15 +94,15 @@ def test_typed_claim_registry_and_evidence_lineage_are_fail_closed() -> None:
     assert all(claim.limitation and claim.source_or_artifact_lineage for claim in claims)
     assert validate_claim_registry(claims) == claims
     with pytest.raises(ValueError, match="limitation"):
-        ClaimRecord("bad", "A fact", ClaimBasis.DERIVED_FROM_CODE, ClaimLevel.PHYSICAL_METRIC, ("code",), "", "manuscript/x.md")
+        ClaimRecord("bad", "A fact", ClaimBasis.DERIVED_FROM_CODE, ClaimLevel.PHYSICAL_METRIC, ("code",), "", "docs/manuscript/x.md")
     with pytest.raises(ValueError, match="id"):
-        ClaimRecord("", "A fact", ClaimBasis.DERIVED_FROM_CODE, ClaimLevel.PHYSICAL_METRIC, ("code",), "limit", "manuscript/x.md")
+        ClaimRecord("", "A fact", ClaimBasis.DERIVED_FROM_CODE, ClaimLevel.PHYSICAL_METRIC, ("code",), "limit", "docs/manuscript/x.md")
     with pytest.raises(ValueError, match="typed enums"):
-        ClaimRecord("bad-type", "A fact", "code", ClaimLevel.PHYSICAL_METRIC, ("code",), "limit", "manuscript/x.md")
+        ClaimRecord("bad-type", "A fact", "code", ClaimLevel.PHYSICAL_METRIC, ("code",), "limit", "docs/manuscript/x.md")
     with pytest.raises(ValueError, match="lineage"):
-        ClaimRecord("bad-lineage", "A fact", ClaimBasis.DERIVED_FROM_CODE, ClaimLevel.PHYSICAL_METRIC, (), "limit", "manuscript/x.md")
+        ClaimRecord("bad-lineage", "A fact", ClaimBasis.DERIVED_FROM_CODE, ClaimLevel.PHYSICAL_METRIC, (), "limit", "docs/manuscript/x.md")
     with pytest.raises(ValueError, match="overclaim"):
-        ClaimRecord("bad-claim", "This causes observers to perceive a result", ClaimBasis.DERIVED_FROM_CODE, ClaimLevel.PHYSICAL_METRIC, ("code",), "limit", "manuscript/x.md")
+        ClaimRecord("bad-claim", "This causes observers to perceive a result", ClaimBasis.DERIVED_FROM_CODE, ClaimLevel.PHYSICAL_METRIC, ("code",), "limit", "docs/manuscript/x.md")
     assert claims[0].to_dict()["claim_id"] == "catalog:count"
     with pytest.raises(ValueError, match="duplicate"):
         validate_claim_registry([claims[0], claims[0]])

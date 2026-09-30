@@ -28,7 +28,7 @@ units or non-applicability, source-data lineage, limitations, and the boundary
 between deterministic media facts and future observer hypotheses.
 
 The complete catalog/source-tier matrix is rendered in the standalone
-`manuscript/09_appendix_catalog.md` section rather than embedded in the main
+`docs/manuscript/09_appendix_catalog.md` section rather than embedded in the main
 results narrative. Its `tbl:catalog` rows are still generated from the live
 taxonomy and evidence registries, so moving the table changes publication
 placement, not its provenance or validation contract. The visual coverage
@@ -64,7 +64,7 @@ For v0.5.0, the maintainer:
 4. created the `v0.5.0` GitHub release and archived the exact source and
    generated release bundle; and
 5. minted the DOI from the public record, then replaced the empty DOI and
-   `forthcoming` status atomically across `manuscript/config.yaml`,
+   `forthcoming` status atomically across `docs/manuscript/config.yaml`,
    `CITATION.cff`, `.zenodo.json`, and `codemeta.json`.
 
 For the *next* release, repeat this same sequence with a new version tag. An

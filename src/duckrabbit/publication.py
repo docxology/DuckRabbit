@@ -1069,8 +1069,8 @@ def publication_table_payloads() -> dict[str, dict[str, object]]:
             "manuscript_location": claim.manuscript_location,
         })
     claim_records.extend([
-        {"claim_id": "publication:figure_count", "claim": f"The publication atlas contains {len(publication_caption_specs())} registered scientific figures.", "basis": "derived_from_code", "lineage": "publication_caption_specs()", "claim_level": "physical_metric", "limitation": "The count is a package-state fact, not evidence of empirical validity.", "manuscript_location": "manuscript/07_publication_audit.md"},
-        {"claim_id": "publication:table_count", "claim": "The publication appendix contains the generated table set defined by the publication table payload registry.", "basis": "derived_from_code", "lineage": "publication_table_payloads()", "claim_level": "physical_metric", "limitation": "Generated tables summarize package state and do not replace source or observer evidence.", "manuscript_location": "manuscript/07_publication_audit.md"},
+        {"claim_id": "publication:figure_count", "claim": f"The publication atlas contains {len(publication_caption_specs())} registered scientific figures.", "basis": "derived_from_code", "lineage": "publication_caption_specs()", "claim_level": "physical_metric", "limitation": "The count is a package-state fact, not evidence of empirical validity.", "manuscript_location": "docs/manuscript/07_publication_audit.md"},
+        {"claim_id": "publication:table_count", "claim": "The publication appendix contains the generated table set defined by the publication table payload registry.", "basis": "derived_from_code", "lineage": "publication_table_payloads()", "claim_level": "physical_metric", "limitation": "Generated tables summarize package state and do not replace source or observer evidence.", "manuscript_location": "docs/manuscript/07_publication_audit.md"},
     ])
     claim_display_records = [
         {

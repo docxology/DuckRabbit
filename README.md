@@ -31,7 +31,7 @@ is archived on Zenodo:
   ([Zenodo record](https://zenodo.org/records/21419694))
 
 Cite the release metadata in `CITATION.cff`, the public repository, and the
-underlying scholarship listed in `manuscript/references.bib`.
+underlying scholarship listed in `docs/manuscript/references.bib`.
 
 ## Quick start
 
@@ -63,7 +63,7 @@ validated figure registry, 10 tables, and reports under disposable `output/`.
 It uses NumPy/Pillow primitives and does not require Matplotlib. The cover is
 an editorial illustration, not an experimental stimulus or observer result.
 The complete source-tiered catalog matrix is rendered in the standalone
-`manuscript/09_appendix_catalog.md` appendix, while the visual atlas is generated
+`docs/manuscript/09_appendix_catalog.md` appendix, while the visual atlas is generated
 from every currently implemented visual entry in the live registry.
 
 ## Compact glossary
