@@ -12,6 +12,9 @@ attempt without replacing archived artifacts.
 The [October 19 source closeout](closeout-2026-10-19.md) records successful
 repository-specific lease admission and fresh source gates; the older exclusive
 lock blocker is not treated as current.
+The [current-source rendering review](rendering-2026-10-19.md) records the
+isolated TeX overlay, separate digital-review PDF, page/citation QA, and
+remaining print/editorial limitations.
 
 - [`quickstart.md`](quickstart.md) — install, list, validate, and generate.
 - [`architecture.md`](architecture.md) — typed pipeline and package layers.

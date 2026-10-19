@@ -1,0 +1,45 @@
+
+============================================================
+COMBINED MANUSCRIPT RENDERING
+============================================================
+Combining 11 section(s):
+  [ 1/11] 00_abstract.md                           (   2.3 KB)
+  [ 2/11] 01_introduction.md                       (   4.4 KB)
+  [ 3/11] 02_methodology.md                        (   7.8 KB)
+  [ 4/11] 03_results.md                            (  24.6 KB)
+  [ 5/11] 04_experimental_setup.md                 (   2.9 KB)
+  [ 6/11] 05_reproducibility.md                    (   5.8 KB)
+  [ 7/11] 06_scope_and_related_work.md             (  13.3 KB)
+  [ 8/11] 07_publication_audit.md                  (  60.8 KB)
+  [ 9/11] 08_discussion_and_conclusion.md          (   3.5 KB)
+  [10/11] 09_appendix_catalog.md                   (   7.3 KB)
+  [11/11] 99_references.md                         (   0.0 KB)
+  Total input size:                                ( 132.6 KB)
+============================================================
+
+✓ Normalised 15 figure path(s) to ../figures/ in combined markdown
+Converting combined markdown to LaTeX...
+Using pandoc-crossref at /opt/homebrew/bin/pandoc-crossref
+✓ Disabled lmodern package to prevent XeLaTeX font conflicts
+✓ Patched hidelinks → colorlinks=true (uniform red hyperlinks)
+✓ Normalised 1 \hypersetup block(s) to uniform red link colours
+✓ Remapped 42 Unicode glyph(s) to PDF-safe output: θ×6, Δ×6, −×5, ∈×4, σ×3, φ×3, μ×2, τ×2, ψ×2, Σ×2, ·×2, ₑ×2, ᵢ×2, ××1
+✓ Made 22 long monospace path span(s) breakable
+✓ Made 64 plain paragraph-table path span(s) breakable
+✓ Extracted preamble from preamble.md
+✓ Inserted \clearpage and \bibliography{...} before \end{document}
+Verifying 16 figure reference(s)...
+  Found: 16/16 figures
+Rendering combined manuscript to PDF: DuckRabbit-current-source-review-20261019_combined.pdf
+  Source files: 11
+  Bibliography: references.bib
+  LaTeX compilation pass 1/4...
+  Bibliography processing...
+Processing bibliography with bibtex...
+
+Successfully combined 11 sections
+   Output: DuckRabbit-current-source-review-20261019_combined.pdf
+   Size: 3872.6 KB (3.78 MB)
+   Location: /tmp/duckrabbit-current-source-20261019/review/pdf
+   Duration: 17.47 seconds
+/tmp/duckrabbit-current-source-20261019/review/pdf/DuckRabbit-current-source-review-20261019_combined.pdf

@@ -46,6 +46,10 @@ standalone Markdown hydration and optional typesetting boundaries.
 The [October 18 follow-up](verification-2026-10-18.md) records a real sibling
 renderer attempt that stopped at a missing TeX package, alongside a successful
 dated live scholarship audit. It does not certify a current-source PDF.
+The later [October 19 review build](rendering-2026-10-19.md) uses a declared
+isolated overlay and distinct renderer snapshot. Its separately named PDF
+supports digital review; residual figure-text and editorial limitations are
+recorded rather than presented as archival or print-layout certification.
 
 The complete catalog/source-tier matrix is rendered in the standalone
 `docs/manuscript/09_appendix_catalog.md` section rather than embedded in the main
