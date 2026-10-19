@@ -2,6 +2,38 @@
 
 ## Unreleased — documentation and robustness improvement pass
 
+- Corrected audiovisual plots to use actual shared-clock seconds and frame
+  holds; audio spectra now expose frequency-labelled peak-aggregated bands,
+  real plotted values, channel rules, and normalization in source data.
+- Aligned spectral-centroid equations and tables with the existing
+  mean-channel magnitude calculation, and separated PNG quantization from
+  exact NPZ canonical preservation in the encoding figure.
+- Replaced workspace-specific manuscript instructions with the standalone
+  workflow, clarified archived-versus-development revision status, and
+  preserved output guides during manuscript hydration.
+- Added reproducible workload profiling with source/environment/result bindings,
+  separate cProfile and allocation passes, and Python 3.15 CI coverage.
+- Removed canonical-array hash copies and repeated video/audio reductions;
+  public canonical bytes, seeded results, and metric values remain unchanged.
+- Deferred analysis/publication imports from the public facade without changing
+  exported identities, and preserved guides/manuscript variables during cleanup.
+- Corrected Müller–Lyer, Poggendorff, Kanizsa, and Ebbinghaus geometry;
+  added objective stimulus-fidelity regression tests and Nyquist checks.
+- Hardened manifest validation, full media decoding, GIF timing, NPZ writes,
+  audiovisual verification, and atomic no-overwrite publication.
+- Closed release-audit gaps for publication tables, visual QA, source lineage,
+  producer identity, and required reports; metadata audits now enforce
+  concept/version DOI roles and reject malformed author records.
+- Fixed observer overrides, nested immutability, response provenance and
+  validation, duplicate submissions, large-rate Poisson sampling, and
+  impossible power assumptions. Synthetic outputs remain non-human data.
+- Bundled evidence resources for installed wheels, restored Python 3.10
+  imports, included YAML in the dev extra, and expanded CI interpreter and
+  installed-wheel checks.
+- Made canonical hashing incremental and enforced finite, unambiguous JSON
+  serialization and typed nested schema constraints. See the dated review
+  in `docs/review-2026-10-17.md` for scope and validation.
+
 - Fixed the methodology power-calculation path so future-study power
   scenarios derive from the declared estimand rather than a hard-coded
   approximation.

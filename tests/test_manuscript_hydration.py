@@ -23,12 +23,15 @@ def test_hydrate_manuscript_files_substitutes_copies_and_cleans(tmp_path: Path):
     output_dir.mkdir(parents=True)
     (output_dir / "stale.md").write_text("stale\n", encoding="utf-8")
     (output_dir / "stale.bib").write_text("stale\n", encoding="utf-8")
+    (output_dir / "README.md").write_text("retained output guide\n", encoding="utf-8")
+    (output_dir / "AGENTS.md").write_text("retained output instructions\n", encoding="utf-8")
 
     result = hydrate_manuscript_files({"PACKAGE_VERSION": "0.5.0"}, tmp_path)
 
     assert result == output_dir
     assert (output_dir / "chapter.md").read_text(encoding="utf-8") == "Version 0.5.0 keeps {{UNKNOWN_TOKEN}}.\n"
-    assert not (output_dir / "AGENTS.md").exists()
+    assert (output_dir / "AGENTS.md").read_text(encoding="utf-8") == "retained output instructions\n"
+    assert (output_dir / "README.md").read_text(encoding="utf-8") == "retained output guide\n"
     assert (output_dir / "config.yaml").read_text(encoding="utf-8") == "cover_height_fraction: 0.58\n"
     assert (output_dir / "references.bib").is_file()
     assert not (output_dir / "stale.md").exists()

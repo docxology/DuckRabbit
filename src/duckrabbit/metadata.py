@@ -12,10 +12,14 @@ from dataclasses import dataclass
 import json
 from pathlib import Path
 import re
-import tomllib
+
+try:
+    import tomllib
+except ModuleNotFoundError:
+    import tomli as tomllib
 
 from .version import __version__
-from .urls import ORCID_PREFIX
+from .urls import DOI_RESOLVER_PREFIX, ORCID_PREFIX
 
 
 EXPECTED_AUTHOR = "Daniel Ari Friedman"
@@ -99,10 +103,12 @@ def _yaml_author(text: str) -> tuple[str, str]:
     return match.group(1).strip(), match.group(2).strip()
 
 
-def _cff(text: str) -> dict[str, str]:
-    def scalar(key: str) -> str:
+def _cff(text: str) -> dict[str, object]:
+    def scalar(key: str, *, required: bool = True) -> str:
         match = re.search(rf"^\s*{re.escape(key)}:\s*[\"']?([^\"'\n]+?)[\"']?\s*$", text, re.MULTILINE)
         if not match:
+            if not required:
+                return ""
             raise ValueError(f"CITATION.cff is missing {key}")
         return match.group(1).strip()
 
@@ -116,8 +122,17 @@ def _cff(text: str) -> dict[str, str]:
         "version": scalar("version"),
         "license": scalar("license"),
         "author": f"{given.group(1).strip()} {family.group(1).strip()}",
-            "orcid": orcid.group(1).strip().removeprefix(ORCID_PREFIX),
+        "orcid": orcid.group(1).strip().removeprefix(ORCID_PREFIX),
+        "doi": scalar("doi", required=False),
+        "identifier_dois": tuple(re.findall(r"^\s+value:\s*[\"']?([^\"'\n]+?)[\"']?\s*$", text, re.MULTILINE)),
     }
+
+
+def _first_record(payload: dict[str, object], key: str, source: str) -> dict[str, object]:
+    records = payload.get(key)
+    if not isinstance(records, list) or not records or not all(isinstance(record, dict) for record in records):
+        raise ValueError(f"{source} {key} must contain a non-empty array of objects")
+    return records[0]
 
 
 def _normalized_author(value: object) -> str:
@@ -165,9 +180,11 @@ def validate_project_metadata(project_root: Path | None = None) -> MetadataAudit
             "orcid": config_orcid,
         }
         project = pyproject.get("project", {})
-        project_author = project.get("authors", [{}])[0] if isinstance(project.get("authors", [{}]), list) else {}
-        codemeta_author = codemeta.get("author", [{}])[0] if isinstance(codemeta.get("author", [{}]), list) else {}
-        zenodo_author = zenodo.get("creators", [{}])[0] if isinstance(zenodo.get("creators", [{}]), list) else {}
+        if not isinstance(project, dict):
+            raise ValueError("pyproject project must contain an object")
+        project_author = _first_record(project, "authors", "pyproject")
+        codemeta_author = _first_record(codemeta, "author", "codemeta")
+        zenodo_author = _first_record(zenodo, "creators", "Zenodo")
         normalized = PublicationMetadata(
             author=EXPECTED_AUTHOR,
             orcid=EXPECTED_ORCID,
@@ -218,8 +235,23 @@ def validate_project_metadata(project_root: Path | None = None) -> MetadataAudit
         else:
             if not re.fullmatch(r"10\.5281/zenodo\.\d+", config["doi"]):
                 errors.append(f"publication DOI does not look like a real Zenodo DOI: {config['doi']!r}")
-            if config["doi_status"] == "forthcoming":
-                errors.append("publication doi_status must not be forthcoming once a DOI is set")
+            if config["doi_status"] != "published":
+                errors.append("publication doi_status must be published once a DOI is set")
+        concept_dois = {"Zenodo": zenodo.get("doi", ""), "codemeta": str(codemeta.get("@id", "")).removeprefix(DOI_RESOLVER_PREFIX)}
+        for source, value in concept_dois.items():
+            if value != config["doi"]:
+                errors.append(f"{source} concept DOI disagrees with manuscript DOI: {value!r}")
+        version_doi = cff["doi"]
+        codemeta_version_doi = str(codemeta.get("identifier", "")).removeprefix(DOI_RESOLVER_PREFIX)
+        if version_doi != codemeta_version_doi:
+            errors.append("CITATION and codemeta version DOI disagree")
+        if config["doi"]:
+            if not isinstance(version_doi, str) or not re.fullmatch(r"10\.5281/zenodo\.\d+", version_doi):
+                errors.append("version DOI must be a well-formed Zenodo DOI")
+            if set(cff["identifier_dois"]) != {config["doi"], version_doi}:
+                errors.append("CITATION DOI identifiers must include exactly the concept and version DOI")
+        elif version_doi or cff["identifier_dois"]:
+            errors.append("forthcoming metadata must not retain published DOI identifiers")
         if "XXXX" in config["doi"] or "placeholder" in config["doi"].lower():
             errors.append("fake DOI placeholder detected")
     except (OSError, KeyError, TypeError, ValueError, tomllib.TOMLDecodeError) as exc:

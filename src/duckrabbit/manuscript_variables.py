@@ -84,13 +84,14 @@ def hydrate_manuscript_files(variables: Mapping[str, object], project_root: Path
         source_dir = project_root / "manuscript"
     output_dir = project_root / "output" / "manuscript"
     output_dir.mkdir(parents=True, exist_ok=True)
+    excluded = {"AGENTS.md", "MANUSCRIPT_STATUS.md", "README.md", "SYNTAX.md"}
     for stale in output_dir.glob("*.md"):
-        stale.unlink()
+        if stale.name not in excluded:
+            stale.unlink()
     for stale in output_dir.glob("*.bib"):
         stale.unlink()
     token_pattern = re.compile(r"\{\{([A-Z][A-Z0-9_]*)\}\}")
     replacements = {key: str(value) for key, value in variables.items()}
-    excluded = {"AGENTS.md", "MANUSCRIPT_STATUS.md", "README.md", "SYNTAX.md"}
     for manuscript_file in sorted(source_dir.glob("*.md")):
         if manuscript_file.name in excluded:
             continue

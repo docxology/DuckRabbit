@@ -1,5 +1,23 @@
 # DuckRabbit architecture
 
+## Startup and profiling boundaries
+
+The root package retains its documented exports and original owning-module
+identities. Analysis and publication exports resolve on demand; importing the
+package or listing the CLI catalog does not load the publication/audit stack.
+CLI-only heavy imports belong in their selected command branches.
+
+Canonical hashing and manifest byte counts share one buffer-streaming primitive;
+the public byte serializer retains its original chunk boundaries and schema.
+Temporal consumers reuse one adjacent-frame scan per operation, without
+persistent array caches. Non-C-contiguous inputs preserve the original NumPy
+reduction order rather than trading numerical identity for speed.
+
+`performance.py` owns real, fixed profiling workloads. Script wrappers only
+delegate. Measurements bind source, runtime inputs, environment, workload
+configuration, and deterministic results; instrumentation runs separately from
+ordinary timing samples. See [`performance.md`](performance.md).
+
 ```text
 typed request
     │

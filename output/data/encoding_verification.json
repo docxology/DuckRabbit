@@ -1,33 +1,34 @@
 {
   "data": {
+    "canonical_identity": "Canonical digest retained in provenance; exact canonical arrays only in NPZ; PNG stores uint8-quantized raster pixels.",
     "profiles": [
       {
         "backend": "Pillow",
-        "canonical fact preserved": "image shape + float32 digest",
+        "delivery fact": "raster dimensions; uint8 quantization",
         "format": "PNG",
-        "verification": "decoded dimensions"
+        "verification": "dimensions / uint8 pixels"
       },
       {
         "backend": "wave",
-        "canonical fact preserved": "sample count + clock",
+        "delivery fact": "sample count + clock",
         "format": "WAV",
         "verification": "rate/channels/samples"
       },
       {
         "backend": "Pillow",
-        "canonical fact preserved": "frame count + timing",
+        "delivery fact": "frame count + timing",
         "format": "GIF",
         "verification": "decoded frames"
       },
       {
         "backend": "NumPy",
-        "canonical fact preserved": "exact arrays + digest",
+        "delivery fact": "exact arrays + digest",
         "format": "NPZ",
         "verification": "exact canonical round trip"
       },
       {
         "backend": "ffmpeg",
-        "canonical fact preserved": "canonical artifact + stream facts",
+        "delivery fact": "canonical artifact + stream facts",
         "format": "MP4",
         "verification": "optional capability"
       }

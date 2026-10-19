@@ -146,10 +146,10 @@ def generate_muller_lyer(parameters: MullerLyerParams, *, seed: int = 0) -> Imag
     horizontal = parameters.arrow_length.value * math.cos(angle)
     vertical = parameters.arrow_length.value * math.sin(angle)
     values = np.zeros((height, width), dtype=np.float32)
-    for y_value in y_values:
+    for bar_index, y_value in enumerate(y_values):
         values = np.maximum(values, _segment_mask(x, y, (left, y_value), (right, y_value)))
         for endpoint, side in ((left, 1.0), (right, -1.0)):
-            direction = side if parameters.tip_inward else -side
+            direction = side if parameters.tip_inward == (bar_index == 0) else -side
             for wing_sign in (-1.0, 1.0):
                 wing_end = (endpoint + direction * horizontal, y_value + wing_sign * vertical)
                 values = np.maximum(values, _segment_mask(x, y, (endpoint, y_value), wing_end))
@@ -340,6 +340,8 @@ def _circle_mask(width: int, height: int, cx: float, cy: float, radius: float) -
 
 def _make_beeps(config: AudioConfig, beep_count: int, *, frequency: float = 880.0) -> AudioBuffer:
     sample_rate = config.sample_rate.value
+    if not math.isfinite(frequency) or not 0.0 < frequency < sample_rate / 2.0:
+        raise ParameterValidationError("beep frequency must be positive and below the audio Nyquist frequency")
     duration = config.duration.value
     time = np.arange(int(round(sample_rate * duration)), dtype=np.float64) / sample_rate
     centers = (duration * 0.5,) if beep_count == 1 else (duration * 0.4, duration * 0.6)
@@ -467,12 +469,10 @@ def generate_poggendorff(parameters: PoggendorffParams, *, seed: int = 0) -> Ima
     values = np.ones((height, width), dtype=np.float32)
     angle = math.radians(parameters.line_angle.value)
     slope = math.tan(angle)
-    center_y = 0.52
-    left_end = (0.43, center_y - slope * (0.43 - 0.12))
-    right_start = (0.57, center_y + slope * (0.57 - 0.43))
     line_width = 0.008
-    values = np.minimum(values, 1.0 - _segment_mask(x, y, (0.08, left_end[1] + slope * 0.08), left_end, line_width))
-    values = np.minimum(values, 1.0 - _segment_mask(x, y, right_start, (0.92, right_start[1] + slope * (0.92 - 0.57)), line_width))
+    start = (0.08, 0.52 + slope * (0.08 - 0.5))
+    stop = (0.92, 0.52 + slope * (0.92 - 0.5))
+    values = np.minimum(values, 1.0 - _segment_mask(x, y, start, stop, line_width))
     occluder_left = 0.5 - parameters.occluder_fraction.value / 2.0
     occluder_right = 0.5 + parameters.occluder_fraction.value / 2.0
     values[(x >= occluder_left) & (x <= occluder_right)] = 1.0
@@ -514,7 +514,7 @@ def generate_ponzo(parameters: PonzoParams, *, seed: int = 0) -> ImageFrame:
 
 @dataclass(frozen=True)
 class KanizsaParams:
-    """Parameters for four inducers supporting an illusory triangle."""
+    """Three inducers; gap_fraction=0.30 aligns wedge edges with the triangle."""
 
     config: ImageConfig = ImageConfig()
     inducer_radius: Normalized = Normalized(0.10)
@@ -537,12 +537,18 @@ def generate_kanizsa_triangle(parameters: KanizsaParams, *, seed: int = 0) -> Im
     x = x / max(width - 1, 1)
     y = y / max(height - 1, 1)
     values = np.ones((height, width), dtype=np.float32)
-    centers = ((0.5, 0.20, -math.pi / 2), (0.25, 0.72, math.pi / 6), (0.75, 0.72, 5 * math.pi / 6))
-    for cx, cy, gap_angle in centers:
+    centers = ((0.5, 0.20), (0.25, 0.72), (0.75, 0.72))
+    for index, (cx, cy) in enumerate(centers):
+        edges = [np.array((other_x - cx, other_y - cy)) for other_index, (other_x, other_y) in enumerate(centers) if other_index != index]
+        directions = [edge / np.linalg.norm(edge) for edge in edges]
+        inward = directions[0] + directions[1]
+        gap_angle = math.atan2(inward[1], inward[0])
+        half_angle = math.acos(float(np.clip(np.dot(directions[0], directions[1]), -1.0, 1.0))) / 2.0
+        half_angle = min(math.pi, half_angle * parameters.gap_fraction.value / 0.30)
         disk = ((x - cx) ** 2 + (y - cy) ** 2 <= parameters.inducer_radius.value**2)
         orientation = np.arctan2(y - cy, x - cx)
         delta = np.abs(np.angle(np.exp(1j * (orientation - gap_angle))))
-        inducer = disk & (delta > math.pi * parameters.gap_fraction.value / 2.0)
+        inducer = disk & (delta > half_angle)
         values[inducer] = 0.0
     return _image_from_values(values, parameters.config)
 
@@ -564,25 +570,44 @@ class EbbinghausParams:
             raise TypeError("EbbinghausParams radii must be Normalized")
         if type(self.context_count) is not int or not 4 <= self.context_count <= 16:
             raise ValueError("context_count must be in [4, 16]")
+        if min(self.center_radius.value, self.left_context_radius.value, self.right_context_radius.value) <= 0:
+            raise ParameterValidationError("Ebbinghaus radii must be positive")
+
+
+def _ebbinghaus_geometry(parameters: EbbinghausParams) -> tuple[tuple[float, float, float], ...]:
+    """Fit disjoint fields uniformly, preserving all requested radius ratios.
+
+    Return both targets first, followed by the left and right context rings.
+    A shared scale fits the full scene inside a five-percent image margin.
+    """
+    target_radius = parameters.center_radius.value
+    radii = (parameters.left_context_radius.value, parameters.right_context_radius.value)
+    rings = tuple(max(target_radius + radius, radius / math.sin(math.pi / parameters.context_count)) + 0.02 for radius in radii)
+    extents = tuple(ring + radius for ring, radius in zip(rings, radii))
+    field_extent = max(extents)
+    scene_width = 4.0 * field_extent + 0.04
+    scale = min(0.9 / scene_width, 0.9 / (2.0 * max(extents)))
+    half_separation = (field_extent + 0.02) * scale
+    centers = (0.5 - half_separation, 0.5 + half_separation)
+    circles = [(center_x, 0.5, target_radius * scale) for center_x in centers]
+    for center_x, ring, radius in zip(centers, rings, radii):
+        for index in range(parameters.context_count):
+            angle = 2.0 * math.pi * index / parameters.context_count
+            circles.append((center_x + ring * scale * math.cos(angle), 0.5 + ring * scale * math.sin(angle), radius * scale))
+    return tuple(circles)
 
 
 def generate_ebbinghaus(parameters: EbbinghausParams, *, seed: int = 0) -> ImageFrame:
-    """Generate two equal centers with small and large contextual rings."""
+    """Generate disjoint context rings with uniformly fitted, equal targets."""
     del seed
     height, width = parameters.config.height, parameters.config.width
     y, x = np.mgrid[0:height, 0:width]
     x = x / max(width - 1, 1)
     y = y / max(height - 1, 1)
     values = np.full((height, width), 0.45, dtype=np.float32)
-    for center_x, context_radius in ((0.30, parameters.left_context_radius.value), (0.70, parameters.right_context_radius.value)):
-        center = _ellipse(x, y, center_x, 0.5, parameters.center_radius.value, parameters.center_radius.value)
-        values[center > 0] = 0.65
-        for index in range(parameters.context_count):
-            angle = 2.0 * math.pi * index / parameters.context_count
-            cx = center_x + 0.19 * math.cos(angle)
-            cy = 0.5 + 0.19 * math.sin(angle)
-            context = _ellipse(x, y, cx, cy, context_radius, context_radius)
-            values[context > 0] = 0.15
+    for index, (center_x, center_y, radius) in enumerate(_ebbinghaus_geometry(parameters)):
+        disk = _ellipse(x, y, center_x, center_y, radius, radius)
+        values[disk > 0] = 0.65 if index < 2 else 0.15
     return _image_from_values(values, parameters.config)
 
 
@@ -756,6 +781,8 @@ class OctaveIllusionParams:
             raise ParameterValidationError("octave illusion requires stereo audio")
         if self.high_frequency.value != 2.0 * self.low_frequency.value:
             raise ParameterValidationError("high_frequency must be one octave above low_frequency")
+        if self.high_frequency.value >= self.config.sample_rate.value / 2.0:
+            raise ParameterValidationError("octave carriers must be below the audio Nyquist frequency")
         if type(self.cycles) is not int or not 1 <= self.cycles <= 16:
             raise ValueError("cycles must be in [1, 16]")
 
@@ -804,7 +831,8 @@ def generate_temporal_ventriloquism(parameters: TemporalVentriloquismParams, *, 
     center = duration / 2.0
     click_width = min(0.01, duration / 20.0)
     window = np.maximum(0.0, 1.0 - np.abs(time - center) / click_width)
-    audio = _audio_from_mono(np.sin(2.0 * np.pi * parameters.click_frequency.value * time) * window * config.audio.amplitude.value, config.audio)
+    carrier = np.sin(2.0 * np.pi * parameters.click_frequency.value * time + config.audio.phase.value)
+    audio = _audio_from_mono(carrier * window * _envelope(time, duration, config.audio) * config.audio.amplitude.value, config.audio)
     video = _make_flash_video(config.video, flash_count=1)
     return AudiovisualTimeline(
         audio,

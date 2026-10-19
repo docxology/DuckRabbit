@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 import math
-from dataclasses import dataclass, fields, replace
+from collections.abc import Mapping
+from dataclasses import dataclass, fields, is_dataclass, replace
 from enum import Enum
 from numbers import Integral, Real
 from fractions import Fraction
@@ -640,8 +641,10 @@ def _coerce(current: Any, value: Any) -> Any:
             OutputSpec,
         ),
     ):
-        if not isinstance(value, dict):
+        if not isinstance(value, Mapping):
             raise ParameterValidationError("nested configuration must be a JSON object")
+        if not all(isinstance(key, str) for key in value):
+            raise ParameterValidationError("configuration keys must be strings")
         allowed = {field.name for field in fields(current)}
         unknown = sorted(set(value) - allowed)
         if unknown:
@@ -681,8 +684,10 @@ def _coerce(current: Any, value: Any) -> Any:
     ):
         return type(current)(value)
     if isinstance(current, LuminanceRange):
-        if not isinstance(value, dict):
+        if not isinstance(value, Mapping):
             raise ParameterValidationError("luminance_range must be a JSON object")
+        if not all(isinstance(key, str) for key in value):
+            raise ParameterValidationError("luminance_range keys must be strings")
         unknown = sorted(set(value) - {"minimum", "maximum"})
         if unknown:
             raise ParameterValidationError(f"unknown luminance_range field(s): {', '.join(unknown)}")
@@ -694,15 +699,25 @@ def _coerce(current: Any, value: Any) -> Any:
         if not isinstance(value, (list, tuple)):
             raise ParameterValidationError("tuple parameters must be JSON arrays")
         return tuple(value)
+    if isinstance(current, bool):
+        if type(value) is not bool:
+            raise ParameterValidationError("boolean parameters must be bool")
+    elif isinstance(current, int):
+        if isinstance(value, bool) or not isinstance(value, Integral):
+            raise ParameterValidationError("integer parameters must be integers")
+    elif isinstance(current, float):
+        return _finite(value, "parameter")
     return value
 
 
-def replace_from_mapping(parameters: Any, mapping: dict[str, Any]) -> Any:
+def replace_from_mapping(parameters: Any, mapping: Mapping[str, Any]) -> Any:
     """Return a validated parameter dataclass with JSON-friendly overrides."""
-    if not hasattr(parameters, "__dataclass_fields__"):
+    if not is_dataclass(parameters) or isinstance(parameters, type):
         raise ParameterValidationError("parameters must be a dataclass instance")
-    if not isinstance(mapping, dict):
+    if not isinstance(mapping, Mapping):
         raise ParameterValidationError("parameter overrides must be a JSON object")
+    if not all(isinstance(key, str) for key in mapping):
+        raise ParameterValidationError("parameter override keys must be strings")
     allowed = {field.name for field in fields(parameters)}
     unknown = sorted(set(mapping) - allowed)
     if unknown:

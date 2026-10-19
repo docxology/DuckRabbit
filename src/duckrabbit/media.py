@@ -3,23 +3,38 @@
 from __future__ import annotations
 
 import json
+import os
 import shutil
 import subprocess  # nosec B404 -- argv is fixed and input paths are positional
 import wave
-import os
+import zipfile
+import zlib
+from collections.abc import Iterator
+from contextlib import contextmanager
 from dataclasses import dataclass
 from importlib.util import find_spec
 from pathlib import Path
-from contextlib import contextmanager
-from collections.abc import Iterator
-from tempfile import NamedTemporaryFile
-from tempfile import TemporaryDirectory
+from tempfile import NamedTemporaryFile, TemporaryDirectory
 
 import numpy as np
 
 from .artifacts import AudioBuffer, AudiovisualTimeline, ImageFrame, VideoSequence
 from .errors import BackendUnavailableError, MediaEncodingError
-from .parameters import AudioEncoding, BackendKind, CanonicalArchiveEncoding, ColorMode, FrameRate, GifEncoding, MediaFormat, MuxEncoding, PcmBitDepth, SampleRate, SpatialOffset, SyncOffsetMs, VideoEncoding
+from .parameters import (
+    AudioEncoding,
+    BackendKind,
+    CanonicalArchiveEncoding,
+    ColorMode,
+    FrameRate,
+    GifEncoding,
+    MediaFormat,
+    MuxEncoding,
+    PcmBitDepth,
+    SampleRate,
+    SpatialOffset,
+    SyncOffsetMs,
+    VideoEncoding,
+)
 
 
 @dataclass(frozen=True)
@@ -86,7 +101,11 @@ def _atomic_destination(path: Path, *, overwrite: bool = True) -> Iterator[Path]
         with NamedTemporaryFile(prefix=f".{path.name}.", suffix=path.suffix, dir=path.parent, delete=False) as handle:
             temporary_path = Path(handle.name)
         yield temporary_path
-        os.replace(temporary_path, path)
+        if overwrite:
+            os.replace(temporary_path, path)
+        else:
+            os.link(temporary_path, path)
+            temporary_path.unlink()
     except Exception:
         if temporary_path is not None:
             temporary_path.unlink(missing_ok=True)
@@ -118,6 +137,13 @@ def write_gif(video: VideoSequence, path: Path, *, encoding: GifEncoding = GifEn
     if not isinstance(encoding, GifEncoding):
         raise MediaEncodingError("GIF encoding must be GifEncoding")
     path = Path(path)
+    ticks_per_frame = 100.0 / video.frame_rate.value
+    if not 1.0 <= ticks_per_frame <= 65535.0:
+        raise MediaEncodingError("GIF frame rate cannot be represented by positive 16-bit centisecond delays")
+    durations = [
+        10 * (round((index + 1) * ticks_per_frame) - round(index * ticks_per_frame))
+        for index in range(video.frame_count)
+    ]
     frames = [Image.fromarray(_uint8(frame), mode=frame.mode.value) for frame in video.frames]
     with _atomic_destination(path, overwrite=overwrite) as temporary_path:
         frames[0].save(
@@ -125,7 +151,7 @@ def write_gif(video: VideoSequence, path: Path, *, encoding: GifEncoding = GifEn
             format="GIF",
             save_all=True,
             append_images=frames[1:],
-            duration=round(1000.0 / video.frame_rate.value),
+            duration=durations,
             loop=encoding.loop,
             disposal=2,
             optimize=encoding.optimize,
@@ -336,8 +362,8 @@ def write_npz(
         raise MediaEncodingError(f"NPZ encoding does not support {type(artifact).__name__}")
     arrays["metadata_json"] = np.asarray(json.dumps(metadata, sort_keys=True))
     saver = np.savez_compressed if encoding.compressed else np.savez
-    with _atomic_destination(path, overwrite=overwrite) as temporary_path:
-        saver(temporary_path, **arrays)
+    with _atomic_destination(path, overwrite=overwrite) as temporary_path, temporary_path.open("wb") as handle:
+        saver(handle, **arrays)
     return path
 
 
@@ -347,6 +373,8 @@ def read_npz(path: Path) -> ImageFrame | AudioBuffer | VideoSequence | Audiovisu
     try:
         with np.load(path, allow_pickle=False) as archive:
             metadata = json.loads(str(archive["metadata_json"].item()))
+            if not isinstance(metadata, dict):
+                raise TypeError("NPZ metadata must contain an object")
             kind = metadata["kind"]
             if kind == "image":
                 return ImageFrame(archive["pixels"], mode=ColorMode(metadata["mode"]))
@@ -366,6 +394,6 @@ def read_npz(path: Path) -> ImageFrame | AudioBuffer | VideoSequence | Audiovisu
                     spatial_offset=SpatialOffset(metadata["spatial_offset"]),
                     metadata=metadata.get("timeline_metadata", {}),
                 )
-    except (OSError, KeyError, ValueError, TypeError, json.JSONDecodeError) as exc:
+    except (OSError, KeyError, ValueError, TypeError, EOFError, zipfile.BadZipFile, zlib.error) as exc:
         raise MediaEncodingError(f"cannot read canonical NPZ archive {path}: {exc}") from exc
     raise MediaEncodingError(f"unsupported canonical NPZ kind {kind!r}")

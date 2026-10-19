@@ -28,8 +28,10 @@ part of the research record [@smith2016software; @wilkinson2016fair;
 The release is authored by Daniel Ari Friedman of the Active Inference
 Institute and is published and citable at
 [the DuckRabbit public GitHub repository](https://github.com/docxology/DuckRabbit).
-The generated bundle in this repository remains the authoritative release
-candidate until the external template handoff is completed.
+The v0.5.0 archive is a published versioned record. Subsequent source and
+manuscript corrections remain unreleased until a new version is explicitly
+tagged and deposited. A local package audit does not certify that the archived
+PDF was rebuilt from the current development manuscript.
 
 ## Conclusion {#sec:conclusion}
 

@@ -161,10 +161,20 @@ class VideoSequence:
     @property
     def temporal_deltas(self) -> tuple[float, ...]:
         """Mean absolute pixel change between each adjacent frame."""
-        return tuple(
-            float(np.mean(np.abs(current.pixels - previous.pixels)))
-            for previous, current in zip(self.frames, self.frames[1:])
-        )
+        if len(self.frames) == 1:
+            return ()
+        if not all(frame.pixels.flags.c_contiguous for frame in self.frames):
+            return tuple(
+                float(np.mean(np.abs(current.pixels - previous.pixels)))
+                for previous, current in zip(self.frames, self.frames[1:])
+            )
+        difference = np.empty_like(self.frames[0].pixels)
+        deltas = []
+        for previous, current in zip(self.frames, self.frames[1:]):
+            np.subtract(current.pixels, previous.pixels, out=difference)
+            np.abs(difference, out=difference)
+            deltas.append(float(np.mean(difference)))
+        return tuple(deltas)
 
     @property
     def has_temporal_change(self) -> bool:
@@ -420,6 +430,10 @@ def _validate_artifact_summary(summary: ArtifactSummary) -> None:
     if missing:
         raise ParameterValidationError(f"manifest artifact summary missing fields: {', '.join(missing)}")
     if kind == "audiovisual":
+        for child_name, child_type in (("audio", "audio"), ("video", "video")):
+            child = summary[child_name]
+            if not isinstance(child, Mapping) or child.get("type") != child_type:
+                raise ParameterValidationError(f"manifest audiovisual {child_name} must have type {child_type}")
         _validate_artifact_summary(summary["audio"])  # type: ignore[arg-type]
         _validate_artifact_summary(summary["video"])  # type: ignore[arg-type]
     for field_name in ("width", "height", "channels", "samples", "frames", "nbytes"):

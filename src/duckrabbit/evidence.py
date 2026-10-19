@@ -8,17 +8,21 @@ particular DuckRabbit approximation produces the same observer effect.
 from __future__ import annotations
 
 import json
+from importlib.resources import files
 from dataclasses import dataclass
 from datetime import date
 from enum import Enum
 from pathlib import Path
 import re
-from typing import Mapping
+from typing import TYPE_CHECKING, Mapping
 from urllib.parse import urlparse
 
 from .errors import ParameterValidationError
 from .taxonomy import ClaimLevel, EvidenceStatus, ImplementationStatus, taxonomy_entries
 from .urls import DOI_RESOLVER_PREFIX
+
+if TYPE_CHECKING:
+    from importlib.resources.abc import Traversable
 
 
 class EvidenceRole(str, Enum):
@@ -200,8 +204,17 @@ def default_manuscript_dir() -> Path:
     return root / "manuscript"
 
 
-def _default_matrix_path() -> Path:
-    return Path(__file__).resolve().parents[2] / "data" / "evidence_matrix.json"
+def _runtime_resource(name: str) -> Traversable:
+    root = Path(__file__).resolve().parents[2]
+    if (root / "pyproject.toml").is_file() and (root / "src" / "duckrabbit").is_dir():
+        if name == "references.bib":
+            return default_manuscript_dir() / name
+        return root / "data" / name
+    return files("duckrabbit").joinpath("_resources").joinpath(name)
+
+
+def _default_matrix_path() -> Traversable:
+    return _runtime_resource("evidence_matrix.json")
 
 
 def _text_field(row: Mapping[str, object], name: str, *, context: str, required: bool = True) -> str | None:
@@ -222,8 +235,17 @@ def _string_tuple_field(row: Mapping[str, object], name: str, *, context: str) -
     return tuple(value)
 
 
-def load_evidence_matrix(path: Path | None = None) -> tuple[dict[str, SourceRecord], dict[str, EvidenceRecord]]:
-    """Load and validate the checked-in evidence matrix."""
+def load_evidence_matrix(
+    path: Path | None = None,
+    *,
+    bibliography_path: Path | None = None,
+    manuscript_dir: Path | None = None,
+) -> tuple[dict[str, SourceRecord], dict[str, EvidenceRecord]]:
+    """Load the evidence snapshot and validate its selected bibliography.
+
+    Installed distributions use bundled resources. Checkout audits can select
+    their own bibliography and optionally check manuscript citation coverage.
+    """
     matrix_path = Path(path) if path is not None else _default_matrix_path()
     try:
         payload = json.loads(matrix_path.read_text(encoding="utf-8"))
@@ -303,14 +325,16 @@ def load_evidence_matrix(path: Path | None = None) -> tuple[dict[str, SourceReco
             if source_key not in sources:
                 raise ParameterValidationError(f"{record.illusion_id} references unknown source {source_key}")
     validate_evidence_matrix(sources, entries)
-    validate_citation_keys(sources)
-    validate_bibliography_links(sources)
+    validate_citation_keys(sources, bibliography_path)
+    validate_bibliography_links(sources, bibliography_path)
+    if manuscript_dir is not None:
+        validate_bibliography_integrity(bibliography_path, manuscript_dir)
     return sources, entries
 
 
 def validate_citation_keys(sources: Mapping[str, SourceRecord], bibliography_path: Path | None = None) -> None:
     """Verify that every evidence source has a matching BibTeX citation key."""
-    path = Path(bibliography_path) if bibliography_path is not None else default_manuscript_dir() / "references.bib"
+    path = Path(bibliography_path) if bibliography_path is not None else _runtime_resource("references.bib")
     try:
         text = path.read_text(encoding="utf-8")
     except OSError as exc:
@@ -329,7 +353,7 @@ def validate_bibliography_links(sources: Mapping[str, SourceRecord], bibliograph
     Keeping both values equal to the evidence matrix prevents a readable but
     stale bibliography from silently drifting away from the audited source.
     """
-    path = Path(bibliography_path) if bibliography_path is not None else default_manuscript_dir() / "references.bib"
+    path = Path(bibliography_path) if bibliography_path is not None else _runtime_resource("references.bib")
     try:
         text = path.read_text(encoding="utf-8")
     except OSError as exc:
@@ -356,7 +380,7 @@ def validate_bibliography_links(sources: Mapping[str, SourceRecord], bibliograph
 
 def _bibliography_entries(bibliography_path: Path | None = None) -> dict[str, dict[str, str | None]]:
     """Parse the small, controlled BibTeX surface used by the manuscript."""
-    path = Path(bibliography_path) if bibliography_path is not None else default_manuscript_dir() / "references.bib"
+    path = Path(bibliography_path) if bibliography_path is not None else _runtime_resource("references.bib")
     try:
         text = path.read_text(encoding="utf-8")
     except OSError as exc:

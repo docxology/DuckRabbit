@@ -47,8 +47,10 @@ attribution; they do not increase the evidential level of any perceptual claim.
 The public software identity is explicit: DuckRabbit is published and citable
 at the [DuckRabbit public GitHub repository](https://github.com/docxology/DuckRabbit)
 under the authorship of Daniel Ari Friedman, Active Inference Institute. The
-generated bundle in this repository remains the authoritative release candidate
-until the external template handoff is completed.
+development bundle is distinct from the already-published v0.5.0 archive.
+Current source and manuscript corrections require a new versioned deposit;
+optional template typesetting and page-level validation are separate gates,
+not implied by a passing package audit.
 
 ## Formal traceability and objective metrics
 

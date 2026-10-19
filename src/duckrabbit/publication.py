@@ -187,6 +187,108 @@ def _line_plot(
         draw.ellipse((x - 3, y - 3, x + 3, y + 3), fill=color)
 
 
+def _coordinate_plot(
+    draw: ImageDraw.ImageDraw,
+    timestamps: Iterable[float],
+    values: Iterable[float],
+    box: tuple[int, int, int, int],
+    color: tuple[int, int, int],
+    *,
+    x_range: tuple[float, float],
+    value_range: tuple[float, float],
+) -> None:
+    left, top, right, bottom = box
+    start, end = x_range
+    low, high = value_range
+    points = [
+        (int(left + (float(timestamp) - start) / (end - start) * (right - left)),
+         int(bottom - (float(value) - low) / (high - low) * (bottom - top)))
+        for timestamp, value in zip(timestamps, values, strict=True)
+    ]
+    if len(points) > 1:
+        draw.line(points, fill=color, width=4)
+    elif points:
+        draw.point(points[0], fill=color)
+
+
+def _audio_waveform(artifact: AudioBuffer) -> dict[str, object]:
+    stride = max(1, artifact.sample_count // 350)
+    indices = np.unique(np.append(np.arange(0, artifact.sample_count, stride), artifact.sample_count - 1))
+    return {
+        "timestamps_seconds": indices / artifact.sample_rate.value,
+        "values": artifact.samples[indices],
+        "channel_indices": list(range(artifact.channels)),
+        "selection": "point samples at declared stride, including last sample; not an envelope",
+        "stride_samples": stride,
+        "duration_seconds": artifact.duration_seconds,
+    }
+
+
+def _audio_spectrum(artifact: AudioBuffer) -> dict[str, object]:
+    frequencies = np.fft.rfftfreq(artifact.sample_count, d=1.0 / artifact.sample_rate.value)
+    magnitudes = np.mean(np.abs(np.fft.rfft(artifact.samples, axis=0)), axis=1) / artifact.sample_count
+    edges = np.linspace(0.0, artifact.sample_rate.value / 2.0, 49)
+    band_indices = np.clip(np.searchsorted(edges, frequencies, side="right") - 1, 0, 47)
+    band_values = np.zeros(48)
+    np.maximum.at(band_values, band_indices, magnitudes)
+    scale = max(float(np.max(band_values)), 1e-12)
+    return {
+        "band_edges_hz": edges,
+        "band_values": band_values,
+        "plotted_values": band_values / scale,
+        "aggregation": "maximum magnitude in each band; left-inclusive, right-exclusive; final band includes Nyquist",
+        "channel_rule": "arithmetic mean of per-channel rFFT magnitudes (no waveform downmix)",
+        "channel_indices": list(range(artifact.channels)),
+        "window": "rectangular (unwindowed)",
+        "fft_normalization": "abs(rfft) / sample_count; no one-sided doubling",
+        "display_normalization": "band_values / max(max(band_values), 1e-12)",
+        "normalization_scale": scale,
+        "sample_count": artifact.sample_count,
+        "sample_rate_hz": artifact.sample_rate.value,
+        "fft_bin_spacing_hz": artifact.sample_rate.value / artifact.sample_count,
+    }
+
+
+def _draw_spectrum(
+    draw: ImageDraw.ImageDraw,
+    spectrum: Mapping[str, object],
+    box: tuple[int, int, int, int],
+) -> None:
+    edges = np.asarray(spectrum["band_edges_hz"])
+    values = np.asarray(spectrum["plotted_values"])
+    left, top, right, bottom = box
+    for index, value in enumerate(values):
+        x0 = int(left + (right - left) * edges[index] / edges[-1])
+        x1 = int(left + (right - left) * edges[index + 1] / edges[-1])
+        bar_top = int(bottom - (bottom - top) * value)
+        draw.rectangle((x0, bar_top, max(x0, x1 - 1), bottom), fill=GREEN)
+
+
+def _draw_audiovisual_traces(
+    draw: ImageDraw.ImageDraw,
+    artifact: AudiovisualTimeline,
+    video_box: tuple[int, int, int, int],
+    audio_box: tuple[int, int, int, int],
+) -> dict[str, object]:
+    luminance = np.array([float(np.mean(frame.pixels)) for frame in artifact.video.frames])
+    frame_edges = artifact.video_start_seconds + np.arange(artifact.video.frame_count + 1) / artifact.video.frame_rate.value
+    video_times = np.repeat(frame_edges, 2)[1:-1]
+    video_values = np.repeat(luminance, 2)
+    audio_times = artifact.audio_start_seconds + np.arange(artifact.audio.sample_count) / artifact.audio.sample_rate.value
+    audio_values = np.mean(np.abs(artifact.audio.samples), axis=1)
+    duration = artifact.presentation_duration_seconds
+    for timestamps, values, box, color in (
+        (video_times, video_values, video_box, RED),
+        (audio_times, audio_values, audio_box, ACCENT),
+    ):
+        _coordinate_plot(draw, timestamps, values, box, color, x_range=(0.0, duration), value_range=(0.0, 1.0))
+    return {
+        "duration_seconds": duration,
+        "video": {"timestamps_seconds": video_times, "values": video_values, "interpolation": "frame hold; vertical transitions at frame boundaries"},
+        "audio": {"timestamps_seconds": audio_times, "values": audio_values, "channel_rule": "mean absolute amplitude across channels", "interpolation": "linear between actual sample timestamps; no decimation"},
+    }
+
+
 def _axes(
     draw: ImageDraw.ImageDraw,
     box: tuple[int, int, int, int],
@@ -419,36 +521,33 @@ def _audio(path: Path) -> tuple[str, dict[str, object]]:
         artifact = _generate(illusion_id)
         if not isinstance(artifact, AudioBuffer):
             raise TypeError(f"{illusion_id} must generate AudioBuffer")
-        samples = artifact.samples[:, 0]
-        stride = max(1, len(samples) // 350)
-        values = samples[::stride]
+        waveform = _audio_waveform(artifact)
         x, y = 50, 115 + row * 290
         _panel(draw, (x - 8, y - 8, 1840, y + 235), accent=ACCENT if row % 2 == 0 else GREEN)
         _text(draw, (x, y), illusion_id, 22)
         # Reserve a true left margin for the vertical label; this keeps the
         # word "amplitude" intact at full and publication-column scales.
         plot_box = (x + 105, y + 42, 1120, y + 190)
-        _axes(draw, plot_box, x_label="normalized sample index", y_label="", x_ticks=((0.0, "0"), (0.5, "0.5"), (1.0, "1.0")), y_ticks=((-1.0, "−1"), (0.0, "0"), (1.0, "1")), x_range=(0.0, 1.0), y_range=(-1.0, 1.0))
+        duration = artifact.duration_seconds
+        _axes(draw, plot_box, x_label=f"time (s); channels 0–{artifact.channels - 1}", y_label="", x_ticks=tuple((time, f"{time:g}") for time in (0.0, duration / 2, duration)), y_ticks=((-1.0, "−1"), (0.0, "0"), (1.0, "1")), x_range=(0.0, duration), y_range=(-1.0, 1.0))
         _text(draw, (x + 35, y + 82), "amplitude", 16, MUTED)
-        _line_plot(draw, values, plot_box, ACCENT, value_range=(-1.0, 1.0))
+        for channel in range(artifact.channels):
+            _coordinate_plot(draw, waveform["timestamps_seconds"], waveform["values"][:, channel], plot_box, (ACCENT, RED)[channel], x_range=(0.0, duration), value_range=(-1.0, 1.0))
         metrics = measure_artifact(artifact).to_dict()
         _text(draw, (1180, y + 52), f"RMS {metrics['values']['rms']:.4f} normalized amplitude", 17, MUTED)
         _text(draw, (1180, y + 85), f"peak {metrics['values']['peak']:.4f} normalized amplitude", 17, MUTED)
         _text(draw, (1180, y + 118), f"centroid {metrics['values']['spectral_centroid_hz']:.1f} Hz", 17, MUTED)
         _text(draw, (1180, y + 151), f"bandwidth {metrics['values']['spectral_bandwidth_hz']:.1f} Hz · crest {metrics['values']['crest_factor']:.2f}", 17, MUTED)
-        spectrum = np.abs(np.fft.rfft(samples))
-        bins = spectrum[1 : max(2, len(spectrum) // 2)]
-        bins = bins[np.linspace(0, len(bins) - 1, 48).astype(int)]
-        scale = max(float(np.max(bins)), 1e-12)
-        _text(draw, (1500, y + 42), "spectral magnitude (relative)", 16, MUTED)
-        for bin_index, magnitude in enumerate(bins):
-            bar_height = int(135 * float(magnitude) / scale)
-            x0 = 1500 + bin_index * 7
-            draw.rectangle((x0, y + 205 - bar_height, x0 + 5, y + 205), fill=GREEN)
-        records.append({"illusion_id": illusion_id, "metrics": metrics, "canonical_digest": canonical_digest(artifact)})
+        spectrum = _audio_spectrum(artifact)
+        _text(draw, (1500, y + 43), "48 bands: peak magnitude", 16, MUTED)
+        spectrum_box = (1500, y + 65, 1836, y + 190)
+        nyquist = artifact.sample_rate.value / 2
+        _axes(draw, spectrum_box, x_label="frequency (Hz)", y_label="", x_ticks=tuple((frequency, f"{frequency:g}") for frequency in (0.0, nyquist / 2, nyquist)), y_ticks=((0.0, "0"), (1.0, "1")), x_range=(0.0, nyquist), y_range=(0.0, 1.0))
+        _draw_spectrum(draw, spectrum, spectrum_box)
+        records.append({"illusion_id": illusion_id, "metrics": metrics, "canonical_digest": canonical_digest(artifact), "waveform": waveform, "spectrum": spectrum})
     _footer(draw, "Audio metrics are canonical-buffer properties; playback level, transducers, and listener organization remain external.", y=1580)
     digest = _save(image, path)
-    return digest, {"signals": records, "spectral_definition": "one-sided FFT magnitude sampled into 48 display bins", "seed": 0}
+    return digest, {"signals": records, "spectral_definition": "48 peak-aggregated mean-channel magnitude bands covering DC through Nyquist; relative to the largest band", "seed": 0}
 
 
 def _audiovisual(path: Path) -> tuple[str, dict[str, object]]:
@@ -458,40 +557,39 @@ def _audiovisual(path: Path) -> tuple[str, dict[str, object]]:
     image = Image.new("RGB", (1900, 1020), CANVAS)
     draw = ImageDraw.Draw(image)
     _text(draw, (50, 25), "Audiovisual shared-clock timeline", 36)
-    _text(draw, (50, 72), "Video and audio are plotted against normalized shared time; offsets are declared, not inferred from perception.", 20, MUTED)
-    video_values = [float(np.mean(frame.pixels)) for frame in artifact.video.frames]
-    audio_values = np.abs(artifact.audio.samples[:, 0])
-    stride = max(1, len(audio_values) // 600)
+    _text(draw, (50, 72), "Video frame holds and audio samples share seconds and declared offsets; no perceptual timing is inferred.", 20, MUTED)
     video_box = (140, 145, 1760, 350)
     audio_box = (140, 470, 1760, 675)
-    _axes(draw, video_box, x_label="shared time (normalized)", y_label="video mean luminance", x_ticks=((0.0, "0"), (0.5, "0.5"), (1.0, "1.0")), y_ticks=((0.0, "0"), (0.5, "0.5"), (1.0, "1")), x_range=(0.0, 1.0), y_range=(0.0, 1.0))
-    _line_plot(draw, video_values, video_box, RED, value_range=(0.0, 1.0))
-    _axes(draw, audio_box, x_label="shared time (normalized)", y_label="audio absolute amplitude", x_ticks=((0.0, "0"), (0.5, "0.5"), (1.0, "1.0")), y_ticks=((0.0, "0"), (0.5, "0.5"), (1.0, "1")), x_range=(0.0, 1.0), y_range=(0.0, 1.0))
-    _line_plot(draw, audio_values[::stride], audio_box, ACCENT, value_range=(0.0, 1.0))
+    duration = artifact.presentation_duration_seconds
+    ticks = tuple((time, f"{time:g}") for time in (0.0, duration / 2, duration))
+    _axes(draw, video_box, x_label="shared time (s)", y_label="video mean luminance", x_ticks=ticks, y_ticks=((0.0, "0"), (0.5, "0.5"), (1.0, "1")), x_range=(0.0, duration), y_range=(0.0, 1.0))
+    _axes(draw, audio_box, x_label="shared time (s)", y_label="mean-channel absolute amplitude", x_ticks=ticks, y_ticks=((0.0, "0"), (0.5, "0.5"), (1.0, "1")), x_range=(0.0, duration), y_range=(0.0, 1.0))
+    traces = _draw_audiovisual_traces(draw, artifact, video_box, audio_box)
     _text(draw, (50, 745), f"declared sync offset ΔAV = {artifact.sync_offset.value:g} ms", 22, INK)
     _text(draw, (780, 745), f"declared spatial discrepancy = {artifact.spatial_offset.value:g} normalized", 22, INK)
     _text(draw, (50, 800), f"video frames = {artifact.video.frame_count} · frame rate = {artifact.video.frame_rate.value:g} frames/s · audio samples = {artifact.audio.sample_count} · sample rate = {artifact.audio.sample_rate.value:g} Hz", 18, MUTED)
     _footer(draw, "The aligned traces verify physical timing metadata; audiovisual capture or temporal recalibration requires a controlled observer task.", y=935)
     digest = _save(image, path)
-    return digest, {"sync_offset_ms": artifact.sync_offset.value, "spatial_offset": artifact.spatial_offset.value, "video_luminance": video_values, "audio_envelope": audio_values[::stride], "timebase": {"video_frames": artifact.video.frame_count, "frame_rate": artifact.video.frame_rate.value, "audio_samples": artifact.audio.sample_count, "sample_rate": artifact.audio.sample_rate.value}}
+    return digest, {"sync_offset_ms": artifact.sync_offset.value, "spatial_offset": artifact.spatial_offset.value, "video_luminance": [float(np.mean(frame.pixels)) for frame in artifact.video.frames], "audio_envelope": traces["audio"]["values"], "plotted_traces": traces, "canonical_digest": canonical_digest(artifact), "timebase": {"video_frames": artifact.video.frame_count, "frame_rate": artifact.video.frame_rate.value, "audio_samples": artifact.audio.sample_count, "sample_rate": artifact.audio.sample_rate.value, "audio_start_seconds": artifact.audio_start_seconds, "video_start_seconds": artifact.video_start_seconds}}
 
 
 def _encoding(path: Path) -> tuple[str, dict[str, object]]:
     image = Image.new("RGB", (1900, 900), CANVAS)
     draw = ImageDraw.Draw(image)
     _text(draw, (50, 30), "Encoding and verification surface", 36)
-    headers = ("format", "backend", "canonical fact preserved", "verification")
+    headers = ("format", "backend", "delivery fact", "verification")
     xs = (60, 430, 800, 1450)
     for x, header in zip(xs, headers):
         _text(draw, (x, 115), header, 20, MUTED)
-    rows = (("PNG", "Pillow", "image shape + float32 digest", "decoded dimensions"), ("WAV", "wave", "sample count + clock", "rate/channels/samples"), ("GIF", "Pillow", "frame count + timing", "decoded frames"), ("NPZ", "NumPy", "exact arrays + digest", "exact canonical round trip"), ("MP4", "ffmpeg", "canonical artifact + stream facts", "optional capability"))
+    rows = (("PNG", "Pillow", "raster dimensions; uint8 quantization", "dimensions / uint8 pixels"), ("WAV", "wave", "sample count + clock", "rate/channels/samples"), ("GIF", "Pillow", "frame count + timing", "decoded frames"), ("NPZ", "NumPy", "exact arrays + digest", "exact canonical round trip"), ("MP4", "ffmpeg", "canonical artifact + stream facts", "optional capability"))
     for row, values in enumerate(rows):
         y = 175 + row * 115
         for x, value in zip(xs, values):
             _text(draw, (x, y), value, 19, INK)
         draw.line((50, y + 42, 1840, y + 42), fill=(224, 228, 233), width=1)
+    _text(draw, (50, 800), "Provenance retains the canonical digest; only NPZ preserves exact canonical arrays. PNG quantizes float32 to uint8.", 20, MUTED)
     digest = _save(image, path)
-    return digest, {"profiles": [dict(zip(headers, row)) for row in rows]}
+    return digest, {"profiles": [dict(zip(headers, row)) for row in rows], "canonical_identity": "Canonical digest retained in provenance; exact canonical arrays only in NPZ; PNG stores uint8-quantized raster pixels."}
 
 
 def _observer(path: Path) -> tuple[str, dict[str, object]]:
@@ -733,7 +831,7 @@ def publication_caption_specs() -> tuple[CaptionSpec, ...]:
         CaptionSpec("fig:visual_sweep", "visual_sweep", "Visual parameter sweep with physical readouts", "This 5×5 sweep varies duck–rabbit blend weight across rows and jointly varies grayscale and quantization levels across columns. Each cell is regenerated from an immutable typed parameter object at seed 0; source data output/data/visual_sweep.json records canonical digests, unique-level counts, normalized luminance, and effective dynamic range for every condition.", "A labeled grid crosses five duck–rabbit blend weights with five grayscale and quantization settings, with physical metrics recorded for each cell.", ClaimLevel.PHYSICAL_METRIC, "output/data/visual_sweep.json", ("brugger1999duckrabbit", "gregory1997visual"), ("The grid is a sensitivity of the construction parameters, not a psychophysical sensitivity curve or a validated observer effect.",), ("Row and column labels state the parameter values; numerical metrics and units are available in the sidecar.",), 0, "duck_weight ∈ {0,.25,.5,.75,1}; grayscale=quantization ∈ {2,4,8,16,32}; seed s=0", "25 canonical rasters; unique levels, normalized mean luminance, and effective dynamic range per cell", "The chosen grid is an engineering sampling of the parameter domain and does not imply an optimal or perceptually uniform spacing."),
         CaptionSpec("fig:temporal_sequence", "temporal_sequence", "Temporal sequence, clock, and frame deltas", "The frame strip exposes the order and timestamps of the apparent-motion construction, while the lower trace reports adjacent-frame mean absolute pixel differences. Source data output/data/temporal_sequence.json preserve frame count, frame rate, reduced rational timebase, timestamps in seconds, and the nonzero transition series; seed 0 identifies the generated sequence.", "Six ordered frames are labeled with timestamps and paired with a line plot of adjacent-frame normalized pixel differences.", ClaimLevel.PHYSICAL_METRIC, "output/data/temporal_sequence.json", ("wertheimer1912motion", "sekuler1996wertheimer"), ("Frame succession and frame deltas are physical file properties; playback timing, display persistence, and motion reports require a controlled observer task.",), ("Frame index, seconds, frames per second, and normalized-difference labels remain interpretable without color.",), 0, "visual.apparent_motion default typed parameters; frame rate and frame count from the canonical sequence; seed s=0", "timestamps in seconds, frame rate in frames/s, frame count, rational timebase, and adjacent-frame normalized pixel difference", "The figure documents temporal structure rather than the presence, direction, or strength of perceived motion."),
         CaptionSpec("fig:audio_signals", "audio_signals", "Auditory canonical signals and spectral summaries", "Five implemented auditory constructions—Shepard tone, missing fundamental, tritone paradox, octave illusion, and auditory continuity—are shown as canonical waveforms with compact one-sided FFT summaries. Source data output/data/audio_signals.json records sample rate, channel layout, RMS, peak, spectral centroid, bandwidth, crest factor, canonical digest, and the declared display-bin convention; no pitch or stream report is inferred.", "Five labeled rows show canonical audio waveforms, relative one-sided spectral bars, RMS and peak in normalized amplitude, and spectral summaries in hertz.", ClaimLevel.PHYSICAL_METRIC, "output/data/audio_signals.json", ("shepard1984scale", "zatorre2005missing", "deutsch1986tritone", "repp1997tritone", "deutsch1974octave", "warren1970continuity", "riecke2011continuity"), ("Playback level, transducer response, dichotic separation, masker design, and listener judgments are external to the canonical buffer.",), ("Waveform, spectral, amplitude, and frequency labels are printed; bar color is not the sole encoding.",), 0, "default typed audio parameters; per-generator channel layout and sample rate; seed s=0; one-sided FFT display with 48 sampled bins", "RMS and peak in normalized amplitude; spectral centroid and bandwidth in Hz; sample rate in samples/s; channel layout and canonical SHA-256 digest", "The figure compares generated signal properties and literature-linked families; it does not establish pitch, continuity, or stream organization for a listener."),
-        CaptionSpec("fig:audiovisual_timeline", "audiovisual_timeline", "Audiovisual shared-clock timeline and declared offsets", "Video mean luminance and rectified audio amplitude are placed on a common normalized time axis for the sound-induced-flash construction. Source data output/data/audiovisual_timeline.json records the video frame clock, audio sampling clock, event traces, signed audio-minus-video synchronization offset in milliseconds, and normalized spatial discrepancy; alignment is declared by the generator, not estimated from perception.", "Two labeled traces share a normalized time axis: video mean luminance and audio absolute amplitude, with signed synchronization and spatial offsets printed below.", ClaimLevel.PHYSICAL_METRIC, "output/data/audiovisual_timeline.json", ("shams2000sifi", "hirst2020sound", "vroomen2004temporal", "hartcherobrien2011temporal"), ("Display refresh, audio hardware, event latency, and observer temporal binding are not measured by this figure.",), ("The two channels, time axis, signed offset convention, and normalized spatial discrepancy are labeled in text.",), 0, "audiovisual.sound_induced_flash default shared timeline; declared sync offset ΔAV and spatial offset; seed s=0", "video luminance and audio envelope on normalized shared time; ΔAV in ms; spatial discrepancy in normalized units; frame and sample clocks in the sidecar", "A shared-clock construction is not evidence that observers bind the events at the declared or any other perceptual time."),
+        CaptionSpec("fig:audiovisual_timeline", "audiovisual_timeline", "Audiovisual shared-clock timeline and declared offsets", "Video mean luminance and rectified audio amplitude are placed on a common time axis in seconds with video frame holds and actual audio sample timestamps for the sound-induced-flash construction. Source data output/data/audiovisual_timeline.json records the video frame clock, audio sampling clock, event traces, signed audio-minus-video synchronization offset in milliseconds, and normalized spatial discrepancy; alignment is declared by the generator, not estimated from perception.", "Two labeled traces share a time axis in seconds: video mean luminance and audio absolute amplitude, with signed synchronization and spatial offsets printed below.", ClaimLevel.PHYSICAL_METRIC, "output/data/audiovisual_timeline.json", ("shams2000sifi", "hirst2020sound", "vroomen2004temporal", "hartcherobrien2011temporal"), ("Display refresh, audio hardware, event latency, and observer temporal binding are not measured by this figure.",), ("The two channels, time axis, signed offset convention, and normalized spatial discrepancy are labeled in text.",), 0, "audiovisual.sound_induced_flash default shared timeline; declared sync offset ΔAV and spatial offset; seed s=0", "video frame-hold luminance and mean-channel absolute audio amplitude on shared time in seconds; ΔAV in ms; spatial discrepancy in normalized units; frame and sample clocks in the sidecar", "A shared-clock construction is not evidence that observers bind the events at the declared or any other perceptual time."),
         CaptionSpec("fig:encoding_verification", "encoding_verification", "Encoding profiles and verification scope", "The comparison separates the canonical artifact from delivery containers: PNG, WAV, GIF, NPZ, and optional MP4/muxed MP4. Source data output/data/encoding_verification.json records backend identity, preserved canonical facts, decoded inspection targets, and capability status as observed in the generation environment; the table therefore describes an adapter contract rather than a claim about codec quality.", "A five-row comparison lists format, backend, preserved canonical facts, and the corresponding decoded verification checks.", ClaimLevel.ENCODED_MEDIA, "output/data/encoding_verification.json", ("engineering:typed_media_adapters",), ("Backend availability, codec versions, container metadata, and lossy tolerances are environment-dependent; playback software can expose additional behavior.",), ("Format, backend, preserved fact, and verification columns are textual and remain usable without color.",), 0, "typed encoding profile selected per artifact; overwrite and backend capability checks; seed inherited from the stimulus request", "format availability and verification scope are environment observations; NPZ is exact while other formats are decoded and tolerance-checked", "A successful encode or decode does not validate an observer effect or guarantee cross-device perceptual equivalence."),
         CaptionSpec("fig:synthetic_psychophysics", "synthetic_psychophysics", "Synthetic observer diagnostic—model output, not human psychophysics", "The hand-specified feature observer compares duck_weight variants with a fixed canonical reference. Its probability trace is computed analytically from serialized features, weights, and temperature; source data output/data/synthetic_psychophysics.json records model ID/version, reference and comparison digests, seed, calibration, `training_data=none`, and `human_data=false`. The y-axis is deliberately a narrow model-output range rather than a human psychometric scale.", "A narrow-range line plot shows deterministic model probability across duck_weight values beside the model identity, temperature, no-training-data statement, and human-data boundary.", ClaimLevel.SYNTHETIC_MODEL_OUTPUT, "output/data/synthetic_psychophysics.json", ("observer:preregistered_estimands",), ("The model is hand-specified, has no training data, has not been calibrated against observers, and does not estimate a human threshold or effect size.", "Its probabilities are model outputs, not participant responses or a psychometric function."), ("Model scale, reference line, model identity, and `human_data=false` are printed; color is not needed to interpret the curve.",), 0, "duck_weight comparison against fixed reference; serialized feature weights and temperature; seed s=0", "model probability and score delta on the displayed model-output scale; canonical stimulus digests; human_data=false; training_data=none", "This diagnostic tests deterministic orchestration and metamorphic input-output behavior only; empirical psychophysics remains future work."),
         CaptionSpec("fig:claim_boundary", "claim_boundary", "Claim-level boundary from artifact to observer hypothesis", "The four-stage boundary distinguishes what DuckRabbit can establish directly—canonical stimulus identity, physical/media metrics, and decoded encoded-media facts—from a future observer hypothesis. Source data output/data/claim_boundary.json records the stage definitions and boundary rule; the arrows describe increasing evidential requirements, not an inference that one stage establishes the next.", "Four numbered boxes separate canonical stimulus, physical metric, encoded media, and observer hypothesis, with a boundary rule stating that observer effects require a separate study.", ClaimLevel.SOURCE_SUPPORTED, "output/data/claim_boundary.json", ("formalism:eq:observer_estimand", "formalism:eq:canonical_digest"), ("The diagram is a documentation contract and does not replace a preregistered observer study or empirical data.",), ("Each stage is named, numbered, and described in text; the boundary rule is readable without color.",), 0, "claim levels in the taxonomy and manifest; seed not applicable to the explanatory diagram", "no unit-bearing objective quantity is applicable; stage definitions and evidence boundaries are preserved in the sidecar", "A deterministic artifact can support a future hypothesis but cannot supply the observer data required to test it."),
@@ -752,6 +850,7 @@ def validate_figure_registry(
     registry: Mapping[str, object] | Path,
     *,
     output_dir: Path | None = None,
+    project_root: Path | None = None,
 ) -> dict[str, object]:
     """Validate a generated figure registry as an independent trust boundary.
 
@@ -782,7 +881,17 @@ def validate_figure_registry(
     if type(count) is not int or count != len(records) or count != len(expected_specs):
         raise ValueError(f"figure registry count must equal {len(expected_specs)}")
     try:
-        sources, _ = load_evidence_matrix()
+        if project_root is None:
+            sources, _ = load_evidence_matrix()
+        else:
+            manuscript_dir = project_root / "docs" / "manuscript"
+            if not manuscript_dir.is_dir():
+                manuscript_dir = project_root / "manuscript"
+            sources, _ = load_evidence_matrix(
+                project_root / "data" / "evidence_matrix.json",
+                bibliography_path=manuscript_dir / "references.bib",
+                manuscript_dir=manuscript_dir,
+            )
     except Exception as exc:
         raise ValueError(f"figure registry cannot load evidence namespace: {exc}") from exc
     known_references = set(sources)
@@ -853,6 +962,13 @@ def validate_figure_registry(
             raise ValueError(f"figure registry evidence references are unresolved for {label}")
         if not isinstance(limitations, list) or not limitations or not all(isinstance(item, str) and item.strip() for item in limitations):
             raise ValueError(f"figure registry limitations are invalid for {label}")
+        if evidence_references != list(spec.evidence_references):
+            raise ValueError(f"figure registry evidence lineage disagrees with code for {label}")
+        if limitations != list(spec.limitations):
+            raise ValueError(f"figure registry limitations disagree with code for {label}")
+        producer = "duckrabbit.publication.generate_publication_outputs"
+        if record["generator"] != producer or record["generated_by"] != producer:
+            raise ValueError(f"figure registry producer disagrees with code for {label}")
         accessibility = record["accessibility"]
         if not isinstance(accessibility, Mapping) or accessibility.get("color_independent") is not True or accessibility.get("text_labels") is not True:
             raise ValueError(f"figure registry accessibility contract is incomplete for {label}")
@@ -860,7 +976,7 @@ def validate_figure_registry(
             raise ValueError(f"figure registry hashes are invalid for {label}")
         if type(record["seed"]) is not int or not isinstance(record["parameters"], Mapping):
             raise ValueError(f"figure registry parameters are invalid for {label}")
-        if record["parameters"].get("seed") != record["seed"]:
+        if record["parameters"] != {"seed": spec.seed, "figure_stem": spec.stem} or type(record["parameters"].get("seed")) is not int:
             raise ValueError(f"figure registry parameter seed disagrees for {label}")
         visual_qa = record["visual_qa"]
         if not isinstance(visual_qa, Mapping) or type(visual_qa.get("width_px")) is not int or type(visual_qa.get("height_px")) is not int or visual_qa["width_px"] <= 0 or visual_qa["height_px"] <= 0:
@@ -877,6 +993,8 @@ def validate_figure_registry(
                     raise ValueError(f"figure registry visual QA dimensions disagree for {label}")
                 if inspected.mode != visual_qa.get("mode"):
                     raise ValueError(f"figure registry visual QA mode disagrees for {label}")
+            if dict(visual_qa) != _visual_qa(figure_path):
+                raise ValueError(f"figure registry visual QA disagrees with inspected image for {label}")
             if hashlib.sha256(source_data_path.read_bytes()).hexdigest() != record["source_data_sha256"]:
                 raise ValueError(f"figure registry source-data hash is stale for {label}")
             try:
@@ -887,10 +1005,20 @@ def validate_figure_registry(
                 raise ValueError(f"figure registry source-data schema is invalid for {label}")
             if source_payload.get("figure_label") != label or source_payload.get("figure_stem") != stem:
                 raise ValueError(f"figure registry source-data identity disagrees for {label}")
+            builder_names = {
+                "catalog_matrix": "_catalog", "temporal_sequence": "_temporal",
+                "audio_signals": "_audio", "audiovisual_timeline": "_audiovisual",
+                "encoding_verification": "_encoding", "synthetic_psychophysics": "_observer",
+            }
+            expected_generator = f"duckrabbit.publication.{builder_names.get(stem, '_' + stem)}"
+            if source_payload.get("generator") != expected_generator:
+                raise ValueError(f"figure registry source-data producer disagrees with code for {label}")
             if (
-                source_payload.get("seed") != record["seed"]
+                type(source_payload.get("seed")) is not int
+                or source_payload.get("seed") != record["seed"]
                 or not isinstance(source_payload.get("parameters"), Mapping)
-                or source_payload["parameters"].get("seed") != record["seed"]
+                or source_payload["parameters"] != record["parameters"]
+                or type(source_payload["parameters"].get("seed")) is not int
                 or not isinstance(source_payload.get("data"), Mapping)
             ):
                 raise ValueError(f"figure registry source-data provenance is invalid for {label}")
@@ -992,7 +1120,7 @@ def publication_table_payloads() -> dict[str, dict[str, object]]:
         {"metric": "unique_values", "unit": "levels", "definition": "count of distinct canonical image values", "tolerance": "exact integer", "claim_level": "physical_metric"},
         {"metric": "rms", "unit": "normalized_amplitude", "definition": "root-mean-square audio amplitude", "tolerance": "finite scalar", "claim_level": "physical_metric"},
         {"metric": "peak", "unit": "normalized_amplitude", "definition": "maximum absolute audio amplitude", "tolerance": "finite scalar", "claim_level": "physical_metric"},
-        {"metric": "spectral_centroid_hz", "unit": "Hz", "definition": "energy-weighted one-sided spectral centroid", "tolerance": "finite scalar", "claim_level": "physical_metric"},
+        {"metric": "spectral_centroid_hz", "unit": "Hz", "definition": "one-sided frequency mean weighted by mean-channel abs(unwindowed rFFT) magnitude, not energy", "tolerance": "finite scalar", "claim_level": "physical_metric"},
         {"metric": "spectral_bandwidth_hz", "unit": "Hz", "definition": "spectral standard deviation around the one-sided centroid", "tolerance": "finite scalar", "claim_level": "physical_metric"},
         {"metric": "crest_factor", "unit": "ratio", "definition": "audio peak divided by RMS with zero-RMS guard", "tolerance": "finite scalar", "claim_level": "physical_metric"},
         {"metric": "mean_temporal_delta", "unit": "normalized_pixel_difference", "definition": "mean adjacent-frame absolute difference", "tolerance": "finite scalar", "claim_level": "physical_metric"},
@@ -1153,16 +1281,73 @@ def publication_table_payloads() -> dict[str, dict[str, object]]:
     return result
 
 
+def _table_markdown(payload: Mapping[str, object]) -> str:
+    headers = payload["headers"]
+    return (
+        f"# {payload['title']}\n\n" + _markdown_row(headers) + "\n"
+        + _markdown_row("---" for _ in headers) + "\n" + payload["body"]
+        + f"\n\n: {payload['caption']} {{#{payload['label']}}}\n"
+    )
+
+
+def validate_publication_tables(output_dir: Path) -> None:
+    """Compare every publication table with its code-owned data and Markdown."""
+    for stem, payload in publication_table_payloads().items():
+        path = output_dir / "data" / f"{stem}.json"
+        expected = jsonable({"schema_version": "duckrabbit/table/v1", **payload})
+        actual = json.loads(path.read_text(encoding="utf-8"))
+        if json.dumps(actual, sort_keys=True, allow_nan=False) != json.dumps(expected, sort_keys=True, allow_nan=False):
+            raise ValueError(f"publication table JSON disagrees with code: {stem}")
+        markdown = output_dir / "data" / f"{stem}.md"
+        if markdown.read_text(encoding="utf-8") != _table_markdown(payload):
+            raise ValueError(f"publication table Markdown disagrees with code: {stem}")
+
+
+def validate_publication_visual_qa(output_dir: Path) -> None:
+    """Recompute the independent visual-QA report from actual image files."""
+    expected = {
+        "schema_version": "duckrabbit/visual-qa/v1",
+        "figure_count": len(publication_caption_specs()),
+        "scales": ["full", "publication_column", "thumbnail"],
+        "figures": [
+            {"label": spec.label, "path": f"output/figures/{spec.stem}.png",
+             **_visual_qa(output_dir / "figures" / f"{spec.stem}.png")}
+            for spec in publication_caption_specs()
+        ],
+    }
+    path = output_dir / "reports" / "visual_qa.json"
+    if json.loads(path.read_text(encoding="utf-8")) != expected:
+        raise ValueError("independent visual QA report disagrees with inspected figures")
+
+
+def validate_publication_report(output_dir: Path) -> None:
+    """Validate publication totals, bundle references, cover, and registry digest."""
+    path = output_dir / "reports" / "publication_report.json"
+    report = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(report, dict) or not isinstance(report.get("registry"), str):
+        raise ValueError("publication report must contain its registry reference")
+    registry_reference = Path(report["registry"])
+    if registry_reference.parts[-2:] != ("figures", "figure_registry.json"):
+        raise ValueError("publication report registry reference is invalid")
+    report_root = registry_reference.parent.parent
+    expected = {
+        "figure_count": len(publication_caption_specs()),
+        "table_count": len(publication_table_payloads()),
+        "table_files": [str(report_root / "data" / f"{stem}.md") for stem in publication_table_payloads()],
+        "registry": str(registry_reference),
+        "cover": json.loads((output_dir / "reports" / "cover_visualization.json").read_text(encoding="utf-8")),
+        "sha256": hashlib.sha256((output_dir / "figures" / "figure_registry.json").read_bytes()).hexdigest(),
+    }
+    if report != expected:
+        raise ValueError("publication report disagrees with the publication bundle")
+
+
 def _table_files(data_dir: Path) -> tuple[str, ...]:
     data_dir.mkdir(parents=True, exist_ok=True)
     payloads = publication_table_payloads()
     paths: list[str] = []
     for stem, payload in payloads.items():
-        headers = payload["headers"]
-        body = payload["body"]
-        label = payload["label"]
-        title = payload["title"]
-        text = f"# {title}\n\n" + _markdown_row(headers) + "\n" + _markdown_row("---" for _ in headers) + "\n" + body + f"\n\n: {payload['caption']} {{#{label}}}\n"
+        text = _table_markdown(payload)
         path = data_dir / f"{stem}.md"
         atomic_write_text(path, text)
         _write_json(data_dir / f"{stem}.json", {"schema_version": "duckrabbit/table/v1", **payload})
@@ -1192,6 +1377,8 @@ def generate_publication_outputs(output_dir: Path = Path("output"), *, clean: bo
     )
     expected_figure_stems = {stem for _, stem, _ in figure_builders}
     expected_data_stems = expected_figure_stems | set(publication_table_payloads())
+    protected_names = {"AGENTS.md", "README.md", "manuscript_variables.json", "figure_registry.json"}
+    expected_figure_stems |= {"cover_visualization", "cover_visualization-thumb"}
     if clean:
         for directory, expected_stems, suffixes in (
             (figures_dir, expected_figure_stems, (".png", ".webp")),
@@ -1199,7 +1386,7 @@ def generate_publication_outputs(output_dir: Path = Path("output"), *, clean: bo
         ):
             if directory.exists():
                 for candidate in directory.iterdir():
-                    if candidate.is_file() and candidate.suffix in suffixes and candidate.stem not in expected_stems and candidate.name not in {"figure_registry.json"}:
+                    if candidate.is_file() and candidate.suffix in suffixes and candidate.stem not in expected_stems and candidate.name not in protected_names:
                         candidate.unlink()
     caption_specs = {spec.label: spec for spec in publication_caption_specs()}
     visual_qa_records: list[dict[str, object]] = []
@@ -1269,4 +1456,4 @@ def generate_publication_outputs(output_dir: Path = Path("output"), *, clean: bo
     return report
 
 
-__all__ = ["generate_publication_outputs", "publication_caption_specs", "publication_table_payloads", "validate_figure_registry"]
+__all__ = ["generate_publication_outputs", "publication_caption_specs", "publication_table_payloads", "validate_figure_registry", "validate_publication_tables", "validate_publication_visual_qa", "validate_publication_report"]

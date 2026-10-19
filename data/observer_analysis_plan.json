@@ -38,7 +38,9 @@
       "condition_id": "temporal_sync",
       "illusion_id": "audiovisual.temporal_ventriloquism",
       "parameter_overrides": {
-        "sync_offset": 0.0
+        "config": {
+          "sync_offset": 0.0
+        }
       },
       "response_kind": "forced_choice",
       "response_labels": [

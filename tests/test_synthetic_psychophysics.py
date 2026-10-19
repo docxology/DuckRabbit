@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import json
-from dataclasses import fields
+from dataclasses import fields, replace
 
 import pytest
 
@@ -134,3 +134,34 @@ def test_prediction_rejects_incompatible_features_and_curve_points() -> None:
         predict_pair(default_synthetic_model(), image, audio, trial_id="trial", condition_id="condition")
     with pytest.raises(ParameterValidationError, match="x value"):
         SyntheticCurvePoint("", float("nan"), predict_pair(default_synthetic_model(), image, image, trial_id="t", condition_id="c"))
+
+
+@pytest.mark.parametrize("model", [None, {}, "model", 1])
+def test_sensitivity_curve_explicitly_rejects_invalid_model(model: object) -> None:
+    image = duckrabbit.generate("visual.duck_rabbit")
+    with pytest.raises(ParameterValidationError, match="requires SyntheticModelSpec"):
+        sensitivity_curve(model, image, (("same", 0.0, image),))
+
+
+@pytest.mark.parametrize("identity", ["visual.duck_rabbit", "audio.shepard_tone", "visual.apparent_motion", "audiovisual.sound_induced_flash"])
+def test_sensitivity_curve_matches_complete_pair_predictions(identity: str) -> None:
+    artifact = duckrabbit.generate(identity)
+    model = default_synthetic_model()
+    comparisons = tuple((str(index), float(index), artifact) for index in range(3))
+    points = sensitivity_curve(model, artifact, comparisons, condition_id="condition:curve")
+    expected = tuple(
+        SyntheticCurvePoint(label, value, predict_pair(
+            model, artifact, comparison, trial_id=f"condition:curve:{index}", condition_id="condition:curve",
+        ))
+        for index, (label, value, comparison) in enumerate(comparisons)
+    )
+    assert points == expected
+    assert [point.to_dict() for point in points] == [point.to_dict() for point in expected]
+
+
+@pytest.mark.parametrize("invalid", [True, False, None, "0.5", float("nan"), float("inf"), -float("inf")])
+def test_prediction_rejects_invalid_numeric_probabilities(invalid: object) -> None:
+    image = duckrabbit.generate("visual.duck_rabbit")
+    prediction = predict_pair(default_synthetic_model(), image, image, trial_id="trial", condition_id="condition")
+    with pytest.raises(ParameterValidationError, match="probability_comparison"):
+        replace(prediction, probability_comparison=invalid)

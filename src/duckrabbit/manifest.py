@@ -4,19 +4,35 @@ from __future__ import annotations
 
 import hashlib
 import json
-from dataclasses import dataclass
+from collections.abc import Mapping
+from dataclasses import dataclass, fields, is_dataclass, replace
 from enum import Enum
 from pathlib import Path
 from types import MappingProxyType
-from typing import Mapping
 
-from .artifacts import ArtifactSummary, CanonicalArtifact, EncodedArtifact, _validate_artifact_summary
+from .artifacts import (
+    ArtifactSummary,
+    CanonicalArtifact,
+    EncodedArtifact,
+    _validate_artifact_summary,
+)
 from .errors import ManifestValidationError
 from .io import atomic_write_text
 from .parameters import BackendKind, MediaFormat, Seed
 from .schema import ParameterSchema
 from .serialization import jsonable
-from .taxonomy import ClaimLevel, EvidenceStatus, ImplementationStatus, Modality, TaxonomyEntry
+from .taxonomy import (
+    ClaimLevel,
+    CognitiveProcess,
+    EvidenceStatus,
+    ImplementationStatus,
+    InputRequirement,
+    Mechanism,
+    Modality,
+    OutputKind,
+    PerceptualSignature,
+    TaxonomyEntry,
+)
 
 
 class VerificationStatus(str, Enum):
@@ -72,7 +88,7 @@ class CanonicalRecord:
             raise ManifestValidationError("unsupported canonical schema version")
         if self.algorithm != "sha256" or self.byte_order != "little" or self.dtype != "<f4":
             raise ManifestValidationError("canonical record must use little-endian float32 SHA-256")
-        if len(self.digest) != 64 or any(character not in "0123456789abcdef" for character in self.digest):
+        if not isinstance(self.digest, str) or len(self.digest) != 64 or any(character not in "0123456789abcdef" for character in self.digest):
             raise ManifestValidationError("canonical digest must be lowercase SHA-256 hex")
         if type(self.byte_count) is not int or self.byte_count <= 0:
             raise ManifestValidationError("canonical byte_count must be a positive integer")
@@ -264,20 +280,110 @@ def upconvert_v1_manifest(payload: Mapping[str, object]) -> dict[str, object]:
     return result
 
 
-def read_manifest(path: Path) -> dict[str, object]:
-    """Read v1 or v2 JSON and return a version-normalized payload."""
+def validate_manifest_payload(payload: Mapping[str, object]) -> Manifest:
+    """Reconstruct loaded v2 data through the same strict public contracts."""
+    from .generators import default_parameters
+    from .schema import parameter_schema
+
+    def restore_default(default: object, value: object) -> object:
+        if is_dataclass(default):
+            return type(default)(**{
+                field.name: restore_default(getattr(default, field.name), value[field.name])
+                for field in fields(default)
+            })
+        if isinstance(default, Enum):
+            return type(default)(value)
+        if isinstance(default, tuple):
+            return tuple(value)
+        return value
+
+    try:
+        taxonomy = dict(payload["taxonomy"])
+        for name, enum_type in (
+            ("modalities", Modality), ("mechanisms", Mechanism),
+            ("signatures", PerceptualSignature), ("cognitive_processes", CognitiveProcess),
+            ("claim_levels", ClaimLevel),
+        ):
+            taxonomy[name] = tuple(enum_type(item) for item in taxonomy[name])
+        for name, enum_type in (
+            ("evidence_status", EvidenceStatus), ("implementation_status", ImplementationStatus),
+            ("input_requirement", InputRequirement),
+        ):
+            taxonomy[name] = enum_type(taxonomy[name])
+        if taxonomy.get("output_kind") is not None:
+            taxonomy["output_kind"] = OutputKind(taxonomy["output_kind"])
+        for name in ("stimulus_requirements", "evidence_references"):
+            taxonomy[name] = tuple(taxonomy[name])
+        declared_schema = payload["parameter_schema"]
+        defaults = default_parameters(payload["illusion_id"])
+        schema_defaults = {
+            field["name"]: restore_default(getattr(defaults, field["name"]), field["default"])
+            for field in declared_schema["fields"]
+        }
+        parameters = replace(defaults, **schema_defaults)
+        schema = parameter_schema(parameters)
+        if jsonable(schema) != declared_schema:
+            raise ManifestValidationError("manifest parameter_schema disagrees with the typed generator schema")
+        encoded = payload.get("encoding")
+        if encoded is not None:
+            encoded = EncodedArtifact(**{
+                **encoded, "format": MediaFormat(encoded["format"]),
+                "backend": BackendKind(encoded["backend"]),
+            })
+        decoded = payload.get("decoded_inspection")
+        if decoded is not None:
+            decoded = DecodedInspection(**{
+                **decoded, "format": MediaFormat(decoded["format"]),
+                "backend": BackendKind(decoded["backend"]),
+            })
+        verification = payload["verification"]
+        canonical = CanonicalRecord(**payload["canonical"])
+        if "canonical_digest" in payload and payload["canonical_digest"] != canonical.digest:
+            raise ManifestValidationError("canonical digest conflicts with canonical record")
+        manifest = Manifest(
+            package_version=payload["package_version"], generator_version=payload["generator_version"],
+            illusion_id=payload["illusion_id"],
+            implementation_status=ImplementationStatus(payload["implementation_status"]),
+            evidence_status=EvidenceStatus(payload["evidence_status"]),
+            claim_level=ClaimLevel(payload["claim_level"]),
+            modality=tuple(Modality(item) for item in payload["modality"]),
+            taxonomy=TaxonomyEntry(**taxonomy), parameter_schema=schema,
+            parameters=payload["parameters"], seed=payload["seed"], artifact=payload["artifact"],
+            canonical=canonical,
+            verification=VerificationReport(
+                VerificationStatus(verification["status"]),
+                tuple(verification["checks"]), tuple(verification["errors"]),
+            ),
+            metrics=payload.get("metrics"), encoding=encoded, decoded_inspection=decoded,
+            schema_version=payload["schema_version"], legacy_manifest=payload.get("legacy_manifest"),
+        )
+        restore_default(defaults, payload["parameters"])
+        return manifest
+    except (KeyError, TypeError, ValueError, AttributeError) as exc:
+        raise ManifestValidationError(f"invalid v2 manifest: {exc}") from exc
+
+
+def _read_manifest_document(path: Path) -> dict[str, object]:
+    """Read a document while retaining its actual on-disk schema version."""
     path = Path(path)
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as exc:
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
         raise ManifestValidationError(f"cannot read manifest {path}: {exc}") from exc
     if not isinstance(payload, Mapping):
         raise ManifestValidationError("manifest JSON must contain an object")
-    if payload.get("schema_version") == "duckrabbit/artifact/v1":
-        return upconvert_v1_manifest(payload)
-    if payload.get("schema_version") != "duckrabbit/artifact/v2":
+    if payload.get("schema_version") not in ("duckrabbit/artifact/v1", "duckrabbit/artifact/v2"):
         raise ManifestValidationError("unsupported manifest schema version")
     return dict(payload)
+
+
+def read_manifest(path: Path) -> dict[str, object]:
+    """Read v1 or strictly validated v2 JSON as a version-normalized payload."""
+    payload = _read_manifest_document(path)
+    if payload["schema_version"] == "duckrabbit/artifact/v1":
+        return upconvert_v1_manifest(payload)
+    validate_manifest_payload(payload)
+    return payload
 
 
 def verify_file_hash(path: Path, expected_sha256: str) -> bool:

@@ -8,15 +8,19 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.12", "3.14", "3.15"]
     steps:
       - uses: actions/checkout@v4
 
       - uses: astral-sh/setup-uv@v5
         with:
-          python-version: "3.12"
+          python-version: ${{ matrix.python-version }}
 
       - name: Sync dependencies
-        run: uv sync --extra dev
+        run: uv sync --locked --extra dev
 
       # ubuntu-latest runners ship without ffmpeg/ffprobe, which gates the
       # MP4/audiovisual tests (test_media_and_render.py, test_v03_contracts.py)
@@ -43,3 +47,15 @@ jobs:
 
       - name: Release audit
         run: uv run python -m duckrabbit audit --output-root output --release
+
+      - name: Python 3.15 profiling smoke (no speed gate)
+        if: matrix.python-version == '3.15'
+        run: uv run python scripts/profile_workloads.py --workloads canonical video_metrics observer --iterations 1 --profile --memory --output-dir "$RUNNER_TEMP/duckrabbit-profile"
+
+      - name: Build and exercise installed wheel
+        run: |
+          uv build --wheel --out-dir "$RUNNER_TEMP/duckrabbit-dist"
+          uv venv "$RUNNER_TEMP/duckrabbit-wheel-env"
+          uv pip install --python "$RUNNER_TEMP/duckrabbit-wheel-env/bin/python" "$RUNNER_TEMP"/duckrabbit-dist/*.whl
+          cd "$RUNNER_TEMP"
+          env -u PYTHONPATH "$RUNNER_TEMP/duckrabbit-wheel-env/bin/python" -c "from duckrabbit import generate, load_evidence_matrix, default_claim_registry; assert load_evidence_matrix()[0]; assert default_claim_registry(); assert generate('visual.duck_rabbit').width > 0"

@@ -31,6 +31,22 @@ scientific stimulus or observer result. Scientific captions state controls,
 units or non-applicability, source-data lineage, limitations, and the boundary
 between deterministic media facts and future observer hypotheses.
 
+Audiovisual traces use actual sample/frame timestamps on one seconds axis and
+frame-held video luminance, including declared stream starts. Audio display
+bands retain their frequency edges, peak-magnitude aggregation, channel rule,
+normalization, and plotted values in the sidecar. These are illustrative
+summaries, not a replacement for the full-resolution magnitude-weighted
+spectral metrics. PNG quantizes canonical float32 pixels to uint8; provenance
+retains the canonical digest, while NPZ preserves exact canonical arrays.
+
+The checked-in v0.5.0 PDF is an archived artifact. Current development prose,
+figures, and validation receipts do not certify that it was rebuilt or create
+a new archival release. See [`manuscript/README.md`](manuscript/README.md) for
+standalone Markdown hydration and optional typesetting boundaries.
+The [October 18 follow-up](verification-2026-10-18.md) records a real sibling
+renderer attempt that stopped at a missing TeX package, alongside a successful
+dated live scholarship audit. It does not certify a current-source PDF.
+
 The complete catalog/source-tier matrix is rendered in the standalone
 `docs/manuscript/09_appendix_catalog.md` section rather than embedded in the main
 results narrative. Its `tbl:catalog` rows are still generated from the live

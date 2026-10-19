@@ -47,24 +47,26 @@ Repeat this same sequence for the next version bump.
 
 ## Future research and optional improvements
 
-- Formalize canonical identity, encoding tolerance, decoded inspection, timing
-  conventions, metric provenance, and verification as typed mathematical
-  contracts with executable traceability.
-- Add typed metric units, color-space declarations, spectral-window metadata,
-  frame-delta normalization, decoded stream facts, tolerance provenance, and
-  computation-version hashes.
+The October 17, 2026 correctness/integrity pass is recorded in
+`docs/review-2026-10-17.md`. Its fixes are unreleased changes after v0.5.0;
+they do not amend the archived release or introduce new participant evidence.
+The follow-up in `docs/performance-review-2026-10-17.md` records source-bound
+Python 3.15 profiling, corrected shared-clock/spectral figures, standalone
+manuscript guidance, and 540 passing tests on each of four Python versions.
+
+- Extend existing typed metric units and formal traceability with explicit
+  color-space declarations and window/computation hashes on every metric
+  record, rather than only the figure sidecars and named computation versions.
 - Expand the synthetic observer with feature ablations, metamorphic tests,
   zero-difference baselines, model-parameter sensitivity, and explicit model
   uncertainty without presenting it as human psychophysics.
-- Improve the atlas with frequency axes and optional deterministic SVG
-  companions.
+- Add optional deterministic SVG atlas companions with fidelity and
+  accessibility checks; frequency-labelled audio bands are now implemented.
 - Extend the methods/software paper with additional empirical literature and
   domain-specific stimulus-fidelity audits as the catalog grows.
-- Replace duplicated mutable test counts with live registry assertions plus one
-  intentional versioned catalog snapshot.
-- Add modular tests for identity metadata, scholarship resolution, claim lineage,
-  caption contracts, visual QA, exact output equality, synthetic diagnostics,
-  and strict release mode.
+- Keep compatibility, real-media, metadata, scholarship, claim-lineage, visual-QA,
+  and strict-release regression coverage as contracts expand. Do not turn noisy
+  timing ratios or historical documentation counts into correctness gates.
 
 ## Completed documentation polish
 

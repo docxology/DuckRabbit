@@ -1,5 +1,8 @@
 """DuckRabbit: deterministic, typed generation of multimodal illusions."""
 
+from importlib import import_module
+from typing import TYPE_CHECKING
+
 from .version import __version__
 
 from .artifacts import (
@@ -17,9 +20,6 @@ from .artifacts import (
     VideoSequence,
     VideoSummary,
 )
-from .audit import AuditIssue, AuditReport, run_audit
-from .fixtures import SpeechFixtureManifest, speech_fixture_from_mapping, verify_speech_fixture_files
-from .evidence import EvidenceLineage, EvidenceRecord, EvidenceRole, SourceRecord, SourceVerificationStatus, evidence_for, load_evidence_matrix, validate_citation_keys, validate_evidence_matrix
 from .generators import default_parameters, default_registry
 from .parameters import (
     AngleDegrees,
@@ -64,19 +64,60 @@ from .parameters import (
     VideoConfig,
 )
 from .registry import IllusionGenerator, IllusionRegistry
-from .manifest import CanonicalRecord, ClaimLevel, DecodedInspection, Manifest, RenderResult, VerificationReport, VerificationStatus, read_manifest, upconvert_v1_manifest
-from .metrics import MetricRecord, MetricSuite, StimulusMetrics, measure_artifact
-from .observer import ObserverAggregate, ObserverResponse, TrialSpec, aggregate_responses, randomized_trials
-from .observer_analysis import AggregateRecord, AnalysisModel, AnalysisModelSpec, ConditionSpec, Estimand, NumericSummary, ParticipantId, PowerEstimate, PowerPoint, ResponseKind, ResponseSummary, StudyDesign, StimulusReference, SyntheticObservation, TrialDisposition, TrialRecord, build_trial_sequence, default_model_specs, default_study_design, simulate_binary_responses, simulate_continuous_responses, simulate_event_counts, simulate_power, simulate_power_curve, simulate_reaction_times, summarize_binary_responses, summarize_numeric_responses, write_analysis_plan
-from .synthetic_psychophysics import SyntheticCurvePoint, SyntheticDiagnostic, SyntheticModelSpec, SyntheticPrediction, default_duck_rabbit_diagnostic, default_synthetic_model, extract_features, predict_pair, sensitivity_curve, summarize_curve
-from .publication import generate_publication_outputs, validate_figure_registry
-from .cover import validate_cover_manifest
-from .claims import ClaimBasis, ClaimRecord, default_claim_registry, validate_claim_registry
-from .formalism import validate_formalism_registry
-from .media import BackendCapability, backend_capabilities
-from .metadata import MetadataAuditReport, PublicationMetadata, validate_project_metadata
-from .schema import ParameterField, ParameterSchema, parameter_payload, parameter_schema
 from .taxonomy import CognitiveProcess, EvidenceStatus, ImplementationStatus, InputRequirement, Mechanism, Modality, OutputKind, TaxonomyEntry, taxonomy_entries, validate_taxonomy_catalog
+
+
+
+if TYPE_CHECKING:
+    from .audit import AuditIssue, AuditReport, run_audit
+    from .fixtures import SpeechFixtureManifest, speech_fixture_from_mapping, verify_speech_fixture_files
+    from .evidence import EvidenceLineage, EvidenceRecord, EvidenceRole, SourceRecord, SourceVerificationStatus, evidence_for, load_evidence_matrix, validate_citation_keys, validate_evidence_matrix
+    from .manifest import CanonicalRecord, ClaimLevel, DecodedInspection, Manifest, RenderResult, VerificationReport, VerificationStatus, read_manifest, upconvert_v1_manifest
+    from .metrics import MetricRecord, MetricSuite, StimulusMetrics, measure_artifact
+    from .observer import ObserverAggregate, ObserverResponse, TrialSpec, aggregate_responses, randomized_trials
+    from .observer_analysis import AggregateRecord, AnalysisModel, AnalysisModelSpec, ConditionSpec, Estimand, NumericSummary, ParticipantId, PowerEstimate, PowerPoint, ResponseKind, ResponseSummary, StudyDesign, StimulusReference, SyntheticObservation, TrialDisposition, TrialRecord, build_trial_sequence, default_model_specs, default_study_design, simulate_binary_responses, simulate_continuous_responses, simulate_event_counts, simulate_power, simulate_power_curve, simulate_reaction_times, summarize_binary_responses, summarize_numeric_responses, write_analysis_plan
+    from .synthetic_psychophysics import SyntheticCurvePoint, SyntheticDiagnostic, SyntheticModelSpec, SyntheticPrediction, default_duck_rabbit_diagnostic, default_synthetic_model, extract_features, predict_pair, sensitivity_curve, summarize_curve
+    from .publication import generate_publication_outputs, validate_figure_registry
+    from .cover import validate_cover_manifest
+    from .claims import ClaimBasis, ClaimRecord, default_claim_registry, validate_claim_registry
+    from .formalism import validate_formalism_registry
+    from .media import BackendCapability, backend_capabilities
+    from .metadata import MetadataAuditReport, PublicationMetadata, validate_project_metadata
+    from .schema import ParameterField, ParameterSchema, parameter_payload, parameter_schema
+
+
+_LAZY_MODULES = {
+    'audit': ('AuditIssue', 'AuditReport', 'run_audit',),
+    'fixtures': ('SpeechFixtureManifest', 'speech_fixture_from_mapping', 'verify_speech_fixture_files',),
+    'evidence': ('EvidenceLineage', 'EvidenceRecord', 'EvidenceRole', 'SourceRecord', 'SourceVerificationStatus', 'evidence_for', 'load_evidence_matrix', 'validate_citation_keys', 'validate_evidence_matrix',),
+    'manifest': ('CanonicalRecord', 'ClaimLevel', 'DecodedInspection', 'Manifest', 'RenderResult', 'VerificationReport', 'VerificationStatus', 'read_manifest', 'upconvert_v1_manifest',),
+    'metrics': ('MetricRecord', 'MetricSuite', 'StimulusMetrics', 'measure_artifact',),
+    'observer': ('ObserverAggregate', 'ObserverResponse', 'TrialSpec', 'aggregate_responses', 'randomized_trials',),
+    'observer_analysis': ('AggregateRecord', 'AnalysisModel', 'AnalysisModelSpec', 'ConditionSpec', 'Estimand', 'NumericSummary', 'ParticipantId', 'PowerEstimate', 'PowerPoint', 'ResponseKind', 'ResponseSummary', 'StudyDesign', 'StimulusReference', 'SyntheticObservation', 'TrialDisposition', 'TrialRecord', 'build_trial_sequence', 'default_model_specs', 'default_study_design', 'simulate_binary_responses', 'simulate_continuous_responses', 'simulate_event_counts', 'simulate_power', 'simulate_power_curve', 'simulate_reaction_times', 'summarize_binary_responses', 'summarize_numeric_responses', 'write_analysis_plan',),
+    'synthetic_psychophysics': ('SyntheticCurvePoint', 'SyntheticDiagnostic', 'SyntheticModelSpec', 'SyntheticPrediction', 'default_duck_rabbit_diagnostic', 'default_synthetic_model', 'extract_features', 'predict_pair', 'sensitivity_curve', 'summarize_curve',),
+    'publication': ('generate_publication_outputs', 'validate_figure_registry',),
+    'cover': ('validate_cover_manifest',),
+    'claims': ('ClaimBasis', 'ClaimRecord', 'default_claim_registry', 'validate_claim_registry',),
+    'formalism': ('validate_formalism_registry',),
+    'media': ('BackendCapability', 'backend_capabilities',),
+    'metadata': ('MetadataAuditReport', 'PublicationMetadata', 'validate_project_metadata',),
+    'schema': ('ParameterField', 'ParameterSchema', 'parameter_payload', 'parameter_schema',),
+}
+_LAZY_EXPORTS = {name: module for module, names in _LAZY_MODULES.items() for name in names}
+
+
+def __getattr__(name: str) -> object:
+    """Load analysis and publication surfaces only when explicitly requested."""
+    module_name = _LAZY_EXPORTS.get(name)
+    if module_name is None:
+        raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
+    value = getattr(import_module(f".{module_name}", __name__), name)
+    globals()[name] = value
+    return value
+
+
+def __dir__() -> list[str]:
+    return sorted(set(globals()) | set(_LAZY_EXPORTS))
 
 
 def generate(illusion_id: str, parameters: object | None = None, *, seed: int = 0) -> CanonicalArtifact:

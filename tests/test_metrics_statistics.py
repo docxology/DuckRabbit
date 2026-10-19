@@ -2,11 +2,13 @@
 
 from __future__ import annotations
 
+import cProfile
+
 import numpy as np
 import pytest
 
 import duckrabbit
-from duckrabbit.artifacts import AudioBuffer, ImageFrame
+from duckrabbit.artifacts import AudioBuffer, ImageFrame, VideoSequence
 from duckrabbit.metrics import MetricRecord, MetricSuite, measure_artifact
 from duckrabbit.observer_analysis import (
     ResponseKind,
@@ -17,6 +19,45 @@ from duckrabbit.observer_analysis import (
     simulate_reaction_times,
     summarize_numeric_responses,
 )
+from duckrabbit.parameters import FrameRate, SampleRate
+from duckrabbit.render import artifact_summary
+
+
+@pytest.mark.parametrize("consumer", [measure_artifact, artifact_summary])
+def test_video_consumers_compute_adjacent_frame_changes_only_once(consumer) -> None:
+    video = VideoSequence(tuple(ImageFrame(np.full((8, 9), value, dtype=np.float32)) for value in (0.0, 0.2, 0.5)), FrameRate(12.0))
+    profiler = cProfile.Profile()
+    result = profiler.runcall(consumer, video)
+    calls = [entry.callcount for entry in profiler.getstats() if entry.code is VideoSequence.temporal_deltas.fget.__code__]
+    assert calls == [1]
+    values = result.values if isinstance(result, MetricSuite) else result
+    assert values["temporal_deltas"] == pytest.approx((0.2, 0.3))
+    assert values["mean_temporal_delta"] == pytest.approx(0.25)
+
+
+def test_audio_metrics_reduce_peak_and_rms_once() -> None:
+    artifact = AudioBuffer(np.array([[0.0], [0.5], [-0.25]], dtype=np.float32), SampleRate(8000))
+    profiler = cProfile.Profile()
+    metrics = profiler.runcall(measure_artifact, artifact)
+    for property_name in ("peak", "rms"):
+        getter = getattr(AudioBuffer, property_name).fget.__code__
+        assert [entry.callcount for entry in profiler.getstats() if entry.code is getter] == [1]
+        assert metrics.values[property_name] == getattr(artifact, property_name)
+
+
+@pytest.mark.parametrize("layouts", [("C", "C", "C"), ("F", "F", "F"), ("F", "C", "F")])
+def test_temporal_reduction_preserves_exact_values_and_input_buffers(layouts) -> None:
+    rng = np.random.default_rng(23)
+    frames = tuple(ImageFrame(np.array(rng.random((31, 37), dtype=np.float32), order=layout)) for layout in layouts)
+    originals = tuple(frame.pixels.copy() for frame in frames)
+    video = VideoSequence(frames, FrameRate(24.0))
+    expected = tuple(float(np.mean(np.abs(current.pixels - previous.pixels))) for previous, current in zip(frames, frames[1:]))
+    assert video.temporal_deltas == expected
+    assert measure_artifact(video).values["temporal_deltas"] == expected
+    assert artifact_summary(video)["mean_temporal_delta"] == float(np.mean(expected))
+    for frame, original in zip(frames, originals):
+        np.testing.assert_array_equal(frame.pixels, original)
+        assert not frame.pixels.flags.writeable
 
 
 def test_rgb_metrics_use_relative_luminance_and_new_audio_summaries() -> None:
@@ -40,6 +81,24 @@ def test_stereo_spectral_metrics_aggregate_both_channels() -> None:
     stereo_centroid = measure_artifact(stereo).record("spectral_centroid_hz").value
     left_centroid = measure_artifact(left_only).record("spectral_centroid_hz").value
     assert stereo_centroid != pytest.approx(left_centroid)
+
+
+def test_spectral_centroid_uses_channel_mean_magnitudes_not_power() -> None:
+    sample_rate = 1024
+    time = np.arange(sample_rate, dtype=np.float64) / sample_rate
+    samples = np.column_stack((0.2 * np.sin(2 * np.pi * 32 * time),
+                               0.6 * np.sin(2 * np.pi * 128 * time))).astype(np.float32)
+    audio = AudioBuffer(samples, SampleRate(sample_rate))
+    frequencies = np.fft.rfftfreq(sample_rate, 1 / sample_rate)
+    magnitude = np.mean(np.abs(np.fft.rfft(samples, axis=0)), axis=1)
+    expected = float(np.sum(frequencies * magnitude) / np.sum(magnitude))
+    power = np.mean(np.abs(np.fft.rfft(samples, axis=0)) ** 2, axis=1)
+    power_centroid = float(np.sum(frequencies * power) / np.sum(power))
+    assert measure_artifact(audio).values["spectral_centroid_hz"] == expected
+    assert expected == pytest.approx(104, abs=1e-4)
+    assert expected != pytest.approx(power_centroid)
+    silence = AudioBuffer(np.zeros((sample_rate, 2), dtype=np.float32), SampleRate(sample_rate))
+    assert measure_artifact(silence).values["spectral_centroid_hz"] == 0.0
 
 
 def test_metric_suite_rejects_untyped_records_and_claims() -> None:

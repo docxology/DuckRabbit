@@ -24,20 +24,24 @@ def _header(kind: str, metadata: dict[str, object]) -> bytes:
     return struct.pack("<Q", len(payload)) + payload
 
 
-def _array_bytes(values: np.ndarray) -> bytes:
+def _array_chunks(values: np.ndarray, *, copy_arrays: bool) -> Iterable[bytes | memoryview]:
     normalized = np.ascontiguousarray(values, dtype=np.dtype("<f4"))
-    return struct.pack("<Q", normalized.nbytes) + normalized.tobytes(order="C")
+    prefix = struct.pack("<Q", normalized.nbytes)
+    if copy_arrays:
+        yield prefix + normalized.tobytes(order="C")
+    else:
+        yield prefix
+        yield memoryview(normalized).cast("B")
 
 
-def canonical_chunks(artifact: CanonicalArtifact) -> Iterable[bytes]:
-    """Yield unambiguous metadata and little-endian canonical array chunks."""
+def _canonical_chunks(artifact: CanonicalArtifact, *, copy_arrays: bool) -> Iterable[bytes | memoryview]:
     if isinstance(artifact, ImageFrame):
         yield _header("image", {"mode": artifact.mode.value, "shape": list(artifact.pixels.shape), "dtype": "<f4"})
-        yield _array_bytes(artifact.pixels)
+        yield from _array_chunks(artifact.pixels, copy_arrays=copy_arrays)
         return
     if isinstance(artifact, AudioBuffer):
         yield _header("audio", {"shape": list(artifact.samples.shape), "dtype": "<f4", "sample_rate": artifact.sample_rate.value})
-        yield _array_bytes(artifact.samples)
+        yield from _array_chunks(artifact.samples, copy_arrays=copy_arrays)
         return
     if isinstance(artifact, VideoSequence):
         yield _header(
@@ -50,7 +54,7 @@ def canonical_chunks(artifact: CanonicalArtifact) -> Iterable[bytes]:
             },
         )
         for frame in artifact.frames:
-            yield _array_bytes(frame.pixels)
+            yield from _array_chunks(frame.pixels, copy_arrays=copy_arrays)
         return
     if isinstance(artifact, AudiovisualTimeline):
         yield _header(
@@ -61,17 +65,32 @@ def canonical_chunks(artifact: CanonicalArtifact) -> Iterable[bytes]:
                 "metadata": dict(sorted(artifact.metadata.items())),
             },
         )
-        yield from canonical_chunks(artifact.audio)
-        yield from canonical_chunks(artifact.video)
+        yield from _canonical_chunks(artifact.audio, copy_arrays=copy_arrays)
+        yield from _canonical_chunks(artifact.video, copy_arrays=copy_arrays)
         return
     raise TypeError(f"unsupported artifact type: {type(artifact).__name__}")
 
 
+def canonical_chunks(artifact: CanonicalArtifact) -> Iterable[bytes]:
+    """Yield stable byte chunks, preserving the public serialization boundaries."""
+    yield from _canonical_chunks(artifact, copy_arrays=True)
+
+
 def canonical_bytes(artifact: CanonicalArtifact) -> bytes:
-    """Materialize the stable canonical representation for archives and hashing."""
+    """Materialize the stable canonical representation for explicit byte consumers."""
     return b"".join(canonical_chunks(artifact))
+
+
+def canonical_digest_and_size(artifact: CanonicalArtifact) -> tuple[str, int]:
+    """Hash canonical buffers without copying contiguous little-endian arrays."""
+    digest = hashlib.sha256()
+    byte_count = 0
+    for chunk in _canonical_chunks(artifact, copy_arrays=False):
+        digest.update(chunk)
+        byte_count += len(chunk)
+    return digest.hexdigest(), byte_count
 
 
 def canonical_digest(artifact: CanonicalArtifact) -> str:
     """Return SHA-256 over versioned canonical bytes."""
-    return hashlib.sha256(canonical_bytes(artifact)).hexdigest()
+    return canonical_digest_and_size(artifact)[0]

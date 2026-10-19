@@ -12,7 +12,11 @@ from __future__ import annotations
 import json
 import math
 import statistics
-import tomllib
+
+try:
+    import tomllib
+except ModuleNotFoundError:
+    import tomli as tomllib
 from pathlib import Path
 
 import pytest

@@ -9,12 +9,8 @@ canonical in-memory media from optional encoders so the same typed request can
 be reproduced, inspected, hashed, and exported as PNG, WAV, GIF, MP4, or an
 exact canonical NPZ archive.
 
-This private sidecar checkout (located at
-`projects/ongoing/docxology/DuckRabbit` in the private monorepo and mirrored
-into the template checkout at `projects/ongoing/Art/DuckRabbit`) is the
-release source for the public
-DuckRabbit GitHub repository at https://github.com/docxology/DuckRabbit. The
-public repository carries the software, manuscript, evidence matrix, and
+The public repository at https://github.com/docxology/DuckRabbit carries
+the software, manuscript, evidence matrix, and
 release bundle (including the DOI-bearing PDF under `output/pdf/`). DuckRabbit
 is released under the MIT License. It is an extensible v0.5.0, not a claim
 that every known illusion has already been implemented; the catalog
@@ -57,6 +53,25 @@ uv run python -m duckrabbit synthetic-psychophysics
 uv run python -m duckrabbit audit --output-root output
 uv run python -m duckrabbit audit --output-root output --release
 ```
+
+Python 3.10 or newer is supported. CI exercises Python 3.10, 3.12, 3.14, and 3.15,
+including an installed-wheel smoke test outside the source checkout. Built
+wheels bundle the runtime evidence snapshot and bibliography; manuscript
+rendering and checkout/release audits require the full repository. The
+`dev` extra includes every dependency required by the test suite.
+
+See [`docs/review-2026-10-17.md`](docs/review-2026-10-17.md) for the
+correctness and integrity review. Geometry corrections change canonical
+digests for affected stimuli: regenerate outputs rather than reusing old
+manifests or treating them as interchangeable stimuli.
+
+For repeatable Python 3.15 profiling, see [`docs/performance.md`](docs/performance.md).
+The harness records real workload timings, separate cProfile/allocation passes,
+source fingerprints, and fail-closed baseline comparisons without noisy speed
+thresholds in correctness tests. Analysis/publication API exports load on demand;
+ordinary generation does not import that stack.
+Measured results, visualization corrections, and final validation are recorded
+in [`docs/performance-review-2026-10-17.md`](docs/performance-review-2026-10-17.md).
 
 `docs/publication.md` documents the canonical end-to-end release sequence
 (network scholarship audit included, release-time only).
@@ -247,20 +262,17 @@ when available. No mock framework is used.
 
 ## Template integration
 
-The project is rendered through the sibling public template checkout. The
-original fork used the private-safe command:
+Ordinary development, figure generation, Markdown hydration, and package
+auditing run in this public checkout. See
+[`docs/manuscript/README.md`](docs/manuscript/README.md) for the standalone
+workflow and optional typesetting integration:
 
 ```bash
-cd <template-checkout>
-uv run python scripts/audit/copy_exemplar.py \
-  --source templates/template_code_project \
-  --dest <projects-root>/ongoing/Art/DuckRabbit \
-  --new-name duckrabbit \
-  --project-only
+uv run python -m duckrabbit publish --output-dir output --clean
+uv run python scripts/generate_manuscript_variables.py
+uv run python -m duckrabbit audit --output-root output --release
 ```
 
-`--project-only` is intentional: it keeps the shared template engine outside
-this private project tree.
-
-The active checkout lives at `projects/ongoing/docxology/DuckRabbit` in the
-private workspace.
+The shared template engine stays outside the package tree. Its PDF/HTML/slides
+build and page-level validation are separate from these package checks. The
+archived v0.5.0 PDF is not automatically rebuilt by development-source changes.

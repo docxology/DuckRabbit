@@ -32,7 +32,8 @@ class MetricRecord:
         if not isinstance(self.claim_level, ClaimLevel) or self.claim_level not in {ClaimLevel.PHYSICAL_METRIC, ClaimLevel.ENCODED_MEDIA}:
             raise ValueError("metric claim_level must be physical_metric or encoded_media")
         values = self.value if isinstance(self.value, tuple) else (self.value,)
-        if not values or not all(type(item) in (int, float) and isfinite(float(item)) for item in values):
+        empty_temporal_observations = not values and self.name == "temporal_deltas" and self.unit == "normalized_pixel_difference"
+        if (not values and not empty_temporal_observations) or not all(type(item) in (int, float) and isfinite(float(item)) for item in values):
             raise ValueError(f"metric {self.name} contains a non-finite or invalid value")
         if self.tolerance is not None and (not isfinite(self.tolerance) or self.tolerance < 0):
             raise ValueError(f"metric {self.name} tolerance must be finite and non-negative")
@@ -150,6 +151,7 @@ def measure_artifact(artifact: CanonicalArtifact) -> MetricSuite:
         spectral_variance = float(np.sum(((frequencies - spectral_centroid) ** 2) * spectrum) / denominator)
         spectral_bandwidth = float(np.sqrt(max(spectral_variance, 0.0)))
         peak = artifact.peak
+        rms = artifact.rms
         return _suite(
             "audio",
             {
@@ -157,12 +159,12 @@ def measure_artifact(artifact: CanonicalArtifact) -> MetricSuite:
                 "channels": artifact.channels,
                 "sample_rate": artifact.sample_rate.value,
                 "duration_seconds": artifact.duration_seconds,
-                "peak": artifact.peak,
-                "rms": artifact.rms,
+                "peak": peak,
+                "rms": rms,
                 "spectral_centroid_hz": spectral_centroid,
                 "dominant_frequency_hz": dominant_frequency,
                 "spectral_bandwidth_hz": spectral_bandwidth,
-                "crest_factor": peak / max(artifact.rms, 1e-12),
+                "crest_factor": peak / max(rms, 1e-12),
             },
             {
                 "samples": "samples",
@@ -178,6 +180,7 @@ def measure_artifact(artifact: CanonicalArtifact) -> MetricSuite:
             },
         )
     if isinstance(artifact, VideoSequence):
+        deltas = artifact.temporal_deltas
         return _suite(
             "video",
             {
@@ -186,8 +189,8 @@ def measure_artifact(artifact: CanonicalArtifact) -> MetricSuite:
                 "frames": artifact.frame_count,
                 "frame_rate": artifact.frame_rate.value,
                 "duration_seconds": artifact.duration_seconds,
-                "mean_temporal_delta": artifact.mean_temporal_delta,
-                "temporal_deltas": artifact.temporal_deltas,
+                "mean_temporal_delta": float(np.mean(deltas)) if deltas else 0.0,
+                "temporal_deltas": deltas,
             },
             {
                 "width": "pixels",

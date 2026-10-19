@@ -36,6 +36,8 @@ class ParameterSchema:
         """Validate a JSON-decoded parameter payload with field-level errors."""
         if not isinstance(payload, Mapping):
             raise ParameterValidationError("parameter payload must be a JSON object")
+        if not all(isinstance(key, str) for key in payload):
+            raise ParameterValidationError("parameter payload keys must be strings")
         expected = {field.name: field for field in self.fields}
         unknown = sorted(set(payload) - set(expected))
         if unknown:
@@ -110,7 +112,7 @@ def parameter_payload(parameters: object) -> dict[str, object]:
     return payload
 
 
-def _validate_json_value(path: str, expected: object, value: object) -> None:
+def _validate_json_value(path: str, expected: object, value: object) -> object:
     """Validate one serialized value against the observed typed default.
 
     This function validates JSON-decoded parameter values against the
@@ -118,13 +120,16 @@ def _validate_json_value(path: str, expected: object, value: object) -> None:
     nested dataclasses, primitives, and arrays.
     """
     if isinstance(expected, Enum):
-        choices = {member.value for member in type(expected)}
-        if value not in choices:
-            raise ParameterValidationError(f"parameter field {path} must be one of {sorted(choices)}")
-        return
+        try:
+            return type(expected)(value)
+        except (TypeError, ValueError) as exc:
+            choices = [member.value for member in type(expected)]
+            raise ParameterValidationError(f"parameter field {path} must be one of {choices}") from exc
     if is_dataclass(expected):
         if not isinstance(value, Mapping):
             raise ParameterValidationError(f"parameter field {path} must be a JSON object")
+        if not all(isinstance(key, str) for key in value):
+            raise ParameterValidationError(f"parameter field {path} keys must be strings")
         expected_fields = {field.name: getattr(expected, field.name) for field in fields(expected)}
         unknown = sorted(set(value) - set(expected_fields))
         if unknown:
@@ -132,31 +137,41 @@ def _validate_json_value(path: str, expected: object, value: object) -> None:
         missing = sorted(set(expected_fields) - set(value))
         if missing:
             raise ParameterValidationError(f"parameter field {path} is missing field(s): {', '.join(missing)}")
-        for name, default in expected_fields.items():
-            _validate_json_value(f"{path}.{name}", default, value[name])
-        return
+        converted = {
+            name: _validate_json_value(f"{path}.{name}", default, value[name])
+            for name, default in expected_fields.items()
+        }
+        try:
+            return type(expected)(**converted)
+        except (TypeError, ValueError) as exc:
+            raise ParameterValidationError(f"parameter field {path} is invalid: {exc}") from exc
     if isinstance(expected, bool):
         if type(value) is not bool:
             raise ParameterValidationError(f"parameter field {path} must be bool")
-        return
+        return value
     if isinstance(expected, int):
         if isinstance(value, bool) or not isinstance(value, Integral):
             raise ParameterValidationError(f"parameter field {path} must be int")
-        return
+        try:
+            return type(expected)(value)
+        except ValueError as exc:
+            raise ParameterValidationError(f"parameter field {path} is invalid: {exc}") from exc
     if isinstance(expected, float):
         if isinstance(value, bool) or not isinstance(value, Real) or not isfinite(float(value)):
             raise ParameterValidationError(f"parameter field {path} must be a finite number")
-        return
+        return float(value)
     if isinstance(expected, str):
         if not isinstance(value, str):
             raise ParameterValidationError(f"parameter field {path} must be string")
-        return
+        return value
     if isinstance(expected, (tuple, list)):
         if not isinstance(value, (list, tuple)):
             raise ParameterValidationError(f"parameter field {path} must be a JSON array")
-        if expected:
-            for index, item in enumerate(value):
-                _validate_json_value(f"{path}[{index}]", expected[0], item)
-        return
+        converted = [
+            _validate_json_value(f"{path}[{index}]", expected[0], item) if expected else item
+            for index, item in enumerate(value)
+        ]
+        return tuple(converted) if isinstance(expected, tuple) else converted
     if value is not None:
         raise ParameterValidationError(f"parameter field {path} has unsupported serialized type")
+    return None

@@ -38,19 +38,19 @@
     }
   },
   "figure_count": 15,
-  "registry": "/Volumes/external_drive/Git/projects/ongoing/docxology/DuckRabbit/output/figures/figure_registry.json",
-  "sha256": "42f55e111566b2960dd5555304c9df28276a602b4977dcc9cd4c08facd478c55",
+  "registry": "output/figures/figure_registry.json",
+  "sha256": "285ff9490c7d12f3d51fa1dbdeb1503380b2d2aeb61e8768bd86861525eda830",
   "table_count": 10,
   "table_files": [
-    "/Volumes/external_drive/Git/projects/ongoing/docxology/DuckRabbit/output/data/catalog_table.md",
-    "/Volumes/external_drive/Git/projects/ongoing/docxology/DuckRabbit/output/data/parameter_domains_table.md",
-    "/Volumes/external_drive/Git/projects/ongoing/docxology/DuckRabbit/output/data/encoding_profiles_table.md",
-    "/Volumes/external_drive/Git/projects/ongoing/docxology/DuckRabbit/output/data/metrics_table.md",
-    "/Volumes/external_drive/Git/projects/ongoing/docxology/DuckRabbit/output/data/observer_estimands_table.md",
-    "/Volumes/external_drive/Git/projects/ongoing/docxology/DuckRabbit/output/data/verification_failure_modes_table.md",
-    "/Volumes/external_drive/Git/projects/ongoing/docxology/DuckRabbit/output/data/caption_audit_table.md",
-    "/Volumes/external_drive/Git/projects/ongoing/docxology/DuckRabbit/output/data/evidence_source_audit_table.md",
-    "/Volumes/external_drive/Git/projects/ongoing/docxology/DuckRabbit/output/data/formalism_traceability_table.md",
-    "/Volumes/external_drive/Git/projects/ongoing/docxology/DuckRabbit/output/data/claim_ledger_table.md"
+    "output/data/catalog_table.md",
+    "output/data/parameter_domains_table.md",
+    "output/data/encoding_profiles_table.md",
+    "output/data/metrics_table.md",
+    "output/data/observer_estimands_table.md",
+    "output/data/verification_failure_modes_table.md",
+    "output/data/caption_audit_table.md",
+    "output/data/evidence_source_audit_table.md",
+    "output/data/formalism_traceability_table.md",
+    "output/data/claim_ledger_table.md"
   ]
 }

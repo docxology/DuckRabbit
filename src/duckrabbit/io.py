@@ -31,6 +31,8 @@ def atomic_write_text(path: Path, text: str, *, encoding: str = "utf-8") -> Path
 
 def sha256_file(path: Path, chunk_size: int = 1 << 20) -> str:
     """Hash a file in chunks so large encoded media never loads fully."""
+    if type(chunk_size) is not int or chunk_size < 1:
+        raise ValueError("chunk_size must be a positive integer")
     digest = hashlib.sha256()
     with open(path, "rb") as handle:
         while chunk := handle.read(chunk_size):

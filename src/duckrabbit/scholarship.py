@@ -66,8 +66,31 @@ def compare_doi_metadata(source: SourceRecord, metadata: dict[str, object]) -> S
     observed_title = str(titles[0]) if isinstance(titles, list) and titles else ""
     if not title_matches(source.title, observed_title):
         return SourceVerificationStatus.METADATA_MISMATCH
-    if source.year is not None and str(metadata.get("published-print", metadata.get("published-online", {}))).find(str(source.year)) < 0:
-        return SourceVerificationStatus.METADATA_MISMATCH
+    if source.year is not None:
+        years: set[int] = set()
+        for field in ("published-print", "published-online"):
+            published = metadata.get(field)
+            if not isinstance(published, dict):
+                continue
+            date_parts = published.get("date-parts")
+            if not isinstance(date_parts, list):
+                continue
+            for parts in date_parts:
+                if (
+                    isinstance(parts, list)
+                    and 1 <= len(parts) <= 3
+                    and all(type(part) is int for part in parts)
+                    and 1 <= parts[0] <= 9999
+                    and (len(parts) < 2 or 1 <= parts[1] <= 12)
+                    and (len(parts) < 3 or 1 <= parts[2] <= 31)
+                ):
+                    try:
+                        date(parts[0], parts[1] if len(parts) > 1 else 1, parts[2] if len(parts) > 2 else 1)
+                    except ValueError:
+                        continue
+                    years.add(parts[0])
+        if source.year not in years:
+            return SourceVerificationStatus.METADATA_MISMATCH
     return SourceVerificationStatus.DOI_METADATA_MATCH
 
 

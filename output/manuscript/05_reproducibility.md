@@ -75,6 +75,23 @@ uv run python scripts/generate_publication_outputs.py
 uv run python scripts/generate_manuscript_variables.py
 ```
 
+## Runtime-performance reproducibility
+
+The package also provides `scripts/profile_workloads.py` for fixed real
+catalog, hashing, metric, observer, media, publication, and audit workloads.
+Source hashes, runtime-input hashes, environment details, and deterministic
+result signatures accompany the samples. Warm-up and repeated ordinary timing
+calls are separate from cProfile and allocation-tracing calls. A comparison is
+invalid when its environment, scenario, or result differs; profiling timings
+are not estimates of perceptual latency or participant performance.
+
+Python 3.15 supports the profiling workflow, while the portable package retains
+its declared Python compatibility range. Optional native sampling remains
+subject to host process-inspection permissions; an unavailable sampler is
+reported as unavailable, not inferred to have succeeded. The dated engineering
+review and raw timing receipts live in `docs/performance-review-2026-10-17.md`
+and `docs/benchmarks/`, outside the scientific evidence matrix.
+
 ## Data availability and software citation
 
 No participant records, fitted observer coefficients, or human psychophysics

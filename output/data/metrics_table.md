@@ -6,7 +6,7 @@
 | unique_values | levels | count of distinct canonical image values | exact integer | physical_metric |
 | rms | normalized_amplitude | root-mean-square audio amplitude | finite scalar | physical_metric |
 | peak | normalized_amplitude | maximum absolute audio amplitude | finite scalar | physical_metric |
-| spectral_centroid_hz | Hz | energy-weighted one-sided spectral centroid | finite scalar | physical_metric |
+| spectral_centroid_hz | Hz | one-sided frequency mean weighted by mean-channel abs(unwindowed rFFT) magnitude, not energy | finite scalar | physical_metric |
 | spectral_bandwidth_hz | Hz | spectral standard deviation around the one-sided centroid | finite scalar | physical_metric |
 | crest_factor | ratio | audio peak divided by RMS with zero-RMS guard | finite scalar | physical_metric |
 | mean_temporal_delta | normalized_pixel_difference | mean adjacent-frame absolute difference | finite scalar | physical_metric |

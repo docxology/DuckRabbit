@@ -118,8 +118,17 @@ $$ {#eq:objective_statistics}
 
 $$
 D_k = \frac{1}{\lvert Y\rvert}\sum_{p}\lvert Y_{k+1}(p)-Y_k(p)\rvert, \qquad
-\mathrm{centroid}(X) = \frac{\sum_f f\,P_X(f)}{\sum_f P_X(f)}
+\mathrm{centroid}(X) = \frac{\sum_f f\,M_X(f)}{\max(\sum_f M_X(f),10^{-12})}
 $$ {#eq:temporal_spectral_metrics}
+
+Here $M_X(f)=C^{-1}\sum_{c=1}^{C}|\operatorname{rFFT}(X_c)(f)|$
+is the mean of the channel-wise magnitudes of the unwindowed, one-sided real
+FFT, including DC and the Nyquist bin when present. It is not a power or
+energy spectrum, nor the FFT of a channel-averaged waveform. Frequencies are
+in Hz at the canonical sample rate; the same magnitude weights define the
+spectral bandwidth. The denominator floor yields a zero centroid for silence.
+The illustrative audio atlas uses separately disclosed display-band
+aggregation; it does not replace this full-resolution metric computation.
 
 The level count is the cardinality of the finite-value set after canonical
 quantization; an empty or non-finite artifact is invalid rather than assigned

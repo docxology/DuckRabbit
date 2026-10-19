@@ -14,6 +14,7 @@ dependencies = [
     "numpy>=1.24.0",
     "pillow>=10.0.0",
     "typing-extensions>=4.7.0; python_version < '3.11'",
+    "tomli>=2.0.1; python_version < '3.11'",
 ]
 
 [project.optional-dependencies]
@@ -21,6 +22,7 @@ dev = [
     "pytest>=7.4.0",
     "pytest-cov>=4.1.0",
     "ruff>=0.6.0",
+    "pyyaml>=6.0.3",
 ]
 
 [project.scripts]
@@ -37,7 +39,7 @@ package-dir = {"" = "src"}
 where = ["src"]
 
 [tool.setuptools.package-data]
-duckrabbit = ["py.typed"]
+duckrabbit = ["py.typed", "_resources/*.json", "_resources/*.bib"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
@@ -61,9 +63,4 @@ precision = 2
 exclude_lines = [
     "pragma: no cover",
     "if __name__ == .__main__.:",
-]
-
-[dependency-groups]
-dev = [
-    "pyyaml>=6.0.3",
 ]

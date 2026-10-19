@@ -9,16 +9,13 @@ from pathlib import Path
 from typing import Sequence
 
 from .generators import default_parameters
-from .audit import run_audit
 from .errors import BackendUnavailableError, DuckRabbitError, ManifestValidationError, MediaInspectionError, VerificationError
 from .inspection import inspect_media, verify_manifest
 from .io import atomic_write_text
 from .media import backend_capabilities
 from .render import generate_artifact, jsonable, parameters_from_json
 from .parameters import MediaFormat, OutputSpec
-from .publication import generate_publication_outputs
 from .schema import parameter_schema
-from .synthetic_psychophysics import default_duck_rabbit_diagnostic
 from .taxonomy import ImplementationStatus, get_taxonomy, taxonomy_entries
 
 
@@ -130,10 +127,14 @@ def _run(argv: Sequence[str] | None = None) -> int:
         return 0 if report.get("status") == "verified" else 1
 
     if args.command == "publish":
+        from .publication import generate_publication_outputs
+
         print(json.dumps(generate_publication_outputs(args.output_dir, clean=args.clean), indent=2, sort_keys=True))
         return 0
 
     if args.command == "synthetic-psychophysics":
+        from .synthetic_psychophysics import default_duck_rabbit_diagnostic
+
         payload = default_duck_rabbit_diagnostic().to_dict()
         args.output.parent.mkdir(parents=True, exist_ok=True)
         atomic_write_text(args.output, json.dumps(payload, indent=2, sort_keys=True) + "\n")
@@ -145,6 +146,8 @@ def _run(argv: Sequence[str] | None = None) -> int:
         return 0
 
     if args.command == "audit":
+        from .audit import run_audit
+
         audit_report = run_audit(project_root=args.project_root, output_root=args.output_root, release=args.release)
         print(json.dumps(audit_report.to_dict(), indent=2, sort_keys=True))
         return 0 if audit_report.status == "passed" else 1

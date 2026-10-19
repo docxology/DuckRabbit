@@ -1,10 +1,9 @@
 # AGENTS.md — DuckRabbit
 
-DuckRabbit is a private sidecar project (currently under
-`projects/ongoing/docxology/DuckRabbit` in the private workspace). This
-checkout is its own git repository, mirrored to
-https://github.com/docxology/DuckRabbit. Read this file and
-the relevant directory guidance before editing.
+DuckRabbit is an independent public Python repository at
+https://github.com/docxology/DuckRabbit. Read this file and the relevant
+directory guidance before editing. A private workspace or sibling template
+checkout is not required for ordinary package development.
 
 ## Orientation ladder (cold start)
 
@@ -80,13 +79,15 @@ Pillow; ffmpeg remains a system-level optional encoder.
 5. Run `uv run python -m duckrabbit synthetic-psychophysics` and the CLI
    generation smoke tests; verify the sidecar says `human_data=false`.
 6. Run the sibling template linker/render
-   checks when changing manuscript or pipeline-facing files.
+   checks when changing manuscript or pipeline-facing files, when that optional
+   integration is available. Report missing integrations rather than claiming
+   that package tests validate a manuscript/PDF build.
 
 ### Shared-worktree reconciliation
 
-The parent private monorepo may have another automation process switching its
-branch while a project is being tested. Never run a long test or render from a
-moving parent worktree. Use a disposable isolated worktree for the project:
+Never run a long test or render from a moving worktree. When other automation
+may modify this checkout, use a disposable isolated worktree for the project
+and follow any parent collection's locking requirements for Git writes:
 
 ```bash
 git fetch origin
@@ -99,9 +100,8 @@ uv run pytest tests/ --cov=src/duckrabbit --cov-fail-under=90
 
 Before handoff, compare the local and remote branch with
 `git rev-list --left-right --count main...origin/main`,
-push only the project branch (`main`, the default branch for this checkout),
-and then refresh the parent worktree's
-project path without staging unrelated parent changes. A test run
+push only the explicitly authorized project branch (`main` is the default for
+this checkout), without staging unrelated parent changes. A test run
 whose source tree changes during collection is invalid evidence, even if
 some tests passed.
 
@@ -119,10 +119,16 @@ It does not infer observer reports, clinical effects, or universal percepts
 from an encoded file alone. Input-dependent families remain explicitly
 catalogued as `input_required` until fixtures and validation are available.
 
-## Performance note (external-drive checkouts)
+## Performance and profiling
 
-This checkout lives on `/Volumes/external_drive`. First `uv run` or a cold
-`import duckrabbit` can take minutes (drive-bound I/O). For bounded commands
-use generous timeouts; for the audit CLI prefer a background invocation. This
-is an environment property, not a package defect — a fast local SSD checkout
-does not exhibit it.
+Use `scripts/profile_workloads.py` and `docs/performance.md` for reproducible
+Python 3.15 workloads. Keep repeated uninstrumented timings separate from
+cProfile and allocation-tracing passes. Bind results to source hashes and
+environment details; never compare different workloads or changed results.
+Sampling may be unavailable without OS permissions; do not elevate or attach
+to unrelated live processes. Avoid persistent caches that can hide changed
+evidence, metadata, media, or publication files.
+
+Run checkout-artifact tests separately from clean publication regeneration.
+External-drive I/O and font/codec choices can dominate timings; report the
+actual environment rather than inferring the storage location from old guides.

@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-import hashlib
 import json
-from pathlib import Path
 from collections.abc import Mapping
+from pathlib import Path
 
-from .version import __version__
+import numpy as np
+
 from .artifacts import (
     ArtifactKind,
     ArtifactManifest,
@@ -19,13 +19,28 @@ from .artifacts import (
     ImageFrame,
     VideoSequence,
 )
-from .canonical import canonical_bytes, canonical_digest
+from .canonical import canonical_digest, canonical_digest_and_size
 from .errors import UnsupportedFormatError
-from .io import atomic_write_text, sha256_file
 from .generators import default_parameters, default_registry
-from .inspection import inspect_media
-from .manifest import CanonicalRecord, DecodedInspection, Manifest, RenderResult, VerificationReport, VerificationStatus
-from .media import write_audiovisual, write_gif, write_mp4, write_npz, write_png, write_wav
+from .inspection import _compare_expected_facts, inspect_media
+from .io import sha256_file
+from .manifest import (
+    CanonicalRecord,
+    DecodedInspection,
+    Manifest,
+    RenderResult,
+    VerificationReport,
+    VerificationStatus,
+)
+from .media import (
+    _atomic_destination,
+    write_audiovisual,
+    write_gif,
+    write_mp4,
+    write_npz,
+    write_png,
+    write_wav,
+)
 from .metrics import measure_artifact
 from .parameters import (
     AudioEncoding,
@@ -41,6 +56,7 @@ from .parameters import (
 from .schema import parameter_payload, parameter_schema
 from .serialization import jsonable
 from .taxonomy import ClaimLevel
+from .version import __version__
 
 
 def artifact_digest(artifact: CanonicalArtifact) -> str:
@@ -76,6 +92,7 @@ def artifact_summary(artifact: CanonicalArtifact) -> ArtifactSummary:
             "rms": artifact.rms,
         }
     if isinstance(artifact, VideoSequence):
+        deltas = artifact.temporal_deltas
         return {
             "type": ArtifactKind.VIDEO.value,
             "width": artifact.width,
@@ -86,8 +103,8 @@ def artifact_summary(artifact: CanonicalArtifact) -> ArtifactSummary:
             "mode": artifact.pixel_mode,
             "dtype": "<f4",
             "nbytes": artifact.nbytes,
-            "temporal_deltas": list(artifact.temporal_deltas),
-            "mean_temporal_delta": artifact.mean_temporal_delta,
+            "temporal_deltas": list(deltas),
+            "mean_temporal_delta": float(np.mean(deltas)) if deltas else 0.0,
         }
     if isinstance(artifact, AudiovisualTimeline):
         return {
@@ -189,7 +206,7 @@ def build_manifest(illusion_id: str, parameters: object, artifact: CanonicalArti
 def build_manifest_v2(illusion_id: str, parameters: object, artifact: CanonicalArtifact, *, seed: int = 0) -> Manifest:
     """Build the fully typed v2 manifest before optional encoding."""
     entry = default_registry.get(illusion_id).taxonomy
-    canonical_payload = canonical_bytes(artifact)
+    canonical_hash, canonical_byte_count = canonical_digest_and_size(artifact)
     return Manifest(
         package_version=__version__,
         generator_version=f"duckrabbit/{__version__}",
@@ -206,10 +223,10 @@ def build_manifest_v2(illusion_id: str, parameters: object, artifact: CanonicalA
         canonical=CanonicalRecord(
             schema_version="duckrabbit/canonical/v1",
             algorithm="sha256",
-            digest=hashlib.sha256(canonical_payload).hexdigest(),
+            digest=canonical_hash,
             byte_order="little",
             dtype="<f4",
-            byte_count=len(canonical_payload),
+            byte_count=canonical_byte_count,
         ),
         verification=VerificationReport(VerificationStatus.UNVERIFIED),
         metrics=measure_artifact(artifact).to_dict(),
@@ -255,8 +272,10 @@ def generate_artifact(
         output_dir = Path(output_dir)
         output_dir.mkdir(parents=True, exist_ok=True)
         output_path = output_dir / f"{illusion_id.replace('.', '_')}.{selected_format.value}"
-        if output_path.exists() and not spec.overwrite:
-            raise FileExistsError(f"output already exists and overwrite is disabled: {output_path}")
+        sidecar_path = output_path.with_suffix(output_path.suffix + ".json")
+        for destination in (output_path, sidecar_path):
+            if destination.exists() and not spec.overwrite:
+                raise FileExistsError(f"output already exists and overwrite is disabled: {destination}")
         encode_artifact(
             artifact,
             output_path,
@@ -269,7 +288,7 @@ def generate_artifact(
             overwrite=spec.overwrite,
         )
         encoded = EncodedArtifact(
-            path=str(output_path),
+            path=str(output_path.resolve()),
             format=selected_format,
             media_type=_media_type(selected_format),
             size_bytes=output_path.stat().st_size,
@@ -286,14 +305,18 @@ def generate_artifact(
             ),
         )
         inspection = inspect_media(output_path, selected_format)
+        checks = ["encoded_sha256", "decoded_media"]
+        errors: list[str] = []
+        _compare_expected_facts(manifest.artifact, inspection, errors, checks)
         manifest = Manifest(
             **{
                 **manifest.__dict__,
                 "encoding": encoded,
                 "decoded_inspection": inspection,
                 "verification": VerificationReport(
-                    VerificationStatus.VERIFIED,
-                    checks=("encoded_sha256", "decoded_media"),
+                    VerificationStatus.FAILED if errors else VerificationStatus.VERIFIED,
+                    checks=tuple(checks),
+                    errors=tuple(errors),
                 ),
             }
         )
@@ -301,7 +324,14 @@ def generate_artifact(
             manifest_path = output_path.with_suffix(output_path.suffix + ".json")
     payload = _legacy_compatible_payload(manifest, output=output_path, manifest_path=manifest_path)
     if manifest_path is not None:
-        atomic_write_text(manifest_path, json.dumps(payload, indent=2, sort_keys=True) + "\n")
+        saved_payload = {
+            **payload,
+            "output": output_path.name,
+            "manifest": manifest_path.name,
+            "encoding": {**payload["encoding"], "path": output_path.name},
+        }
+        with _atomic_destination(manifest_path, overwrite=spec.overwrite) as temporary_path:
+            temporary_path.write_text(json.dumps(saved_payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     return artifact, payload
 
 

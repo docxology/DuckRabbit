@@ -16,7 +16,10 @@ from .metrics import measure_artifact
 from .publication import validate_figure_registry
 from .cover import validate_cover_manifest
 from .metadata import validate_project_metadata
-from .publication import publication_table_payloads, publication_caption_specs
+from .publication import (
+    publication_table_payloads, publication_caption_specs, validate_publication_tables,
+    validate_publication_visual_qa, validate_publication_report,
+)
 from .schema import parameter_schema
 from .taxonomy import ImplementationStatus, validate_taxonomy_catalog
 
@@ -99,7 +102,14 @@ def run_audit(*, project_root: Path | None = None, output_root: Path | None = No
     if metadata is not None and metadata.status == "failed":
         for error in metadata.errors:
             issues.append(AuditIssue("metadata.inconsistent", "error", "metadata", error))
-    evidence = _check(issues, checks, "evidence", load_evidence_matrix)
+    manuscript_dir = root / "docs" / "manuscript"
+    if not manuscript_dir.is_dir():
+        manuscript_dir = root / "manuscript"
+    evidence = _check(issues, checks, "evidence", lambda: load_evidence_matrix(
+        root / "data" / "evidence_matrix.json",
+        bibliography_path=manuscript_dir / "references.bib",
+        manuscript_dir=manuscript_dir,
+    ))
     if evidence is not None:
         sources, records = evidence
         if len(sources) < len(records):
@@ -127,7 +137,7 @@ def run_audit(*, project_root: Path | None = None, output_root: Path | None = No
     _check(issues, checks, "generators", generators_check)
     registry_path = output / "figures" / "figure_registry.json"
     if registry_path.is_file():
-        _check(issues, checks, "figure_registry", lambda: validate_figure_registry(registry_path, output_dir=output))
+        _check(issues, checks, "figure_registry", lambda: validate_figure_registry(registry_path, output_dir=output, project_root=root))
     else:
         checks.append("figure_registry")
         severity = "error" if release else "warning"
@@ -142,14 +152,12 @@ def run_audit(*, project_root: Path | None = None, output_root: Path | None = No
     if release:
         def publication_bundle_check() -> None:
             expected_tables = publication_table_payloads()
-            for stem in expected_tables:
-                for suffix in (".md", ".json"):
-                    path = output / "data" / f"{stem}{suffix}"
-                    if not path.is_file() or not path.read_bytes():
-                        raise ValueError(f"publication table output missing or empty: {path}")
+            validate_publication_tables(output)
             if len(publication_caption_specs()) != 15 or len(expected_tables) != 10:
                 raise ValueError("publication figure/table counts drift from the v0.5 release contract")
         _check(issues, checks, "publication_bundle", publication_bundle_check)
+        _check(issues, checks, "visual_qa", lambda: validate_publication_visual_qa(output))
+        _check(issues, checks, "publication_report", lambda: validate_publication_report(output))
     status = "failed" if any(issue.severity == "error" for issue in issues) else "passed"
     return AuditReport("duckrabbit/audit/v1", status, tuple(checks), tuple(issues), generated)
 

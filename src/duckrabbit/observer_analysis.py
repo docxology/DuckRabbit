@@ -7,6 +7,7 @@ they are never presented as empirical evidence.
 
 from __future__ import annotations
 
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from enum import Enum
 import json
@@ -14,15 +15,23 @@ import math
 import random
 import re
 import statistics
+from numbers import Real
 from pathlib import Path
-from types import MappingProxyType
-from typing import Mapping, Sequence
 
 from .errors import ParameterValidationError
 from .io import atomic_write_text
-from .observer import TrialSpec
+from .observer import TrialSpec, _freeze_overrides, _thaw_overrides
 from .parameters import Seed
 from .taxonomy import ClaimLevel
+
+
+def _is_finite_number(value: object) -> bool:
+    if isinstance(value, bool) or not isinstance(value, Real):
+        return False
+    try:
+        return math.isfinite(value)
+    except OverflowError:
+        return False
 
 
 def _deterministic_rng(seed: int | Seed) -> random.Random:
@@ -82,7 +91,9 @@ class StimulusReference:
         if not re.fullmatch(r"[a-z]+\.[a-z0-9_]+", self.illusion_id):
             raise ParameterValidationError("stimulus reference illusion_id is invalid")
         for name, digest in (("manifest_sha256", self.manifest_sha256), ("encoded_sha256", self.encoded_sha256)):
-            if digest is not None and (not isinstance(digest, str) or not re.fullmatch(r"[0-9a-f]{64}", digest)):
+            if name == "encoded_sha256" and digest is None:
+                continue
+            if not isinstance(digest, str) or not re.fullmatch(r"[0-9a-f]{64}", digest):
                 raise ParameterValidationError(f"stimulus reference {name} must be lowercase SHA-256 hex")
 
 
@@ -116,10 +127,21 @@ class TrialRecord:
             raise ParameterValidationError("trial response kind and disposition are typed enums")
         if isinstance(self.response_value, bool) or not isinstance(self.response_value, (str, int, float, type(None))):
             raise ParameterValidationError("trial response_value must be a scalar or null")
-        if self.reaction_time_seconds is not None and (not math.isfinite(self.reaction_time_seconds) or self.reaction_time_seconds <= 0):
+        if self.reaction_time_seconds is not None and (isinstance(self.reaction_time_seconds, bool) or not isinstance(self.reaction_time_seconds, (int, float)) or not math.isfinite(self.reaction_time_seconds) or self.reaction_time_seconds <= 0):
             raise ParameterValidationError("trial reaction time must be finite and positive")
         if self.disposition is TrialDisposition.COMPLETE and self.response_value is None:
             raise ParameterValidationError("complete trial requires a response value")
+        if self.response_value is not None:
+            if self.response_kind is ResponseKind.FORCED_CHOICE:
+                if not isinstance(self.response_value, str) or not self.response_value.strip():
+                    raise ParameterValidationError("forced-choice response must be a non-empty label")
+            else:
+                if not isinstance(self.response_value, (int, float)) or not math.isfinite(self.response_value):
+                    raise ParameterValidationError("numeric response must be finite")
+                if self.response_kind is ResponseKind.EVENT_COUNT and (self.response_value < 0 or int(self.response_value) != self.response_value):
+                    raise ParameterValidationError("event count must be a non-negative integer")
+                if self.response_kind is ResponseKind.REACTION_TIME and self.response_value <= 0:
+                    raise ParameterValidationError("reaction-time response must be positive")
         if self.disposition is TrialDisposition.EXCLUDED and not self.exclusion_reason:
             raise ParameterValidationError("excluded trial requires an exclusion reason")
         if self.disposition is TrialDisposition.MISSING and not self.missing_reason:
@@ -221,7 +243,8 @@ class ConditionSpec:
             raise ParameterValidationError("condition response_labels must be non-empty strings")
         if not isinstance(self.response_kind, ResponseKind):
             raise ParameterValidationError("condition response_kind must be ResponseKind")
-        object.__setattr__(self, "parameter_overrides", MappingProxyType(dict(self.parameter_overrides)))
+        object.__setattr__(self, "parameter_overrides", _freeze_overrides(self.parameter_overrides))
+        object.__setattr__(self, "response_labels", tuple(self.response_labels))
 
 
 @dataclass(frozen=True)
@@ -276,7 +299,7 @@ class StudyDesign:
                 {
                     "condition_id": condition.condition_id,
                     "illusion_id": condition.illusion_id,
-                    "parameter_overrides": dict(condition.parameter_overrides),
+                    "parameter_overrides": _thaw_overrides(condition.parameter_overrides),
                     "response_labels": list(condition.response_labels),
                     "response_kind": condition.response_kind.value,
                 }
@@ -321,7 +344,7 @@ class ResponseSummary:
             raise ParameterValidationError("response summary identity and counts are invalid")
         if self.total < 1 or self.count < 0 or self.count > self.total:
             raise ParameterValidationError("response summary counts are invalid")
-        if not (0 <= self.interval_low <= self.proportion <= self.interval_high <= 1):
+        if not all(_is_finite_number(value) for value in (self.interval_low, self.proportion, self.interval_high)) or not (0 <= self.interval_low <= self.proportion <= self.interval_high <= 1):
             raise ParameterValidationError("response summary interval is invalid")
 
     def to_dict(self) -> dict[str, object]:
@@ -346,7 +369,7 @@ class PowerEstimate:
     assumed: bool = True
 
     def __post_init__(self) -> None:
-        if not math.isfinite(self.effect) or not 0 <= self.power <= 1:
+        if not _is_finite_number(self.effect) or not _is_finite_number(self.power) or not 0 <= self.power <= 1:
             raise ParameterValidationError("power point effect/power is invalid")
         if type(self.repetitions) is not int or self.repetitions < 1:
             raise ParameterValidationError("power repetitions must be positive")
@@ -449,8 +472,10 @@ class NumericSummary:
 
 def build_trial_sequence(design: StudyDesign, observer_keys: Sequence[str]) -> tuple[TrialSpec, ...]:
     """Build a reproducibly counterbalanced trial sequence."""
-    if not observer_keys or not all(observer_keys):
+    if not observer_keys or not all(isinstance(key, str) and key for key in observer_keys):
         raise ParameterValidationError("observer_keys must be non-empty")
+    if len(set(observer_keys)) != len(observer_keys):
+        raise ParameterValidationError("observer_keys must be unique")
     trials: list[TrialSpec] = []
     for observer_index, observer_key in enumerate(observer_keys):
         local: list[TrialSpec] = []
@@ -476,13 +501,22 @@ def build_trial_sequence(design: StudyDesign, observer_keys: Sequence[str]) -> t
         rng = _deterministic_rng(int(design.randomization_seed) + observer_index)
         rng.shuffle(local)
         trials.extend(local)
+    if len({trial.trial_id for trial in trials}) != len(trials):
+        raise ParameterValidationError("composite trial IDs must be unique")
     return tuple(trials)
+
+
+def _trial_observer_key(design: StudyDesign, trial: TrialSpec) -> str:
+    """Recover the observer between known study and condition boundaries."""
+    prefix_length = len(design.study_id) + 1
+    suffix_length = len(trial.condition) + len(trial.trial_id.rsplit(":", 1)[-1]) + 2
+    return trial.trial_id[prefix_length:-suffix_length]
 
 
 def _wilson(count: int, total: int, alpha: float = 0.05) -> tuple[float, float]:
     if total <= 0 or not 0 <= count <= total:
         raise ParameterValidationError("Wilson interval requires total > 0 and 0 <= count <= total")
-    if not 0 < alpha < 1:
+    if not _is_finite_number(alpha) or not 0 < alpha < 1:
         raise ParameterValidationError("Wilson interval confidence level must be between 0 and 1")
     z = statistics.NormalDist().inv_cdf(1 - alpha / 2)
     p = count / total
@@ -521,10 +555,10 @@ def simulate_binary_responses(
     records: list[tuple[str, str, str]] = []
     for trial in trials:
         probability = probabilities.get(trial.condition)
-        if probability is None or not 0 <= probability <= 1:
+        if not _is_finite_number(probability) or not 0 <= probability <= 1:
             raise ParameterValidationError(f"missing or invalid synthetic probability for {trial.condition}")
         label = trial.expected_response_labels[0] if rng.random() < probability else trial.expected_response_labels[-1]
-        records.append((trial.condition, label, trial.trial_id.split(":")[1]))
+        records.append((trial.condition, label, _trial_observer_key(design, trial)))
     return tuple(records)
 
 
@@ -542,10 +576,10 @@ def simulate_power(
     """
     if type(sample_size) is not int or sample_size < 2 or type(repetitions) is not int or repetitions < 1:
         raise ParameterValidationError("sample_size and repetitions must be positive integers")
-    if not math.isfinite(effect) or abs(effect) > 0.99 or not 0 < alpha < 1:
+    if not _is_finite_number(effect) or not -0.5 <= effect <= 0.5 or not _is_finite_number(alpha) or not 0 < alpha < 1:
         raise ParameterValidationError("effect and alpha are invalid")
     baseline = 0.5
-    alternative = min(1.0, max(0.0, baseline + effect))
+    alternative = baseline + effect
     rng = _deterministic_rng(seed)
     detected = 0
     critical = statistics.NormalDist().inv_cdf(1 - alpha / 2)
@@ -583,20 +617,23 @@ def simulate_continuous_responses(
         if trial.condition not in means:
             raise ParameterValidationError(f"missing synthetic mean for {trial.condition}")
         value = float(means[trial.condition]) + rng.gauss(0.0, noise)
-        result.append(SyntheticObservation(trial.trial_id, trial.trial_id.split(":")[1], trial.condition, response_kind, value, unit))
+        result.append(SyntheticObservation(trial.trial_id, _trial_observer_key(design, trial), trial.condition, response_kind, value, unit))
     return tuple(result)
 
 
 def _poisson(rng: random.Random, rate: float) -> int:
+    """Sample an exact Poisson sum with subrates bounded against underflow."""
     if rate == 0.0:
         return 0
-    threshold = math.exp(-rate)
-    product = 1.0
-    count = 0
-    while product > threshold:
-        count += 1
-        product *= rng.random()
-    return count - 1
+    parts = math.ceil(rate / 32.0)
+    threshold = math.exp(-(rate / parts))
+    total = 0
+    for _ in range(parts):
+        product = rng.random()
+        while product > threshold:
+            total += 1
+            product *= rng.random()
+    return total
 
 
 def simulate_event_counts(
@@ -616,7 +653,7 @@ def simulate_event_counts(
         if trial.condition not in rates:
             raise ParameterValidationError(f"missing synthetic rate for {trial.condition}")
         value = _poisson(rng, float(rates[trial.condition]))
-        result.append(SyntheticObservation(trial.trial_id, trial.trial_id.split(":")[1], trial.condition, ResponseKind.EVENT_COUNT, value, unit))
+        result.append(SyntheticObservation(trial.trial_id, _trial_observer_key(design, trial), trial.condition, ResponseKind.EVENT_COUNT, value, unit))
     return tuple(result)
 
 
@@ -637,7 +674,7 @@ def simulate_reaction_times(
         if trial.condition not in medians:
             raise ParameterValidationError(f"missing synthetic reaction-time median for {trial.condition}")
         value = rng.lognormvariate(math.log(float(medians[trial.condition])), sigma)
-        result.append(SyntheticObservation(trial.trial_id, trial.trial_id.split(":")[1], trial.condition, ResponseKind.REACTION_TIME, value, "seconds"))
+        result.append(SyntheticObservation(trial.trial_id, _trial_observer_key(design, trial), trial.condition, ResponseKind.REACTION_TIME, value, "seconds"))
     return tuple(result)
 
 
@@ -670,6 +707,8 @@ def simulate_power_curve(
     """Return a deterministic curve of assumed-effect power points."""
     if not effects:
         raise ParameterValidationError("power curve requires at least one assumed effect")
+    if not all(_is_finite_number(effect) for effect in effects):
+        raise ParameterValidationError("power curve effects must be finite numbers")
     return tuple(simulate_power(sample_size, float(effect), repetitions=repetitions, seed=int(Seed(seed)) + index) for index, effect in enumerate(effects))
 
 
@@ -688,7 +727,7 @@ def default_study_design() -> StudyDesign:
             ConditionSpec("duck_default", "visual.duck_rabbit", {}, ("duck", "rabbit")),
             ConditionSpec("sifi_one_beep", "audiovisual.sound_induced_flash", {"beep_count": 1}, ("one", "two")),
             ConditionSpec("sifi_two_beep", "audiovisual.sound_induced_flash", {"beep_count": 2}, ("one", "two")),
-            ConditionSpec("temporal_sync", "audiovisual.temporal_ventriloquism", {"sync_offset": 0.0}, ("early", "late")),
+            ConditionSpec("temporal_sync", "audiovisual.temporal_ventriloquism", {"config": {"sync_offset": 0.0}}, ("early", "late")),
         ),
         trials_per_condition=8,
         observers=24,

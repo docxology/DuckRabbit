@@ -181,7 +181,7 @@ def test_observer_design_randomization_synthetic_responses_and_power(tmp_path: P
     assert trials_a == trials_b
     assert len(trials_a) == 64
     temporal_trial = next(trial for trial in trials_a if trial.condition == "temporal_sync")
-    assert temporal_trial.parameter_overrides == {"sync_offset": 0.0}
+    assert temporal_trial.parameter_overrides == {"config": {"sync_offset": 0.0}}
     responses = simulate_binary_responses(
         design,
         ("observer-a", "observer-b"),

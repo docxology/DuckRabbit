@@ -32,7 +32,7 @@
       },
       "path": "output/figures/architecture.png",
       "seed": 0,
-      "sha256": "45aecca2a17f5add3801efa00ea4b1db0aab64e91202a167213977495792ff83",
+      "sha256": "47fd0df3bfb8c647453c329e5b666ce0a47365d512414500a0832848d1262fe8",
       "source_data": "output/data/architecture.json",
       "source_data_sha256": "56dfe00d4ab4a94c4ec186860adb6f6443b8aaa3826c5e40eddbaca92d590814",
       "title": "Architecture and provenance pipeline",
@@ -44,7 +44,7 @@
           "thumbnail"
         ],
         "thumbnail_height_px": 135,
-        "thumbnail_sha256": "bbb7177df8812f791dc45e50c77f8ff998fc10f4bea8cb5e453046fd1bec628c",
+        "thumbnail_sha256": "5798a8a9c6f369b907a6a84346e953e4be613298b6d5a1d1a7f192019da10176",
         "thumbnail_width_px": 320,
         "width_px": 1800
       }
@@ -80,7 +80,7 @@
       },
       "path": "output/figures/catalog_matrix.png",
       "seed": 0,
-      "sha256": "f448ea743a0c6994c67cf90258f2239a3ba95c6bd7058f1bc4cfe6f5fbec5490",
+      "sha256": "1c2f042ebee7234da6651f87ef5457ddff7748a512eb40acfaa585172b45ddde",
       "source_data": "output/data/catalog_matrix.json",
       "source_data_sha256": "eb9b709b1f5074c18806ae516f7f64f15b7b21127ebaa728cb91c1a661390d6d",
       "title": "Catalog taxonomy and scholarship",
@@ -92,7 +92,7 @@
           "thumbnail"
         ],
         "thumbnail_height_px": 286,
-        "thumbnail_sha256": "960fada2d4401fcc3e7066bc40f47ebe69f898f92facb60f232796725361cd6f",
+        "thumbnail_sha256": "b4b45802ce4d0be0fa27ca781edfbf7971cff4aba25e6af2090b442c084ddcab",
         "thumbnail_width_px": 320,
         "width_px": 1900
       }
@@ -137,9 +137,9 @@
       },
       "path": "output/figures/visual_panel.png",
       "seed": 0,
-      "sha256": "6817b889d589bf480aea0ae128b377279c82b0e6de0c60e8c967bc1373e80d41",
+      "sha256": "753d1bff20e1c12b8a17176c0c767182eb25f8ca88860ca063510e2f54071c71",
       "source_data": "output/data/visual_panel.json",
-      "source_data_sha256": "506b54c1eb89866f914dac1ceae0c160a5c008936d861a33ff0e0e44a43fea26",
+      "source_data_sha256": "07fd18efc9401de0c3a8f942cabae9cc4650643861d542d307d7903e71c4ceee",
       "title": "Complete panel of implemented visual constructions",
       "visual_qa": {
         "height_px": 1770,
@@ -149,7 +149,7 @@
           "thumbnail"
         ],
         "thumbnail_height_px": 298,
-        "thumbnail_sha256": "562609cd1a5e6c6c23b2e3c10dcb7d5b625c2f4e1b2028b54ce42aa4fc0fb13c",
+        "thumbnail_sha256": "1b31418d7e841eedace08d601da037781a29f1ca44d9f234e93d3ca6df6411ea",
         "thumbnail_width_px": 320,
         "width_px": 1900
       }
@@ -184,7 +184,7 @@
       },
       "path": "output/figures/visual_sweep.png",
       "seed": 0,
-      "sha256": "2f9d0dee01c817943d9e94c5ef86f6978ed154f4b03d6be60d8059d1b4e9b14a",
+      "sha256": "76a4943b9bea1bc5809b0a4ed83911b4d6a9fcf32f6e65f6f803d09a12fb1c34",
       "source_data": "output/data/visual_sweep.json",
       "source_data_sha256": "67d9ecff4ccaba01d7f9f0a0cd3dcce967e274447fcf84e7b491d9ac9224741b",
       "title": "Visual parameter sweep with physical readouts",
@@ -196,7 +196,7 @@
           "thumbnail"
         ],
         "thumbnail_height_px": 187,
-        "thumbnail_sha256": "cba995eb9344db10fc5d837963fe6d44d8f38354891c5f6a0bd68d418ba64a3b",
+        "thumbnail_sha256": "c101859b2858a515f33ac4bc5e1a19dea4424458314c0a40fa9f8b65fa970cf7",
         "thumbnail_width_px": 320,
         "width_px": 1800
       }
@@ -231,7 +231,7 @@
       },
       "path": "output/figures/temporal_sequence.png",
       "seed": 0,
-      "sha256": "b5cad92b79a2f5595c824430ec5b4f9fd0216059446b4b43db72b0f04c9d7fe2",
+      "sha256": "d98b2b8f364ebe9f1cbb8c5f4cfe3daa5658fe6a4846b4fb4ce08569382ae09f",
       "source_data": "output/data/temporal_sequence.json",
       "source_data_sha256": "de8158e5d09d8e5868b5c566223a51dafca6cc0b4e5b3d11284d64b5bc854a06",
       "title": "Temporal sequence, clock, and frame deltas",
@@ -243,7 +243,7 @@
           "thumbnail"
         ],
         "thumbnail_height_px": 138,
-        "thumbnail_sha256": "be831ca2cc5ae53be4b2de63beab18c9106aea98dcda5f19de6313a922e91f81",
+        "thumbnail_sha256": "a813ae987646d706683e6fd5294dc9f62618f0fa93667ba46804eba3815eb2c2",
         "thumbnail_width_px": 320,
         "width_px": 1900
       }
@@ -283,9 +283,9 @@
       },
       "path": "output/figures/audio_signals.png",
       "seed": 0,
-      "sha256": "195f6b1e369df77f06d960c74dea4d7cdf9e9fb5b4552dae45683a7c4cfc6c98",
+      "sha256": "1d91eddc6a590882563526844a8fa6f275c1234667460c232a5a9528b0d24103",
       "source_data": "output/data/audio_signals.json",
-      "source_data_sha256": "50feaa0adb88cd991ddcfc3e3e75d6d03f06d0c3ca363537295ca79266765c9f",
+      "source_data_sha256": "eb58adad3ac3221bd50747bb91c1e193cb9b27777ed7f763a55f907055063c0a",
       "title": "Auditory canonical signals and spectral summaries",
       "visual_qa": {
         "height_px": 1650,
@@ -295,7 +295,7 @@
           "thumbnail"
         ],
         "thumbnail_height_px": 278,
-        "thumbnail_sha256": "f3f008f54da796bbdeaff5aee212c6f2c147a4904f640dac3c5cf1bb1bf44270",
+        "thumbnail_sha256": "07cd88465111a3b0ece5b2cfc070b7feffae5397f6fedd7f4017d82fa2d62654",
         "thumbnail_width_px": 320,
         "width_px": 1900
       }
@@ -306,10 +306,10 @@
         "notes": "Interpret plotted values from the labels and source-data sidecar; color is not the sole encoding.",
         "text_labels": true
       },
-      "alt_text": "Two labeled traces share a normalized time axis: video mean luminance and audio absolute amplitude, with signed synchronization and spatial offsets printed below.",
+      "alt_text": "Two labeled traces share a time axis in seconds: video mean luminance and audio absolute amplitude, with signed synchronization and spatial offsets printed below.",
       "boundary_statement": "A shared-clock construction is not evidence that observers bind the events at the declared or any other perceptual time.",
-      "caption": "What this figure shows: Two labeled traces share a normalized time axis: video mean luminance and audio absolute amplitude, with signed synchronization and spatial offsets printed below. Video mean luminance and rectified audio amplitude are placed on a common normalized time axis for the sound-induced-flash construction. Source data output/data/audiovisual_timeline.json records the video frame clock, audio sampling clock, event traces, signed audio-minus-video synchronization offset in milliseconds, and normalized spatial discrepancy; alignment is declared by the generator, not estimated from perception. Controls: audiovisual.sound_induced_flash default shared timeline; declared sync offset \u0394AV and spatial offset; seed s=0. Objective facts: video luminance and audio envelope on normalized shared time; \u0394AV in ms; spatial discrepancy in normalized units; frame and sample clocks in the sidecar. Claim level: physical_metric. Source data: output/data/audiovisual_timeline.json (SHA-256 digest recorded in the figure registry). Evidence lineage: shams2000sifi, hirst2020sound, vroomen2004temporal, hartcherobrien2011temporal. Limitations: Display refresh, audio hardware, event latency, and observer temporal binding are not measured by this figure. Boundary: A shared-clock construction is not evidence that observers bind the events at the declared or any other perceptual time.",
-      "caption_core": "Video mean luminance and rectified audio amplitude are placed on a common normalized time axis for the sound-induced-flash construction. Source data output/data/audiovisual_timeline.json records the video frame clock, audio sampling clock, event traces, signed audio-minus-video synchronization offset in milliseconds, and normalized spatial discrepancy; alignment is declared by the generator, not estimated from perception.",
+      "caption": "What this figure shows: Two labeled traces share a time axis in seconds: video mean luminance and audio absolute amplitude, with signed synchronization and spatial offsets printed below. Video mean luminance and rectified audio amplitude are placed on a common time axis in seconds with video frame holds and actual audio sample timestamps for the sound-induced-flash construction. Source data output/data/audiovisual_timeline.json records the video frame clock, audio sampling clock, event traces, signed audio-minus-video synchronization offset in milliseconds, and normalized spatial discrepancy; alignment is declared by the generator, not estimated from perception. Controls: audiovisual.sound_induced_flash default shared timeline; declared sync offset \u0394AV and spatial offset; seed s=0. Objective facts: video frame-hold luminance and mean-channel absolute audio amplitude on shared time in seconds; \u0394AV in ms; spatial discrepancy in normalized units; frame and sample clocks in the sidecar. Claim level: physical_metric. Source data: output/data/audiovisual_timeline.json (SHA-256 digest recorded in the figure registry). Evidence lineage: shams2000sifi, hirst2020sound, vroomen2004temporal, hartcherobrien2011temporal. Limitations: Display refresh, audio hardware, event latency, and observer temporal binding are not measured by this figure. Boundary: A shared-clock construction is not evidence that observers bind the events at the declared or any other perceptual time.",
+      "caption_core": "Video mean luminance and rectified audio amplitude are placed on a common time axis in seconds with video frame holds and actual audio sample timestamps for the sound-induced-flash construction. Source data output/data/audiovisual_timeline.json records the video frame clock, audio sampling clock, event traces, signed audio-minus-video synchronization offset in milliseconds, and normalized spatial discrepancy; alignment is declared by the generator, not estimated from perception.",
       "claim_level": "physical_metric",
       "controls": "audiovisual.sound_induced_flash default shared timeline; declared sync offset \u0394AV and spatial offset; seed s=0",
       "evidence_references": [
@@ -325,16 +325,16 @@
       "limitations": [
         "Display refresh, audio hardware, event latency, and observer temporal binding are not measured by this figure."
       ],
-      "objective_facts": "video luminance and audio envelope on normalized shared time; \u0394AV in ms; spatial discrepancy in normalized units; frame and sample clocks in the sidecar",
+      "objective_facts": "video frame-hold luminance and mean-channel absolute audio amplitude on shared time in seconds; \u0394AV in ms; spatial discrepancy in normalized units; frame and sample clocks in the sidecar",
       "parameters": {
         "figure_stem": "audiovisual_timeline",
         "seed": 0
       },
       "path": "output/figures/audiovisual_timeline.png",
       "seed": 0,
-      "sha256": "7c2b013a00d2414595946b59e07a59d695f6285e3eb4e71319c60d74e528a51e",
+      "sha256": "dd914f5546b050d2dabcf3d8c8f4810ca31cf79f639d51f2f8fbe592f6321e1b",
       "source_data": "output/data/audiovisual_timeline.json",
-      "source_data_sha256": "4abf26bd6d464ec8e359319c7e0e9974d5d320f611bdd2295689bb4f37dc8190",
+      "source_data_sha256": "31b970acf01ecd12263c91dba66d19488237a081e85cc023f4700c1fc33f74aa",
       "title": "Audiovisual shared-clock timeline and declared offsets",
       "visual_qa": {
         "height_px": 1020,
@@ -344,7 +344,7 @@
           "thumbnail"
         ],
         "thumbnail_height_px": 172,
-        "thumbnail_sha256": "77359144dc3ceab0daba61d461191cb6a6e5b12beb49a8f7c3d7441ac4d92511",
+        "thumbnail_sha256": "f6693773ecb94707247b0317db7dce91213d1733931e1b5541108fce0e90b781",
         "thumbnail_width_px": 320,
         "width_px": 1900
       }
@@ -378,9 +378,9 @@
       },
       "path": "output/figures/encoding_verification.png",
       "seed": 0,
-      "sha256": "d6e3a1d448c3e07e1295a805514bce5a74803a8142679ea1e133d3686d4d1121",
+      "sha256": "57db19b10115a3f069323d48c28e92aad72a5f00631b46c0b8ecf37a571eff0e",
       "source_data": "output/data/encoding_verification.json",
-      "source_data_sha256": "33954944c7ff9556e9c64f77f91767a7f9176b222384b520a9a646372ca6d441",
+      "source_data_sha256": "8acf49c46c7a7f6b95495e9aec3c41a2aa9f7802802a2a5b0f9e594698031242",
       "title": "Encoding profiles and verification scope",
       "visual_qa": {
         "height_px": 900,
@@ -390,7 +390,7 @@
           "thumbnail"
         ],
         "thumbnail_height_px": 152,
-        "thumbnail_sha256": "74b0de292589f3c7a69a786d4f6b63d2c0cef705d6c6fcf0ab51eccd8c5193b2",
+        "thumbnail_sha256": "186d60202724cb461f5b25e3d0cfd9d13371fde33d84b9456bbd8fbc82d05d32",
         "thumbnail_width_px": 320,
         "width_px": 1900
       }
@@ -425,7 +425,7 @@
       },
       "path": "output/figures/synthetic_psychophysics.png",
       "seed": 0,
-      "sha256": "363ae9b572038dc1d3049ee1a80eacafe4500d8498714b2c289ba1c7e3e7de53",
+      "sha256": "8a0542a750e4a4867032dd723f18b022fffe9e52c9398cda02149aa9ac306602",
       "source_data": "output/data/synthetic_psychophysics.json",
       "source_data_sha256": "cad6fc73e34c89c0cf0a44f3343f2dd21693cdb33c27c982bfc7485248c9b25d",
       "title": "Synthetic observer diagnostic\u2014model output, not human psychophysics",
@@ -437,7 +437,7 @@
           "thumbnail"
         ],
         "thumbnail_height_px": 177,
-        "thumbnail_sha256": "a7ec650be86b831791ed67e4d462792bf954ee56d663b4b932ab948d288f2231",
+        "thumbnail_sha256": "085606a82ba77d124d724e2c1143ce3303c215a51820bfeda566d2aa28a2661f",
         "thumbnail_width_px": 320,
         "width_px": 1900
       }
@@ -472,7 +472,7 @@
       },
       "path": "output/figures/claim_boundary.png",
       "seed": 0,
-      "sha256": "04631b9f34be2ecf6d7571788e7c4522786c0256b53d13f6062e3680822162b4",
+      "sha256": "3050b64ba1739d218bab5e725379a692de1e7a1911b6cb1035a0e7a1f9d21bc7",
       "source_data": "output/data/claim_boundary.json",
       "source_data_sha256": "2e90af87b66b943bc02516d3e5d38cbd17fc4f476887ac1a8c6c92416aa50d3f",
       "title": "Claim-level boundary from artifact to observer hypothesis",
@@ -484,7 +484,7 @@
           "thumbnail"
         ],
         "thumbnail_height_px": 177,
-        "thumbnail_sha256": "99bd268c774bd8cf2dff080063c40637fd9a98b24af38f41b2785a3364c04759",
+        "thumbnail_sha256": "4bf9b5fa4f1574b7870fd889c1419e35a818c1f00542232f406bef5398cd6c41",
         "thumbnail_width_px": 320,
         "width_px": 1900
       }
@@ -522,7 +522,7 @@
       },
       "path": "output/figures/scholarship_map.png",
       "seed": 0,
-      "sha256": "85e5ce57d17aa43982d4f1f424b58699b5d7a8d21de05f3e3a1afae575ca4f80",
+      "sha256": "3e63d31d1fe8e78b1ab16d96d9a3b02535a45e9aae739b0e7e72e593e8182d7f",
       "source_data": "output/data/scholarship_map.json",
       "source_data_sha256": "2eeb7d1962e8181f07d359a66605356558b334a9b1e5920d090bbe75d94ff679",
       "title": "Source-tiered scholarship map and evidence gaps",
@@ -534,7 +534,7 @@
           "thumbnail"
         ],
         "thumbnail_height_px": 320,
-        "thumbnail_sha256": "ab97c58aa1ac16a579cf6ce329aa96689f35e4dce77189c2c746d5921699dbb4",
+        "thumbnail_sha256": "6e89d47f0f599f31d2e83bcb1f786e64b9f1359346dc92008f35a1e8f72220fe",
         "thumbnail_width_px": 283,
         "width_px": 2050
       }
@@ -570,9 +570,9 @@
       },
       "path": "output/figures/formalism_traceability.png",
       "seed": 0,
-      "sha256": "b1a389d515150e4036ecedf340b0e5312944e6f718a8168a2e348e1b987ef66f",
+      "sha256": "6c5689e0cc06d0a92245e60a63fe2e516959a1a2550f35ff63ec7fcdc82a5c9c",
       "source_data": "output/data/formalism_traceability.json",
-      "source_data_sha256": "98482521beda63189a30da0469cd69c1acadea1bdd459839b844fd384264ace4",
+      "source_data_sha256": "2d2a3125f76d9cbc1ef061577768671dd660f4e36958baeb02e240dcbf324c55",
       "title": "Formal definitions and implementation traceability",
       "visual_qa": {
         "height_px": 1840,
@@ -582,7 +582,7 @@
           "thumbnail"
         ],
         "thumbnail_height_px": 287,
-        "thumbnail_sha256": "f788daf5311015f35d1059efc1b4351a3d83c32fe7365464450f72b702050867",
+        "thumbnail_sha256": "de5733acc404f34f9bb6830247f603aa8e30f6721cf84104a001507ad6f7959b",
         "thumbnail_width_px": 320,
         "width_px": 2050
       }
@@ -617,7 +617,7 @@
       },
       "path": "output/figures/metrics_dashboard.png",
       "seed": 0,
-      "sha256": "089206adbbe5d9d42e2d99f6c974ffd0377319582c90b94ba141792424e3b47d",
+      "sha256": "a44d50b97c6d9e6b6a3046c84a471bb670b768452ec57041297c2ca20dc8397e",
       "source_data": "output/data/metrics_dashboard.json",
       "source_data_sha256": "a06007220b998c05136c2a8fe29890588cdb8b4db54117c4e53a78c8d9f20b04",
       "title": "Objective metrics dashboard with units and provenance",
@@ -629,7 +629,7 @@
           "thumbnail"
         ],
         "thumbnail_height_px": 205,
-        "thumbnail_sha256": "f5999af7b73b3fa956c501127bc6097ffd5b18aedc6a71f27fd602dd0ed5a928",
+        "thumbnail_sha256": "cb0c966db9b1066fc2956f542f6561ba0c872f63852a4bfed60b3d4ec71568b9",
         "thumbnail_width_px": 320,
         "width_px": 1950
       }
@@ -663,7 +663,7 @@
       },
       "path": "output/figures/parameter_domains.png",
       "seed": 0,
-      "sha256": "38efcfe5e90744985ea911c426524033fb2c70f18c7ef18a804363533650107f",
+      "sha256": "b4a79d7a4c96a679b6329a19fbc7ba2d15d124e48e4e229fb7d81b673c2b84aa",
       "source_data": "output/data/parameter_domains.json",
       "source_data_sha256": "6f27254af2e3cfa8a35a0d7aaa3a1ab3bda61e5bf490e21d795979efc16c8ab4",
       "title": "Typed parameter domains and units",
@@ -675,7 +675,7 @@
           "thumbnail"
         ],
         "thumbnail_height_px": 213,
-        "thumbnail_sha256": "3e4f4627f4fa5fa69509861840f03ad582f067907f29610da447b0cbdfb59d08",
+        "thumbnail_sha256": "2dac5f592e751cc93f9333dc6aa9612ca5b28d0b4928138066a05d59017c1e0e",
         "thumbnail_width_px": 320,
         "width_px": 1950
       }
@@ -709,7 +709,7 @@
       },
       "path": "output/figures/observer_protocol.png",
       "seed": 0,
-      "sha256": "a43fa678a81ab18e1c93b9d8cd58146eda7054a0afe673e96b29b710cdbab4a0",
+      "sha256": "376c99f0c0321218c6314ccda7a4c97d64ae44f9717344cde12eba14df706665",
       "source_data": "output/data/observer_protocol.json",
       "source_data_sha256": "e39ac2a51d58e17e0868f6afe17ad9d9968c790c84c171a5284ff7f88df80109",
       "title": "Observer protocol scaffold and estimand boundary",
@@ -721,7 +721,7 @@
           "thumbnail"
         ],
         "thumbnail_height_px": 206,
-        "thumbnail_sha256": "a6551a47a67300e2430188e52ef0af864563183807a968135292fc8616e2a705",
+        "thumbnail_sha256": "274d8d1287599109e3aa07549166519e7296b2b2abeabac1c77ee0e692b9a405",
         "thumbnail_width_px": 320,
         "width_px": 2050
       }

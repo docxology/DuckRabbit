@@ -14,6 +14,7 @@ from enum import Enum
 import re
 
 from .evidence import load_evidence_matrix
+from .publication_specs import _OVERCLAIM_PATTERNS
 from .taxonomy import ClaimLevel, taxonomy_entries
 
 
@@ -29,7 +30,17 @@ class ClaimBasis(str, Enum):
     PUBLICATION_ILLUSTRATION = "publication_illustration"
 
 
-_OVERCLAIM = re.compile(r"\b(universal|causes?|proves?|participants? reported|observers? (?:will|do|always|must))\b", re.I)
+_OVERCLAIM = re.compile("|".join(_OVERCLAIM_PATTERNS), re.I)
+
+_BASIS_LEVELS = {
+    ClaimBasis.DERIVED_FROM_CODE: {ClaimLevel.CANONICAL_STIMULUS, ClaimLevel.PHYSICAL_METRIC, ClaimLevel.OBSERVER_HYPOTHESIS},
+    ClaimBasis.DERIVED_FROM_CANONICAL_ARTIFACT: {ClaimLevel.CANONICAL_STIMULUS, ClaimLevel.PHYSICAL_METRIC},
+    ClaimBasis.DERIVED_FROM_DECODED_MEDIA: {ClaimLevel.ENCODED_MEDIA, ClaimLevel.PHYSICAL_METRIC},
+    ClaimBasis.CHECKED_IN_SCHOLARSHIP: {ClaimLevel.SOURCE_SUPPORTED, ClaimLevel.OBSERVER_EFFECT, ClaimLevel.VALIDATED_OBSERVER_EFFECT, ClaimLevel.GENERALIZATION},
+    ClaimBasis.SYNTHETIC_MODEL_OUTPUT: {ClaimLevel.SYNTHETIC_MODEL_OUTPUT},
+    ClaimBasis.FUTURE_OBSERVER_HYPOTHESIS: {ClaimLevel.OBSERVER_HYPOTHESIS},
+    ClaimBasis.PUBLICATION_ILLUSTRATION: {ClaimLevel.PUBLICATION_ILLUSTRATION},
+}
 
 
 @dataclass(frozen=True)
@@ -53,7 +64,13 @@ class ClaimRecord:
             raise ValueError("claim requires non-empty source or artifact lineage")
         if not self.limitation.strip():
             raise ValueError("claim requires an explicit limitation")
-        if _OVERCLAIM.search(self.text) and self.claim_level not in {ClaimLevel.OBSERVER_HYPOTHESIS, ClaimLevel.VALIDATED_OBSERVER_EFFECT}:
+        if self.claim_level not in _BASIS_LEVELS[self.basis]:
+            raise ValueError("claim basis is incompatible with claim level")
+        observer_basis = self.basis is ClaimBasis.FUTURE_OBSERVER_HYPOTHESIS or (
+            self.basis is ClaimBasis.CHECKED_IN_SCHOLARSHIP
+            and self.claim_level in {ClaimLevel.OBSERVER_EFFECT, ClaimLevel.VALIDATED_OBSERVER_EFFECT}
+        )
+        if _OVERCLAIM.search(self.text) and not observer_basis:
             raise ValueError("deterministic or source claim contains observer overclaim language")
 
     def to_dict(self) -> dict[str, object]:

@@ -2,12 +2,37 @@
 
 from __future__ import annotations
 
+from collections.abc import Iterable, Mapping
 from dataclasses import dataclass, field
+import math
 import random
 from types import MappingProxyType
-from typing import Iterable, Mapping
 
 from .parameters import DurationSeconds, Seed
+from .serialization import jsonable
+
+
+def _freeze_overrides(value: object) -> object:
+    """Copy nested override containers into immutable snapshots."""
+    return _freeze_normalized_overrides(jsonable(value))
+
+
+def _freeze_normalized_overrides(value: object) -> object:
+    """Freeze a tree already normalized to JSON primitives."""
+    if isinstance(value, dict):
+        return MappingProxyType({key: _freeze_normalized_overrides(item) for key, item in value.items()})
+    if isinstance(value, list):
+        return tuple(_freeze_normalized_overrides(item) for item in value)
+    return value
+
+
+def _thaw_overrides(value: object) -> object:
+    """Return fresh serialization containers for a frozen override snapshot."""
+    if isinstance(value, Mapping):
+        return {key: _thaw_overrides(item) for key, item in value.items()}
+    if isinstance(value, (tuple, frozenset)):
+        return [_thaw_overrides(item) for item in value]
+    return value
 
 
 def _deterministic_rng(seed: int | Seed) -> random.Random:
@@ -35,7 +60,8 @@ class TrialSpec:
             raise ValueError("trial response labels must be non-empty strings")
         if not isinstance(self.parameter_overrides, Mapping) or not all(isinstance(key, str) and key for key in self.parameter_overrides):
             raise ValueError("trial parameter_overrides must be a string-keyed mapping")
-        object.__setattr__(self, "parameter_overrides", MappingProxyType(dict(self.parameter_overrides)))
+        object.__setattr__(self, "parameter_overrides", _freeze_overrides(self.parameter_overrides))
+        object.__setattr__(self, "expected_response_labels", tuple(self.expected_response_labels))
 
     def to_dict(self) -> dict[str, object]:
         """Serialize trial identity and declared condition parameters."""
@@ -45,7 +71,7 @@ class TrialSpec:
             "condition": self.condition,
             "seed": int(self.seed),
             "expected_response_labels": list(self.expected_response_labels),
-            "parameter_overrides": dict(self.parameter_overrides),
+            "parameter_overrides": _thaw_overrides(self.parameter_overrides),
         }
 
 
@@ -80,10 +106,16 @@ class ObserverAggregate:
             raise ValueError("aggregate identity is required")
         if type(self.sample_count) is not int or self.sample_count < 1:
             raise ValueError("aggregate sample_count must be positive")
-        if self.mean_reaction_time <= 0:
-            raise ValueError("aggregate mean_reaction_time must be positive")
+        if not math.isfinite(self.mean_reaction_time) or self.mean_reaction_time <= 0:
+            raise ValueError("aggregate mean_reaction_time must be finite and positive")
         if not self.response_counts or any(type(count) is not int or count < 0 for _, count in self.response_counts):
             raise ValueError("aggregate response counts are invalid")
+        labels = [label for label, _ in self.response_counts]
+        if not all(isinstance(label, str) and label for label in labels) or len(set(labels)) != len(labels):
+            raise ValueError("aggregate response labels must be non-empty and unique")
+        if sum(count for _, count in self.response_counts) != self.sample_count:
+            raise ValueError("aggregate response counts must sum to sample_count")
+        object.__setattr__(self, "response_counts", tuple(tuple(item) for item in self.response_counts))
 
 
 def randomized_trials(trials: Iterable[TrialSpec], seed: int | Seed) -> tuple[TrialSpec, ...]:
@@ -96,9 +128,18 @@ def randomized_trials(trials: Iterable[TrialSpec], seed: int | Seed) -> tuple[Tr
 
 def aggregate_responses(trials: Iterable[TrialSpec], responses: Iterable[ObserverResponse]) -> tuple[ObserverAggregate, ...]:
     """Aggregate responses by illusion and condition with explicit missing-data checks."""
-    trial_map = {trial.trial_id: trial for trial in trials}
+    trial_map: dict[str, TrialSpec] = {}
+    for trial in trials:
+        if trial.trial_id in trial_map:
+            raise ValueError(f"duplicate trial_id {trial.trial_id}")
+        trial_map[trial.trial_id] = trial
     groups: dict[tuple[str, str], list[ObserverResponse]] = {}
+    seen: set[tuple[str, str]] = set()
     for response in responses:
+        identity = (response.trial_id, response.observer_key)
+        if identity in seen:
+            raise ValueError(f"duplicate response for trial and observer {identity}")
+        seen.add(identity)
         trial = trial_map.get(response.trial_id)
         if trial is None:
             raise ValueError(f"response references unknown trial {response.trial_id}")

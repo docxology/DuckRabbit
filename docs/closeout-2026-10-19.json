@@ -1,0 +1,153 @@
+{
+  "base_commit": "e16f8ea743ec6ba2ed41412ab7ed2a49bc179caa",
+  "checks": {
+    "diff_check": {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0
+    },
+    "offline_scholarship": {
+      "command": [
+        ".venv/bin/python",
+        "scripts/validate_scholarship.py"
+      ],
+      "exit_code": 0
+    },
+    "pytest": {
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "pytest",
+        "tests/",
+        "--cov=src/duckrabbit",
+        "--cov-branch",
+        "--cov-fail-under=90",
+        "-q"
+      ],
+      "exit_code": 0
+    },
+    "release_audit": {
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "duckrabbit",
+        "audit",
+        "--output-root",
+        "output",
+        "--release"
+      ],
+      "exit_code": 0
+    },
+    "ruff": {
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "ruff",
+        "check",
+        "src",
+        "scripts",
+        "tests"
+      ],
+      "exit_code": 0
+    }
+  },
+  "date": "2026-10-19",
+  "diagnostics_before": {
+    "active_leases": 6,
+    "barrier_in_use": true,
+    "duckrabbit_lease_present": false,
+    "exclusive_collection_active": false,
+    "protocol": 1
+  },
+  "duckrabbit_lease_during_validation": [
+    {
+      "kind": "repository",
+      "lease_id": "0a62169e48984de0918bacff558390c1",
+      "operation": "duckrabbit-source-closeout",
+      "ownership_available": true,
+      "pid": 6856,
+      "repository": "docxology/DuckRabbit",
+      "started": "2026-10-19T15:22:30.755468+00:00"
+    }
+  ],
+  "files_stable_during_validation": true,
+  "lease_protocol": "vault --wait with-repo docxology/DuckRabbit",
+  "publication": "authorized; result verified separately after final lease-bound selection checks",
+  "pytest_summary": {
+    "branch_inclusive_coverage_percent": 91.08,
+    "passed": 540
+  },
+  "python": "3.15.0",
+  "release_audit": {
+    "checks": [
+      "taxonomy",
+      "metadata",
+      "evidence",
+      "formalism",
+      "generators",
+      "figure_registry",
+      "cover",
+      "publication_bundle",
+      "visual_qa",
+      "publication_report"
+    ],
+    "error_count": 0,
+    "generated_artifacts": 17,
+    "issue_count": 0,
+    "issues": [],
+    "schema_version": "duckrabbit/audit/v1",
+    "status": "passed",
+    "warning_count": 0
+  },
+  "rendering": "awaiting independent isolated TeX support kit final verification; no new PDF claim",
+  "schema_version": "duckrabbit/source-closeout/v1",
+  "source_files": {
+    "pyproject.toml": "0a441473c42d7f72083b6630688a12584dddeaf7447400b7e8679a8ef8d33eab",
+    "scripts/profile_workloads.py": "069643c24e155662c16e09f49491e52aca148e9195e987a469ec479ac6f01854",
+    "src/duckrabbit/__init__.py": "f599a67b2da95b043ed362ec7d3327403ce3cd97cc80d4226dd074b4f20c9e31",
+    "src/duckrabbit/__main__.py": "38a44d8a531c692cde2dad2f4ed8f2b03d4e8e6e9665f2a0748db8d3e8ed4c5f",
+    "src/duckrabbit/artifacts.py": "f8bb6412ce2ddf8da4103f7d257309949e14c87346fb1f87955a38b392dd652e",
+    "src/duckrabbit/audit.py": "b4fd92b7eaee8322e15ef69a6ee9f5eb23a5dfd4815ea0390cb61adc16f106fd",
+    "src/duckrabbit/canonical.py": "341cd875cf3b932b78c21a204279a6a4436032ecae2940d036ff78d5a32dd5ba",
+    "src/duckrabbit/claims.py": "45baf0ed7df2f3c8b640d64b1c18c4ac44deefd13ebd95bce45c3ade1c67c334",
+    "src/duckrabbit/cli.py": "78ee54d825664351a2d4313acaee84dd2a852e96e9148c4d96c72d2c53a44db8",
+    "src/duckrabbit/cover.py": "586adbc29d7c7d78e285f3535d4742c4cffe4449ccbb831fd330168934f7842f",
+    "src/duckrabbit/errors.py": "0427c790ac511f233d34831c4c5a564284feb3d8178c627452d05d0b2adcb982",
+    "src/duckrabbit/evidence.py": "11acd826043a73045bffdfaebd1950157efa7e9706cb4e4d8af6e86283966b7b",
+    "src/duckrabbit/fixtures.py": "fc476897da838a3e0b58cfd238284c557ef25a7f480c4eca903350163ef8ab2c",
+    "src/duckrabbit/formalism.py": "21d1b61ad2b8d68abdda96923705fbda474ad034f9f9fde98802f423ba2e9680",
+    "src/duckrabbit/generators.py": "b9b9bedf619f139706f527d17483691ee3721e3a30bb9e799263853baa8f4bbb",
+    "src/duckrabbit/inspection.py": "95117acbaa8edcf9bd836db30b96f87a157576bbb16c31e76d12f41a7dfdfc1d",
+    "src/duckrabbit/io.py": "e0733086584534933917ef586df80ee252b0d41fa486d65bb169e4abb384b672",
+    "src/duckrabbit/manifest.py": "c57a5dd48c0ab76b204e2256786680e8aa82ee4eec89b9c7400c70d83ee82cf1",
+    "src/duckrabbit/manuscript_variables.py": "96df129cb78e5b667267d4dd7fb0d975897d1a11941bf4608598715fd8445c7a",
+    "src/duckrabbit/media.py": "e4de01a4d65f4823efe80e7967da5e405876831c54a21a48b17e94f2b2b5201f",
+    "src/duckrabbit/metadata.py": "54ae961b864bd10aeb9c9e4016e714f64f779747bd6e45593e744a365d6adc61",
+    "src/duckrabbit/metrics.py": "1587df3d21987793862d6bb2f8c3f163c99e47ac8990e5cde149ad4e959de0c9",
+    "src/duckrabbit/observer.py": "335b837a06d36b19c2eb06de14c5986b973d262261f75459c3ddad4c2a4e80b3",
+    "src/duckrabbit/observer_analysis.py": "b5c604535e081e6e216a40d5cb239013b8b784debd0918a59914bc790b11b2ef",
+    "src/duckrabbit/parameters.py": "d8e0ee456ba5aa6b33f36d354269f4a6b95fa01a3d6b508c54899ec64f897736",
+    "src/duckrabbit/performance.py": "6111eb9dbfb802712605b0b0d455d4d1e9076059d1244fa52efc6d6658d775d8",
+    "src/duckrabbit/publication.py": "75dbedcb35342ad7f2a8816109a8ad5658e9be00893be7627dc3132b0d19b63b",
+    "src/duckrabbit/publication_specs.py": "5a516979ef8b3a3ca06dc26bc9051d37b6c93d00e8b3232cd5eae3b0097be4cc",
+    "src/duckrabbit/registry.py": "57cc07270e6d5e82ec76d57f28f6754010987c64d7e928a5027ba34c2a42ce83",
+    "src/duckrabbit/render.py": "2d9ffebe450da8de27c0287325ba1108be370041e76b63261d985108de7cbcdf",
+    "src/duckrabbit/schema.py": "8f6690da70c2f958e8c77b0d94e2304df28c19e6fe0d8a7711b42f73725a27db",
+    "src/duckrabbit/scholarship.py": "d36a9a4d2db280bbbd673371e30e1770cb14fd81fdca6c3d547d9c2f9f764e37",
+    "src/duckrabbit/serialization.py": "2f8ad9938db971bc6b71bde18bb15258f566402635c693dfa2f89ae5e30a7563",
+    "src/duckrabbit/synthetic_psychophysics.py": "6af54f3a42d9da41794124d24bd4604c8561ce6b537575e5076c177d0fc975a9",
+    "src/duckrabbit/taxonomy.py": "cbe0d90f91f5e8d0742cda31622bdef478860c85a592bf893bab429067a3d61e",
+    "src/duckrabbit/urls.py": "106e6cff9db04e3c56a01fc19d08c2864bbc4b402a8df0c339cc46a36c892017",
+    "src/duckrabbit/version.py": "066495a66c7cfa12a328f723c04396d25afc72ca0f849be097b4421abeb6c142"
+  },
+  "validation_logs_sha256": {
+    "diff_check": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "offline_scholarship": "4708771640ed3457479c589c70620eacaa1ec7da42c83f8d39c4d2348f179df2",
+    "pytest": "f54e721405a606e8c0bff68c851577c6b19a223ee6fd019b61ff8c6c73c25674",
+    "release_audit": "8742de0842df7a212fccf1396078c2f6d8aa8975df3bec981d91cfa58d9bfca7",
+    "ruff": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  }
+}

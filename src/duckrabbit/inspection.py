@@ -8,17 +8,30 @@ import re
 import shutil
 import subprocess  # nosec B404 -- ffprobe is invoked with a fixed argv and shell=False
 import wave
+import zipfile
+import zlib
+from collections.abc import Mapping
 from pathlib import Path
-from typing import Mapping
 
 import numpy as np
 
-from .errors import BackendUnavailableError, DuckRabbitError, MediaInspectionError, VerificationError
 from .canonical import canonical_digest
-from .manifest import DecodedInspection, VerificationStatus, read_manifest
+from .errors import (
+    BackendUnavailableError,
+    DuckRabbitError,
+    ManifestValidationError,
+    MediaInspectionError,
+    VerificationError,
+)
+from .manifest import (
+    DecodedInspection,
+    VerificationStatus,
+    _read_manifest_document,
+    upconvert_v1_manifest,
+    validate_manifest_payload,
+)
 from .media import read_npz
 from .parameters import BackendKind, MediaFormat
-
 
 InspectionResult = DecodedInspection
 
@@ -53,6 +66,13 @@ def inspect_media(path: Path, format_name: str | MediaFormat | None = None) -> I
                     "frames": getattr(image, "n_frames", 1),
                     "duration_ms": image.info.get("duration"),
                 }
+                duration_ms = 0
+                for frame_index in range(facts["frames"]):
+                    image.seek(frame_index)
+                    image.load()
+                    duration_ms += image.info.get("duration", 0)
+                if selected is MediaFormat.GIF:
+                    facts["duration_seconds"] = duration_ms / 1000.0
         except (OSError, ValueError) as exc:
             raise MediaInspectionError(f"cannot decode image artifact {path}: {exc}") from exc
         return InspectionResult(selected, BackendKind.PILLOW, "image" if selected is MediaFormat.PNG else "video", facts)
@@ -66,6 +86,12 @@ def inspect_media(path: Path, format_name: str | MediaFormat | None = None) -> I
                     "frames": handle.getnframes(),
                     "duration_seconds": handle.getnframes() / handle.getframerate(),
                 }
+                remaining = handle.getnframes() * handle.getnchannels() * handle.getsampwidth()
+                while remaining:
+                    chunk = handle.readframes(min(65536, handle.getnframes()))
+                    if not chunk:
+                        raise EOFError("WAV payload is shorter than the declared frame count")
+                    remaining -= len(chunk)
         except (OSError, EOFError, wave.Error) as exc:
             raise MediaInspectionError(f"cannot decode WAV artifact {path}: {exc}") from exc
         return InspectionResult(selected, BackendKind.PYTHON_WAVE, "audio", facts)
@@ -73,11 +99,13 @@ def inspect_media(path: Path, format_name: str | MediaFormat | None = None) -> I
         try:
             with np.load(path, allow_pickle=False) as archive:
                 metadata = json.loads(str(archive["metadata_json"].item()))
+                if not isinstance(metadata, dict):
+                    raise TypeError("NPZ metadata must contain an object")
                 facts = {"arrays": sorted(key for key in archive.files if key != "metadata_json"), "metadata": metadata}
                 for key in facts["arrays"]:
                     facts[f"{key}_shape"] = list(archive[key].shape)
                 _add_npz_derived_facts(facts)
-        except (OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
+        except (OSError, ValueError, KeyError, TypeError, EOFError, zipfile.BadZipFile, zlib.error) as exc:
             raise MediaInspectionError(f"cannot decode NPZ artifact {path}: {exc}") from exc
         return InspectionResult(selected, BackendKind.NUMPY, str(facts["metadata"].get("kind", "unknown")), facts)
     if selected is MediaFormat.MP4:
@@ -110,6 +138,18 @@ def _inspect_mp4(path: Path) -> InspectionResult:
     if not isinstance(streams, list) or not streams:
         raise MediaInspectionError(f"ffprobe returned no streams for {path}")
     facts = {"streams": streams, "duration_seconds": float(payload.get("format", {}).get("duration", 0.0) or 0.0)}
+    audio = next((stream for stream in streams if stream.get("codec_type") == "audio"), None)
+    if audio is not None and audio.get("codec_name") == "aac":
+        packet_command = [
+            executable, "-v", "error", "-select_streams", "a:0", "-read_intervals", "%+#1",
+            "-show_packets", "-show_entries", "packet=pts_time", "-of", "json", str(path),
+        ]
+        try:
+            packet_result = subprocess.run(packet_command, check=True, capture_output=True, text=True, timeout=30.0)
+            packets = json.loads(packet_result.stdout)["packets"]
+            facts["audio_onset_seconds"] = float(packets[0]["pts_time"]) + 1024.0 / float(audio["sample_rate"])
+        except (OSError, subprocess.CalledProcessError, subprocess.TimeoutExpired, ValueError, KeyError, IndexError, TypeError) as exc:
+            raise MediaInspectionError(f"ffprobe could not inspect AAC onset in {path}: {exc}") from exc
     kind = "audiovisual" if {stream.get("codec_type") for stream in streams} == {"audio", "video"} else "video"
     return InspectionResult(MediaFormat.MP4, BackendKind.FFMPEG, kind, facts)
 
@@ -117,7 +157,10 @@ def _inspect_mp4(path: Path) -> InspectionResult:
 def verify_manifest(path: Path) -> dict[str, object]:
     """Verify an encoded artifact and its manifest as a negative-control oracle."""
     manifest_path = Path(path)
-    payload = read_manifest(manifest_path)
+    payload = _read_manifest_document(manifest_path)
+    legacy = payload["schema_version"] == "duckrabbit/artifact/v1"
+    if legacy:
+        payload = upconvert_v1_manifest(payload)
     encoded = payload.get("encoding")
     output = payload.get("output")
     if not isinstance(encoded, Mapping):
@@ -172,6 +215,10 @@ def verify_manifest(path: Path) -> dict[str, object]:
             errors.append("encoded SHA-256 does not match manifest")
         else:
             checks.append("encoded_sha256")
+    if encoded.get("size_bytes") != output_path.stat().st_size:
+        errors.append("encoded size_bytes does not match manifest")
+    else:
+        checks.append("encoded_size_bytes")
     # Decode according to the file suffix, while treating a conflicting
     # manifest format as an error. This keeps malformed metadata diagnosable
     # instead of allowing a wrong format request to crash the verifier.
@@ -198,6 +245,11 @@ def verify_manifest(path: Path) -> dict[str, object]:
                 errors.append("canonical digest does not match decoded NPZ artifact")
             else:
                 checks.append("canonical_digest")
+    if not legacy:
+        try:
+            validate_manifest_payload(payload)
+        except ManifestValidationError as exc:
+            errors.append(f"manifest validation failed: {exc}")
     status = VerificationStatus.FAILED if errors else VerificationStatus.VERIFIED
     return {
         "status": status.value,
@@ -333,8 +385,7 @@ def _compare_encoded_audiovisual(expected: Mapping[str, object], inspection: Ins
     The sync offset is encoded as an itsoffset delay on the later stream,
     so the observed presentation end-time must account for the delayed
     stream's start.  The observed sync offset is derived from the
-    difference in stream start times (or durations when one stream is
-    delayed).
+    difference in stream start times, allowing for retained AAC priming.
     """
     facts = inspection.facts
     audio_inspection = _audio_inspection(facts)
@@ -342,12 +393,6 @@ def _compare_encoded_audiovisual(expected: Mapping[str, object], inspection: Ins
     streams = facts.get("streams", [])
     declared_offset = float(expected.get("sync_offset_ms", 0.0)) / 1000.0
     audio_facts = dict(audio_inspection.facts)
-    if declared_offset > 0 and isinstance(audio_facts.get("duration_seconds"), (int, float)):
-        audio_facts["duration_seconds"] = float(audio_facts["duration_seconds"]) - declared_offset
-        if isinstance(audio_facts.get("sample_rate"), int):
-            audio_facts["frames"] = round(float(audio_facts["duration_seconds"]) * audio_facts["sample_rate"])
-    _compare_audio_facts(expected["audio"], InspectionResult(audio_inspection.format, audio_inspection.backend, "audio", audio_facts), errors, checks)
-    _compare_video_facts(expected["video"], video_inspection, errors, checks)
     if not isinstance(streams, (list, tuple)):
         errors.append("decoded audiovisual streams are unavailable")
         return
@@ -359,10 +404,18 @@ def _compare_encoded_audiovisual(expected: Mapping[str, object], inspection: Ins
     video_start = _stream_float(video, "start_time", 0.0)
     audio_duration = _stream_float(audio, "duration", 0.0)
     video_duration = _stream_float(video, "duration", 0.0)
+    sample_rate = _stream_float(audio, "sample_rate", 1.0)
+    audio_onset = float(facts.get("audio_onset_seconds", audio_start))
+    padding = audio_onset - audio_start
+    audio_facts["duration_seconds"] = audio_duration - padding
+    audio_facts["frames"] = round((audio_duration - padding) * sample_rate)
+    _compare_audio_facts(expected["audio"], InspectionResult(audio_inspection.format, audio_inspection.backend, "audio", audio_facts), errors, checks)
+    _compare_video_facts(expected["video"], video_inspection, errors, checks)
     observed_end = max(audio_start + audio_duration, video_start + video_duration)
     expected_end = float(expected.get("presentation_duration_seconds", expected.get("duration_seconds", 0.0)))
-    _compare_value("presentation_duration_seconds", expected_end, observed_end, errors, checks, tolerance=0.03)
-    observed_offset = (audio_duration - video_duration) if declared_offset >= 0 else -(video_start - audio_start)
+    tolerance = 1.0 / max(float(expected["video"].get("frame_rate", 1)), 1.0)
+    _compare_value("presentation_duration_seconds", expected_end, observed_end, errors, checks, tolerance=tolerance)
+    observed_offset = audio_onset - video_start
     _compare_value("sync_offset_ms", declared_offset * 1000.0, observed_offset * 1000.0, errors, checks, tolerance=30.0)
 
 
@@ -444,6 +497,10 @@ def _frame_rate_from_inspection(facts: Mapping[str, object]) -> float | None:
             return float(numerator) / float(denominator)
         except (ValueError, ZeroDivisionError):
             return None
+    duration = facts.get("duration_seconds")
+    frames = facts.get("frames")
+    if isinstance(duration, (int, float)) and duration > 0 and isinstance(frames, int):
+        return frames / duration
     duration_ms = facts.get("duration_ms")
     if isinstance(duration_ms, (int, float)) and duration_ms > 0:
         return 1000.0 / float(duration_ms)

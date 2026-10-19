@@ -70,7 +70,7 @@ def test_compare_doi_metadata_requires_doi_title_and_year_identity():
     metadata = {
         "DOI": "https://doi.org/10.1234/ABC",
         "title": ["Visual Capture of Gravity!"],
-        "published-print": "1997-05-01",
+        "published-print": {"date-parts": [[1997, 5, 1]]},
     }
     assert compare_doi_metadata(_source(), metadata) is SourceVerificationStatus.DOI_METADATA_MATCH
     assert compare_doi_metadata(_source(), {**metadata, "DOI": "10.9999/other"}) is SourceVerificationStatus.METADATA_MISMATCH
@@ -93,7 +93,7 @@ def test_audit_source_doi_path_compares_crossref_metadata(monkeypatch):
             "message": {
                 "DOI": "10.1234/abc",
                 "title": ["Visual Capture of Gravity"],
-                "published-print": "1997-05-01",
+                "published-print": {"date-parts": [[1997, 5, 1]]},
             }
         }
         return _FakeResponse(json.dumps(payload).encode("utf-8"))

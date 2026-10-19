@@ -1,7 +1,7 @@
 # Public-release checklist
 
-DuckRabbit is maintained in a private sidecar and rendered through the sibling
-template checkout. This checklist defines the handoff from a verified release
+DuckRabbit is maintained in this public repository, with optional manuscript
+rendering through a sibling template checkout. This checklist defines the handoff from a verified release
 candidate to a public repository or archival deposit.
 
 **v0.5.0 status: released.** Public repository:
@@ -20,9 +20,10 @@ steps below remain the checklist for the *next* release.
 - The public software repository is
   `https://github.com/docxology/DuckRabbit`.
 - Version, title, license, and DOI status agree across all metadata files.
-- Between releases the DOI is empty and marked `forthcoming` until the next
-  real public identifier is minted; once minted, `doi_status` becomes
-  `published` and the DOI is real (never a placeholder).
+- A new version awaiting its first deposit uses empty DOI fields and
+  `forthcoming` status consistently across sidecars. Once real identifiers are
+  minted, `doi_status` becomes `published`. Unreleased fixes do not rewrite
+  the archived v0.5.0 identifiers or mint a release automatically.
 - No participant data, private fixtures, credentials, or generated review
   state are included.
 
@@ -44,7 +45,8 @@ uv run python -m duckrabbit audit --output-root output --release
 The `audit_scholarship.py` step is a network audit and is required at
 release time only.
 
-Then render and validate through the sibling template checkout. Review the PDF,
+For a new typeset manuscript release, render and validate through the optional
+sibling template installation. Review the PDF,
 HTML, and slides visually; confirm that every in-text citation reaches its
 reference entry and that every DOI or archival URL is resolver-linked.
 
@@ -57,6 +59,7 @@ reference entry and that every DOI or archival URL is resolver-linked.
 4. Update the DOI atomically in all release metadata and rerun the metadata,
    scholarship, render, and release gates.
 
-The package is public-release ready when the local gates pass. It is not
-publicly released, and it does not have a DOI, until the external handoff is
-complete.
+Passing local gates establishes readiness of the next candidate, not a new
+public deposit or a newly minted DOI. Version 0.5.0 is already publicly released
+with the identifiers above. Development changes must not be represented as
+part of that immutable archive; a new release requires the external sequence.

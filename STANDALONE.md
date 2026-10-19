@@ -4,7 +4,7 @@
 
 DuckRabbit is an installable Python package from the Active Inference Institute
 for typed, deterministic generation of visual, auditory, temporal, and
-audio-visual illusion stimuli. The intended public source is
+audio-visual illusion stimuli. The public source is
 `https://github.com/docxology/DuckRabbit`.
 
 ## Install and run
@@ -25,8 +25,10 @@ uv run python -m duckrabbit generate visual.duck_rabbit --output-dir output/medi
 
 Install ffmpeg separately to exercise MP4 and muxed audio-visual output.
 
-The project is maintained as a private sidecar checkout rendered and validated
-through a sibling template engine; see README.md "Template integration".
+Wheels include the evidence matrix and bibliography needed by the evidence
+and claim APIs. Publication generation, manuscript rendering, and release
+auditing use the full checkout, including its cover asset and manuscript.
+The optional sibling template integration is described in README.md.
 
 ## Scope boundary
 

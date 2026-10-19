@@ -9,11 +9,11 @@ analysis plumbing; they are never evidence about human perception.
 
 from __future__ import annotations
 
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 import math
 from numbers import Real
 from types import MappingProxyType
-from typing import Mapping, Sequence
 
 import numpy as np
 
@@ -89,7 +89,8 @@ class SyntheticModelSpec:
                 raise ParameterValidationError(f"synthetic model {name} is required")
         if self.claim_level is not ClaimLevel.SYNTHETIC_MODEL_OUTPUT:
             raise ParameterValidationError("synthetic model outputs require synthetic_model_output claim level")
-        object.__setattr__(self, "feature_weights", MappingProxyType(dict(self.feature_weights)))
+        object.__setattr__(self, "feature_weights", MappingProxyType({name: float(weight) for name, weight in self.feature_weights.items()}))
+        object.__setattr__(self, "temperature", float(self.temperature))
 
     def to_dict(self) -> dict[str, object]:
         return {
@@ -255,7 +256,7 @@ def _score(model: SyntheticModelSpec, features: Mapping[str, float]) -> float:
 
 def _predict_from_features(
     model: SyntheticModelSpec,
-    reference_features: tuple[str, ...],
+    reference_features: Mapping[str, float],
     reference_digest: str,
     comparison: CanonicalArtifact,
     *,
@@ -317,6 +318,8 @@ def sensitivity_curve(
     condition_id: str = "synthetic_sweep",
 ) -> tuple[SyntheticCurvePoint, ...]:
     """Generate a deterministic model-output curve over named stimuli."""
+    if not isinstance(model, SyntheticModelSpec):
+        raise ParameterValidationError("sensitivity_curve requires SyntheticModelSpec")
     if not comparisons:
         raise ParameterValidationError("synthetic sensitivity curve requires comparisons")
     reference_features = extract_features(reference)
