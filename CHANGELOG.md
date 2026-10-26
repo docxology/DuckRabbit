@@ -49,6 +49,9 @@
 - Added a CI workflow and drift-guard tests that enforce
   `experiment_plan.yaml`, `domain_profile.yaml`, and the claim ledger
   against the live registries.
+- Refreshed the CI toolchain to the current action versions
+  (`actions/checkout@v7` and the pinned `astral-sh/setup-uv@v10.3.2`
+  release).
 
 ## 0.5.0 — publication-readiness cycle, published
 
