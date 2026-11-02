@@ -1,8 +1,8 @@
 # AGENTS.md — `DuckRabbit/output`
 
-> Regenerable output tree under `projects/ongoing/docxology/DuckRabbit/output/`
-> in the private workspace. Contents are committed as part of the release
-> bundle. Repo-wide policy: see the template repo root `projects/AGENTS.md`.
+> Regenerable output tree. Contents are committed as part of the release
+> bundle. Repository-wide policy for template projects is maintained in the
+> template repository, not restated here.
 
 ## What this is
 
