@@ -7,7 +7,7 @@ name = "duckrabbit"
 version = "0.5.0"
 description = "Typed, deterministic multimodal illusion stimuli with scholarly evidence and publication outputs"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 authors = [{name = "Daniel Ari Friedman"}]
 license = "MIT"
 dependencies = [
