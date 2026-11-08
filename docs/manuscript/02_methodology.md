@@ -1,6 +1,6 @@
-# Methodology {#sec:methodology}
+# Typed Requests, Canonical Identity, and Verification Rules {#sec:methodology}
 
-## Request and canonical artifact
+## Immutable requests map to four canonical artifact types
 
 DuckRabbit starts from a typed request
 
@@ -21,7 +21,7 @@ sequence $V$, and audiovisual timeline $AV$. The generator core is
 independent of Pillow, WAV containers, GIF, MP4, and ffmpeg. Each artifact
 retains its shape, dtype, units, clock, channels, and timing offsets.
 
-## Typed parameter domains
+## Validated parameter domains and shared-clock conventions
 
 Value objects validate finite ranges at construction time. Image parameters
 include dimensions, color mode, luminance bounds, grayscale levels, and
@@ -45,7 +45,7 @@ The package rejects non-finite values, invalid shapes, out-of-range samples,
 aliasing frequencies, incompatible channel layouts, impossible frame rates,
 and contradictory encoding requests.
 
-## Canonical serialization and provenance
+## Canonical serialization separates stimulus and delivery identity
 
 Canonical arrays are contiguous little-endian float32 buffers with explicit
 metadata. Serialization includes the array values, shape, clock, and units;
@@ -82,7 +82,7 @@ pretend that a canonical digest or media metric is a sensation measurement:
 observer data still require a task, presentation conditions, and a registered
 analysis.
 
-## Encoding and verification
+## Decoded inspection enforces format-specific verification
 
 For an encoding request $e$, the delivered file $F$ and decoded inspection $I$
 are:
@@ -110,7 +110,7 @@ remain `unverified`, not relabeled current or falsely classified as corruption.
 A metric-specific successful check is required to infer measured-value agreement.
 Other encodings retain their disclosed quantization/decoded-fact boundary.
 
-## Objective metric definitions {#sec:objective_metric_definitions}
+## Unit-bearing metrics measure media, not perception {#sec:objective_metric_definitions}
 
 `MetricRecord` and `MetricSuite` carry a metric name, value, unit, computation
 version, source artifact, tolerance, and claim level. Luminance statistics,
@@ -161,6 +161,8 @@ historical platform. These identify the calculation, not stimulus bytes
 (identified separately by canonical digest), calibration, or authorship.
 Observer interpretations remain separate typed claims.
 
+## Protocol-defined estimands reserve observer claims for future data
+
 For a future observer study, the estimand is defined by the protocol rather
 than by the generator itself:
 
@@ -171,7 +173,7 @@ $$ {#eq:observer_estimand}
 This symbol names a planned analysis target only. DuckRabbit ships no human
 responses, fitted coefficients, or validated observer-level estimate.
 
-### Synthetic psychophysics boundary
+### Serialized feature-observer probabilities are model diagnostics
 
 DuckRabbit's transparent synthetic-psychophysics diagnostic supports
 method orchestration. It is a hand-specified feature observer, not a

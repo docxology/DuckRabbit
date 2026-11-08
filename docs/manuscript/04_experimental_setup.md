@@ -1,4 +1,6 @@
-# Experimental and Computational Setup {#sec:experimental_setup}
+# Runtime Dependencies and Software-Validation Protocol {#sec:experimental_setup}
+
+## Offline analytic generators and optional codec capabilities
 
 Core generation uses Python, NumPy, Pillow, and the standard library. The
 default seed is 0 and generation is offline. The generators are analytic in
@@ -8,6 +10,8 @@ stochastic generator. PNG, GIF, WAV, and NPZ are
 available without ffmpeg; MP4 and muxed audiovisual output require both
 ffmpeg and ffprobe. Optional capabilities fail explicitly rather than silently
 changing the requested artifact.
+
+## Real-array and media-round-trip checks delimit software evidence
 
 The deterministic validation suite executes real NumPy synthesis and real
 temporary-file media round trips. It checks finite normalized arrays, typed
@@ -19,8 +23,10 @@ This is a software-validation protocol, not a psychophysical experiment. The
 tests establish repeatability under the declared software and dependency
 conditions; they do not establish replicability of an observer effect under a
 new display, playback chain, population, or task. That distinction is why the
-release reports both the exact environment contract and the missing observer
+manuscript reports both the environment contract and the missing observer
 evidence.
+
+## Publication regeneration checks current-code consistency
 
 The publication workflow writes {{PUBLICATION_FIGURES}} scientific PNG figures
 plus a separately provenance-recorded editorial cover, machine-readable
@@ -38,6 +44,8 @@ or a substitute for inspecting the rendered pages. The cover validator checks
 real source bytes/dimensions and variant transforms. Historical prompt/model/
 selection claims are reported but not independently authenticated; caller-supplied
 images without a history are explicitly unrecorded.
+
+## Study-plan utilities and synthetic probabilities contain no participant data
 
 The observer harness is a data-free design layer. It creates reproducibly
 randomized trial records, exports typed study plans, generates synthetic

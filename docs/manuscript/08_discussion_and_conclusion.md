@@ -1,4 +1,4 @@
-# Discussion and Conclusion {#sec:discussion}
+# An Auditable Construction Boundary, Not a New Psychophysical Finding {#sec:discussion}
 
 DuckRabbit's principal result is a reproducibility boundary rather than a new
 psychophysical finding. The same typed request can be regenerated, hashed,
@@ -19,21 +19,21 @@ the same time as the generated media.
 The work is best understood as a research-software artifact with a bounded
 methods contribution. Its novelty claim is not that it discovers a new illusion
 or resolves a disputed mechanism; it is that a heterogeneous stimulus catalog
-can be represented as typed, reproducible, source-linked, and release-audited
+can be represented as typed, reproducible, source-linked objects with explicit audit contracts.
 objects. This framing is consistent with software-citation and FAIR guidance,
 which treats versioned software, metadata, provenance, and reuse conditions as
 part of the research record [@smith2016software; @wilkinson2016fair;
 @lamprecht2020fairsoftware].
 
-The release is authored by Daniel Ari Friedman of the Active Inference
-Institute and is published and citable at
+The package is authored by Daniel Ari Friedman of the Active Inference
+Institute; its source is publicly available at
 [the DuckRabbit public GitHub repository](https://github.com/docxology/DuckRabbit).
-The v0.5.0 archive is a published versioned record. Subsequent source and
-manuscript corrections remain unreleased until a new version is explicitly
-tagged and deposited. A local package audit does not certify that the archived
-PDF was rebuilt from the current development manuscript.
+The v0.5.0 archive is a published versioned record. Current {{PACKAGE_VERSION}} source and
+manuscript corrections are unreleased, with DOI forthcoming, until a new version
+is explicitly tagged and deposited. A local package audit does not certify
+that an archived PDF was rebuilt from the current development manuscript.
 
-## Conclusion {#sec:conclusion}
+## Reusable stimulus contracts leave observer validation as a separate study {#sec:conclusion}
 
 DuckRabbit v{{PACKAGE_VERSION}} turns multimodal illusion generation into an auditable typed
 pipeline. A request produces a canonical artifact, objective metrics, optional
@@ -41,10 +41,8 @@ delivery files, decoded inspection, and a versioned evidence-bounded manifest.
 The catalog now records not only what is implemented, but also what the
 literature supports and what remains unvalidated.
 
-The main scientific contribution is a boundary: deterministic stimulus facts
-are reproducible software outputs, while perceptual effects are hypotheses that
-require observer conditions and data. This boundary permits broad generator
-coverage without overclaiming. Future additions should contribute a typed
+Future additions should preserve this separation while extending generator
+coverage. Each should contribute a typed
 parameter contract, a literature record, an engineering-fidelity statement,
 objective invariants, generated documentation, and tests before entering the
 implemented registry. Promotion is a release decision about software

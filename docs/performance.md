@@ -1,17 +1,30 @@
-# Durable workload profiling
+# Profile real workloads with source-bound, comparable measurements
 
-For the October 17, 2026 measured results, source-bound receipts, limitations,
-and figure corrections, see [the dated review](performance-review-2026-10-17.md).
+The [dated October 17 review](performance-review-2026-10-17.md) preserves measured
+results, source-bound receipts, and limitations for that source only. It does
+not establish present-source timing or visual acceptance.
+
+## Select an owned output lane and a stable runtime
 
 Run from the checkout root with its installed environment. No timing assertion
 is a correctness test. Use an idle machine and the same interpreter, dependency
 versions, fonts, power settings, thread settings, and storage for comparisons.
 
 ```bash
-uv run python scripts/profile_workloads.py --workloads canonical video_metrics observer --iterations 3 --output-dir /tmp/duckrabbit-baseline
-uv run python scripts/profile_workloads.py --workloads canonical video_metrics observer --iterations 5 --output-dir /tmp/duckrabbit-candidate --compare /tmp/duckrabbit-baseline/report.json
-uv run python scripts/profile_workloads.py --workloads catalog --iterations 3 --profile --memory --output-dir /tmp/duckrabbit-instrumented
+mkdir -p dist/profiling/runtime
+export TMPDIR="$PWD/dist/profiling/runtime"
+export UV_CACHE_DIR="$PWD/dist/profiling/uv-cache"
+uv run python scripts/profile_workloads.py --workloads canonical video_metrics observer --iterations 3 --output-dir dist/profiling/baseline
+uv run python scripts/profile_workloads.py --workloads canonical video_metrics observer --iterations 5 --output-dir dist/profiling/candidate --compare dist/profiling/baseline/report.json
+uv run python scripts/profile_workloads.py --workloads catalog --iterations 3 --profile --memory --output-dir dist/profiling/instrumented
 ```
+
+Use fresh repository-local destinations and the same shell environment for all
+passes. `TMPDIR` keeps the harness's temporary media/publication directories in
+the owned lane; setting only `--output-dir` does not relocate those internals.
+Do not write into historical outputs, sibling checkouts, or external temporary
+lanes. The package floor is Python 3.11; `.python-version` selects 3.15 for
+checkout work, not an exact patch. Record the actual interpreter/dependencies.
 
 `--output-dir` is mandatory. `--workloads` takes one or more space-separated
 names (default: all). The integer iteration count defaults to 3; 1–30 is accepted,
@@ -19,7 +32,7 @@ with 3 or 5 recommended for manual investigation. Duplicate, empty, and unknown
 selections fail. Inputs cannot request arbitrary sizes, seeds, callables, or
 commands. JSON baselines are size bounded and validated before workloads run.
 
-## Scenarios
+## Choose a workload without silently changing its inputs
 
 | Name | Measured operation | Setup outside measurement |
 | --- | --- | --- |
@@ -39,7 +52,7 @@ in the first command when measuring a focused change. Media adapters use the
 real NumPy/Pillow/WAV paths; ffmpeg is not required. The PNG/GIF/WAV inspectors
 decode their media and NPZ must preserve canonical content exactly.
 
-## What the report means
+## Interpret timing, environment, and source bindings
 
 One excluded warm-up runs per scenario. Each iteration gets its own setup and
 temporary directory before `perf_counter` starts. Timer boundaries contain only
@@ -93,13 +106,14 @@ result signature. The harness never loads user-supplied `.pstats`/pickle files;
 `--compare` accepts JSON only. Active Python tracing/profiling is rejected so
 its overhead cannot silently enter the ordinary timing samples.
 
-## Correctness tests under coverage
+## Separate correctness coverage from benchmark evidence
 
 The public `run_workloads()` entry point and CLI always reject active tracing,
 profiling or tracemalloc, and any registered `sys.monitoring` tool on runtimes
-that expose PEP 669. Tool IDs 0–5 are checked (locally verified on Python 3.15);
-even an idle reservation is rejected rather than risking mislabeled timing
-samples. The guard never disables instrumentation or frees another tool's ID.
+that expose PEP 669. Tool IDs 0–5 are checked; the dated October review records
+its Python 3.15 observation. Even an idle reservation is rejected rather than
+risking mislabeled timing samples. The guard never disables instrumentation or
+frees another tool's ID.
 Coverage is not exempted, including its `sys.monitoring` backend. Functional tests exercise
 the private `_run_workloads()` measurement engine directly so coverage can
 observe real validation, computation, encoding, and report-writing paths.
@@ -112,7 +126,7 @@ Instability tests instrument real operation-return boundaries in disposable
 checkout copies and mutate real input files; they never alter the source
 checkout or its generated outputs.
 
-## Optional Python 3.15 native sampling
+## Treat optional Python 3.15 sampling as a separate diagnostic
 
 The portable core targets Python 3.11+. Native sampling is a separate optional
 Python 3.15 capability, not a replacement for uninstrumented measurements.
@@ -122,7 +136,7 @@ These flags were checked against the local Python 3.15.0 help on October 17,
 ```bash
 uv run python -m profiling.sampling --help
 uv run python -m profiling.sampling run --help
-uv run python -m profiling.sampling run --sampling-rate 1khz --mode wall --collapsed --output /tmp/duckrabbit-sampling.txt scripts/profile_workloads.py --workloads canonical --iterations 5 --output-dir /tmp/duckrabbit-sampled
+uv run python -m profiling.sampling run --sampling-rate 1khz --mode wall --collapsed --output dist/profiling/sampling.txt scripts/profile_workloads.py --workloads canonical --iterations 5 --output-dir dist/profiling/sampled
 ```
 
 Treat the entire externally sampled run as instrumented: **do not compare its
@@ -134,7 +148,7 @@ sampling profile succeeded. macOS process-inspection permissions can also
 explicitly deny sampling; retain the command/error as a capability failure,
 do not silently substitute another profiler or describe it as successful.
 
-The parent run on this macOS host explicitly failed with
-`Permission Error: Unable to access process memory on macOS`.
-No elevation was attempted. This is a recorded capability failure, not a
-successful sampling measurement.
+The [October receipt](performance-review-2026-10-17.md) records a sampling
+attempt that failed with `Permission Error: Unable to access process memory on
+macOS`, without elevation. It is a historical capability failure, not a
+successful sampling measurement or a claim about the present machine.

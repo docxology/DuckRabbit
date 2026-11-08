@@ -44,6 +44,24 @@ publication sequence only after fresh gates and required admission succeed.
 
 Repeat this same sequence for the next version bump.
 
+## Current 0.6.0 graphical and documentation improvements
+
+- A registered graphical abstract uses four actual canonical constructions; the
+  live atlas contains 16 scientific figures, separate from the editorial cover.
+- Per-channel audio extrema preserve every sample, including skipped impulses
+  and terminal bins; display timestamps do not claim within-bin event timing.
+- Measured text bounds, complete dense-map content and explicit claim-boundary
+  diagrams replace truncated labels and misleading evidence progression.
+- Dense catalog, audio, scholarship and formalism details have strictly
+  replayed presentation variants; their report is the inventory authority, not
+  a new scientific result count. Temporal labels separate rate from interval.
+- Current guide ownership and manuscript reading order are in `docs/README.md`
+  and `docs/manuscript/README.md`; `docs/visualization.md` defines figure review.
+- `output/visual-review-2026-11-08/` is the designated current-source delivery.
+  Its own receipts determine native/render/visual acceptance; the earlier
+  `output/review-2026-11-08/` and dated audits remain historical evidence.
+
+
 ## Future research and optional improvements
 
 The October 17, 2026 correctness/integrity pass is recorded in
@@ -99,14 +117,14 @@ universal perceptual claims, or estimates of observer sensitivity.
 A release is ready only when all metadata names Daniel Ari Friedman with ORCID
 `0000-0001-6232-9096`, the DOI is either explicitly forthcoming (pre-release)
 or a real minted Zenodo DOI (published), the live catalog is 17 implemented /
-0 planned / 1 input-required, all 15 figures and 10 tables regenerate and match
+0 planned / 1 input-required, all 16 figures and 10 tables regenerate and match
 their recorded code/font/Pillow/NumPy rendering identity, scholarship statuses
 are independently auditable, captions and claim lineage are complete, and
 package plus declared renderer checks pass without participant data or universal
 perceptual claims. Cross-environment byte identity is not presumed. Historical
 v0.5.0 records do not establish current-source identity or asset equivalence;
-see `docs/audit-2026-11-08.md` and `output/review-2026-11-08/` for current evidence
-and the unresolved external-publication blockers.
+see `docs/scholarship.md`, `docs/audit-2026-11-08.md` and the retained
+`output/review-2026-11-08/` for the unresolved bibliographic identity observations.
 
 ## Agent-ergonomics pass (2026-08-31)
 

@@ -48,6 +48,7 @@ PUBLICATION_FIGURE_LABELS = (
     "fig:metrics_dashboard",
     "fig:parameter_domains",
     "fig:observer_protocol",
+    "fig:graphical_abstract",
 )
 
 

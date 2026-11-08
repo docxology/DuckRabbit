@@ -21,7 +21,7 @@ from duckrabbit.publication import (
     _audio_spectrum,
     _audio_waveform,
     _audiovisual,
-    _coordinate_plot,
+    _draw_waveform,
     _draw_audiovisual_traces,
     _draw_spectrum,
     _generate,
@@ -59,20 +59,22 @@ def test_frame_holds_and_stereo_audio_use_actual_shared_clock_pixels(offset_ms: 
     np.testing.assert_array_equal(traces["audio"]["values"], np.mean(np.abs(samples), axis=1))
 
 
-def test_waveform_last_sample_is_not_stretched_to_duration() -> None:
+def test_waveform_terminal_bin_preserves_channel_extrema_without_extending_past_audio() -> None:
     samples = np.zeros((1000, 2), dtype=np.float32)
     samples[-1, 1] = 1.0
     waveform = _audio_waveform(AudioBuffer(samples, SampleRate(1000)))
-    image = Image.new("RGB", (2001, 101), CANVAS)
-    _coordinate_plot(
-        ImageDraw.Draw(image), waveform["timestamps_seconds"], waveform["values"][:, 1],
-        (0, 0, 2000, 100), RED, x_range=(0.0, 1.0), value_range=(0.0, 1.0),
-    )
-    assert waveform["timestamps_seconds"][-1] == pytest.approx(0.999)
+    starts = np.asarray(waveform["bin_start_samples"])
+    stops = np.asarray(waveform["bin_stop_samples_exclusive"])
+    assert starts[-1] <= 999 < stops[-1] == 1000
     assert waveform["channel_indices"] == [0, 1]
-    assert image.getpixel((1998, 0)) == RED
-    assert image.getpixel((2000, 0)) == CANVAS
-    np.testing.assert_array_equal(waveform["values"][-1], samples[-1])
+    np.testing.assert_array_equal(waveform["minimum"][-1], np.min(samples[starts[-1]:stops[-1]], axis=0))
+    np.testing.assert_array_equal(waveform["maximum"][-1], [0.0, 1.0])
+    image = Image.new("RGB", (2201, 201), CANVAS)
+    _draw_waveform(ImageDraw.Draw(image), waveform, (0, 0, 2200, 200),
+                   channel=1, color=RED, x_range=(0.0, 1.1))
+    pixels = np.asarray(image)
+    assert np.any(np.all(pixels[:50, 1900:2002] == RED, axis=2))
+    assert not np.any(np.all(pixels[:, 2002:] == RED, axis=2))
 
 
 def test_narrow_high_harmonic_survives_aggregation_and_is_drawn_at_its_frequency() -> None:
@@ -150,25 +152,23 @@ def test_default_audiovisual_render_and_serialized_trace_agree(tmp_path: Path) -
     np.testing.assert_array_equal(audio["values"], np.mean(np.abs(artifact.audio.samples), axis=1))
 
 
-def test_audio_render_serializes_the_actual_band_values_and_channel_waveforms(tmp_path: Path) -> None:
+def test_audio_source_envelopes_preserve_each_channels_actual_sample_extrema(tmp_path: Path) -> None:
     path = tmp_path / "audio.png"
     _, payload = _audio(path)
     _write_json(tmp_path / "audio.json", payload)
     saved = json.loads((tmp_path / "audio.json").read_text())
-    with Image.open(path) as image:
-        for row, record in enumerate(saved["signals"]):
-            artifact = _generate(record["illusion_id"])
-            expected = _audio_spectrum(artifact)
-            np.testing.assert_array_equal(record["spectrum"]["band_values"], expected["band_values"])
-            assert record["canonical_digest"] == canonical_digest(artifact)
-            assert record["spectrum"]["sample_rate_hz"] == artifact.sample_rate.value
-            band = int(np.argmax(expected["plotted_values"]))
-            assert image.getpixel((1500 + band * 7 + 3, 115 + row * 290 + 66)) == GREEN
-            rule_color = ACCENT if row % 2 == 0 else GREEN
-            assert all(image.getpixel((column, 115 + row * 290 + 38)) == rule_color for column in range(1500, 1836))
-            waveform = record["waveform"]
-            assert len(waveform["values"][0]) == artifact.channels
-            np.testing.assert_allclose(waveform["timestamps_seconds"], _audio_waveform(artifact)["timestamps_seconds"])
+    for record in saved["signals"]:
+        artifact = _generate(record["illusion_id"])
+        assert record["canonical_digest"] == canonical_digest(artifact)
+        waveform = record["waveform"]
+        starts = np.asarray(waveform["bin_start_samples"])
+        stops = np.asarray(waveform["bin_stop_samples_exclusive"])
+        assert starts[0] == 0 and stops[-1] == artifact.sample_count
+        np.testing.assert_array_equal(starts[1:], stops[:-1])
+        assert np.all(stops > starts)
+        for index, (start, stop) in enumerate(zip(starts, stops, strict=True)):
+            np.testing.assert_array_equal(waveform["minimum"][index], np.min(artifact.samples[start:stop], axis=0))
+            np.testing.assert_array_equal(waveform["maximum"][index], np.max(artifact.samples[start:stop], axis=0))
 
 
 def test_centroid_definition_matches_unchanged_mean_channel_magnitude_metric() -> None:

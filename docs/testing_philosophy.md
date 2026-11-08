@@ -1,4 +1,25 @@
-# DuckRabbit testing philosophy
+# Test real media contracts and state what verification cannot establish
+
+## Run the native software gates
+
+When assigned verification, run from the checkout root in the locked native
+development environment. The supported floor is Python 3.11;
+`.python-version` selects the 3.15 development line.
+
+```bash
+uv sync --locked --extra dev
+uv run ruff check src scripts tests
+uv run pytest tests/ --cov=src/duckrabbit --cov-report=term-missing --cov-fail-under=90
+```
+
+The 90% gate is combined statement/branch coverage, not branch-only coverage or
+exhaustive behavioral assurance. Tests use real arrays, files, encoders, decode
+round trips, and subprocesses rather than mock frameworks. Optional backend
+absence must remain an explicit capability result. Do not verify a moving
+source tree; report exact runtime, source binding, skips, failures, and commands.
+Source-only assignments leave integration verification to their owner.
+
+## Preserve deterministic and adversarial contracts
 
 The package tests the irreducible contracts of stimulus generation:
 
@@ -28,10 +49,9 @@ The package tests the irreducible contracts of stimulus generation:
     and figure labels are resolved by an independent traceability validator.
 18. strict evidence loaders reject malformed JSON types instead of coercing
     numbers or nulls into plausible citation strings;
-19. the package-level audit independently regenerates every implemented default,
-    recomputes canonical hashes, checks metrics, and reports missing disposable
-    publication output as a warning rather than silently skipping the release
-    surface;
+19. the package-level audit regenerates every implemented default with trusted
+    code, recomputes canonical hashes, checks metrics, and reports missing
+    disposable output as a warning outside fail-closed release mode;
 20. synthetic psychophysics model contracts reject unknown features,
     non-finite weights, invalid probabilities, malformed digests, and human
     claim levels, while repeated model diagnostics preserve exact predictions
@@ -43,3 +63,34 @@ The package tests the irreducible contracts of stimulus generation:
 Tests do not assert that every observer experiences an illusion. That requires
 separate human or behavioral validation under controlled presentation
 conditions. The package records stimulus intent and evidence status instead.
+
+## Distinguish structural QA from actual visual inspection
+
+Use the [native publication recipe](publication.md#generate-and-audit-a-native-bundle)
+for an isolated generated bundle and strict `audit --release`. The release
+audit replays registered scientific raster/data builders and exact hydrated
+delivery; it can detect coordinated corruption against trusted source but is
+not an independent implementation. Structural `visual_qa` facts and thumbnail
+hashes do not establish readable labels, unclipped layout, contrast, page fit,
+browser behavior, accessibility, or print readiness.
+
+[Visualization](visualization.md) owns signal-envelope regression expectations
+and actual full/column/thumbnail inspection criteria. Typeset outputs need
+their own bound renderer execution and page/deck review. Historical receipts
+certify only their recorded source, never later edits.
+
+## Keep security and scholarly assurance bounded
+
+Manifest validation treats paths, hashes, shapes, dtypes, clocks, source-data
+relations, and decoded facts as untrusted declarations. Real negative controls
+must reject incompatible containers, stale/refresh-only hashes, inconsistent
+summaries, and canonical NPZ substitutions. These guards do not sandbox native
+decoders, bound every hostile allocation/workload, authenticate authorship, or
+replace dependency/security-advisory review.
+
+Offline [scholarship validation](scholarship.md#separate-offline-lineage-from-live-identity)
+uses checked-in source lineage, without network identity claims. Explicit live
+title/author/year checks are a separate release gate; reachability alone is not
+verification. Neither software checks nor model diagnostics establish human
+perception. Synthetic diagnostics retain `human_data=false`; human studies need
+their own calibrated presentation, consent/governance, design, and observed data.

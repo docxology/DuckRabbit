@@ -28,7 +28,7 @@ checkout is not required for ordinary package development.
 | `src/duckrabbit/synthetic_psychophysics.py` | Serialized model-output diagnostics; never human observer evidence |
 | `scripts/` | Thin command entry points only |
 | `tests/` | Real computations and round trips; no `unittest.mock`, `MagicMock`, or `@patch` |
-| `output/` | Disposable generated artifacts; never hand-edit |
+| `output/` | Source-generated deliveries and preserved historical review bundles; never hand-edit |
 
 The core boundary is deliberate: a generator must be runnable and testable
 without the sibling template engine. The package may depend on NumPy and
@@ -86,17 +86,16 @@ Pillow; ffmpeg remains a system-level optional encoder.
 ### Shared-worktree reconciliation
 
 Never run a long test or render from a moving worktree. When other automation
-may modify this checkout, use a disposable isolated worktree for the project
-and follow any parent collection's locking requirements for Git writes:
+may modify this checkout, use a separately authorized development lane and
+follow the ancestor repository/common-store admission and path rules. Do not
+create a `/tmp` checkout or a sibling lane by default. Keep generated evidence,
+environments and caches in the authorized repository-owned locations.
 
-```bash
-git fetch origin
-git worktree add /private/tmp/duckrabbit-cycle main
-cd /private/tmp/duckrabbit-cycle
-uv sync --extra dev
-uv run ruff check src tests
-uv run pytest tests/ --cov=src/duckrabbit --cov-fail-under=90
-```
+Independent DuckRabbit checkouts use the pinned project runtime and native
+`uv sync --locked --extra dev`, Ruff and coverage commands above—not HumOS
+lane recipes. Where a parent repository manager governs Git writes, fetch,
+branch integration and push each require their own short admission; a long
+agent audit is not a reason to hold a canonical lease.
 
 Before handoff, compare the local and remote branch with
 `git rev-list --left-right --count main...origin/main`,

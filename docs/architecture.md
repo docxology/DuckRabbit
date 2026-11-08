@@ -1,6 +1,6 @@
-# DuckRabbit architecture
+# Trace typed requests through canonical media and publication layers
 
-## Startup and profiling boundaries
+## Keep startup light and profiling reproducible
 
 The root package retains its documented exports and original owning-module
 identities. Analysis and publication exports resolve on demand; importing the
@@ -35,7 +35,7 @@ registry ──► deterministic generator ──► canonical artifact ──�
                                       objective metrics + publication outputs
 ```
 
-## Core boundary
+## Construct canonical media with validated typed requests
 
 `src/duckrabbit/parameters.py` defines validated value objects and modality
 configuration. `src/duckrabbit/artifacts.py` defines immutable canonical image,
@@ -49,7 +49,7 @@ explicit color, channel, backend, and media-format enums; rational timing and
 timestamp values; parameter schemas; and output specifications that keep
 encoding choices separate from canonical stimulus parameters.
 
-## Encoding boundary
+## Encode and verify delivered media at explicit boundaries
 
 `src/duckrabbit/media.py` is the only codec boundary. Pillow is loaded lazily
 for PNG/GIF. WAV uses the standard library and supports 8/16/24/32-bit PCM.
@@ -63,6 +63,8 @@ and stream structure. For exact NPZ delivery it additionally reconstructs the
 canonical object and recomputes its digest; refreshing only the container hash
 cannot certify altered canonical content. These modules are package
 boundaries, not generator implementations.
+
+## Separate physical metrics, source evidence, and observer models
 
 `evidence.py` validates the source-tiered evidence matrix. `metrics.py` emits
 unit-bearing `MetricRecord` values inside an immutable `MetricSuite`.
@@ -82,13 +84,24 @@ sensitivity, but it is not a pretrained vision model, a psychometric function,
 or evidence about human perception. The human observer layer remains a future
 study contract with calibrated display/playback, consent, preregistration, and
 observed responses.
-`publication.py` renders a 15-figure deterministic PNG atlas, typed captions and
-alt text, sidecar source data, formalism traceability, 10 publication tables,
-and a machine-readable publication report from the live registry. `cover.py`
-installs an editorial cover with PNG, WebP, and thumbnail variants. Source bytes,
-dimensions, transforms and variant roles are checked; reported historical image
-generation is explicitly unverified, and arbitrary inputs acquire no invented
-generation history. Registry checks reject stale hashes, unsafe paths and lineage.
+## Produce source-bound figures and editorial assets separately
+
+`publication.py` produces the registered scientific PNG figures, typed captions
+and alt text, source-data sidecars, formalism traceability, publication tables,
+and reports. The [visualization guide](visualization.md) owns the live roster,
+graphical-abstract interface, display conventions, and readability criteria.
+`publication_panels.py` derives readable catalog, audio, scholarship and formalism
+views from those exact source-data records. Their dedicated report binds every
+variant to its source, paths, dimensions, font and implementation; native audit
+replays them. Presentation variants do not increment the scientific figure count.
+`cover.py` installs the separate editorial cover with PNG, WebP, and thumbnail
+variants. Source bytes, dimensions, transforms, and variant roles are checked;
+reported historical generation is explicitly unverified, and arbitrary inputs
+acquire no invented history. Registries reject stale hashes, unsafe paths, and
+invalid lineage. Follow the [native publication recipe](publication.md#generate-and-audit-a-native-bundle)
+for one selected repository-local bundle; hydration is not typesetting.
+
+## Validate relational manifests and executable traceability
 
 The manifest verifier is relational rather than presence-only. It checks that
 canonical summary fields agree—for example, image bytes equal width × height ×
@@ -104,18 +117,18 @@ points to existing package modules, tests, manuscript labels, and registered
 figures; publication generation fails before writing an atlas if an edge becomes
 stale.
 
-`audit.py` is the package-level verifier oracle. It runs the taxonomy and
-source graph, confirms the implemented registry is exactly the implemented
-catalog, generates every default artifact, recomputes canonical SHA-256
-digests, measures every artifact with unit-bearing metrics, and optionally
-validates a generated figure registry. Missing disposable publication output
-is a warning outside release mode. Release mode additionally replays all 15
-scientific data/raster producers and checks exact hydrated manuscript delivery.
-The replay establishes consistency with the current trusted renderer, not an
-independent scientific implementation, authorship proof, or human visual review.
+`audit.py` is the package-level structural/replay verifier. It checks the live
+taxonomy/evidence graph, agreement between registry and implemented catalog,
+default canonical digests, metrics, and available publication registries.
+Missing disposable publication output is a warning outside release mode;
+release mode fails closed and additionally replays every registered scientific
+data/raster producer and exact hydrated manuscript delivery. This uses the
+current trusted implementations, not an independent scientific oracle.
+Matching hashes, replay, and structural `visual_qa` are not authenticated
+authorship, actual visual inspection, live source identity, or human evidence.
 Execution audits require the selected root to be the executing checkout.
 
-## Taxonomy boundary
+## Classify catalog intent without claiming observed perception
 
 Taxonomy is intentionally orthogonal rather than a single hierarchy. A record
 can have multiple mechanisms or modalities and always records its evidence and

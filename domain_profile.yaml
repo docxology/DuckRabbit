@@ -16,6 +16,7 @@ validation_gates:
   - media_round_trip
   - render_validation
 figure_types:
+  - deterministic_multimodal_overview
   - provenance_pipeline
   - taxonomy_matrix
   - ambiguous_figure
@@ -25,7 +26,7 @@ figure_types:
   - audio_visual_timeline
   - synthetic_psychophysics_diagnostic
 citation_policy: official_or_scholarly
-source_policy: "Prefer primary illusion papers and reviews; every catalog entry requires a source role, supported claim, verified URL, and limitation, and engineering output never substitutes for observer evidence."
+source_policy: "Prefer primary illusion papers and reviews; every catalog entry requires a source role, exact supported claim, explicit bibliographic identity status and limitation. Engineering output never substitutes for observer evidence."
 review_gates:
   - typed_parameter_validation
   - deterministic_canonical_artifacts

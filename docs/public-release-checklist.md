@@ -1,95 +1,101 @@
-# Public-release checklist
+# Qualify a candidate before creating a release or DOI
 
-DuckRabbit is maintained in this public repository, with optional manuscript
-rendering through a sibling template checkout. This checklist defines the handoff from a verified release
-candidate to a public repository or archival deposit.
+**Current candidate: 0.6.0, unreleased; DOI forthcoming.** Local gates,
+source integration, or a green main branch do not publish it. The released
+v0.5.0 [concept DOI](https://doi.org/10.5281/zenodo.21419693) and
+[version DOI](https://doi.org/10.5281/zenodo.21419694), tags, assets, and
+historical review bundles remain immutable.
 
-**v0.5.0 status: released.** Public repository:
-[docxology/DuckRabbit](https://github.com/docxology/DuckRabbit). Concept DOI:
-[10.5281/zenodo.21419693](https://doi.org/10.5281/zenodo.21419693). Version
-DOI: [10.5281/zenodo.21419694](https://doi.org/10.5281/zenodo.21419694). The
-steps below remain the checklist for the *next* release.
+The [publication guide](publication.md) owns native generation and isolated
+rendering; this checklist owns acceptance and external sequencing. Read
+[TODO](../TODO.md) and [CHANGELOG](../CHANGELOG.md) for current status, not a
+historical gate count copied into this checklist.
 
-**Current candidate: 0.6.0, DOI forthcoming.** No new archive identity is assigned.
-Preserve every v0.5.0 tag, release asset, DOI and historical review artifact.
-The [current audit receipt](audit-2026-11-08.md) distinguishes the tagged/GitHub,
-retained root and Zenodo PDF identities. A new release must bind its exact source,
-assets and deposit separately; historical release prose is not byte verification.
+## Bind the exact candidate and its public metadata
 
-## Required source state
+- Preserve package, tests, manuscript, bibliography, evidence, license,
+  changelog, citation, CodeMeta, and Zenodo metadata in the public source.
+- Require Daniel Ari Friedman, Active Inference Institute, ORCID
+  `0000-0001-6232-9096`, and `https://github.com/docxology/DuckRabbit` consistently.
+- Require version, title, license, and DOI state to agree. Before deposit,
+  use empty DOI fields and `forthcoming`; never fabricate a placeholder.
+  Do not attach the old archive's identifiers to this candidate.
+- Exclude participant data, private fixtures, credentials, and temporary
+  environments/caches/profiles from release contents. Declare curated review
+  bundles separately from archived release assets.
+- Freeze the source revision before verification; record source/input/output
+  hashes, actual commands, runtime/dependency/font identities, and failures.
+  Verification against a changing tree cannot bind the final source.
 
-- The public source contains the package, tests, manuscript, bibliography,
-  evidence matrix, `CITATION.cff`, CodeMeta, Zenodo metadata, license, and
-  changelog.
-- Author identity is Daniel Ari Friedman, Active Inference Institute, ORCID
-  `0000-0001-6232-9096`.
-- The public software repository is
-  `https://github.com/docxology/DuckRabbit`.
-- Version, title, license, and DOI status agree across all metadata files.
-- A new version awaiting its first deposit uses empty DOI fields and
-  `forthcoming` status consistently across sidecars. Once real identifiers are
-  minted, `doi_status` becomes `published`. Unreleased fixes do not rewrite
-  the archived v0.5.0 identifiers or mint a release automatically.
-- No participant data, private fixtures, credentials or temporary runtime/profile
-  state are included. Curated source-bound review artifacts remain explicitly
-  distinct from a published version and its immutable historical deliveries.
+## Pass native software and offline publication gates
 
-## Required verification
-
-Run from the project root:
+From the repository root, use the locked development environment:
 
 ```bash
-OUT=dist/release-candidate  # choose a fresh, wholly owned destination
+uv lock --check
+uv sync --locked --extra dev
 uv run ruff check src scripts tests
 uv run pytest tests/ --cov=src/duckrabbit --cov-fail-under=90
-uv run python scripts/generate_publication_outputs.py --output-dir "$OUT"
-uv run python scripts/generate_manuscript_variables.py --output-dir "$OUT"
-uv run python scripts/validate_scholarship.py
-uv run python scripts/audit_scholarship.py --output "$OUT/reports/scholarship_audit.json"
-uv run python -m duckrabbit synthetic-psychophysics --output "$OUT/data/synthetic_psychophysics_cli.json"
-uv run python -m duckrabbit audit --output-root "$OUT" --release
+uv build --out-dir dist/package-candidate
 ```
 
-Also run `uv lock --check`, locked development sync, `uv build`, and an
-independent wheel install/CLI smoke outside the checkout import path on the
-Python 3.11 floor. A missing compatible locked wheel or unsuccessful sync is
-an explicit gap, never a successful clean-environment claim. There is no native
-type-checker gate; do not invent one. Record source/runtime hashes, exact
-commands, outcomes, dependency advisories and rendered-input provenance.
-Use a new owned output directory for `--clean`; it recursively deletes generated
-figures/data, not merely stale registry members.
+Use a fresh repository-local package directory rather than mixing historical
+builds. Run the [canonical native publication recipe](publication.md#generate-and-audit-a-native-bundle)
+in a separate fresh owned bundle. It includes offline scholarship validation,
+hydration, the nonhuman synthetic sidecar, and strict `audit --release`.
+Do not use destructive cleaning or overwrite retained outputs.
 
-The network audit is required at release time. HTTP reachability is not source
-identity: unresolved DOI-less records, blocked services and mismatches remain
-failures. Machine-readable reports preserve successful peers and every failure.
-The native network command covers the 36 evidence-source records. Review every
-additional manuscript citation too; the dated audit records the separate
-11-reference check, its retained primary metadata and its unresolved failures.
-Exact ordered identity includes corporate authors, not only person-name fields.
+Also perform an independent installed-wheel API/CLI smoke outside the source
+import path on the supported Python 3.11 floor, including bundled evidence,
+actual generation, inspection, and verification. Exercise supported development
+runtimes separately; `.python-version` selects 3.15, not a patch. A retained
+3.15.2 run is not a fresh clean-environment result. Missing compatible wheels,
+unsuccessful locked sync, optional codec gaps, or an unrun compatibility lane
+are explicit gaps. There is no native type-checker gate; do not invent one.
 
-For a new typeset manuscript release, render and validate through a declared
-read-only renderer snapshot/overlay with all outputs and caches repository-local.
-Do not run sibling-root recipes or overwrite frozen historical outputs. Review
-every PDF page, HTML, and slides visually; confirm citation destinations and
-resolver links. Compilation, same-code replay, and link presence alone do not
-establish scientific validity, fresh network identity, or accessibility.
+Review current dependency/security advisories and native decoder/tool exposure.
+Passing tests, finite parameter validation, and hashes are not a sandbox,
+resource-exhaustion guarantee, or security certificate. Keep measured advisory
+outcomes tied to exact installed versions and the observation date.
 
-## External publication sequence
+## Clear live scholarship and actual delivery review separately
 
-1. Publish or mirror the exact release source to the intended public repository.
-2. Create the immutable version tag and archive the source plus generated
-   publication bundle.
-3. Mint the DOI from the public record.
-4. Update the DOI atomically in all release metadata and rerun the metadata,
-   scholarship, render, and release gates.
+- Run the [explicit live scholarship gate](publication.md#separate-offline-replay-visual-review-and-live-scholarship)
+  and review all additional manuscript citations outside its native roster.
+  [Scholarship](scholarship.md#separate-offline-lineage-from-live-identity)
+  owns coverage and the retained unresolved identity observations. URL
+  reachability, archive access, and display abbreviations do not establish
+  ordered title/author/year identity, including collective authors.
+- Preserve unresolved, mismatched, blocked, or unavailable identities as
+  failures. They still block release; a local offline audit cannot waive them.
+- Typeset from the exact hydrated inputs using a declared read-only renderer
+  snapshot and repository-local overlays, outputs, caches, and temporary state.
+  Record transformations without modifying canonical inputs or sibling files.
+- Inspect every PDF page, HTML view, and slide deck; review scientific figures
+  at intended delivery scales, captions, tables, diacritics, citation targets,
+  browser behavior, accessibility, and clipping. See the
+  [visual review criteria](visualization.md#inspect-readability-at-delivery-scale).
+  Compilation, same-code replay, and `visual_qa` are not visual acceptance.
+- Bind the [current review bundle](../output/visual-review-2026-11-08/) to fresh
+  evidence. The [retained prior baseline](../output/review-2026-11-08/) and all
+  [dated receipts](README.md#dated-historical-receipts) verify only their own
+  recorded source, not later edits.
 
-Use ordinary fast-forward publication, satisfy branch protections/required CI,
-tag the validated main commit, and verify remote main/tag/release asset bytes.
-Inherited GitVault leases and mapped-identity/plan/confirmation policy still
-apply; disabled GitHub write classes are blockers, not permission to use raw
-API alternatives. Never label a local build, branch push or draft PR released.
+## Publish only after authorized acceptance
 
-Passing local gates establishes readiness of the next candidate, not a new
-public deposit or a newly minted DOI. Version 0.5.0 is already publicly released
-with the identifiers above. Development changes must not be represented as
-part of that immutable archive; a new release requires the external sequence.
+1. Integrate the exact verified source through the repository's authorized
+   ordinary fast-forward/branch-protection process; confirm required CI.
+2. Create the immutable version tag and archive that exact source and generated
+   publication bundle. Verify remote commit/tag and asset byte identities.
+3. Mint real DOI identifiers from the public deposit.
+4. Update DOI fields and `doi_status: published` atomically across manuscript
+   configuration, `CITATION.cff`, `.zenodo.json`, and `codemeta.json`; rerun the
+   affected metadata, scholarship, render, and release gates against final assets.
+5. Record the actual public release/deposit and final metadata-to-asset binding.
+   Do not describe a local build, branch push, or draft PR as released.
+
+The [dated November audit](audit-2026-11-08.md) distinguishes multiple historical
+PDF identities; earlier prose does not establish their equivalence. Preserve
+those artifacts rather than replacing them with the candidate. A future human
+study needs its own consent/governance, preregistration, calibrated presentation,
+observed responses, estimand, and analysis; no publication check supplies them.

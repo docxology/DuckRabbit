@@ -42,6 +42,7 @@ expected_figures:
   - fig:metrics_dashboard
   - fig:parameter_domains
   - fig:observer_protocol
+  - fig:graphical_abstract
 expected_tables:
   - tbl:catalog
   - tbl:parameters

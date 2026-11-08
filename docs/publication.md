@@ -1,122 +1,124 @@
-# Publication and release procedure
+# Generate a native publication bundle and isolate typesetting
 
-DuckRabbit is authored by Daniel Ari Friedman of the Active Inference Institute
-(ORCID
-[`0000-0001-6232-9096`](https://orcid.org/0000-0001-6232-9096)). The package
-version is synchronized at `0.6.0` across `pyproject.toml`, the manuscript,
-CITATION.cff, codemeta, and Zenodo metadata. This candidate has
-`doi_status: forthcoming` and no assigned DOI. The immutable v0.5.0 release
-retains concept DOI [`10.5281/zenodo.21419693`](https://doi.org/10.5281/zenodo.21419693)
-and version DOI [`10.5281/zenodo.21419694`](https://doi.org/10.5281/zenodo.21419694);
-those identifiers must not be presented as an archive of 0.6.0.
-The public software repository is
-the [DuckRabbit public GitHub repository](https://github.com/docxology/DuckRabbit).
+**Version 0.6.0 is unreleased, with empty DOI fields and `doi_status: forthcoming`.**
+Daniel Ari Friedman, Active Inference Institute,
+[ORCID 0000-0001-6232-9096](https://orcid.org/0000-0001-6232-9096), is the author.
+Version and identity must agree across package, manuscript configuration,
+[CITATION.cff](../CITATION.cff), CodeMeta, and Zenodo metadata. The immutable
+v0.5.0 [concept DOI](https://doi.org/10.5281/zenodo.21419693) and
+[version DOI](https://doi.org/10.5281/zenodo.21419694) do not identify this candidate.
 
-The publication bundle is code-owned. Run:
+## Generate and audit a native bundle
+
+This is the canonical native recipe. Run from the public checkout root, after
+[locked installation](quickstart.md#install-and-discover-typed-requests). Choose
+a **new, wholly owned repository-local** destination; do not reuse a historical
+review tree. All commands below use the same output root:
 
 ```bash
-uv run python scripts/generate_publication_outputs.py [--clean]
-uv run python scripts/generate_manuscript_variables.py
+OUT=output/local-publication-review
+uv run python -m duckrabbit publish --output-dir "$OUT"
+uv run python scripts/generate_manuscript_variables.py --output-dir "$OUT"
 uv run python scripts/validate_scholarship.py
-uv run python scripts/audit_scholarship.py --output output/reports/scholarship_audit.json
-uv run python -m duckrabbit synthetic-psychophysics
-uv run python -m duckrabbit audit --output-root output --release
+uv run python -m duckrabbit synthetic-psychophysics --output "$OUT/data/synthetic_psychophysics_cli.json"
+uv run python -m duckrabbit audit --output-root "$OUT" --release
 ```
 
-`generate_publication_outputs.py` (also exposed as `duckrabbit publish`)
-regenerates the 15 scientific figures, 10 tables, source-data
-sidecars, figure registry, cover variants, and visual-QA report. The cover is
-an editorial charcoal illustration; its reported generation history is
-unverified, while packaged source bytes and derived variants are checked.
-It is not a scientific stimulus, authenticated model record, or observer result.
-Each scientific caption records units or non-applicability, source-data lineage,
-limitations, and the boundary between deterministic media facts and future observer hypotheses.
+The thin `scripts/generate_publication_outputs.py --output-dir "$OUT"` wrapper
+is equivalent to `duckrabbit publish`; do not run both as separate required
+steps. The source-owned hydrator resolves manuscript variables and writes
+Markdown, bibliography, configuration, and preamble; it does **not** typeset.
 
-Audiovisual traces use actual sample/frame timestamps on one seconds axis and
-frame-held Rec.709-weighted RGB channel proxies (no transfer-function or display
-calibration), including declared stream starts. Audio display
-bands retain their frequency edges, peak-magnitude aggregation, channel rule,
-normalization, and plotted values in the sidecar. These are illustrative
-summaries, not a replacement for the full-resolution magnitude-weighted
-spectral metrics. PNG quantizes canonical float32 pixels to uint8; provenance
-retains the canonical digest, while NPZ preserves exact canonical arrays.
+Publication writes known generated filenames. Hydration replaces its delivered
+Markdown/bibliography set, even without `--clean`. Treat the whole selected
+bundle as generated output. Omit `--clean`: it deletes PNG/WebP files under
+figures and JSON/Markdown under data, including unrelated files of those types,
+not just stale registry members. Never apply it to a shared or retained tree.
 
-`--clean` recursively removes generated figures/data; use only a wholly owned
-output tree or preserve unrelated content first. Strict release auditing now
-replays all 15 source-owned builders and checks exact hydrated manuscript,
-variables, preamble, config, and bibliography. This is same-code consistency,
-not an independent scientific replication or authentication of authorship.
-Synthetic ablations and temperature ranges describe a finite hand-specified
-model sensitivity envelope, not a confidence interval or human uncertainty.
+### Native output interfaces
 
-The checked-in v0.5.0 PDF is an archived artifact. Current development prose,
-figures, and validation receipts do not certify that it was rebuilt or create
-a new archival release. See [`manuscript/README.md`](manuscript/README.md) for
-standalone Markdown hydration and optional typesetting boundaries.
-The [October 18 follow-up](verification-2026-10-18.md) records a real sibling
-renderer attempt that stopped at a missing TeX package, alongside a successful
-dated live scholarship audit. It does not certify a current-source PDF.
-The later [October 19 review build](rendering-2026-10-19.md) uses a declared
-isolated overlay and distinct renderer snapshot. Its separately named PDF
-supports digital review; residual figure-text and editorial limitations are
-recorded rather than presented as archival or print-layout certification.
+| Relative to selected output root | Owning contract |
+| --- | --- |
+| `figures/figure_registry.json`, scientific PNGs | Stable labels, caption/alt text, controls, objective units, claim level, evidence lineage, raster/source-data digests. |
+| `data/<figure-stem>.json` | Canonical construction and plotted display data; see [visualization](visualization.md). |
+| `reports/readable_figure_panels.json`, `figures/*-detail-*.png` | Source-record readability variants with exact paths, hashes, dimensions and renderer provenance; not extra scientific figures. |
+| `data/*_table.{md,json}` | Tables derived from taxonomy, evidence, metrics, observer designs, caption audit, and formalism registries. |
+| `data/manuscript_variables.json`, `manuscript/` | Live variables and exact hydrated source delivery. |
+| `reports/publication_report.json`, `reports/visual_qa.json` | Publication inventory and structural raster QA; not visual acceptance. |
+| Cover assets and provenance registry | Separately typed editorial illustration and variant/source-byte verification. |
 
-The [November 8 audit](audit-2026-11-08.md) records the current candidate and
-fresh proof. The tagged/GitHub v0.5.0 PDF, the retained root PDF and the Zenodo
-PDF are distinct byte identities; prior workflow descriptions do not establish
-their equivalence. Preserve all three rather than rewriting historical artifacts.
+Registry `output/figures/...` and `output/data/...` references are logical
+paths rebased to the selected bundle root by validators; they do not authorize
+writes to the retained root output tree. Source authorities are
+[`publication.py`](../src/duckrabbit/publication.py),
+[`publication_specs.py`](../src/duckrabbit/publication_specs.py), and
+[`manuscript_variables.py`](../src/duckrabbit/manuscript_variables.py).
 
-The [current-source candidate bundle](../output/review-2026-11-08/) is separate
-from all preserved historical output files. Its top-level manuscript, figures,
-data and native reports are canonical; declared typesetting adaptations and
-evidence are separate. It can be checked with
-`uv run python -m duckrabbit audit --output-root output/review-2026-11-08 --release`.
-That same-code check is not the unresolved live identity gate or authorization
-to create a tag, release or DOI.
+## Separate offline replay, visual review, and live scholarship
 
-The complete catalog/source-tier matrix is rendered in the standalone
-`docs/manuscript/09_appendix_catalog.md` section rather than embedded in the main
-results narrative. Its `tbl:catalog` rows are still generated from the live
-taxonomy and evidence registries, so moving the table changes publication
-placement, not its provenance or validation contract. The visual coverage
-figure is likewise generated from all currently implemented visual entries;
-temporal visual families contribute a representative first frame while their
-sequence facts remain in source data.
+The native `audit --release` fail-closed mode requires publication surfaces,
+replays every registered scientific data/raster producer, verifies cover and
+table contracts, and compares exact current-source hydrated delivery.
+Readable detail variants and their dedicated report are generated and replayed
+as part of the same native publication/audit sequence; there is no separate
+manual panel-editing step.
 
-The checked-in scholarship matrix is an offline snapshot. It validates source
-shape, bibliography linkage, exact supported claims, and evidence gaps without
-pretending that a URL is currently reachable. The explicit network audit
-(`scripts/audit_scholarship.py`) distinguishes DOI metadata matches,
-access-controlled pages, unresolved reachable URLs, mismatches and unavailable
-records. A successful HEAD request to a DOI-less archive remains unresolved;
-it cannot certify title/author/year identity. The release-time command fails
-unless every source has identity evidence; do not lower this gate to publish.
+The executing checkout must match any selected project root. This is trusted-code
+consistency, not independent scientific replication, authenticated authorship,
+a fresh network audit, or an authorization to publish. `visual_qa` checks
+raster facts/hashes; [actual figure and page review](visualization.md#inspect-readability-at-delivery-scale)
+is still required.
 
-Release requires no participant data, no universal perceptual claim, no stale
-hash, and no unresolved manuscript token. A future observer study needs its own
-preregistration, consent/data-governance record, playback and display controls,
-estimand, and analysis report.
+The explicit **live** scholarship gate is separate from the offline recipe:
 
-## Public-release checklist (completed for v0.5.0)
+```bash
+OUT=output/local-publication-review
+uv run python scripts/audit_scholarship.py --output "$OUT/reports/scholarship_audit.json"
+```
 
-For v0.5.0, the maintainer:
+A dated successful response, URL reachability, or a passing offline audit does
+not establish fresh title/author/year identity. See
+[scholarship scope and blockers](scholarship.md#separate-offline-lineage-from-live-identity).
+Preserve unresolved, mismatched, blocked, or unavailable outcomes; do not lower
+the gate to publish. Synthetic output remains a hand-specified nonhuman model
+(`human_data=false`), and finite sensitivity ranges are not confidence intervals.
 
-1. transferred the source to the public repository
-   ([docxology/DuckRabbit](https://github.com/docxology/DuckRabbit)) and
-   confirmed the MIT license, author identity, citation files, and release
-   notes are visible there;
-2. ran the source tests, offline scholarship validation, network scholarship
-   audit, package release audit, and sibling-template output validation from a
-   clean release worktree;
-3. reviewed the generated PDF, HTML, and slide outputs, including reference
-   anchors and resolver links, rather than relying only on machine checks;
-4. created the `v0.5.0` GitHub release and archived the exact source and
-   generated release bundle; and
-5. minted the DOI from the public record, then replaced the empty DOI and
-   `forthcoming` status atomically across `docs/manuscript/config.yaml`,
-   `CITATION.cff`, `.zenodo.json`, and `codemeta.json`.
+## Isolate optional typesetting
 
-For the *next* release, repeat this same sequence with a new version tag. An
-empty DOI and `doi_status: forthcoming` remain the correct metadata values
-between releases — a plausible-looking placeholder would make citations
-non-resolving and would weaken provenance.
+The package owns figures and hydrated manuscript inputs; an external renderer
+may consume them to produce PDF, HTML, and slides. Rendering is optional for
+native stimulus use, but a typeset release requires its own build and visual
+acceptance. No private workspace alias or sibling-root write recipe is a
+prerequisite.
+
+Use an explicitly declared **read-only renderer snapshot**, not a moving
+external checkout. Keep adaptations in a separate repository-local overlay and
+all outputs, TeX/font/browser caches, and temporary state in repository-local
+owned directories. Preserve canonical bundle inputs unchanged. Record renderer
+source hashes, overlay transformations, actual commands, interpreter/native
+binaries, font bytes, input/output hashes, and logs. Loss-check any wrapping or
+slide transformations against full source payloads; do not shorten identifiers,
+source locators, captions, tables, or references to conceal clipping.
+
+There is no native DuckRabbit PDF/HTML/slides CLI. Use the declared renderer's
+actual interface, not an invented package command or a copied historical
+machine path. Inspect every output page/deck and citation destination;
+compilation and static link presence alone cannot certify readability,
+accessibility, print readiness, or a working browser presentation.
+
+## Keep the refresh candidate separate from historical evidence
+
+The [visual-review bundle](../output/visual-review-2026-11-08/) is the designated
+current-source delivery. Its own source, native and visual-review receipts—not
+this procedure alone—define acceptance.
+The retained [earlier November bundle](../output/review-2026-11-08/) and
+[November audit](audit-2026-11-08.md) describe prior inputs. The
+[October render receipt](rendering-2026-10-19.md) is likewise historical, not
+verification of this source or a portable command recipe.
+
+Preserve distinct historical PDF byte identities and v0.5.0 artifacts rather
+than silently replacing them. [Visualization](visualization.md#live-roster-and-historical-baseline)
+explains the refreshed versus historical figure roster; the
+[release checklist](public-release-checklist.md) owns compatibility/security,
+external publication, and DOI sequencing. A new local bundle does not create
+a tag, release, archive identity, or participant result.

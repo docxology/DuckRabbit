@@ -12,7 +12,6 @@ import os
 from pathlib import Path
 import re
 import shutil
-import textwrap
 from tempfile import TemporaryDirectory
 from collections.abc import Mapping
 from typing import Iterable
@@ -94,16 +93,36 @@ def _text(draw: ImageDraw.ImageDraw, xy: tuple[int, int], value: str, size: int 
     draw.text(xy, value, font=_font(size), fill=fill)
 
 
-def _wrapped(value: object, width: int) -> str:
-    """Wrap publication text without silently dropping scholarly content."""
-    return "\n".join(
-        textwrap.wrap(
-            str(value),
-            width=width,
-            break_long_words=False,
-            break_on_hyphens=False,
-        )
-    ) or ""
+def _wrapped(value: object, width: int, size: int = 16) -> str:
+    """Wrap to measured pixels, retaining paragraphs and complete content."""
+    font = _font(size)
+    lines = []
+    for paragraph in str(value).split("\n"):
+        line = ""
+        for word in paragraph.split():
+            candidate = f"{line} {word}" if line else word
+            if font.getlength(candidate) <= width:
+                line = candidate
+                continue
+            if line:
+                lines.append(line)
+            line = ""
+            # Long identifiers/paths have no whitespace; split only when needed.
+            for character in word:
+                if line and font.getlength(line + character) > width:
+                    lines.append(line)
+                    line = ""
+                line += character
+        lines.append(line)
+    return "\n".join(lines)
+
+
+def _text_height(value: object, width: int, size: int = 16) -> int:
+    """Use the same Pillow bounds as the corresponding text block."""
+    bounds = ImageDraw.Draw(Image.new("RGB", (1, 1))).multiline_textbbox(
+        (0, 0), _wrapped(value, width, size), font=_font(size), spacing=4,
+    )
+    return bounds[3] - bounds[1]
 
 
 def _text_block(
@@ -113,24 +132,16 @@ def _text_block(
     width: int,
     size: int = 16,
     fill: tuple[int, int, int] = INK,
-) -> None:
-    """Draw wrapped text for figures whose claims need more than one line."""
-    draw.multiline_text(xy, _wrapped(value, width), font=_font(size), fill=fill, spacing=4)
+) -> int:
+    """Draw pixel-wrapped text with its actual ink anchored at ``xy``."""
+    font = _font(size)
+    wrapped = _wrapped(value, width, size)
+    bounds = draw.multiline_textbbox((0, 0), wrapped, font=font, spacing=4)
+    origin = (xy[0] - bounds[0], xy[1] - bounds[1])
+    draw.multiline_text(origin, wrapped, font=font, fill=fill, spacing=4)
+    return bounds[3] - bounds[1]
 
 
-def _cell_text(value: object) -> str:
-    """Fit a catalog cell into its fixed column, keeping whole tokens.
-
-    Composite values are cut at a comma boundary with an explicit ellipsis;
-    the complete value stays available in the source-data sidecar.
-    """
-    text = str(value)
-    if len(text) <= 34:
-        return text
-    head, separator, _ = text.partition(",")
-    if separator:
-        return head[:31].rstrip(",") + ",…"
-    return text[:33] + "…"
 
 
 def _save(image: Image.Image, path: Path) -> str:
@@ -211,17 +222,49 @@ def _coordinate_plot(
         draw.point(points[0], fill=color)
 
 
-def _audio_waveform(artifact: AudioBuffer) -> dict[str, object]:
-    stride = max(1, artifact.sample_count // 350)
-    indices = np.unique(np.append(np.arange(0, artifact.sample_count, stride), artifact.sample_count - 1))
+def _audio_waveform(artifact: AudioBuffer, *, max_bins: int = 350) -> dict[str, object]:
+    """Aggregate every sample into disjoint, channel-preserving extrema bins."""
+    if max_bins < 1:
+        raise ValueError("waveform max_bins must be positive")
+    bin_width = max(1, (artifact.sample_count + max_bins - 1) // max_bins)
+    starts = np.arange(0, artifact.sample_count, bin_width)
+    stops = np.minimum(starts + bin_width, artifact.sample_count)
     return {
-        "timestamps_seconds": indices / artifact.sample_rate.value,
-        "values": artifact.samples[indices],
+        "bin_start_samples": starts,
+        "bin_stop_samples_exclusive": stops,
+        "minimum": np.minimum.reduceat(artifact.samples, starts, axis=0),
+        "maximum": np.maximum.reduceat(artifact.samples, starts, axis=0),
         "channel_indices": list(range(artifact.channels)),
-        "selection": "point samples at declared stride, including last sample; not an envelope",
-        "stride_samples": stride,
+        "aggregation": "per-channel minimum and maximum of all samples in each half-open bin; no downmix or point decimation",
+        "display": "vertical min/max range at the midpoint of first/last sample timestamps in each bin; not an exact waveform or within-bin event time",
+        "display_timestamp_rule": "(bin_start_samples + bin_stop_samples_exclusive - 1) / (2 * sample_rate_hz); not the extremum timestamp",
+        "sample_rate_hz": artifact.sample_rate.value,
+        "sample_count": artifact.sample_count,
         "duration_seconds": artifact.duration_seconds,
     }
+
+
+def _draw_waveform(
+    draw: ImageDraw.ImageDraw,
+    waveform: Mapping[str, object],
+    box: tuple[int, int, int, int],
+    *,
+    channel: int,
+    color: tuple[int, int, int],
+    x_range: tuple[float, float],
+) -> None:
+    """Draw extrema without connecting bins into fictitious sample traces."""
+    left, top, right, bottom = box
+    rate = float(waveform["sample_rate_hz"])
+    for start, stop, low, high in zip(
+        waveform["bin_start_samples"], waveform["bin_stop_samples_exclusive"],
+        np.asarray(waveform["minimum"])[:, channel], np.asarray(waveform["maximum"])[:, channel], strict=True,
+    ):
+        timestamp = (float(start) + float(stop) - 1) / (2 * rate)
+        x = round(left + (timestamp - x_range[0]) / (x_range[1] - x_range[0]) * (right - left))
+        y_high = round(bottom - (float(high) + 1) / 2 * (bottom - top))
+        y_low = round(bottom - (float(low) + 1) / 2 * (bottom - top))
+        draw.line((x, y_high, x, y_low), fill=color, width=2)
 
 
 def _audio_spectrum(artifact: AudioBuffer) -> dict[str, object]:
@@ -321,7 +364,8 @@ def _axes(
         draw.text((max(0, int(left - 12 - width)), y - 10), label, font=tick_font, fill=MUTED)
         if value not in {y_low, y_high}:
             draw.line((left, y, right, y), fill=(232, 236, 240), width=1)
-    _text(draw, (left + (right - left) // 2 - 55, bottom + 43), x_label, 16, MUTED)
+    label_width = draw.textlength(x_label, font=_font(16))
+    _text(draw, (round((left + right - label_width) / 2), bottom + 43), x_label, 16, MUTED)
     _text(draw, (max(0, left - 70), top - 30), y_label, 16, MUTED)
 
 
@@ -334,7 +378,7 @@ def _panel(draw: ImageDraw.ImageDraw, box: tuple[int, int, int, int], *, accent:
 def _footer(draw: ImageDraw.ImageDraw, text: str, *, y: int, color: tuple[int, int, int] = MUTED, right: int = 1850) -> None:
     """Place a compact epistemic note in the figure's lower margin."""
     draw.line((50, y - 18, right, y - 18), fill=(225, 229, 234), width=1)
-    _text(draw, (55, y), text, 16, color)
+    _text_block(draw, (55, y), text, right - 70, 16, color)
 
 
 def _frame_strip(frames: tuple[object, ...], width: int = 180, height: int = 130) -> Image.Image:
@@ -351,59 +395,58 @@ def _generate(illusion_id: str, parameters: object | None = None) -> CanonicalAr
 
 
 def _architecture(path: Path) -> tuple[str, dict[str, object]]:
-    image = Image.new("RGB", (1800, 760), CANVAS)
+    image = Image.new("RGB", (1900, 740), CANVAS)
     draw = ImageDraw.Draw(image)
-    boxes = [(60, 260, 300, 430), (390, 260, 630, 430), (720, 260, 960, 430), (1050, 260, 1290, 430), (1380, 260, 1740, 430)]
+    boxes = [(50 + index * 365, 235, 360 + index * 365, 535) for index in range(5)]
     labels = [
-        ("Typed request", "i, θ, seed, encoding"),
+        ("Typed request", "generator ID, parameters, seed; separate output specification"),
         ("Generator", "Gᵢ(θ; s)"),
-        ("Canonical artifact", "LE float32 + clock"),
-        ("Encode / inspect", "Eₑ, D, decoded facts"),
-        ("Manifest + verify", "hashes + claims"),
+        ("Canonical artifact", "immutable float32 buffers + clocks; canonical digest"),
+        ("Encode / inspect", "delivery bytes → decoded dimensions, samples, timing"),
+        ("Manifest + verify", "file hashes + canonical identity + decoded facts"),
     ]
-    claim_levels = ("request", "canonical", "delivery", "delivery", "provenance")
+    claim_levels = ("request", "construction", "canonical", "delivery", "provenance")
     for index, (box, (title, detail), level) in enumerate(zip(boxes, labels, claim_levels)):
         accent = ACCENT if index < 2 else GREEN if index == 2 else AMBER if index < 4 else RED
         draw.rounded_rectangle(box, radius=20, outline=accent, width=5, fill=(247, 249, 251))
         _text(draw, (box[0] + 20, box[1] + 22), f"{index + 1:02d}", 22, accent)
-        _text(draw, (box[0] + 20, box[1] + 64), title, 23)
-        _text_block(draw, (box[0] + 20, box[1] + 112), detail, 20, 17, MUTED)
-        _text(draw, (box[0] + 20, box[3] - 30), level, 15, accent)
+        _text_block(draw, (box[0] + 20, box[1] + 64), title, 270, 23)
+        _text_block(draw, (box[0] + 20, box[1] + 155), detail, 270, 17, MUTED)
+        _text(draw, (box[0] + 20, box[3] - 35), level, 15, accent)
     for first, second in zip(boxes, boxes[1:]):
-        draw.line((first[2] + 10, 345, second[0] - 10, 345), fill=INK, width=4)
-        draw.polygon(((second[0] - 10, 345), (second[0] - 28, 334), (second[0] - 28, 356)), fill=INK)
+        draw.line((first[2] + 8, 365, second[0] - 8, 365), fill=INK, width=4)
+        draw.polygon(((second[0] - 8, 365), (second[0] - 24, 354), (second[0] - 24, 376)), fill=INK)
     _text(draw, (60, 65), "DuckRabbit reproducibility contract", 38)
-    _text(draw, (60, 125), "Canonical identity is established before delivery; decoded inspection tests what was actually written.", 22, MUTED)
-    _footer(draw, "Engineering trace only: deterministic media facts and verification are not observer evidence.", y=690)
+    _text_block(draw, (60, 125), "Canonical identity precedes delivery. Decoded inspection checks written media; only NPZ retains exact canonical arrays.", 1760, 22, MUTED)
+    _footer(draw, "Engineering trace only: deterministic media facts and verification are not observer evidence.", y=650)
     digest = _save(image, path)
     return digest, {"stages": [title for title, _ in labels], "equations": ["A = Gᵢ(θ; s)", "h₍c₎ = H(c(A))", "V(F, M) ∈ {pass, fail}"]}
 
 
 def _catalog(path: Path) -> tuple[str, dict[str, object]]:
     entries = taxonomy_entries()
-    image = Image.new("RGB", (1900, 1700), CANVAS)
-    draw = ImageDraw.Draw(image)
-    _text(draw, (50, 35), "Catalog status and evidence matrix", 36)
-    _text(draw, (50, 82), "Taxonomy facets are orthogonal; status and evidence are separate dimensions.", 20, MUTED)
-    headers = ("ID", "modality", "mechanism", "signature", "input", "status")
-    x = (45, 355, 590, 850, 1230, 1630)
-    for pos, header in zip(x, headers):
-        _text(draw, (pos, 105), header, 19, MUTED)
-    y = 150
+    headers = ("catalog ID", "modality", "mechanism", "signature", "input", "status")
+    columns = (45, 380, 610, 885, 1250, 1620)
+    widths = (310, 205, 250, 340, 345, 235)
+    rows = []
     for entry in entries:
+        values = (entry.illusion_id, ", ".join(item.value for item in entry.modalities), ", ".join(item.value for item in entry.mechanisms), ", ".join(item.value for item in entry.signatures), entry.input_requirement.value, entry.implementation_status.value)
+        height = max(_text_height(value, width, 16) for value, width in zip(values, widths)) + 32
+        rows.append((entry, values, height))
+    image = Image.new("RGB", (1900, 200 + sum(height for _, _, height in rows) + 100), CANVAS)
+    draw = ImageDraw.Draw(image)
+    _text(draw, (50, 35), "Catalog facets and implementation status", 36)
+    _text(draw, (50, 92), "All facets are retained without ellipsis; implementation status is not evidence of perception.", 20, MUTED)
+    for pos, header in zip(columns, headers):
+        _text(draw, (pos, 150), header, 18, MUTED)
+    y = 200
+    for entry, values, height in rows:
         status_color = GREEN if entry.implementation_status is ImplementationStatus.IMPLEMENTED else AMBER if entry.implementation_status is ImplementationStatus.PLANNED else RED
-        values = (
-            entry.illusion_id,
-            ",".join(item.value for item in entry.modalities),
-            ",".join(item.value for item in entry.mechanisms),
-            ",".join(item.value for item in entry.signatures),
-            entry.input_requirement.value,
-            entry.implementation_status.value,
-        )
-        for pos, value in zip(x, values):
-            _text(draw, (pos, y), _cell_text(value), 15, status_color if pos == x[-1] else INK)
-        draw.line((45, y + 31, 1840, y + 31), fill=(224, 228, 233), width=1)
-        y += 72
+        for pos, width, value in zip(columns, widths, values):
+            _text_block(draw, (pos, y), value, width, 16, status_color if pos == columns[-1] else INK)
+        draw.line((45, y + height - 14, 1855, y + height - 14), fill=(224, 228, 233), width=1)
+        y += height
+    _footer(draw, "Source-supported claims and limitations are mapped separately in the scholarship figure and complete source data.", y=y + 35)
     data = {"entries": [jsonable(entry) for entry in entries]}
     digest = _save(image, path)
     return digest, data
@@ -411,13 +454,11 @@ def _catalog(path: Path) -> tuple[str, dict[str, object]]:
 
 def _visual_panel(path: Path) -> tuple[str, dict[str, object]]:
     ids = tuple(entry.illusion_id for entry in taxonomy_entries() if Modality.VISUAL in entry.modalities and entry.implementation_status is ImplementationStatus.IMPLEMENTED)
-    # Reserve a separate lower margin for the epistemic footer; the third row
-    # of cards reaches y=1595, so the canvas must extend beyond that boundary.
-    image = Image.new("RGB", (1900, 1770), CANVAS)
+    image = Image.new("RGB", (1900, 1840), CANVAS)
     draw = ImageDraw.Draw(image)
     _text(draw, (50, 25), "Complete panel of implemented visual constructions", 42)
-    _text(draw, (50, 75), "One typed default per implemented entry. Static families show canonical rasters; apparent motion shows frame 1, with sequence facts retained in source data.", 24, MUTED)
-    _text(draw, (50, 108), "Reading guide: luminance and raster levels describe pixels; frame rate and frame delta describe temporal media; neither is an observer report.", 18, MUTED)
+    _text_block(draw, (50, 85), "One typed default per implemented entry. Static families show canonical rasters; apparent motion shows frame 0 of its sequence.", 1800, 21, MUTED)
+    _text_block(draw, (50, 143), "Reading guide: normalized pixel values and temporal metrics describe constructed media, not observer reports.", 1800, 18, MUTED)
     records = []
     for index, illusion_id in enumerate(ids):
         artifact = _generate(illusion_id)
@@ -430,7 +471,7 @@ def _visual_panel(path: Path) -> tuple[str, dict[str, object]]:
         thumbnail = _image(representative).convert("RGB")
         thumbnail.thumbnail((500, 280), Image.Resampling.NEAREST)
         row, column = divmod(index, 3)
-        x, y = 40 + column * 620, 140 + row * 500
+        x, y = 40 + column * 620, 200 + row * 500
         _panel(draw, (x, y, x + 580, y + 455), accent=ACCENT if row == 0 else GREEN)
         _text(draw, (x + 20, y + 12), illusion_id, 22)
         image.paste(thumbnail, (x + (580 - thumbnail.width) // 2, y + 68))
@@ -443,11 +484,11 @@ def _visual_panel(path: Path) -> tuple[str, dict[str, object]]:
             kind = "representative first frame; sequence in source data"
             summary = f"Frames: {int(values['frames'])} · rate: {float(values['frame_rate']):.1f} frames/s"
             detail = f"Frame delta: {float(values['mean_temporal_delta']):.3f} normalized · digest: {digest_text[:10]}…"
-        _text(draw, (x + 20, y + 347), kind, 16, ACCENT if "first frame" in kind else MUTED)
-        _text(draw, (x + 20, y + 378), summary, 17, MUTED)
-        _text(draw, (x + 20, y + 409), detail, 17, MUTED)
+        _text_block(draw, (x + 20, y + 347), kind, 540, 16, ACCENT if "first frame" in kind else MUTED)
+        _text_block(draw, (x + 20, y + 383), summary, 540, 17, MUTED)
+        _text_block(draw, (x + 20, y + 418), detail, 540, 15, MUTED)
         records.append({"illusion_id": illusion_id, "canonical_digest": digest_text, "metrics": metrics, "seed": 0, "parameters": jsonable(default_parameters(illusion_id))})
-    _footer(draw, "Physical code-value metrics: grayscale identity or Rec. 709-weighted RGB proxy, without display calibration; raster levels and canonical digest. Complete for implemented visual entries, not all visual illusions.", y=1665)
+    _footer(draw, "Normalized code-value metrics, not display calibration: grayscale identity or Rec. 709-weighted RGB proxy. Complete for implemented visual entries, not all visual illusions.", y=1740)
     digest = _save(image, path)
     return digest, {"stimuli": records}
 
@@ -470,7 +511,7 @@ def _visual_sweep(path: Path) -> tuple[str, dict[str, object]]:
             thumbnail = _image(artifact).convert("RGB")
             thumbnail.thumbnail((250, 170), Image.Resampling.NEAREST)
             x, y = 130 + column * 340, 140 + row * 170
-            draw.rectangle((x - 3, y - 3, x + 253, y + 143), outline=(218, 224, 230), width=1)
+            draw.rectangle((x - 3, y - 3, x + thumbnail.width + 3, y + thumbnail.height + 3), outline=(218, 224, 230), width=1)
             image.paste(thumbnail, (x, y))
             values = measure_artifact(artifact).values
             records.append({"duck_weight": weight, "grayscale_levels": level, "quantization_levels": level, "digest": canonical_digest(artifact), "unique_values": int(np.unique(artifact.pixels).size), "mean_luminance": float(values["mean_luminance"]), "effective_dynamic_range": float(values["effective_dynamic_range"])})
@@ -498,16 +539,17 @@ def _temporal(path: Path) -> tuple[str, dict[str, object]]:
     draw = ImageDraw.Draw(image)
     _text(draw, (50, 25), "Temporal sequence and frame deltas", 36)
     rate_fraction = Fraction(artifact.frame_rate.value).limit_denominator(1000)
-    _text(draw, (50, 68), f"frame rate = {artifact.frame_rate.value:g} frames/s · frame count = {artifact.frame_count} · rational timebase = {rate_fraction.numerator}/{rate_fraction.denominator}", 20, MUTED)
+    _text(draw, (50, 68), f"rational frame rate = {rate_fraction.numerator}/{rate_fraction.denominator} frames/s · frame interval = {rate_fraction.denominator}/{rate_fraction.numerator} s/frame · frame count = {artifact.frame_count}", 20, MUTED)
     for index in range(len(shown_frames)):
         _text(draw, (65 + index * 235, 275), f"f{index}  t={index / artifact.frame_rate.value:.3f}s", 15, INK)
-    _text(draw, (50, 335), "Adjacent-frame mean absolute difference", 20, MUTED)
-    plot_box = (125, 390, 1760, 650)
-    _axes(draw, plot_box, x_label="frame transition k", y_label="normalized pixel difference", x_ticks=tuple((index, str(index)) for index in range(max(1, len(artifact.temporal_deltas)))), y_ticks=((0.0, "0"), (0.5, "0.5"), (1.0, "1.0")), x_range=(0.0, max(1.0, len(artifact.temporal_deltas) - 1)), y_range=(0.0, 1.0))
-    _line_plot(draw, artifact.temporal_deltas, plot_box, ACCENT, value_range=(0.0, 1.0))
-    _footer(draw, "Frame timestamps and deltas are decoded/canonical timing facts; apparent motion remains an observer-level hypothesis.", y=755)
+    _text(draw, (50, 335), "Canonical adjacent-frame mean absolute difference; k denotes frame k → k+1", 20, MUTED)
+    plot_box = (150, 420, 1760, 650)
+    delta_high = min(1.0, max(0.01, max(artifact.temporal_deltas, default=0.0) * 1.25))
+    _axes(draw, plot_box, x_label="transition k → k+1 (zero-based)", y_label="normalized pixel difference", x_ticks=tuple((index, str(index)) for index in range(max(1, len(artifact.temporal_deltas)))), y_ticks=((0.0, "0"), (delta_high / 2, f"{delta_high / 2:.3f}"), (delta_high, f"{delta_high:.3f}")), x_range=(0.0, max(1.0, len(artifact.temporal_deltas) - 1)), y_range=(0.0, delta_high))
+    _line_plot(draw, artifact.temporal_deltas, plot_box, ACCENT, value_range=(0.0, delta_high))
+    _footer(draw, "Canonical timestamps and deltas describe construction, not decoded delivery or an observed apparent-motion effect.", y=755)
     digest = _save(image, path)
-    return digest, {"frame_rate": artifact.frame_rate.value, "frame_rate_rational": {"numerator": rate_fraction.numerator, "denominator": rate_fraction.denominator}, "frame_count": artifact.frame_count, "timestamps_seconds": [index / artifact.frame_rate.value for index in range(artifact.frame_count)], "temporal_deltas": artifact.temporal_deltas}
+    return digest, {"canonical_digest": canonical_digest(artifact), "frame_rate": artifact.frame_rate.value, "frame_rate_rational": {"numerator": rate_fraction.numerator, "denominator": rate_fraction.denominator}, "frame_count": artifact.frame_count, "timestamps_seconds": [index / artifact.frame_rate.value for index in range(artifact.frame_count)], "temporal_deltas": artifact.temporal_deltas, "transition_definition": "delta[k] = mean(abs(frame[k+1] - frame[k])); canonical pixels, zero-based frames", "plotted_delta_range": [0.0, delta_high]}
 
 
 def _audio(path: Path) -> tuple[str, dict[str, object]]:
@@ -515,7 +557,7 @@ def _audio(path: Path) -> tuple[str, dict[str, object]]:
     image = Image.new("RGB", (1900, 1650), CANVAS)
     draw = ImageDraw.Draw(image)
     _text(draw, (50, 25), "Auditory canonical signals", 36)
-    _text(draw, (50, 72), "Canonical waveforms, one-sided spectral summaries, and typed playback facts; no pitch report is inferred.", 20, MUTED)
+    _text(draw, (50, 72), "All-sample min/max envelopes and one-sided spectral summaries; bin ranges are not exact waveforms or pitch reports.", 20, MUTED)
     records = []
     for row, illusion_id in enumerate(ids):
         artifact = _generate(illusion_id)
@@ -523,29 +565,34 @@ def _audio(path: Path) -> tuple[str, dict[str, object]]:
             raise TypeError(f"{illusion_id} must generate AudioBuffer")
         waveform = _audio_waveform(artifact)
         x, y = 50, 115 + row * 290
-        _panel(draw, (x - 8, y - 8, 1840, y + 235), accent=ACCENT if row % 2 == 0 else GREEN)
+        _panel(draw, (x - 8, y - 8, 1840, y + 260), accent=ACCENT if row % 2 == 0 else GREEN)
         _text(draw, (x, y), illusion_id, 22)
-        # Reserve a true left margin for the vertical label; this keeps the
-        # word "amplitude" intact at full and publication-column scales.
-        plot_box = (x + 105, y + 42, 1120, y + 190)
+        # Separate channel lanes prevent one stereo envelope hiding the other.
         duration = artifact.duration_seconds
-        _axes(draw, plot_box, x_label=f"time (s); channels 0–{artifact.channels - 1}", y_label="", x_ticks=tuple((time, f"{time:g}") for time in (0.0, duration / 2, duration)), y_ticks=((-1.0, "−1"), (0.0, "0"), (1.0, "1")), x_range=(0.0, duration), y_range=(-1.0, 1.0))
-        _text(draw, (x + 35, y + 82), "amplitude", 16, MUTED)
+        _text(draw, (620, y + 8), f"{artifact.channels} channel(s) · {artifact.sample_rate.value:g} samples/s", 15, MUTED)
+        lane_height = (118 - 22 * (artifact.channels - 1)) / artifact.channels
         for channel in range(artifact.channels):
-            _coordinate_plot(draw, waveform["timestamps_seconds"], waveform["values"][:, channel], plot_box, (ACCENT, RED)[channel], x_range=(0.0, duration), value_range=(-1.0, 1.0))
+            top = round(y + 62 + channel * (lane_height + 22))
+            bottom = round(top + lane_height)
+            plot_box = (x + 105, top, 1000, bottom)
+            last_channel = channel == artifact.channels - 1
+            _axes(draw, plot_box, x_label="time (s); extrema bins" if last_channel else "", y_label="", x_ticks=tuple((time, f"{time:g}") for time in (0.0, duration / 2, duration)) if last_channel else (), y_ticks=((-1.0, "−1"), (0.0, "0"), (1.0, "1")), x_range=(0.0, duration), y_range=(-1.0, 1.0))
+            _text(draw, (x + 8, top + 12), f"ch{channel}", 15, MUTED)
+            _draw_waveform(draw, waveform, plot_box, channel=channel, color=(ACCENT, RED)[channel], x_range=(0.0, duration))
         metrics = measure_artifact(artifact).to_dict()
-        _text(draw, (1180, y + 52), f"RMS {metrics['values']['rms']:.4f} normalized amplitude", 17, MUTED)
-        _text(draw, (1180, y + 85), f"peak {metrics['values']['peak']:.4f} normalized amplitude", 17, MUTED)
-        _text(draw, (1180, y + 118), f"centroid {metrics['values']['spectral_centroid_hz']:.1f} Hz", 17, MUTED)
-        _text(draw, (1180, y + 151), f"bandwidth {metrics['values']['spectral_bandwidth_hz']:.1f} Hz · crest {metrics['values']['crest_factor']:.2f}", 17, MUTED)
+        _text_block(draw, (1060, y + 52), f"RMS {metrics['values']['rms']:.4f} norm.", 380, 17, MUTED)
+        _text_block(draw, (1060, y + 85), f"peak {metrics['values']['peak']:.4f} norm.", 380, 17, MUTED)
+        _text_block(draw, (1060, y + 118), f"centroid {metrics['values']['spectral_centroid_hz']:.1f} Hz", 380, 17, MUTED)
+        _text_block(draw, (1060, y + 151), f"bandwidth {metrics['values']['spectral_bandwidth_hz']:.1f} Hz", 380, 17, MUTED)
+        _text(draw, (1060, y + 184), f"crest {metrics['values']['crest_factor']:.2f} (ratio)", 17, MUTED)
         spectrum = _audio_spectrum(artifact)
-        _text(draw, (1500, y + 43), "48 bands: peak magnitude", 16, MUTED)
-        spectrum_box = (1500, y + 65, 1836, y + 190)
+        _text(draw, (1500, y + 43), "48 bands; relative peak", 15, MUTED)
+        spectrum_box = (1500, y + 75, 1800, y + 190)
         nyquist = artifact.sample_rate.value / 2
         _axes(draw, spectrum_box, x_label="frequency (Hz)", y_label="", x_ticks=tuple((frequency, f"{frequency:g}") for frequency in (0.0, nyquist / 2, nyquist)), y_ticks=((0.0, "0"), (1.0, "1")), x_range=(0.0, nyquist), y_range=(0.0, 1.0))
         _draw_spectrum(draw, spectrum, spectrum_box)
         records.append({"illusion_id": illusion_id, "metrics": metrics, "canonical_digest": canonical_digest(artifact), "waveform": waveform, "spectrum": spectrum})
-    _footer(draw, "Audio metrics are canonical-buffer properties; playback level, transducers, and listener organization remain external.", y=1580)
+    _footer(draw, "Norm. = normalized amplitude; stereo channels occupy separate labeled lanes. Each vertical bin retains all sample extrema, not within-bin timing. Spectra are relative to the largest band. No listener data.", y=1580)
     digest = _save(image, path)
     return digest, {"signals": records, "spectral_definition": "48 peak-aggregated mean-channel magnitude bands covering DC through Nyquist; relative to the largest band", "seed": 0}
 
@@ -562,8 +609,8 @@ def _audiovisual(path: Path) -> tuple[str, dict[str, object]]:
     audio_box = (140, 470, 1760, 675)
     duration = artifact.presentation_duration_seconds
     ticks = tuple((time, f"{time:g}") for time in (0.0, duration / 2, duration))
-    _axes(draw, video_box, x_label="shared time (s)", y_label="video mean luminance", x_ticks=ticks, y_ticks=((0.0, "0"), (0.5, "0.5"), (1.0, "1")), x_range=(0.0, duration), y_range=(0.0, 1.0))
-    _axes(draw, audio_box, x_label="shared time (s)", y_label="mean-channel absolute amplitude", x_ticks=ticks, y_ticks=((0.0, "0"), (0.5, "0.5"), (1.0, "1")), x_range=(0.0, duration), y_range=(0.0, 1.0))
+    _axes(draw, video_box, x_label="shared time (s)", y_label="video mean code-value proxy (normalized)", x_ticks=ticks, y_ticks=((0.0, "0"), (0.5, "0.5"), (1.0, "1")), x_range=(0.0, duration), y_range=(0.0, 1.0))
+    _axes(draw, audio_box, x_label="shared time (s)", y_label="mean-channel absolute amplitude (normalized)", x_ticks=ticks, y_ticks=((0.0, "0"), (0.5, "0.5"), (1.0, "1")), x_range=(0.0, duration), y_range=(0.0, 1.0))
     traces = _draw_audiovisual_traces(draw, artifact, video_box, audio_box)
     _text(draw, (50, 745), f"declared sync offset ΔAV = {artifact.sync_offset.value:g} ms", 22, INK)
     _text(draw, (780, 745), f"declared spatial discrepancy = {artifact.spatial_offset.value:g} normalized", 22, INK)
@@ -585,9 +632,10 @@ def _encoding(path: Path) -> tuple[str, dict[str, object]]:
     for row, values in enumerate(rows):
         y = 175 + row * 115
         for x, value in zip(xs, values):
-            _text(draw, (x, y), value, 19, INK)
-        draw.line((50, y + 42, 1840, y + 42), fill=(224, 228, 233), width=1)
-    _text(draw, (50, 800), "Provenance retains the canonical digest; only NPZ preserves exact canonical arrays. PNG quantizes float32 to uint8.", 20, MUTED)
+            width = (330, 330, 600, 380)[xs.index(x)]
+            _text_block(draw, (x, y), value, width, 19, INK)
+        draw.line((50, y + 82, 1840, y + 82), fill=(224, 228, 233), width=1)
+    _text_block(draw, (50, 800), "Provenance retains the canonical digest; only NPZ preserves exact canonical arrays. PNG quantizes float32 to uint8. These are adapter contracts, not a delivery run.", 1800, 20, MUTED)
     digest = _save(image, path)
     return digest, {"profiles": [dict(zip(headers, row)) for row in rows], "canonical_identity": "Canonical digest retained in provenance; exact canonical arrays only in NPZ; PNG stores uint8-quantized raster pixels."}
 
@@ -604,16 +652,17 @@ def _observer(path: Path) -> tuple[str, dict[str, object]]:
     _text(draw, (50, 25), "Synthetic psychophysics: transparent feature observer", 36)
     _text(draw, (50, 72), "A deterministic model diagnostic varies duck_weight against a fixed reference; it is not a human or pretrained vision-model result.", 20, MUTED)
     plot_box = (145, 180, 1250, 670)
-    model_low = max(0.0, min(point["probability_min"] for point in bounds) - 0.02)
-    model_high = min(1.0, max(point["probability_max"] for point in bounds) + 0.02)
-    _axes(draw, plot_box, x_label="duck_weight of comparison stimulus", y_label="model P(comparison)", x_ticks=((0.0, "0.00"), (0.5, "0.50"), (1.0, "1.00")), y_ticks=((model_low, f"{model_low:.2f}"), (0.50, "0.50 null"), (model_high, f"{model_high:.2f}")), x_range=(0.0, 1.0), y_range=(model_low, model_high))
+    model_low, model_high = 0.0, 1.0
+    _axes(draw, plot_box, x_label="duck_weight of comparison stimulus", y_label="model P(comparison), unitless", x_ticks=((0.0, "0.00"), (0.5, "0.50"), (1.0, "1.00")), y_ticks=((0.0, "0"), (0.5, "0.50"), (1.0, "1")), x_range=(0.0, 1.0), y_range=(model_low, model_high))
     def coordinate(point, value):
         return (int(plot_box[0] + point["x_value"] * (plot_box[2] - plot_box[0])),
                 int(plot_box[3] - (value - model_low) / (model_high - model_low) * (plot_box[3] - plot_box[1])))
     polygon = [coordinate(point, point["probability_min"]) for point in bounds]
     polygon += [coordinate(point, point["probability_max"]) for point in reversed(bounds)]
     draw.polygon(polygon, fill=(224, 240, 230))
-    _line_plot(draw, [0.5] * len(points), plot_box, MUTED, value_range=(model_low, model_high))
+    null_y = (plot_box[1] + plot_box[3]) // 2
+    for x in range(plot_box[0], plot_box[2], 24):
+        draw.line((x, null_y, min(x + 12, plot_box[2]), null_y), fill=MUTED, width=2)
     _line_plot(draw, [point.prediction.probability_comparison for point in points], plot_box, GREEN, value_range=(model_low, model_high))
     for point in points:
         x = int(plot_box[0] + point.x_value * (plot_box[2] - plot_box[0]))
@@ -629,67 +678,69 @@ def _observer(path: Path) -> tuple[str, dict[str, object]]:
         "calibration = analytic logistic",
         f"human validation = {model.human_validation}",
     )
-    for line_index, line in enumerate(contract_lines):
-        _text(draw, (1360, 265 + line_index * 38), line, 16, INK)
-    _text(draw, (1360, 510), f"reference = {diagnostic.reference_label}", 16, MUTED)
-    _text(draw, (1360, 550), f"points = {summary['point_count']}", 16, MUTED)
-    _text(draw, (1360, 590), f"P range = {summary['probability_min']:.3f}–{summary['probability_max']:.3f}", 16, MUTED)
-    _text(draw, (50, 745), "Shading: declared model configurations, including the null · not a confidence interval · human_data: false", 20, RED)
-    _text(draw, (50, 800), "Five active image-feature ablations; nine inactive-feature controls; temperatures 0.5× / 1× / 2×. No fitted observer uncertainty.", 19, MUTED)
+    contract_y = 250
+    for line in contract_lines:
+        contract_y += _text_block(draw, (1360, contract_y), line, 450, 16, INK) + 12
+    contract_y += _text_block(draw, (1360, contract_y), f"reference = {diagnostic.reference_label}", 450, 16, MUTED) + 12
+    _text_block(draw, (1360, contract_y), f"points = {summary['point_count']} · P = {summary['probability_min']:.3f}–{summary['probability_max']:.3f}", 450, 16, MUTED)
+    draw.line((60, 752, 125, 752), fill=GREEN, width=4)
+    _text(draw, (145, 737), "solid: default model", 19, GREEN)
+    draw.rectangle((500, 742, 555, 765), fill=(224, 240, 230), outline=GREEN)
+    _text(draw, (575, 737), "shading: declared configuration range", 19, INK)
+    draw.line((1290, 752, 1310, 752), fill=MUTED, width=2)
+    draw.line((1320, 752, 1340, 752), fill=MUTED, width=2)
+    _text(draw, (1360, 737), "dashed: zero-weight null", 19, MUTED)
+    _text_block(draw, (50, 800), "Range includes weight ablations, inactive-feature controls, the zero-weight null, and temperatures 0.5× / 1× / 2×. Not a confidence interval; human_data = false.", 1800, 19, RED)
     _footer(draw, "This curve diagnoses sensitivity of a specified feature observer. It does not estimate a psychometric function or establish a perceptual effect.", y=940)
     digest = _save(image, path)
-    payload["plot"] = {"probability_axis": [model_low, model_high], "range_kind": "model_sensitivity_not_confidence_interval"}
+    payload["plot"] = {"probability_axis": [model_low, model_high], "range_kind": "model_sensitivity_not_confidence_interval", "null_probability": 0.5, "null_style": "dashed", "default_model_style": "solid"}
     return digest, payload
 
 
 def _claim_boundary(path: Path) -> tuple[str, dict[str, object]]:
-    image = Image.new("RGB", (1900, 1050), CANVAS)
+    image = Image.new("RGB", (1900, 970), CANVAS)
     draw = ImageDraw.Draw(image)
-    _text(draw, (55, 35), "Claim-level boundary", 38)
-    _text(draw, (55, 95), "Each stage exposes a different kind of evidence; later stages do not retroactively validate perception.", 21, MUTED)
+    _text(draw, (55, 35), "Construction evidence is not observer evidence", 38)
+    _text_block(draw, (55, 100), "Canonical arrays support measurements and delivery checks. Neither branch is a bridge to a perceptual result.", 1790, 21, MUTED)
     stages = (
-        ("canonical_stimulus", "typed request → deterministic buffer", ACCENT),
-        ("physical_metric", "shape, clock, luminance, spectrum", GREEN),
-        ("encoded_media", "container + decoded inspection", AMBER),
-        ("observer_hypothesis", "future protocol and estimand", RED),
+        ("canonical_stimulus", "Canonical stimulus", "Typed request → immutable buffer + clock", ACCENT, (60, 270, 540, 560)),
+        ("physical_metric", "Physical metric", "Measurements of canonical pixels, samples, and timing", GREEN, (650, 200, 1170, 450)),
+        ("encoded_media", "Encoded media", "Delivery container + decoded inspection; canonical digest retained", AMBER, (650, 510, 1170, 760)),
+        ("observer_hypothesis", "Observer hypothesis", "Separate calibrated study, consent, responses, estimand", RED, (1320, 270, 1840, 650)),
     )
-    boxes = []
-    for index, (level, detail, color) in enumerate(stages):
-        x = 85 + index * 455
-        box = (x, 300, x + 360, 610)
-        boxes.append(box)
-        draw.rounded_rectangle(box, radius=25, fill=(247, 249, 251), outline=color, width=8)
-        _text(draw, (x + 25, 350), str(index + 1), 32, color)
-        _text(draw, (x + 25, 415), level, 25)
-        _text(draw, (x + 25, 480), detail, 18, MUTED)
-    for first, second in zip(boxes, boxes[1:]):
-        draw.line((first[2] + 12, 455, second[0] - 12, 455), fill=INK, width=5)
-        draw.polygon(((second[0] - 12, 455), (second[0] - 28, 444), (second[0] - 28, 466)), fill=INK)
-    draw.rounded_rectangle((265, 760, 1635, 900), radius=18, fill=(253, 246, 238), outline=AMBER, width=4)
-    _text(draw, (315, 805), "Boundary rule: deterministic media facts are package claims; observer effects require a separate validated study.", 23, INK)
+    for level, title, detail, color, box in stages:
+        draw.rounded_rectangle(box, radius=20, fill=(247, 249, 251), outline=color, width=5)
+        _text_block(draw, (box[0] + 25, box[1] + 25), title, box[2] - box[0] - 50, 27, color)
+        _text_block(draw, (box[0] + 25, box[1] + 100), detail, box[2] - box[0] - 50, 20, INK)
+        _text_block(draw, (box[0] + 25, box[3] - 50), level, box[2] - box[0] - 50, 15, MUTED)
+    for endpoint in ((640, 325), (640, 635)):
+        draw.line(((550, 415), (590, 415), (590, endpoint[1]), endpoint), fill=INK, width=3)
+        draw.polygon((endpoint, (endpoint[0] - 14, endpoint[1] - 8), (endpoint[0] - 14, endpoint[1] + 8)), fill=INK)
+    draw.line((1250, 200, 1250, 760), fill=RED, width=5)
+    _text_block(draw, (1335, 700), "No inference arrow crosses this boundary", 480, 18, RED)
+    _footer(draw, "Package evidence: canonical identity, objective metrics, and inspected delivery. Observer effects require independent empirical evidence. No participant data.", y=850, color=RED)
     digest = _save(image, path)
-    return digest, {"stages": [{"claim_level": level, "detail": detail} for level, detail, _ in stages], "observer_data": "none"}
+    return digest, {"stages": [{"claim_level": level, "detail": detail} for level, _, detail, _, _ in stages], "dependencies": [["canonical_stimulus", "physical_metric"], ["canonical_stimulus", "encoded_media"]], "observer_inference": "not established by either branch", "observer_data": "none"}
 
 
 def _scholarship_map(path: Path) -> tuple[str, dict[str, object]]:
     sources, evidence = load_evidence_matrix()
     entries = taxonomy_entries()
-    columns = (55, 480, 820, 1120, 1410, 1810)
-    headers = ("catalog entry", "primary", "review", "theory", "supported claim", "status")
+    columns = (55, 480, 610, 740, 880, 1780)
+    headers = ("catalog entry", "primary", "review", "theory", "supported claim + first limitation", "status")
 
     row_heights = []
     for entry in entries:
         record = evidence[entry.illusion_id]
-        claim_lines = max(1, _wrapped(record.supported_claim, 42).count("\n") + 1)
-        limitation_lines = max(1, _wrapped(f"limitation recorded: {record.evidence_limitations[0]}", 42).count("\n") + 1)
-        content_height = claim_lines * 21 + 6 + limitation_lines * 16
-        row_heights.append(max(92, content_height + 20))
+        content_height = _text_height(record.supported_claim, 850, 16) + 12
+        content_height += _text_height(f"Limitation: {record.evidence_limitations[0]}", 850, 14)
+        row_heights.append(max(100, content_height + 38))
 
     top_offset = 205
     image = Image.new("RGB", (2050, top_offset + sum(row_heights) + 60), CANVAS)
     draw = ImageDraw.Draw(image)
     _text(draw, (45, 30), "Source-tiered scholarship map", 36)
-    _text(draw, (45, 88), f"{len(evidence)} catalog entries; {len(sources)} source records; exact claims, engineering bases, and limitations are retained in source data.", 20, MUTED)
+    _text_block(draw, (45, 88), f"{len(evidence)} catalog entries; {len(sources)} source records. Counts are source roles, not evidence strength. Full claims, engineering bases and limitations are retained in source data.", 1950, 20, MUTED)
     for x, header in zip(columns, headers):
         _text(draw, (x, 155), header, 18, MUTED)
     rows = []
@@ -698,15 +749,14 @@ def _scholarship_map(path: Path) -> tuple[str, dict[str, object]]:
         record = evidence[entry.illusion_id]
         values = (entry.illusion_id, len(record.primary_sources), len(record.review_sources), len(record.theory_sources), record.supported_claim, entry.implementation_status.value)
         color = GREEN if entry.implementation_status is ImplementationStatus.IMPLEMENTED else AMBER if entry.implementation_status.value == "planned" else RED
-        for x, value in zip(columns[:4], values[:4]):
-            _text(draw, (x, y), str(value), 15, INK)
-        _text_block(draw, (columns[4], y - 4), values[4], 42, 14, INK)
-        _text(draw, (columns[5], y), values[5], 15, color)
-        claim_lines = max(1, _wrapped(values[4], 42).count("\n") + 1)
-        limitation_y = y - 4 + claim_lines * 21 + 6
-        _text_block(draw, (columns[4], limitation_y), f"limitation recorded: {record.evidence_limitations[0]}", 42, 10, MUTED)
+        for x, value, width in zip(columns[:4], values[:4], (400, 100, 100, 100)):
+            _text_block(draw, (x, y), value, width, 16, INK)
+        claim_height = _text_block(draw, (columns[4], y), values[4], 850, 16, INK)
+        _text_block(draw, (columns[5], y), values[5], 220, 16, color)
+        _text_block(draw, (columns[4], y + claim_height + 12), f"Limitation: {record.evidence_limitations[0]}", 850, 14, MUTED)
         draw.line((45, y + row_height - 20, 1995, y + row_height - 20), fill=(229, 232, 236), width=1)
         rows.append({"illusion_id": entry.illusion_id, "primary": record.primary_sources, "review": record.review_sources, "theory": record.theory_sources, "supported_claim": record.supported_claim, "engineering_basis": record.engineering_basis, "limitations": record.evidence_limitations, "gap": entry.implementation_status.value != "implemented"})
+        rows[-1]["implementation_status"] = entry.implementation_status.value
         y += row_height
     digest = _save(image, path)
     return digest, {"source_count": len(sources), "entry_count": len(evidence), "rows": rows}
@@ -714,24 +764,32 @@ def _scholarship_map(path: Path) -> tuple[str, dict[str, object]]:
 
 def _formalism_traceability(path: Path) -> tuple[str, dict[str, object]]:
     definitions = formalism_registry()
-    image = Image.new("RGB", (2050, 205 + len(definitions) * 175 + 60), CANVAS)
+    columns = (55, 340, 950, 1320, 1690)
+    widths = (260, 585, 345, 345, 310)
+    rows = []
+    for definition in definitions:
+        values = (definition.label, definition.equation, ", ".join(definition.implementation), ", ".join(definition.tests), ", ".join(definition.figures))
+        heights = [_text_height(value, width, 16) for value, width in zip(values, widths)]
+        claim = f"claim: {definition.claim_level.value}"
+        heights[0] += 14 + _text_height(claim, widths[0], 14)
+        rows.append((definition, values, max(heights) + 40))
+    image = Image.new("RGB", (2050, 205 + sum(height for _, _, height in rows) + 60), CANVAS)
     draw = ImageDraw.Draw(image)
     _text(draw, (50, 30), "Formalism traceability", 36)
     _text(draw, (50, 88), "Equation labels resolve to implementation modules, tests, figures, and claim levels.", 21, MUTED)
-    columns = (55, 270, 900, 1260, 1640)
-    headers = ("label", "equation", "implementation", "tests", "figures")
+    headers = ("label + claim level", "equation", "implementation", "tests", "figures")
     for x, header in zip(columns, headers):
         _text(draw, (x, 150), header, 18, MUTED)
     records = []
-    for row, definition in enumerate(definitions):
-        y = 205 + row * 175
-        values = (definition.label, definition.equation, ", ".join(definition.implementation), ", ".join(definition.tests), ", ".join(definition.figures))
-        widths = (28, 58, 34, 34, 34)
+    y = 205
+    for definition, values, height in rows:
         for x, value, width in zip(columns, values, widths):
-            _text_block(draw, (x, y), value, width, 15, INK)
-        _text(draw, (columns[0], y + 37), f"claim: {definition.claim_level.value}", 14, ACCENT)
-        draw.line((50, y + 105, 2000, y + 105), fill=(229, 232, 236), width=1)
+            _text_block(draw, (x, y), value, width, 16, INK)
+        claim_y = y + _text_height(values[0], widths[0], 16) + 14
+        _text_block(draw, (columns[0], claim_y), f"claim: {definition.claim_level.value}", widths[0], 14, ACCENT)
+        draw.line((50, y + height - 16, 2000, y + height - 16), fill=(229, 232, 236), width=1)
         records.append(definition.to_dict())
+        y += height
     digest = _save(image, path)
     return digest, {"definitions": records}
 
@@ -759,7 +817,7 @@ def _metrics_dashboard(path: Path) -> tuple[str, dict[str, object]]:
             value = metrics["values"].get(metric, "n/a")
             unit = next((record["unit"] for record in metrics["records"] if record["name"] == metric), "")
             rendered = str(value) if isinstance(value, int) and not isinstance(value, bool) else f"{float(value):.4f}" if isinstance(value, (int, float)) and not isinstance(value, bool) else str(value)
-            _text(draw, (x + 35, y + 100 + metric_index * 58), f"{metric}: {rendered} {unit}", 18, INK)
+            _text_block(draw, (x + 35, y + 100 + metric_index * 58), f"{metric}: {rendered} {unit}", 780, 18, INK)
         cards.append({"artifact": kind, "canonical_digest": canonical_digest(artifact), "metrics": metrics})
     digest = _save(image, path)
     return digest, {"cards": cards, "computation_version": COMPUTATION_VERSION}
@@ -780,7 +838,7 @@ def _parameter_domains(path: Path) -> tuple[str, dict[str, object]]:
         y = 165 + row * 115
         _text(draw, (60, y), name, 20, INK)
         _text(draw, (400, y), f"{low:g}", 18, MUTED)
-        _text(draw, (1570, y), f"{high:g} {unit}" if high is not None else f"unbounded; finite {unit}", 18, MUTED)
+        _text_block(draw, (1570, y), f"{high:g} {unit}" if high is not None else f"unbounded; finite {unit}", 325, 18, MUTED)
         draw.line((520, y + 15, 1530, y + 15), fill=(203, 211, 220), width=6)
         draw.ellipse((512, y + 7, 528, y + 23), outline=ACCENT, fill=ACCENT if high is not None else CANVAS, width=3)
         if high is None:
@@ -807,24 +865,97 @@ def _observer_protocol(path: Path) -> tuple[str, dict[str, object]]:
         boxes.append(box)
         accent = ACCENT if index < 3 else GREEN
         draw.rounded_rectangle(box, radius=22, fill=(247, 249, 251), outline=accent, width=5)
-        _text(draw, (x + 20, 305), f"{index + 1:02d}  {title}", 21, accent)
-        _text_block(draw, (x + 20, 385), detail, 24, 17, MUTED)
+        _text_block(draw, (x + 20, 295), f"{index + 1:02d}  {title}", 280, 21, accent)
+        _text_block(draw, (x + 20, 390), detail, 280, 17, MUTED)
         if index < len(steps) - 1:
             draw.line((x + 330, 420, x + 375, 420), fill=INK, width=4)
             draw.polygon(((x + 375, 420), (x + 360, 410), (x + 360, 430)), fill=INK)
     _text(draw, (60, 685), "Two explicitly different endpoints", 25, ACCENT)
     draw.rounded_rectangle((60, 735, 970, 1015), radius=20, fill=(241, 249, 244), outline=GREEN, width=5)
     _text(draw, (90, 775), "Synthetic psychophysics (included)", 23, GREEN)
-    _text_block(draw, (90, 835), "duckrabbit.synthetic.feature_observer\nhand-specified features · analytic logistic rule\ntraining_data = none · human_data = false\noutput: model diagnostic, not a psychometric function", 48, 18, INK)
+    _text_block(draw, (90, 835), "duckrabbit.synthetic.feature_observer\nhand-specified features · analytic logistic rule\ntraining_data = none · human_data = false\noutput: model diagnostic, not a psychometric function", 850, 18, INK)
     draw.rounded_rectangle((1080, 735, 1990, 1015), radius=20, fill=(253, 246, 238), outline=AMBER, width=5)
     _text(draw, (1110, 775), "Human psychophysics (future contract)", 23, AMBER)
-    _text_block(draw, (1110, 835), "display / playback calibration\nparticipant consent + pseudonymization\npreregistered response, exclusions, model\noutput: observer estimate with uncertainty", 48, 18, INK)
+    _text_block(draw, (1110, 835), "display / playback calibration\nparticipant consent + pseudonymization\npreregistered response, exclusions, model\noutput: observer estimate with uncertainty", 850, 18, INK)
     _text(draw, (60, 1080), "Model templates for future human analysis", 25, ACCENT)
     for index, model in enumerate(default_model_specs()):
         _text(draw, (60 + (index % 2) * 970, 1130 + (index // 2) * 45), f"{model.model.value}: {model.family} / {model.link}", 16, INK)
     _footer(draw, "No participant records, fitted coefficients, or observer-level result is bundled; the included endpoint is model output only.", y=1280, color=RED, right=2000)
     digest = _save(image, path)
     return digest, {"study_id": design.study_id, "study_design": design.to_dict(), "randomization_seed": design.randomization_seed, "steps": [{"name": name, "detail": detail} for name, detail in steps], "synthetic_model": {"model_id": "duckrabbit.synthetic.feature_observer", "training_data": "none", "human_data": False}, "human_study": {"status": "future", "participant_data": False}, "models": [model.to_dict() for model in default_model_specs()]}
+
+
+def _graphical_abstract(path: Path) -> tuple[str, dict[str, object]]:
+    """Show real default constructions, never illustrative substitute traces."""
+    ids = ("visual.duck_rabbit", "audio.missing_fundamental", "visual.apparent_motion", "audiovisual.sound_induced_flash")
+    visual, audio, temporal, audiovisual = (_generate(illusion_id) for illusion_id in ids)
+    if not isinstance(audio, AudioBuffer) or not isinstance(temporal, VideoSequence) or not isinstance(audiovisual, AudiovisualTimeline):
+        raise TypeError("graphical abstract requires canonical audio, video, and audiovisual defaults")
+    artifacts = (visual, audio, temporal, audiovisual)
+    records = [{"illusion_id": illusion_id, "parameters": jsonable(default_parameters(illusion_id)), "seed": 0, "canonical_digest": canonical_digest(artifact), "metrics": measure_artifact(artifact).to_dict()} for illusion_id, artifact in zip(ids, artifacts)]
+    image = Image.new("RGB", (1900, 1460), CANVAS)
+    draw = ImageDraw.Draw(image)
+    _text(draw, (50, 30), "Deterministic multimodal stimulus construction", 38)
+    _text(draw, (50, 88), "Source-derived examples · canonical buffers and clocks · synthetic constructions only · human_data = false", 21, RED)
+    story = (
+        ("1  Typed request", "Registry ID + validated immutable parameters + seed; output format is separate.", ACCENT),
+        ("2  Canonical artifact", "Deterministic float32 arrays + explicit clocks → canonical SHA-256 identity.", GREEN),
+        ("3  Delivery / verification", "Adapter contract: encode → decode / inspect → manifest checks. NPZ alone retains exact arrays.", AMBER),
+    )
+    for index, (title, detail, color) in enumerate(story):
+        x = 50 + index * 615
+        _panel(draw, (x, 150, x + 570, 325), accent=color)
+        _text(draw, (x + 18, 162), title, 23, color)
+        _text_block(draw, (x + 18, 217), detail, 534, 19, INK)
+        if index < 2:
+            draw.line((x + 578, 235, x + 605, 235), fill=INK, width=3)
+            draw.polygon(((x + 605, 235), (x + 593, 227), (x + 593, 243)), fill=INK)
+    for box, title, color in (
+        ((50, 365, 920, 795), "A  Visual · canonical raster", ACCENT),
+        ((970, 365, 1840, 795), "B  Audio · all-sample extrema", GREEN),
+        ((50, 835, 920, 1265), "C  Temporal · ordered canonical frames", ACCENT),
+        ((970, 835, 1840, 1265), "D  Audiovisual · shared-clock events", GREEN),
+    ):
+        _panel(draw, box, accent=color)
+        _text(draw, (box[0] + 20, box[1] + 12), title, 23, color)
+    thumbnail = _image(visual).convert("RGB")
+    thumbnail.thumbnail((390, 270), Image.Resampling.NEAREST)
+    image.paste(thumbnail, (75 + (390 - thumbnail.width) // 2, 445))
+    _text_block(draw, (490, 450), ids[0], 390, 20)
+    _text_block(draw, (490, 500), "Uncalibrated normalized pixel values. A construction, not a perceptual report.", 390, 19, MUTED)
+    _text_block(draw, (490, 615), f"canonical SHA-256\n{records[0]['canonical_digest'][:16]}…", 390, 17, MUTED)
+    waveform = _audio_waveform(audio)
+    records[1]["waveform"] = waveform
+    audio_box = (1080, 495, 1770, 665)
+    duration = audio.duration_seconds
+    _text(draw, (995, 430), ids[1], 20)
+    _axes(draw, audio_box, x_label="time (s); min/max bins, not exact samples", y_label="normalized amplitude", x_ticks=((0.0, "0"), (duration / 2, f"{duration / 2:g}"), (duration, f"{duration:g}")), y_ticks=((-1.0, "−1"), (0.0, "0"), (1.0, "1")), x_range=(0.0, duration), y_range=(-1.0, 1.0))
+    for channel in range(audio.channels):
+        _draw_waveform(draw, waveform, audio_box, channel=channel, color=(ACCENT, RED)[channel], x_range=(0.0, duration))
+    _text(draw, (995, 752), f"{audio.sample_rate.value:g} samples/s · {audio.channels} channel(s) · SHA-256 {records[1]['canonical_digest'][:12]}…", 17, MUTED)
+    shown_indices = tuple(range(min(4, temporal.frame_count)))
+    strip = _frame_strip(tuple(temporal.frames[index] for index in shown_indices), 195, 160)
+    image.paste(strip, (85, 935))
+    _text(draw, (75, 900), ids[2], 20)
+    for column, index in enumerate(shown_indices):
+        _text(draw, (85 + column * 195, 1110), f"f{index} · {index / temporal.frame_rate.value:.3f} s", 17)
+    _text_block(draw, (75, 1160), f"{temporal.frame_count} frames · {temporal.frame_rate.value:g} frames/s · first four shown in order\ncanonical SHA-256 {records[2]['canonical_digest'][:16]}…", 815, 18, MUTED)
+    records[2]["displayed_frame_indices"] = shown_indices
+    records[2]["timestamps_seconds"] = [index / temporal.frame_rate.value for index in range(temporal.frame_count)]
+    records[2]["temporal_deltas"] = temporal.temporal_deltas
+    _text(draw, (995, 900), ids[3], 20)
+    av_duration = audiovisual.presentation_duration_seconds
+    ticks = ((0.0, "0"), (av_duration / 2, f"{av_duration / 2:g}"), (av_duration, f"{av_duration:g}"))
+    video_box, av_audio_box = (1080, 970, 1770, 1040), (1080, 1140, 1770, 1190)
+    _axes(draw, video_box, x_label="shared time (s)", y_label="video code-value proxy (norm.)", x_ticks=ticks, y_ticks=((0.0, "0"), (1.0, "1")), x_range=(0.0, av_duration))
+    _axes(draw, av_audio_box, x_label="shared time (s)", y_label="audio absolute amplitude (norm.)", x_ticks=ticks, y_ticks=((0.0, "0"), (1.0, "1")), x_range=(0.0, av_duration))
+    records[3]["plotted_traces"] = _draw_audiovisual_traces(draw, audiovisual, video_box, av_audio_box)
+    records[3]["sync_offset_ms"] = audiovisual.sync_offset.value
+    records[3]["spatial_offset"] = audiovisual.spatial_offset.value
+    _text_block(draw, (55, 1310), "Claim boundary: reproducible media + objective measurements ≠ observer evidence. No participant responses, fitted human model, or validated perceptual effect.", 1790, 23, RED)
+    _footer(draw, "Four real typed defaults at seed 0. Full parameters, metrics, canonical digests and plotted data: graphical_abstract.json. Delivery boxes describe contracts, not codec execution.", y=1400)
+    digest = _save(image, path)
+    return digest, {"stimuli": records, "story": [{"stage": title, "detail": detail} for title, detail, _ in story], "human_data": False, "delivery_status": "adapter contract only; no encoding executed for this figure", "visual_display": "nearest-neighbor uint8 thumbnail of canonical normalized pixels; canonical float32 identity retained by digest", "claim_boundary": "synthetic stimulus constructions and canonical measurements; not observer evidence"}
 
 
 def publication_caption_specs() -> tuple[CaptionSpec, ...]:
@@ -842,17 +973,29 @@ def publication_caption_specs() -> tuple[CaptionSpec, ...]:
         CaptionSpec("fig:catalog_matrix", "catalog_matrix", "Catalog taxonomy and scholarship", f"The live catalog matrix contains {catalog_count} entries and keeps modality, mechanism, perceptual signature, input requirement, evidence status, and implementation status as separate facets. Source data output/data/catalog_matrix.json preserve the exact taxonomy snapshot and its source-reference namespace; status is not a proxy for perceptual validation.", "A matrix lists all catalog entries with modality, mechanism, signature, input requirement, and implementation status.", ClaimLevel.SOURCE_SUPPORTED, "output/data/catalog_matrix.json", ("gregory1997visual", "hirst2020sound", "bruns2019ventriloquist"), ("Taxonomy facets are engineering classifications and remain provisional where the literature supports competing accounts.",), ("Every status and facet is written as text; color only reinforces the printed status.",), 0, "live taxonomy registry; evidence matrix snapshot; seed not applicable to the catalog diagram", f"{catalog_count} catalog rows; categorical facets and statuses; no observer-level quantity is applicable", "Catalog coverage is bounded to this registered package and does not enumerate all known illusions."),
         CaptionSpec("fig:visual_panel", "visual_panel", "Complete panel of implemented visual constructions", f"This complete gallery presents one deterministic representative from each of the {len(visual_entries)} currently implemented visual catalog entries: {visual_names}. The panel therefore covers the package's available visual families—ambiguous figure, contrast, apparent motion, geometric context, illusory contour, contextual size, and orientation-related constructions—using typed defaults at seed 0. For the temporally expressed apparent-motion entry, the displayed tile is its first frame and the source data preserve the full sequence. The source data sidecar output/data/visual_panel.json records the stable ID, generator parameters, canonical SHA-256 digest, grayscale code-value or Rec. 709-weighted RGB proxy statistics (no transfer conversion or display calibration), raster-level counts, and parameter boundary for every tile.", f"A {len(visual_entries)}-panel gallery shows every currently implemented visual catalog entry, with stable IDs and physical raster summaries: {visual_names}.", ClaimLevel.CANONICAL_STIMULUS, "output/data/visual_panel.json", ("gregory1997visual", "brugger1999duckrabbit", "howe2005muller", "morgan1999poggendorff", "fisher1967ponzo", "yildiz2022ponzo", "kanizsa1976contours", "mruczek2015ebbinghaus", "earle1995zollner", "wertheimer1912motion", "sekuler1996wertheimer"), ("The gallery is complete for implemented visual entries in this package, not a complete survey of visual illusions; literature families, historical displays, and DuckRabbit rasters are not pixel-identical by default.", "Viewing scale, display calibration, viewing distance, and observer conditions can change the relevance of a construction; the gallery does not measure an observer's perceptual report."), ("Each tile is labeled by stable illusion ID and accompanied by printed luminance, level-count, and digest fields; color only reinforces grouping and is not required to identify a stimulus.",), 0, "one default typed parameter object per implemented visual entry; seed s=0; dimensions, luminance bounds, grayscale, and quantization controls remain in each generator schema; temporal entries display their first frame but retain sequence metrics", "per tile: mean and standard deviation of the declared uncalibrated channel-value proxy, unique raster levels, and canonical SHA-256 digest; temporal entries additionally retain frame count, frame rate, and frame deltas; definitions and units are in the source data JSON", "The figure establishes coverage of the package's implemented visual constructions and their deterministic raster facts. It does not establish that any viewer will perceive the named signature, nor that the set is exhaustive of the visual-illusion literature."),
         CaptionSpec("fig:visual_sweep", "visual_sweep", "Visual parameter sweep with physical readouts", "This 5×5 sweep varies duck–rabbit blend weight across rows and jointly varies grayscale and quantization levels across columns. Each cell is regenerated from an immutable typed parameter object at seed 0; source data output/data/visual_sweep.json records canonical digests, unique-level counts, normalized luminance, and effective dynamic range for every condition.", "A labeled grid crosses five duck–rabbit blend weights with five grayscale and quantization settings, with physical metrics recorded for each cell.", ClaimLevel.PHYSICAL_METRIC, "output/data/visual_sweep.json", ("brugger1999duckrabbit", "gregory1997visual"), ("The grid is a sensitivity of the construction parameters, not a psychophysical sensitivity curve or a validated observer effect.",), ("Row and column labels state the parameter values; numerical metrics and units are available in the sidecar.",), 0, "duck_weight ∈ {0,.25,.5,.75,1}; grayscale=quantization ∈ {2,4,8,16,32}; seed s=0", "25 canonical rasters; unique levels, normalized mean luminance, and effective dynamic range per cell", "The chosen grid is an engineering sampling of the parameter domain and does not imply an optimal or perceptually uniform spacing."),
-        CaptionSpec("fig:temporal_sequence", "temporal_sequence", "Temporal sequence, clock, and frame deltas", "The frame strip exposes the order and timestamps of the apparent-motion construction, while the lower trace reports adjacent-frame mean absolute pixel differences. Source data output/data/temporal_sequence.json preserve frame count, frame rate, reduced rational timebase, timestamps in seconds, and the nonzero transition series; seed 0 identifies the generated sequence.", "Six ordered frames are labeled with timestamps and paired with a line plot of adjacent-frame normalized pixel differences.", ClaimLevel.PHYSICAL_METRIC, "output/data/temporal_sequence.json", ("wertheimer1912motion", "sekuler1996wertheimer"), ("Frame succession and frame deltas are physical file properties; playback timing, display persistence, and motion reports require a controlled observer task.",), ("Frame index, seconds, frames per second, and normalized-difference labels remain interpretable without color.",), 0, "visual.apparent_motion default typed parameters; frame rate and frame count from the canonical sequence; seed s=0", "timestamps in seconds, frame rate in frames/s, frame count, rational timebase, and adjacent-frame normalized pixel difference", "The figure documents temporal structure rather than the presence, direction, or strength of perceived motion."),
-        CaptionSpec("fig:audio_signals", "audio_signals", "Auditory canonical signals and spectral summaries", "Five implemented auditory constructions—Shepard tone, missing fundamental, tritone paradox, octave illusion, and auditory continuity—are shown as canonical waveforms with compact one-sided FFT summaries. Source data output/data/audio_signals.json records sample rate, channel layout, RMS, peak, spectral centroid, bandwidth, crest factor, canonical digest, and the declared display-bin convention; no pitch or stream report is inferred.", "Five labeled rows show canonical audio waveforms, relative one-sided spectral bars, RMS and peak in normalized amplitude, and spectral summaries in hertz.", ClaimLevel.PHYSICAL_METRIC, "output/data/audio_signals.json", ("shepard1984scale", "zatorre2005missing", "deutsch1986tritone", "repp1997tritone", "deutsch1974octave", "warren1970continuity", "riecke2011continuity"), ("Playback level, transducer response, dichotic separation, masker design, and listener judgments are external to the canonical buffer.",), ("Waveform, spectral, amplitude, and frequency labels are printed; bar color is not the sole encoding.",), 0, "default typed audio parameters; per-generator channel layout and sample rate; seed s=0; one-sided FFT display with 48 frequency-labelled peak-magnitude bands", "RMS and peak in normalized amplitude; spectral centroid and bandwidth in Hz; sample rate in samples/s; channel layout and canonical SHA-256 digest", "The figure compares generated signal properties and literature-linked families; it does not establish pitch, continuity, or stream organization for a listener."),
+        CaptionSpec("fig:temporal_sequence", "temporal_sequence", "Temporal sequence, clock, and frame deltas", "The frame strip exposes zero-based frame order and canonical timestamps of the apparent-motion construction. The lower trace reports mean absolute pixel difference for each transition k → k+1 on an explicitly labeled data-scaled axis. Source data output/data/temporal_sequence.json preserve canonical digest, frame count and rate, reduced rational frame rate in frames/s, timestamps in seconds, transition definition, complete delta series and plotted range; seed 0 identifies the generated sequence.", "Six ordered canonical frames have timestamps in seconds and a plot of adjacent-frame normalized pixel differences labeled by transition index.", ClaimLevel.PHYSICAL_METRIC, "output/data/temporal_sequence.json", ("wertheimer1912motion", "sekuler1996wertheimer"), ("Frame succession and deltas are canonical construction properties, not decoded timing measurements; playback timing, display persistence, and motion reports require a controlled observer task.",), ("Zero-based frame index, seconds, frames per second, and normalized-difference axes are explicit without color.",), 0, "visual.apparent_motion default typed parameters; frame rate and frame count from the canonical sequence; seed s=0", "timestamps in seconds, frame rate in frames/s, frame count, rational frame rate in frames/s, and adjacent-frame normalized pixel difference", "The figure documents temporal structure rather than the presence, direction, or strength of perceived motion."),
+        CaptionSpec("fig:audio_signals", "audio_signals", "Auditory canonical extrema and spectral summaries", "Five implemented auditory constructions—Shepard tone, missing fundamental, tritone paradox, octave illusion, and auditory continuity—are displayed as per-channel all-sample min/max envelopes with one-sided FFT summaries. Every sample contributes to one contiguous half-open bin, including the final partial bin; the vertical range is drawn at the bin midpoint and does not recover within-bin waveform or extremum timing. Source data output/data/audio_signals.json records bin sample boundaries, minima and maxima, sample rate, channel indices, RMS, peak, spectral centroid, bandwidth, crest factor, canonical digest, and spectral normalization; no pitch or stream report is inferred.", "Five labeled rows show channel-preserving audio extrema bins, relative one-sided spectral bars, normalized RMS and peak, and spectral summaries in hertz.", ClaimLevel.PHYSICAL_METRIC, "output/data/audio_signals.json", ("shepard1984scale", "zatorre2005missing", "deutsch1986tritone", "repp1997tritone", "deutsch1974octave", "warren1970continuity", "riecke2011continuity"), ("Extrema aggregation preserves amplitude bounds, not within-bin sample order or event time. Playback level, transducer response, dichotic separation, masker design, and listener judgments remain external.",), ("Channel indices, extrema convention, spectral normalization, amplitude and frequency units are explicit; complete per-channel extrema arrays are retained in source data, not the original sample-by-sample signals.",), 0, "default typed audio parameters and sample rates at seed 0; disjoint all-sample per-channel extrema bins; one-sided FFT display with 48 frequency-labelled peak-magnitude bands", "RMS and peak in normalized amplitude; centroid and bandwidth in Hz; crest as a ratio; sample rate in samples/s; exact bin sample boundaries and canonical SHA-256 digest", "The figure compares generated signal properties and literature-linked families; it does not establish pitch, continuity, or stream organization for a listener."),
         CaptionSpec("fig:audiovisual_timeline", "audiovisual_timeline", "Audiovisual shared-clock timeline and declared offsets", "Video mean channel-value proxy and rectified audio amplitude are placed on a common time axis in seconds with video frame holds and actual audio sample timestamps for the sound-induced-flash construction. Source data output/data/audiovisual_timeline.json records the video frame clock, audio sampling clock, event traces, signed audio-minus-video synchronization offset in milliseconds, and normalized spatial discrepancy; alignment is declared by the generator, not estimated from perception.", "Two labeled traces share a time axis in seconds: video mean channel-value proxy and audio absolute amplitude, with signed synchronization and spatial offsets printed below.", ClaimLevel.PHYSICAL_METRIC, "output/data/audiovisual_timeline.json", ("shams2000sifi", "hirst2020sound", "vroomen2004temporal", "hartcherobrien2011temporal"), ("Display refresh, audio hardware, event latency, and observer temporal binding are not measured by this figure.",), ("The two channels, time axis, signed offset convention, and normalized spatial discrepancy are labeled in text.",), 0, "audiovisual.sound_induced_flash default shared timeline; declared sync offset ΔAV and spatial offset; seed s=0", "video frame-hold grayscale/weighted-RGB proxy and mean-channel absolute audio amplitude on shared time in seconds; ΔAV in ms; spatial discrepancy in normalized units; frame and sample clocks in the sidecar", "A shared-clock construction is not evidence that observers bind the events at the declared or any other perceptual time."),
-        CaptionSpec("fig:encoding_verification", "encoding_verification", "Encoding profiles and verification scope", "The comparison separates the canonical artifact from delivery containers: PNG, WAV, GIF, NPZ, and optional MP4/muxed MP4. Source data output/data/encoding_verification.json records backend identity, preserved canonical facts, decoded inspection targets, and capability status as observed in the generation environment; the table therefore describes an adapter contract rather than a claim about codec quality.", "A five-row comparison lists format, backend, preserved canonical facts, and the corresponding decoded verification checks.", ClaimLevel.ENCODED_MEDIA, "output/data/encoding_verification.json", ("engineering:typed_media_adapters",), ("Backend availability, codec versions, container metadata, and lossy tolerances are environment-dependent; playback software can expose additional behavior.",), ("Format, backend, preserved fact, and verification columns are textual and remain usable without color.",), 0, "typed encoding profile selected per artifact; overwrite and backend capability checks; seed inherited from the stimulus request", "format availability and verification scope are environment observations; NPZ is exact while other formats are decoded and tolerance-checked", "A successful encode or decode does not validate an observer effect or guarantee cross-device perceptual equivalence."),
+        CaptionSpec("fig:encoding_verification", "encoding_verification", "Encoding profiles and verification scope", "The comparison separates canonical artifacts from delivery containers: PNG, WAV, GIF, NPZ, and optional MP4/muxed MP4. Source data output/data/encoding_verification.json records the declared backend, delivery facts and decoded inspection targets. This is an adapter contract, not an observation of backend availability, an executed delivery receipt, or a codec-quality comparison.", "A five-row adapter-contract comparison lists format, backend, delivery facts and corresponding decoded verification checks.", ClaimLevel.ENCODED_MEDIA, "output/data/encoding_verification.json", ("engineering:typed_media_adapters",), ("Actual backend availability, codec versions, metadata, and lossy tolerances require a separate delivery run; playback software can expose additional behavior.",), ("Format, backend, delivery fact and verification columns are textual and remain usable without color.",), 0, "declared typed adapter contracts; no encoding or capability probe executed for this diagram", "categorical adapter and verification scope; no unit-bearing measurement is plotted; NPZ retains exact canonical arrays while other formats require decoded/tolerance-aware checks", "An adapter contract or successful encode/decode does not validate an observer effect or establish cross-device perceptual equivalence."),
         CaptionSpec("fig:synthetic_psychophysics", "synthetic_psychophysics", "Synthetic observer diagnostic—model output, not human psychophysics", "The hand-specified feature observer compares duck_weight variants with a fixed canonical reference. Its probability trace is computed analytically from serialized features, weights, and temperature; source data output/data/synthetic_psychophysics.json records model ID/version, reference and comparison digests, seed, calibration, `training_data=none`, and `human_data=false`. The shaded range covers the declared zero-weight control, one-at-a-time weight ablations, and temperature multipliers 0.5, 1, and 2; it is model sensitivity, not a confidence interval.", "A line plot and model-sensitivity range show deterministic model probability across duck_weight values beside the model identity, temperature, no-training-data statement, and human-data boundary.", ClaimLevel.SYNTHETIC_MODEL_OUTPUT, "output/data/synthetic_psychophysics.json", ("observer:preregistered_estimands",), ("The model is hand-specified, has no training data, has not been calibrated against observers, and does not estimate a human threshold or effect size.", "Its probabilities and the finite configuration range are model outputs, not participant responses, confidence intervals, or a psychometric function."), ("Model scale, reference line, model identity, and `human_data=false` are printed; color is not needed to interpret the curve.",), 0, "duck_weight comparison against fixed reference; serialized feature weights and temperature; seed s=0", "model probability, null baseline, ablations, temperature sensitivity and exact-self control; full feature values, specifications and canonical stimulus digests; human_data=false; training_data=none", "This diagnostic tests deterministic orchestration and metamorphic input-output behavior only; empirical psychophysics remains future work."),
-        CaptionSpec("fig:claim_boundary", "claim_boundary", "Claim-level boundary from artifact to observer hypothesis", "The four-stage boundary distinguishes what DuckRabbit can establish directly—canonical stimulus identity, physical/media metrics, and decoded encoded-media facts—from a future observer hypothesis. Source data output/data/claim_boundary.json records the stage definitions and boundary rule; the arrows describe increasing evidential requirements, not an inference that one stage establishes the next.", "Four numbered boxes separate canonical stimulus, physical metric, encoded media, and observer hypothesis, with a boundary rule stating that observer effects require a separate study.", ClaimLevel.SOURCE_SUPPORTED, "output/data/claim_boundary.json", ("formalism:eq:observer_estimand", "formalism:eq:canonical_digest"), ("The diagram is a documentation contract and does not replace a preregistered observer study or empirical data.",), ("Each stage is named, numbered, and described in text; the boundary rule is readable without color.",), 0, "claim levels in the taxonomy and manifest; seed not applicable to the explanatory diagram", "no unit-bearing objective quantity is applicable; stage definitions and evidence boundaries are preserved in the sidecar", "A deterministic artifact can support a future hypothesis but cannot supply the observer data required to test it."),
-        CaptionSpec("fig:scholarship_map", "scholarship_map", "Source-tiered scholarship map and evidence gaps", "The map links every catalog entry to its primary, review, and theory records, then preserves the exact source-supported claim, engineering departure, limitation, and implementation status. Source data output/data/scholarship_map.json are generated from the checked-in evidence matrix; a source record supports only the statement written in that record and does not certify pixel- or task-identical replication.", "Rows map catalog entries to source tiers, exact supported claims, engineering bases, limitations, and implementation status.", ClaimLevel.SOURCE_SUPPORTED, "output/data/scholarship_map.json", ("gregory1997visual", "brugger1999duckrabbit", "yildiz2022ponzo", "hirst2020sound", "bruns2019ventriloquist"), ("The offline snapshot validates citation and lineage structure; live resolver status is a separate audit, and classifications can remain contested.",), ("Source roles, claims, limitations, and statuses are printed or available in the sidecar; no category is encoded by color alone.",), 0, "checked-in evidence matrix; source roles and entry statuses; audit date recorded in data/evidence_matrix.json", f"one evidence row per catalog entry ({catalog_count} entries); source-tier counts, exact claim text, engineering basis, limitation, and gap status", "Scholarship coverage bounds the package’s evidence record and does not establish that any generated stimulus produces a universal percept."),
+        CaptionSpec("fig:claim_boundary", "claim_boundary", "Claim-level boundary between construction and observer evidence", "The diagram branches from canonical stimulus identity to physical measurements and encoded-media inspection, while isolating the future observer hypothesis behind an explicit evidence boundary. No arrow connects those engineering branches to an observer result. Source data output/data/claim_boundary.json records stage definitions, the two canonical dependencies, and the absence of observer data; delivery is not a higher level of perceptual evidence than a canonical measurement.", "Canonical stimulus branches to physical metric and encoded media; a separate observer-hypothesis box lies beyond a boundary that no inference arrow crosses.", ClaimLevel.SOURCE_SUPPORTED, "output/data/claim_boundary.json", ("formalism:eq:observer_estimand", "formalism:eq:canonical_digest"), ("The diagram documents a claim contract and does not replace a preregistered observer study or empirical data.",), ("Each branch is named and described in text; the isolated observer boundary is stated without relying on color.",), 0, "claim levels in the taxonomy and manifest; seed not applicable to the explanatory diagram", "no unit-bearing objective quantity is applicable; dependencies and evidence boundaries are preserved in source data", "A deterministic artifact can support a future hypothesis but cannot supply the observer data required to test it."),
+        CaptionSpec("fig:scholarship_map", "scholarship_map", "Source-tiered scholarship map and evidence gaps", "The map shows each catalog entry's primary, review and theory source-role counts, exact supported claim, first recorded limitation, and implementation status. Source data output/data/scholarship_map.json retain complete source identifiers, engineering bases and all limitations from the checked-in evidence matrix. Counts are not evidence-strength scores, and a source record does not certify pixel- or task-identical replication.", "Rows map catalog entries to source-role counts, supported claims, first limitations and printed implementation status; full lineage and engineering bases remain in source data.", ClaimLevel.SOURCE_SUPPORTED, "output/data/scholarship_map.json", ("gregory1997visual", "brugger1999duckrabbit", "yildiz2022ponzo", "hirst2020sound", "bruns2019ventriloquist"), ("The offline snapshot validates citation and lineage structure; live resolver status is a separate audit, and classifications can remain contested.",), ("Source roles, claims, limitations, and statuses are printed or available in source data; no category is encoded by color alone.",), 0, "checked-in evidence matrix; source roles and entry statuses; audit date recorded in data/evidence_matrix.json", f"one evidence row per catalog entry ({catalog_count} entries); source-tier counts, exact claim text, engineering basis, limitations, and gap status", "Scholarship coverage bounds the package’s evidence record and does not establish an observer-level effect."),
         CaptionSpec("fig:formalism_traceability", "formalism_traceability", "Formal definitions and implementation traceability", "The traceability registry connects the nine numbered equations to symbols, implementation modules, tests, and registered figures. Source data output/data/formalism_traceability.json is the machine-readable crosswalk used by the manuscript; it demonstrates contract coverage and test linkage without converting formal notation into empirical evidence.", "Rows connect equation labels to their mathematical definition, implementation paths, tests, figure labels, and claim levels.", ClaimLevel.PHYSICAL_METRIC, "output/data/formalism_traceability.json", ("formalism:eq:canonical_digest", "formalism:eq:clock_definition", "formalism:eq:objective_statistics"), ("Traceability records documentation and verification scope; it does not establish the truth of an observer-level theory.",), ("Equation labels, code paths, tests, and figure labels are written as text.",), 0, "formalism registry version; seed not applicable to the traceability diagram", "nine equation records with implementation, test, figure, and claim-level fields; no unit-bearing measurement is plotted", "A linked equation and test can show an implemented contract, not a validated perceptual law."),
         CaptionSpec("fig:metrics_dashboard", "metrics_dashboard", "Objective metrics dashboard with units and provenance", "The dashboard presents representative measurements from image, audio, video, and audiovisual canonical artifacts. Source data output/data/metrics_dashboard.json retains metric name, value, unit, computation version, tolerance, claim level, and canonical digest; image values are an uncalibrated grayscale/weighted-RGB proxy with explicit transfer/window definitions and definition hashes, amplitude is normalized, spectra are in hertz, frame differences are normalized pixel differences, and synchronization is in milliseconds.", "Four artifact cards list image, audio, video, and audiovisual metrics with units, computation provenance, and claim level.", ClaimLevel.PHYSICAL_METRIC, "output/data/metrics_dashboard.json", ("formalism:eq:objective_statistics", "formalism:eq:temporal_spectral_metrics"), ("Metrics are media properties and do not encode pitch, size, motion, localization, binding, or other observer interpretations.",), ("Every numerical value is paired with a printed unit or an explicit dimensionless definition.",), 0, "default canonical artifacts; metric computation version and tolerance recorded in the source-data sidecar; seed s=0", "finite objective values with units: normalized luminance/amplitude, Hz, normalized pixel difference, ms, counts, and durations", "Metric reproducibility is a package property; interpretation as perception requires a separate observer design and data."),
         CaptionSpec("fig:parameter_domains", "parameter_domains", "Typed parameter domains and units", "The domain map shows the validated ranges for dimensions, luminance, grayscale and quantization levels, frequency, sampling rate, frame rate, synchronization offset, and spatial discrepancy. Source data output/data/parameter_domains.json records the type name, unit, interval, and engineering role; intervals prevent malformed media and are not proposed as sensitivity thresholds.", "Horizontal interval markers show typed domains for dimensions, luminance, levels, frequency, sampling, frame rate, synchronization, and spatial discrepancy.", ClaimLevel.CANONICAL_STIMULUS, "output/data/parameter_domains.json", ("formalism:eq:typed_request",), ("The intervals are software validation bounds and do not encode safe listening levels, display limits, or psychophysical thresholds.",), ("Type names, endpoints, units, and roles are printed; interval color is redundant.",), 0, "parameter schema version and validated scalar domains; seed not applicable to the domain diagram", "dimensionless, pixel, level, Hz, samples/s, frames/s, ms, and normalized spatial units as listed per parameter", "A valid parameter is a reproducible construction request, not evidence that the requested value is perceptually effective."),
         CaptionSpec("fig:observer_protocol", "observer_protocol", "Observer protocol scaffold and estimand boundary", "The data-free protocol template moves from pseudonymous trial identity and deterministic randomization to a stimulus manifest and encoded-file hash, typed response or missingness, and a preregistered estimand. Source data output/data/observer_protocol.json records the study design, randomization seed, model templates, and synthetic-only status; no participant record is included.", "A flow diagram connects trial identity, randomization, stimulus manifest, response, aggregate estimand, and analysis-model templates, with a synthetic-only boundary.", ClaimLevel.OBSERVER_HYPOTHESIS, "output/data/observer_protocol.json", ("observer:preregistered_estimands",), ("The scaffold specifies future data collection and analysis but supplies no participant responses, fitted coefficients, power claim, or validated observer effect.",), ("Every protocol step and the no-participant-data boundary is stated in text; arrows and labels remain legible without color.",), 0, "study design and deterministic randomization seed recorded in the sidecar; synthetic response generation is separate from human data", "trial counts, condition structure, estimand templates, response schemas, and model families; participant outcomes are not applicable", "The protocol requires ethical review, task and calibration specifications, and preregistration before human use, not evidence that the proposed effect exists."),
+        CaptionSpec(
+            "fig:graphical_abstract", "graphical_abstract", "Deterministic multimodal stimulus construction and verification",
+            "Four actual default generators supply the visual raster, missing-fundamental audio extrema, apparent-motion frame strip, and sound-induced-flash shared-clock traces. The compact typed-request → canonical-artifact → delivery/verification story separates immutable float32 identity from adapter contracts. Source data output/data/graphical_abstract.json retain each typed parameter object, seed, canonical SHA-256 digest, unit-bearing metrics, displayed temporal indices, audio bin extrema, and audiovisual traces. The delivery stage is a contract diagram, not a codec execution receipt; all constructions are synthetic and human_data=false.",
+            "Four labeled panels show a generated duck–rabbit raster, all-sample audio min/max bins, four ordered apparent-motion frames with seconds, and audiovisual event traces on shared seconds, beneath a three-stage construction and verification diagram.",
+            ClaimLevel.CANONICAL_STIMULUS, "output/data/graphical_abstract.json",
+            ("formalism:eq:typed_request", "formalism:eq:canonical_generation", "formalism:eq:canonical_digest", "engineering:typed_media_adapters", "brugger1999duckrabbit", "zatorre2005missing", "wertheimer1912motion", "shams2000sifi"),
+            ("Raster thumbnails quantize normalized pixels to uint8; extrema bins preserve amplitude bounds but not within-bin event time. Canonical digests identify complete original artifacts.", "No delivery encode is executed for this diagram, and no observer responses or perceptual validation are included."),
+            ("Panel letters, generator IDs, time units, and epistemic boundaries are explicit; full plotted arrays and digests are in the source-data sidecar.",),
+            0, "four live default typed requests at seed 0; no substituted or decorative signals",
+            "normalized pixel/amplitude values, sample rate in samples/s, frame rate in frames/s, timestamps in seconds, audiovisual offsets in ms and normalized spatial units; complete canonical SHA-256 digests in source data",
+            "Synthetic stimulus construction and deterministic verification contracts do not establish an observer-level effect.",
+        ),
     )
 
 
@@ -1364,6 +1507,7 @@ def _figure_builders():
         ("fig:scholarship_map", "scholarship_map", _scholarship_map), ("fig:formalism_traceability", "formalism_traceability", _formalism_traceability),
         ("fig:metrics_dashboard", "metrics_dashboard", _metrics_dashboard), ("fig:parameter_domains", "parameter_domains", _parameter_domains),
         ("fig:observer_protocol", "observer_protocol", _observer_protocol),
+        ("fig:graphical_abstract", "graphical_abstract", _graphical_abstract),
     )
 
 
@@ -1396,6 +1540,9 @@ def validate_publication_derivation(output_dir: Path) -> None:
                 raise ValueError(f"publication source data disagree with live derivation: {stem}")
             if hashlib.sha256((output_dir / "figures" / f"{stem}.png").read_bytes()).hexdigest() != digest:
                 raise ValueError(f"publication raster disagrees with live derivation: {stem}")
+    from .publication_panels import validate_readable_figure_panels
+
+    validate_readable_figure_panels(output_dir, replay_sources=False)
 
 
 def generate_publication_outputs(output_dir: Path = Path("output"), *, clean: bool = False) -> dict[str, object]:
@@ -1478,6 +1625,9 @@ def generate_publication_outputs(output_dir: Path = Path("output"), *, clean: bo
     registry_path = figures_dir / "figure_registry.json"
     _write_json(registry_path, registry)
     validate_figure_registry(registry_path, output_dir=output_dir)
+    from .publication_panels import generate_readable_figure_panels
+
+    generate_readable_figure_panels(output_dir)
     tables = _table_files(data_dir)
     cover = install_cover(output_dir)
     _write_json(output_dir / "reports" / "visual_qa.json", {

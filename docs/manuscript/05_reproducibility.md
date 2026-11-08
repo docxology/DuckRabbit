@@ -1,4 +1,6 @@
-# Reproducibility and Provenance {#sec:reproducibility}
+# Regeneration, Provenance Retention, and Versioned Software Identity {#sec:reproducibility}
+
+## Reconstruct canonical stimuli before comparing delivery files
 
 The reproducibility contract is:
 
@@ -11,7 +13,8 @@ The reproducibility contract is:
    channels, rates, frame counts, durations, timing offsets, and encoded hash;
 6. retain the v2 manifest and source-data sidecars with the generated figure or
    table.
-Note that in this release the generators are analytic in their typed
+
+The current generators are analytic in their typed
 parameters: the request seed *s* is recorded in manifests and study plans and
 excluded from the canonical digest, but it does not yet alter artifact bytes;
 seed-driven stimulus randomization awaits a stochastic generator.
@@ -35,18 +38,23 @@ entry records backed by {{SCHOLARLY_SOURCES}} source records, covering
 workflow produces {{PUBLICATION_FIGURES}} figures and {{PUBLICATION_TABLES}}
 tables from the live registry.
 
+## Current source and historical archives have distinct identities
+
 The public software record is
 [the DuckRabbit public GitHub repository](https://github.com/docxology/DuckRabbit),
 with Daniel Ari Friedman of the Active Inference Institute as author. The
 historical v0.5.0 archive uses concept DOI
 [10.5281/zenodo.21419693](https://doi.org/10.5281/zenodo.21419693) and version DOI
 [10.5281/zenodo.21419694](https://doi.org/10.5281/zenodo.21419694).
-Current {{PACKAGE_VERSION}} metadata is `forthcoming`: no new DOI is claimed.
+Current {{PACKAGE_VERSION}} source is unreleased; DOI metadata is `forthcoming`
+and no new DOI is claimed.
 
 The canonical buffer is the primary identity of a stimulus. Encoded files are
 delivery artifacts with format-specific tolerances. The observer protocol is a
-separate evidence layer: a manifest can prove what was presented without
-proving what an observer experienced.
+separate evidence layer: a manifest documents stimulus and delivered-file facts,
+not calibrated device presentation or what an observer experienced.
+
+## Retain the complete synthetic model specification with its outputs
 
 Synthetic psychophysics is a third, deliberately bounded object: the model is
 a {{SYNTHETIC_PSYCHOPHYSICS_STATUS}}, registered as `{{SYNTHETIC_MODEL_ID}}`.
@@ -57,6 +65,8 @@ diagnostic checks deterministic model orchestration and stimulus-feature
 sensitivity; it does not estimate a human observer or replace empirical
 psychophysics.
 
+## Relational verification rejects internally inconsistent media summaries
+
 The v2 verifier is a relational check rather than a field-presence check. It
 rejects summaries whose dimensions, dtype, byte count, rates, duration, signal
 range, frame deltas, or signed audiovisual offset disagree. Public manifest and
@@ -66,6 +76,8 @@ probe records whether Pillow, NumPy, ffmpeg, or ffprobe are available in the
 current environment; unavailable delivery paths remain explicit rather than
 being silently downgraded.
 
+## Regeneration commands do not certify typeset page layout
+
 The minimal regeneration commands are:
 
 ```bash
@@ -74,7 +86,7 @@ uv run python scripts/generate_publication_outputs.py
 uv run python scripts/generate_manuscript_variables.py
 ```
 
-## Runtime-performance reproducibility
+## Performance receipts bind timings to fixed workloads and environments
 
 The package also provides `scripts/profile_workloads.py` for fixed real
 catalog, hashing, metric, observer, media, publication, and audit workloads.
@@ -91,7 +103,7 @@ reported as unavailable, not inferred to have succeeded. The dated engineering
 review and raw timing receipts live in `docs/performance-review-2026-10-17.md`
 and `docs/benchmarks/`, outside the scientific evidence matrix.
 
-## Data availability and software citation
+## Data availability excludes participant records; software citation is versioned
 
 No participant records, fitted observer coefficients, or human psychophysics
 are bundled. The synthetic diagnostic is explicitly model output with
@@ -99,6 +111,6 @@ are bundled. The synthetic diagnostic is explicitly model output with
 Friedman and the release metadata in `CITATION.cff`, together with the
 source-specific scholarship in `references.bib`. Software-citation principles
 recommend citing the software object itself, with enough version and identity
-information to distinguish one release from another [@smith2016software]. The
+information to distinguish one release from another [@smith2016software].
 The current DOI fields are empty with `doi_status: forthcoming`. Historical
 identifiers above remain unchanged and do not silently identify the new version.

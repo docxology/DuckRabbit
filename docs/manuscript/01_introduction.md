@@ -1,4 +1,6 @@
-# Introduction {#sec:introduction}
+# Separating Stimulus Construction from Perceptual Evidence {#sec:introduction}
+
+## Physical manipulations and observer reports are different objects
 
 An illusion stimulus is not the same thing as an illusion report. A stimulus
 can be physically specified, generated, encoded, and inspected without
@@ -22,7 +24,9 @@ implementation status. The taxonomy is orthogonal and explicitly provisional;
 it is an engineering index linked to sources, not a replacement for
 domain-specific theory.
 
-The release also treats the package as research software rather than as an
+## Research-software provenance makes construction inspectable
+
+DuckRabbit also treats the package as research software rather than as an
 unannotated collection of media files. Reproducible computational research
 depends on preserving the code, inputs, environment assumptions, and execution
 path needed to recreate a result [@sandve2013simple; @wilson2014bestpractices].
@@ -33,6 +37,8 @@ software object and version used [@wilkinson2016fair; @lamprecht2020fairsoftware
 the construction pipeline and its generated artifacts citable and inspectable,
 but it does not treat metadata quality as evidence of a perceptual effect.
 
+## Three engineering hypotheses delimit the contribution
+
 The package is organized around three falsifiable engineering hypotheses:
 
 1. Identical typed requests produce identical canonical arrays and canonical
@@ -40,8 +46,10 @@ The package is organized around three falsifiable engineering hypotheses:
 2. Encoders and decoders preserve declared media facts within an explicit
    format-specific tolerance, or verification fails.
 3. Parameter manipulations change measurable physical stimulus properties; any
-   observer-level interpretation remains a preregistered hypothesis until data
-   exist.
+   observer-level interpretation requires a preregistered protocol and observed
+   response data.
+
+## Historical precedents for separating presentation and inference
 
 This boundary has a nineteenth-century scientific lineage. Fechner's
 *Elemente der Psychophysik* formalized the problem of relating controlled
@@ -67,6 +75,8 @@ observer testimony explicit problems [@kircher1646light; @berkeley1709vision;
 @molyneux2020problem; @cheselden1728sight]. DuckRabbit cites these sources as
 historical and methodological precedents, not as evidence that its generated
 files reproduce ancient, early-modern, or clinical observations.
+
+## A bounded catalog makes implementation gaps visible
 
 The present catalog contains {{CATALOG_ENTRIES}} entries, of which
 {{IMPLEMENTED_COUNT}} are implemented, {{PLANNED_COUNT}} are planned, and

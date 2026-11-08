@@ -2,6 +2,30 @@
 
 ## 0.6.0 — unreleased candidate (2026-11-08)
 
+- Add a registered, source-derived graphical abstract using four actual
+  multimodal defaults, typed parameters, canonical digests and plotted arrays;
+  the live scientific roster is now 16 figures, distinct from the editorial cover.
+- Replace audio point decimation with all-sample, per-channel extrema bins and
+  separate stereo lanes; retain exact half-open sample bounds and explicitly
+  distinguish display-bin midpoints from within-bin event times.
+- Anchor measured text by its actual ink bounds, preserve long identifiers, and
+  size dense figure rows from complete wrapped content instead of truncation.
+- Separate canonical measurements and encoded-media contracts from observer
+  evidence in diagrams; show the synthetic probability axis on [0, 1] with an
+  explicit null and non-confidence sensitivity legend.
+- Make current documentation task-oriented and modular, keep dated receipts
+  historical, and sharpen manuscript headings without changing reference labels.
+  Strict publication auditing follows the declared live figure roster rather
+  than a frozen v0.5 figure count, retaining exact data/raster replay.
+- Generate source-derived readable detail variants for dense catalog, audio,
+  scholarship and formalism views; bind every panel to complete displayed fields,
+  dimensions, font/dependency/code identities and exact replay. Source digests
+  bind the validated source snapshot, so a later staged replacement cannot be
+  certified. These do not increase the scientific figure count or claim to
+  retain raw audio samples.
+- Label rational frame rate in frames/s and its reciprocal in seconds/frame,
+  rather than calling a rate a timebase.
+
 - Reject missing/extra MP4 streams, transparent or mismatched PNG containers,
   malformed legacy downgrades and NPZ summary/digest/byte-count tampering.
   Reconstruct exact canonical arrays and reject silently coerced NPZ dtypes;

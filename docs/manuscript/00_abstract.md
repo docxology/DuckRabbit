@@ -2,18 +2,18 @@
 
 DuckRabbit is typed, deterministic research software for constructing
 reproducible visual, auditory, temporal, and audiovisual stimulus families. It
-is published and citable at
+is publicly available at
 [the DuckRabbit public GitHub repository](https://github.com/docxology/DuckRabbit)
-and released under the MIT License.
+under the MIT License; current {{PACKAGE_VERSION}} source is unreleased, with DOI forthcoming.
 
 Its basic unit is an immutable request containing an illusion identifier,
-validated parameters, a seed, and an encoding specification. The request yields
-a canonical artifact, objective media measurements, and a versioned provenance
-manifest before any delivery codec is selected. This separation makes the
-stimulus a testable computational object while reserving claims about
-perception for controlled observer protocols.
+validated parameters, a seed, and an optional encoding specification. Generation
+yields a canonical artifact and objective media measurements; optional delivery
+adds encoded files, decoded inspection, and a versioned provenance manifest.
+This separation makes the stimulus a testable computational object while
+reserving claims about perception for controlled observer protocols.
 
-The release situates its engineering choices within a deliberately broad
+The manuscript situates its engineering choices within a deliberately broad
 historical foundation spanning Greek, Arabic/Islamicate, Chinese, and
 early-modern work on optics, visual inference, and cross-sensory knowledge,
 alongside later psychophysics and illusion research. These traditions motivate
@@ -36,6 +36,4 @@ timing, and declared provenance. It does not infer a universal percept, effect
 size, or cross-device perceptual equivalence from a generated artifact. Its
 contribution is a reproducibility and epistemic boundary: source-backed family
 descriptions, deterministic media facts, and future observer hypotheses remain
-different typed records rather than being collapsed into one claim. DuckRabbit
-is software for reproducible stimulus construction and audit, not a claim that
-a generated file alone produces a universal perceptual effect.
+different typed records rather than being collapsed into one claim.

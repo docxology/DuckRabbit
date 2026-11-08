@@ -1,4 +1,4 @@
-# Publication Atlas, Caption Contract, and Scholarship Audit {#sec:publication_audit}
+# Figure Lineage, Equation Traceability, and Scholarship Audit Boundaries {#sec:publication_audit}
 
 The publication layer is generated from the same typed package state as the
 stimuli. It contains {{PUBLICATION_FIGURES}} scientific figures, {{PUBLICATION_TABLES}}
@@ -6,7 +6,15 @@ machine-readable tables, and a separately provenance-recorded editorial cover.
 The cover is an illustration of the project's subject and methods aesthetic; it
 is not a stimulus, a participant result, or evidence of a perceptual effect.
 
-## Claim-level visualization
+Dense catalog, auditory, scholarship and formalism overviews also have
+source-derived readable detail variants. Their dedicated panel report retains
+record identities and exact source/raster provenance; these presentation views
+do not add generators, scientific figures, datasets or observer findings.
+Declared renderer adapters supply readable detail contexts without changing the
+canonical figure labels or source data. Native replay and actual delivery-scale
+inspection remain separate acceptance obligations.
+
+## Claim levels separate buffers, measurements, delivery, and observer hypotheses
 
 ![{{FIGURE_ALT_CLAIM_BOUNDARY}}](../../output/figures/claim_boundary.png){#fig:claim_boundary}
 
@@ -16,9 +24,9 @@ The claim boundary in [@fig:claim_boundary] is a typed epistemic interface. A
 canonical digest identifies a deterministic buffer; objective metrics identify
 properties of that buffer; encoded-media verification identifies facts of the
 delivered file. A future observer hypothesis is a different object with its
-own protocol, estimand, and uncertainty interval.
+own protocol, estimand, and planned uncertainty procedure.
 
-## Scholarship map and lineage
+## Source roles and versioned metadata preserve scholarly lineage
 
 ![{{FIGURE_ALT_SCHOLARSHIP_MAP}}](../../output/figures/scholarship_map.png){#fig:scholarship_map}
 
@@ -39,20 +47,20 @@ The audit also treats software and its metadata as part of the scholarly
 record. FAIR guidance emphasizes machine-actionable provenance and reuse, and
 software-citation principles emphasize crediting an identifiable version rather
 than citing an undifferentiated project name [@wilkinson2016fair;
-@smith2016software]. Accordingly, the release includes `CITATION.cff`,
+@smith2016software]. Accordingly, the package includes `CITATION.cff`,
 CodeMeta, Zenodo metadata, versioned manifests, source-data sidecars, and
 resolver-linked bibliography entries. These improve discoverability and
 attribution; they do not increase the evidential level of any perceptual claim.
 
-The public software identity is explicit: DuckRabbit is published and citable
+The public software identity is explicit: DuckRabbit source is available
 at the [DuckRabbit public GitHub repository](https://github.com/docxology/DuckRabbit)
 under the authorship of Daniel Ari Friedman, Active Inference Institute. The
-development bundle is distinct from the already-published v0.5.0 archive.
-Current source and manuscript corrections require a new versioned deposit;
-optional template typesetting and page-level validation are separate gates,
-not implied by a passing package audit.
+current {{PACKAGE_VERSION}} source is unreleased and distinct from the already-published
+v0.5.0 archive; its DOI remains forthcoming. Source and manuscript corrections
+require a new versioned deposit. Native PDF/HTML/slides rendering and page-level
+validation are separate gates, not implied by a passing package audit.
 
-## Formal traceability and objective metrics
+## Equations link to implementations; metric plots retain objective units
 
 ![{{FIGURE_ALT_FORMALISM_TRACEABILITY}}](../../output/figures/formalism_traceability.png){#fig:formalism_traceability}
 
@@ -82,23 +90,23 @@ The domain map [@fig:parameter_domains] is a validation visualization. Bounds
 are chosen to prevent malformed media and unsafe encodings, not to predict a
 viewer, listener, or participant's sensitivity.
 
-## Observer-design boundary
+## Trial records and synthetic diagnostics stop short of observer evidence
 
 ![{{FIGURE_ALT_OBSERVER_PROTOCOL}}](../../output/figures/observer_protocol.png){#fig:observer_protocol}
 
 {{FIGURE_CAPTION_OBSERVER_PROTOCOL}}
 
-The observer scaffold [@fig:observer_protocol] starts with a pseudonymous trial
-identity and deterministic randomization, binds the stimulus manifest and
-encoded hash, records a typed response or missingness state, and ends at a
-preregistered estimand. The companion diagnostic
+The observer-design diagram [@fig:observer_protocol] starts with a pseudonymous
+trial identity and deterministic randomization, binds the stimulus manifest and
+encoded hash, and records a typed response or missingness state. Its estimand
+must be specified by a future protocol, not inferred from the diagram. The companion diagnostic
 [@fig:synthetic_psychophysics] is a deterministic, hand-specified feature
 observer with `training_data=none` and `human_data=false`; it is not a
 pretrained vision model, psychometric function, or participant result. Human
 psychophysics remains a future evidence layer requiring calibrated playback,
 consent, preregistration, and observed responses.
 
-## Generated audit tables
+## Generated tables expose captions, evidence, formalism, and claim lineage
 
 | Figure / claim level | Source and evidence | Controls and objective facts | Limitations, boundary, and accessibility |
 |---|---|---|---|
@@ -130,14 +138,14 @@ The source-tiered evidence table [@tbl:evidence_audit], caption audit
 without duplicating mutable counts or silently converting literature statements
 into package results.
 
-Scientific panels and data are compared with fresh derivations from the trusted
+Strict auditing compares scientific panels and data with fresh derivations from the trusted
 current code. Renderer, font and dependency identities bound exact raster replay;
 tables and hydrated prose are separately compared with their current definitions.
 This detects coordinated data/hash substitutions but does not authenticate authorship
 or establish empirical scientific validity. Human page inspection remains separate.
 
-The cover's real source asset, dimensions, PNG/WebP/thumbnail roles and transforms
-are verified. Its historical prompt/model/candidate history is explicitly reported
+The cover validator checks its real source asset, dimensions, PNG/WebP/thumbnail
+roles and transforms. Its historical prompt/model/candidate history is reported
 and unverified rather than inferred from the pixels. Arbitrary supplied images
 receive no such history. Neither scientific nor editorial output supplies an
 observer result or replaces display calibration or behavioral data.

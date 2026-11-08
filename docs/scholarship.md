@@ -1,10 +1,10 @@
-# Scholarship and evidence boundary
+# Trace claims to sources and separate offline lineage from live identity
 
 DuckRabbit treats scholarship as a typed evidence graph rather than as a list
 of names attached to a generator. The checked-in
-[`data/evidence_matrix.json`](../data/evidence_matrix.json) records 36 source
-records and one evidence record for each of the 18 catalog entries. Each source
-has a typed role (`primary_demonstration`, `review_or_synthesis`,
+[`data/evidence_matrix.json`](../data/evidence_matrix.json) records source
+lineage for the live catalog. Each source has a typed role
+(`primary_demonstration`, `review_or_synthesis`,
 `theoretical_account`, `engineering_basis`, `limitation`, or `input_gap`), a canonical URL or DOI, a
 citation key, and an exact statement of what it supports. Each entry also
 records an engineering basis, a limitation, and—when implementation is planned
@@ -13,7 +13,7 @@ the full lineage `source → supported claim → engineering basis → limitatio
 and marks planned or `input_required` entries as explicit evidence gaps; a
 source citation is never treated as validation of a DuckRabbit implementation.
 
-## Source tiers
+## Assign source roles without upgrading engineering claims
 
 The audit uses the following source hierarchy:
 
@@ -43,7 +43,7 @@ and the purely temporal ventriloquism study by Hartcher-O'Brien and Alais
 the supported claim and limitation for each family; they do not validate the
 DuckRabbit engineering variants as pixel- or task-identical replications.
 
-The release also cites methodological scholarship that is not assigned to a
+The manuscript also cites methodological scholarship that is not assigned to a
 single illusion entry. Sandve et al. and Wilson et al. motivate the separation
 of executable inputs, procedures, dependencies, and tests from final media
 files ([Sandve et al.](https://doi.org/10.1371/journal.pcbi.1003285), [Wilson
@@ -56,7 +56,7 @@ itself ([Smith et al.](https://peerj.com/articles/cs-86/)). These references
 support the release and provenance method; they do not elevate any catalog row
 above its recorded source-supported claim.
 
-The two newly promoted families are bounded by direct primary sources. Earle
+Zöllner and auditory-continuity engineering contracts are bounded by direct primary sources. Earle
 and Maskell describe long vertical lines crossed by short oblique lines in the
 Zöllner--Judd family and explicitly discuss competing mechanistic accounts
 ([Perception](https://journals.sagepub.com/doi/10.1068/p241397)). Riecke and
@@ -73,7 +73,7 @@ the foundational primary source while giving the audit a modern, resolvable
 review anchor for the distinction between successive physical events and
 observer-level apparent motion.
 
-## Pre-1800 and worldwide foundations
+## Situate stimulus methods in worldwide historical scholarship
 
 The bibliography now begins well before the nineteenth-century laboratory
 tradition and treats the history of visual science as geographically distributed
@@ -117,7 +117,7 @@ artifact reproduces their original apparatus, observers, or results. The set
 is an intentionally expanding worldwide foundation, not an exhaustive history
 of every culture's visual, auditory, or perceptual scholarship.
 
-## Claim discipline
+## Keep physical, source-supported, synthetic, and observer claims distinct
 
 `canonical_stimulus`, `physical_metric`, and `encoded_media` describe facts
 that can be derived from DuckRabbit artifacts and manifests. `source_supported`
@@ -129,6 +129,8 @@ designs and future human data. A source record does not turn an engineering
 approximation into a pixel-identical historical replication, and a deterministic
 metric or synthetic model output does not turn a construction into a universal
 perceptual effect.
+
+## Separate offline lineage from live identity
 
 The source audit is reproducible offline: `scripts/validate_scholarship.py`
 checks matrix schema, source URL/DOI shape, citation identifiers, exact taxonomy
@@ -143,23 +145,34 @@ verified; a dated report is evidence of observations, not automatic clearance.
 Ordinary tests use the checked-in snapshot and no network. `snapshot_validated`
 means offline lineage passed, not that a resolver or full source was inspected.
 
-The network command's roster is the **36 evidence-source records**, not every
-bibliography entry. The [November audit](audit-2026-11-08.md) also inspected the
-11 remaining manuscript references: across all 47 records, 35 DOI identities
-matched retained primary metadata, ten reachable archival records remained
-unresolved, one retained an author-name mismatch, and one failed TLS validation.
-The native roster and the adjunct evidence are reported separately; neither URL
-reachability nor a display abbreviation is silently promoted to full identity.
-The [dated candidate bundle](../output/review-2026-11-08/) retains both observations
-and publisher peer-checks. The adjunct re-evaluation reused observed metadata;
-it is not a second fresh network observation.
+### Audit roster and retained unresolved observations
+
+The native network command covers the **36 evidence-source records** for
+**18 catalog entries**; the implemented generator registry has **17 entries**.
+The manuscript bibliography has **47 references**, so its **11 additional
+references** require a separate review rather than being silently omitted or
+described as native-command coverage. The matrix, taxonomy/registry, and
+`docs/manuscript/references.bib` are the source authorities for these distinct
+inventories; figure counts are unrelated and live in [visualization](visualization.md).
+
+The [dated November audit](audit-2026-11-08.md) records observations across the
+whole bibliography: 35 DOI identities matched retained primary metadata, ten
+reachable archival records remained unresolved, one retained an author-name
+mismatch, and one failed TLS validation. These are **historical observations**,
+not a fresh live audit of subsequent source. The retained
+[prior bundle](../output/review-2026-11-08/) includes native and adjunct evidence;
+the adjunct re-evaluation reused observed metadata, not a second network visit.
+Those unresolved identities remain release blockers unless cleared by new
+identity evidence; neither refreshed graphics nor offline replay clears them.
+The [current visual-review bundle](../output/visual-review-2026-11-08/) requires
+its own source binding and reports; graphics cannot substitute for live identity.
 
 Ordered author comparison includes exact corporate author names. A record with
 both a collective `name` and person `family`/`given` fields is ambiguous and
 fails. Publisher attribution, including FORCE11 collective authorship, must not
 be replaced by an individual contributor merely to simplify rendering.
 
-## Claim-to-source lineage
+## Inspect generated claim-to-source lineage
 
 The generated `output/data/evidence_source_audit_table.{md,json}` records each
 source tier, DOI/URL, exact supported claim, and verification status, followed
@@ -175,7 +188,7 @@ catalog entries and evidence gaps. Responses 403, 401 and 405 mean
 access-controlled, not verified or confirmed reachable content. Successful
 transport alone cannot establish identity or support a scientific claim.
 
-## Known gaps
+## Preserve open fixture, evidence, and observer-study gates
 
 The taxonomy is provisional and orthogonal. Zöllner and auditory continuity
 now have deterministic engineering contracts and are marked implemented, while

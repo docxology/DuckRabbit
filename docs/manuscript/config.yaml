@@ -2,7 +2,8 @@ paper:
   title: "DuckRabbit: Typed Multimodal Illusion Generator"
   subtitle: "Deterministic visual, auditory, temporal, and audio-visual stimulus construction"
   version: "0.6.0"
-  date: "2026-11-07"
+  status: "unreleased"
+  date: "2026-11-08"
   cover:
     image: "figures/cover_visualization.png"
 
@@ -59,7 +60,7 @@ experiment:
   default_seed: 0
   evidence_records: 18
   scholarly_sources: 36
-  publication_figures: 15
+  publication_figures: 16
   publication_tables: 10
   observer_data: "none bundled"
   synthetic_psychophysics: "model-output diagnostic only; human_data=false"

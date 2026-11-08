@@ -19,9 +19,10 @@ from .publication import validate_figure_registry
 from .cover import validate_cover_manifest
 from .metadata import validate_project_metadata
 from .publication import (
-    publication_table_payloads, publication_caption_specs, validate_publication_tables,
+    publication_caption_specs, validate_publication_tables,
     validate_publication_visual_qa, validate_publication_report, validate_publication_derivation,
 )
+from .publication_specs import PUBLICATION_FIGURE_LABELS
 from .schema import parameter_schema
 from .taxonomy import ImplementationStatus, validate_taxonomy_catalog
 from .version import __version__
@@ -155,6 +156,10 @@ def run_audit(*, project_root: Path | None = None, output_root: Path | None = No
     registry_path = output / "figures" / "figure_registry.json"
     if registry_path.is_file():
         _check(issues, checks, "figure_registry", lambda: validate_figure_registry(registry_path, output_dir=output, project_root=root))
+        if not release:
+            from .publication_panels import validate_readable_figure_panels
+
+            _check(issues, checks, "readable_figure_panels", lambda: validate_readable_figure_panels(output))
     else:
         checks.append("figure_registry")
         severity = "error" if release else "warning"
@@ -168,10 +173,10 @@ def run_audit(*, project_root: Path | None = None, output_root: Path | None = No
             issues.append(AuditIssue("cover.not_generated", "error", "publication", f"cover manifest not present at {cover_manifest}"))
     if release:
         def publication_bundle_check() -> None:
-            expected_tables = publication_table_payloads()
+            labels = tuple(spec.label for spec in publication_caption_specs())
+            if labels != PUBLICATION_FIGURE_LABELS:
+                raise ValueError("publication caption roster disagrees with declared figure labels")
             validate_publication_tables(output)
-            if len(publication_caption_specs()) != 15 or len(expected_tables) != 10:
-                raise ValueError("publication figure/table counts drift from the v0.5 release contract")
         _check(issues, checks, "publication_bundle", publication_bundle_check)
         _check(issues, checks, "visual_qa", lambda: validate_publication_visual_qa(output))
         _check(issues, checks, "publication_report", lambda: validate_publication_report(output))

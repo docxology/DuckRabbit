@@ -29,7 +29,7 @@ claims:
     claim_level: source_supported
   - claim_id: publication-figure-count
     kind: number
-    value: 15
+    value: 16
     source: src/duckrabbit/publication.py::generate_publication_outputs
     source_tier: project_source
     freshness: active
@@ -50,7 +50,7 @@ claims:
     claim_level: observer_hypothesis
   - claim_id: caption-spec-count
     kind: number
-    value: 15
+    value: 16
     source: src/duckrabbit/publication.py::publication_caption_specs
     source_tier: project_source
     freshness: active

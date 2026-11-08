@@ -1,6 +1,6 @@
-# Scope, Related Work, and Limitations {#sec:scope}
+# Source-Linked Illusion Families and Limits of Engineering Fidelity {#sec:scope}
 
-## Scope and epistemic boundary
+## Family-linked constructions do not replicate observer findings
 
 DuckRabbit is a typed, reproducible stimulus-construction platform. Its unit of
 work is an immutable request that yields a canonical image, audio buffer, video
@@ -8,7 +8,7 @@ sequence, or audiovisual timeline, together with objective measurements and
 provenance. It is not an exhaustive ontology of all illusions, a perceptual
 theory, a participant database, or a substitute for a controlled psychophysics
 experiment. The live registry is therefore a deliberately bounded catalog: it
-enumerates the families for which this release has both a generator contract
+enumerates the families for which the current source has both a generator contract
 and a stated evidence boundary. Appendix A gives the complete current matrix;
 the absence of a family from that matrix is not a claim that the family is
 unimportant or unsupported in the wider literature.
@@ -31,7 +31,7 @@ scholarly orientation for separating physical construction, interpretation, and
 observer evidence; it is not a claim that the current source set exhausts the
 visual, auditory, or perceptual traditions of any region.
 
-## Visual families
+## Visual geometry, context, and succession retain distinct source claims
 
 The modern label “visual illusion” sits on a longer experimental history than
 the package's contemporary review sources alone suggest. Oppel's mid-century
@@ -101,7 +101,7 @@ analysis motivate the family distinction; neither source turns a generated
 frame strip into a universal report of motion [@wertheimer1912motion;
 @sekuler1996wertheimer].
 
-## Auditory families
+## Auditory spectra and channel structure leave pitch judgments unmeasured
 
 The auditory catalog separates harmonic construction, spectral completion,
 pitch-class context, dichotic channel assignment, and continuity/masking. A
@@ -132,7 +132,7 @@ will report an uninterrupted sound [@warren1970continuity;
 centroid, bandwidth, channel layout, and exact sample-level provenance—not
 continuity, pitch, or stream judgments.
 
-## Audiovisual and temporal binding families
+## Audiovisual timing is constructed; binding and speech require separate evidence
 
 Audiovisual constructions require a shared clock and an explicit sign
 convention for offsets. The sound-induced-flash entry creates a typed visual
@@ -167,7 +167,7 @@ and an ethical validation protocol [@mcgurk1976speech]. Cataloguing the gap is
 more informative than silently substituting an unrelated synthetic voice or
 claiming that a generic audiovisual mismatch is a McGurk replication.
 
-## From literature to engineering contract
+## Evidence roles separate literature support from implementation fidelity
 
 For each entry, the evidence matrix records a source role, exact
 source-supported claim, engineering basis, limitation, and audit status. The
@@ -187,7 +187,7 @@ metadata matching; reachability alone is not treated as bibliographic
 verification. This is a reproducible evidence boundary, not a claim that every
 source is equally accessible or that theoretical disputes have been resolved.
 
-## Limitations and future observer work
+## Calibration, task, and participant sampling constrain future observer studies
 
 The package does not claim clinical validity, universal effect sizes,
 cross-cultural invariance, perceptual equivalence across displays or
