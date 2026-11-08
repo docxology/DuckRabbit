@@ -154,6 +154,31 @@ def test_missing_extra_traversal_and_coercion_are_rejected(panel_bundle, corrupt
         validate_readable_figure_panels(panel_bundle)
 
 
+def test_source_digest_binds_the_replayed_snapshot_not_a_later_replacement(panel_bundle, monkeypatch):
+    # The report must certify the bytes whose records were replayed. A staged
+    # replacement after loading must not let an altered digest be accepted.
+    from duckrabbit import publication_panels as panels
+    source = panel_bundle / "data/scholarship_map.json"
+    report_path = panel_bundle / REPORT_PATH
+    report = _read(report_path)
+    altered = _read(source)
+    altered["data"]["rows"][0]["limitations"] = []
+    altered_bytes = (json.dumps(altered, indent=2, sort_keys=True) + "\n").encode("utf-8")
+    figure = next(item for item in report["figures"] if item["stem"] == "scholarship_map")
+    figure["source_data_sha256"] = hashlib.sha256(altered_bytes).hexdigest()
+    _write(report_path, report)
+    original = panels._load_sources
+
+    def replace_after_snapshot(root):
+        snapshot = original(root)
+        source.write_bytes(altered_bytes)
+        return snapshot
+
+    monkeypatch.setattr(panels, "_load_sources", replace_after_snapshot)
+    with pytest.raises(ValueError, match="report disagrees"):
+        validate_readable_figure_panels(panel_bundle)
+
+
 def test_symlinked_panel_is_rejected_even_when_bytes_are_identical(panel_bundle):
     report = _read(panel_bundle / REPORT_PATH)
     path = panel_bundle / report["figures"][0]["panels"][0]["path"].removeprefix("output/")
