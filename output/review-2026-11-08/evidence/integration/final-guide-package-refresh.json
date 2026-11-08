@@ -1,0 +1,40 @@
+{
+  "observed_at": "2026-11-08T04:00:59.680878+00:00",
+  "reason": "Relocated native release audit, manifest, secret-pattern scan, exact installed Python 3.11 wheel citation API and generate/verify passed. Guide check found one obsolete receipt heading anchor; corrected README, then all21 guides/33 local links passed. Rebuilt wheel/sdist because README is distribution metadata. SDK Python source459e77f7fb6d9715887ef1b9fdfec854a58eefcf6813441e9afda3f0e86115fe unchanged. No prior failed observation was relabeled as passing.",
+  "prior_packages": {
+    "duckrabbit-0.6.0-py3-none-any.whl": {
+      "sha256": "5385210e1a7b00db46fb6d032ecae266153351e8be919c0b6e769b73b4278377",
+      "bytes": 184202
+    },
+    "duckrabbit-0.6.0.tar.gz": {
+      "sha256": "e776d96bcfaa9e31dbed3a83a7bbb139519a8cb92e6088e92076dcded67b9dca",
+      "bytes": 250582
+    }
+  },
+  "new_packages": {
+    "duckrabbit-0.6.0.tar.gz": {
+      "sha256": "e239e024bc45ed89d2433e931bdaaa7867ecac2892116302fa43e5440f879d9d",
+      "bytes": 250566
+    },
+    "duckrabbit-0.6.0-py3-none-any.whl": {
+      "sha256": "0ca473bcb6faa714513e031145b0afdd182e50ee78ceebf0ebc5150c55a4b0d8",
+      "bytes": 184202
+    }
+  },
+  "build": {
+    "argv": [
+      "uv",
+      "build",
+      "--offline",
+      "--no-build-isolation",
+      "--python",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "--out-dir",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/package-release-final"
+    ],
+    "returncode": 0,
+    "qualified_receipt": "wfz-duckrabbit-corrected-guide-final-package-build/16412-280459e7410f481c802893ff6521d4e0",
+    "source_unchanged": true
+  },
+  "next": "Read-only final distribution/bundle acceptance before staging."
+}

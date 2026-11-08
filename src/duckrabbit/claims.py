@@ -12,6 +12,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from enum import Enum
 import re
+from pathlib import Path
 
 from .evidence import load_evidence_matrix
 from .publication_specs import _OVERCLAIM_PATTERNS
@@ -56,13 +57,14 @@ class ClaimRecord:
     manuscript_location: str
 
     def __post_init__(self) -> None:
-        if not self.claim_id or not self.text.strip() or not self.manuscript_location.strip():
+        if not all(isinstance(item, str) and item.strip() for item in (self.claim_id, self.text, self.manuscript_location)):
             raise ValueError("claim requires an id, text, and manuscript location")
         if not isinstance(self.basis, ClaimBasis) or not isinstance(self.claim_level, ClaimLevel):
             raise ValueError("claim basis and level must be typed enums")
-        if not self.source_or_artifact_lineage or not all(isinstance(item, str) and item.strip() for item in self.source_or_artifact_lineage):
+        if not isinstance(self.source_or_artifact_lineage, (tuple, list)) or not self.source_or_artifact_lineage or not all(isinstance(item, str) and item.strip() for item in self.source_or_artifact_lineage):
             raise ValueError("claim requires non-empty source or artifact lineage")
-        if not self.limitation.strip():
+        object.__setattr__(self, "source_or_artifact_lineage", tuple(self.source_or_artifact_lineage))
+        if not isinstance(self.limitation, str) or not self.limitation.strip():
             raise ValueError("claim requires an explicit limitation")
         if self.claim_level not in _BASIS_LEVELS[self.basis]:
             raise ValueError("claim basis is incompatible with claim level")
@@ -85,12 +87,28 @@ class ClaimRecord:
         }
 
 
-def validate_claim_registry(records: tuple[ClaimRecord, ...] | list[ClaimRecord]) -> tuple[ClaimRecord, ...]:
-    """Validate uniqueness and the deterministic/observer boundary."""
+def validate_claim_registry(
+    records: tuple[ClaimRecord, ...] | list[ClaimRecord], *, project_root: Path | None = None
+) -> tuple[ClaimRecord, ...]:
+    """Validate claim identity and resolve canonical locations in source checkouts.
+
+    Installed wheels have no manuscript tree and retain typed claim generation
+    without requiring source-only files. An explicit root always requests checks.
+    """
     normalized = tuple(records)
+    if not all(isinstance(record, ClaimRecord) for record in normalized):
+        raise ValueError("claim registry requires ClaimRecord values")
     ids = [record.claim_id for record in normalized]
     if len(ids) != len(set(ids)):
         raise ValueError("claim registry contains duplicate claim IDs")
+    root = Path(project_root) if project_root is not None else Path(__file__).resolve().parents[2]
+    if project_root is not None or ((root / "pyproject.toml").is_file() and (root / "src" / "duckrabbit").is_dir()):
+        manuscript = (root / "docs" / "manuscript").resolve()
+        for record in normalized:
+            location = Path(record.manuscript_location)
+            resolved = (root / location).resolve()
+            if location.is_absolute() or location.parts[:2] != ("docs", "manuscript") or ".." in location.parts or location.suffix != ".md" or not resolved.is_relative_to(manuscript) or not resolved.is_file():
+                raise ValueError(f"claim manuscript location does not resolve under docs/manuscript: {record.claim_id}")
     return normalized
 
 
@@ -105,7 +123,7 @@ def default_claim_registry() -> tuple[ClaimRecord, ...]:
             ClaimLevel.CANONICAL_STIMULUS,
             ("taxonomy_entries()",),
             "Catalog membership is not a completeness claim about all known illusions.",
-            "manuscript/09_appendix_catalog.md",
+            "docs/manuscript/09_appendix_catalog.md",
         ),
         ClaimRecord(
             "evidence:source_count",
@@ -114,7 +132,7 @@ def default_claim_registry() -> tuple[ClaimRecord, ...]:
             ClaimLevel.SOURCE_SUPPORTED,
             ("data/evidence_matrix.json::sources",),
             "The offline snapshot does not imply that every URL is currently reachable or that a source supports more than its exact record.",
-            "manuscript/06_scope_and_related_work.md",
+            "docs/manuscript/06_scope_and_related_work.md",
         ),
         ClaimRecord(
             "scope:no_participant_data",
@@ -123,7 +141,7 @@ def default_claim_registry() -> tuple[ClaimRecord, ...]:
             ClaimLevel.OBSERVER_HYPOTHESIS,
             ("experiments/observer_protocol.md", "output/data/synthetic_psychophysics.json"),
             "Future observer studies require preregistration, consent, calibrated presentation, and separate data governance.",
-            "manuscript/07_publication_audit.md",
+            "docs/manuscript/07_publication_audit.md",
         ),
         ClaimRecord(
             "synthetic:diagnostic_boundary",
@@ -132,7 +150,7 @@ def default_claim_registry() -> tuple[ClaimRecord, ...]:
             ClaimLevel.SYNTHETIC_MODEL_OUTPUT,
             ("src/duckrabbit/synthetic_psychophysics.py", "output/data/synthetic_psychophysics.json"),
             "The hand-specified model has no training data and has not been calibrated against observers.",
-            "manuscript/02_methodology.md",
+            "docs/manuscript/02_methodology.md",
         ),
         ClaimRecord(
             "cover:editorial_boundary",
@@ -141,7 +159,7 @@ def default_claim_registry() -> tuple[ClaimRecord, ...]:
             ClaimLevel.PUBLICATION_ILLUSTRATION,
             ("output/reports/cover_visualization.json",),
             "The editorial asset is not part of the deterministic scientific stimulus registry.",
-            "manuscript/07_publication_audit.md",
+            "docs/manuscript/07_publication_audit.md",
         ),
     ]
     for entry in taxonomy_entries():
@@ -154,7 +172,7 @@ def default_claim_registry() -> tuple[ClaimRecord, ...]:
                 record.supported_claim_level,
                 tuple(record.primary_sources + record.review_sources + record.theory_sources) + ("data/evidence_matrix.json",),
                 " ".join(record.evidence_limitations),
-                "manuscript/06_scope_and_related_work.md",
+                "docs/manuscript/06_scope_and_related_work.md",
             )
         )
     return validate_claim_registry(records)

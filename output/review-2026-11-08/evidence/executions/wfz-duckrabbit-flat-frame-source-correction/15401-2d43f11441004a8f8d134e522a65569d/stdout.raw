@@ -1,0 +1,38 @@
+Generating beamer slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides/.03_results-5_ukm31d.archive.json
+Resolved 2 cross-deck reference(s) in slides from _combined_manuscript.aux
+Remapped 8 projection-unsupported glyph(s) to LaTeX math
+Made 2 long monospace path span(s) breakable in slides
+Inserted safe frame breaks in 7 dense slide frame(s)
+Compiling /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides/03_results_slides.tex with xelatex
+LaTeX compilation completed in 9.39s
+Generated beamer slides: 03_results_slides.pdf
+slides-03_results-beamer passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides/03_results_slides.pdf
+Generating reveal.js slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides-flat-manuscript/03_results.md
+slides-03_results-revealjs passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides/03_results_slides.html
+Generating beamer slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides/.07_publication_audit-a8wqj7ll.archive.json
+Resolved 10 cross-deck reference(s) in slides from _combined_manuscript.aux
+Remapped 31 projection-unsupported glyph(s) to LaTeX math
+Made 3 long monospace path span(s) breakable in slides
+Inserted safe frame breaks in 26 dense slide frame(s)
+Compiling /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides/07_publication_audit_slides.tex with xelatex
+LaTeX compilation completed in 10.98s
+Generated beamer slides: 07_publication_audit_slides.pdf
+slides-07_publication_audit-beamer passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides/07_publication_audit_slides.pdf
+Generating reveal.js slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides-flat-manuscript/07_publication_audit.md
+slides-07_publication_audit-revealjs passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides/07_publication_audit_slides.html
+Generating beamer slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides-flat-manuscript/09_appendix_catalog.md
+Resolved 1 cross-deck reference(s) in slides from _combined_manuscript.aux
+Inserted safe frame breaks in 1 dense slide frame(s)
+Compiling /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides/09_appendix_catalog_slides.tex with xelatex
+LaTeX compilation completed in 3.17s
+Generated beamer slides: 09_appendix_catalog_slides.pdf
+slides-09_appendix_catalog-beamer passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides/09_appendix_catalog_slides.pdf
+Generating reveal.js slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides-flat-manuscript/09_appendix_catalog.md
+slides-09_appendix_catalog-revealjs passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides/09_appendix_catalog_slides.html
+Generating beamer slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides-flat-manuscript/99_references.md
+Compiling /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides/99_references_slides.tex with xelatex
+LaTeX compilation completed in 3.50s
+Generated beamer slides: 99_references_slides.pdf
+slides-99_references-beamer passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides/99_references_slides.pdf
+Generating reveal.js slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides-flat-manuscript/99_references.md
+slides-99_references-revealjs passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides/99_references_slides.html

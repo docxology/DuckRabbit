@@ -1,0 +1,7 @@
+Using Python 3.11.18 environment at: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel311
+Resolved 3 packages in 1ms
+Prepared 3 packages in 99ms
+Installed 3 packages in 347ms
+ + duckrabbit==0.6.0 (from file:///Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/package/duckrabbit-0.6.0-py3-none-any.whl)
+ + numpy==2.4.2 (from file:///Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/numpy-2.4.2-cp311-cp311-macosx_11_0_arm64.whl)
+ + pillow==13.0.0 (from file:///Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/pillow-13.0.0-cp311-cp311-macosx_11_0_arm64.whl)

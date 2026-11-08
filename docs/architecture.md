@@ -66,6 +66,10 @@ boundaries, not generator implementations.
 
 `evidence.py` validates the source-tiered evidence matrix. `metrics.py` emits
 unit-bearing `MetricRecord` values inside an immutable `MetricSuite`.
+Every generated metric records explicit color/transfer semantics, its complete
+window, NumPy and implementation identity, and SHA-256 hashes of its computation
+and window definitions. These hashes identify definitions, not input buffers or
+empirical calibration; canonical digests identify the actual stimuli.
 `observer_analysis.py` contains study schemas, pseudonymous participant and
 stimulus-hash records, explicit trial missingness/exclusion states, typed
 estimands, model specifications, and synthetic-data utilities.
@@ -81,11 +85,10 @@ observed responses.
 `publication.py` renders a 15-figure deterministic PNG atlas, typed captions and
 alt text, sidecar source data, formalism traceability, 10 publication tables,
 and a machine-readable publication report from the live registry. `cover.py`
-installs a separately provenance-recorded editorial cover with PNG, WebP, and
-thumbnail variants. `validate_figure_registry()` and
-`validate_cover_manifest()` independently audit generated publication files;
-they reject stale hashes, missing source-data lineage, unsafe paths, and
-incomplete editorial provenance.
+installs an editorial cover with PNG, WebP, and thumbnail variants. Source bytes,
+dimensions, transforms and variant roles are checked; reported historical image
+generation is explicitly unverified, and arbitrary inputs acquire no invented
+generation history. Registry checks reject stale hashes, unsafe paths and lineage.
 
 The manifest verifier is relational rather than presence-only. It checks that
 canonical summary fields agree—for example, image bytes equal width × height ×
@@ -106,8 +109,11 @@ source graph, confirms the implemented registry is exactly the implemented
 catalog, generates every default artifact, recomputes canonical SHA-256
 digests, measures every artifact with unit-bearing metrics, and optionally
 validates a generated figure registry. Missing disposable publication output
-is a warning; malformed or inconsistent project state is an error. This keeps
-the release gate independent from the renderer that produced the files.
+is a warning outside release mode. Release mode additionally replays all 15
+scientific data/raster producers and checks exact hydrated manuscript delivery.
+The replay establishes consistency with the current trusted renderer, not an
+independent scientific implementation, authorship proof, or human visual review.
+Execution audits require the selected root to be the executing checkout.
 
 ## Taxonomy boundary
 

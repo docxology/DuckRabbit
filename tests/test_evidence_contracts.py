@@ -108,3 +108,127 @@ def test_evidence_value_objects_reject_every_malformed_contract() -> None:
         EvidenceRecord("x", EvidenceStatus.LITERATURE_BACKED_ENGINEERING_ENTRY, ImplementationStatus.IMPLEMENTED, ("valid",), (), (), "basis", ("limit",), "claim", missing_contract=3)  # type: ignore[arg-type]
     assert valid.key == "valid"
     assert evidence_for("visual.duck_rabbit").illusion_id == "visual.duck_rabbit"
+
+
+@pytest.mark.parametrize("mutation", ["role", "unrelated", "missing_edge"])
+def test_source_roles_and_taxonomy_edges_are_exact(mutation: str) -> None:
+    sources, entries = load_evidence_matrix()
+    base = entries["visual.duck_rabbit"]
+    if mutation == "role":
+        altered = replace(base, primary_sources=base.review_sources, review_sources=base.primary_sources)
+    elif mutation == "unrelated":
+        altered = replace(base, primary_sources=("mcgurk1976speech",))
+    else:
+        altered = replace(base, review_sources=())
+    with pytest.raises(ParameterValidationError):
+        validate_evidence_matrix(sources, {**entries, base.illusion_id: altered})
+
+
+def test_unattached_historical_sources_remain_permitted() -> None:
+    sources, entries = load_evidence_matrix()
+    used = {key for record in entries.values() for key in record.primary_sources + record.review_sources + record.theory_sources}
+    assert set(sources) - used
+    validate_evidence_matrix(sources, entries)
+
+
+def test_direct_evidence_constructors_detach_mutable_inputs() -> None:
+    from duckrabbit.evidence import EvidenceLineage, EvidenceRole
+
+    keys = ["source"]
+    edge = EvidenceLineage(EvidenceRole.PRIMARY_DEMONSTRATION, "A bounded statement", keys)
+    authors = ["George Berkeley"]
+    source = SourceRecord("source", "source", "A title", "primary", "https://example.org", None, "A bounded claim", authors=authors)
+    limitations = ["No observer evidence"]
+    record = EvidenceRecord("example", EvidenceStatus.LITERATURE_BACKED_ENGINEERING_ENTRY, ImplementationStatus.IMPLEMENTED, keys, [], [], "Engineering basis", limitations, "A bounded claim")
+    keys.append("later")
+    authors.clear()
+    limitations.clear()
+    assert edge.source_keys == ("source",)
+    assert record.primary_sources == ("source",)
+    assert record.evidence_limitations == ("No observer evidence",)
+    assert source.authors == ("George Berkeley",)
+    with pytest.raises(ParameterValidationError):
+        replace(record, implementation_status="implemented")
+    for field in ("primary_sources", "review_sources", "theory_sources", "evidence_limitations"):
+        with pytest.raises(ParameterValidationError):
+            replace(record, **{field: "not-a-sequence"})
+    with pytest.raises(ParameterValidationError):
+        replace(edge, source_keys="source")
+    with pytest.raises(ParameterValidationError):
+        replace(source, authors="George Berkeley")
+
+
+@pytest.mark.parametrize("field,value", [("title", "What you see is not what you hear"), ("author", "Berkeley, Nobody"), ("year", "1710")])
+def test_bibliography_identity_rejects_changed_fields(tmp_path: Path, field: str, value: str) -> None:
+    from duckrabbit.evidence import validate_bibliography_links
+
+    source = SourceRecord("berkeley", "berkeley", "An Essay Towards a New Theory of Vision", "primary", "https://example.org/vision", None, "Historical source", authors=("George Berkeley",), year=1709)
+    fields = {"title": source.title, "author": "Berkeley, George", "year": "1709", "url": source.url}
+    bibliography = tmp_path / "references.bib"
+    bibliography.write_text("@book{berkeley,\n" + "".join(f"  {name} = {{{text}}},\n" for name, text in fields.items()) + "}\n", encoding="utf-8")
+    validate_bibliography_links({source.key: source}, bibliography)
+    fields[field] = value
+    bibliography.write_text("@book{berkeley,\n" + "".join(f"  {name} = {{{text}}},\n" for name, text in fields.items()) + "}\n", encoding="utf-8")
+    with pytest.raises(ParameterValidationError):
+        validate_bibliography_links({source.key: source}, bibliography)
+
+
+def test_bibliography_normalizes_tex_and_preserves_identity(tmp_path: Path) -> None:
+    from duckrabbit.evidence import validate_bibliography_links
+
+    sources, _ = load_evidence_matrix()
+    source = sources["howe2005muller"]
+    bibliography = tmp_path / "references.bib"
+    bibliography.write_text('@article{howe2005muller,\n  title = {The {M}{\\"u}ller-{L}yer illusion explained by the statistics of image-source relationships},\n  doi = {' + source.doi + '},\n  url = {' + source.url + '}\n}\n', encoding="utf-8")
+    validate_bibliography_links({source.key: source}, bibliography)
+    bibliography.write_text(bibliography.read_text(encoding="utf-8").replace("illusion", r"\unknown{illusion}"), encoding="utf-8")
+    with pytest.raises(ParameterValidationError):
+        validate_bibliography_links({source.key: source}, bibliography)
+
+
+def test_claim_lineage_is_immutable_and_checkout_locations_resolve(tmp_path: Path) -> None:
+    from duckrabbit.claims import ClaimBasis, ClaimRecord, default_claim_registry, validate_claim_registry
+
+    lineage = ["code"]
+    claim = ClaimRecord("bounded", "A bounded claim", ClaimBasis.DERIVED_FROM_CODE, ClaimLevel.PHYSICAL_METRIC, lineage, "No observer evidence", "docs/manuscript/00_intro.md")
+    lineage.clear()
+    assert claim.source_or_artifact_lineage == ("code",)
+    manuscript = tmp_path / "docs" / "manuscript"
+    manuscript.mkdir(parents=True)
+    (manuscript / "00_intro.md").write_text("# Introduction", encoding="utf-8")
+    assert validate_claim_registry([claim], project_root=tmp_path) == (claim,)
+    for location in ("manuscript/00_intro.md", "docs/manuscript/missing.md", "docs/manuscript/../outside.md", str(manuscript / "00_intro.md")):
+        with pytest.raises(ValueError):
+            validate_claim_registry([replace(claim, manuscript_location=location)], project_root=tmp_path)
+    assert all(record.manuscript_location.startswith("docs/manuscript/") for record in default_claim_registry())
+
+
+@pytest.mark.parametrize("body", [
+    '<!-- <a href="#ref-source">cite</a><div id="ref-source"><a href="https://example.org/paper">source</a></div> -->',
+    '<p>href="#ref-source" https://example.org/paper</p>',
+    '<a href="#ref-source">cite</a><a href="https://example.org/paper">source</a>',
+    '<a href="#ref-source">cite</a><div id="ref-source"></div><a href="https://example.org/paper">source</a>',
+    '<a href="#ref-source">cite</a><div id="ref-source"></div><div id="ref-other"><a href="https://example.org/paper">source</a></div>',
+    '<a href="#ref-source">cite</a><div id="ref-source"><a href="https://example.org/paper">source</a></div><div id="ref-source"></div>',
+])
+def test_html_links_reject_nonlinks_missing_or_wrong_destinations(tmp_path: Path, body: str) -> None:
+    from duckrabbit.evidence import validate_rendered_bibliography_links, validate_rendered_citation_links
+
+    source = SourceRecord("source", "source", "A title", "primary", "https://example.org/paper", None, "A claim")
+    html = tmp_path / "index.html"
+    html.write_text(body, encoding="utf-8")
+    bibliography = tmp_path / "references.bib"
+    bibliography.write_text("@article{source,\n  url={https://example.org/paper}\n}\n", encoding="utf-8")
+    with pytest.raises(ParameterValidationError):
+        validate_rendered_citation_links(html, {source.key: source})
+    with pytest.raises(ParameterValidationError):
+        validate_rendered_bibliography_links(html, bibliography)
+
+
+def test_html_links_parse_real_anchors_and_entity_escaped_urls(tmp_path: Path) -> None:
+    from duckrabbit.evidence import validate_rendered_citation_links
+
+    source = SourceRecord("source", "source", "A title", "primary", "https://example.org/paper?a=1&b=2", None, "A claim")
+    html = tmp_path / "index.html"
+    html.write_text("<a href='#ref-source'>cite</a><section id='ref-source'><p><a href='https://example.org/paper?a=1&amp;b=2'>source</a></p></section>", encoding="utf-8")
+    validate_rendered_citation_links(html, {source.key: source})

@@ -1,0 +1,1 @@
+{"status": "failed", "canonical_record": "0000000000000000000000000000000000000000000000000000000000000000", "legacy_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984", "errors": ["manifest validation failed: invalid v2 manifest: canonical digest conflicts with canonical record"]}

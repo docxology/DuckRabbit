@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>99_references</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../web/assets/reveal.js-5.2.1/dist/reset.css">
+  <link rel="stylesheet" href="../web/assets/reveal.js-5.2.1/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../web/assets/reveal.js-5.2.1/dist/theme/white.css" id="theme">
+  <link rel="stylesheet" href="digital-review.css"/>
+<script data-template-mathjax-config>
+window.MathJax = window.MathJax || {};
+window.MathJax.loader = Object.assign({},window.MathJax.loader,{paths:{mathjax:new URL("../web/assets/mathjax-4.0.0/mathjax",document.baseURI).href}});
+window.MathJax.chtml = Object.assign({}, window.MathJax.chtml, {
+  fontURL: new URL("../web/assets/mathjax-4.0.0/newcm/chtml/woff2",document.baseURI).href,
+  dynamicPrefix: new URL("../web/assets/mathjax-4.0.0/newcm/chtml/dynamic",document.baseURI).href
+});
+var templateMathOutput = window.MathJax.output || {};
+window.MathJax.output = Object.assign({}, templateMathOutput, {
+  displayOverflow: "linebreak",
+  linebreaks: Object.assign({}, templateMathOutput.linebreaks, {
+    inline: true,
+    width: "100%",
+    lineleading: 0.5
+  })
+});
+window.normalizeTemplateMathJaxAria = function () {
+  document.querySelectorAll("mjx-speech[aria-roledescription]").forEach(function (node) {
+    var roleDescription = node.getAttribute("aria-roledescription") || "";
+    if (/[-]/.test(roleDescription)) {
+      node.setAttribute("aria-roledescription", "mathematical expression");
+    }
+  });
+};
+window.MathJax.startup = Object.assign({}, window.MathJax.startup, {
+  ready: function () {
+    var measuredWidth = document.documentElement.clientWidth;
+    var reflowQueued = false;
+    window.MathJax.startup.defaultReady();
+    window.templateMathJaxReflowPromise = window.MathJax.startup.promise.then(
+      window.normalizeTemplateMathJaxAria
+    );
+    function reflowDisplayMath() {
+      if (reflowQueued || document.documentElement.clientWidth === measuredWidth) return;
+      reflowQueued = true;
+      window.templateMathJaxReflowPromise = window.templateMathJaxReflowPromise
+        .catch(function () { /* A later resize may retry a failed render. */ })
+        .then(async function () {
+          var width = document.documentElement.clientWidth;
+          try {
+            // MathJax 4 MathItem.STATE.METRICS = 110. The default RERENDER
+            // state retains old container metrics and cannot reflow on zoom.
+            await window.MathJax.startup.document.rerenderPromise(110);
+            window.normalizeTemplateMathJaxAria();
+            window.templateMathJaxReflowError = null;
+          } catch (error) {
+            window.templateMathJaxReflowError = String(error);
+            console.error("MathJax viewport reflow failed", error);
+            throw error;
+          } finally {
+            measuredWidth = width;
+            reflowQueued = false;
+          }
+        })
+        .then(reflowDisplayMath);
+      // Keep failure observable to callers without an unhandled rejection.
+      window.templateMathJaxReflowPromise.catch(function () {});
+    }
+    window.addEventListener("resize", reflowDisplayMath);
+    // Also cover a resize that happened during the initial asynchronous render.
+    window.templateMathJaxReflowPromise.then(reflowDisplayMath);
+  }
+});
+</script>
+<script src="../web/assets/mathjax-4.0.0/mathjax/tex-chtml.js" integrity="sha384-2BWc4dVaHADUocwKrUrK9u3iDwHxVMKXWEcoRmUkXYSFKhAsgVAYClu9ydNuo5Oz" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section>
+<section id="sec:references" class="title-slide slide level1">
+<h1>References</h1>
+<p>Numbered-table references point to the <a
+href="../web/index.html">canonical manuscript</a>; they are not
+standalone local deck numbers.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-1-heading"
+class="slide level2">
+<h2>Reference 1</h2>
+<div id="slide-source-alhazen1989optics">
+
+</div>
+<p><span class="nocase">al-Haytham, Ibn</span>. 1989. <em>The Optics of
+Ibn Al-Haytham. Books i–III, on Direct Vision</em>. Translated by A. I.
+Sabra. Studies of the Warburg Institute 40. Warburg Institute,
+University of London. <a
+href="https://www.cca.qc.ca/en/search/details/library/publication/21530166"
+class="uri">https://www.cca.qc.ca/en/search/details/library/publication/21530166</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-2-heading"
+class="slide level2">
+<h2>Reference 2</h2>
+<div id="slide-source-berkeley1709vision">
+
+</div>
+<p>Berkeley, George. 1709. <em>An Essay towards a New Theory of
+Vision</em>. Aaron Rhames for Jeremy Pepyat. <a
+href="https://www.maths.tcd.ie/~dwilkins/Berkeley/Vision/"
+class="uri">https://www.maths.tcd.ie/~dwilkins/Berkeley/Vision/</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-3-heading"
+class="slide level2">
+<h2>Reference 3</h2>
+<div id="slide-source-brugger1999duckrabbit">
+
+</div>
+<p>Brugger, Peter. 1999. <span class="citation-literal">“One Hundred
+Years of an Ambiguous Figure: Happy Birthday, Duck/Rabbit.”</span>
+<em>Perceptual and Motor Skills</em> 89 (3): 973–77. <a
+href="https://doi.org/10.2466/pms.1999.89.3.973"
+class="uri">https://doi.org/10.2466/pms.1999.89.3.973</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-4-heading"
+class="slide level2">
+<h2>Reference 4</h2>
+<div id="slide-source-bruns2019ventriloquist">
+
+</div>
+<p>Bruns, Patrick. 2019. <span class="citation-literal">“The
+Ventriloquist Illusion as a Tool to Study Multisensory Processing: An
+Update.”</span> <em>Frontiers in Integrative Neuroscience</em> 13: 51.
+<a href="https://doi.org/10.3389/fnint.2019.00051"
+class="uri">https://doi.org/10.3389/fnint.2019.00051</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-5-heading"
+class="slide level2">
+<h2>Reference 5</h2>
+<div id="slide-source-cheselden1728sight">
+
+</div>
+<p>Cheselden, William. 1728. <span class="citation-literal">“An Account
+of Some Observations Made by a Young Gentleman Who Was Born Blind, or
+Lost His Sight so Early That He Had No Remembrance of Ever Having Seen,
+and Was Couch’d between 13 and 14 Years of Age.”</span>
+<em>Philosophical Transactions of the Royal Society of London</em> 35
+(402): 447–50. <a href="https://archive.org/details/jstor-103697"
+class="uri">https://archive.org/details/jstor-103697</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-6-heading"
+class="slide level2">
+<h2>Reference 6</h2>
+<div id="slide-source-dai2015chinesescience">
+
+</div>
+<p>Dai, Nianzu. 2015. <span class="citation-literal">“Physics.”</span>
+In <em>A History of Chinese Science and Technology</em>, edited by
+Yongxiang Lu. Springer. <a
+href="https://doi.org/10.1007/978-3-662-44257-9_5"
+class="uri">https://doi.org/10.1007/978-3-662-44257-9_5</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-7-heading"
+class="slide level2">
+<h2>Reference 7</h2>
+<div id="slide-source-molyneux2020problem">
+
+</div>
+<p>Degenaar, Marjolein, and Gert-Jan Lokhorst. 2020. <span
+class="citation-literal">“Molyneux’s Problem.”</span> <em>The Stanford
+Encyclopedia of Philosophy</em>. <a
+href="https://plato.stanford.edu/archives/fall2020/entries/molyneux-problem/"
+class="uri">https://plato.stanford.edu/archives/fall2020/entries/molyneux-problem/</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-8-heading"
+class="slide level2">
+<h2>Reference 8</h2>
+<div id="slide-source-deutsch1974octave">
+
+</div>
+<p>Deutsch, Diana. 1974. <span class="citation-literal">“An Auditory
+Illusion.”</span> <em>Journal of the Acoustical Society of America</em>
+55 (S1): S18–19. <a href="https://doi.org/10.1121/1.1919587"
+class="uri">https://doi.org/10.1121/1.1919587</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-9-heading"
+class="slide level2">
+<h2>Reference 9</h2>
+<div id="slide-source-deutsch1986tritone">
+
+</div>
+<p>Deutsch, Diana. 1986. <span class="citation-literal">“A Musical
+Paradox.”</span> <em>Music Perception</em> 3 (3): 275–80. <a
+href="https://doi.org/10.2307/40285337"
+class="uri">https://doi.org/10.2307/40285337</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-10-heading"
+class="slide level2">
+<h2>Reference 10</h2>
+<div id="slide-source-earle1995zollner">
+
+</div>
+<p>Earle, David C., and Stephen J. Maskell. 1995. <span
+class="citation-literal">“Spatial Filtering and the <span
+class="citation-literal">Z</span><span
+class="citation-literal">ö</span>llner–<span
+class="citation-literal">J</span>udd Geometrical Illusion: Further
+Studies.”</span> <em>Perception</em> 24 (12): 1397–406. <a
+href="https://doi.org/10.1068/p241397"
+class="uri">https://doi.org/10.1068/p241397</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-11-heading"
+class="slide level2">
+<h2>Reference 11</h2>
+<div id="slide-source-fechner1860psychophysics">
+
+</div>
+<p>Fechner, Gustav Theodor. 1860. <em>Elemente Der Psychophysik</em>.
+Breitkopf und Härtel. <a
+href="https://archive.org/details/elementederpsyc00fechgoog"
+class="uri">https://archive.org/details/elementederpsyc00fechgoog</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-12-heading"
+class="slide level2">
+<h2>Reference 12</h2>
+<div id="slide-source-fisher1967ponzo">
+
+</div>
+<p>Fisher, Gerald H. 1967. <span class="citation-literal">“Detection of
+Visual Stimuli Located within Angles.”</span> <em>Nature</em> 215:
+553–54. <a href="https://doi.org/10.1038/215553a0"
+class="uri">https://doi.org/10.1038/215553a0</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-13-heading"
+class="slide level2">
+<h2>Reference 13</h2>
+<div id="slide-source-gregory1997visual">
+
+</div>
+<p>Gregory, Richard L. 1997. <span class="citation-literal">“Visual
+Illusions Classified.”</span> <em>Trends in Cognitive Sciences</em> 1
+(5): 190–94. <a href="https://doi.org/10.1016/S1364-6613(97)01060-7"
+class="uri">https://doi.org/10.1016/S1364-6613(97)01060-7</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-14-heading"
+class="slide level2">
+<h2>Reference 14</h2>
+<div id="slide-source-hartcherobrien2011temporal">
+
+</div>
+<p>Hartcher-O’Brien, Jessica, and David Alais. 2011. <span
+class="citation-literal">“Temporal Ventriloquism in a Purely Temporal
+Context.”</span> <em>Journal of Experimental Psychology: Human
+Perception and Performance</em> 37 (5): 1383–95. <a
+href="https://doi.org/10.1037/a0024234"
+class="uri">https://doi.org/10.1037/a0024234</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-15-heading"
+class="slide level2">
+<h2>Reference 15</h2>
+<div id="slide-source-helmholtz1867optics">
+
+</div>
+<p>Helmholtz, Hermann von. 1867. <em>Handbuch Der Physiologischen
+Optik</em>. Leopold Voss. <a
+href="https://www.e-rara.ch/zut/content/titleinfo/6569728"
+class="uri">https://www.e-rara.ch/zut/content/titleinfo/6569728</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-16-heading"
+class="slide level2">
+<h2>Reference 16</h2>
+<div id="slide-source-hirst2020sound">
+
+</div>
+<p>Hirst, Rebecca J., David P. McGovern, Annalisa Setti, Ladan Shams,
+and Fiona N. Newell. 2020. <span class="citation-literal">“What You See
+Is What You Hear: Twenty Years of Research Using the Sound-Induced Flash
+Illusion.”</span> <em>Neuroscience and Biobehavioral Reviews</em> 118:
+759–74. <a href="https://doi.org/10.1016/j.neubiorev.2020.09.006"
+class="uri">https://doi.org/10.1016/j.neubiorev.2020.09.006</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-17-heading"
+class="slide level2">
+<h2>Reference 17</h2>
+<div id="slide-source-howe2005muller">
+
+</div>
+<p>Howe, Catherine Q., and Dale Purves. 2005. <span
+class="citation-literal">“The <span
+class="citation-literal">M</span><span
+class="citation-literal">ü</span>ller-<span
+class="citation-literal">L</span>yer Illusion Explained by the
+Statistics of Image-Source Relationships.”</span> <em>Proceedings of the
+National Academy of Sciences</em> 102 (4): 1234–39. <a
+href="https://doi.org/10.1073/pnas.0409314102"
+class="uri">https://doi.org/10.1073/pnas.0409314102</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-18-heading"
+class="slide level2">
+<h2>Reference 18</h2>
+<div id="slide-source-kanizsa1976contours">
+
+</div>
+<p>Kanizsa, Gaetano. 1976. <span class="citation-literal">“Subjective
+Contours.”</span> <em>Scientific American</em> 234 (4): 48–52. <a
+href="https://doi.org/10.1038/scientificamerican0476-48"
+class="uri">https://doi.org/10.1038/scientificamerican0476-48</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-19-heading"
+class="slide level2">
+<h2>Reference 19</h2>
+<div id="slide-source-kircher1646light">
+
+</div>
+<p>Kircher, Athanasius. 1646. <em>Ars Magna Lucis et Umbrae</em>.
+Ludovico Grignani for Hermann Scheuss. <a
+href="https://collections.st-andrews.ac.uk/item/ars-magna-lucis-et-umbrae/606862"
+class="uri">https://collections.st-andrews.ac.uk/item/ars-magna-lucis-et-umbrae/606862</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-20-heading"
+class="slide level2">
+<h2>Reference 20</h2>
+<div id="slide-source-lamprecht2020fairsoftware">
+
+</div>
+<p>Lamprecht, Anna-Lena, Leyla Garcia, Mateusz Kuzak, et al. 2020. <span
+class="citation-literal">“Towards <span
+class="citation-literal">FAIR</span> Principles for Research
+Software.”</span> <em>Data Science</em> 3 (1): 37–59. <a
+href="https://doi.org/10.3233/DS-190026"
+class="uri">https://doi.org/10.3233/DS-190026</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-21-heading"
+class="slide level2">
+<h2>Reference 21</h2>
+<div id="slide-source-mcgurk1976speech">
+
+</div>
+<p>McGurk, Harry, and John MacDonald. 1976. <span
+class="citation-literal">“Hearing Lips and Seeing Voices.”</span>
+<em>Nature</em> 264 (5588): 746–48. <a
+href="https://doi.org/10.1038/264746a0"
+class="uri">https://doi.org/10.1038/264746a0</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-22-heading"
+class="slide level2">
+<h2>Reference 22</h2>
+<div id="slide-source-morgan1999poggendorff">
+
+</div>
+<p>Morgan, M. J. 1999. <span class="citation-literal">“The <span
+class="citation-literal">P</span>oggendorff Illusion: A Bias in the
+Estimation of the Orientation of Virtual Lines by Second-Stage
+Filters.”</span> <em>Vision Research</em> 39 (14): 2361–80. <a
+href="https://doi.org/10.1016/S0042-6989(98)00243-0"
+class="uri">https://doi.org/10.1016/S0042-6989(98)00243-0</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-23-heading"
+class="slide level2">
+<h2>Reference 23</h2>
+<div id="slide-source-mruczek2015ebbinghaus">
+
+</div>
+<p>Mruczek, Ryan E. B., Christopher D. Blair, Lars Strother, and Gideon
+P. Caplovitz. 2015. <span class="citation-literal">“The Dynamic
+Ebbinghaus: Motion Dynamics Greatly Enhance the Classic Contextual Size
+Illusion.”</span> <em>Frontiers in Human Neuroscience</em> 9: 77. <a
+href="https://doi.org/10.3389/fnhum.2015.00077"
+class="uri">https://doi.org/10.3389/fnhum.2015.00077</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-24-heading"
+class="slide level2">
+<h2>Reference 24</h2>
+<div id="slide-source-mullerlyer1889optical">
+
+</div>
+<p>Müller-Lyer, Franz Carl. 1889. <span
+class="citation-literal">“Optische Urtheilstäuschungen.”</span>
+<em>Archiv Für Physiologie</em>, 263–70. <a
+href="https://www.psychologie.hu-berlin.de/de/institut/kabinett/ausstellungen/mueller_lyer.pdf"
+class="uri">https://www.psychologie.hu-berlin.de/de/institut/kabinett/ausstellungen/mueller_lyer.pdf</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-25-heading"
+class="slide level2">
+<h2>Reference 25</h2>
+<div id="slide-source-noppeney2018causal">
+
+</div>
+<p>Noppeney, Uta, and Hwee Ling Lee. 2018. <span
+class="citation-literal">“Causal Inference and Temporal Predictions in
+Audiovisual Perception of Speech and Music.”</span> <em>Annals of the
+New York Academy of Sciences</em> 1423: 102–16. <a
+href="https://doi.org/10.1111/nyas.13615"
+class="uri">https://doi.org/10.1111/nyas.13615</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-26-heading"
+class="slide level2">
+<h2>Reference 26</h2>
+<div id="slide-source-ptolemy1996optics">
+
+</div>
+<p>Ptolemy. 1996. <em>Ptolemy’s Theory of Visual Perception: An English
+Translation of the Optics with Introduction and Commentary</em>.
+Translated by A. Mark Smith. Vol. 86. Transactions of the American
+Philosophical Society 2. American Philosophical Society. <a
+href="https://sites.dlib.nyu.edu/viewer/books/isaw_aphs000027"
+class="uri">https://sites.dlib.nyu.edu/viewer/books/isaw_aphs000027</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-27-heading"
+class="slide level2">
+<h2>Reference 27</h2>
+<div id="slide-source-repp1997tritone">
+
+</div>
+<p>Repp, Bruno H. 1997. <span class="citation-literal">“Spectral
+Envelope and Context Effects in the Tritone Paradox.”</span>
+<em>Perception</em> 26 (5): 645–65. <a
+href="https://doi.org/10.1068/p260645"
+class="uri">https://doi.org/10.1068/p260645</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-28-heading"
+class="slide level2">
+<h2>Reference 28</h2>
+<div id="slide-source-riecke2011continuity">
+
+</div>
+<p>Riecke, Lars, Christophe Micheyl, Mieke Vanbussel, Claudia S.
+Schreiner, Daniel Mendelsohn, and Elia Formisano. 2011. <span
+class="citation-literal">“Recalibration of the Auditory Continuity
+Illusion: Sensory and Decisional Effects.”</span> <em>Hearing
+Research</em> 277 (1–2): 152–62. <a
+href="https://doi.org/10.1016/j.heares.2011.01.013"
+class="uri">https://doi.org/10.1016/j.heares.2011.01.013</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-29-heading"
+class="slide level2">
+<h2>Reference 29</h2>
+<div id="slide-source-sandve2013simple">
+
+</div>
+<p>Sandve, Geir Kjetil, Anton Nekrutenko, James Taylor, and Eivind
+Hovig. 2013. <span class="citation-literal">“Ten Simple Rules for
+Reproducible Computational Research.”</span> <em>PLOS Computational
+Biology</em> 9 (10): e1003285. <a
+href="https://doi.org/10.1371/journal.pcbi.1003285"
+class="uri">https://doi.org/10.1371/journal.pcbi.1003285</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-30-heading"
+class="slide level2">
+<h2>Reference 30</h2>
+<div id="slide-source-mozi2023canons">
+
+</div>
+<p>Schemmel, Matthias, and William G. Boltz. 2022. <span
+class="citation-literal">“Text and Translation.”</span> In
+<em>Theoretical Knowledge in the Mohist Canon</em>. Springer. <a
+href="https://doi.org/10.1007/978-3-031-08797-4_3"
+class="uri">https://doi.org/10.1007/978-3-031-08797-4_3</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-31-heading"
+class="slide level2">
+<h2>Reference 31</h2>
+<div id="slide-source-sekuler1996wertheimer">
+
+</div>
+<p>Sekuler, Robert. 1996. <span class="citation-literal">“Motion
+Perception: A Modern View of Wertheimer’s 1912 Monograph.”</span>
+<em>Perception</em> 25 (10). <a href="https://doi.org/10.1068/p251243"
+class="uri">https://doi.org/10.1068/p251243</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-32-heading"
+class="slide level2">
+<h2>Reference 32</h2>
+<div id="slide-source-shams2000sifi">
+
+</div>
+<p>Shams, Ladan, Yukiyasu Kamitani, and Shinsuke Shimojo. 2000. <span
+class="citation-literal">“What You See Is What You Hear.”</span>
+<em>Nature</em> 408: 788. <a href="https://doi.org/10.1038/35048669"
+class="uri">https://doi.org/10.1038/35048669</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-33-heading"
+class="slide level2">
+<h2>Reference 33</h2>
+<div id="slide-source-shepard1984scale">
+
+</div>
+<p>Shepard, Roger N., and D. S. Jordan. 1984. <span
+class="citation-literal">“Auditory Illusions Demonstrating That Tones
+Are Assimilated to an Internalized Musical Scale.”</span>
+<em>Science</em> 226 (4680): 1333–34. <a
+href="https://doi.org/10.1126/science.226.4680.1333"
+class="uri">https://doi.org/10.1126/science.226.4680.1333</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-34-heading"
+class="slide level2">
+<h2>Reference 34</h2>
+<div id="slide-source-smith2016software">
+
+</div>
+<p>Smith, Arfon M., Daniel S. Katz, Kyle E. Niemeyer, and FORCE11
+Software Citation Working Group. 2016. <span
+class="citation-literal">“Software Citation Principles.”</span>
+<em>PeerJ Computer Science</em> 2: e86. <a
+href="https://doi.org/10.7717/peerj-cs.86"
+class="uri">https://doi.org/10.7717/peerj-cs.86</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-35-heading"
+class="slide level2">
+<h2>Reference 35</h2>
+<div id="slide-source-stumpf1883tonpsychology">
+
+</div>
+<p>Stumpf, Carl. 1883. <em>Tonpsychologie. Band 1</em>. S. Hirzel. <a
+href="https://search.rsl.ru/ru/record/01004444057"
+class="uri">https://search.rsl.ru/ru/record/01004444057</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-36-heading"
+class="slide level2">
+<h2>Reference 36</h2>
+<div id="slide-source-vroomen2004temporal">
+
+</div>
+<p>Vroomen, Jean, and Beatrice de Gelder. 2004. <span
+class="citation-literal">“Temporal Ventriloquism: Sound Modulates the
+Flash-Lag Effect.”</span> <em>Journal of Experimental Psychology: Human
+Perception and Performance</em> 30 (3): 513–18. <a
+href="https://doi.org/10.1037/0096-1523.30.3.513"
+class="uri">https://doi.org/10.1037/0096-1523.30.3.513</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-37-heading"
+class="slide level2">
+<h2>Reference 37</h2>
+<div id="slide-source-wade2017oppel">
+
+</div>
+<p>Wade, Nicholas J., Dejan Todorović, David Phillips, and Bernd
+Lingelbach. 2017. <span class="citation-literal">“Johann Joseph Oppel
+(1855) on Geometrical–Optical Illusions: A Translation and
+Commentary.”</span> <em>I-Perception</em> 8 (5). <a
+href="https://doi.org/10.1177/2041669517712724"
+class="uri">https://doi.org/10.1177/2041669517712724</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-38-heading"
+class="slide level2">
+<h2>Reference 38</h2>
+<div id="slide-source-wagemans2012gestalt">
+
+</div>
+<p>Wagemans, Johan, James H. Elder, Michael Kubovy, et al. 2012. <span
+class="citation-literal">“A Century of <span
+class="citation-literal">G</span>estalt Psychology in Visual Perception:
+<span class="citation-literal">I</span>. Perceptual Grouping and
+Figure-Ground Organization.”</span> <em>Psychological Bulletin</em> 138
+(6): 1172–217. <a href="https://doi.org/10.1037/a0029333"
+class="uri">https://doi.org/10.1037/a0029333</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-39-heading"
+class="slide level2">
+<h2>Reference 39</h2>
+<div id="slide-source-warren1970continuity">
+
+</div>
+<p>Warren, Richard M. 1970. <span class="citation-literal">“Perceptual
+Restoration of Missing Speech Sounds.”</span> <em>Science</em> 167
+(3917): 392–93. <a href="https://doi.org/10.1126/science.167.3917.392"
+class="uri">https://doi.org/10.1126/science.167.3917.392</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-40-heading"
+class="slide level2">
+<h2>Reference 40</h2>
+<div id="slide-source-weintraub1979ebbinghaus">
+
+</div>
+<p>Weintraub, D. J. 1979. <span class="citation-literal">“Ebbinghaus
+Illusion: Context, Contour, and Age Influence the Judged Size of a
+Circle amidst Circles.”</span> <em>Journal of Experimental Psychology:
+Human Perception and Performance</em> 5 (2): 353–64. <a
+href="https://doi.org/10.1037/0096-1523.5.2.353"
+class="uri">https://doi.org/10.1037/0096-1523.5.2.353</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-41-heading"
+class="slide level2">
+<h2>Reference 41</h2>
+<div id="slide-source-wertheimer1912motion">
+
+</div>
+<p>Wertheimer, Max. 1912. <span class="citation-literal">“Experimentelle
+Studien Über Das Sehen von Bewegung.”</span> <em>Zeitschrift Für
+Psychologie</em> 61: 161–265. <a
+href="https://bibbase.org/network/publication/wertheimer-experimentellestudienberdassehenvonbewegung-1912"
+class="uri">https://bibbase.org/network/publication/wertheimer-experimentellestudienberdassehenvonbewegung-1912</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-42-heading"
+class="slide level2">
+<h2>Reference 42</h2>
+<div id="slide-source-wheatstone1838binocular">
+
+</div>
+<p>Wheatstone, Charles. 1838. <span class="citation-literal">“XVIII.
+Contributions to the Physiology of Vision. —Part the First. On Some
+Remarkable, and Hitherto Unobserved, Phenomena of Binocular
+Vision.”</span> <em>Philosophical Transactions of the Royal Society of
+London</em> 128: 371–94. <a
+href="https://doi.org/10.1098/rstl.1838.0019"
+class="uri">https://doi.org/10.1098/rstl.1838.0019</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-43-heading"
+class="slide level2">
+<h2>Reference 43</h2>
+<div id="slide-source-wilkinson2016fair">
+
+</div>
+<p>Wilkinson, Mark D., Michel Dumontier, IJsbrand Jan Aalbersberg, et
+al. 2016. <span class="citation-literal">“The <span
+class="citation-literal">FAIR</span> Guiding Principles for Scientific
+Data Management and Stewardship.”</span> <em>Scientific Data</em> 3:
+160018. <a href="https://doi.org/10.1038/sdata.2016.18"
+class="uri">https://doi.org/10.1038/sdata.2016.18</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-44-heading"
+class="slide level2">
+<h2>Reference 44</h2>
+<div id="slide-source-wilson2014bestpractices">
+
+</div>
+<p>Wilson, Greg, D. A. Aruliah, C. Titus Brown, et al. 2014. <span
+class="citation-literal">“Best Practices for Scientific
+Computing.”</span> <em>PLOS Biology</em> 12 (1): e1001745. <a
+href="https://doi.org/10.1371/journal.pbio.1001745"
+class="uri">https://doi.org/10.1371/journal.pbio.1001745</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-45-heading"
+class="slide level2">
+<h2>Reference 45</h2>
+<div id="slide-source-yildiz2022ponzo">
+
+</div>
+<p>Yildiz, Gizem Y., Irene Sperandio, Christine Kettle, and Philippe A.
+Chouinard. 2022. <span class="citation-literal">“A Review on Various
+Explanations of Ponzo-like Illusions.”</span> <em>Psychonomic Bulletin
+and Review</em> 29 (2): 293–320. <a
+href="https://doi.org/10.3758/s13423-021-02007-7"
+class="uri">https://doi.org/10.3758/s13423-021-02007-7</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-46-heading"
+class="slide level2">
+<h2>Reference 46</h2>
+<div id="slide-source-zatorre2005missing">
+
+</div>
+<p>Zatorre, Robert J. 2005. <span class="citation-literal">“Finding the
+Missing Fundamental.”</span> <em>Nature</em> 436: 1093–94. <a
+href="https://doi.org/10.1038/4361093a"
+class="uri">https://doi.org/10.1038/4361093a</a>.</p>
+</section>
+<section id="dr-slide-99_references-bibliography-47-heading"
+class="slide level2">
+<h2>Reference 47</h2>
+<div id="slide-source-zoellner1860pseudoscopy">
+
+</div>
+<p>Zöllner, Friedrich. 1860. <span class="citation-literal">“Ueber Eine
+Neue Art von Pseudoskopie Und Ihre Beziehungen Zu Den von Plateau Und
+Oppel Beschriebenen Bewegungsphänomenen.”</span> <em>Annalen Der
+Physik</em> 186: 500–523. <a
+href="https://doi.org/10.1002/andp.18601860712"
+class="uri">https://doi.org/10.1002/andp.18601860712</a>.</p>
+</section></section>
+    </div>
+  </div>
+
+  <script src="../web/assets/reveal.js-5.2.1/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="../web/assets/reveal.js-5.2.1/plugin/notes/notes.js"></script>
+  <script src="../web/assets/reveal.js-5.2.1/plugin/search/search.js"></script>
+  <script src="../web/assets/reveal.js-5.2.1/plugin/zoom/zoom.js"></script>
+  
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>

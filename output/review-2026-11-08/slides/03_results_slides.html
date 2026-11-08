@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>03_results</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../web/assets/reveal.js-5.2.1/dist/reset.css">
+  <link rel="stylesheet" href="../web/assets/reveal.js-5.2.1/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../web/assets/reveal.js-5.2.1/dist/theme/white.css" id="theme">
+  <link rel="stylesheet" href="digital-review.css"/>
+<script data-template-mathjax-config>
+window.MathJax = window.MathJax || {};
+window.MathJax.loader = Object.assign({},window.MathJax.loader,{paths:{mathjax:new URL("../web/assets/mathjax-4.0.0/mathjax",document.baseURI).href}});
+window.MathJax.chtml = Object.assign({}, window.MathJax.chtml, {
+  fontURL: new URL("../web/assets/mathjax-4.0.0/newcm/chtml/woff2",document.baseURI).href,
+  dynamicPrefix: new URL("../web/assets/mathjax-4.0.0/newcm/chtml/dynamic",document.baseURI).href
+});
+var templateMathOutput = window.MathJax.output || {};
+window.MathJax.output = Object.assign({}, templateMathOutput, {
+  displayOverflow: "linebreak",
+  linebreaks: Object.assign({}, templateMathOutput.linebreaks, {
+    inline: true,
+    width: "100%",
+    lineleading: 0.5
+  })
+});
+window.normalizeTemplateMathJaxAria = function () {
+  document.querySelectorAll("mjx-speech[aria-roledescription]").forEach(function (node) {
+    var roleDescription = node.getAttribute("aria-roledescription") || "";
+    if (/[-]/.test(roleDescription)) {
+      node.setAttribute("aria-roledescription", "mathematical expression");
+    }
+  });
+};
+window.MathJax.startup = Object.assign({}, window.MathJax.startup, {
+  ready: function () {
+    var measuredWidth = document.documentElement.clientWidth;
+    var reflowQueued = false;
+    window.MathJax.startup.defaultReady();
+    window.templateMathJaxReflowPromise = window.MathJax.startup.promise.then(
+      window.normalizeTemplateMathJaxAria
+    );
+    function reflowDisplayMath() {
+      if (reflowQueued || document.documentElement.clientWidth === measuredWidth) return;
+      reflowQueued = true;
+      window.templateMathJaxReflowPromise = window.templateMathJaxReflowPromise
+        .catch(function () { /* A later resize may retry a failed render. */ })
+        .then(async function () {
+          var width = document.documentElement.clientWidth;
+          try {
+            // MathJax 4 MathItem.STATE.METRICS = 110. The default RERENDER
+            // state retains old container metrics and cannot reflow on zoom.
+            await window.MathJax.startup.document.rerenderPromise(110);
+            window.normalizeTemplateMathJaxAria();
+            window.templateMathJaxReflowError = null;
+          } catch (error) {
+            window.templateMathJaxReflowError = String(error);
+            console.error("MathJax viewport reflow failed", error);
+            throw error;
+          } finally {
+            measuredWidth = width;
+            reflowQueued = false;
+          }
+        })
+        .then(reflowDisplayMath);
+      // Keep failure observable to callers without an unhandled rejection.
+      window.templateMathJaxReflowPromise.catch(function () {});
+    }
+    window.addEventListener("resize", reflowDisplayMath);
+    // Also cover a resize that happened during the initial asynchronous render.
+    window.templateMathJaxReflowPromise.then(reflowDisplayMath);
+  }
+});
+</script>
+<script src="../web/assets/mathjax-4.0.0/mathjax/tex-chtml.js" integrity="sha384-2BWc4dVaHADUocwKrUrK9u3iDwHxVMKXWEcoRmUkXYSFKhAsgVAYClu9ydNuo5Oz" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section>
+<section id="sec:results" class="title-slide slide level1">
+<h1>Results</h1>
+<p>Numbered-table references point to the <a
+href="../web/index.html">canonical manuscript</a>; they are not
+standalone local deck numbers.</p>
+</section>
+<section id="generated-catalog-metrics-and-outputs"
+class="slide level2">
+<h2>Generated catalog, metrics, and outputs</h2>
+<p>The live registry reports 17 implemented generators, 18 catalog
+entries, 18 evidence records, and 36 source records in the checked-in
+scholarship audit snapshot. The complete catalog is generated in
+Appendix A rather than copied into prose. The companion figure keeps the
+categorical registry, source namespace, and implementation statuses
+visible at a glance.</p>
+<figure id="fig:catalog_matrix">
+<img data-src="../figures/catalog_matrix.png"
+alt="A matrix lists all catalog entries with modality, mechanism, signature, input requirement, and implementation status." />
+<figcaption aria-hidden="true">A matrix lists all catalog entries with
+modality, mechanism, signature, input requirement, and implementation
+status.</figcaption>
+</figure>
+<p>What this figure shows: A matrix lists all catalog entries with
+modality, mechanism, signature, input requirement, and implementation
+status. The live catalog matrix contains 18 entries and keeps modality,
+mechanism, perceptual signature, input requirement, evidence status, and
+implementation status as separate facets. Source data
+output/data/catalog_matrix.json preserve the exact taxonomy snapshot and
+its source-reference namespace; status is not a proxy for perceptual
+validation. Controls: live taxonomy registry; evidence matrix snapshot;
+seed not applicable to the catalog diagram. Objective facts: 18 catalog
+rows; categorical facets and statuses; no observer-level quantity is
+applicable. Claim level: source_supported. Source data:
+output/data/catalog_matrix.json (SHA-256 digest recorded in the figure
+registry). Evidence lineage: gregory1997visual, hirst2020sound,
+bruns2019ventriloquist. Limitations: Taxonomy facets are engineering
+classifications and remain provisional where the literature supports
+competing accounts. Boundary: Catalog coverage is bounded to this
+registered package and does not enumerate all known illusions.</p>
+<p>The complete catalog matrix <a class="cross-reference" href="#fig:catalog_matrix">Figure 1</a>
+is tabulated in the standalone Appendix A <span class="cross-reference">Section 10</span>
+and in <a href="../web/index.html#tbl:catalog">Table 10</a>. The
+corresponding machine-readable evidence matrix records the source role,
+exact supported claim, engineering departure, and limitation for every
+entry. Keeping the table in an appendix gives the main results narrative
+room to explain the contract without turning a mutable registry snapshot
+into a prose claim.</p>
+</section>
+<section id="typed-domains-and-delivery-profiles" class="slide level2">
+<h2>Typed domains and delivery profiles</h2>
+<div id="tbl:parameters">
+
+</div>
+<p>Typed parameter domains and units.</p>
+</section>
+<section id="dr-slide-03_results-table-1-header-1-heading"
+class="slide level2">
+<h2>Table 1 — header row 1</h2>
+<p>Column 1 — header:</p>
+<p>Type</p>
+<p>Value:</p>
+<p>Type</p>
+<p>Column 2 — header:</p>
+<p>Unit</p>
+<p>Value:</p>
+<p>Unit</p>
+<p>Column 3 — header:</p>
+<p>Validated domain</p>
+<p>Value:</p>
+<p>Validated domain</p>
+<p>Column 4 — header:</p>
+<p>Role</p>
+<p>Value:</p>
+<p>Role</p>
+</section>
+<section id="dr-slide-03_results-table-1-data-1-heading"
+class="slide level2">
+<h2>Table 1 — row 1</h2>
+<p>Column 1 — header:</p>
+<p>Type</p>
+<p>Value:</p>
+<p>PixelDimension</p>
+<p>Column 2 — header:</p>
+<p>Unit</p>
+<p>Value:</p>
+<p>pixels</p>
+<p>Column 3 — header:</p>
+<p>Validated domain</p>
+<p>Value:</p>
+<p>8–4096</p>
+<p>Column 4 — header:</p>
+<p>Role</p>
+<p>Value:</p>
+<p>image/video width and height</p>
+</section>
+<section id="dr-slide-03_results-table-1-data-2-heading"
+class="slide level2">
+<h2>Table 1 — row 2</h2>
+<p>Column 1 — header:</p>
+<p>Type</p>
+<p>Value:</p>
+<p>GrayscaleLevels</p>
+<p>Column 2 — header:</p>
+<p>Unit</p>
+<p>Value:</p>
+<p>levels</p>
+<p>Column 3 — header:</p>
+<p>Validated domain</p>
+<p>Value:</p>
+<p>2–256</p>
+<p>Column 4 — header:</p>
+<p>Role</p>
+<p>Value:</p>
+<p>representable grayscale levels</p>
+</section>
+<section id="dr-slide-03_results-table-1-data-3-heading"
+class="slide level2">
+<h2>Table 1 — row 3</h2>
+<p>Column 1 — header:</p>
+<p>Type</p>
+<p>Value:</p>
+<p>QuantizationLevels</p>
+<p>Column 2 — header:</p>
+<p>Unit</p>
+<p>Value:</p>
+<p>levels</p>
+<p>Column 3 — header:</p>
+<p>Validated domain</p>
+<p>Value:</p>
+<p>2–256</p>
+<p>Column 4 — header:</p>
+<p>Role</p>
+<p>Value:</p>
+<p>output quantization buckets</p>
+</section>
+<section id="dr-slide-03_results-table-1-data-4-heading"
+class="slide level2">
+<h2>Table 1 — row 4</h2>
+<p>Column 1 — header:</p>
+<p>Type</p>
+<p>Value:</p>
+<p>FrequencyHz</p>
+<p>Column 2 — header:</p>
+<p>Unit</p>
+<p>Value:</p>
+<p>Hz</p>
+<p>Column 3 — header:</p>
+<p>Validated domain</p>
+<p>Value:</p>
+<p>&gt; 0 and finite</p>
+<p>Column 4 — header:</p>
+<p>Role</p>
+<p>Value:</p>
+<p>oscillator and harmonic frequencies</p>
+</section>
+<section id="dr-slide-03_results-table-1-data-5-heading"
+class="slide level2">
+<h2>Table 1 — row 5</h2>
+<p>Column 1 — header:</p>
+<p>Type</p>
+<p>Value:</p>
+<p>SampleRate</p>
+<p>Column 2 — header:</p>
+<p>Unit</p>
+<p>Value:</p>
+<p>samples/s</p>
+<p>Column 3 — header:</p>
+<p>Validated domain</p>
+<p>Value:</p>
+<p>1,000–384,000</p>
+<p>Column 4 — header:</p>
+<p>Role</p>
+<p>Value:</p>
+<p>audio sampling clock</p>
+</section>
+<section id="dr-slide-03_results-table-1-data-6-heading"
+class="slide level2">
+<h2>Table 1 — row 6</h2>
+<p>Column 1 — header:</p>
+<p>Type</p>
+<p>Value:</p>
+<p>FrameRate</p>
+<p>Column 2 — header:</p>
+<p>Unit</p>
+<p>Value:</p>
+<p>frames/s</p>
+<p>Column 3 — header:</p>
+<p>Validated domain</p>
+<p>Value:</p>
+<p>1–240</p>
+<p>Column 4 — header:</p>
+<p>Role</p>
+<p>Value:</p>
+<p>video presentation clock</p>
+</section>
+<section id="dr-slide-03_results-table-1-data-7-heading"
+class="slide level2">
+<h2>Table 1 — row 7</h2>
+<p>Column 1 — header:</p>
+<p>Type</p>
+<p>Value:</p>
+<p>SyncOffsetMs</p>
+<p>Column 2 — header:</p>
+<p>Unit</p>
+<p>Value:</p>
+<p>ms</p>
+<p>Column 3 — header:</p>
+<p>Validated domain</p>
+<p>Value:</p>
+<p>−10,000–10,000</p>
+<p>Column 4 — header:</p>
+<p>Role</p>
+<p>Value:</p>
+<p>audio relative to video</p>
+</section>
+<section id="dr-slide-03_results-table-1-data-8-heading"
+class="slide level2">
+<h2>Table 1 — row 8</h2>
+<p>Column 1 — header:</p>
+<p>Type</p>
+<p>Value:</p>
+<p>SpatialOffset</p>
+<p>Column 2 — header:</p>
+<p>Unit</p>
+<p>Value:</p>
+<p>normalized</p>
+<p>Column 3 — header:</p>
+<p>Validated domain</p>
+<p>Value:</p>
+<p>−1–1</p>
+<p>Column 4 — header:</p>
+<p>Role</p>
+<p>Value:</p>
+<p>declared crossmodal spatial discrepancy</p>
+<p>The parameter contracts are summarized in <a
+href="../web/index.html#tbl:parameters">Table 1</a>. They constrain
+physical construction and serialization; they are not psychophysical
+scales.</p>
+<div id="tbl:encodings">
+
+</div>
+<p>Encoding profiles and backend capabilities.</p>
+</section>
+<section id="dr-slide-03_results-table-2-header-1-heading"
+class="slide level2">
+<h2>Table 2 — header row 1</h2>
+<p>Column 1 — header:</p>
+<p>Format</p>
+<p>Value:</p>
+<p>Format</p>
+<p>Column 2 — header:</p>
+<p>Backend</p>
+<p>Value:</p>
+<p>Backend</p>
+<p>Column 3 — header:</p>
+<p>Artifact</p>
+<p>Value:</p>
+<p>Artifact</p>
+<p>Column 4 — header:</p>
+<p>Profile</p>
+<p>Value:</p>
+<p>Profile</p>
+<p>Column 5 — header:</p>
+<p>Status</p>
+<p>Value:</p>
+<p>Status</p>
+</section>
+<section id="dr-slide-03_results-table-2-data-1-heading"
+class="slide level2">
+<h2>Table 2 — row 1</h2>
+<p>Column 1 — header:</p>
+<p>Format</p>
+<p>Value:</p>
+<p>PNG</p>
+<p>Column 2 — header:</p>
+<p>Backend</p>
+<p>Value:</p>
+<p>Pillow</p>
+<p>Column 3 — header:</p>
+<p>Artifact</p>
+<p>Value:</p>
+<p>image</p>
+<p>Column 4 — header:</p>
+<p>Profile</p>
+<p>Value:</p>
+<p>lossless uint8 raster</p>
+<p>Column 5 — header:</p>
+<p>Status</p>
+<p>Value:</p>
+<p>available</p>
+</section>
+<section id="dr-slide-03_results-table-2-data-2-heading"
+class="slide level2">
+<h2>Table 2 — row 2</h2>
+<p>Column 1 — header:</p>
+<p>Format</p>
+<p>Value:</p>
+<p>WAV</p>
+<p>Column 2 — header:</p>
+<p>Backend</p>
+<p>Value:</p>
+<p>python wave</p>
+<p>Column 3 — header:</p>
+<p>Artifact</p>
+<p>Value:</p>
+<p>audio</p>
+<p>Column 4 — header:</p>
+<p>Profile</p>
+<p>Value:</p>
+<p>PCM 8/16/24/32-bit</p>
+<p>Column 5 — header:</p>
+<p>Status</p>
+<p>Value:</p>
+<p>available</p>
+</section>
+<section id="dr-slide-03_results-table-2-data-3-heading"
+class="slide level2">
+<h2>Table 2 — row 3</h2>
+<p>Column 1 — header:</p>
+<p>Format</p>
+<p>Value:</p>
+<p>GIF</p>
+<p>Column 2 — header:</p>
+<p>Backend</p>
+<p>Value:</p>
+<p>Pillow</p>
+<p>Column 3 — header:</p>
+<p>Artifact</p>
+<p>Value:</p>
+<p>video</p>
+<p>Column 4 — header:</p>
+<p>Profile</p>
+<p>Value:</p>
+<p>palette animation with declared duration</p>
+<p>Column 5 — header:</p>
+<p>Status</p>
+<p>Value:</p>
+<p>available</p>
+</section>
+<section id="dr-slide-03_results-table-2-data-4-heading"
+class="slide level2">
+<h2>Table 2 — row 4</h2>
+<p>Column 1 — header:</p>
+<p>Format</p>
+<p>Value:</p>
+<p>NPZ</p>
+<p>Column 2 — header:</p>
+<p>Backend</p>
+<p>Value:</p>
+<p>NumPy</p>
+<p>Column 3 — header:</p>
+<p>Artifact</p>
+<p>Value:</p>
+<p>canonical artifact</p>
+<p>Column 4 — header:</p>
+<p>Profile</p>
+<p>Value:</p>
+<p>exact little-endian float32 archive</p>
+<p>Column 5 — header:</p>
+<p>Status</p>
+<p>Value:</p>
+<p>available</p>
+</section>
+<section id="dr-slide-03_results-table-2-data-5-heading"
+class="slide level2">
+<h2>Table 2 — row 5</h2>
+<p>Column 1 — header:</p>
+<p>Format</p>
+<p>Value:</p>
+<p>MP4</p>
+<p>Column 2 — header:</p>
+<p>Backend</p>
+<p>Value:</p>
+<p>ffmpeg</p>
+<p>Column 3 — header:</p>
+<p>Artifact</p>
+<p>Value:</p>
+<p>video/audiovisual</p>
+<p>Column 4 — header:</p>
+<p>Profile</p>
+<p>Value:</p>
+<p>H.264 or muxed MP4; decode inspected</p>
+<p>Column 5 — header:</p>
+<p>Status</p>
+<p>Value:</p>
+<p>available</p>
+<p>The delivery profiles are summarized in <a
+href="../web/index.html#tbl:encodings">Table 2</a>. Backend availability
+is environment-dependent and is recorded at generation time.</p>
+<p>The catalog distinguishes a physical construction from an observer
+claim. For example, the sound-induced-flash generator establishes one
+flash and one or two beep events on a shared clock; it does not
+establish a reported flash count. Similarly, the temporal-ventriloquism
+generator exposes a declared timing offset, while the literature reports
+observer-dependent temporal judgments under specific tasks and timing
+conditions <span class="citation"
+data-cites="vroomen2004temporal">(Vroomen and Gelder 2004)</span>.</p>
+</section>
+<section id="pipeline-and-provenance" class="slide level2">
+<h2>Pipeline and provenance</h2>
+<figure id="fig:architecture">
+<img data-src="../figures/architecture.png"
+alt="Five labeled stages connect a typed request to a deterministic canonical artifact, encoded media, decoded inspection, and a verification manifest." />
+<figcaption aria-hidden="true">Five labeled stages connect a typed
+request to a deterministic canonical artifact, encoded media, decoded
+inspection, and a verification manifest.</figcaption>
+</figure>
+<p>What this figure shows: Five labeled stages connect a typed request
+to a deterministic canonical artifact, encoded media, decoded
+inspection, and a verification manifest. This schematic separates a
+typed request from the canonical artifact it generates, the optional
+delivery encoder, decoded inspection, and the manifest-level
+verification decision. Arrows indicate data and provenance dependencies
+rather than a causal model of perception; the seed is 0 and the complete
+stage record is in source data output/data/architecture.json. Controls:
+typed request q=(i,θ,s,e) with seed s=0; default generator and
+delivery-independent canonicalization. Objective facts: no unit-bearing
+objective quantity is applicable to this architecture diagram; stage
+identities and provenance fields are recorded in the sidecar. Claim
+level: canonical_stimulus. Source data: output/data/architecture.json
+(SHA-256 digest recorded in the figure registry). Evidence lineage:
+formalism:eq:typed_request, formalism:eq:canonical_generation,
+formalism:eq:encoding_verification. Limitations: The schematic abstracts
+implementation boundaries and does not represent an observer study or a
+causal theory of perception. Boundary: The pipeline verifies
+reproducible media facts, not what a person experiences.</p>
+<p>The generated architecture figure <a class="cross-reference" href="#fig:architecture">2</a>
+shows the separation between request, canonical artifact, delivery
+adapter, decoded inspection, and manifest. The canonical digest is the
+identity of the in-memory stimulus; an encoded hash is the identity of
+the delivered file. The difference is intentional.</p>
+</section>
+<section id="visual-constructions-and-parameter-sweeps"
+class="slide level2">
+<h2>Visual constructions and parameter sweeps</h2>
+<figure id="fig:visual_panel">
+<img data-src="../figures/visual_panel.png"
+alt="A 9-panel gallery shows every currently implemented visual catalog entry, with stable IDs and physical raster summaries: Duck-rabbit ambiguous figure, Simultaneous contrast stimulus, Apparent-motion frame sequence, Müller-Lyer geometric illusion, Poggendorff geometric illusion, Ponzo perspective illusion, Kanizsa illusory-contour triangle, Ebbinghaus context-size illusion, Zöllner orientation illusion." />
+<figcaption aria-hidden="true">A 9-panel gallery shows every currently
+implemented visual catalog entry, with stable IDs and physical raster
+summaries: Duck-rabbit ambiguous figure, Simultaneous contrast stimulus,
+Apparent-motion frame sequence, Müller-Lyer geometric illusion,
+Poggendorff geometric illusion, Ponzo perspective illusion, Kanizsa
+illusory-contour triangle, Ebbinghaus context-size illusion, Zöllner
+orientation illusion.</figcaption>
+</figure>
+<p>What this figure shows: A 9-panel gallery shows every currently
+implemented visual catalog entry, with stable IDs and physical raster
+summaries: Duck-rabbit ambiguous figure, Simultaneous contrast stimulus,
+Apparent-motion frame sequence, Müller-Lyer geometric illusion,
+Poggendorff geometric illusion, Ponzo perspective illusion, Kanizsa
+illusory-contour triangle, Ebbinghaus context-size illusion, Zöllner
+orientation illusion. This complete gallery presents one deterministic
+representative from each of the 9 currently implemented visual catalog
+entries: Duck-rabbit ambiguous figure, Simultaneous contrast stimulus,
+Apparent-motion frame sequence, Müller-Lyer geometric illusion,
+Poggendorff geometric illusion, Ponzo perspective illusion, Kanizsa
+illusory-contour triangle, Ebbinghaus context-size illusion, Zöllner
+orientation illusion. The panel therefore covers the package’s available
+visual families—ambiguous figure, contrast, apparent motion, geometric
+context, illusory contour, contextual size, and orientation-related
+constructions—using typed defaults at seed 0. For the temporally
+expressed apparent-motion entry, the displayed tile is its first frame
+and the source data preserve the full sequence. The source data sidecar
+output/data/visual_panel.json records the stable ID, generator
+parameters, canonical SHA-256 digest, grayscale code-value or Rec.
+709-weighted RGB proxy statistics (no transfer conversion or display
+calibration), raster-level counts, and parameter boundary for every
+tile. Controls: one default typed parameter object per implemented
+visual entry; seed s=0; dimensions, luminance bounds, grayscale, and
+quantization controls remain in each generator schema; temporal entries
+display their first frame but retain sequence metrics. Objective facts:
+per tile: mean and standard deviation of the declared uncalibrated
+channel-value proxy, unique raster levels, and canonical SHA-256 digest;
+temporal entries additionally retain frame count, frame rate, and frame
+deltas; definitions and units are in the source data JSON. Claim level:
+canonical_stimulus. Source data: output/data/visual_panel.json (SHA-256
+digest recorded in the figure registry). Evidence lineage:
+gregory1997visual, brugger1999duckrabbit, howe2005muller,
+morgan1999poggendorff, fisher1967ponzo, yildiz2022ponzo,
+kanizsa1976contours, mruczek2015ebbinghaus, earle1995zollner,
+wertheimer1912motion, sekuler1996wertheimer. Limitations: The gallery is
+complete for implemented visual entries in this package, not a complete
+survey of visual illusions; literature families, historical displays,
+and DuckRabbit rasters are not pixel-identical by default. Viewing
+scale, display calibration, viewing distance, and observer conditions
+can change the relevance of a construction; the gallery does not measure
+an observer’s perceptual report. Boundary: The figure establishes
+coverage of the package’s implemented visual constructions and their
+deterministic raster facts. It does not establish that any viewer will
+perceive the named signature, nor that the set is exhaustive of the
+visual-illusion literature.</p>
+<p>The visual panel <a class="cross-reference" href="#fig:visual_panel">Figure 3</a>
+is deliberately a coverage figure: it contains one deterministic
+representative for every currently implemented visual entry, including
+apparent motion and Zöllner in addition to the static ambiguous-figure,
+contrast, geometric-context, illusory-contour, and contextual- size
+families. Equalities, masks, line geometry, luminance bounds, and
+temporal positions are properties of the typed rasters or sequences.
+They are not observer scores, and the gallery is not an exhaustive
+ontology of visual illusions.</p>
+<figure id="fig:visual_sweep">
+<img data-src="../figures/visual_sweep.png"
+alt="A labeled grid crosses five duck–rabbit blend weights with five grayscale and quantization settings, with physical metrics recorded for each cell." />
+<figcaption aria-hidden="true">A labeled grid crosses five duck–rabbit
+blend weights with five grayscale and quantization settings, with
+physical metrics recorded for each cell.</figcaption>
+</figure>
+<p>What this figure shows: A labeled grid crosses five duck–rabbit blend
+weights with five grayscale and quantization settings, with physical
+metrics recorded for each cell. This 5×5 sweep varies duck–rabbit blend
+weight across rows and jointly varies grayscale and quantization levels
+across columns. Each cell is regenerated from an immutable typed
+parameter object at seed 0; source data output/data/visual_sweep.json
+records canonical digests, unique-level counts, normalized luminance,
+and effective dynamic range for every condition. Controls: duck_weight ∈
+{0,.25,.5,.75,1}; grayscale=quantization ∈ {2,4,8,16,32}; seed s=0.
+Objective facts: 25 canonical rasters; unique levels, normalized mean
+luminance, and effective dynamic range per cell. Claim level:
+physical_metric. Source data: output/data/visual_sweep.json (SHA-256
+digest recorded in the figure registry). Evidence lineage:
+brugger1999duckrabbit, gregory1997visual. Limitations: The grid is a
+sensitivity of the construction parameters, not a psychophysical
+sensitivity curve or a validated observer effect. Boundary: The chosen
+grid is an engineering sampling of the parameter domain and does not
+imply an optimal or perceptually uniform spacing.</p>
+<p>The sweep <a class="cross-reference" href="#fig:visual_sweep">Figure 4</a>
+varies duck-weight from 0 to 1 and jointly varies representable
+grayscale and quantization levels. The source data preserve canonical
+digests and unique-value counts; no perceptual score is assigned to a
+sweep cell.</p>
+</section>
+<section id="temporal-and-auditory-constructions" class="slide level2">
+<h2>Temporal and auditory constructions</h2>
+<figure id="fig:temporal_sequence">
+<img data-src="../figures/temporal_sequence.png"
+alt="Six ordered frames are labeled with timestamps and paired with a line plot of adjacent-frame normalized pixel differences." />
+<figcaption aria-hidden="true">Six ordered frames are labeled with
+timestamps and paired with a line plot of adjacent-frame normalized
+pixel differences.</figcaption>
+</figure>
+<p>What this figure shows: Six ordered frames are labeled with
+timestamps and paired with a line plot of adjacent-frame normalized
+pixel differences. The frame strip exposes the order and timestamps of
+the apparent-motion construction, while the lower trace reports
+adjacent-frame mean absolute pixel differences. Source data
+output/data/temporal_sequence.json preserve frame count, frame rate,
+reduced rational timebase, timestamps in seconds, and the nonzero
+transition series; seed 0 identifies the generated sequence. Controls:
+visual.apparent_motion default typed parameters; frame rate and frame
+count from the canonical sequence; seed s=0. Objective facts: timestamps
+in seconds, frame rate in frames/s, frame count, rational timebase, and
+adjacent-frame normalized pixel difference. Claim level:
+physical_metric. Source data: output/data/temporal_sequence.json
+(SHA-256 digest recorded in the figure registry). Evidence lineage:
+wertheimer1912motion, sekuler1996wertheimer. Limitations: Frame
+succession and frame deltas are physical file properties; playback
+timing, display persistence, and motion reports require a controlled
+observer task. Boundary: The figure documents temporal structure rather
+than the presence, direction, or strength of perceived motion.</p>
+<p>The temporal figure <a class="cross-reference" href="#fig:temporal_sequence">5</a>
+reports frame succession, rational frame rate, and frame-to-frame mean
+absolute differences. These facts establish temporal structure in the
+file, not the presence or strength of perceived motion.</p>
+<figure id="fig:audio_signals">
+<img data-src="../figures/audio_signals.png"
+alt="Five labeled rows show canonical audio waveforms, relative one-sided spectral bars, RMS and peak in normalized amplitude, and spectral summaries in hertz." />
+<figcaption aria-hidden="true">Five labeled rows show canonical audio
+waveforms, relative one-sided spectral bars, RMS and peak in normalized
+amplitude, and spectral summaries in hertz.</figcaption>
+</figure>
+<p>What this figure shows: Five labeled rows show canonical audio
+waveforms, relative one-sided spectral bars, RMS and peak in normalized
+amplitude, and spectral summaries in hertz. Five implemented auditory
+constructions—Shepard tone, missing fundamental, tritone paradox, octave
+illusion, and auditory continuity—are shown as canonical waveforms with
+compact one-sided FFT summaries. Source data
+output/data/audio_signals.json records sample rate, channel layout, RMS,
+peak, spectral centroid, bandwidth, crest factor, canonical digest, and
+the declared display-bin convention; no pitch or stream report is
+inferred. Controls: default typed audio parameters; per-generator
+channel layout and sample rate; seed s=0; one-sided FFT display with 48
+frequency-labelled peak-magnitude bands. Objective facts: RMS and peak
+in normalized amplitude; spectral centroid and bandwidth in Hz; sample
+rate in samples/s; channel layout and canonical SHA-256 digest. Claim
+level: physical_metric. Source data: output/data/audio_signals.json
+(SHA-256 digest recorded in the figure registry). Evidence lineage:
+shepard1984scale, zatorre2005missing, deutsch1986tritone,
+repp1997tritone, deutsch1974octave, warren1970continuity,
+riecke2011continuity. Limitations: Playback level, transducer response,
+dichotic separation, masker design, and listener judgments are external
+to the canonical buffer. Boundary: The figure compares generated signal
+properties and literature-linked families; it does not establish pitch,
+continuity, or stream organization for a listener.</p>
+<p>The auditory figure <a class="cross-reference" href="#fig:audio_signals">6</a>
+shows canonical waveforms and spectral summaries for Shepard,
+missing-fundamental, tritone, octave, and continuity constructions. RMS,
+peak, spectral centroid, bandwidth, and channel layout are calculated
+from the canonical buffer with explicit units and windowing rules. Pitch
+direction, pitch height, continuity, and stream organization remain
+observer-level outcomes that depend on playback and task conditions.</p>
+</section>
+<section id="audiovisual-timing-and-encoding" class="slide level2">
+<h2>Audiovisual timing and encoding</h2>
+<figure id="fig:audiovisual_timeline">
+<img data-src="../figures/audiovisual_timeline.png"
+alt="Two labeled traces share a time axis in seconds: video mean channel-value proxy and audio absolute amplitude, with signed synchronization and spatial offsets printed below." />
+<figcaption aria-hidden="true">Two labeled traces share a time axis in
+seconds: video mean channel-value proxy and audio absolute amplitude,
+with signed synchronization and spatial offsets printed
+below.</figcaption>
+</figure>
+<p>What this figure shows: Two labeled traces share a time axis in
+seconds: video mean channel-value proxy and audio absolute amplitude,
+with signed synchronization and spatial offsets printed below. Video
+mean channel-value proxy and rectified audio amplitude are placed on a
+common time axis in seconds with video frame holds and actual audio
+sample timestamps for the sound-induced-flash construction. Source data
+output/data/audiovisual_timeline.json records the video frame clock,
+audio sampling clock, event traces, signed audio-minus-video
+synchronization offset in milliseconds, and normalized spatial
+discrepancy; alignment is declared by the generator, not estimated from
+perception. Controls: audiovisual.sound_induced_flash default shared
+timeline; declared sync offset ΔAV and spatial offset; seed s=0.
+Objective facts: video frame-hold grayscale/weighted-RGB proxy and
+mean-channel absolute audio amplitude on shared time in seconds; ΔAV in
+ms; spatial discrepancy in normalized units; frame and sample clocks in
+the sidecar. Claim level: physical_metric. Source data:
+output/data/audiovisual_timeline.json (SHA-256 digest recorded in the
+figure registry). Evidence lineage: shams2000sifi, hirst2020sound,
+vroomen2004temporal, hartcherobrien2011temporal. Limitations: Display
+refresh, audio hardware, event latency, and observer temporal binding
+are not measured by this figure. Boundary: A shared-clock construction
+is not evidence that observers bind the events at the declared or any
+other perceptual time.</p>
+<p>The audiovisual timeline <a class="cross-reference" href="#fig:audiovisual_timeline">Figure 7</a>
+displays video luminance and audio amplitude against the shared clock,
+alongside declared synchronization and spatial offsets. Ventriloquist
+stimuli require stereo playback and spatially resolved display; temporal
+binding requires controlled timing and an observer task <span
+class="citation"
+data-cites="bruns2019ventriloquist vroomen2004temporal">(Bruns 2019;
+Vroomen and Gelder 2004)</span>.</p>
+<figure id="fig:encoding_verification">
+<img data-src="../figures/encoding_verification.png"
+alt="A five-row comparison lists format, backend, preserved canonical facts, and the corresponding decoded verification checks." />
+<figcaption aria-hidden="true">A five-row comparison lists format,
+backend, preserved canonical facts, and the corresponding decoded
+verification checks.</figcaption>
+</figure>
+<p>What this figure shows: A five-row comparison lists format, backend,
+preserved canonical facts, and the corresponding decoded verification
+checks. The comparison separates the canonical artifact from delivery
+containers: PNG, WAV, GIF, NPZ, and optional MP4/muxed MP4. Source data
+output/data/encoding_verification.json records backend identity,
+preserved canonical facts, decoded inspection targets, and capability
+status as observed in the generation environment; the table therefore
+describes an adapter contract rather than a claim about codec quality.
+Controls: typed encoding profile selected per artifact; overwrite and
+backend capability checks; seed inherited from the stimulus request.
+Objective facts: format availability and verification scope are
+environment observations; NPZ is exact while other formats are decoded
+and tolerance-checked. Claim level: encoded_media. Source data:
+output/data/encoding_verification.json (SHA-256 digest recorded in the
+figure registry). Evidence lineage: engineering:typed_media_adapters.
+Limitations: Backend availability, codec versions, container metadata,
+and lossy tolerances are environment-dependent; playback software can
+expose additional behavior. Boundary: A successful encode or decode does
+not validate an observer effect or guarantee cross-device perceptual
+equivalence.</p>
+<p>The encoding matrix <a class="cross-reference" href="#fig:encoding_verification">Figure 8</a>
+makes backend capability and verification scope visible. NPZ is the
+exact canonical archive; PNG, WAV, GIF, and MP4 are delivery containers
+whose decoded facts are checked against the manifest.</p>
+</section>
+<section id="sec:objective_metric_results" class="slide level2">
+<h2>Objective metric results</h2>
+<div id="tbl:metrics">
+
+</div>
+<p>Objective metric definitions and epistemic boundary.</p>
+</section>
+<section id="dr-slide-03_results-table-3-header-1-heading"
+class="slide level2">
+<h2>Table 3 — header row 1</h2>
+<p>Column 1 — header:</p>
+<p>Metric</p>
+<p>Value:</p>
+<p>Metric</p>
+<p>Column 2 — header:</p>
+<p>Unit</p>
+<p>Value:</p>
+<p>Unit</p>
+<p>Column 3 — header:</p>
+<p>Definition</p>
+<p>Value:</p>
+<p>Definition</p>
+<p>Column 4 — header:</p>
+<p>Tolerance</p>
+<p>Value:</p>
+<p>Tolerance</p>
+<p>Column 5 — header:</p>
+<p>Claim level</p>
+<p>Value:</p>
+<p>Claim level</p>
+</section>
+<section id="dr-slide-03_results-table-3-data-1-heading"
+class="slide level2">
+<h2>Table 3 — row 1</h2>
+<p>Column 1 — header:</p>
+<p>Metric</p>
+<p>Value:</p>
+<p>mean_luminance</p>
+<p>Column 2 — header:</p>
+<p>Unit</p>
+<p>Value:</p>
+<p>normalized_luminance</p>
+<p>Column 3 — header:</p>
+<p>Definition</p>
+<p>Value:</p>
+<p>mean grayscale value or Rec.709-weighted RGB code-value proxy; no
+transfer conversion or display calibration</p>
+<p>Column 4 — header:</p>
+<p>Tolerance</p>
+<p>Value:</p>
+<p>exact canonical</p>
+<p>Column 5 — header:</p>
+<p>Claim level</p>
+<p>Value:</p>
+<p>physical_metric</p>
+</section>
+<section id="dr-slide-03_results-table-3-data-2-heading"
+class="slide level2">
+<h2>Table 3 — row 2</h2>
+<p>Column 1 — header:</p>
+<p>Metric</p>
+<p>Value:</p>
+<p>unique_values</p>
+<p>Column 2 — header:</p>
+<p>Unit</p>
+<p>Value:</p>
+<p>levels</p>
+<p>Column 3 — header:</p>
+<p>Definition</p>
+<p>Value:</p>
+<p>count of distinct canonical image values</p>
+<p>Column 4 — header:</p>
+<p>Tolerance</p>
+<p>Value:</p>
+<p>exact integer</p>
+<p>Column 5 — header:</p>
+<p>Claim level</p>
+<p>Value:</p>
+<p>physical_metric</p>
+</section>
+<section id="dr-slide-03_results-table-3-data-3-heading"
+class="slide level2">
+<h2>Table 3 — row 3</h2>
+<p>Column 1 — header:</p>
+<p>Metric</p>
+<p>Value:</p>
+<p>rms</p>
+<p>Column 2 — header:</p>
+<p>Unit</p>
+<p>Value:</p>
+<p>normalized_amplitude</p>
+<p>Column 3 — header:</p>
+<p>Definition</p>
+<p>Value:</p>
+<p>root-mean-square audio amplitude</p>
+<p>Column 4 — header:</p>
+<p>Tolerance</p>
+<p>Value:</p>
+<p>finite scalar</p>
+<p>Column 5 — header:</p>
+<p>Claim level</p>
+<p>Value:</p>
+<p>physical_metric</p>
+</section>
+<section id="dr-slide-03_results-table-3-data-4-heading"
+class="slide level2">
+<h2>Table 3 — row 4</h2>
+<p>Column 1 — header:</p>
+<p>Metric</p>
+<p>Value:</p>
+<p>peak</p>
+<p>Column 2 — header:</p>
+<p>Unit</p>
+<p>Value:</p>
+<p>normalized_amplitude</p>
+<p>Column 3 — header:</p>
+<p>Definition</p>
+<p>Value:</p>
+<p>maximum absolute audio amplitude</p>
+<p>Column 4 — header:</p>
+<p>Tolerance</p>
+<p>Value:</p>
+<p>finite scalar</p>
+<p>Column 5 — header:</p>
+<p>Claim level</p>
+<p>Value:</p>
+<p>physical_metric</p>
+</section>
+<section id="dr-slide-03_results-table-3-data-5-heading"
+class="slide level2">
+<h2>Table 3 — row 5</h2>
+<p>Column 1 — header:</p>
+<p>Metric</p>
+<p>Value:</p>
+<p>spectral_centroid_hz</p>
+<p>Column 2 — header:</p>
+<p>Unit</p>
+<p>Value:</p>
+<p>Hz</p>
+<p>Column 3 — header:</p>
+<p>Definition</p>
+<p>Value:</p>
+<p>one-sided frequency mean weighted by mean-channel abs(unwindowed
+rFFT) magnitude, not energy</p>
+<p>Column 4 — header:</p>
+<p>Tolerance</p>
+<p>Value:</p>
+<p>finite scalar</p>
+<p>Column 5 — header:</p>
+<p>Claim level</p>
+<p>Value:</p>
+<p>physical_metric</p>
+</section>
+<section id="dr-slide-03_results-table-3-data-6-heading"
+class="slide level2">
+<h2>Table 3 — row 6</h2>
+<p>Column 1 — header:</p>
+<p>Metric</p>
+<p>Value:</p>
+<p>spectral_bandwidth_hz</p>
+<p>Column 2 — header:</p>
+<p>Unit</p>
+<p>Value:</p>
+<p>Hz</p>
+<p>Column 3 — header:</p>
+<p>Definition</p>
+<p>Value:</p>
+<p>spectral standard deviation around the one-sided centroid</p>
+<p>Column 4 — header:</p>
+<p>Tolerance</p>
+<p>Value:</p>
+<p>finite scalar</p>
+<p>Column 5 — header:</p>
+<p>Claim level</p>
+<p>Value:</p>
+<p>physical_metric</p>
+</section>
+<section id="dr-slide-03_results-table-3-data-7-heading"
+class="slide level2">
+<h2>Table 3 — row 7</h2>
+<p>Column 1 — header:</p>
+<p>Metric</p>
+<p>Value:</p>
+<p>crest_factor</p>
+<p>Column 2 — header:</p>
+<p>Unit</p>
+<p>Value:</p>
+<p>ratio</p>
+<p>Column 3 — header:</p>
+<p>Definition</p>
+<p>Value:</p>
+<p>audio peak divided by RMS with zero-RMS guard</p>
+<p>Column 4 — header:</p>
+<p>Tolerance</p>
+<p>Value:</p>
+<p>finite scalar</p>
+<p>Column 5 — header:</p>
+<p>Claim level</p>
+<p>Value:</p>
+<p>physical_metric</p>
+</section>
+<section id="dr-slide-03_results-table-3-data-8-heading"
+class="slide level2">
+<h2>Table 3 — row 8</h2>
+<p>Column 1 — header:</p>
+<p>Metric</p>
+<p>Value:</p>
+<p>mean_temporal_delta</p>
+<p>Column 2 — header:</p>
+<p>Unit</p>
+<p>Value:</p>
+<p>normalized_pixel_difference</p>
+<p>Column 3 — header:</p>
+<p>Definition</p>
+<p>Value:</p>
+<p>mean adjacent-frame absolute difference</p>
+<p>Column 4 — header:</p>
+<p>Tolerance</p>
+<p>Value:</p>
+<p>finite scalar</p>
+<p>Column 5 — header:</p>
+<p>Claim level</p>
+<p>Value:</p>
+<p>physical_metric</p>
+</section>
+<section id="dr-slide-03_results-table-3-data-9-heading"
+class="slide level2">
+<h2>Table 3 — row 9</h2>
+<p>Column 1 — header:</p>
+<p>Metric</p>
+<p>Value:</p>
+<p>sync_offset</p>
+<p>Column 2 — header:</p>
+<p>Unit</p>
+<p>Value:</p>
+<p>ms</p>
+<p>Column 3 — header:</p>
+<p>Definition</p>
+<p>Value:</p>
+<p>declared audio-minus-video offset</p>
+<p>Column 4 — header:</p>
+<p>Tolerance</p>
+<p>Value:</p>
+<p>typed value</p>
+<p>Column 5 — header:</p>
+<p>Claim level</p>
+<p>Value:</p>
+<p>physical_metric</p>
+<p>The metric definitions in <a
+href="../web/index.html#tbl:metrics">Table 3</a> are computed from
+canonical or decoded artifacts and do not encode observer
+interpretations.</p>
+<p>The default duck-rabbit artifact contains 3 unique raster levels and
+has mean normalized luminance 0.7770. These values are live generated
+facts, not perceptual effect sizes.</p>
+</section>
+<section id="observer-estimands-and-verification-controls"
+class="slide level2">
+<h2>Observer estimands and verification controls</h2>
+<div id="tbl:observer_estimands">
+
+</div>
+<p>Data-free observer outcomes and preregistered estimands.</p>
+</section>
+<section id="dr-slide-03_results-table-4-header-1-heading"
+class="slide level2">
+<h2>Table 4 — header row 1</h2>
+<p>Column 1 — header:</p>
+<p>Estimand</p>
+<p>Value:</p>
+<p>Estimand</p>
+<p>Column 2 — header:</p>
+<p>Response and model</p>
+<p>Value:</p>
+<p>Response and model</p>
+<p>Column 3 — header:</p>
+<p>Reference and contrast</p>
+<p>Value:</p>
+<p>Reference and contrast</p>
+<p>Column 4 — header:</p>
+<p>Uncertainty</p>
+<p>Value:</p>
+<p>Uncertainty</p>
+</section>
+<section id="dr-slide-03_results-table-4-data-1-heading"
+class="slide level2">
+<h2>Table 4 — row 1</h2>
+<p>Column 1 — header:</p>
+<p>Estimand</p>
+<p>Value:</p>
+<p>sifi_flash_count_contrast</p>
+<p>Column 2 — header:</p>
+<p>Response and model</p>
+<p>Value:</p>
+<p>forced_choice; logistic_mixed</p>
+<p>Column 3 — header:</p>
+<p>Reference and contrast</p>
+<p>Value:</p>
+<p>sifi_one_beep; log odds of choosing ‘two’: sifi_two_beep minus
+sifi_one_beep</p>
+<p>Column 4 — header:</p>
+<p>Uncertainty</p>
+<p>Value:</p>
+<p>95% confidence interval</p>
+</section>
+<section id="dr-slide-03_results-table-4-data-2-heading"
+class="slide level2">
+<h2>Table 4 — row 2</h2>
+<p>Column 1 — header:</p>
+<p>Estimand</p>
+<p>Value:</p>
+<p>temporal_binding_offset_contrast</p>
+<p>Column 2 — header:</p>
+<p>Response and model</p>
+<p>Value:</p>
+<p>forced_choice; logistic_mixed</p>
+<p>Column 3 — header:</p>
+<p>Reference and contrast</p>
+<p>Value:</p>
+<p>temporal_sync; log odds of choosing ‘late’: temporal_early and
+temporal_late versus temporal_sync (categorical offsets -120/0/+120
+ms)</p>
+<p>Column 4 — header:</p>
+<p>Uncertainty</p>
+<p>Value:</p>
+<p>95% confidence interval</p>
+<p>The analysis contract in <a
+href="../web/index.html#tbl:observer_estimands">Table 4</a> specifies
+estimands and uncertainty procedures without asserting any result.</p>
+<div id="tbl:verification">
+
+</div>
+<p>Verification failure modes and negative controls.</p>
+</section>
+<section id="dr-slide-03_results-table-5-header-1-heading"
+class="slide level2">
+<h2>Table 5 — header row 1</h2>
+<p>Column 1 — header:</p>
+<p>Failure mode</p>
+<p>Value:</p>
+<p>Failure mode</p>
+<p>Column 2 — header:</p>
+<p>Control</p>
+<p>Value:</p>
+<p>Control</p>
+<p>Column 3 — header:</p>
+<p>Expected result</p>
+<p>Value:</p>
+<p>Expected result</p>
+</section>
+<section id="dr-slide-03_results-table-5-data-1-heading"
+class="slide level2">
+<h2>Table 5 — row 1</h2>
+<p>Column 1 — header:</p>
+<p>Failure mode</p>
+<p>Value:</p>
+<p>altered encoded file</p>
+<p>Column 2 — header:</p>
+<p>Control</p>
+<p>Value:</p>
+<p>recompute encoded SHA-256</p>
+<p>Column 3 — header:</p>
+<p>Expected result</p>
+<p>Value:</p>
+<p>fail</p>
+</section>
+<section id="dr-slide-03_results-table-5-data-2-heading"
+class="slide level2">
+<h2>Table 5 — row 2</h2>
+<p>Column 1 — header:</p>
+<p>Failure mode</p>
+<p>Value:</p>
+<p>stale canonical digest</p>
+<p>Column 2 — header:</p>
+<p>Control</p>
+<p>Value:</p>
+<p>recompute canonical little-endian float32 digest</p>
+<p>Column 3 — header:</p>
+<p>Expected result</p>
+<p>Value:</p>
+<p>fail</p>
+</section>
+<section id="dr-slide-03_results-table-5-data-3-heading"
+class="slide level2">
+<h2>Table 5 — row 3</h2>
+<p>Column 1 — header:</p>
+<p>Failure mode</p>
+<p>Value:</p>
+<p>incorrect decoded dimensions</p>
+<p>Column 2 — header:</p>
+<p>Control</p>
+<p>Value:</p>
+<p>compare inspection facts with manifest summary</p>
+<p>Column 3 — header:</p>
+<p>Expected result</p>
+<p>Value:</p>
+<p>fail</p>
+</section>
+<section id="dr-slide-03_results-table-5-data-4-heading"
+class="slide level2">
+<h2>Table 5 — row 4</h2>
+<p>Column 1 — header:</p>
+<p>Failure mode</p>
+<p>Value:</p>
+<p>stream timing mismatch</p>
+<p>Column 2 — header:</p>
+<p>Control</p>
+<p>Value:</p>
+<p>compare duration/timebase and declared sync offset</p>
+<p>Column 3 — header:</p>
+<p>Expected result</p>
+<p>Value:</p>
+<p>fail</p>
+</section>
+<section id="dr-slide-03_results-table-5-data-5-heading"
+class="slide level2">
+<h2>Table 5 — row 5</h2>
+<p>Column 1 — header:</p>
+<p>Failure mode</p>
+<p>Value:</p>
+<p>unsupported backend</p>
+<p>Column 2 — header:</p>
+<p>Control</p>
+<p>Value:</p>
+<p>capability probe before encoding</p>
+<p>Column 3 — header:</p>
+<p>Expected result</p>
+<p>Value:</p>
+<p>explicit capability error</p>
+</section>
+<section id="dr-slide-03_results-table-5-data-6-heading"
+class="slide level2">
+<h2>Table 5 — row 6</h2>
+<p>Column 1 — header:</p>
+<p>Failure mode</p>
+<p>Value:</p>
+<p>conflicting format requests</p>
+<p>Column 2 — header:</p>
+<p>Control</p>
+<p>Value:</p>
+<p>reject format_name/output_spec disagreement</p>
+<p>Column 3 — header:</p>
+<p>Expected result</p>
+<p>Value:</p>
+<p>parameter error</p>
+<p>The negative controls in <a
+href="../web/index.html#tbl:verification">Table 5</a> test package
+integrity and media contracts; they are not null findings about
+perception.</p>
+</section>
+<section id="synthetic-psychophysics-model-diagnostic"
+class="slide level2">
+<h2>Synthetic psychophysics model diagnostic</h2>
+<figure id="fig:synthetic_psychophysics">
+<img data-src="../figures/synthetic_psychophysics.png"
+alt="A line plot and model-sensitivity range show deterministic model probability across duck_weight values beside the model identity, temperature, no-training-data statement, and human-data boundary." />
+<figcaption aria-hidden="true">A line plot and model-sensitivity range
+show deterministic model probability across duck_weight values beside
+the model identity, temperature, no-training-data statement, and
+human-data boundary.</figcaption>
+</figure>
+<p>What this figure shows: A line plot and model-sensitivity range show
+deterministic model probability across duck_weight values beside the
+model identity, temperature, no-training-data statement, and human-data
+boundary. The hand-specified feature observer compares duck_weight
+variants with a fixed canonical reference. Its probability trace is
+computed analytically from serialized features, weights, and
+temperature; source data output/data/synthetic_psychophysics.json
+records model ID/version, reference and comparison digests, seed,
+calibration, <code>training_data=none</code>, and
+<code>human_data=false</code>. The shaded range covers the declared
+zero-weight control, one-at-a-time weight ablations, and temperature
+multipliers 0.5, 1, and 2; it is model sensitivity, not a confidence
+interval. Controls: duck_weight comparison against fixed reference;
+serialized feature weights and temperature; seed s=0. Objective facts:
+model probability, null baseline, ablations, temperature sensitivity and
+exact-self control; full feature values, specifications and canonical
+stimulus digests; human_data=false; training_data=none. Claim level:
+synthetic_model_output. Source data:
+output/data/synthetic_psychophysics.json (SHA-256 digest recorded in the
+figure registry). Evidence lineage: observer:preregistered_estimands.
+Limitations: The model is hand-specified, has no training data, has not
+been calibrated against observers, and does not estimate a human
+threshold or effect size. Its probabilities and the finite configuration
+range are model outputs, not participant responses, confidence
+intervals, or a psychometric function. Boundary: This diagnostic tests
+deterministic orchestration and metamorphic input-output behavior only;
+empirical psychophysics remains future work.</p>
+<p>The diagnostic <a class="cross-reference" href="#fig:synthetic_psychophysics">Figure 9</a>
+evaluates a fully serialized, hand-specified feature observer against a
+fixed canonical reference while varying <code>duck_weight</code>. Its
+logistic probabilities are model outputs generated from explicit
+features, weights, temperature, and seed; they are not a pretrained
+vision-model score, a human psychometric function, an assumed human
+effect size, or participant data. A future human study would require a
+preregistered task, calibrated display and playback, consented
+participants, exclusion and missingness rules, and an analysis contract
+before any observer claim could be made.</p>
+</section></section>
+    </div>
+  </div>
+
+  <script src="../web/assets/reveal.js-5.2.1/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="../web/assets/reveal.js-5.2.1/plugin/notes/notes.js"></script>
+  <script src="../web/assets/reveal.js-5.2.1/plugin/search/search.js"></script>
+  <script src="../web/assets/reveal.js-5.2.1/plugin/zoom/zoom.js"></script>
+  
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>

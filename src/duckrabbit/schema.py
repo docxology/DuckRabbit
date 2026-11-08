@@ -2,14 +2,14 @@
 
 from __future__ import annotations
 
-from dataclasses import MISSING, dataclass, fields, is_dataclass
+from dataclasses import InitVar, MISSING, dataclass, fields, is_dataclass
 from enum import Enum
-from math import isfinite
 from collections.abc import Mapping
-from numbers import Integral, Real
+from numbers import Integral
 from typing import get_type_hints
 
 from .errors import ParameterValidationError
+from .parameters import _finite, _optional_type
 from .serialization import jsonable
 
 
@@ -22,6 +22,11 @@ class ParameterField:
     required: bool
     default: object
     constraints: tuple[str, ...] = ()
+    annotation: InitVar[object] = None
+
+    def __post_init__(self, annotation: object) -> None:
+        # Runtime hints must not alter the serialized parameters/v1 schema.
+        object.__setattr__(self, "_annotation", annotation)
 
 
 @dataclass(frozen=True)
@@ -47,7 +52,7 @@ class ParameterSchema:
             raise ParameterValidationError(f"missing required parameter field(s): {', '.join(missing)}")
         for field in self.fields:
             if field.name in payload:
-                _validate_json_value(field.name, field.default, payload[field.name])
+                _validate_json_value(field.name, field.default, payload[field.name], getattr(field, "_annotation", None))
 
     def to_json(self) -> dict[str, object]:
         return {
@@ -99,6 +104,7 @@ def parameter_schema(parameters: object) -> ParameterSchema:
                 required=field.default is MISSING and field.default_factory is MISSING,
                 default=default,
                 constraints=_constraints(default),
+                annotation=hints.get(field.name, field.type),
             )
         )
     return ParameterSchema("duckrabbit/parameters/v1", type(parameters).__name__, tuple(result))
@@ -112,25 +118,31 @@ def parameter_payload(parameters: object) -> dict[str, object]:
     return payload
 
 
-def _validate_json_value(path: str, expected: object, value: object) -> object:
-    """Validate one serialized value against the observed typed default.
-
-    This function validates JSON-decoded parameter values against the
-    typed default from the parameter dataclass. It handles enums,
-    nested dataclasses, primitives, and arrays.
-    """
-    if isinstance(expected, Enum):
+def _validate_json_value(path: str, expected: object, value: object, annotation: object = None) -> object:
+    """Restore serialized values using typed defaults and declared Optional hints."""
+    optional_type = _optional_type(annotation)
+    if optional_type is not None:
+        if value is None:
+            return None
+        if expected is None:
+            expected = optional_type
+    expected_type = expected if isinstance(expected, type) else type(expected)
+    if issubclass(expected_type, Enum):
         try:
-            return type(expected)(value)
+            return expected_type(value)
         except (TypeError, ValueError) as exc:
-            choices = [member.value for member in type(expected)]
+            choices = [member.value for member in expected_type]
             raise ParameterValidationError(f"parameter field {path} must be one of {choices}") from exc
     if is_dataclass(expected):
         if not isinstance(value, Mapping):
             raise ParameterValidationError(f"parameter field {path} must be a JSON object")
         if not all(isinstance(key, str) for key in value):
             raise ParameterValidationError(f"parameter field {path} keys must be strings")
-        expected_fields = {field.name: getattr(expected, field.name) for field in fields(expected)}
+        hints = get_type_hints(expected_type)
+        expected_fields = {
+            field.name: hints.get(field.name, field.type) if isinstance(expected, type) else getattr(expected, field.name)
+            for field in fields(expected)
+        }
         unknown = sorted(set(value) - set(expected_fields))
         if unknown:
             raise ParameterValidationError(f"parameter field {path} has unknown field(s): {', '.join(str(item) for item in unknown)}")
@@ -138,29 +150,27 @@ def _validate_json_value(path: str, expected: object, value: object) -> object:
         if missing:
             raise ParameterValidationError(f"parameter field {path} is missing field(s): {', '.join(missing)}")
         converted = {
-            name: _validate_json_value(f"{path}.{name}", default, value[name])
+            name: _validate_json_value(f"{path}.{name}", default, value[name], hints.get(name))
             for name, default in expected_fields.items()
         }
         try:
-            return type(expected)(**converted)
+            return expected_type(**converted)
         except (TypeError, ValueError) as exc:
             raise ParameterValidationError(f"parameter field {path} is invalid: {exc}") from exc
-    if isinstance(expected, bool):
+    if issubclass(expected_type, bool):
         if type(value) is not bool:
             raise ParameterValidationError(f"parameter field {path} must be bool")
         return value
-    if isinstance(expected, int):
+    if issubclass(expected_type, int):
         if isinstance(value, bool) or not isinstance(value, Integral):
             raise ParameterValidationError(f"parameter field {path} must be int")
         try:
-            return type(expected)(value)
+            return expected_type(value)
         except ValueError as exc:
             raise ParameterValidationError(f"parameter field {path} is invalid: {exc}") from exc
-    if isinstance(expected, float):
-        if isinstance(value, bool) or not isinstance(value, Real) or not isfinite(float(value)):
-            raise ParameterValidationError(f"parameter field {path} must be a finite number")
-        return float(value)
-    if isinstance(expected, str):
+    if issubclass(expected_type, float):
+        return _finite(value, f"parameter field {path}")
+    if issubclass(expected_type, str):
         if not isinstance(value, str):
             raise ParameterValidationError(f"parameter field {path} must be string")
         return value

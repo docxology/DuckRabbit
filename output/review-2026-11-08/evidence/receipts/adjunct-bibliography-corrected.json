@@ -1,0 +1,5057 @@
+{
+  "metadata_observed_at": "2026-11-08T03:10:44.433585+00:00",
+  "reevaluated_at": "2026-11-08T03:25:02.563044+00:00",
+  "new_network_calls": 0,
+  "scope": "Re-evaluate retained primary DOI metadata against corrected complete bibliography and exact corporate-author comparator. Preserve unresolved/TLS failures; do not turn reachability into identity.",
+  "results": [
+    {
+      "key": "sandve2013simple",
+      "url": "https://doi.org/10.1371/journal.pcbi.1003285",
+      "doi": "10.1371/journal.pcbi.1003285",
+      "resolver": "network",
+      "reachable": true,
+      "reachability_url": "https://api.crossref.org/works/10.1371%2Fjournal.pcbi.1003285",
+      "doi_http_status": 200,
+      "metadata": {
+        "indexed": {
+          "date-parts": [
+            [
+              2026,
+              11,
+              8
+            ]
+          ],
+          "date-time": "2026-11-08T00:39:48Z",
+          "timestamp": 1794098388821,
+          "version": "4.8.0"
+        },
+        "reference-count": 25,
+        "publisher": "Public Library of Science (PLoS)",
+        "issue": "10",
+        "license": [
+          {
+            "start": {
+              "date-parts": [
+                [
+                  2013,
+                  10,
+                  24
+                ]
+              ],
+              "date-time": "2013-10-24T00:00:00Z",
+              "timestamp": 1382572800000
+            },
+            "content-version": "unspecified",
+            "delay-in-days": 0,
+            "URL": "http://creativecommons.org/licenses/by/4.0/"
+          }
+        ],
+        "content-domain": {
+          "domain": [
+            "www.ploscompbiol.org"
+          ],
+          "crossmark-restriction": false
+        },
+        "short-container-title": [
+          "PLoS Comput Biol"
+        ],
+        "DOI": "10.1371/journal.pcbi.1003285",
+        "type": "journal-article",
+        "created": {
+          "date-parts": [
+            [
+              2013,
+              10,
+              24
+            ]
+          ],
+          "date-time": "2013-10-24T22:03:37Z",
+          "timestamp": 1382652217000
+        },
+        "page": "e1003285",
+        "update-policy": "https://doi.org/10.1371/journal.pcbi.corrections_policy",
+        "source": "Crossref",
+        "is-referenced-by-count": 796,
+        "title": [
+          "Ten Simple Rules for Reproducible Computational Research"
+        ],
+        "prefix": "10.1371",
+        "volume": "9",
+        "author": [
+          {
+            "given": "Geir Kjetil",
+            "family": "Sandve",
+            "sequence": "first",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Anton",
+            "family": "Nekrutenko",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "James",
+            "family": "Taylor",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Eivind",
+            "family": "Hovig",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "member": "340",
+        "published-online": {
+          "date-parts": [
+            [
+              2013,
+              10,
+              24
+            ]
+          ]
+        },
+        "reference": [
+          {
+            "key": "ref1",
+            "doi-asserted-by": "crossref",
+            "first-page": "1182",
+            "DOI": "10.1126/science.1216775",
+            "article-title": "Addressing scientific fraud",
+            "volume": "334",
+            "author": "J Crocker",
+            "year": "2011",
+            "journal-title": "Science"
+          },
+          {
+            "key": "ref2",
+            "first-page": "1225",
+            "article-title": "Data replication &amp; reproducibility. Again, and again, and again\u2026. Introduction",
+            "volume": "334",
+            "author": "BR Jasny",
+            "year": "2011",
+            "journal-title": "Science"
+          },
+          {
+            "key": "ref3",
+            "doi-asserted-by": "crossref",
+            "first-page": "1226",
+            "DOI": "10.1126/science.1213847",
+            "article-title": "Reproducible research in computational science",
+            "volume": "334",
+            "author": "RD Peng",
+            "year": "2011",
+            "journal-title": "Science"
+          },
+          {
+            "key": "ref4",
+            "doi-asserted-by": "crossref",
+            "first-page": "415",
+            "DOI": "10.1126/science.1179653",
+            "article-title": "Computer science. Accessible reproducible research",
+            "volume": "327",
+            "author": "JP Mesirov",
+            "year": "2010",
+            "journal-title": "Science"
+          },
+          {
+            "key": "ref5",
+            "doi-asserted-by": "crossref",
+            "first-page": "667",
+            "DOI": "10.1038/nrg3305",
+            "article-title": "Next-generation sequencing data interpretation: enhancing reproducibility and accessibility",
+            "volume": "13",
+            "author": "A Nekrutenko",
+            "year": "2012",
+            "journal-title": "Nat Rev Genet"
+          },
+          {
+            "key": "ref6",
+            "doi-asserted-by": "crossref",
+            "first-page": "149",
+            "DOI": "10.1038/ng.295",
+            "article-title": "Repeatability of published microarray gene expression analyses",
+            "volume": "41",
+            "author": "JP Ioannidis",
+            "year": "2009",
+            "journal-title": "Nat Genet"
+          },
+          {
+            "key": "ref7",
+            "doi-asserted-by": "crossref",
+            "first-page": "249",
+            "DOI": "10.1136/jme.2010.040923",
+            "article-title": "Retractions in the scientific literature: is the incidence of research fraud increasing?",
+            "volume": "37",
+            "author": "RG Steen",
+            "year": "2011",
+            "journal-title": "J Med Ethics"
+          },
+          {
+            "key": "ref8",
+            "doi-asserted-by": "crossref",
+            "first-page": "712",
+            "DOI": "10.1038/nrd3439-c1",
+            "article-title": "Believe it or not: how much can we rely on published data on potential drug targets?",
+            "volume": "10",
+            "author": "F Prinz",
+            "year": "2011",
+            "journal-title": "Nat Rev Drug Discov"
+          },
+          {
+            "key": "ref9",
+            "doi-asserted-by": "crossref",
+            "first-page": "531",
+            "DOI": "10.1038/483531a",
+            "article-title": "Drug development: raise standards for preclinical cancer research",
+            "volume": "483",
+            "author": "CG Begley",
+            "year": "2012",
+            "journal-title": "Nature"
+          },
+          {
+            "key": "ref10",
+            "doi-asserted-by": "crossref",
+            "first-page": "500",
+            "DOI": "10.1038/ng0506-500",
+            "article-title": "GenePattern 2.0",
+            "volume": "38",
+            "author": "M Reich",
+            "year": "2006",
+            "journal-title": "Nat Genet"
+          },
+          {
+            "key": "ref11",
+            "doi-asserted-by": "crossref",
+            "first-page": "1451",
+            "DOI": "10.1101/gr.4086505",
+            "article-title": "Galaxy: a platform for interactive large-scale genome analysis",
+            "volume": "15",
+            "author": "B Giardine",
+            "year": "2005",
+            "journal-title": "Genome Res"
+          },
+          {
+            "key": "ref12",
+            "doi-asserted-by": "crossref",
+            "first-page": "1033",
+            "DOI": "10.1016/S1053-8119(03)00185-X",
+            "article-title": "The LONI Pipeline Processing Environment",
+            "volume": "19",
+            "author": "DE Rex",
+            "year": "2003",
+            "journal-title": "Neuroimage"
+          },
+          {
+            "key": "ref13",
+            "doi-asserted-by": "crossref",
+            "first-page": "3045",
+            "DOI": "10.1093/bioinformatics/bth361",
+            "article-title": "Taverna: a tool for the composition and enactment of bioinformatics workflows",
+            "volume": "20",
+            "author": "T Oinn",
+            "year": "2004",
+            "journal-title": "Bioinformatics"
+          },
+          {
+            "key": "ref14",
+            "doi-asserted-by": "crossref",
+            "first-page": "e308",
+            "DOI": "10.1371/journal.pone.0000308",
+            "article-title": "Sharing detailed research data is associated with increased citation rate",
+            "volume": "2",
+            "author": "HA Piwowar",
+            "year": "2007",
+            "journal-title": "PLoS ONE"
+          },
+          {
+            "key": "ref15",
+            "doi-asserted-by": "crossref",
+            "unstructured": "Heroux MA, Willenbring JM (2009) Barely sufficient software engineering: 10 practices to improve your cse software. In: 2009 ICSE Workshop on Software Engineering for Computational Science and Engineering. pp. 15\u201321.",
+            "DOI": "10.1109/SECSE.2009.5069157"
+          },
+          {
+            "key": "ref16",
+            "doi-asserted-by": "crossref",
+            "first-page": "61",
+            "DOI": "10.1109/5992.881708",
+            "article-title": "Making scientific computations reproducible",
+            "volume": "2",
+            "author": "M Schwab",
+            "year": "2000",
+            "journal-title": "Comput Sci Eng"
+          },
+          {
+            "key": "ref17",
+            "doi-asserted-by": "crossref",
+            "first-page": "W677",
+            "DOI": "10.1093/nar/gkq429",
+            "article-title": "myExperiment: a repository and social network for the sharing of bioinformatics workflows",
+            "volume": "38",
+            "author": "CA Goble",
+            "year": "2010",
+            "journal-title": "Nucleic Acids Res"
+          },
+          {
+            "key": "ref18",
+            "doi-asserted-by": "crossref",
+            "first-page": "219",
+            "DOI": "10.1155/2005/128026",
+            "article-title": "Pegasus: a framework for mapping complex scientific workflows onto distributed systems",
+            "volume": "13",
+            "author": "E Deelman",
+            "year": "2005",
+            "journal-title": "Scientific Programming Journal"
+          },
+          {
+            "key": "ref19",
+            "doi-asserted-by": "crossref",
+            "unstructured": "Leisch F (2002) Sweave: dynamic generation of statistical reports using literate data analysis. In: H\u00e4rdle W, R\u00f6nz B, editors. Compstat: proceedings in computational statistics. Heidelberg, Germany: Physika Verlag. pp. 575\u2013580.",
+            "DOI": "10.1007/978-3-642-57489-4_89"
+          },
+          {
+            "key": "ref20",
+            "doi-asserted-by": "crossref",
+            "first-page": "R86",
+            "DOI": "10.1186/gb-2010-11-8-r86",
+            "article-title": "Galaxy: a comprehensive approach for supporting accessible, reproducible, and transparent computational research in the life sciences",
+            "volume": "11",
+            "author": "J Goecks",
+            "year": "2010",
+            "journal-title": "Genome Biol"
+          },
+          {
+            "key": "ref21",
+            "doi-asserted-by": "crossref",
+            "first-page": "365",
+            "DOI": "10.1038/ng1201-365",
+            "article-title": "Minimum information about a microarray experiment (MIAME)-toward standards for microarray data",
+            "volume": "29",
+            "author": "A Brazma",
+            "year": "2001",
+            "journal-title": "Nat Genet"
+          },
+          {
+            "key": "ref22",
+            "doi-asserted-by": "crossref",
+            "first-page": "68",
+            "DOI": "10.1093/nar/gkg091",
+            "article-title": "ArrayExpress\u2013a public repository for microarray gene expression data at the EBI",
+            "volume": "31",
+            "author": "A Brazma",
+            "year": "2003",
+            "journal-title": "Nucleic Acids Res"
+          },
+          {
+            "key": "ref23",
+            "doi-asserted-by": "crossref",
+            "first-page": "207",
+            "DOI": "10.1093/nar/30.1.207",
+            "article-title": "Gene Expression Omnibus: NCBI gene expression and hybridization array data repository",
+            "volume": "30",
+            "author": "R Edgar",
+            "year": "2002",
+            "journal-title": "Nucleic Acids Res"
+          },
+          {
+            "key": "ref24",
+            "doi-asserted-by": "crossref",
+            "first-page": "11",
+            "DOI": "10.1186/2047-217X-1-11",
+            "article-title": "GigaDB: announcing the GigaScience database",
+            "volume": "1",
+            "author": "TP Sneddon",
+            "year": "2012",
+            "journal-title": "Gigascience"
+          },
+          {
+            "key": "ref25",
+            "doi-asserted-by": "crossref",
+            "first-page": "e1002802",
+            "DOI": "10.1371/journal.pcbi.1002802",
+            "article-title": "Ten simple rules for the open development of scientific software",
+            "volume": "8",
+            "author": "A Prli\u0107",
+            "year": "2012",
+            "journal-title": "PLoS Comput Biol"
+          }
+        ],
+        "container-title": [
+          "PLoS Computational Biology"
+        ],
+        "original-title": [],
+        "language": "en",
+        "link": [
+          {
+            "URL": "http://dx.plos.org/10.1371/journal.pcbi.1003285",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "deposited": {
+          "date-parts": [
+            [
+              2018,
+              10,
+              23
+            ]
+          ],
+          "date-time": "2018-10-23T16:56:58Z",
+          "timestamp": 1540313818000
+        },
+        "score": 1,
+        "resource": {
+          "primary": {
+            "URL": "https://dx.plos.org/10.1371/journal.pcbi.1003285"
+          }
+        },
+        "subtitle": [],
+        "editor": [
+          {
+            "given": "Philip E.",
+            "family": "Bourne",
+            "sequence": "first",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "editor"
+              }
+            ]
+          }
+        ],
+        "short-title": [],
+        "issued": {
+          "date-parts": [
+            [
+              2013,
+              10,
+              24
+            ]
+          ]
+        },
+        "references-count": 25,
+        "journal-issue": {
+          "issue": "10",
+          "published-online": {
+            "date-parts": [
+              [
+                2013,
+                10,
+                24
+              ]
+            ]
+          }
+        },
+        "URL": "https://doi.org/10.1371/journal.pcbi.1003285",
+        "relation": {
+          "has-review": [
+            {
+              "id-type": "doi",
+              "id": "10.3410/f.720906062.793556792",
+              "asserted-by": "object"
+            }
+          ]
+        },
+        "ISSN": [
+          "1553-7358"
+        ],
+        "issn-type": [
+          {
+            "value": "1553-7358",
+            "type": "electronic"
+          }
+        ],
+        "subject": [],
+        "published": {
+          "date-parts": [
+            [
+              2013,
+              10,
+              24
+            ]
+          ]
+        }
+      },
+      "verification_status": "doi_metadata_match",
+      "verified": true,
+      "expected": {
+        "title": "Ten simple rules for reproducible computational research",
+        "authors": [
+          "Sandve, Geir Kjetil",
+          "Nekrutenko, Anton",
+          "Taylor, James",
+          "Hovig, Eivind"
+        ],
+        "year": 2013
+      }
+    },
+    {
+      "key": "wilson2014bestpractices",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24415924/",
+      "doi": "10.1371/journal.pbio.1001745",
+      "resolver": "network",
+      "reachable": true,
+      "reachability_url": "https://api.crossref.org/works/10.1371%2Fjournal.pbio.1001745",
+      "doi_http_status": 200,
+      "metadata": {
+        "indexed": {
+          "date-parts": [
+            [
+              2026,
+              10,
+              30
+            ]
+          ],
+          "date-time": "2026-10-30T05:41:40Z",
+          "timestamp": 1793338900171,
+          "version": "4.5.0"
+        },
+        "reference-count": 69,
+        "publisher": "Public Library of Science (PLoS)",
+        "issue": "1",
+        "license": [
+          {
+            "start": {
+              "date-parts": [
+                [
+                  2014,
+                  1,
+                  7
+                ]
+              ],
+              "date-time": "2014-01-07T00:00:00Z",
+              "timestamp": 1389052800000
+            },
+            "content-version": "vor",
+            "delay-in-days": 0,
+            "URL": "http://creativecommons.org/licenses/by/4.0/"
+          }
+        ],
+        "content-domain": {
+          "domain": [
+            "www.plosbiology.org"
+          ],
+          "crossmark-restriction": false
+        },
+        "short-container-title": [
+          "PLoS Biol"
+        ],
+        "DOI": "10.1371/journal.pbio.1001745",
+        "type": "journal-article",
+        "created": {
+          "date-parts": [
+            [
+              2014,
+              1,
+              7
+            ]
+          ],
+          "date-time": "2014-01-07T16:22:31Z",
+          "timestamp": 1389111751000
+        },
+        "page": "e1001745",
+        "update-policy": "https://doi.org/10.1371/journal.pbio.corrections_policy",
+        "source": "Crossref",
+        "is-referenced-by-count": 538,
+        "title": [
+          "Best Practices for Scientific Computing"
+        ],
+        "prefix": "10.1371",
+        "volume": "12",
+        "author": [
+          {
+            "given": "Greg",
+            "family": "Wilson",
+            "sequence": "first",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "D. A.",
+            "family": "Aruliah",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "C. Titus",
+            "family": "Brown",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Neil P.",
+            "family": "Chue Hong",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Matt",
+            "family": "Davis",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Richard T.",
+            "family": "Guy",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Steven H. D.",
+            "family": "Haddock",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Kathryn D.",
+            "family": "Huff",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Ian M.",
+            "family": "Mitchell",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Mark D.",
+            "family": "Plumbley",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Ben",
+            "family": "Waugh",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Ethan P.",
+            "family": "White",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Paul",
+            "family": "Wilson",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "member": "340",
+        "published-online": {
+          "date-parts": [
+            [
+              2014,
+              1,
+              7
+            ]
+          ]
+        },
+        "reference": [
+          {
+            "key": "ref1",
+            "doi-asserted-by": "crossref",
+            "unstructured": "Hannay JE, Langtangen HP, MacLeod C, Pfahl D, Singer J, <etal>et al</etal>.. (2009) How do scientists develop and use scientific software? In: Proceedings Second International Workshop on Software Engineering for Computational Science and Engineering. pp. 1\u20138. doi:10.1109/SECSE.2009.5069155.",
+            "DOI": "10.1109/SECSE.2009.5069155"
+          },
+          {
+            "key": "ref2",
+            "doi-asserted-by": "crossref",
+            "unstructured": "Prabhu P, Jablin TB, Raman A, Zhang Y, Huang J, <etal>et al</etal>.. (2011) A survey of the practice of computational science. In: Proceedings 24th ACM/IEEE Conference on High Performance Computing, Networking, Storage and Analysis. pp. 19:1\u201319:12. doi:10.1145/2063348.2063374.",
+            "DOI": "10.1145/2063348.2063374"
+          },
+          {
+            "key": "ref3",
+            "doi-asserted-by": "crossref",
+            "first-page": "5",
+            "DOI": "10.1145/1810891.1810892",
+            "article-title": "Science has only two legs",
+            "volume": "53",
+            "author": "M Vardi",
+            "year": "2010",
+            "journal-title": "Communications of the ACM"
+          },
+          {
+            "key": "ref4",
+            "doi-asserted-by": "crossref",
+            "first-page": "785",
+            "DOI": "10.1109/32.328993",
+            "article-title": "How accurate is scientific software?",
+            "volume": "20",
+            "author": "L Hatton",
+            "year": "1994",
+            "journal-title": "IEEE T Software Eng"
+          },
+          {
+            "key": "ref5",
+            "first-page": "27",
+            "article-title": "The T experiments: errors in scientific software",
+            "volume": "4",
+            "author": "L Hatton",
+            "year": "1997",
+            "journal-title": "Computational Science & Engineering"
+          },
+          {
+            "key": "ref6",
+            "first-page": "775",
+            "article-title": "Error: why scientific programming does not compute",
+            "volume": "467",
+            "author": "Z Merali",
+            "year": "2010",
+            "journal-title": "Nature"
+          },
+          {
+            "key": "ref7",
+            "doi-asserted-by": "crossref",
+            "first-page": "1875",
+            "DOI": "10.1126/science.314.5807.1875b",
+            "article-title": "Retraction",
+            "volume": "314",
+            "author": "G Chang",
+            "year": "2006",
+            "journal-title": "Science"
+          },
+          {
+            "key": "ref8",
+            "doi-asserted-by": "crossref",
+            "first-page": "273",
+            "DOI": "10.1126/science.1231815",
+            "article-title": "Comment on \u201cDrosophila dosage compensation involves enhanced Pol II recruitment to male X-Linked promoters\u201d",
+            "volume": "340",
+            "author": "F Ferrari",
+            "year": "2013",
+            "journal-title": "Science"
+          },
+          {
+            "key": "ref9",
+            "doi-asserted-by": "crossref",
+            "first-page": "3668",
+            "DOI": "10.1073/pnas.0700711104",
+            "article-title": "Retraction for Ma and Chang, structure of the multidrug resistance efflux transporter EmrE from <italic>Escherichia coli</italic>",
+            "volume": "104",
+            "author": "C Ma",
+            "year": "2007",
+            "journal-title": "Proc Natl Acad Sci U S A"
+          },
+          {
+            "key": "ref10",
+            "doi-asserted-by": "crossref",
+            "first-page": "596",
+            "DOI": "10.1016/j.jmb.2003.05.001",
+            "article-title": "Retraction of \u2018Structure of MsbA from Vibrio cholera: A Multidrug Resistance ABC Transporter Homolog in a Closed Conformation\u2019 [J. Mol. Biol. (2003) 330 419430]",
+            "volume": "369",
+            "author": "G Chang",
+            "year": "2007",
+            "journal-title": "Journal of Molecular Biology"
+          },
+          {
+            "key": "ref11",
+            "doi-asserted-by": "crossref",
+            "first-page": "E4",
+            "DOI": "10.1111/j.1461-0248.2007.01040.x",
+            "article-title": "A strong Madagascan rainforest MDE and no equatorward increase in species richness: re-analysis of \u2018The Missing Madagascan Mid-Domain Effect\u2019, by Kerr JT, Perring M, Currie DJ (Ecol Lett 9:149159, 2006)",
+            "volume": "10",
+            "author": "DC Lees",
+            "year": "2007",
+            "journal-title": "Ecol Lett"
+          },
+          {
+            "key": "ref12",
+            "doi-asserted-by": "crossref",
+            "first-page": "E9",
+            "DOI": "10.1111/j.1461-0248.2007.01074.x",
+            "article-title": "Testing, as opposed to supporting, the mid-domain hypothesis: a response to lees and colwell",
+            "volume": "10",
+            "author": "D Currie",
+            "year": "2007",
+            "journal-title": "Ecol Lett"
+          },
+          {
+            "key": "ref13",
+            "doi-asserted-by": "crossref",
+            "first-page": "252",
+            "DOI": "10.1644/07-MAMM-A-167.1",
+            "article-title": "Differential responses of two species of kangaroo rat (Dipodomys) to heavy rains: a humbling reappraisal",
+            "volume": "89",
+            "author": "DA Kelt",
+            "year": "2008",
+            "journal-title": "J Mammal"
+          },
+          {
+            "key": "ref14",
+            "doi-asserted-by": "crossref",
+            "first-page": "1751",
+            "DOI": "10.1016/j.jacc.2013.04.002",
+            "article-title": "Retraction notice to \u201cPlasma PCSK9 levels and clinical outcomes in the TNT (Treating to New Targets) Trial\u201d [J Am Coll Cardiol 2012;59:17781784]",
+            "volume": "61",
+            "year": "2013",
+            "journal-title": "J Am Coll Cardiol"
+          },
+          {
+            "key": "ref15",
+            "first-page": "361",
+            "article-title": "Hypertension 60: e29. Retraction. Implications of new hypertension guidelines in the United States. Retraction of Bertoia ML, Waring ME, Gupta PS, Roberts MB, Eaton CB",
+            "volume": "58",
+            "journal-title": "Hypertension (2011)"
+          },
+          {
+            "key": "ref16",
+            "unstructured": "Herndon T, Ash M, Pollin R (2013). Does high public debt consistently stifle economic growth? A critique of Reinhart and Rogoff. Working paper, Political Economy Research Institute. Available: <ext-link xmlns:xlink=\"http://www.w3.org/1999/xlink\" ext-link-type=\"uri\" xlink:href=\"http://www.peri.umass.edu/fileadmin/pdf/working\" xlink:type=\"simple\">http://www.peri.umass.edu/fileadmin/pdf/working</ext-link> papers/working papers 301-350/WP322.pdf."
+          },
+          {
+            "key": "ref17",
+            "unstructured": "Aranda J (2012). Software carpentry assessment report. Available: <ext-link xmlns:xlink=\"http://www.w3.org/1999/xlink\" ext-link-type=\"uri\" xlink:href=\"http://software-carpentry.org/papers/arandaassessment-2012-07.pdf\" xlink:type=\"simple\">http://software-carpentry.org/papers/arandaassessment-2012-07.pdf</ext-link>."
+          },
+          {
+            "key": "ref18",
+            "doi-asserted-by": "crossref",
+            "first-page": "66",
+            "DOI": "10.1109/MCSE.2006.122",
+            "article-title": "Software carpentry: getting scientists to write better code by making them more productive",
+            "author": "G Wilson",
+            "year": "2006",
+            "journal-title": "Comput Sci Eng"
+          },
+          {
+            "key": "ref19",
+            "doi-asserted-by": "crossref",
+            "unstructured": "Heroux MA, Willenbring JM (2009) Barely-sufficient software engineering: 10 practices to improve your CSE software. In: Proceedings Second International Workshop on Software Engineering for Computational Science and Engineering. pp. 15\u201321. 10.1109/SECSE.2009.5069157.",
+            "DOI": "10.1109/SECSE.2009.5069157"
+          },
+          {
+            "key": "ref20",
+            "doi-asserted-by": "crossref",
+            "unstructured": "Kane D (2003) Introducing agile development into bioinformatics: an experience report. In: Proceedings of the Conference on Agile Development, IEEE Computer Society, Washington (D.C.); 2003, 0-7695-2013-8, pp. 132\u2013139, 10.1109/ADC.2003.1231463.",
+            "DOI": "10.1109/ADC.2003.1231463"
+          },
+          {
+            "key": "ref21",
+            "doi-asserted-by": "crossref",
+            "first-page": "273",
+            "DOI": "10.1186/1471-2105-7-273",
+            "article-title": "Agile methods in biomedical software development: a multi-site experience report",
+            "volume": "7",
+            "author": "D Kane",
+            "year": "2006",
+            "journal-title": "BMC Bioinformatics"
+          },
+          {
+            "key": "ref22",
+            "doi-asserted-by": "crossref",
+            "first-page": "20",
+            "DOI": "10.1109/MCSE.2009.198",
+            "article-title": "Managing chaos: lessons learned developing software in the life sciences",
+            "volume": "11",
+            "author": "S Killcoyne",
+            "year": "2009",
+            "journal-title": "Comput Sci Eng"
+          },
+          {
+            "key": "ref23",
+            "doi-asserted-by": "crossref",
+            "first-page": "56",
+            "DOI": "10.1109/MCSE.2008.144",
+            "article-title": "Configuration management for large-scale scientific computing at the UK Met office",
+            "author": "D Matthews",
+            "year": "2008",
+            "journal-title": "Comput Sci Eng"
+          },
+          {
+            "key": "ref24",
+            "doi-asserted-by": "crossref",
+            "first-page": "3111",
+            "DOI": "10.1098/rsta.2008.0096",
+            "article-title": "Chaste: using agile programming techniques to develop computational biology software",
+            "volume": "366",
+            "author": "J Pitt-Francis",
+            "year": "2008",
+            "journal-title": "Philos Trans A Math Phys Eng Sci"
+          },
+          {
+            "key": "ref25",
+            "doi-asserted-by": "crossref",
+            "first-page": "62",
+            "DOI": "10.1109/MCSE.2011.13",
+            "article-title": "Organizing software growth and distributed development: the case of abinit",
+            "volume": "13",
+            "author": "Y Pouillon",
+            "year": "2011",
+            "journal-title": "Comput Sci Eng"
+          },
+          {
+            "key": "ref26",
+            "unstructured": "Spolsky J (2000). The Joel test: 12 steps to better code. Available: <ext-link xmlns:xlink=\"http://www.w3.org/1999/xlink\" ext-link-type=\"uri\" xlink:href=\"http://www.joelonsoftware.com/articles/fog0000000043.html\" xlink:type=\"simple\">http://www.joelonsoftware.com/articles/fog0000000043.html</ext-link>. Accessed September 2013."
+          },
+          {
+            "key": "ref27",
+            "unstructured": "Fogel K (2005) Producing open source software: how to run a successful free software project. Sepastopol (California): O&apos;Reilly. Available: <ext-link xmlns:xlink=\"http://www.w3.org/1999/xlink\" ext-link-type=\"uri\" xlink:href=\"http://producingoss.com\" xlink:type=\"simple\">http://producingoss.com</ext-link>."
+          },
+          {
+            "key": "ref28",
+            "doi-asserted-by": "crossref",
+            "unstructured": "Carver JC, Kendall RP, Squires SE, Post DE (2007) Software development environments for scientific and engineering software: a series of case studies. In: Proceedings 29th International Conference on Software Engineering. pp. 550\u2013559. 10.1109/ICSE.2007.77.",
+            "DOI": "10.1109/ICSE.2007.77"
+          },
+          {
+            "key": "ref29",
+            "doi-asserted-by": "crossref",
+            "first-page": "48",
+            "DOI": "10.1109/MCSE.2009.139",
+            "article-title": "Five recommended practices for computational scientists who write software",
+            "volume": "11",
+            "author": "D Kelly",
+            "year": "2009",
+            "journal-title": "Comput Sci Eng"
+          },
+          {
+            "key": "ref30",
+            "doi-asserted-by": "crossref",
+            "first-page": "517",
+            "DOI": "10.1007/s10664-005-3865-y",
+            "article-title": "When software engineers met research scientists: a case study",
+            "volume": "10",
+            "author": "J Segal",
+            "year": "2005",
+            "journal-title": "Empir Softw Eng"
+          },
+          {
+            "key": "ref31",
+            "unstructured": "Segal J (2008) Models of scientific software development. In: Proceedings First International Workshop on Software Engineering for Computational Science and Engineering. Available: <ext-link xmlns:xlink=\"http://www.w3.org/1999/xlink\" ext-link-type=\"uri\" xlink:href=\"http://secse08.cs.ua.edu/Papers/Segal.pdf\" xlink:type=\"simple\">http://secse08.cs.ua.edu/Papers/Segal.pdf</ext-link>."
+          },
+          {
+            "key": "ref32",
+            "unstructured": "Oram A, Wilson G, editors(2010) Making software: what really works, and why we believe it. Sepastopol (California): O&apos;Reilly."
+          },
+          {
+            "key": "ref33",
+            "unstructured": "Baddeley A, Eysenck MW, Anderson MC (2009) Memory. New York: Psychology Press."
+          },
+          {
+            "key": "ref34",
+            "unstructured": "Hock RR (2008) Forty studies that changed psychology: explorations into the history of psychological research, 6th edition. Upper Saddle River (New Jersey): Prentice Hall."
+          },
+          {
+            "key": "ref35",
+            "doi-asserted-by": "crossref",
+            "unstructured": "Letovsky S (1986) Cognitive processes in program comprehension. In: Proceedings First Workshop on Empirical Studies of Programmers. pp. 58\u201379. 10.1016/0164-1212(87)90032-X.",
+            "DOI": "10.1016/0164-1212(87)90032-X"
+          },
+          {
+            "key": "ref36",
+            "doi-asserted-by": "crossref",
+            "unstructured": "Binkley D, Davis M, Lawrie D, Morrell C (2009) To CamelCase or under_score. In: Proceedings 2009 IEEE International Conference on Program Comprehension. pp. 158\u2013167. 10.1109/ICPC.2009.5090039.",
+            "DOI": "10.1109/ICPC.2009.5090039"
+          },
+          {
+            "key": "ref37",
+            "unstructured": "Robinson E (2005) Why crunch mode doesn&apos;t work: six lessons. Available: <ext-link xmlns:xlink=\"http://www.w3.org/1999/xlink\" ext-link-type=\"uri\" xlink:href=\"http://www.igda.org/why-crunch-modes-doesnt-work-six-lessons\" xlink:type=\"simple\">http://www.igda.org/why-crunch-modes-doesnt-work-six-lessons</ext-link>. Accessed: September 2013."
+          },
+          {
+            "key": "ref38",
+            "unstructured": "Ray DS, Ray EJ (2009) Unix and Linux: visual quickstart guide. 4th edition. San Francisco: Peachpit Press."
+          },
+          {
+            "key": "ref39",
+            "unstructured": "Haddock S, Dunn C (2010) Practical computing for biologists. Sunderland (Massachusetts): Sinauer Associates."
+          },
+          {
+            "key": "ref40",
+            "doi-asserted-by": "crossref",
+            "first-page": "83",
+            "DOI": "10.1109/MCISE.2003.1225867",
+            "article-title": "Why Johnny can&apos;t build (portable scientific software)",
+            "volume": "5",
+            "author": "PF Dubois",
+            "year": "2003",
+            "journal-title": "Comput Sci Eng"
+          },
+          {
+            "key": "ref41",
+            "unstructured": "Smith P (2011) Software build systems: principles and experience. Boston: Addison-Wesley."
+          },
+          {
+            "key": "ref42",
+            "doi-asserted-by": "crossref",
+            "unstructured": "Fomel S, Hennenfent G (2007) Reproducible computational experiments using SCons. In: Proceedings 32nd International Conference on Acoustics, Speech, and Signal Processing. volume IV, pp. 1257\u20131260. 10.1109/ICASSP.2007.367305.",
+            "DOI": "10.1109/ICASSP.2007.367305"
+          },
+          {
+            "key": "ref43",
+            "unstructured": "Moreau L, Freire J, Futrelle J, McGrath RE, Myers J, <etal>et al</etal>.. (2007) The open provenance model (v1.00). Technical report, University of Southampton. Accessed September 2013."
+          },
+          {
+            "key": "ref44",
+            "doi-asserted-by": "crossref",
+            "first-page": "18",
+            "DOI": "10.1109/MS.2008.85",
+            "article-title": "Developing scientific software",
+            "volume": "25",
+            "author": "J Segal",
+            "year": "2008",
+            "journal-title": "IEEE Software"
+          },
+          {
+            "key": "ref45",
+            "unstructured": "Martin RC (2002) Agile software development, principles, patterns, and practices. Upper Saddle River (New Jersey): Prentice Hall."
+          },
+          {
+            "key": "ref46",
+            "unstructured": "Kniberg H (2007) Scrum and XP from the trenches. C4Media, 978-1-4303-2264-1, Available from <ext-link xmlns:xlink=\"http://www.w3.org/1999/xlink\" ext-link-type=\"uri\" xlink:href=\"http://www.infoq.com/minibooks/scrum-xp-from-the-trenches\" xlink:type=\"simple\">http://www.infoq.com/minibooks/scrum-xp-from-the-trenches</ext-link>."
+          },
+          {
+            "key": "ref47",
+            "unstructured": "McConnell S (2004) Code complete: a practical handbook of software construction, 2nd edition. Seattle: Microsoft Press."
+          },
+          {
+            "key": "ref48",
+            "doi-asserted-by": "crossref",
+            "first-page": "e1000424",
+            "DOI": "10.1371/journal.pcbi.1000424",
+            "article-title": "A quick guide to organizing computational biology projects",
+            "volume": "5",
+            "author": "WS Noble",
+            "year": "2009",
+            "journal-title": "PLoS Comput Biol"
+          },
+          {
+            "key": "ref49",
+            "unstructured": "Hunt A, Thomas D (1999) The pragmatic programmer: from journeyman to master. Boston: Addison-Wesley."
+          },
+          {
+            "key": "ref50",
+            "doi-asserted-by": "crossref",
+            "unstructured": "Juergens E, Deissenboeck F, Hummel B, Wagner S (2009) Do code clones matter? In: Proceedings 31st International Conference on Software Engineering. pp. 485\u2013495. 10.1109/ICSE.2009.5070547.",
+            "DOI": "10.1109/ICSE.2009.5070547"
+          },
+          {
+            "key": "ref51",
+            "doi-asserted-by": "crossref",
+            "unstructured": "Grubb P, Takang AA (2003) Software maintenance: concepts and practice, 2nd edition. Singapore: World Scientific.",
+            "DOI": "10.1142/5318"
+          },
+          {
+            "key": "ref52",
+            "doi-asserted-by": "crossref",
+            "first-page": "80",
+            "DOI": "10.1109/MCSE.2005.54",
+            "article-title": "Maintaining correctness in scientific programs",
+            "volume": "7",
+            "author": "PF Dubois",
+            "year": "2005",
+            "journal-title": "Comput Sci Eng"
+          },
+          {
+            "key": "ref53",
+            "doi-asserted-by": "crossref",
+            "first-page": "21",
+            "DOI": "10.1109/MS.2008.84",
+            "article-title": "Dealing with risk in scientific software development",
+            "volume": "25",
+            "author": "R Sanders",
+            "year": "2008",
+            "journal-title": "IEEE Software"
+          },
+          {
+            "key": "ref54",
+            "unstructured": "List of unit testing frameworks. Available: <ext-link xmlns:xlink=\"http://www.w3.org/1999/xlink\" ext-link-type=\"uri\" xlink:href=\"http://en.wikipedia.org/wiki/List\" xlink:type=\"simple\">http://en.wikipedia.org/wiki/List</ext-link> of unit testing frameworks. Accessed September 2013."
+          },
+          {
+            "key": "ref55",
+            "unstructured": "Meszaros G (2007) xUnit test patterns: refactoring test code. Boston: Addison-Wesley."
+          },
+          {
+            "key": "ref56",
+            "unstructured": "Osherove R (2009) The art of unit testing: with examples in.NET. Greenwich (Connecticut): Manning."
+          },
+          {
+            "key": "ref57",
+            "doi-asserted-by": "crossref",
+            "unstructured": "Hook D, Kelly D (2009) Testing for trustworthiness in scientific software. In: Proceedings Second International Workshop on Software Engineering for Computational Science and Engineering. pp. 59\u201364. 10.1109/SECSE.2009.5069163.",
+            "DOI": "10.1109/SECSE.2009.5069163"
+          },
+          {
+            "key": "ref58",
+            "unstructured": "Kelly D, Sanders R (2008) Assessing the quality of scientific software. In: Proceedings First International Workshop on Software Engineering for Computational Science and Engineering. Available: <ext-link xmlns:xlink=\"http://www.w3.org/1999/xlink\" ext-link-type=\"uri\" xlink:href=\"http://secse08.cs.ua.edu/Papers/Kelly.pdf\" xlink:type=\"simple\">http://secse08.cs.ua.edu/Papers/Kelly.pdf</ext-link>."
+          },
+          {
+            "key": "ref59",
+            "doi-asserted-by": "crossref",
+            "unstructured": "Oberkampf WL, Roy CJ (2010) Verification and validation in scientific computing. Cambridge: Cambridge University Press.",
+            "DOI": "10.1017/CBO9780511760396"
+          },
+          {
+            "key": "ref60",
+            "doi-asserted-by": "crossref",
+            "unstructured": "Zeller A (2009) Why programs fail: a guide to systematic debugging. Burlington (Massachusetts): Morgan Kaufmann.",
+            "DOI": "10.1016/B978-0-12-374515-6.00006-X"
+          },
+          {
+            "key": "ref61",
+            "doi-asserted-by": "crossref",
+            "unstructured": "Jones MB, Regehr J (1999) The problems you&apos;re having may not be the problems you think you&apos;re having: results from a latency study of Windows NT. In: Proceedings 7th Workshop on Hot Topics in Operating Systems. pp. 96\u2013101. 10.1109/RTTAS.1999.777681.",
+            "DOI": "10.1109/RTTAS.1999.777681"
+          },
+          {
+            "key": "ref62",
+            "unstructured": "Prechelt L (2010) Two comparisons of programming languages. Oram A, Wilson G, editors. Making software: what really works, and why we believe it. Sepastopol (California): O&apos;Reilly. pp. 239\u2013258."
+          },
+          {
+            "key": "ref63",
+            "unstructured": "Xie Y (2013). knitr: A general-purpose tool for dynamic report generation in r. R package version 0.9. Available: <ext-link xmlns:xlink=\"http://www.w3.org/1999/xlink\" ext-link-type=\"uri\" xlink:href=\"http://yihui.name/knitr/\" xlink:type=\"simple\">http://yihui.name/knitr/</ext-link>."
+          },
+          {
+            "key": "ref64",
+            "doi-asserted-by": "crossref",
+            "first-page": "21",
+            "DOI": "10.1109/MCSE.2007.53",
+            "article-title": "IPython: a system for interactive scientific computing",
+            "volume": "9",
+            "author": "F P\u00e9rez",
+            "year": "2007",
+            "journal-title": "Comput Sci Eng"
+          },
+          {
+            "key": "ref65",
+            "doi-asserted-by": "crossref",
+            "first-page": "182",
+            "DOI": "10.1147/sj.153.0182",
+            "article-title": "Design and code inspections to reduce errors in program development",
+            "volume": "15",
+            "author": "ME Fagan",
+            "year": "1976",
+            "journal-title": "IBM Syst J"
+          },
+          {
+            "key": "ref66",
+            "unstructured": "Cohen J (2010) Modern code review. Oram A, Wilson G, editors. Making software: what really works, and why we believe it. Sepastopol (California): O&apos;Reilly. pp. 329\u2013336."
+          },
+          {
+            "key": "ref67",
+            "doi-asserted-by": "crossref",
+            "unstructured": "Williams L (2010) Pair programming. Oram A, Wilson G, editors. Making software: what really works, and why we believe it. Sepastopol (California): O&apos;Reilly. pp. 311\u2013322.",
+            "DOI": "10.1081/E-ESE-120044181"
+          },
+          {
+            "key": "ref68",
+            "doi-asserted-by": "crossref",
+            "first-page": "71",
+            "DOI": "10.1109/MCISE.2003.1238707",
+            "article-title": "Issue tracking",
+            "volume": "5",
+            "author": "P Dubois",
+            "year": "2003",
+            "journal-title": "Comput Sci Eng"
+          },
+          {
+            "key": "ref69",
+            "unstructured": "Wilson G (2013). Software carpentry: lessons learned. arXiv:1307.5448. Available: <ext-link xmlns:xlink=\"http://www.w3.org/1999/xlink\" ext-link-type=\"uri\" xlink:href=\"http://arxiv.org/abs/1307.5448\" xlink:type=\"simple\">http://arxiv.org/abs/1307.5448</ext-link>."
+          }
+        ],
+        "container-title": [
+          "PLoS Biology"
+        ],
+        "original-title": [],
+        "language": "en",
+        "link": [
+          {
+            "URL": "http://dx.plos.org/10.1371/journal.pbio.1001745",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "deposited": {
+          "date-parts": [
+            [
+              2019,
+              8,
+              5
+            ]
+          ],
+          "date-time": "2019-08-05T19:25:25Z",
+          "timestamp": 1565033125000
+        },
+        "score": 1,
+        "resource": {
+          "primary": {
+            "URL": "https://dx.plos.org/10.1371/journal.pbio.1001745"
+          }
+        },
+        "subtitle": [],
+        "editor": [
+          {
+            "given": "Jonathan A.",
+            "family": "Eisen",
+            "sequence": "first",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "editor"
+              }
+            ]
+          }
+        ],
+        "short-title": [],
+        "issued": {
+          "date-parts": [
+            [
+              2014,
+              1,
+              7
+            ]
+          ]
+        },
+        "references-count": 69,
+        "journal-issue": {
+          "issue": "1",
+          "published-online": {
+            "date-parts": [
+              [
+                2014,
+                1,
+                7
+              ]
+            ]
+          }
+        },
+        "URL": "https://doi.org/10.1371/journal.pbio.1001745",
+        "relation": {},
+        "ISSN": [
+          "1545-7885"
+        ],
+        "issn-type": [
+          {
+            "value": "1545-7885",
+            "type": "electronic"
+          }
+        ],
+        "subject": [],
+        "published": {
+          "date-parts": [
+            [
+              2014,
+              1,
+              7
+            ]
+          ]
+        }
+      },
+      "verification_status": "doi_metadata_match",
+      "verified": true,
+      "expected": {
+        "title": "Best practices for scientific computing",
+        "authors": [
+          "Wilson, Greg",
+          "Aruliah, D. A.",
+          "Brown, C. Titus",
+          "Chue Hong, Neil P.",
+          "Davis, Matt",
+          "Guy, Richard T.",
+          "Haddock, Steven H. D.",
+          "Huff, Kathryn D.",
+          "Mitchell, Ian M.",
+          "Plumbley, Mark D.",
+          "Waugh, Ben",
+          "White, Ethan P.",
+          "Wilson, Paul"
+        ],
+        "year": 2014
+      }
+    },
+    {
+      "key": "wilkinson2016fair",
+      "url": "https://doi.org/10.1038/sdata.2016.18",
+      "doi": "10.1038/sdata.2016.18",
+      "resolver": "network",
+      "reachable": true,
+      "reachability_url": "https://api.crossref.org/works/10.1038%2Fsdata.2016.18",
+      "doi_http_status": 200,
+      "metadata": {
+        "indexed": {
+          "date-parts": [
+            [
+              2026,
+              11,
+              7
+            ]
+          ],
+          "date-time": "2026-11-07T16:10:44Z",
+          "timestamp": 1794067844688,
+          "version": "4.8.0"
+        },
+        "reference-count": 32,
+        "publisher": "Springer Science and Business Media LLC",
+        "issue": "1",
+        "license": [
+          {
+            "start": {
+              "date-parts": [
+                [
+                  2016,
+                  3,
+                  15
+                ]
+              ],
+              "date-time": "2016-03-15T00:00:00Z",
+              "timestamp": 1458000000000
+            },
+            "content-version": "tdm",
+            "delay-in-days": 0,
+            "URL": "https://creativecommons.org/licenses/by/4.0"
+          },
+          {
+            "start": {
+              "date-parts": [
+                [
+                  2016,
+                  3,
+                  15
+                ]
+              ],
+              "date-time": "2016-03-15T00:00:00Z",
+              "timestamp": 1458000000000
+            },
+            "content-version": "vor",
+            "delay-in-days": 0,
+            "URL": "https://creativecommons.org/licenses/by/4.0"
+          }
+        ],
+        "content-domain": {
+          "domain": [
+            "link.springer.com"
+          ],
+          "crossmark-restriction": false
+        },
+        "short-container-title": [
+          "Sci Data"
+        ],
+        "abstract": "<jats:title>Abstract</jats:title>\n                  <jats:p>There is an urgent need to improve the infrastructure supporting the reuse of scholarly data. A diverse set of stakeholders\u2014representing academia, industry, funding agencies, and scholarly publishers\u2014have come together to design and jointly endorse a concise and measureable set of principles that we refer to as the FAIR Data Principles. The intent is that these may act as a guideline for those wishing to enhance the reusability of their data holdings. Distinct from peer initiatives that focus on the human scholar, the FAIR Principles put specific emphasis on enhancing the ability of machines to automatically find and use the data, in addition to supporting its reuse by individuals. This Comment is the first formal publication of the FAIR Principles, and includes the rationale behind them, and some exemplar implementations in the community.</jats:p>",
+        "DOI": "10.1038/sdata.2016.18",
+        "type": "journal-article",
+        "created": {
+          "date-parts": [
+            [
+              2016,
+              3,
+              15
+            ]
+          ],
+          "date-time": "2016-03-15T10:23:08Z",
+          "timestamp": 1458037388000
+        },
+        "update-policy": "https://doi.org/10.1007/springer_crossmark_policy",
+        "source": "Crossref",
+        "is-referenced-by-count": 16102,
+        "title": [
+          "The FAIR Guiding Principles for scientific data management and stewardship"
+        ],
+        "prefix": "10.1038",
+        "volume": "3",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0000-0001-6960-357X",
+            "authenticated-orcid": false,
+            "given": "Mark D.",
+            "family": "Wilkinson",
+            "sequence": "first",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-4727-9435",
+            "authenticated-orcid": false,
+            "given": "Michel",
+            "family": "Dumontier",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-0209-4480",
+            "authenticated-orcid": false,
+            "given": "IJsbrand Jan",
+            "family": "Aalbersberg",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-0179-7384",
+            "authenticated-orcid": false,
+            "given": "Gabrielle",
+            "family": "Appleton",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-8042-4131",
+            "authenticated-orcid": false,
+            "given": "Myles",
+            "family": "Axton",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-2829-6715",
+            "authenticated-orcid": false,
+            "given": "Arie",
+            "family": "Baak",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-4155-5910",
+            "authenticated-orcid": false,
+            "given": "Niklas",
+            "family": "Blomberg",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-0327-638X",
+            "authenticated-orcid": false,
+            "given": "Jan-Willem",
+            "family": "Boiten",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-1164-1351",
+            "authenticated-orcid": false,
+            "given": "Luiz Bonino",
+            "family": "da Silva Santos",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-7618-7292",
+            "authenticated-orcid": false,
+            "given": "Philip E.",
+            "family": "Bourne",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Jildau",
+            "family": "Bouwman",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-8686-0017",
+            "authenticated-orcid": false,
+            "given": "Anthony J.",
+            "family": "Brookes",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-4060-7360",
+            "authenticated-orcid": false,
+            "given": "Tim",
+            "family": "Clark",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-1304-1939",
+            "authenticated-orcid": false,
+            "given": "Merc\u00e8",
+            "family": "Crosas",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-5654-2392",
+            "authenticated-orcid": false,
+            "given": "Ingrid",
+            "family": "Dillo",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-8599-7345",
+            "authenticated-orcid": false,
+            "given": "Olivier",
+            "family": "Dumon",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-6444-1436",
+            "authenticated-orcid": false,
+            "given": "Scott",
+            "family": "Edmunds",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-5301-3142",
+            "authenticated-orcid": false,
+            "given": "Chris T.",
+            "family": "Evelo",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-4368-8058",
+            "authenticated-orcid": false,
+            "given": "Richard",
+            "family": "Finkers",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-3499-8262",
+            "authenticated-orcid": false,
+            "given": "Alejandra",
+            "family": "Gonzalez-Beltran",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-5711-4872",
+            "authenticated-orcid": false,
+            "given": "Alasdair J.G.",
+            "family": "Gray",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-0183-6910",
+            "authenticated-orcid": false,
+            "given": "Paul",
+            "family": "Groth",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-1219-2137",
+            "authenticated-orcid": false,
+            "given": "Carole",
+            "family": "Goble",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-5212-7052",
+            "authenticated-orcid": false,
+            "given": "Jeffrey S.",
+            "family": "Grethe",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-8641-4930",
+            "authenticated-orcid": false,
+            "given": "Jaap",
+            "family": "Heringa",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-4450-3112",
+            "authenticated-orcid": false,
+            "given": "Peter A.C",
+            "family": "\u2019t Hoen",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-6825-9439",
+            "authenticated-orcid": false,
+            "given": "Rob",
+            "family": "Hooft",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-1267-0234",
+            "authenticated-orcid": false,
+            "given": "Tobias",
+            "family": "Kuhn",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Ruben",
+            "family": "Kok",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-7352-1400",
+            "authenticated-orcid": false,
+            "given": "Joost",
+            "family": "Kok",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-2401-4223",
+            "authenticated-orcid": false,
+            "given": "Scott J.",
+            "family": "Lusher",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-8406-3871",
+            "authenticated-orcid": false,
+            "given": "Maryann E.",
+            "family": "Martone",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Albert",
+            "family": "Mons",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-9610-5728",
+            "authenticated-orcid": false,
+            "given": "Abel L.",
+            "family": "Packer",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-3165-5344",
+            "authenticated-orcid": false,
+            "given": "Bengt",
+            "family": "Persson",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-9853-5668",
+            "authenticated-orcid": false,
+            "given": "Philippe",
+            "family": "Rocca-Serra",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-8691-772X",
+            "authenticated-orcid": false,
+            "given": "Marco",
+            "family": "Roos",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Rene",
+            "family": "van Schaik",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-5306-5690",
+            "authenticated-orcid": false,
+            "given": "Susanna-Assunta",
+            "family": "Sansone",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-8888-635X",
+            "authenticated-orcid": false,
+            "given": "Erik",
+            "family": "Schultes",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-7516-6246",
+            "authenticated-orcid": false,
+            "given": "Thierry",
+            "family": "Sengstag",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-1386-0731",
+            "authenticated-orcid": false,
+            "given": "Ted",
+            "family": "Slater",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "George",
+            "family": "Strawn",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-0979-3401",
+            "authenticated-orcid": false,
+            "given": "Morris A.",
+            "family": "Swertz",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-7633-1442",
+            "authenticated-orcid": false,
+            "given": "Mark",
+            "family": "Thompson",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Johan",
+            "family": "van der Lei",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-1377-9386",
+            "authenticated-orcid": false,
+            "given": "Erik",
+            "family": "van Mulligen",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-4836-6568",
+            "authenticated-orcid": false,
+            "given": "Jan",
+            "family": "Velterop",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-9773-4008",
+            "authenticated-orcid": false,
+            "given": "Andra",
+            "family": "Waagmeester",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Peter",
+            "family": "Wittenburg",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-1279-5133",
+            "authenticated-orcid": false,
+            "given": "Katherine",
+            "family": "Wolstencroft",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-6935-9028",
+            "authenticated-orcid": false,
+            "given": "Jun",
+            "family": "Zhao",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-3934-0072",
+            "authenticated-orcid": false,
+            "given": "Barend",
+            "family": "Mons",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "member": "297",
+        "published-online": {
+          "date-parts": [
+            [
+              2016,
+              3,
+              15
+            ]
+          ]
+        },
+        "reference": [
+          {
+            "key": "BFsdata201618_CR1",
+            "doi-asserted-by": "publisher",
+            "first-page": "e1002295",
+            "DOI": "10.1371/journal.pbio.1002295",
+            "volume": "13",
+            "author": "DG Roche",
+            "year": "2015",
+            "unstructured": "Roche, D. G., Kruuk, L. E. B., Lanfear, R. & Binning, S. A. Public Data Archiving in Ecology and Evolution: How Well Are We Doing? PLOS Biol. 13, e1002295 (2015).",
+            "journal-title": "PLOS Biol."
+          },
+          {
+            "key": "BFsdata201618_CR2",
+            "doi-asserted-by": "crossref",
+            "unstructured": "Bechhofer, S. et al. Research Objects: Towards Exchange and Reuse of Digital Knowledge. Nat. Preced. 10.1038/npre.2010.4626.1 (2010).",
+            "DOI": "10.1038/npre.2010.4626.1"
+          },
+          {
+            "key": "BFsdata201618_CR3",
+            "doi-asserted-by": "publisher",
+            "first-page": "D36",
+            "DOI": "10.1093/nar/gks1195",
+            "volume": "41",
+            "author": "DA Benson",
+            "year": "2013",
+            "unstructured": "Benson, D. A. et al. GenBank. Nucleic Acids Res. 41, D36\u2013D42 (2013).",
+            "journal-title": "Nucleic Acids Res."
+          },
+          {
+            "key": "BFsdata201618_CR4",
+            "doi-asserted-by": "publisher",
+            "first-page": "980",
+            "DOI": "10.1038/nsb1203-980",
+            "volume": "10",
+            "author": "H Berman",
+            "year": "2003",
+            "unstructured": "Berman, H., Henrick, K. & Nakamura, H. Announcing the worldwide Protein Data Bank. Nat. Struct. Biol. 10, 980\u2013980 (2003).",
+            "journal-title": "Nat. Struct. Biol."
+          },
+          {
+            "key": "BFsdata201618_CR5",
+            "doi-asserted-by": "publisher",
+            "first-page": "D204",
+            "DOI": "10.1093/nar/gku989",
+            "volume": "43",
+            "author": "The Uniprot Consortium",
+            "year": "2015",
+            "unstructured": "The Uniprot Consortium. UniProt: a hub for protein information. Nucleic Acids Res. 43, D204\u2013D212 (2015).",
+            "journal-title": "Nucleic Acids Res."
+          },
+          {
+            "key": "BFsdata201618_CR6",
+            "doi-asserted-by": "publisher",
+            "first-page": "9",
+            "DOI": "10.1051/aas:2000332",
+            "volume": "143",
+            "author": "M Wenger",
+            "year": "2000",
+            "unstructured": "Wenger, M. et al. The SIMBAD astronomical database-The CDS reference database for astronomical objects. Astron. Astrophys. Suppl. Ser. 143, 9\u201322 (2000).",
+            "journal-title": "Astron. Astrophys. Suppl. Ser."
+          },
+          {
+            "issue": "1",
+            "key": "BFsdata201618_CR7",
+            "first-page": "p2",
+            "volume": "17",
+            "author": "M Crosas",
+            "year": "2011",
+            "unstructured": "Crosas, M. \"The Dataverse Network\u00ae: An Open-Source Application for Sharing, Discovering and Preserving Data\". D-Lib Mag 17 (1), p2 (2011).",
+            "journal-title": "D-Lib Mag"
+          },
+          {
+            "key": "BFsdata201618_CR8",
+            "unstructured": "White, H. C., Carrier, S., Thompson, A., Greenberg, J. & Scherle, R. The Dryad data repository: A Singapore framework metadata architecture in a DSpace environment. Univ. G\u00f6ttingen, p157 (2008)."
+          },
+          {
+            "key": "BFsdata201618_CR9",
+            "doi-asserted-by": "publisher",
+            "first-page": "279",
+            "DOI": "10.2218/ijdc.v8i1.260",
+            "volume": "8",
+            "author": "D Lecarpentier",
+            "year": "2013",
+            "unstructured": "Lecarpentier, D. et al. EUDAT: A New Cross-Disciplinary Data Infrastructure for Science. Int. J. Digit. Curation 8, 279\u2013287 (2013).",
+            "journal-title": "Int. J. Digit. Curation"
+          },
+          {
+            "key": "BFsdata201618_CR10",
+            "doi-asserted-by": "publisher",
+            "first-page": "635",
+            "DOI": "10.1093/biosci/biv095",
+            "volume": "65",
+            "author": "ME Martone",
+            "year": "2015",
+            "unstructured": "Martone, M. E. FORCE11: Building the Future for Research Communications and e-Scholarship. Bioscience 65, 635 (2015).",
+            "journal-title": "Bioscience"
+          },
+          {
+            "key": "BFsdata201618_CR11",
+            "doi-asserted-by": "crossref",
+            "unstructured": "White, E. et al. Nine simple ways to make it easier to (re)use your data. Ideas Ecol. Evol. 6 (2013).",
+            "DOI": "10.4033/iee.2013.6b.6.f"
+          },
+          {
+            "key": "BFsdata201618_CR12",
+            "doi-asserted-by": "publisher",
+            "first-page": "e1003285",
+            "DOI": "10.1371/journal.pcbi.1003285",
+            "volume": "9",
+            "author": "GK Sandve",
+            "year": "2013",
+            "unstructured": "Sandve, G. K., Nekrutenko, A., Taylor, J. & Hovig, E. Ten Simple Rules for Reproducible Computational Research. PLoS Comput. Biol. 9, e1003285 (2013).",
+            "journal-title": "PLoS Comput. Biol."
+          },
+          {
+            "key": "BFsdata201618_CR13",
+            "volume-title": "D-Lib Magazine",
+            "author": "M Altman",
+            "year": "2007",
+            "unstructured": "Altman, M. & King, G. in D-Lib Magazine 13, no. 3/4 (2007)."
+          },
+          {
+            "key": "BFsdata201618_CR14",
+            "doi-asserted-by": "publisher",
+            "first-page": "33",
+            "DOI": "10.1186/s12918-015-0174-y",
+            "volume": "9",
+            "author": "K Wolstencroft",
+            "year": "2015",
+            "unstructured": "Wolstencroft, K. et al. SEEK: a systems biology data and model management platform. BMC Syst. Biol. 9, 33 (2015).",
+            "journal-title": "BMC Syst. Biol."
+          },
+          {
+            "key": "BFsdata201618_CR15",
+            "doi-asserted-by": "publisher",
+            "first-page": "468",
+            "DOI": "10.1186/1471-2105-12-468",
+            "volume": "12",
+            "author": "A Bauch",
+            "year": "2011",
+            "unstructured": "Bauch, A. et al. openBIS: a flexible framework for managing and analyzing complex data in biology research. BMC Bioinformatics 12, 468 (2011).",
+            "journal-title": "BMC Bioinformatics"
+          },
+          {
+            "key": "BFsdata201618_CR16",
+            "doi-asserted-by": "publisher",
+            "first-page": "121",
+            "DOI": "10.1038/ng.1054",
+            "volume": "44",
+            "author": "S-A Sansone",
+            "year": "2012",
+            "unstructured": "Sansone, S.-A. et al. Toward interoperable bioscience data. Nat. Genet. 44, 121\u2013126 (2012).",
+            "journal-title": "Nat. Genet."
+          },
+          {
+            "key": "BFsdata201618_CR17",
+            "doi-asserted-by": "publisher",
+            "first-page": "S4",
+            "DOI": "10.1186/1471-2105-15-S14-S4",
+            "volume": "15",
+            "author": "A Gonz\u00e1lez-Beltr\u00e1n",
+            "year": "2014",
+            "unstructured": "Gonz\u00e1lez-Beltr\u00e1n, A., Maguire, E., Sansone, S.-A. & Rocca-Serra, P. linkedISA: semantic representation of ISA-Tab experimental metadata. BMC Bioinformatics 15, S4 (2014).",
+            "journal-title": "BMC Bioinformatics"
+          },
+          {
+            "key": "BFsdata201618_CR18",
+            "doi-asserted-by": "publisher",
+            "first-page": "e0127612",
+            "DOI": "10.1371/journal.pone.0127612",
+            "volume": "10",
+            "author": "A Gonz\u00e1lez-Beltr\u00e1n",
+            "year": "2015",
+            "unstructured": "Gonz\u00e1lez-Beltr\u00e1n, A. et al. From Peer-Reviewed to Peer-Reproduced in Scholarly Publishing: The Complementary Roles of Data Models and Workflows in Bioinformatics. PLoS ONE 10, e0127612 (2015).",
+            "journal-title": "PLoS ONE"
+          },
+          {
+            "key": "BFsdata201618_CR19",
+            "first-page": "1",
+            "volume": "7603/2012",
+            "author": "L Harland",
+            "year": "2012",
+            "unstructured": "Harland, L. Open PHACTS: A Semantic Knowledge Infrastructure for Public and Commercial Drug Discovery Research. Knowl. Eng. Knowl. Manag. Lect. Notes Comput. Sci. 7603/2012, 1\u20137 (2012).",
+            "journal-title": "Knowl. Eng. Knowl. Manag. Lect. Notes Comput. Sci."
+          },
+          {
+            "key": "BFsdata201618_CR20",
+            "doi-asserted-by": "publisher",
+            "first-page": "12",
+            "DOI": "10.1016/j.websem.2014.03.003",
+            "volume": "29",
+            "author": "P Groth",
+            "year": "2014",
+            "unstructured": "Groth, P. et al. API-centric Linked Data integration: The Open PHACTS Discovery Platform case study. Web Semant. Sci. Serv. Agents World Wide Web 29, 12\u201318 (2014).",
+            "journal-title": "Web Semant. Sci. Serv. Agents World Wide Web"
+          },
+          {
+            "key": "BFsdata201618_CR21",
+            "doi-asserted-by": "publisher",
+            "first-page": "235",
+            "DOI": "10.1093/nar/28.1.235",
+            "volume": "28",
+            "author": "HM Berman",
+            "year": "2000",
+            "unstructured": "Berman, H. M. et al. The Protein Data Bank. Nucleic Acids Res. 28, 235\u2013242 (2000).",
+            "journal-title": "Nucleic Acids Res."
+          },
+          {
+            "key": "BFsdata201618_CR22",
+            "doi-asserted-by": "publisher",
+            "first-page": "571",
+            "DOI": "10.1016/S0076-6879(97)77032-0",
+            "volume": "277",
+            "author": "PE Bourne",
+            "year": "1997",
+            "unstructured": "Bourne, P. E., Berman, H. M., Watenpaugh, K., Westbrook, J. D. & Fitzgerald, P. M. D. The macromolecular crystallographic information file (mmCIF). Meth. Enzym 277, 571\u2013590 (1997).",
+            "journal-title": "Meth. Enzym"
+          },
+          {
+            "key": "BFsdata201618_CR23",
+            "doi-asserted-by": "publisher",
+            "first-page": "D345",
+            "DOI": "10.1093/nar/gku1214",
+            "volume": "43",
+            "author": "PW Rose",
+            "year": "2015",
+            "unstructured": "Rose, P. W. et al. The RCSB Protein Data Bank: views of structural biology for basic and applied research and education. Nucleic Acids Res. 43, D345\u2013D356 (2015).",
+            "journal-title": "Nucleic Acids Res."
+          },
+          {
+            "key": "BFsdata201618_CR24",
+            "doi-asserted-by": "publisher",
+            "first-page": "D453",
+            "DOI": "10.1093/nar/gkr811",
+            "volume": "40",
+            "author": "AR Kinjo",
+            "year": "2012",
+            "unstructured": "Kinjo, A. R. et al. Protein Data Bank Japan (PDBj): maintaining a structural data archive and resource description framework format. Nucleic Acids Res. 40, D453\u2013D460 (2012).",
+            "journal-title": "Nucleic Acids Res."
+          },
+          {
+            "key": "BFsdata201618_CR25",
+            "doi-asserted-by": "publisher",
+            "first-page": "D285",
+            "DOI": "10.1093/nar/gkt1180",
+            "volume": "42",
+            "author": "A Gutmanas",
+            "year": "2014",
+            "unstructured": "Gutmanas, A. et al. PDBe: Protein Data Bank in Europe. Nucleic Acids Res. 42, D285\u2013D291 (2014).",
+            "journal-title": "Nucleic Acids Res."
+          },
+          {
+            "key": "BFsdata201618_CR26",
+            "doi-asserted-by": "publisher",
+            "first-page": "D204",
+            "DOI": "10.1093/nar/gku989",
+            "volume": "43",
+            "author": "UniProt Consortium",
+            "year": "2015",
+            "unstructured": "UniProt Consortium. UniProt: a hub for protein information. Nucleic Acids Res. 43, D204\u2013D212 (2015).",
+            "journal-title": "Nucleic Acids Res."
+          },
+          {
+            "key": "BFsdata201618_CR27",
+            "doi-asserted-by": "publisher",
+            "first-page": "e1",
+            "DOI": "10.7717/peerj-cs.1",
+            "volume": "1",
+            "author": "J Starr",
+            "year": "2015",
+            "unstructured": "Starr, J. et al. Achieving human and machine accessibility of cited data in scholarly publications. PeerJ Comput. Sci. 1, e1 (2015).",
+            "journal-title": "PeerJ Comput. Sci."
+          },
+          {
+            "key": "BFsdata201618_CR28",
+            "unstructured": "Wilkinson, M., Dumontier, M. & Durbin, P. DataFairPort: The Perl libraries version 0.231 10.5281/zenodo.33584 (2015)."
+          },
+          {
+            "key": "BFsdata201618_CR29",
+            "unstructured": "Data Citation Synthesis Group: Joint Declaration of Data Citation Principles. San Diego CA: FORCE11 https://www.force11.org/datacitation (2014)."
+          },
+          {
+            "key": "BFsdata201618_CR30",
+            "doi-asserted-by": "publisher",
+            "unstructured": "Ohno-machado, L. et al. NIH BD2K bioCADDIE white paper\u2014Data Discovery Index. http://dx.doi.org/10.6084/m9.figshare.1362572 (2015).",
+            "DOI": "10.6084/m9.figshare.1362572"
+          },
+          {
+            "key": "BFsdata201618_CR31",
+            "unstructured": "NIH BD2K bioCADDIE WG3 Members. WG3-MetadataSpecifications: NIH BD2K bioCADDIE Data Discovery Index WG3 Metadata Specification v1 doi:10.5281/zenodo.28019 (2015)."
+          },
+          {
+            "key": "BFsdata201618_CR32",
+            "doi-asserted-by": "crossref",
+            "first-page": "1148",
+            "DOI": "10.1093/jamia/ocv048",
+            "volume": "22",
+            "author": "MA Musen",
+            "year": "2015",
+            "unstructured": "Musen, M. A. et al. The center for expanded data annotation and retrieval. J. Am. Med. Informatics Assoc. 22, 1148\u20131152 (2015).",
+            "journal-title": "J. Am. Med. Informatics Assoc."
+          }
+        ],
+        "updated-by": [
+          {
+            "DOI": "10.1038/s41597-019-0009-6",
+            "type": "addendum",
+            "label": "Addendum",
+            "source": "publisher",
+            "updated": {
+              "date-parts": [
+                [
+                  2019,
+                  3,
+                  19
+                ]
+              ],
+              "date-time": "2019-03-19T00:00:00Z",
+              "timestamp": 1552953600000
+            }
+          }
+        ],
+        "container-title": [
+          "Scientific Data"
+        ],
+        "original-title": [],
+        "language": "en",
+        "link": [
+          {
+            "URL": "https://www.nature.com/articles/sdata201618.pdf",
+            "content-type": "application/pdf",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://www.nature.com/articles/sdata201618",
+            "content-type": "text/html",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://www.nature.com/articles/sdata201618.pdf",
+            "content-type": "application/pdf",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "deposited": {
+          "date-parts": [
+            [
+              2023,
+              1,
+              4
+            ]
+          ],
+          "date-time": "2023-01-04T07:47:12Z",
+          "timestamp": 1672818432000
+        },
+        "score": 1,
+        "resource": {
+          "primary": {
+            "URL": "https://www.nature.com/articles/sdata201618"
+          }
+        },
+        "subtitle": [],
+        "short-title": [],
+        "issued": {
+          "date-parts": [
+            [
+              2016,
+              3,
+              15
+            ]
+          ]
+        },
+        "references-count": 32,
+        "journal-issue": {
+          "issue": "1",
+          "published-online": {
+            "date-parts": [
+              [
+                2016,
+                12,
+                20
+              ]
+            ]
+          }
+        },
+        "alternative-id": [
+          "BFsdata201618"
+        ],
+        "URL": "https://doi.org/10.1038/sdata.2016.18",
+        "relation": {
+          "has-review": [
+            {
+              "id-type": "doi",
+              "id": "10.3410/f.726216348.793543848",
+              "asserted-by": "object"
+            }
+          ],
+          "is-referenced-by": [
+            {
+              "id-type": "doi",
+              "id": "10.1186/s12913-026-14123-y",
+              "asserted-by": "object"
+            },
+            {
+              "id-type": "doi",
+              "id": "10.1007/s42452-026-09293-7",
+              "asserted-by": "object"
+            },
+            {
+              "id-type": "doi",
+              "id": "10.1007/s13562-026-01064-0",
+              "asserted-by": "object"
+            }
+          ]
+        },
+        "ISSN": [
+          "2052-4463"
+        ],
+        "issn-type": [
+          {
+            "value": "2052-4463",
+            "type": "electronic"
+          }
+        ],
+        "subject": [],
+        "published": {
+          "date-parts": [
+            [
+              2016,
+              3,
+              15
+            ]
+          ]
+        },
+        "assertion": [
+          {
+            "value": "10 December 2015",
+            "order": 1,
+            "name": "received",
+            "label": "Received",
+            "group": {
+              "name": "ArticleHistory",
+              "label": "Article History"
+            }
+          },
+          {
+            "value": "12 February 2016",
+            "order": 2,
+            "name": "accepted",
+            "label": "Accepted",
+            "group": {
+              "name": "ArticleHistory",
+              "label": "Article History"
+            }
+          },
+          {
+            "value": "15 March 2016",
+            "order": 3,
+            "name": "first_online",
+            "label": "First Online",
+            "group": {
+              "name": "ArticleHistory",
+              "label": "Article History"
+            }
+          },
+          {
+            "value": "M.A. is the <i>Nature Genetics</i>\u2019 Editor in Chief; S.A.S. is <i>Scientific Data</i>\u2019s Honorary Academic Editor and consultant.",
+            "order": 1,
+            "name": "Ethics",
+            "group": {
+              "name": "EthicsHeading",
+              "label": "Competing interests"
+            }
+          }
+        ],
+        "article-number": "160018"
+      },
+      "verification_status": "doi_metadata_match",
+      "verified": true,
+      "expected": {
+        "title": "The {FAIR} guiding principles for scientific data management and stewardship",
+        "authors": [
+          "Wilkinson, Mark D.",
+          "Dumontier, Michel",
+          "Aalbersberg, IJsbrand Jan",
+          "Appleton, Gabrielle",
+          "Axton, Myles",
+          "Baak, Arie",
+          "Blomberg, Niklas",
+          "Boiten, Jan-Willem",
+          "da Silva Santos, Luiz Bonino",
+          "Bourne, Philip E.",
+          "Bouwman, Jildau",
+          "Brookes, Anthony J.",
+          "Clark, Tim",
+          "Crosas, Merc\u00e8",
+          "Dillo, Ingrid",
+          "Dumon, Olivier",
+          "Edmunds, Scott",
+          "Evelo, Chris T.",
+          "Finkers, Richard",
+          "Gonzalez-Beltran, Alejandra",
+          "Gray, Alasdair J.G.",
+          "Groth, Paul",
+          "Goble, Carole",
+          "Grethe, Jeffrey S.",
+          "Heringa, Jaap",
+          "\u2019t Hoen, Peter A.C",
+          "Hooft, Rob",
+          "Kuhn, Tobias",
+          "Kok, Ruben",
+          "Kok, Joost",
+          "Lusher, Scott J.",
+          "Martone, Maryann E.",
+          "Mons, Albert",
+          "Packer, Abel L.",
+          "Persson, Bengt",
+          "Rocca-Serra, Philippe",
+          "Roos, Marco",
+          "van Schaik, Rene",
+          "Sansone, Susanna-Assunta",
+          "Schultes, Erik",
+          "Sengstag, Thierry",
+          "Slater, Ted",
+          "Strawn, George",
+          "Swertz, Morris A.",
+          "Thompson, Mark",
+          "van der Lei, Johan",
+          "van Mulligen, Erik",
+          "Velterop, Jan",
+          "Waagmeester, Andra",
+          "Wittenburg, Peter",
+          "Wolstencroft, Katherine",
+          "Zhao, Jun",
+          "Mons, Barend"
+        ],
+        "year": 2016
+      }
+    },
+    {
+      "key": "smith2016software",
+      "url": "https://peerj.com/articles/cs-86/",
+      "doi": "10.7717/peerj-cs.86",
+      "resolver": "network",
+      "reachable": true,
+      "reachability_url": "https://api.crossref.org/works/10.7717%2Fpeerj-cs.86",
+      "doi_http_status": 200,
+      "metadata": {
+        "indexed": {
+          "date-parts": [
+            [
+              2026,
+              10,
+              30
+            ]
+          ],
+          "date-time": "2026-10-30T22:00:46Z",
+          "timestamp": 1793397646748,
+          "version": "4.5.0"
+        },
+        "reference-count": 47,
+        "publisher": "PeerJ",
+        "license": [
+          {
+            "start": {
+              "date-parts": [
+                [
+                  2016,
+                  9,
+                  19
+                ]
+              ],
+              "date-time": "2016-09-19T00:00:00Z",
+              "timestamp": 1474243200000
+            },
+            "content-version": "unspecified",
+            "delay-in-days": 0,
+            "URL": "http://creativecommons.org/licenses/by/4.0/"
+          }
+        ],
+        "funder": [
+          {
+            "name": "NSF",
+            "award": [
+              "ACI-1535065"
+            ],
+            "award-info": [
+              {
+                "award-number": [
+                  "ACI-1535065"
+                ]
+              }
+            ]
+          }
+        ],
+        "content-domain": {
+          "domain": [],
+          "crossmark-restriction": false
+        },
+        "short-container-title": [],
+        "abstract": "<jats:p>Software is a critical part of modern research and yet there is little support across the scholarly ecosystem for its acknowledgement and citation. Inspired by the activities of the FORCE11 working group focused on data citation, this document summarizes the recommendations of the FORCE11 Software Citation Working Group and its activities between June 2015 and April 2016. Based on a review of existing community practices, the goal of the working group was to produce a consolidated set of citation principles that may encourage broad adoption of a consistent policy for software citation across disciplines and venues. Our work is presented here as a set of software citation principles, a discussion of the motivations for developing the principles, reviews of existing community practice, and a discussion of the requirements these principles would place upon different stakeholders. Working examples and possible technical solutions for how these principles can be implemented will be discussed in a separate paper.</jats:p>",
+        "DOI": "10.7717/peerj-cs.86",
+        "type": "journal-article",
+        "created": {
+          "date-parts": [
+            [
+              2016,
+              9,
+              19
+            ]
+          ],
+          "date-time": "2016-09-19T04:04:28Z",
+          "timestamp": 1474257868000
+        },
+        "page": "e86",
+        "source": "Crossref",
+        "is-referenced-by-count": 220,
+        "title": [
+          "Software citation principles"
+        ],
+        "prefix": "10.7717",
+        "volume": "2",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0000-0002-3957-2474",
+            "authenticated-orcid": true,
+            "given": "Arfon M.",
+            "family": "Smith",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "GitHub, Inc., San Francisco, California, United States"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-5934-7525",
+            "authenticated-orcid": true,
+            "given": "Daniel S.",
+            "family": "Katz",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Center for Supercomputing Applications & Electrical and Computer Engineering Department & School of Information Sciences, University of Illinois at Urbana-Champaign, Urbana, Illinois, United States"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-4425-7097",
+            "authenticated-orcid": true,
+            "given": "Kyle E.",
+            "family": "Niemeyer",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "School of Mechanical, Industrial, and Manufacturing Engineering, Oregon State University, Corvallis, Oregon, United States"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "name": "FORCE11 Software Citation Working Group",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "member": "4443",
+        "published-online": {
+          "date-parts": [
+            [
+              2016,
+              9,
+              19
+            ]
+          ]
+        },
+        "reference": [
+          {
+            "key": "10.7717/peerj-cs.86/ref-1",
+            "article-title": "Policy statement on software",
+            "author": "AAS Editorial Board",
+            "year": "2016"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-2",
+            "article-title": "NSF workshop on supporting scientific discovery through norms and practices for software and data citation and attribution",
+            "author": "Ahalt",
+            "year": "2015",
+            "journal-title": "Technical Report"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-3",
+            "article-title": "Improving software citation and credit",
+            "author": "Allen",
+            "year": "2015",
+            "journal-title": "Technical Report"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-4",
+            "article-title": "Science code manifesto",
+            "author": "Barnes",
+            "year": "2016"
+          },
+          {
+            "issue": "2",
+            "key": "10.7717/peerj-cs.86/ref-5",
+            "doi-asserted-by": "publisher",
+            "first-page": "599",
+            "DOI": "10.1016/j.future.2011.08.004",
+            "article-title": "Why linked data is not enough for scientists",
+            "volume": "29",
+            "author": "Bechhofer",
+            "year": "2013",
+            "journal-title": "Future Generation Computer Systems"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-6",
+            "article-title": "Publish or be damned? An alternative impact manifesto for research software",
+            "author": "Chue Hong",
+            "year": "2011"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-7",
+            "article-title": "Consortia Advancing Standards in Research Administration Information",
+            "author": "CRediT",
+            "year": "2016"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-8",
+            "article-title": "Joint declaration of data citation principles",
+            "author": "Data Citation Synthesis Group",
+            "year": "2014",
+            "journal-title": "Final Document"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-9",
+            "article-title": "NSF geo-data informatics: exploring the life cycle, citation and integration of geo-data workshop report",
+            "author": "Fox",
+            "year": "2011",
+            "journal-title": "Final Document"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-10",
+            "article-title": "Guidelines for persistently identifying software using DataCite",
+            "author": "Gent",
+            "year": "2015",
+            "journal-title": "A JISC Research Data Spring Project"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-11",
+            "doi-asserted-by": "crossref",
+            "DOI": "10.1145/2815833.2816955",
+            "article-title": "OntoSoft: capturing scientific software metadata",
+            "author": "Gil",
+            "year": "2015"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-12",
+            "article-title": "Making your code citable with GitHub & Zenodo",
+            "author": "GitHub",
+            "year": "2014"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-13",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.6084/m9.figshare.3175198.v1",
+            "article-title": "Attribution of work in the scholarly ecosystem",
+            "author": "Gutzman",
+            "year": "2016",
+            "journal-title": "figshare"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-14",
+            "doi-asserted-by": "publisher",
+            "first-page": "1",
+            "DOI": "10.1109/SECSE.2009.5069155",
+            "article-title": "How do scientists develop and use scientific software?",
+            "author": "Hannay",
+            "year": "2009"
+          },
+          {
+            "issue": "9",
+            "key": "10.7717/peerj-cs.86/ref-15",
+            "doi-asserted-by": "publisher",
+            "first-page": "2137",
+            "DOI": "10.1002/asi.23538",
+            "article-title": "Software in the scientific literature: problems with seeing, finding, and using software mentioned in the biology literature",
+            "volume": "67",
+            "author": "Howison",
+            "year": "2015",
+            "journal-title": "Journal of the Association for Information Science and Technology"
+          },
+          {
+            "issue": "8",
+            "key": "10.7717/peerj-cs.86/ref-16",
+            "doi-asserted-by": "publisher",
+            "first-page": "e136631",
+            "DOI": "10.1371/journal.pone.0136631",
+            "article-title": "Citing a data repository: a case study of the protein data bank",
+            "volume": "10",
+            "author": "Huang",
+            "year": "2015",
+            "journal-title": "PLoS ONE"
+          },
+          {
+            "issue": "10",
+            "key": "10.7717/peerj-cs.86/ref-17",
+            "doi-asserted-by": "publisher",
+            "first-page": "1325",
+            "DOI": "10.1093/bioinformatics/btt113",
+            "article-title": "EDAM: an ontology of bioinformatics operations, types of data and identifiers, topics and formats",
+            "volume": "29",
+            "author": "Ison",
+            "year": "2013",
+            "journal-title": "Bioinformatics"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-18",
+            "article-title": "How to cite and describe software",
+            "author": "Jackson",
+            "year": "2012"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-19",
+            "article-title": "Oh research software, how shalt I cite thee?",
+            "author": "Jackson",
+            "year": "2014"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-20",
+            "article-title": "Debian policy manual",
+            "author": "Jackson",
+            "year": "2016",
+            "edition": "3.9.8.0"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-21",
+            "article-title": "Minimal metadata schemas for science software and code, in JSON and XML",
+            "author": "Jones",
+            "year": "2014"
+          },
+          {
+            "issue": "1",
+            "key": "10.7717/peerj-cs.86/ref-22",
+            "doi-asserted-by": "publisher",
+            "first-page": "e20",
+            "DOI": "10.5334/jors.be",
+            "article-title": "Transitive credit as a means to address social and technological concerns stemming from citation and attribution of digital products",
+            "volume": "2",
+            "author": "Katz",
+            "year": "2014",
+            "journal-title": "Journal of Open Research Software"
+          },
+          {
+            "issue": "1",
+            "key": "10.7717/peerj-cs.86/ref-23",
+            "doi-asserted-by": "publisher",
+            "first-page": "e6",
+            "DOI": "10.5334/jors.an",
+            "article-title": "Summary of the first workshop on sustainable software for science: practice and experiences (WSSSPE1)",
+            "volume": "2",
+            "author": "Katz",
+            "year": "2014",
+            "journal-title": "Journal of Open Research Software"
+          },
+          {
+            "issue": "1",
+            "key": "10.7717/peerj-cs.86/ref-24",
+            "doi-asserted-by": "publisher",
+            "first-page": "e7",
+            "DOI": "10.5334/jors.85",
+            "article-title": "Report on the second workshop on sustainable software for science: practice and experiences (WSSSPE2)",
+            "volume": "4",
+            "author": "Katz",
+            "year": "2016a",
+            "journal-title": "Journal of Open Research Software"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-25",
+            "article-title": "Report on the third workshop on sustainable software for science: practice and experiences (WSSSPE3)",
+            "author": "Katz",
+            "year": "2016b",
+            "journal-title": "Technical Report"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-26",
+            "doi-asserted-by": "publisher",
+            "first-page": "e7",
+            "DOI": "10.5334/jors.by",
+            "article-title": "Implementing transitive credit with JSON-LD",
+            "volume": "3",
+            "author": "Katz",
+            "year": "2015",
+            "journal-title": "Journal of Open Research Software"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-27",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.6084/m9.figshare.785731.v1",
+            "article-title": "Accurately citing software and algorithms used in publications",
+            "author": "Knepley",
+            "year": "2013",
+            "journal-title": "figshare"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-28",
+            "doi-asserted-by": "crossref",
+            "DOI": "10.7208/chicago/9780226484655.001.0001",
+            "volume-title": "Cite Right, Second Edition: A Quick Guide to Citation Styles\u2013MLA, APA, Chicago, the Sciences, Professions, and More",
+            "author": "Lipson",
+            "year": "2011"
+          },
+          {
+            "issue": "1",
+            "key": "10.7717/peerj-cs.86/ref-29",
+            "doi-asserted-by": "publisher",
+            "first-page": "1",
+            "DOI": "10.1186/2041-1480-5-25",
+            "article-title": "The Software Ontology (SWO): a resource for reproducibility in biomedical data analysis, curation and digital preservation",
+            "volume": "5",
+            "author": "Malone",
+            "year": "2014",
+            "journal-title": "Journal of Biomedical Semantics"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-30",
+            "article-title": "Tracing the use of research resources using persistent citable identifiers",
+            "author": "Mayernik",
+            "year": "2015"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-31",
+            "article-title": "How to Cite Software in APA Style",
+            "author": "McAdoo",
+            "year": "2015"
+          },
+          {
+            "issue": "6078",
+            "key": "10.7717/peerj-cs.86/ref-32",
+            "doi-asserted-by": "publisher",
+            "first-page": "159",
+            "DOI": "10.1126/science.1218263",
+            "article-title": "Shining light into black boxes",
+            "volume": "336",
+            "author": "Morin",
+            "year": "2012",
+            "journal-title": "Science"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-33",
+            "article-title": "Invitation to comment on a proposal for a cohesive research software citation-enabling platform",
+            "author": "Nor\u00e9n",
+            "year": "2015"
+          },
+          {
+            "issue": "34",
+            "key": "10.7717/peerj-cs.86/ref-34",
+            "doi-asserted-by": "publisher",
+            "first-page": "297",
+            "DOI": "10.1029/2010EO340001",
+            "article-title": "Data citation and peer review",
+            "volume": "91",
+            "author": "Parsons",
+            "year": "2010",
+            "journal-title": "Eos, Transactions American Geophysical Union"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-35",
+            "article-title": "Economic impact assessment of NIST\u2019s Text REtrieval Conference (TREC) program",
+            "author": "Rowe",
+            "year": "2010",
+            "journal-title": "Final Report"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-36",
+            "article-title": "Software for science: getting credit for code",
+            "author": "Software Attribution for Geoscience Applications (SAGA)",
+            "year": "2015"
+          },
+          {
+            "issue": "10",
+            "key": "10.7717/peerj-cs.86/ref-37",
+            "doi-asserted-by": "publisher",
+            "first-page": "e1003285",
+            "DOI": "10.1371/journal.pcbi.1003285",
+            "article-title": "Ten simple rules for reproducible computational research",
+            "volume": "9",
+            "author": "Sandve",
+            "year": "2013",
+            "journal-title": "PLoS Computational Biology"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-38",
+            "doi-asserted-by": "publisher",
+            "first-page": "303",
+            "DOI": "10.12688/f1000research.5930.2",
+            "article-title": "Rampant software errors may undermine scientific results [version 2; referees: 2 approved]",
+            "volume": "3",
+            "author": "Soergel",
+            "year": "2015",
+            "journal-title": "F1000Research"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-39",
+            "article-title": "Software Credit Workshop",
+            "author": "Software Credit Workshop",
+            "year": "2015"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-40",
+            "doi-asserted-by": "publisher",
+            "first-page": "e1",
+            "DOI": "10.7717/peerj-cs.1",
+            "article-title": "Achieving human and machine accessibility of cited data in scholarly publications",
+            "volume": "1",
+            "author": "Starr",
+            "year": "2015",
+            "journal-title": "PeerJ Computer Science"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-41",
+            "doi-asserted-by": "publisher",
+            "first-page": "2:1",
+            "DOI": "10.1145/2618137.2618140",
+            "article-title": "Software in reproducible research: advice and best practice collected from experiences at the collaborations workshop",
+            "author": "Sufi",
+            "year": "2014"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-42",
+            "doi-asserted-by": "crossref",
+            "first-page": "9",
+            "DOI": "10.1045/september2004-vandesompel",
+            "article-title": "Rethinking scholarly communication: building the system that scholars deserve",
+            "volume": "10",
+            "author": "Van de Sompel",
+            "year": "2004",
+            "journal-title": "D-Lib Magazine"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-43",
+            "article-title": "Distributing Python Modules",
+            "author": "Ward",
+            "year": "2016"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-44",
+            "article-title": "NIH Software Discovery Index Meeting Report",
+            "author": "White",
+            "year": "2014"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-45",
+            "volume-title": "R Packages",
+            "author": "Wickham",
+            "year": "2015",
+            "edition": "1"
+          },
+          {
+            "issue": "1",
+            "key": "10.7717/peerj-cs.86/ref-46",
+            "doi-asserted-by": "publisher",
+            "first-page": "e1001745",
+            "DOI": "10.1371/journal.pbio.1001745",
+            "article-title": "Best practices for scientific computing",
+            "volume": "12",
+            "author": "Wilson",
+            "year": "2014",
+            "journal-title": "PLoS Biology"
+          },
+          {
+            "key": "10.7717/peerj-cs.86/ref-47",
+            "article-title": "Encouraging citation of software\u2013introducing CITATION files",
+            "author": "Wilson",
+            "year": "2013"
+          }
+        ],
+        "container-title": [
+          "PeerJ Computer Science"
+        ],
+        "original-title": [],
+        "language": "en",
+        "link": [
+          {
+            "URL": "https://peerj.com/articles/cs-86.pdf",
+            "content-type": "application/pdf",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://peerj.com/articles/cs-86.xml",
+            "content-type": "application/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://peerj.com/articles/cs-86.html",
+            "content-type": "text/html",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://peerj.com/articles/cs-86.pdf",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "deposited": {
+          "date-parts": [
+            [
+              2017,
+              6,
+              24
+            ]
+          ],
+          "date-time": "2017-06-24T19:07:01Z",
+          "timestamp": 1498331221000
+        },
+        "score": 1,
+        "resource": {
+          "primary": {
+            "URL": "https://peerj.com/articles/cs-86"
+          }
+        },
+        "subtitle": [],
+        "short-title": [],
+        "issued": {
+          "date-parts": [
+            [
+              2016,
+              9,
+              19
+            ]
+          ]
+        },
+        "references-count": 47,
+        "alternative-id": [
+          "10.7717/peerj-cs.86"
+        ],
+        "URL": "https://doi.org/10.7717/peerj-cs.86",
+        "archive": [
+          "CLOCKSS",
+          "LOCKSS",
+          "Portico"
+        ],
+        "relation": {
+          "has-review": [
+            {
+              "id-type": "doi",
+              "id": "10.7287/peerj-cs.86v0.2/reviews/1",
+              "asserted-by": "object"
+            },
+            {
+              "id-type": "doi",
+              "id": "10.7287/peerj-cs.86v0.1/reviews/1",
+              "asserted-by": "object"
+            },
+            {
+              "id-type": "doi",
+              "id": "10.7287/peerj-cs.86v0.1/reviews/2",
+              "asserted-by": "object"
+            }
+          ],
+          "has-preprint": [
+            {
+              "id-type": "doi",
+              "id": "10.7287/peerj.preprints.2169",
+              "asserted-by": "object"
+            }
+          ]
+        },
+        "ISSN": [
+          "2376-5992"
+        ],
+        "issn-type": [
+          {
+            "value": "2376-5992",
+            "type": "electronic"
+          }
+        ],
+        "subject": [],
+        "published": {
+          "date-parts": [
+            [
+              2016,
+              9,
+              19
+            ]
+          ]
+        },
+        "article-number": "e86"
+      },
+      "verification_status": "doi_metadata_match",
+      "verified": true,
+      "expected": {
+        "title": "Software citation principles",
+        "authors": [
+          "Smith, Arfon M.",
+          "Katz, Daniel S.",
+          "Niemeyer, Kyle E.",
+          "{FORCE11 Software Citation Working Group}"
+        ],
+        "year": 2016
+      }
+    },
+    {
+      "key": "lamprecht2020fairsoftware",
+      "url": "https://doi.org/10.3233/DS-190026",
+      "doi": "10.3233/DS-190026",
+      "resolver": "network",
+      "reachable": true,
+      "reachability_url": "https://api.crossref.org/works/10.3233%2FDS-190026",
+      "doi_http_status": 200,
+      "metadata": {
+        "indexed": {
+          "date-parts": [
+            [
+              2026,
+              11,
+              5
+            ]
+          ],
+          "date-time": "2026-11-05T22:58:26Z",
+          "timestamp": 1793919506080,
+          "version": "4.8.0"
+        },
+        "reference-count": 73,
+        "publisher": "SAGE Publications",
+        "issue": "1",
+        "license": [
+          {
+            "start": {
+              "date-parts": [
+                [
+                  2019,
+                  11,
+                  13
+                ]
+              ],
+              "date-time": "2019-11-13T00:00:00Z",
+              "timestamp": 1573603200000
+            },
+            "content-version": "unspecified",
+            "delay-in-days": 0,
+            "URL": "https://creativecommons.org/licenses/by/4.0/"
+          }
+        ],
+        "content-domain": {
+          "domain": [
+            "journals.sagepub.com"
+          ],
+          "crossmark-restriction": true
+        },
+        "short-container-title": [
+          "Data Science"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2020,
+              6,
+              12
+            ]
+          ]
+        },
+        "abstract": "<jats:p>The FAIR Guiding Principles, published in 2016, aim to improve the findability, accessibility, interoperability and reusability of digital research objects for both humans and machines. Until now the FAIR principles have been mostly applied to research data. The ideas behind these principles are, however, also directly relevant to research software. Hence there is a distinct need to explore how the FAIR principles can be applied to software. In this work, we aim to summarize the current status of the debate around FAIR and software, as basis for the development of community-agreed principles for FAIR research software in the future. We discuss what makes software different from data with regard to the application of the FAIR principles, and which desired characteristics of research software go beyond FAIR. Then we present an analysis of where the existing principles can directly be applied to software, where they need to be adapted or reinterpreted, and where the definition of additional principles is required. Here interoperability has proven to be the most challenging principle, calling for particular attention in future discussions. Finally, we outline next steps on the way towards definite FAIR principles for research software.</jats:p>",
+        "DOI": "10.3233/ds-190026",
+        "type": "journal-article",
+        "created": {
+          "date-parts": [
+            [
+              2019,
+              11,
+              13
+            ]
+          ],
+          "date-time": "2019-11-13T08:14:54Z",
+          "timestamp": 1573632894000
+        },
+        "page": "37-59",
+        "update-policy": "https://doi.org/10.1177/sage-journals-update-policy",
+        "source": "Crossref",
+        "is-referenced-by-count": 254,
+        "title": [
+          "Towards FAIR principles for\u00a0research\u00a0software"
+        ],
+        "prefix": "10.1177",
+        "volume": "3",
+        "author": [
+          {
+            "ORCID": "https://orcid.org/0000-0003-1953-5606",
+            "authenticated-orcid": false,
+            "given": "Anna-Lena",
+            "family": "Lamprecht",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "Utrecht University, The Netherlands. E-mail:\u00a0"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-3986-0510",
+            "authenticated-orcid": false,
+            "given": "Leyla",
+            "family": "Garcia",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "ZBMED Information Centre for Life Sciences, Germany. E-mail:\u00a0"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-0087-6021",
+            "authenticated-orcid": false,
+            "given": "Mateusz",
+            "family": "Kuzak",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Netherlands eScience Center, The Netherlands"
+              },
+              {
+                "name": "Dutch Techcentre for Life Sciences, The Netherlands. E-mail:\u00a0"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-5565-7577",
+            "authenticated-orcid": false,
+            "given": "Carlos",
+            "family": "Martinez",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Netherlands eScience Center, The Netherlands. E-mail:\u00a0"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-8253-7375",
+            "authenticated-orcid": false,
+            "given": "Ricardo",
+            "family": "Arcila",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "EMBL-EBI, UK. E-mail:\u00a0"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-8324-2897",
+            "authenticated-orcid": false,
+            "given": "Eva",
+            "family": "Martin Del Pico",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Barcelona Supercomputing Center (BSC), Spain. E-mail:\u00a0"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-5514-6651",
+            "authenticated-orcid": false,
+            "given": "Victoria",
+            "family": "Dominguez Del Angel",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "L\u2019Institut Fran\u00e7ais de Bioinformatique (IFB), France. E-mail:\u00a0"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-9576-1974",
+            "authenticated-orcid": false,
+            "given": "Stephanie",
+            "family": "van de Sandt",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "CERN, Switzerland. E-mail:\u00a0"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0001-6666-1520",
+            "authenticated-orcid": false,
+            "given": "Jon",
+            "family": "Ison",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Life Science Supercomputing Center, Technical University of Denmark, Denmark. E-mail:\u00a0"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-8990-1985",
+            "authenticated-orcid": false,
+            "given": "Paula Andrea",
+            "family": "Martinez",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "National Imaging Facility, Australia. E-mail:\u00a0"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-2687-1982",
+            "authenticated-orcid": false,
+            "given": "Peter",
+            "family": "McQuilton",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Oxford e-Research Centre, UK. E-mail:\u00a0"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-8937-6789",
+            "authenticated-orcid": false,
+            "given": "Alfonso",
+            "family": "Valencia",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Barcelona Supercomputing Center (BSC), Spain"
+              },
+              {
+                "name": "Instituci\u00f3 Catalana de Recerca i Estudis Avan\u00e7ats (ICREA), Spain. E-mail:\u00a0"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-0338-3070",
+            "authenticated-orcid": false,
+            "given": "Jennifer",
+            "family": "Harrow",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "ELIXIR Hub, UK. E-mail:\u00a0"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-0222-4273",
+            "authenticated-orcid": false,
+            "given": "Fotis",
+            "family": "Psomopoulos",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Institute of Applied Biosciences, CERTH, Greece. E-mail:\u00a0"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-0566-7723",
+            "authenticated-orcid": false,
+            "given": "Josep Ll.",
+            "family": "Gelpi",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Barcelona Supercomputing Center (BSC), Spain"
+              },
+              {
+                "name": "University of Barcelona, Spain. E-mail:\u00a0"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-8876-7606",
+            "authenticated-orcid": false,
+            "given": "Neil",
+            "family": "Chue Hong",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Software Sustainability Institute, UK"
+              },
+              {
+                "name": "EPCC, University of Edinburgh, UK. E-mail:\u00a0"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0003-1219-2137",
+            "authenticated-orcid": false,
+            "given": "Carole",
+            "family": "Goble",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "University of Manchester, UK. E-mail:\u00a0"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "ORCID": "https://orcid.org/0000-0002-0309-604X",
+            "authenticated-orcid": false,
+            "given": "Salvador",
+            "family": "Capella-Gutierrez",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Barcelona Supercomputing Center (BSC), Spain. E-mail:\u00a0"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "member": "179",
+        "published-online": {
+          "date-parts": [
+            [
+              2019,
+              11,
+              13
+            ]
+          ]
+        },
+        "reference": [
+          {
+            "key": "ref001",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1038/sdata.2016.18"
+          },
+          {
+            "key": "ref002",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.7717/peerj-cs.110"
+          },
+          {
+            "key": "ref003",
+            "unstructured": "RTD (Directorate-general for research), Turning FAIR into reality: Final report and action plan from the European Commission Expert Group on FAIR Data. Publications Office of the European Union, 2018. https://publications.europa.eu/en/publication-detail/-/publication/7769a148-f1f6-11e8-9982-01aa75ed71a1/language-en (accessed August 16, 2019)."
+          },
+          {
+            "key": "ref004",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.7287/peerj.preprints.2630v1"
+          },
+          {
+            "key": "ref005",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1016/j.future.2017.05.041"
+          },
+          {
+            "key": "ref006",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1162/dint_a_00033"
+          },
+          {
+            "key": "ref007",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.5281/zenodo.14809"
+          },
+          {
+            "key": "ref008",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.5281/zenodo.1344612"
+          },
+          {
+            "key": "ref009",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1145/3183558"
+          },
+          {
+            "key": "ref010",
+            "unstructured": "CRAN, The comprehensive R archive network. https://cran.r-project.org/ (accessed August 16, 2019)."
+          },
+          {
+            "key": "ref011",
+            "unstructured": "CPAN, The comprehensive Perl archive network. https://www.cpan.org/ (accessed August 16, 2019)."
+          },
+          {
+            "key": "ref012",
+            "unstructured": "Warehouse Project, PyPI \u00b7 The Python package index. https://pypi.org/ (accessed August 16, 2019)."
+          },
+          {
+            "key": "ref013",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1629/uksg.468"
+          },
+          {
+            "key": "ref014",
+            "unstructured": "GO FAIR, What is the difference between \u2018FAIR Data\u2019 and \u2018Open Data\u2019 if there is one? https://www.go-fair.org/faq/ask-question-difference-fair-data-open-data/ (accessed August 16, 2019)."
+          },
+          {
+            "key": "ref015",
+            "unstructured": "P.Doorn, Does it make sense to apply the FAIR data principles to software? SlidePlayer, 2017. https://slideplayer.com/slide/12849777/."
+          },
+          {
+            "key": "ref016",
+            "unstructured": "Object Management Group, Automated source code maintainability measure. https://www.omg.org/spec/ASCMM/1.0/PDF (accessed August 16, 2019)."
+          },
+          {
+            "key": "ref017",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.12688/f1000research.11407.1"
+          },
+          {
+            "key": "ref018",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1016/j.infsof.2015.07.011"
+          },
+          {
+            "key": "ref019",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1016/j.infsof.2014.05.006"
+          },
+          {
+            "key": "ref020",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1101/181677"
+          },
+          {
+            "key": "ref021",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1038/s41467-019-09406-4"
+          },
+          {
+            "key": "ref022",
+            "unstructured": "Wikimedia Foundation, Inc., Persistent identifier. https://en.wikipedia.org/wiki/Persistent_identifier (accessed August 16, 2019)."
+          },
+          {
+            "key": "ref023",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.5281/zenodo.1324296"
+          },
+          {
+            "key": "ref024",
+            "unstructured": "GitHub, Making your code citable. https://guides.github.com/activities/citable-code/ (accessed August 16, 2019)."
+          },
+          {
+            "key": "ref025",
+            "doi-asserted-by": "crossref",
+            "unstructured": "Zenodo, Frequently asked questions | DOI versioning. https://help.zenodo.org/ (accessed August 16, 2019).",
+            "DOI": "10.4324/9780429477607-5"
+          },
+          {
+            "key": "ref026",
+            "unstructured": "bio.tools, biotoolsSchema \u2013 resource description model for bioinformatics software. https://github.com/bio-tools/biotoolsSchema (accessed August 16, 2019)."
+          },
+          {
+            "key": "ref027",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1186/s13059-019-1772-6"
+          },
+          {
+            "key": "ref028",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1093/bib/bbz075"
+          },
+          {
+            "key": "ref029",
+            "unstructured": "Codemeta, The CodeMeta Project user guide. https://codemeta.github.io/user-guide/ (accessed August 16, 2019)."
+          },
+          {
+            "key": "ref030",
+            "unstructured": "Bioschemas community, Bioschemas \u2013 Tools, vr 0.1. https://bioschemas.org/specifications/Tool/ (accessed August 16, 2019)."
+          },
+          {
+            "key": "ref031",
+            "unstructured": "H.Wickham, Package metadata, R Packages. http://r-pkgs.had.co.nz/description.html (accessed August 16, 2019)."
+          },
+          {
+            "key": "ref032",
+            "unstructured": "The Software Ontology. http://theswo.sourceforge.net/ (accessed August 16, 2019)."
+          },
+          {
+            "key": "ref033",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1093/bioinformatics/btt113"
+          },
+          {
+            "key": "ref034",
+            "unstructured": "OntoSoft. http://www.ontosoft.org/ (accessed August 16, 2019)."
+          },
+          {
+            "key": "ref035",
+            "unstructured": "Y.Gil and R.\u00a0Varun, OntoSoft: Capturing scientific software metadata. http://www.ontosoft.org/ (accessed August 16, 2019)."
+          },
+          {
+            "key": "ref036",
+            "unstructured": "Software Heritage, The Software Heritage archive. https://www.softwareheritage.org/archive/ (accessed August 16, 2019)."
+          },
+          {
+            "key": "ref037",
+            "unstructured": "Bioconductor. https://www.bioconductor.org/ (accessed August 16, 2019)."
+          },
+          {
+            "key": "ref038",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1093/bioinformatics/btx192"
+          },
+          {
+            "key": "ref039",
+            "unstructured": "ASCL.net, Astrophysics source code library. http://ascl.net (accessed August 16, 2019)."
+          },
+          {
+            "key": "ref040",
+            "unstructured": "swMATH, An information service for mathematical software. https://swmath.org/ (accessed August 16, 2019)."
+          },
+          {
+            "key": "ref041",
+            "unstructured": "CLARIN-NL, CLARIN NL resource list. https://dev.clarin.nl/clarin-resource-list-fs (accessed August 16, 2019)."
+          },
+          {
+            "key": "ref042",
+            "unstructured": "HUBzero. https://hubzero.org (accessed August 16, 2019)."
+          },
+          {
+            "key": "ref043",
+            "unstructured": "Anaconda Inc., Conda documentation. https://docs.conda.io/en/latest/ (accessed August 16, 2019)."
+          },
+          {
+            "key": "ref044",
+            "unstructured": "Jupyter Project and Community, Project Jupyter. https://www.jupyter.org (accessed August 16, 2019)."
+          },
+          {
+            "key": "ref045",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1038/s41587-019-0080-8"
+          },
+          {
+            "key": "ref046",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1109/IEEESTD.1990.101064"
+          },
+          {
+            "key": "ref047",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1145/210376.210392"
+          },
+          {
+            "key": "ref048",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.4018/978-1-61520-887-6.ch019"
+          },
+          {
+            "key": "ref049",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1016/j.compind.2019.01.002"
+          },
+          {
+            "key": "ref050",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1016/j.compind.2009.10.014"
+          },
+          {
+            "key": "ref051",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1631/jzus.C1300013"
+          },
+          {
+            "key": "ref052",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1016/j.compind.2013.09.001"
+          },
+          {
+            "key": "ref053",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.5281/zenodo.1245568"
+          },
+          {
+            "key": "ref054",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1016/j.future.2009.08.011"
+          },
+          {
+            "key": "ref055",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1109/EDOCW.2008.32"
+          },
+          {
+            "key": "ref056",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1093/bioinformatics/bty646"
+          },
+          {
+            "key": "ref057",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1109/MIS.2004.1265885"
+          },
+          {
+            "key": "ref058",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.6084/m9.figshare.3115156.v2"
+          },
+          {
+            "key": "ref059",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1093/gigascience/giz095"
+          },
+          {
+            "key": "ref060",
+            "unstructured": "Open WDL. http://www.openwdl.org/ (accessed August 16, 2019)."
+          },
+          {
+            "key": "ref061",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.3389/fninf.2017.00069"
+          },
+          {
+            "key": "ref062",
+            "unstructured": "SPDX Workgroup \u2013 a Linux Foundation Project, Software package data exchange. https://spdx.org/ (accessed August 16, 2019)."
+          },
+          {
+            "key": "ref063",
+            "unstructured": "T.\u00a0Lebo, S.\u00a0Sahu and D.\u00a0MacGuiness, PROV-O: The PROV ontology. https://www.w3.org/TR/prov-o/ (accessed August\u00a016, 2019)."
+          },
+          {
+            "key": "ref064",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.7717/peerj-cs.86"
+          },
+          {
+            "key": "ref065",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.6084/m9.figshare.7640426.v4"
+          },
+          {
+            "key": "ref066",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1007/978-3-319-96418-8_34"
+          },
+          {
+            "key": "ref067",
+            "unstructured": "A.J.G.\u00a0Gray, C.A.\u00a0Goble and R.\u00a0Jimenez, Bioschemas: From potato salad to protein annotation, in: International Semantic Web Conference (Posters, Demos & Industry Tracks), 2017. https://iswc2017.semanticweb.org/paper-579/ (accessed August 16, 2019)."
+          },
+          {
+            "key": "ref068",
+            "unstructured": "RDA Research Metadata Schemas WG. https://www.rd-alliance.org/groups/research-metadata-schemas-wg (accessed August 16, 2019)."
+          },
+          {
+            "key": "ref069",
+            "unstructured": "RDA Software Source Code Identification WG. https://rd-alliance.org/groups/software-source-code-identification-wg."
+          },
+          {
+            "key": "ref070",
+            "unstructured": "P.J.C.\u00a0Aerts, C.\u00a0Hof, S.\u00a0Sufi and C.\u00a0Martinez-Ortiz, Sustainable software sustainability \u2013 Workshop report, DANS, SSI, Netherlands eScience Center, 2019. https://www.software.ac.uk/wosss19 (accessed August 16, 2019)."
+          },
+          {
+            "key": "ref071",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.5281/zenodo.2555498"
+          },
+          {
+            "key": "ref072",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.6084/m9.figshare.7449239.v2"
+          },
+          {
+            "key": "ref073",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.17026/dans-xfe-rn2w"
+          }
+        ],
+        "container-title": [
+          "Data Science"
+        ],
+        "original-title": [],
+        "language": "en",
+        "link": [
+          {
+            "URL": "https://journals.sagepub.com/doi/pdf/10.3233/DS-190026",
+            "content-type": "application/pdf",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://journals.sagepub.com/doi/full-xml/10.3233/DS-190026",
+            "content-type": "application/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://journals.sagepub.com/doi/pdf/10.3233/DS-190026",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "deposited": {
+          "date-parts": [
+            [
+              2026,
+              4,
+              28
+            ]
+          ],
+          "date-time": "2026-04-28T18:10:03Z",
+          "timestamp": 1777399803000
+        },
+        "score": 1,
+        "resource": {
+          "primary": {
+            "URL": "https://journals.sagepub.com/doi/10.3233/DS-190026"
+          }
+        },
+        "subtitle": [],
+        "short-title": [],
+        "issued": {
+          "date-parts": [
+            [
+              2019,
+              11,
+              13
+            ]
+          ]
+        },
+        "references-count": 73,
+        "journal-issue": {
+          "issue": "1",
+          "published-print": {
+            "date-parts": [
+              [
+                2020,
+                6,
+                12
+              ]
+            ]
+          }
+        },
+        "alternative-id": [
+          "10.3233/DS-190026"
+        ],
+        "URL": "https://doi.org/10.3233/ds-190026",
+        "relation": {},
+        "ISSN": [
+          "2451-8484",
+          "2451-8492"
+        ],
+        "issn-type": [
+          {
+            "value": "2451-8484",
+            "type": "print"
+          },
+          {
+            "value": "2451-8492",
+            "type": "electronic"
+          }
+        ],
+        "subject": [],
+        "published": {
+          "date-parts": [
+            [
+              2019,
+              11,
+              13
+            ]
+          ]
+        }
+      },
+      "verification_status": "doi_metadata_match",
+      "verified": true,
+      "expected": {
+        "title": "Towards {FAIR} principles for research software",
+        "authors": [
+          "Lamprecht, Anna-Lena",
+          "Garcia, Leyla",
+          "Kuzak, Mateusz",
+          "Martinez, Carlos",
+          "Arcila, Ricardo",
+          "Martin Del Pico, Eva",
+          "Dominguez Del Angel, Victoria",
+          "van de Sandt, Stephanie",
+          "Ison, Jon",
+          "Martinez, Paula Andrea",
+          "McQuilton, Peter",
+          "Valencia, Alfonso",
+          "Harrow, Jennifer",
+          "Psomopoulos, Fotis",
+          "Gelpi, Josep Ll.",
+          "Chue Hong, Neil",
+          "Goble, Carole",
+          "Capella-Gutierrez, Salvador"
+        ],
+        "year": 2020
+      }
+    },
+    {
+      "key": "wheatstone1838binocular",
+      "url": "https://echo-old.mpiwg-berlin.mpg.de/ECHOdocuView?pn=26&url=%2Fpermanent%2Fvision%2Felib%2FWheatstone_Stereoscope_1838%2Findex.meta&viewMode=index",
+      "doi": "10.1098/rstl.1838.0019",
+      "resolver": "network",
+      "reachable": true,
+      "reachability_url": "https://api.crossref.org/works/10.1098%2Frstl.1838.0019",
+      "doi_http_status": 200,
+      "metadata": {
+        "indexed": {
+          "date-parts": [
+            [
+              2026,
+              11,
+              5
+            ]
+          ],
+          "date-time": "2026-11-05T04:46:17Z",
+          "timestamp": 1793853977465,
+          "version": "4.6.1"
+        },
+        "reference-count": 0,
+        "publisher": "The Royal Society",
+        "issue": "128",
+        "license": [
+          {
+            "start": {
+              "date-parts": [
+                [
+                  1838,
+                  12,
+                  31
+                ]
+              ],
+              "date-time": "1838-12-31T00:00:00Z",
+              "timestamp": -4134067200000
+            },
+            "content-version": "tdm",
+            "delay-in-days": 0,
+            "URL": "https://royalsociety.org/journals/ethics-policies/data-sharing-mining/"
+          }
+        ],
+        "content-domain": {
+          "domain": [],
+          "crossmark-restriction": false
+        },
+        "short-container-title": [],
+        "published-print": {
+          "date-parts": [
+            [
+              1838,
+              12,
+              31
+            ]
+          ]
+        },
+        "abstract": "<jats:title>Abstract</jats:title>\n                  <jats:p>When an object is viewed at so great a distance that the optic axes of both eyes are sensibly parallel when directed towards it, the perspective projections of it, seen by each eye separately, are similar, and the appearance to the two eyes is precisely the same as when the object is seen by one eye only. There is, in such case, no difference between the visual appearance of an object in relief and its perspective projection on a plane surface; and hence pictorial representations of distant objects, when those circumstances which would prevent or disturb the illusion are carefully excluded, may be rendered such perfect resemblances of the objects they are intended to represent as to be mistaken for them; the Diorama is an instance of this. But this similarity no longer exists when the object is placed so near the eyes that to view it the optic axes must converge; under these conditions a different perspective projection of it is seen by each eye, and these perspectives are more dissimilar as the convergence of the optic axes becomes greater. This fact may be easily verified by placing any figure of three dimensions, an outline cube for instance, at a moderate distance before the eyes, and while the head is kept perfectly steady, viewing it with each eye successively while the other is closed. Plate XI. fig. 13. represents the two perspective projections of a cube; b is that seen by the right eye, and a that presented to the left eye; the figure being supposed to be placed about seven inches immediately before the spectator. The appearances, which are by this simple experiment rendered so obvious, may be easily inferred from the established laws of perspective; for the same object in relief is, when viewed by a different eye, seen from two points of sight at a distance from each other equal to the line joining the two eyes. Yet they seem to have escaped the attention of every philosopher and artist who has treated of the subjects of vision and perspective. I can ascribe this inattention to a phenomenon leading to the important and curious consequences, which will form the subject of the present communication, only to this circumstance; that the results being contrary to a principle which was very generally maintained by optical writers, viz. that objects can be seen single only when their images fall on corresponding points of the two retin\u00e6, an hypothesis which will be hereafter discussed, if the consideration ever arose in their minds, it was hastily discarded under the conviction, that if the pictures presented to the two eyes are under certain circumstances dissimilar, their differences must be so small that they need not be taken into account.</jats:p>",
+        "DOI": "10.1098/rstl.1838.0019",
+        "type": "journal-article",
+        "created": {
+          "date-parts": [
+            [
+              2006,
+              12,
+              15
+            ]
+          ],
+          "date-time": "2006-12-15T15:21:54Z",
+          "timestamp": 1166196114000
+        },
+        "page": "371-394",
+        "source": "Crossref",
+        "is-referenced-by-count": 933,
+        "title": [
+          "XVIII. Contributions to the physiology of vision. \u2014Part the first. On some remarkable, and hitherto unobserved, phenomena of binocular vision"
+        ],
+        "prefix": "10.1098",
+        "author": [
+          {
+            "given": "Charles",
+            "family": "Wheatstone",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "Professor of Experimental Philosophy in King's College, London"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "member": "175",
+        "container-title": [
+          "Philosophical Transactions of the Royal Society of London"
+        ],
+        "original-title": [],
+        "language": "en",
+        "link": [
+          {
+            "URL": "https://royalsocietypublishing.org/doi/pdf/10.1098/rstl.1838.0019",
+            "content-type": "application/pdf",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://royalsocietypublishing.org/rstl/article-pdf/doi/10.1098/rstl.1838.0019/1453685/rstl.1838.0019.pdf",
+            "content-type": "application/pdf",
+            "content-version": "vor",
+            "intended-application": "syndication"
+          },
+          {
+            "URL": "https://royalsocietypublishing.org/rstl/article-pdf/doi/10.1098/rstl.1838.0019/1453685/rstl.1838.0019.pdf",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "deposited": {
+          "date-parts": [
+            [
+              2026,
+              1,
+              4
+            ]
+          ],
+          "date-time": "2026-01-04T04:19:49Z",
+          "timestamp": 1767500389000
+        },
+        "score": 1,
+        "resource": {
+          "primary": {
+            "URL": "https://royalsocietypublishing.org/rstl/article/doi/10.1098/rstl.1838.0019/118085/XVIII-Contributions-to-the-physiology-of-vision"
+          }
+        },
+        "subtitle": [],
+        "short-title": [],
+        "issued": {
+          "date-parts": [
+            [
+              1838,
+              12,
+              31
+            ]
+          ]
+        },
+        "references-count": 0,
+        "journal-issue": {
+          "issue": "128",
+          "published-print": {
+            "date-parts": [
+              [
+                1838,
+                12,
+                31
+              ]
+            ]
+          }
+        },
+        "URL": "https://doi.org/10.1098/rstl.1838.0019",
+        "relation": {},
+        "ISSN": [
+          "0261-0523",
+          "2053-9223"
+        ],
+        "issn-type": [
+          {
+            "value": "0261-0523",
+            "type": "print"
+          },
+          {
+            "value": "2053-9223",
+            "type": "electronic"
+          }
+        ],
+        "subject": [],
+        "published": {
+          "date-parts": [
+            [
+              1838,
+              12,
+              31
+            ]
+          ]
+        }
+      },
+      "verification_status": "doi_metadata_match",
+      "verified": true,
+      "expected": {
+        "title": "XVIII. Contributions to the physiology of vision. \u2014Part the first. On some remarkable, and hitherto unobserved, phenomena of binocular vision",
+        "authors": [
+          "Wheatstone, Charles"
+        ],
+        "year": 1838
+      }
+    },
+    {
+      "key": "fechner1860psychophysics",
+      "url": "https://archive.org/details/elementederpsyc00fechgoog",
+      "doi": null,
+      "resolver": "network",
+      "reachable": true,
+      "reachability_url": "https://archive.org/details/elementederpsyc00fechgoog",
+      "http_status": 200,
+      "verification_status": "url_reachable_unresolved",
+      "verified": false,
+      "expected": {
+        "title": "Elemente der Psychophysik",
+        "authors": [
+          "Fechner, Gustav Theodor"
+        ],
+        "year": 1860
+      }
+    },
+    {
+      "key": "helmholtz1867optics",
+      "url": "https://www.e-rara.ch/zut/content/titleinfo/6569728",
+      "doi": null,
+      "resolver": "network",
+      "reachable": true,
+      "reachability_url": "https://www.e-rara.ch/zut/content/titleinfo/6569728",
+      "http_status": 200,
+      "verification_status": "url_reachable_unresolved",
+      "verified": false,
+      "expected": {
+        "title": "Handbuch der physiologischen Optik",
+        "authors": [
+          "Helmholtz, Hermann von"
+        ],
+        "year": 1867
+      }
+    },
+    {
+      "key": "stumpf1883tonpsychology",
+      "url": "https://search.rsl.ru/ru/record/01004444057",
+      "doi": null,
+      "resolver": "network",
+      "reachable": false,
+      "reachability_url": "https://search.rsl.ru/ru/record/01004444057",
+      "http_status": null,
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1147)>",
+      "verification_status": "unavailable",
+      "verified": false,
+      "expected": {
+        "title": "Tonpsychologie. Band 1",
+        "authors": [
+          "Stumpf, Carl"
+        ],
+        "year": 1883
+      }
+    },
+    {
+      "key": "mullerlyer1889optical",
+      "url": "https://www.psychologie.hu-berlin.de/de/institut/kabinett/ausstellungen/mueller_lyer.pdf",
+      "doi": null,
+      "resolver": "network",
+      "reachable": true,
+      "reachability_url": "https://www.psychologie.hu-berlin.de/de/institut/kabinett/ausstellungen/mueller_lyer.pdf",
+      "http_status": 200,
+      "verification_status": "url_reachable_unresolved",
+      "verified": false,
+      "expected": {
+        "title": "Optische Urtheilst\u00e4uschungen",
+        "authors": [
+          "M\u00fcller-Lyer, Franz Carl"
+        ],
+        "year": 1889
+      }
+    },
+    {
+      "key": "wade2017oppel",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5484433/",
+      "doi": "10.1177/2041669517712724",
+      "resolver": "network",
+      "reachable": true,
+      "reachability_url": "https://api.crossref.org/works/10.1177%2F2041669517712724",
+      "doi_http_status": 200,
+      "metadata": {
+        "indexed": {
+          "date-parts": [
+            [
+              2026,
+              7,
+              5
+            ]
+          ],
+          "date-time": "2026-07-05T09:08:47Z",
+          "timestamp": 1783242527881,
+          "version": "3.54.6"
+        },
+        "reference-count": 33,
+        "publisher": "SAGE Publications",
+        "issue": "3",
+        "license": [
+          {
+            "start": {
+              "date-parts": [
+                [
+                  2017,
+                  6,
+                  1
+                ]
+              ],
+              "date-time": "2017-06-01T00:00:00Z",
+              "timestamp": 1496275200000
+            },
+            "content-version": "tdm",
+            "delay-in-days": 0,
+            "URL": "https://journals.sagepub.com/page/policies/text-and-data-mining-license"
+          }
+        ],
+        "content-domain": {
+          "domain": [
+            "journals.sagepub.com"
+          ],
+          "crossmark-restriction": true
+        },
+        "short-container-title": [
+          "i-Perception"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2017,
+              6
+            ]
+          ]
+        },
+        "abstract": "<jats:p>The term geometrical\u2013optical illusions was coined by Johann Joseph Oppel (1815\u20131894) in 1855 in order to distinguish spatial distortions of size and orientation from the broader illusions of the senses. We present a translation of Oppel\u2019s article and a commentary on the material described in it. Oppel did much more than give a name to a class of visual spatial distortions. He examined a variety of figures and phenomena that were precursors of later, named illusions, and attempted to quantify and interpret them.</jats:p>",
+        "DOI": "10.1177/2041669517712724",
+        "type": "journal-article",
+        "created": {
+          "date-parts": [
+            [
+              2017,
+              6,
+              23
+            ]
+          ],
+          "date-time": "2017-06-23T07:44:57Z",
+          "timestamp": 1498203897000
+        },
+        "update-policy": "https://doi.org/10.1177/sage-journals-update-policy",
+        "source": "Crossref",
+        "is-referenced-by-count": 5,
+        "title": [
+          "Johann Joseph Oppel (1855) on Geometrical\u2013Optical Illusions: A Translation and Commentary"
+        ],
+        "prefix": "10.1177",
+        "volume": "8",
+        "author": [
+          {
+            "given": "Nicholas J.",
+            "family": "Wade",
+            "sequence": "first",
+            "affiliation": [
+              {
+                "name": "Psychology, University of Dundee, UK"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Dejan",
+            "family": "Todorovi\u0107",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Department of Psychology, University of Belgrade, Serbia"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "David",
+            "family": "Phillips",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Hemel Hempstead, UK"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Bernd",
+            "family": "Lingelbach",
+            "sequence": "additional",
+            "affiliation": [
+              {
+                "name": "Lingelbach\u2019s Scheune, Leinroden, Germany"
+              }
+            ],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "member": "179",
+        "published-online": {
+          "date-parts": [
+            [
+              2017,
+              6,
+              23
+            ]
+          ]
+        },
+        "reference": [
+          {
+            "key": "bibr1-2041669517712724",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1068/p5866"
+          },
+          {
+            "key": "bibr2-2041669517712724",
+            "volume-title": "Sensation and perception in the history of experimental psychology",
+            "author": "Boring E. G.",
+            "year": "1942"
+          },
+          {
+            "key": "bibr3-2041669517712724",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1068/p6494"
+          },
+          {
+            "key": "bibr4-2041669517712724",
+            "volume-title": "De errore optico quodam assymmetria bulbi oculi effecto [On optical errors caused by the asymmetry of the eyeballs.]",
+            "author": "Fick A.",
+            "year": "1851"
+          },
+          {
+            "key": "bibr5-2041669517712724",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1037/h0073239"
+          },
+          {
+            "key": "bibr6-2041669517712724",
+            "volume-title": "Frankfurter Biographie, Personengeschichtliches Lexikon [Frankfurter biographies. Lexicon of personal histories.] Vol. 2",
+            "author": "Klotzer W.",
+            "year": "1996"
+          },
+          {
+            "key": "bibr7-2041669517712724",
+            "unstructured": "Kramer, W. (1967). Chronik der Senckenbergischen Naturforschenden Gesellschaft 1817\u20131966 [Chronicle of the Senckenberg Society for Natural Science 1817\u20131966.]\n                      Senckenberg Buch\n                      ,\n                      46\n                      , 159\u2013571."
+          },
+          {
+            "key": "bibr8-2041669517712724",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1002/andp.18631960909"
+          },
+          {
+            "key": "bibr9-2041669517712724",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.2307/1420754"
+          },
+          {
+            "key": "bibr10-2041669517712724",
+            "first-page": "263",
+            "volume": "2",
+            "author": "M\u00fcller-Lyer F. C.",
+            "year": "1889",
+            "journal-title": "Archiv f\u00fcr Anatomie und Physiologie, Physiologische Abteilung"
+          },
+          {
+            "key": "bibr11-2041669517712724",
+            "first-page": "37",
+            "volume": "1854",
+            "author": "Oppel J. J.",
+            "year": "1855",
+            "journal-title": "Jahresbericht des physikalischen Vereins zu Frankfurt am Main"
+          },
+          {
+            "key": "bibr12-2041669517712724",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1002/andp.18561751203"
+          },
+          {
+            "key": "bibr13-2041669517712724",
+            "first-page": "47",
+            "volume": "1856",
+            "author": "Oppel J. J.",
+            "year": "1857",
+            "journal-title": "Jahresberichte des physikalischen Vereins zu Frankfurt am Main"
+          },
+          {
+            "key": "bibr14-2041669517712724",
+            "first-page": "54",
+            "volume": "1859",
+            "author": "Oppel J. J.",
+            "year": "1860",
+            "journal-title": "Jahresberichte des physikalischen Vereins zu Frankfurt am Main"
+          },
+          {
+            "key": "bibr15-2041669517712724",
+            "first-page": "26",
+            "volume": "1860",
+            "author": "Oppel J. J.",
+            "year": "1861",
+            "journal-title": "Jahresberichte des physikalischen Vereins zu Frankfurt am Main"
+          },
+          {
+            "key": "bibr16-2041669517712724",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1068/p7800"
+          },
+          {
+            "key": "bibr17-2041669517712724",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1068/p270827"
+          },
+          {
+            "key": "bibr18-2041669517712724",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1007/s004260100066"
+          },
+          {
+            "key": "bibr19-2041669517712724",
+            "volume-title": "Frankfurter W\u00f6rterbuch [The Frankfurt dictionary.]",
+            "author": "Rauh H. L.",
+            "year": "1971"
+          },
+          {
+            "key": "bibr20-2041669517712724",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1093/acprof:oso/9780199794607.001.0001"
+          },
+          {
+            "key": "bibr21-2041669517712724",
+            "first-page": "257",
+            "volume-title": "Genova e l'Europa atlantica. Opere, artisti, committenti, collezionisti. Inghilterra, Fiandre, Portogallo",
+            "author": "Spingardi C. O.",
+            "year": "2006"
+          },
+          {
+            "key": "bibr22-2041669517712724",
+            "first-page": "67",
+            "volume": "12",
+            "author": "Thi\u00e9ry A.",
+            "year": "1896",
+            "journal-title": "Philosophische Studien"
+          },
+          {
+            "key": "bibr23-2041669517712724",
+            "volume-title": "Realnost i iluzije: Uticaj konteksta u vizuelnom opa\u017eanju [Reality and illusions: The effect of context in visual perception]",
+            "author": "Todorovi\u0107 D.",
+            "year": "2014"
+          },
+          {
+            "key": "bibr24-2041669517712724",
+            "doi-asserted-by": "crossref",
+            "first-page": "298",
+            "DOI": "10.1093/acprof:oso/9780199794607.003.0034",
+            "volume-title": "The Oxford compendium of visual illusions",
+            "author": "Todorovi\u0107 D.",
+            "year": "2017"
+          },
+          {
+            "key": "bibr25-2041669517712724",
+            "volume-title": "Illusioni ottico-geometriche. Una rassegna di problemi [Geometrical-optical illusions. A review of problems.]",
+            "author": "Vicario G. B.",
+            "year": "2011"
+          },
+          {
+            "key": "bibr26-2041669517712724",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1093/acprof:oso/9780199794607.003.0035"
+          },
+          {
+            "key": "bibr27-2041669517712724",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1007/978-3-319-25229-2"
+          },
+          {
+            "key": "bibr28-2041669517712724",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1093/acprof:oso/9780199794607.003.0001"
+          },
+          {
+            "key": "bibr29-2041669517712724",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1007/BF00419407"
+          },
+          {
+            "key": "bibr30-2041669517712724",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1068/p060615"
+          },
+          {
+            "key": "bibr31-2041669517712724",
+            "doi-asserted-by": "publisher",
+            "DOI": "10.1016/j.visres.2008.05.016"
+          },
+          {
+            "key": "bibr32-2041669517712724",
+            "volume-title": "Die geometrisch-optischen T\u00e4uschungen [The geometrical-optical illusions.]",
+            "author": "Wundt W. M.",
+            "year": "1898"
+          },
+          {
+            "key": "bibr33-2041669517712724",
+            "doi-asserted-by": "crossref",
+            "unstructured": "Z\u00f6llner, F. (1860). \u00dcber eine neue Art von Pseudoskopie und ihre Beziehungen zu den von Plateau und Oppel beschreibenen Bewegungsph\u00e4nomenen. [On a new kind of pseudoscopy and its relation to the phenomena of movement described by Plateau and Oppel.]\n                      Annalen der Physik und Chemie\n                      ,\n                      110\n                      , 500\u2013523.",
+            "DOI": "10.1002/andp.18601860712"
+          }
+        ],
+        "container-title": [
+          "i-Perception"
+        ],
+        "original-title": [],
+        "language": "en",
+        "link": [
+          {
+            "URL": "https://journals.sagepub.com/doi/pdf/10.1177/2041669517712724",
+            "content-type": "application/pdf",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://journals.sagepub.com/doi/full-xml/10.1177/2041669517712724",
+            "content-type": "application/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://journals.sagepub.com/doi/pdf/10.1177/2041669517712724",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+          }
+        ],
+        "deposited": {
+          "date-parts": [
+            [
+              2026,
+              4,
+              29
+            ]
+          ],
+          "date-time": "2026-04-29T11:31:04Z",
+          "timestamp": 1777462264000
+        },
+        "score": 1,
+        "resource": {
+          "primary": {
+            "URL": "https://journals.sagepub.com/doi/10.1177/2041669517712724"
+          }
+        },
+        "subtitle": [],
+        "short-title": [],
+        "issued": {
+          "date-parts": [
+            [
+              2017,
+              6
+            ]
+          ]
+        },
+        "references-count": 33,
+        "journal-issue": {
+          "issue": "3",
+          "published-print": {
+            "date-parts": [
+              [
+                2017,
+                6
+              ]
+            ]
+          }
+        },
+        "alternative-id": [
+          "10.1177/2041669517712724"
+        ],
+        "URL": "https://doi.org/10.1177/2041669517712724",
+        "relation": {},
+        "ISSN": [
+          "2041-6695",
+          "2041-6695"
+        ],
+        "issn-type": [
+          {
+            "value": "2041-6695",
+            "type": "print"
+          },
+          {
+            "value": "2041-6695",
+            "type": "electronic"
+          }
+        ],
+        "subject": [],
+        "published": {
+          "date-parts": [
+            [
+              2017,
+              6
+            ]
+          ]
+        },
+        "article-number": "2041669517712724"
+      },
+      "verification_status": "doi_metadata_match",
+      "verified": true,
+      "expected": {
+        "title": "Johann Joseph Oppel (1855) on Geometrical--Optical Illusions: A Translation and Commentary",
+        "authors": [
+          "Wade, Nicholas J.",
+          "Todorovi\u0107, Dejan",
+          "Phillips, David",
+          "Lingelbach, Bernd"
+        ],
+        "year": 2017
+      }
+    }
+  ]
+}

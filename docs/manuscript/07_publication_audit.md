@@ -130,17 +130,20 @@ The source-tiered evidence table [@tbl:evidence_audit], caption audit
 without duplicating mutable counts or silently converting literature statements
 into package results.
 
-The publication artifacts have two distinct provenance boundaries. Scientific
-figures are deterministic PNG renders whose source-data JSON and SHA-256
-digests are checked against the code-owned registry. The cover is an editorial
-charcoal illustration: its selected candidate, prompt fingerprint, source
-asset digest, dimensions, variants, and provenance boundary are recorded in
-`output/reports/cover_visualization.json`. Neither boundary is an observer
-result, and neither substitutes for display calibration or behavioral data.
+Scientific panels and data are compared with fresh derivations from the trusted
+current code. Renderer, font and dependency identities bound exact raster replay;
+tables and hydrated prose are separately compared with their current definitions.
+This detects coordinated data/hash substitutions but does not authenticate authorship
+or establish empirical scientific validity. Human page inspection remains separate.
 
-The publication audit additionally resolves every formalism edge to a real
-package module, test file, manuscript equation label, and registered figure.
-Figure source-data sidecars use a versioned schema with figure identity,
-generator, seed, and nested data payload; the registry verifies this identity
-and hash independently of the renderer. This makes a visually plausible but
-stale or relabeled figure fail the same provenance gate as a tampered stimulus.
+The cover's real source asset, dimensions, PNG/WebP/thumbnail roles and transforms
+are verified. Its historical prompt/model/candidate history is explicitly reported
+and unverified rather than inferred from the pixels. Arbitrary supplied images
+receive no such history. Neither scientific nor editorial output supplies an
+observer result or replaces display calibration or behavioral data.
+
+Formalism checks resolve contained package/test paths, manuscript labels and
+figure links; file existence is traceability, not proof of mathematical equivalence.
+The network evidence audit covers {{SCHOLARLY_SOURCES}} evidence sources, not every
+manuscript reference. URL reachability, bibliographic identity, full-text support
+and observer validity remain distinct evidence obligations.

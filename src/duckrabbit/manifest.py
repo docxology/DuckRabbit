@@ -5,12 +5,14 @@ from __future__ import annotations
 import hashlib
 import json
 from collections.abc import Mapping
-from dataclasses import dataclass, fields, is_dataclass, replace
+from dataclasses import dataclass, replace
 from enum import Enum
 from pathlib import Path
 from types import MappingProxyType
+from typing import get_type_hints
 
 from .artifacts import (
+    ArtifactManifest,
     ArtifactSummary,
     CanonicalArtifact,
     EncodedArtifact,
@@ -155,6 +157,8 @@ class Manifest:
             raise ManifestValidationError("manifest taxonomy disagrees with identity or modality")
         if self.taxonomy.implementation_status is not self.implementation_status or self.taxonomy.evidence_status is not self.evidence_status:
             raise ManifestValidationError("manifest taxonomy disagrees with status metadata")
+        if self.claim_level is not ClaimLevel.CANONICAL_STIMULUS or self.claim_level not in self.taxonomy.claim_levels:
+            raise ManifestValidationError("manifest claim_level must be a taxonomy-supported canonical stimulus claim")
         if not isinstance(self.parameter_schema, ParameterSchema) or self.parameter_schema.parameter_type == "":
             raise ManifestValidationError("manifest parameter_schema is invalid")
         if not isinstance(self.parameters, Mapping) or not all(isinstance(key, str) for key in self.parameters):
@@ -185,6 +189,7 @@ class Manifest:
         if self.legacy_manifest is not None and not isinstance(self.legacy_manifest, str):
             raise ManifestValidationError("legacy_manifest must be a string or null")
         object.__setattr__(self, "parameters", _freeze(self.parameters))
+        object.__setattr__(self, "artifact", _freeze(self.artifact))
         if self.metrics is not None:
             object.__setattr__(self, "metrics", _freeze(self.metrics))
 
@@ -236,66 +241,55 @@ def _freeze(value: object) -> object:
 
 
 def upconvert_v1_manifest(payload: Mapping[str, object]) -> dict[str, object]:
-    """Convert a v1 JSON manifest into an explicitly unverified v2 payload."""
+    """Validate v1 provenance and convert it into explicitly unverified v2 data."""
+    from .generators import default_parameters
+    from .schema import _validate_json_value, parameter_schema
+
     if payload.get("schema_version") != "duckrabbit/artifact/v1":
         raise ManifestValidationError("upconversion requires a duckrabbit/artifact/v1 manifest")
-    encoded = payload.get("encoding")
-    canonical_digest = payload.get("canonical_digest")
-    artifact = payload.get("artifact")
-    taxonomy = payload.get("taxonomy")
-    if not isinstance(artifact, Mapping) or "nbytes" not in artifact:
-        raise ManifestValidationError(
-            "upconversion requires the v1 manifest's artifact summary to declare nbytes"
-        )
-    result = dict(payload)
-    result.update(
-        {
+    try:
+        artifact = payload["artifact"]
+        _validate_artifact_summary(artifact)
+        defaults = default_parameters(payload["illusion_id"])
+        parameters = _validate_json_value("parameters", defaults, payload["parameters"])
+        result = {
+            **payload,
             "schema_version": "duckrabbit/artifact/v2",
             "legacy_manifest": "duckrabbit/artifact/v1",
+            "package_version": "unknown", "generator_version": "unknown",
             "claim_level": ClaimLevel.CANONICAL_STIMULUS.value,
+            "evidence_status": payload["taxonomy"]["evidence_status"],
+            "parameter_schema": jsonable(parameter_schema(parameters)),
             "canonical": {
-                "schema_version": "duckrabbit/canonical/v1",
-                "algorithm": "sha256",
-                "digest": canonical_digest,
-                "byte_order": "little",
-                "dtype": "<f4",
-                "byte_count": int(artifact["nbytes"]),
+                "schema_version": "duckrabbit/canonical/v1", "algorithm": "sha256",
+                "digest": payload["canonical_digest"], "byte_order": "little", "dtype": "<f4",
+                # v1 declared raw array storage, not the framed canonical size.
+                "byte_count": artifact["nbytes"],
             },
             "verification": {
-                "status": VerificationStatus.UNVERIFIED.value,
-                "checks": [],
+                "status": VerificationStatus.UNVERIFIED.value, "checks": [],
                 "errors": ["manifest was upconverted from v1; encoded media was not re-inspected"],
             },
-            "encoding": encoded,
             "decoded_inspection": None,
-            "package_version": "unknown",
-            "generator_version": "unknown",
-            "evidence_status": (
-                taxonomy.get("evidence_status", "literature_backed_engineering_entry")
-                if isinstance(taxonomy, Mapping)
-                else "literature_backed_engineering_entry"
-            ),
         }
-    )
-    return result
+        converted = validate_manifest_payload(result)
+        ArtifactManifest(
+            schema_version=payload["schema_version"], illusion_id=converted.illusion_id,
+            implementation_status=converted.implementation_status, modality=converted.modality,
+            taxonomy=converted.taxonomy, parameters=parameters, seed=converted.seed,
+            canonical_digest=payload["canonical_digest"], duration_seconds=payload["duration_seconds"],
+            output=payload.get("output"), manifest=payload.get("manifest"),
+            artifact=artifact, encoding=converted.encoding,
+        )
+        return result
+    except (KeyError, TypeError, ValueError, AttributeError, OverflowError, RecursionError) as exc:
+        raise ManifestValidationError(f"invalid v1 manifest: {exc}") from exc
 
 
 def validate_manifest_payload(payload: Mapping[str, object]) -> Manifest:
     """Reconstruct loaded v2 data through the same strict public contracts."""
     from .generators import default_parameters
-    from .schema import parameter_schema
-
-    def restore_default(default: object, value: object) -> object:
-        if is_dataclass(default):
-            return type(default)(**{
-                field.name: restore_default(getattr(default, field.name), value[field.name])
-                for field in fields(default)
-            })
-        if isinstance(default, Enum):
-            return type(default)(value)
-        if isinstance(default, tuple):
-            return tuple(value)
-        return value
+    from .schema import _validate_json_value, parameter_schema
 
     try:
         taxonomy = dict(payload["taxonomy"])
@@ -316,8 +310,11 @@ def validate_manifest_payload(payload: Mapping[str, object]) -> Manifest:
             taxonomy[name] = tuple(taxonomy[name])
         declared_schema = payload["parameter_schema"]
         defaults = default_parameters(payload["illusion_id"])
+        hints = get_type_hints(type(defaults))
         schema_defaults = {
-            field["name"]: restore_default(getattr(defaults, field["name"]), field["default"])
+            field["name"]: _validate_json_value(
+                field["name"], getattr(defaults, field["name"]), field["default"], hints.get(field["name"]),
+            )
             for field in declared_schema["fields"]
         }
         parameters = replace(defaults, **schema_defaults)
@@ -357,9 +354,9 @@ def validate_manifest_payload(payload: Mapping[str, object]) -> Manifest:
             metrics=payload.get("metrics"), encoding=encoded, decoded_inspection=decoded,
             schema_version=payload["schema_version"], legacy_manifest=payload.get("legacy_manifest"),
         )
-        restore_default(defaults, payload["parameters"])
+        _validate_json_value("parameters", defaults, payload["parameters"])
         return manifest
-    except (KeyError, TypeError, ValueError, AttributeError) as exc:
+    except (KeyError, TypeError, ValueError, AttributeError, OverflowError, RecursionError) as exc:
         raise ManifestValidationError(f"invalid v2 manifest: {exc}") from exc
 
 
@@ -368,7 +365,7 @@ def _read_manifest_document(path: Path) -> dict[str, object]:
     path = Path(path)
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+    except (OSError, UnicodeError, json.JSONDecodeError, RecursionError) as exc:
         raise ManifestValidationError(f"cannot read manifest {path}: {exc}") from exc
     if not isinstance(payload, Mapping):
         raise ManifestValidationError("manifest JSON must contain an object")

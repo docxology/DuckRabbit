@@ -1,0 +1,49 @@
+--- native/web/index.html
++++ offline/web/index.html
+@@ -268,10 +268,10 @@
+     }  </style>
+   <script data-template-mathjax-config>
+ window.MathJax = window.MathJax || {};
+-window.MathJax.loader = Object.assign({}, window.MathJax.loader, {paths: {mathjax: "assets/mathjax-4.0.0/mathjax"}});
++window.MathJax.loader = Object.assign({}, window.MathJax.loader, {paths: {mathjax: new URL("assets/mathjax-4.0.0/mathjax",document.baseURI).href}});
+ window.MathJax.chtml = Object.assign({}, window.MathJax.chtml, {
+-  fontURL: "assets/mathjax-4.0.0/newcm/chtml/woff2",
+-  dynamicPrefix: "assets/mathjax-4.0.0/newcm/chtml/dynamic"
++  fontURL: new URL("assets/mathjax-4.0.0/newcm/chtml/woff2",document.baseURI).href,
++  dynamicPrefix: new URL("assets/mathjax-4.0.0/newcm/chtml/dynamic",document.baseURI).href
+ });
+ var templateMathOutput = window.MathJax.output || {};
+ window.MathJax.output = Object.assign({}, templateMathOutput, {
+@@ -410,8 +410,8 @@
+ 
+ html {
+   max-width: 100%;
+-  overflow-x: hidden;
+-  overflow-x: clip;
++  overflow-x: auto;
++  overflow-x: auto;
+ }
+ 
+ body {
+@@ -424,8 +424,8 @@
+   background-color: #f8f8f8;
+   color: #1a1a1a;
+   overflow-wrap: break-word;
+-  overflow-x: hidden;
+-  overflow-x: clip;
++  overflow-x: auto;
++  overflow-x: auto;
+ }
+ 
+ main,
+@@ -735,6 +735,10 @@
+ 
+ </style>
+ <script data-template-source-font-loader src="assets/source-web-fonts.js"></script>
++<style data-duckrabbit-final-overflow>
++html,body{overflow-x:auto!important}
++main,.table-scroll,div.sourceCode,pre,mjx-container[display="true"]{max-width:100%;overflow-x:auto;overflow-y:visible}
++</style>
+ </head>
+ <body>
+ <a class="skip-link" href="#main-content">Skip to main content</a>

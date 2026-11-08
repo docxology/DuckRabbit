@@ -1,0 +1,63 @@
+DUCKRABBIT_PROOF_READY
+{"method": "GET", "path": "/web/index.html", "status": "200"}
+{"method": "GET", "path": "/web/assets/mathjax-4.0.0/mathjax/tex-chtml.js", "status": "200"}
+{"method": "GET", "path": "/web/assets/source-web-fonts.js", "status": "200"}
+{"method": "GET", "path": "/figures/architecture.png", "status": "200"}
+{"method": "GET", "path": "/figures/catalog_matrix.png", "status": "200"}
+{"method": "GET", "path": "/figures/visual_sweep.png", "status": "200"}
+{"method": "GET", "path": "/figures/visual_panel.png", "status": "200"}
+{"method": "GET", "path": "/figures/temporal_sequence.png", "status": "200"}
+{"method": "GET", "path": "/figures/audio_signals.png", "status": "200"}
+{"method": "GET", "path": "/figures/audiovisual_timeline.png", "status": "200"}
+{"method": "GET", "path": "/figures/encoding_verification.png", "status": "200"}
+{"method": "GET", "path": "/figures/synthetic_psychophysics.png", "status": "200"}
+{"method": "GET", "path": "/figures/claim_boundary.png", "status": "200"}
+{"method": "GET", "path": "/figures/scholarship_map.png", "status": "200"}
+{"method": "GET", "path": "/figures/formalism_traceability.png", "status": "200"}
+{"method": "GET", "path": "/figures/metrics_dashboard.png", "status": "200"}
+{"method": "GET", "path": "/figures/parameter_domains.png", "status": "200"}
+{"method": "GET", "path": "/figures/observer_protocol.png", "status": "200"}
+{"method": "GET", "path": "/web/assets/mathjax-4.0.0/newcm/chtml/dynamic/double-struck.js", "status": "200"}
+{"method": "GET", "path": "/web/assets/mathjax-4.0.0/newcm/chtml/dynamic/sans-serif.js", "status": "200"}
+{"method": "GET", "path": "/web/assets/mathjax-4.0.0/newcm/chtml/woff2/mjx-ncm-zero.woff2", "status": "200"}
+{"method": "GET", "path": "/web/assets/mathjax-4.0.0/newcm/chtml/woff2/mjx-ncm-brk.woff2", "status": "200"}
+{"method": "GET", "path": "/web/assets/mathjax-4.0.0/mathjax/sre/speech-worker.js", "status": "200"}
+{"method": "GET", "path": "/web/assets/mathjax-4.0.0/newcm/chtml/woff2/mjx-ncm-n.woff2", "status": "200"}
+{"method": "GET", "path": "/web/assets/mathjax-4.0.0/newcm/chtml/woff2/mjx-ncm-lo.woff2", "status": "200"}
+{"method": "GET", "path": "/web/assets/mathjax-4.0.0/newcm/chtml/woff2/mjx-ncm-lt.woff2", "status": "200"}
+{"method": "GET", "path": "/web/assets/mathjax-4.0.0/newcm/chtml/woff2/mjx-ncm-em.woff2", "status": "200"}
+{"method": "GET", "path": "/web/assets/mathjax-4.0.0/newcm/chtml/woff2/mjx-ncm-s6.woff2", "status": "200"}
+{"method": "GET", "path": "/web/assets/mathjax-4.0.0/newcm/chtml/woff2/mjx-ncm-ds.woff2", "status": "200"}
+{"method": "GET", "path": "/web/assets/mathjax-4.0.0/newcm/chtml/woff2/mjx-ncm-ss.woff2", "status": "200"}
+{"method": "GET", "path": "/web/favicon.ico", "status": "200"}
+{"method": "GET", "path": "/slides/03_results_slides.html", "status": "200"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/reset.css", "status": "200"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/reveal.css", "status": "200"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/theme/white.css", "status": "200"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/plugin/search.js", "status": "File not found"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/plugin/notes.js", "status": "File not found"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/plugin/search.js", "status": "404"}
+{"method": "GET", "path": "/slides/digital-review.css", "status": "200"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/reveal.js", "status": "200"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/plugin/math.js", "status": "File not found"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/plugin/zoom.js", "status": "File not found"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/plugin/math.js", "status": "404"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/plugin/zoom.js", "status": "404"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/plugin/notes.js", "status": "404"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/theme/fonts/source-sans-pro/source-sans-pro.css", "status": "200"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/theme/fonts/source-sans-pro/source-sans-pro-italic.woff", "status": "200"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/theme/fonts/source-sans-pro/source-sans-pro-regular.woff", "status": "200"}
+{"method": "GET", "path": "/favicon.ico", "status": "File not found"}
+{"method": "GET", "path": "/favicon.ico", "status": "404"}
+{"method": "GET", "path": "/slides/00_abstract_slides.html", "status": "200"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/plugin/notes.js", "status": "File not found"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/plugin/notes.js", "status": "404"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/plugin/search.js", "status": "File not found"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/plugin/search.js", "status": "404"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/plugin/zoom.js", "status": "File not found"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/plugin/zoom.js", "status": "404"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/plugin/math.js", "status": "File not found"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/plugin/math.js", "status": "404"}
+{"method": "GET", "path": "/web/assets/mathjax-4.0.0/mathjax/sre/mathmaps/base.json", "status": "200"}
+{"method": "POST", "path": "/__duckrabbit_proof_finish", "status": "200"}
+DUCKRABBIT_PROOF_FINISHED True

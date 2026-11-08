@@ -1,0 +1,387 @@
+{
+  "artifact": {
+    "dtype": "<f4",
+    "duration_seconds": 0.5,
+    "frame_rate": 12.0,
+    "frames": 6,
+    "height": 256,
+    "mean_temporal_delta": 0.2421875,
+    "mode": "L",
+    "nbytes": 1572864,
+    "temporal_deltas": [
+      0.2421875,
+      0.2421875,
+      0.2421875,
+      0.2421875,
+      0.2421875
+    ],
+    "type": "video",
+    "width": 256
+  },
+  "canonical": {
+    "algorithm": "sha256",
+    "byte_count": 1573044,
+    "byte_order": "little",
+    "digest": "acc31937b46e7e39b36d44b6c119971734374beb87b644e5f541d77451174eff",
+    "dtype": "<f4",
+    "schema_version": "duckrabbit/canonical/v1"
+  },
+  "canonical_digest": "acc31937b46e7e39b36d44b6c119971734374beb87b644e5f541d77451174eff",
+  "claim_level": "canonical_stimulus",
+  "decoded_inspection": {
+    "backend": "pillow",
+    "facts": {
+      "bands": [
+        "L"
+      ],
+      "container_format": "GIF",
+      "duration_ms": 80,
+      "duration_seconds": 0.5,
+      "frame_durations_ms": [
+        80,
+        90,
+        80,
+        80,
+        90,
+        80
+      ],
+      "frames": 6,
+      "has_transparency": false,
+      "height": 256,
+      "mode": "L",
+      "width": 256
+    },
+    "format": "gif",
+    "kind": "video"
+  },
+  "encoded_size_bytes": 10245,
+  "encoding": {
+    "backend": "pillow",
+    "format": "gif",
+    "media_type": "image/gif",
+    "path": "visual_apparent_motion.gif",
+    "profile": {
+      "archive": {
+        "compressed": true
+      },
+      "audio": {
+        "bit_depth": 16
+      },
+      "gif": {
+        "loop": 0,
+        "optimize": false
+      },
+      "mux": {
+        "audio_codec": "aac",
+        "video": {
+          "codec": "libx264",
+          "crf": 18,
+          "pixel_format": "yuv420p"
+        }
+      },
+      "video": {
+        "codec": "libx264",
+        "crf": 18,
+        "pixel_format": "yuv420p"
+      }
+    },
+    "sha256": "fb16759f4b13d58b804653d32e53fb08c147c4016bb09b45c2d5b222724414fa",
+    "size_bytes": 10245
+  },
+  "evidence_status": "literature_backed_engineering_entry",
+  "format": "gif",
+  "generator_version": "duckrabbit/0.6.0",
+  "illusion_id": "visual.apparent_motion",
+  "implementation_status": "implemented",
+  "legacy_manifest": null,
+  "manifest": "visual_apparent_motion.gif.json",
+  "metrics": {
+    "artifact_type": "video",
+    "computation_version": "duckrabbit/metrics/v3",
+    "records": [
+      {
+        "claim_level": "physical_metric",
+        "computation_sha256": "1a7265f0b00def8e08f37fcd51a506b428a7635ab0a592886eeab6a3bbf0bfab",
+        "name": "width",
+        "provenance": {
+          "algorithm": "duckrabbit/metrics/v3",
+          "channel_rule": "all_channels_adjacent_frame_absolute_difference",
+          "color_space": "uncalibrated_normalized_channel_values",
+          "implementation_sources": "metrics.py; artifacts.py",
+          "numpy_version": "2.4.2",
+          "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+          "spectral_window": "not_applicable",
+          "temporal_reduction": "C_contiguous_float32_absolute_difference_mean",
+          "transfer_function": "none_applied; not_display_calibrated",
+          "window": "all_adjacent_frames; frames=6; frame_rate_hz=12.0; shape=(256, 256)"
+        },
+        "source": "canonical_artifact",
+        "tolerance": null,
+        "unit": "pixels",
+        "value": 256,
+        "window_sha256": "99b62046ea991d9de236f773cbdc657611eece0786d5e1ff560a5930c4668e8c"
+      },
+      {
+        "claim_level": "physical_metric",
+        "computation_sha256": "b0db994bfbb135c41fe4b6ce29e479fb1621bc6cc0f2b821eb512b12ecbe7394",
+        "name": "height",
+        "provenance": {
+          "algorithm": "duckrabbit/metrics/v3",
+          "channel_rule": "all_channels_adjacent_frame_absolute_difference",
+          "color_space": "uncalibrated_normalized_channel_values",
+          "implementation_sources": "metrics.py; artifacts.py",
+          "numpy_version": "2.4.2",
+          "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+          "spectral_window": "not_applicable",
+          "temporal_reduction": "C_contiguous_float32_absolute_difference_mean",
+          "transfer_function": "none_applied; not_display_calibrated",
+          "window": "all_adjacent_frames; frames=6; frame_rate_hz=12.0; shape=(256, 256)"
+        },
+        "source": "canonical_artifact",
+        "tolerance": null,
+        "unit": "pixels",
+        "value": 256,
+        "window_sha256": "99b62046ea991d9de236f773cbdc657611eece0786d5e1ff560a5930c4668e8c"
+      },
+      {
+        "claim_level": "physical_metric",
+        "computation_sha256": "33107d8a42e0215add2a800e3f2288a1faa79c37337e2c5e70d39e6cdb70c809",
+        "name": "frames",
+        "provenance": {
+          "algorithm": "duckrabbit/metrics/v3",
+          "channel_rule": "all_channels_adjacent_frame_absolute_difference",
+          "color_space": "uncalibrated_normalized_channel_values",
+          "implementation_sources": "metrics.py; artifacts.py",
+          "numpy_version": "2.4.2",
+          "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+          "spectral_window": "not_applicable",
+          "temporal_reduction": "C_contiguous_float32_absolute_difference_mean",
+          "transfer_function": "none_applied; not_display_calibrated",
+          "window": "all_adjacent_frames; frames=6; frame_rate_hz=12.0; shape=(256, 256)"
+        },
+        "source": "canonical_artifact",
+        "tolerance": null,
+        "unit": "frames",
+        "value": 6,
+        "window_sha256": "99b62046ea991d9de236f773cbdc657611eece0786d5e1ff560a5930c4668e8c"
+      },
+      {
+        "claim_level": "physical_metric",
+        "computation_sha256": "c670cc8783aac07e51f4496aa96640f85150f7027a0ec7c266a389f3a64f75e3",
+        "name": "frame_rate",
+        "provenance": {
+          "algorithm": "duckrabbit/metrics/v3",
+          "channel_rule": "all_channels_adjacent_frame_absolute_difference",
+          "color_space": "uncalibrated_normalized_channel_values",
+          "implementation_sources": "metrics.py; artifacts.py",
+          "numpy_version": "2.4.2",
+          "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+          "spectral_window": "not_applicable",
+          "temporal_reduction": "C_contiguous_float32_absolute_difference_mean",
+          "transfer_function": "none_applied; not_display_calibrated",
+          "window": "all_adjacent_frames; frames=6; frame_rate_hz=12.0; shape=(256, 256)"
+        },
+        "source": "canonical_artifact",
+        "tolerance": null,
+        "unit": "frames/second",
+        "value": 12.0,
+        "window_sha256": "99b62046ea991d9de236f773cbdc657611eece0786d5e1ff560a5930c4668e8c"
+      },
+      {
+        "claim_level": "physical_metric",
+        "computation_sha256": "a4b41ee3901f1cf86cad27d01f653000d8dd04ff6bebf6b051e7a807ae43a86e",
+        "name": "duration_seconds",
+        "provenance": {
+          "algorithm": "duckrabbit/metrics/v3",
+          "channel_rule": "all_channels_adjacent_frame_absolute_difference",
+          "color_space": "uncalibrated_normalized_channel_values",
+          "implementation_sources": "metrics.py; artifacts.py",
+          "numpy_version": "2.4.2",
+          "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+          "spectral_window": "not_applicable",
+          "temporal_reduction": "C_contiguous_float32_absolute_difference_mean",
+          "transfer_function": "none_applied; not_display_calibrated",
+          "window": "all_adjacent_frames; frames=6; frame_rate_hz=12.0; shape=(256, 256)"
+        },
+        "source": "canonical_artifact",
+        "tolerance": null,
+        "unit": "seconds",
+        "value": 0.5,
+        "window_sha256": "99b62046ea991d9de236f773cbdc657611eece0786d5e1ff560a5930c4668e8c"
+      },
+      {
+        "claim_level": "physical_metric",
+        "computation_sha256": "dc1c05d3b495d08cf9e03804150b3438313dc77000be19a660cb5264968c12bf",
+        "name": "mean_temporal_delta",
+        "provenance": {
+          "algorithm": "duckrabbit/metrics/v3",
+          "channel_rule": "all_channels_adjacent_frame_absolute_difference",
+          "color_space": "uncalibrated_normalized_channel_values",
+          "implementation_sources": "metrics.py; artifacts.py",
+          "numpy_version": "2.4.2",
+          "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+          "spectral_window": "not_applicable",
+          "temporal_reduction": "C_contiguous_float32_absolute_difference_mean",
+          "transfer_function": "none_applied; not_display_calibrated",
+          "window": "all_adjacent_frames; frames=6; frame_rate_hz=12.0; shape=(256, 256)"
+        },
+        "source": "canonical_artifact",
+        "tolerance": null,
+        "unit": "normalized_pixel_difference",
+        "value": 0.2421875,
+        "window_sha256": "99b62046ea991d9de236f773cbdc657611eece0786d5e1ff560a5930c4668e8c"
+      },
+      {
+        "claim_level": "physical_metric",
+        "computation_sha256": "c015e71a3ecc8396eada586936e53882cc7168bc660cc98499ec36cc87384279",
+        "name": "temporal_deltas",
+        "provenance": {
+          "algorithm": "duckrabbit/metrics/v3",
+          "channel_rule": "all_channels_adjacent_frame_absolute_difference",
+          "color_space": "uncalibrated_normalized_channel_values",
+          "implementation_sources": "metrics.py; artifacts.py",
+          "numpy_version": "2.4.2",
+          "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+          "spectral_window": "not_applicable",
+          "temporal_reduction": "C_contiguous_float32_absolute_difference_mean",
+          "transfer_function": "none_applied; not_display_calibrated",
+          "window": "all_adjacent_frames; frames=6; frame_rate_hz=12.0; shape=(256, 256)"
+        },
+        "source": "canonical_artifact",
+        "tolerance": null,
+        "unit": "normalized_pixel_difference",
+        "value": [
+          0.2421875,
+          0.2421875,
+          0.2421875,
+          0.2421875,
+          0.2421875
+        ],
+        "window_sha256": "99b62046ea991d9de236f773cbdc657611eece0786d5e1ff560a5930c4668e8c"
+      }
+    ],
+    "values": {
+      "duration_seconds": 0.5,
+      "frame_rate": 12.0,
+      "frames": 6,
+      "height": 256,
+      "mean_temporal_delta": 0.2421875,
+      "temporal_deltas": [
+        0.2421875,
+        0.2421875,
+        0.2421875,
+        0.2421875,
+        0.2421875
+      ],
+      "width": 256
+    }
+  },
+  "modality": [
+    "visual"
+  ],
+  "output": "visual_apparent_motion.gif",
+  "package_version": "0.6.0",
+  "parameter_schema": {
+    "fields": [
+      {
+        "constraints": [],
+        "default": {
+          "frame_count": 6,
+          "frame_rate": {
+            "value": 12.0
+          },
+          "height": 256,
+          "width": 256
+        },
+        "name": "config",
+        "required": false,
+        "type_name": "VideoConfig"
+      },
+      {
+        "constraints": [],
+        "default": {
+          "value": 0.12
+        },
+        "name": "bar_width",
+        "required": false,
+        "type_name": "Normalized"
+      },
+      {
+        "constraints": [],
+        "default": {
+          "value": 0.55
+        },
+        "name": "displacement",
+        "required": false,
+        "type_name": "Normalized"
+      }
+    ],
+    "parameter_type": "ApparentMotionParams",
+    "schema_version": "duckrabbit/parameters/v1"
+  },
+  "parameters": {
+    "bar_width": {
+      "value": 0.12
+    },
+    "config": {
+      "frame_count": 6,
+      "frame_rate": {
+        "value": 12.0
+      },
+      "height": 256,
+      "width": 256
+    },
+    "displacement": {
+      "value": 0.55
+    }
+  },
+  "schema_version": "duckrabbit/artifact/v2",
+  "seed": 0,
+  "taxonomy": {
+    "claim_levels": [
+      "canonical_stimulus",
+      "physical_metric"
+    ],
+    "cognitive_processes": [
+      "temporal_inference"
+    ],
+    "description": "Alternating spatial positions designed to probe apparent motion.",
+    "evidence_references": [
+      "wertheimer1912motion",
+      "sekuler1996wertheimer"
+    ],
+    "evidence_status": "literature_backed_engineering_entry",
+    "illusion_id": "visual.apparent_motion",
+    "implementation_status": "implemented",
+    "input_requirement": "none",
+    "mechanisms": [
+      "temporal_motion"
+    ],
+    "modalities": [
+      "visual"
+    ],
+    "name": "Apparent-motion frame sequence",
+    "output_kind": "video",
+    "signatures": [
+      "illusory_motion"
+    ],
+    "stimulus_requirements": [
+      "fixed frame timing"
+    ]
+  },
+  "verification": {
+    "checks": [
+      "encoded_sha256",
+      "encoded_size_bytes",
+      "decoded_media",
+      "decoded_width",
+      "decoded_height",
+      "decoded_frames",
+      "decoded_gif_frame_durations_ms",
+      "decoded_frame_rate",
+      "decoded_duration_seconds"
+    ],
+    "errors": [],
+    "status": "verified"
+  }
+}

@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import json
 import re
-import shutil
 from pathlib import Path
 from collections.abc import Mapping
 
@@ -77,12 +76,10 @@ def save_variables(variables: Mapping[str, object], path: Path) -> Path:
     return atomic_write_text(path, json.dumps(variables, indent=2, sort_keys=True) + "\n")
 
 
-def hydrate_manuscript_files(variables: Mapping[str, object], project_root: Path) -> Path:
+def hydrate_manuscript_files(variables: Mapping[str, object], project_root: Path, *, output_dir: Path | None = None) -> Path:
     """Hydrate manuscript files when the sibling template extras are absent."""
-    source_dir = project_root / "docs" / "manuscript"
-    if not source_dir.is_dir():
-        source_dir = project_root / "manuscript"
-    output_dir = project_root / "output" / "manuscript"
+    expected = _hydrated_manuscript(variables, project_root)
+    output_dir = Path(output_dir) if output_dir is not None else project_root / "output" / "manuscript"
     output_dir.mkdir(parents=True, exist_ok=True)
     excluded = {"AGENTS.md", "MANUSCRIPT_STATUS.md", "README.md", "SYNTAX.md"}
     for stale in output_dir.glob("*.md"):
@@ -90,18 +87,52 @@ def hydrate_manuscript_files(variables: Mapping[str, object], project_root: Path
             stale.unlink()
     for stale in output_dir.glob("*.bib"):
         stale.unlink()
+    for name, content in expected.items():
+        atomic_write_text(output_dir / name, content)
+    return output_dir
+
+
+def _hydrated_manuscript(variables: Mapping[str, object], project_root: Path) -> dict[str, str]:
+    source_dir = project_root / "docs" / "manuscript"
+    if not source_dir.is_dir():
+        source_dir = project_root / "manuscript"
+    if not source_dir.is_dir():
+        raise ValueError("manuscript source directory is missing")
+    excluded = {"AGENTS.md", "MANUSCRIPT_STATUS.md", "README.md", "SYNTAX.md"}
     token_pattern = re.compile(r"\{\{([A-Z][A-Z0-9_]*)\}\}")
     replacements = {key: str(value) for key, value in variables.items()}
-    for manuscript_file in sorted(source_dir.glob("*.md")):
-        if manuscript_file.name in excluded:
+    result = {}
+    for source in sorted(source_dir.iterdir()):
+        if source.name in excluded or source.suffix not in {".md", ".bib"} and source.name != "config.yaml":
             continue
-        text = manuscript_file.read_text(encoding="utf-8")
+        text = source.read_text(encoding="utf-8")
         hydrated = token_pattern.sub(lambda match: replacements.get(match.group(1), match.group(0)), text)
-        atomic_write_text(output_dir / manuscript_file.name, hydrated)
-    for auxiliary in ("config.yaml", "preamble.md"):
-        source = source_dir / auxiliary
-        if source.is_file():
-            shutil.copy2(source, output_dir / auxiliary)
-    for bibliography in source_dir.glob("*.bib"):
-        shutil.copy2(bibliography, output_dir / bibliography.name)
-    return output_dir
+        unresolved = token_pattern.findall(hydrated)
+        if unresolved:
+            raise ValueError(f"unresolved manuscript variables in {source.name}: {sorted(set(unresolved))}")
+        result[source.name] = hydrated
+    if not result:
+        raise ValueError("manuscript source is empty")
+    return result
+
+
+def validate_manuscript_delivery(project_root: Path, output_root: Path) -> None:
+    """Compare delivered Markdown and auxiliaries with current source/variables."""
+    variables = generate_variables()
+    try:
+        saved = json.loads((output_root / "data" / "manuscript_variables.json").read_text())
+        agrees = json.dumps(saved, sort_keys=True, allow_nan=False) == json.dumps(variables, sort_keys=True, allow_nan=False)
+    except RecursionError as exc:
+        raise ValueError("delivered manuscript variables exceed supported JSON nesting") from exc
+    if not agrees:
+        raise ValueError("delivered manuscript variables disagree with current source")
+    expected = _hydrated_manuscript(variables, project_root)
+    manuscript = output_root / "manuscript"
+    excluded = {"AGENTS.md", "MANUSCRIPT_STATUS.md", "README.md", "SYNTAX.md"}
+    delivered = {path.name for path in manuscript.iterdir()
+                 if path.name not in excluded and (path.suffix in {".md", ".bib"} or path.name == "config.yaml")}
+    if delivered != set(expected):
+        raise ValueError("delivered manuscript file set disagrees with current source")
+    for name, content in expected.items():
+        if (manuscript / name).read_text(encoding="utf-8") != content:
+            raise ValueError(f"delivered manuscript is stale or altered: {name}")

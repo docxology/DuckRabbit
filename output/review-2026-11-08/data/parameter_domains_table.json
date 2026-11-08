@@ -1,0 +1,63 @@
+{
+  "body": "| PixelDimension | pixels | 8\u20134096 | image/video width and height |\n| GrayscaleLevels | levels | 2\u2013256 | representable grayscale levels |\n| QuantizationLevels | levels | 2\u2013256 | output quantization buckets |\n| FrequencyHz | Hz | > 0 and finite | oscillator and harmonic frequencies |\n| SampleRate | samples/s | 1,000\u2013384,000 | audio sampling clock |\n| FrameRate | frames/s | 1\u2013240 | video presentation clock |\n| SyncOffsetMs | ms | \u221210,000\u201310,000 | audio relative to video |\n| SpatialOffset | normalized | \u22121\u20131 | declared crossmodal spatial discrepancy |",
+  "caption": "Typed domains are validation contracts, not estimates of perceptual sensitivity.",
+  "headers": [
+    "Type",
+    "Unit",
+    "Validated domain",
+    "Role"
+  ],
+  "label": "tbl:parameters",
+  "records": [
+    {
+      "domain": "8\u20134096",
+      "role": "image/video width and height",
+      "type": "PixelDimension",
+      "unit": "pixels"
+    },
+    {
+      "domain": "2\u2013256",
+      "role": "representable grayscale levels",
+      "type": "GrayscaleLevels",
+      "unit": "levels"
+    },
+    {
+      "domain": "2\u2013256",
+      "role": "output quantization buckets",
+      "type": "QuantizationLevels",
+      "unit": "levels"
+    },
+    {
+      "domain": "> 0 and finite",
+      "role": "oscillator and harmonic frequencies",
+      "type": "FrequencyHz",
+      "unit": "Hz"
+    },
+    {
+      "domain": "1,000\u2013384,000",
+      "role": "audio sampling clock",
+      "type": "SampleRate",
+      "unit": "samples/s"
+    },
+    {
+      "domain": "1\u2013240",
+      "role": "video presentation clock",
+      "type": "FrameRate",
+      "unit": "frames/s"
+    },
+    {
+      "domain": "\u221210,000\u201310,000",
+      "role": "audio relative to video",
+      "type": "SyncOffsetMs",
+      "unit": "ms"
+    },
+    {
+      "domain": "\u22121\u20131",
+      "role": "declared crossmodal spatial discrepancy",
+      "type": "SpatialOffset",
+      "unit": "normalized"
+    }
+  ],
+  "schema_version": "duckrabbit/table/v1",
+  "title": "Typed parameter domains and units"
+}

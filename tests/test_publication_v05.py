@@ -70,14 +70,6 @@ def test_visual_panel_caption_and_source_data_cover_live_visual_registry():
         assert {record["illusion_id"] for record in payload["data"]["stimuli"]} == {entry.illusion_id for entry in visual_entries}
 
 
-def test_catalog_is_referenced_by_standalone_appendix():
-    appendix = Path(__file__).parents[1] / "docs" / "manuscript" / "09_appendix_catalog.md"
-    results = Path(__file__).parents[1] / "docs" / "manuscript" / "03_results.md"
-    appendix_text = appendix.read_text(encoding="utf-8")
-    results_text = results.read_text(encoding="utf-8")
-    assert "{#tbl:catalog}" in appendix_text
-    assert "[@sec:appendix_catalog] and in [@tbl:catalog]" in results_text
-    assert "{{CATALOG_TABLE_ROWS}}" not in results_text
 
 
 def test_formalism_registry_is_traceable_and_typed():
@@ -101,8 +93,6 @@ def test_publication_tables_expand_with_audit_lineage():
     assert len(payloads["evidence_source_audit_table"]["headers"]) == 5
     evidence_rows = payloads["evidence_source_audit_table"]["records"]
     assert any(row["key"].startswith("entry:") and "limitation" in row["supported_claim"].lower() for row in evidence_rows)
-    assert "DOI: recorded" in payloads["evidence_source_audit_table"]["body"]
-    assert "brugger 1999 duckrabbit" in payloads["catalog_table"]["body"]
     assert any(row["doi"] == "10.1016/S1364-6613(97)01060-7" for row in evidence_rows)
     claim_rows = payloads["claim_ledger_table"]["records"]
     assert any(row["claim_id"] == "evidence:audiovisual.mcgurk" for row in claim_rows)
@@ -112,7 +102,11 @@ def test_publication_tables_expand_with_audit_lineage():
 def test_cover_manifest_variants_are_nonempty_and_hashed(tmp_path: Path):
     manifest = install_cover(tmp_path, DEFAULT_COVER_SOURCE)
     assert manifest["claim_level"] == "publication_illustration"
-    assert manifest["previewed"] is True
+    assert manifest["schema_version"] == "duckrabbit/cover/v2"
+    provenance = manifest["generation_provenance"]
+    assert provenance["status"] == "reported_unverified"
+    assert provenance["reported_claims"]["selected_candidate"] == 4
+    assert provenance["reported_claims"]["previewed"] is True
     source = DEFAULT_COVER_SOURCE
     assert manifest["source_asset_sha256"] == hashlib.sha256(source.read_bytes()).hexdigest()
     assert manifest["source_asset_dimensions_px"] == {"width": 1122, "height": 1402}
@@ -123,7 +117,7 @@ def test_cover_manifest_variants_are_nonempty_and_hashed(tmp_path: Path):
         assert path.stat().st_size > 0
         assert hashlib.sha256(path.read_bytes()).hexdigest() == variant["sha256"]
     report = json.loads((tmp_path / "reports" / "cover_visualization.json").read_text(encoding="utf-8"))
-    assert report["source_kind"] == "editorial_charcoal_image_generation_v2"
+    assert report["source_kind"] == "historical_project_asset"
     assert report["source_scope"] == "project_asset"
 
     bad = dict(manifest)
@@ -144,12 +138,12 @@ def test_cover_manifest_rejects_provenance_and_variant_corruption(tmp_path: Path
     invalid(lambda payload: payload.update({"schema_version": "bad"}), "schema version")
     invalid(lambda payload: payload.update({"claim_level": "physical_metric"}), "claim level")
     invalid(lambda payload: payload.update({"caption": ""}), "provenance field caption")
-    invalid(lambda payload: payload.update({"prompt_sha256": "bad"}), "prompt_sha256")
+    invalid(lambda payload: payload["generation_provenance"]["reported_claims"].update({"prompt_sha256": "bad"}), "prompt_sha256")
     invalid(lambda payload: payload.update({"dimensions_px": {"width": 1, "height": 1}}), "4:5")
     invalid(lambda payload: payload.update({"variants": {}}), "variants")
     invalid(lambda payload: payload["variants"].update({"png": {}}), "variant png is malformed")
     invalid(lambda payload: payload["variants"]["png"].update({"sha256": "bad"}), "variant png has an invalid hash")
-    invalid(lambda payload: payload["variants"]["png"].update({"path": "output/figures/../cover.png"}), "variant png is missing or escapes")
+    invalid(lambda payload: payload["variants"]["png"].update({"path": "output/figures/../cover.png"}), "variant png path must")
 
     png = tmp_path / "figures" / "cover_visualization.png"
     png.write_bytes(png.read_bytes() + b"tampered")

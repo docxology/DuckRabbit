@@ -1,0 +1,266 @@
+[
+  {
+    "python": "3.11",
+    "package": "coverage",
+    "version": "7.13.4",
+    "filename": "coverage-7.13.4-cp311-cp311-macosx_11_0_arm64.whl",
+    "sha256": "19bc3c88078789f8ef36acb014d7241961dbf883fd2533d18cb1e7a5b4e28b11",
+    "bytes": 219783
+  },
+  {
+    "python": "3.11",
+    "package": "iniconfig",
+    "version": "2.3.0",
+    "filename": "iniconfig-2.3.0-py3-none-any.whl",
+    "sha256": "f631c04d2c48c52b84d0d0549c99ff3859c98df65b3101406327ecc7d53fbf12",
+    "bytes": 7484
+  },
+  {
+    "python": "3.11",
+    "package": "numpy",
+    "version": "2.4.2",
+    "filename": "numpy-2.4.2-cp311-cp311-macosx_11_0_arm64.whl",
+    "sha256": "7edc794af8b36ca37ef5fcb5e0d128c7e0595c7b96a2318d1badb6fcd8ee86b1",
+    "bytes": 14965467
+  },
+  {
+    "python": "3.11",
+    "package": "packaging",
+    "version": "26.0",
+    "filename": "packaging-26.0-py3-none-any.whl",
+    "sha256": "b36f1fef9334a5588b4166f8bcd26a14e521f2b55e6b9de3aaa80d3ff7a37529",
+    "bytes": 74366
+  },
+  {
+    "python": "3.11",
+    "package": "pillow",
+    "version": "13.0.0",
+    "filename": "pillow-13.0.0-cp311-cp311-macosx_11_0_arm64.whl",
+    "sha256": "37290fbef0c73e2d51d594eb78fded7dc7170d1c3ad0a890269e6fd8c8c4e061",
+    "bytes": 4856298
+  },
+  {
+    "python": "3.11",
+    "package": "pluggy",
+    "version": "1.6.0",
+    "filename": "pluggy-1.6.0-py3-none-any.whl",
+    "sha256": "e920276dd6813095e9377c0bc5566d94c932c33b27a3e3945d8389c374dd4746",
+    "bytes": 20538
+  },
+  {
+    "python": "3.11",
+    "package": "pygments",
+    "version": "2.21.0",
+    "filename": "pygments-2.21.0-py3-none-any.whl",
+    "sha256": "2363c69b61c4a97c838da3b130dcd6468f4848992b21a82f2a63ec34377137d9",
+    "bytes": 1250147
+  },
+  {
+    "python": "3.11",
+    "package": "pytest",
+    "version": "9.2.0",
+    "filename": "pytest-9.2.0-py3-none-any.whl",
+    "sha256": "07acdcf88ec174f907dc01af70bf52d49b014bbab03faeeade31c96b18c2e588",
+    "bytes": 411776
+  },
+  {
+    "python": "3.11",
+    "package": "pytest-cov",
+    "version": "7.0.0",
+    "filename": "pytest_cov-7.0.0-py3-none-any.whl",
+    "sha256": "3b8e9558b16cc1479da72058bdecf8073661c7f57f7d3c5f22a1c23507f2d861",
+    "bytes": 22424
+  },
+  {
+    "python": "3.11",
+    "package": "pyyaml",
+    "version": "6.0.3",
+    "filename": "pyyaml-6.0.3-cp311-cp311-macosx_11_0_arm64.whl",
+    "sha256": "652cb6edd41e718550aad172851962662ff2681490a8a711af6a4d288dd96824",
+    "bytes": 175577
+  },
+  {
+    "python": "3.11",
+    "package": "ruff",
+    "version": "0.15.21",
+    "filename": "ruff-0.15.21-py3-none-macosx_11_0_arm64.whl",
+    "sha256": "e6312e41bc96791299614995ea3a977c5857c3b5662b1ecef6755b02b87cb646",
+    "bytes": 10595437
+  },
+  {
+    "python": "3.12",
+    "package": "coverage",
+    "version": "7.13.4",
+    "filename": "coverage-7.13.4-cp312-cp312-macosx_11_0_arm64.whl",
+    "sha256": "40aa8808140e55dc022b15d8aa7f651b6b3d68b365ea0398f1441e0b04d859c3",
+    "bytes": 219810
+  },
+  {
+    "python": "3.12",
+    "package": "iniconfig",
+    "version": "2.3.0",
+    "filename": "iniconfig-2.3.0-py3-none-any.whl",
+    "sha256": "f631c04d2c48c52b84d0d0549c99ff3859c98df65b3101406327ecc7d53fbf12",
+    "bytes": 7484
+  },
+  {
+    "python": "3.12",
+    "package": "numpy",
+    "version": "2.4.2",
+    "filename": "numpy-2.4.2-cp312-cp312-macosx_11_0_arm64.whl",
+    "sha256": "40397bda92382fcec844066efb11f13e1c9a3e2a8e8f318fb72ed8b6db9f60f1",
+    "bytes": 14693571
+  },
+  {
+    "python": "3.12",
+    "package": "packaging",
+    "version": "26.0",
+    "filename": "packaging-26.0-py3-none-any.whl",
+    "sha256": "b36f1fef9334a5588b4166f8bcd26a14e521f2b55e6b9de3aaa80d3ff7a37529",
+    "bytes": 74366
+  },
+  {
+    "python": "3.12",
+    "package": "pillow",
+    "version": "13.0.0",
+    "filename": "pillow-13.0.0-cp312-cp312-macosx_11_0_arm64.whl",
+    "sha256": "fc481f742ccda20e9ed760b8f978dff50f2a4e9bc253ac167fb0a05b0783ef52",
+    "bytes": 4852329
+  },
+  {
+    "python": "3.12",
+    "package": "pluggy",
+    "version": "1.6.0",
+    "filename": "pluggy-1.6.0-py3-none-any.whl",
+    "sha256": "e920276dd6813095e9377c0bc5566d94c932c33b27a3e3945d8389c374dd4746",
+    "bytes": 20538
+  },
+  {
+    "python": "3.12",
+    "package": "pygments",
+    "version": "2.21.0",
+    "filename": "pygments-2.21.0-py3-none-any.whl",
+    "sha256": "2363c69b61c4a97c838da3b130dcd6468f4848992b21a82f2a63ec34377137d9",
+    "bytes": 1250147
+  },
+  {
+    "python": "3.12",
+    "package": "pytest",
+    "version": "9.2.0",
+    "filename": "pytest-9.2.0-py3-none-any.whl",
+    "sha256": "07acdcf88ec174f907dc01af70bf52d49b014bbab03faeeade31c96b18c2e588",
+    "bytes": 411776
+  },
+  {
+    "python": "3.12",
+    "package": "pytest-cov",
+    "version": "7.0.0",
+    "filename": "pytest_cov-7.0.0-py3-none-any.whl",
+    "sha256": "3b8e9558b16cc1479da72058bdecf8073661c7f57f7d3c5f22a1c23507f2d861",
+    "bytes": 22424
+  },
+  {
+    "python": "3.12",
+    "package": "pyyaml",
+    "version": "6.0.3",
+    "filename": "pyyaml-6.0.3-cp312-cp312-macosx_11_0_arm64.whl",
+    "sha256": "fc09d0aa354569bc501d4e787133afc08552722d3ab34836a80547331bb5d4a0",
+    "bytes": 173973
+  },
+  {
+    "python": "3.12",
+    "package": "ruff",
+    "version": "0.15.21",
+    "filename": "ruff-0.15.21-py3-none-macosx_11_0_arm64.whl",
+    "sha256": "e6312e41bc96791299614995ea3a977c5857c3b5662b1ecef6755b02b87cb646",
+    "bytes": 10595437
+  },
+  {
+    "python": "3.14",
+    "package": "coverage",
+    "version": "7.13.4",
+    "filename": "coverage-7.13.4-cp314-cp314-macosx_11_0_arm64.whl",
+    "sha256": "29e3220258d682b6226a9b0925bc563ed9a1ebcff3cad30f043eceea7eaf2689",
+    "bytes": 219855
+  },
+  {
+    "python": "3.14",
+    "package": "iniconfig",
+    "version": "2.3.0",
+    "filename": "iniconfig-2.3.0-py3-none-any.whl",
+    "sha256": "f631c04d2c48c52b84d0d0549c99ff3859c98df65b3101406327ecc7d53fbf12",
+    "bytes": 7484
+  },
+  {
+    "python": "3.14",
+    "package": "numpy",
+    "version": "2.4.2",
+    "filename": "numpy-2.4.2-cp314-cp314-macosx_11_0_arm64.whl",
+    "sha256": "d1240d50adff70c2a88217698ca844723068533f3f5c5fa6ee2e3220e3bdb000",
+    "bytes": 14698770
+  },
+  {
+    "python": "3.14",
+    "package": "packaging",
+    "version": "26.0",
+    "filename": "packaging-26.0-py3-none-any.whl",
+    "sha256": "b36f1fef9334a5588b4166f8bcd26a14e521f2b55e6b9de3aaa80d3ff7a37529",
+    "bytes": 74366
+  },
+  {
+    "python": "3.14",
+    "package": "pillow",
+    "version": "13.0.0",
+    "filename": "pillow-13.0.0-cp314-cp314-macosx_11_0_arm64.whl",
+    "sha256": "d9b0a2bee3f3e03e9f29057aedb807dbf1e1d96ee1b9d0f422d9db6c8583271d",
+    "bytes": 4852269
+  },
+  {
+    "python": "3.14",
+    "package": "pluggy",
+    "version": "1.6.0",
+    "filename": "pluggy-1.6.0-py3-none-any.whl",
+    "sha256": "e920276dd6813095e9377c0bc5566d94c932c33b27a3e3945d8389c374dd4746",
+    "bytes": 20538
+  },
+  {
+    "python": "3.14",
+    "package": "pygments",
+    "version": "2.21.0",
+    "filename": "pygments-2.21.0-py3-none-any.whl",
+    "sha256": "2363c69b61c4a97c838da3b130dcd6468f4848992b21a82f2a63ec34377137d9",
+    "bytes": 1250147
+  },
+  {
+    "python": "3.14",
+    "package": "pytest",
+    "version": "9.2.0",
+    "filename": "pytest-9.2.0-py3-none-any.whl",
+    "sha256": "07acdcf88ec174f907dc01af70bf52d49b014bbab03faeeade31c96b18c2e588",
+    "bytes": 411776
+  },
+  {
+    "python": "3.14",
+    "package": "pytest-cov",
+    "version": "7.0.0",
+    "filename": "pytest_cov-7.0.0-py3-none-any.whl",
+    "sha256": "3b8e9558b16cc1479da72058bdecf8073661c7f57f7d3c5f22a1c23507f2d861",
+    "bytes": 22424
+  },
+  {
+    "python": "3.14",
+    "package": "pyyaml",
+    "version": "6.0.3",
+    "filename": "pyyaml-6.0.3-cp314-cp314-macosx_11_0_arm64.whl",
+    "sha256": "34d5fcd24b8445fadc33f9cf348c1047101756fd760b4dacb5c3e99755703310",
+    "bytes": 173809
+  },
+  {
+    "python": "3.14",
+    "package": "ruff",
+    "version": "0.15.21",
+    "filename": "ruff-0.15.21-py3-none-macosx_11_0_arm64.whl",
+    "sha256": "e6312e41bc96791299614995ea3a977c5857c3b5662b1ecef6755b02b87cb646",
+    "bytes": 10595437
+  }
+]

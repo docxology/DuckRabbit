@@ -4,13 +4,12 @@ This backlog is intentionally narrower than the catalog. DuckRabbit is not an
 exhaustive ontology of all known illusions; it is a typed, evidence-bounded
 stimulus-construction platform.
 
-The `0.5.0` version stamped in `pyproject.toml`, `CITATION.cff`, `codemeta.json`,
-and `.zenodo.json` is a published, citable release. Public repository:
-https://github.com/docxology/DuckRabbit (tag `v0.5.0`). Concept DOI:
-`10.5281/zenodo.21419693`; version DOI: `10.5281/zenodo.21419694`.
-"Completed through v0.5.0" below describes work merged into that release;
-"External publication actions" (now complete for v0.5.0) lists the handoff
-steps to repeat for the next version bump.
+The current `0.6.0` metadata is an unreleased candidate with DOI forthcoming.
+The immutable public `v0.5.0` archive remains at
+https://github.com/docxology/DuckRabbit/releases/tag/v0.5.0 with concept DOI
+`10.5281/zenodo.21419693` and version DOI `10.5281/zenodo.21419694`.
+Neither identifier certifies current development source. Repeat the external
+publication sequence only after fresh gates and required admission succeed.
 
 ## Completed through v0.5.0
 
@@ -54,12 +53,10 @@ The follow-up in `docs/performance-review-2026-10-17.md` records source-bound
 Python 3.15 profiling, corrected shared-clock/spectral figures, standalone
 manuscript guidance, and 540 passing tests on each of four Python versions.
 
-- Extend existing typed metric units and formal traceability with explicit
-  color-space declarations and window/computation hashes on every metric
-  record, rather than only the figure sidecars and named computation versions.
-- Expand the synthetic observer with feature ablations, metamorphic tests,
-  zero-difference baselines, model-parameter sensitivity, and explicit model
-  uncertainty without presenting it as human psychophysics.
+- Implemented in the 0.6.0 candidate: metric color/transfer/window provenance
+  and computation-definition hashes; synthetic ablations, zero-difference
+  controls and finite model-parameter sensitivity. These are not human data or
+  empirical uncertainty estimates. See the changelog for contract changes.
 - Add optional deterministic SVG atlas companions with fidelity and
   accessibility checks; frequency-labelled audio bands are now implemented.
 - Extend the methods/software paper with additional empirical literature and
@@ -102,11 +99,14 @@ universal perceptual claims, or estimates of observer sensitivity.
 A release is ready only when all metadata names Daniel Ari Friedman with ORCID
 `0000-0001-6232-9096`, the DOI is either explicitly forthcoming (pre-release)
 or a real minted Zenodo DOI (published), the live catalog is 17 implemented /
-0 planned / 1 input-required, all 15 figures and 10 tables regenerate
-byte-identically, scholarship statuses are independently auditable, captions
-and claim lineage are complete, and package plus sibling-template checks pass
-without participant data or universal perceptual claims. v0.5.0 meets this
-gate and is published under DOI `10.5281/zenodo.21419693`.
+0 planned / 1 input-required, all 15 figures and 10 tables regenerate and match
+their recorded code/font/Pillow/NumPy rendering identity, scholarship statuses
+are independently auditable, captions and claim lineage are complete, and
+package plus declared renderer checks pass without participant data or universal
+perceptual claims. Cross-environment byte identity is not presumed. Historical
+v0.5.0 records do not establish current-source identity or asset equivalence;
+see `docs/audit-2026-11-08.md` and `output/review-2026-11-08/` for current evidence
+and the unresolved external-publication blockers.
 
 ## Agent-ergonomics pass (2026-08-31)
 

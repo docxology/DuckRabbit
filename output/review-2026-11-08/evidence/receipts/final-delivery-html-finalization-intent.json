@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "owner": {
+    "thread": "wfz-duckrabbit-release",
+    "run": "final-delivery-html-finalization",
+    "provider": "openai-codex",
+    "model": "gpt-6.1-sol"
+  },
+  "execution": "canonical",
+  "phase": "prelaunch",
+  "effects": [
+    "repository-write",
+    "evidence-write"
+  ],
+  "resources": [
+    "repository:docxology/duckrabbit"
+  ],
+  "source": {
+    "kind": "repository",
+    "identity": "docxology/DuckRabbit",
+    "revision": "695b9b47d7ddc4621ca5ab3933fa8d8b29787334",
+    "dirty": true
+  },
+  "inputs": [
+    {
+      "name": "pyproject.toml",
+      "sha256": "c240adaa9ddd0fd1e68295b0d35d634740781faefb84355ac025291713a83038",
+      "size": 1435
+    },
+    {
+      "name": "uv.lock",
+      "sha256": "e70f5cb83eb13d8258ade08a99d00f5ccfae40fb070d78a9f78dd77f2479e86c",
+      "size": 121804
+    }
+  ],
+  "runtime": {
+    "python": "3.15.2",
+    "prefix": "/Users/friedman/Documents/Git/gitvault/Local/runtimes/internal-management-20261105T191600Z/venv",
+    "base_prefix": "/Users/friedman/Documents/Git/gitvault/Local/runtimes/internal-management-20261105T191600Z/python/cpython-3.15.2-macos-aarch64-none",
+    "cache": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/cache",
+    "tmp": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/tmp"
+  },
+  "output": {
+    "name": "wfz-duckrabbit-final-delivery-html-finalization",
+    "external": false,
+    "private": true
+  },
+  "duration": {
+    "lower_seconds": 1,
+    "upper_seconds": 180,
+    "uncertainty": "bounded"
+  },
+  "checkpoint": {
+    "checkpointing": false,
+    "resumable": false,
+    "cancellation": true
+  },
+  "children": [],
+  "safe_release": "Wait for bounded child exit and preserve all source and proof outputs.",
+  "dependencies": []
+}

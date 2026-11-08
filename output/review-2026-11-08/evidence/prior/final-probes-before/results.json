@@ -1,0 +1,26 @@
+{
+  "extra_author": "passed",
+  "unrelated_webp": "accepted unrelated webp",
+  "layout": {
+    "before": [
+      0.015625
+    ],
+    "decoded": [
+      0.0156250037252903
+    ],
+    "summary_equal": false
+  },
+  "huge_npz_rate": {
+    "exception": "OverflowError",
+    "error": "int too large to convert to float"
+  },
+  "huge_manifest_number": {
+    "exception": "OverflowError",
+    "error": "int too large to convert to float"
+  },
+  "huge_typed_rate": {
+    "exception": "ParameterValidationError",
+    "error": "sample rate must be an integer in [1000, 384000], got 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "typed_replay": "accepted bool/number substitutions"
+}

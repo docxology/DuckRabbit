@@ -1,0 +1,87 @@
+{
+  "video_frames": [
+    {
+      "frame": 0,
+      "seconds": "0.000000",
+      "mean_decoded_code_value": 20.228790283203125,
+      "size": [
+        256,
+        256,
+        3
+      ]
+    },
+    {
+      "frame": 1,
+      "seconds": "0.083333",
+      "mean_decoded_code_value": 20.228790283203125,
+      "size": [
+        256,
+        256,
+        3
+      ]
+    },
+    {
+      "frame": 2,
+      "seconds": "0.166667",
+      "mean_decoded_code_value": 20.228790283203125,
+      "size": [
+        256,
+        256,
+        3
+      ]
+    },
+    {
+      "frame": 3,
+      "seconds": "0.250000",
+      "mean_decoded_code_value": 255.0,
+      "size": [
+        256,
+        256,
+        3
+      ]
+    },
+    {
+      "frame": 4,
+      "seconds": "0.333333",
+      "mean_decoded_code_value": 20.228790283203125,
+      "size": [
+        256,
+        256,
+        3
+      ]
+    },
+    {
+      "frame": 5,
+      "seconds": "0.416667",
+      "mean_decoded_code_value": 20.228790283203125,
+      "size": [
+        256,
+        256,
+        3
+      ]
+    }
+  ],
+  "stream_types": [
+    "video",
+    "audio"
+  ],
+  "audio": {
+    "rate": 8000,
+    "frames": 4000,
+    "channels": 1,
+    "pcm_width_bytes": 2,
+    "rms": 0.14741702977139848,
+    "peak": 0.5573290200506608,
+    "strongest_fft_hz": [
+      440.0,
+      660.0,
+      442.0,
+      438.0,
+      880.0,
+      1100.0,
+      658.0,
+      662.0
+    ]
+  },
+  "limitations": "Decoded pixel/code-value and waveform/spectrum evidence only; not hearing, perception, playback calibration, or participant evidence."
+}

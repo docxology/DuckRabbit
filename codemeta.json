@@ -14,13 +14,11 @@
       }
     }
   ],
-  "dateModified": "2026-07-15",
+  "dateModified": "2026-11-08",
   "description": "Typed, deterministic research software for generating, measuring, and auditing visual, auditory, temporal, and audio-visual illusion stimuli; it does not provide human observer evidence.",
   "applicationCategory": "Scientific software",
   "codeRepository": "https://github.com/docxology/DuckRabbit",
   "url": "https://github.com/docxology/DuckRabbit",
-  "identifier": "https://doi.org/10.5281/zenodo.21419694",
-  "@id": "https://doi.org/10.5281/zenodo.21419693",
   "keywords": [
     "perceptual illusions",
     "cognitive taxonomy",
@@ -34,6 +32,6 @@
   "license": "https://spdx.org/licenses/MIT.html",
   "name": "DuckRabbit: Typed Multimodal Illusion Generator",
   "programmingLanguage": "Python",
-  "softwareVersion": "0.5.0",
-  "version": "0.5.0"
+  "softwareVersion": "0.6.0",
+  "version": "0.6.0"
 }

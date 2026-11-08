@@ -1,0 +1,8 @@
+| Failure mode | Control | Expected result |
+|------------------------|------------------------|------------------------|
+| altered encoded file | recompute encoded SHA-256 | fail |
+| stale canonical digest | recompute canonical little-endian float32 digest | fail |
+| incorrect decoded dimensions | compare inspection facts with manifest summary | fail |
+| stream timing mismatch | compare `\breakseq{duration/timebase}`{=latex} and declared sync offset | fail |
+| unsupported backend | capability probe before encoding | explicit capability error |
+| conflicting format requests | reject `\breakseq{format\_name/output\_spec}`{=latex} disagreement | parameter error |

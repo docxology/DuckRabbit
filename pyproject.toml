@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools==84.2.1"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "duckrabbit"
-version = "0.5.0"
+version = "0.6.0"
 description = "Typed, deterministic multimodal illusion stimuli with scholarly evidence and publication outputs"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -12,10 +12,8 @@ authors = [{name = "Daniel Ari Friedman"}]
 license = "MIT"
 dependencies = [
     "numpy>=1.24.0",
-    # 13.0.0 is the first Pillow release with no open advisory. Do not lower this floor.
+    # Security baseline; re-audit dependency advisories before each release.
     "pillow>=13.0.0",
-    "typing-extensions>=4.7.0; python_version < '3.11'",
-    "tomli>=2.0.1; python_version < '3.11'",
 ]
 
 [project.optional-dependencies]

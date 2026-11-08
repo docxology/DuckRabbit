@@ -1,0 +1,601 @@
+[
+  {
+    "name": "lock-check",
+    "argv": [
+      "uv",
+      "lock",
+      "--check",
+      "--offline"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.017590999603271484
+  },
+  {
+    "name": "locked-dev-sync",
+    "argv": [
+      "uv",
+      "sync",
+      "--locked",
+      "--offline",
+      "--extra",
+      "dev",
+      "--find-links",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels",
+      "--no-build-isolation"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.07455015182495117
+  },
+  {
+    "name": "build-backend",
+    "argv": [
+      "uv",
+      "pip",
+      "install",
+      "--offline",
+      "--no-deps",
+      "--python",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/setuptools-84.2.1-py3-none-any.whl"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.2256639003753662
+  },
+  {
+    "name": "editable-install",
+    "argv": [
+      "uv",
+      "pip",
+      "install",
+      "--offline",
+      "--no-deps",
+      "--no-build-isolation",
+      "--python",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-e",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.33861589431762695
+  },
+  {
+    "name": "ruff",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "-m",
+      "ruff",
+      "check",
+      "src",
+      "scripts",
+      "tests"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.03473305702209473
+  },
+  {
+    "name": "build",
+    "argv": [
+      "uv",
+      "build",
+      "--offline",
+      "--no-build-isolation",
+      "--python",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "--out-dir",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/package-integrated"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.7276549339294434
+  },
+  {
+    "name": "publication",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "scripts/generate_publication_outputs.py",
+      "--output-dir",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/current-0.6.0"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 2.6191799640655518
+  },
+  {
+    "name": "manuscript",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "scripts/generate_manuscript_variables.py",
+      "--output-dir",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/current-0.6.0"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.3188309669494629
+  },
+  {
+    "name": "scholarship-offline",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "scripts/validate_scholarship.py"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.1855628490447998
+  },
+  {
+    "name": "release-audit",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "-m",
+      "duckrabbit",
+      "audit",
+      "--output-root",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/current-0.6.0",
+      "--release"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 1.7356770038604736
+  },
+  {
+    "name": "synthetic",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "-m",
+      "duckrabbit",
+      "synthetic-psychophysics",
+      "--output",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/current-0.6.0/data/synthetic_psychophysics_cli.json"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.23850178718566895
+  },
+  {
+    "name": "catalog",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "-m",
+      "duckrabbit",
+      "list",
+      "--json"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.2024087905883789
+  },
+  {
+    "name": "capabilities",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "-m",
+      "duckrabbit",
+      "capabilities"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.19036626815795898
+  },
+  {
+    "name": "generate-image",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "-m",
+      "duckrabbit",
+      "generate",
+      "visual.duck_rabbit",
+      "--output-dir",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media/image",
+      "--format",
+      "png"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.2663612365722656
+  },
+  {
+    "name": "inspect-image",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "-m",
+      "duckrabbit",
+      "inspect",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media/image/visual_duck_rabbit.png"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.23151588439941406
+  },
+  {
+    "name": "verify-image",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "-m",
+      "duckrabbit",
+      "verify",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media/image/visual_duck_rabbit.png.json"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.2546980381011963
+  },
+  {
+    "name": "generate-audio",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "-m",
+      "duckrabbit",
+      "generate",
+      "audio.missing_fundamental",
+      "--output-dir",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media/audio",
+      "--format",
+      "wav"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.20464706420898438
+  },
+  {
+    "name": "inspect-audio",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "-m",
+      "duckrabbit",
+      "inspect",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media/audio/audio_missing_fundamental.wav"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.21859288215637207
+  },
+  {
+    "name": "verify-audio",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "-m",
+      "duckrabbit",
+      "verify",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media/audio/audio_missing_fundamental.wav.json"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.23140287399291992
+  },
+  {
+    "name": "generate-temporal",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "-m",
+      "duckrabbit",
+      "generate",
+      "visual.apparent_motion",
+      "--output-dir",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media/temporal",
+      "--format",
+      "gif"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.28455090522766113
+  },
+  {
+    "name": "inspect-temporal",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "-m",
+      "duckrabbit",
+      "inspect",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media/temporal/visual_apparent_motion.gif"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.24140214920043945
+  },
+  {
+    "name": "verify-temporal",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "-m",
+      "duckrabbit",
+      "verify",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media/temporal/visual_apparent_motion.gif.json"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.23668599128723145
+  },
+  {
+    "name": "generate-audiovisual",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "-m",
+      "duckrabbit",
+      "generate",
+      "audiovisual.sound_induced_flash",
+      "--output-dir",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media/audiovisual",
+      "--format",
+      "mp4"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.41102123260498047
+  },
+  {
+    "name": "inspect-audiovisual",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "-m",
+      "duckrabbit",
+      "inspect",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media/audiovisual/audiovisual_sound_induced_flash.mp4"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.23499417304992676
+  },
+  {
+    "name": "verify-audiovisual",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "-m",
+      "duckrabbit",
+      "verify",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media/audiovisual/audiovisual_sound_induced_flash.mp4.json"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.2448420524597168
+  },
+  {
+    "name": "decode-video-frames",
+    "argv": [
+      "ffmpeg",
+      "-hide_banner",
+      "-loglevel",
+      "error",
+      "-i",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media/audiovisual/audiovisual_sound_induced_flash.mp4",
+      "-vf",
+      "fps=4",
+      "-frames:v",
+      "8",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/video-frames/frame-%02d.png"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.029337167739868164
+  },
+  {
+    "name": "generate-canonical",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "-m",
+      "duckrabbit",
+      "generate",
+      "visual.duck_rabbit",
+      "--output-dir",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media/canonical",
+      "--format",
+      "npz"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.23002123832702637
+  },
+  {
+    "name": "inspect-canonical",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "-m",
+      "duckrabbit",
+      "inspect",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media/canonical/visual_duck_rabbit.npz"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.20611786842346191
+  },
+  {
+    "name": "verify-canonical",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "-m",
+      "duckrabbit",
+      "verify",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media/canonical/visual_duck_rabbit.npz.json"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.22839689254760742
+  },
+  {
+    "name": "wheel-venv",
+    "argv": [
+      "uv",
+      "venv",
+      "--offline",
+      "--python",
+      "/Users/friedman/.local/share/uv/python/cpython-3.11.18-macos-aarch64-none/bin/python3.11",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel311-integrated"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.010853052139282227
+  },
+  {
+    "name": "wheel-install",
+    "argv": [
+      "uv",
+      "pip",
+      "install",
+      "--offline",
+      "--no-deps",
+      "--python",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel311-integrated/bin/python",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/package-integrated/duckrabbit-0.6.0-py3-none-any.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/numpy-2.4.2-cp311-cp311-macosx_11_0_arm64.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/pillow-13.0.0-cp311-cp311-macosx_11_0_arm64.whl"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel-smoke-integrated",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.7496929168701172
+  },
+  {
+    "name": "wheel-dependency-check",
+    "argv": [
+      "uv",
+      "pip",
+      "check",
+      "--python",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel311-integrated/bin/python"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel-smoke-integrated",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.009881019592285156
+  },
+  {
+    "name": "wheel-api",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel311-integrated/bin/python",
+      "-I",
+      "-B",
+      "-c",
+      "import duckrabbit,sys,json;from pathlib import Path;from duckrabbit.evidence import load_evidence_matrix;from duckrabbit.canonical import canonical_digest;assert Path(duckrabbit.__file__).resolve().is_relative_to(Path(sys.prefix));a=duckrabbit.generate('visual.duck_rabbit');s,e=load_evidence_matrix();print(json.dumps({'version':duckrabbit.__version__,'python':sys.version,'module':duckrabbit.__file__,'canonical_digest':canonical_digest(a),'sources':len(s),'entries':len(e)}))"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel-smoke-integrated",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.8822181224822998
+  },
+  {
+    "name": "wheel-catalog",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel311-integrated/bin/python",
+      "-I",
+      "-B",
+      "-m",
+      "duckrabbit",
+      "list",
+      "--json"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel-smoke-integrated",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.20841598510742188
+  },
+  {
+    "name": "wheel-generate",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel311-integrated/bin/python",
+      "-I",
+      "-B",
+      "-m",
+      "duckrabbit",
+      "generate",
+      "visual.duck_rabbit",
+      "--output-dir",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel-smoke-integrated/media",
+      "--format",
+      "npz"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel-smoke-integrated",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.2878551483154297
+  },
+  {
+    "name": "wheel-verify",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel311-integrated/bin/python",
+      "-I",
+      "-B",
+      "-m",
+      "duckrabbit",
+      "verify",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel-smoke-integrated/media/visual_duck_rabbit.npz.json"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel-smoke-integrated",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.25484299659729004
+  },
+  {
+    "name": "wheel-synthetic",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel311-integrated/bin/python",
+      "-I",
+      "-B",
+      "-m",
+      "duckrabbit",
+      "synthetic-psychophysics",
+      "--output",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel-smoke-integrated/synthetic.json"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel-smoke-integrated",
+    "returncode": 0,
+    "error": null,
+    "seconds": 0.25062012672424316
+  }
+]

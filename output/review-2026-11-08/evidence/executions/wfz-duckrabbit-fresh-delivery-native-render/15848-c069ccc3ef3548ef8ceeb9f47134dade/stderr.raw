@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render_candidate_final.py", line 591, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render_candidate_final.py", line 525, in main
+    state["html_overlay"] = finalize_html(output, prior / "project/output/web/assets")
+                            ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/final_html_overlay.py", line 343, in finalize_html
+    licenses = _licenses(source_assets, source_manifest)
+  File "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/final_html_overlay.py", line 98, in _licenses
+    raise ValueError(f"missing license notice: {name}")
+ValueError: missing license notice: reveal.js-5.2.1/dist/theme/fonts/league-gothic/LICENSE

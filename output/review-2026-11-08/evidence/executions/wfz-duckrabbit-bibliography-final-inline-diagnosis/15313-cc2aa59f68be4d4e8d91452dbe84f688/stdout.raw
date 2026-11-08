@@ -1,0 +1,603 @@
+99_references.md complete overlay roundtrip
+FIRST_DIFFERENCE ["root.blocks[4].c[1][1].c[1][0].c", "length", 18, 36]
+--- 
++++ 
+@@ -797,81 +797,69 @@
+                     },
+                     {
+-                      "t": "Span",
+-                      "c": [
+-                        [
+-                          "",
+-                          [],
+-                          []
+-                        ],
+-                        [
+-                          {
+-                            "t": "Str",
+-                            "c": "“One"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Hundred"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Years"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "of"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "an"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Ambiguous"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Figure:"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Happy"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Birthday,"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Duck/Rabbit.”"
+-                          }
+-                        ]
+-                      ]
++                      "t": "Str",
++                      "c": "“One"
++                    },
++                    {
++                      "t": "Space"
++                    },
++                    {
++                      "t": "Str",
++                      "c": "Hundred"
++                    },
++                    {
++                      "t": "Space"
++                    },
++                    {
++                      "t": "Str",
++                      "c": "Years"
++                    },
++                    {
++                      "t": "Space"
++                    },
++                    {
++                      "t": "Str",
++                      "c": "of"
++                    },
++                    {
++                      "t": "Space"
++                    },
++                    {
++                      "t": "Str",
++                      "c": "an"
++                    },
++                    {
++                      "t": "Space"
++                    },
++                    {
++                      "t": "Str",
++                      "c": "Ambiguous"
++                    },
++                    {
++                      "t": "Space"
++                    },
++                    {
++                      "t": "Str",
++                      "c": "Figure:"
++                    },
++                    {
++                      "t": "Space"
++                    },
++                    {
++                      "t": "Str",
++                      "c": "Happy"
++                    },
++                    {
++                      "t": "Space"
++                    },
++                    {
++                      "t": "Str",
++                      "c": "Birthday,"
++                    },
++                    {
++                      "t": "Space"
++                    },
++                    {
++                      "t": "Str",
++                      "c": "Duck/Rabbit.”"
+                     },
+                     {
+@@ -1043,95 +1031,83 @@
+                     },
+                     {
+-                      "t": "Span",
+-                      "c": [
+-                        [
+-                          "",
+-                          [],
+-                          []
+-                        ],
+-                        [
+-                          {
+-                            "t": "Str",
+-                            "c": "“The"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Ventriloquist"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Illusion"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "as"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "a"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Tool"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "to"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Study"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Multisensory"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Processing:"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "An"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Update.”"
+-                          }
+-                        ]
+-                      ]
++                      "t": "Str",
++                      "c": "“The"
++                    },
++                    {
++                      "t": "Space"
++                    },
++                    {
++                      "t": "Str",
++                      "c": "Ventriloquist"
++                    },
++                    {
++                      "t": "Space"
++                    },
++                    {
++                      "t": "Str",
++                      "c": "Illusion"
++                    },
++                    {
++                      "t": "Space"
++                    },
++                    {
++                      "t": "Str",
++                      "c": "as"
++                    },
++                    {
++                      "t": "Space"
++                    },
++                    {
++                      "t": "Str",
++                      "c": "a"
++                    },
++                    {
++                      "t": "Space"
++                    },
++                    {
++                      "t": "Str",
++                      "c": "Tool"
++                    },
++                    {
++                      "t": "Space"
++                    },
++                    {
++                      "t": "Str",
++                      "c": "to"
++                    },
++                    {
++                      "t": "Space"
++                    },
++                    {
++                      "t": "Str",
++                      "c": "Study"
++                    },
++                    {
++                      "t": "Space"
++                    },
++                    {
++                      "t": "Str",
++                      "c": "Multisensory"
++                    },
++                    {
++                      "t": "Space"
++                    },
++                    {
++                      "t": "Str",
++                      "c": "Processing:"
++                    },
++                    {
++                      "t": "Space"
++                    },
++                    {
++                      "t": "Str",
++                      "c": "An"
++                    },
++                    {
++                      "t": "Space"
++                    },
++                    {
++                      "t": "Str",
++                      "c": "Update.”"
+                     },
+                     {
+@@ -1296,284 +1272,272 @@
+                     },
+                     {
+-                      "t": "Span",
+-                      "c": [
+-                        [
+-                          "",
+-                          [],
+-                          []
+-                        ],
+-                        [
+-                          {
+-                            "t": "Str",
+-                            "c": "“An"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Account"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "of"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Some"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Observations"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Made"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "by"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "a"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Young"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Gentleman"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Who"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Was"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Born"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Blind,"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "or"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Lost"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "His"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Sight"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "so"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Early"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "That"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "He"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Had"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "No"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Remembrance"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "of"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Ever"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Having"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Seen,"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "and"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Was"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Couch’d"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "between"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "13"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "and"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "14"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "Years"
+-                          },
+-                          {
+-                            "t": "Space"
+-                          },
+-                          {
+-                            "t": "Str",
+-                            "c": "of"
+-                          },
+-                          {
+-                            "t": "Space"
+

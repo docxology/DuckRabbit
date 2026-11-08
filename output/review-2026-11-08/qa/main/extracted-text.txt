@@ -1,0 +1,3672 @@
+DuckRabbit: Typed Multimodal Illusion
+Generator
+Deterministic visual, auditory, temporal, and audio-visual stimulus construction —
+unreleased 0.6.0 digital review; source 459e77f7fb6d9715
+Daniel Ari Friedman
+Active Inference Institute
+ORCID: 0000-0001-6232-9096
+DOI: forthcoming
+2026-11-07
+
+
+Contents
+1 Abstract 2
+2 Introduction 3
+3 Methodology 4
+3.1 Request and canonical artifact . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+3.2 Typed parameter domains . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+3.3 Canonical serialization and provenance . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+3.4 Encoding and verification . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+3.5 Objective metric definitions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+3.5.1 Synthetic psychophysics boundary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+4 Results 7
+4.1 Generated catalog, metrics, and outputs . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+4.2 Typed domains and delivery profiles . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+4.3 Pipeline and provenance . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+4.4 Visual constructions and parameter sweeps . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+4.5 Temporal and auditory constructions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+4.6 Audiovisual timing and encoding . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+4.7 Objective metric results . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
+4.8 Observer estimands and verification controls . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+4.9 Synthetic psychophysics model diagnostic . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+5 Experimental and Computational Setup 17
+6 Reproducibility and Provenance 18
+6.1 Runtime-performance reproducibility . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18
+6.2 Data availability and software citation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
+7 Scope, Related W ork, and Limitations 20
+7.1 Scope and epistemic boundary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+7.2 Visual families . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+7.3 Auditory families . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
+7.4 Audiovisual and temporal binding families . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
+7.5 From literature to engineering contract . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
+7.6 Limitations and future observer work . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
+8 Publication Atlas, Caption Contract, and Scholarship Audit 23
+8.1 Claim-level visualization . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
+8.2 Scholarship map and lineage . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
+8.3 Formal traceability and objective metrics . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 25
+8.4 Observer-design boundary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
+8.5 Generated audit tables . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
+9 Discussion and Conclusion 54
+9.1 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 54
+10 Appendix A. Complete catalog, source tiers, and evidence and implementation boundaries 55
+10.1 How to read the matrix . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 55
+10.2 Evidence boundary and future expansion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 57
+
+1 Abstract
+DuckRabbit is typed, deterministic research software for constructing reproducible visual, auditory, temporal, and audio-
+visual stimulus families. It is published and citable at the DuckRabbit public GitHub repository and released under the
+MIT License.
+Its basic unit is an immutable request containing an illusion identifier, validated parameters, a seed, and an encoding
+specification. The request yields a canonical artifact, objective media measurements, and a versioned provenance manifest
+before any delivery codec is selected. This separation makes the stimulus a testable computational object while reserving
+claims about perception for controlled observer protocols.
+The release situates its engineering choices within a deliberately broad historical foundation spanning Greek, Ara-
+bic/Islamicate, Chinese, and early-modern work on optics, visual inference, and cross-sensory knowledge, alongside later
+psychophysics and illusion research. These traditions motivate questions about construction, observation, and evidence;
+they are contextual precedents, not evidence that a generated file reproduces an ancient, early-modern, or clinical obser-
+vation.
+Version 0.6.0 contains 17 implemented generators and 18 catalog entries, supported by 36 source records and 18 evidence
+records in a checked-in audit snapshot. The package generates 15 publication figures and 10 machine-derived tables from
+the live registry. It also provides a typed observer-study harness and a transparent synthetic diagnostic: a hand-specified
+feature observer with serialized weights, temperature, analytic calibration, and human_data=false. No participant data
+are bundled; synthetic model output is explicitly nonhuman.
+DuckRabbit verifies physical stimulus properties, media round trips, hashes, timing, and declared provenance. It does
+not infer a universal percept, effect size, or cross-device perceptual equivalence from a generated artifact. Its contribution
+is a reproducibility and epistemic boundary: source-backed family descriptions, deterministic media facts, and future
+observer hypotheses remain different typed records rather than being collapsed into one claim. DuckRabbit is software
+for reproducible stimulus construction and audit, not a claim that a generated file alone produces a universal perceptual
+effect.
+2
+
+2 Introduction
+An illusion stimulus is not the same thing as an illusion report. A stimulus can be physically specified, generated, encoded,
+and inspected without establishing what every observer will see or hear. This distinction is central to reproducible cognitive
+science: the physical manipulation must be auditable, while observer-level effects require a task, calibrated presentation
+conditions, randomization, and data.
+Visual illusion classifications are useful maps rather than exhaustive or universally agreed ontologies [ Gregory, 1997].
+Auditory and audiovisual families add spectral structure, channel separation, temporal coincidence, and spatial alignment.
+The Sound-Induced Flash literature illustrates the boundary particularly clearly: the physical contrast is a flash paired
+with different beep counts, while the perceptual claim requires a listener, timing, and a response task [ Hirst et al. , 2020,
+Shams et al. , 2000].
+DuckRabbit therefore treats an illusion as a typed stimulus-construction problem. Each catalog entry declares modality,
+mechanism, perceptual signature, cognitive process, requirements, evidence status, output kind, and implementation sta-
+tus. The taxonomy is orthogonal and explicitly provisional; it is an engineering index linked to sources, not a replacement
+for domain-specific theory.
+The release also treats the package as research software rather than as an unannotated collection of media files. Repro-
+ducible computational research depends on preserving the code, inputs, environment assumptions, and execution path
+needed to recreate a result [ Sandve et al. , 2013, Wilson et al. , 2014]. The F AIR literature extends that responsibility to
+algorithms, tools, and workflows, while software-citation guidance emphasizes identifying the exact software object and
+version used [ Wilkinson et al. , 2016, Lamprecht et al. , 2020, Smith et al. , 2016]. DuckRabbit applies these principles
+narrowly: it makes the construction pipeline and its generated artifacts citable and inspectable, but it does not treat
+metadata quality as evidence of a perceptual effect.
+The package is organized around three falsifiable engineering hypotheses:
+1. Identical typed requests produce identical canonical arrays and canonical digests.
+2. Encoders and decoders preserve declared media facts within an explicit format-specific tolerance, or verification
+fails.
+3. Parameter manipulations change measurable physical stimulus properties; any observer-level interpretation remains
+a preregistered hypothesis until data exist.
+This boundary has a nineteenth-century scientific lineage. Fechner’s Elemente der Psychophysik formalized the problem
+of relating controlled stimulus differences to measured sensation, while Wheatstone’s binocular-vision experiments made
+the distinction between the physical images delivered to two eyes and the resulting depth interpretation experimentally
+explicit [ Fechner, 1860, Wheatstone, 1838]. Helmholtz’s physiological optics then integrated measurement of the eye,
+visual geometry, and theories of perceptual inference [ Helmholtz, 1867]. DuckRabbit does not reproduce those historical
+experiments; it inherits their methodological lesson that stimulus conditions and observer inferences must be represented
+as distinct objects.
+That lineage has deeper and less geographically narrow roots. Ptolemy’s ancient Optics, Ibn al-Haytham’s medieval
+Arabic optics, and the Mohist Canon’s early Chinese discussions of optics and mechanics show that questions about im-
+age formation, geometry, knowledge, and evidence were developed across multiple intellectual traditions [ Ptolemy, 1996,
+al Haytham , 1989, Schemmel and Boltz , 2022, Dai, 2015]. Early-modern discussions sharpened the distinction between
+a physical presentation and an inferred percept: Kircher documented optical display, Berkeley analyzed learned spatial
+inference, and the Molyneux–Cheselden record made cross-sensory transfer and observer testimony explicit problems
+[Kircher, 1646, Berkeley, 1709, Degenaar and Lokhorst , 2020, Cheselden, 1728]. DuckRabbit cites these sources as histor-
+ical and methodological precedents, not as evidence that its generated files reproduce ancient, early-modern, or clinical
+observations.
+The present catalog contains 18 entries, of which 17 are implemented, 0 are planned, and 1 require external fixtures. This
+status vocabulary makes breadth visible without claiming that a finite package covers all known phenomena.
+3
+
+3 Methodology
+3.1 Request and canonical artifact
+DuckRabbit starts from a typed request
+𝑞 = (𝑖, 𝜃, 𝑠, 𝑒) (1)
+where 𝑖 is an illusion identifier, 𝜃 is an immutable parameter object, 𝑠 is a deterministic seed, and 𝑒 is an optional encoding
+request. A registered generator maps the request to a canonical artifact:
+𝐴 = 𝐺 𝑖(𝜃; 𝑠), 𝐴 ∈ {𝐼, 𝑋, 𝑉 , 𝐴𝑉 } (2)
+The four artifact types are an image frame 𝐼, audio buffer 𝑋, video sequence 𝑉 , and audiovisual timeline 𝐴𝑉 . The
+generator core is independent of Pillow, W A V containers, GIF, MP4, and ffmpeg. Each artifact retains its shape, dtype,
+units, clock, channels, and timing offsets.
+3.2 Typed parameter domains
+Value objects validate finite ranges at construction time. Image parameters include dimensions, color mode, luminance
+bounds, grayscale levels, and quantization levels. Audio parameters include frequency, phase, amplitude, duration, en-
+velope, sample rate, channel count, and PCM depth. Video parameters include dimensions, rational frame rate, frame
+count, and temporal offsets. Audiovisual parameters compose audio and video clocks with declared synchronization and
+spatial discrepancies.
+The canonical sample count and frame timestamps are explicit. For audio duration 𝑇 and sample rate 𝑓𝑠, 𝑁 is rounded
+once at construction. For a video with frame rate 𝑓𝑟, frame index 𝑘 is timestamped on the presentation clock. The
+audio-minus-video sign convention is explicit:
+𝑁 = round(𝑓𝑠𝑇 ), 𝑡 𝑘 = 𝑘/𝑓 𝑟, Δ 𝐴𝑉 = 𝑡 audio − 𝑡video (3)
+The package rejects non-finite values, invalid shapes, out-of-range samples, aliasing frequencies, incompatible channel
+layouts, impossible frame rates, and contradictory encoding requests.
+3.3 Canonical serialization and provenance
+Canonical arrays are contiguous little-endian float32 buffers with explicit metadata. Serialization includes the array values,
+shape, clock, and units; metadata are part of the identity rather than an informal annotation:
+𝑐(𝐴) = SerializeLE,float32(𝐴, shape, clock, units), ℎ 𝑐(𝐴) = 𝐻(𝑐(𝐴)) (4)
+The canonical digest is independent of PNG, W A V, GIF, MP4, and NPZ delivery choices. The v2 manifest records
+the parameter schema, serialized parameters, taxonomy, evidence boundary, canonical facts, objective metrics, encoding
+profile, backend identity, decoded inspection, and verification status. A v1 reader remains available and marks upconverted
+records unverified until the encoded file is re-inspected.
+This separation follows a reproducibility principle from computational research: a result is not made reproducible merely
+by publishing a final file; the executable inputs, transformation steps, versioned software, and provenance must remain
+identifiable [ Sandve et al. , 2013, Wilson et al. , 2014]. The manifest therefore records the construction identity and
+delivery identity separately. A downstream user can cite the software version and regenerate the canonical object, or cite
+a particular encoded artifact when the delivery file itself is the relevant research object [ Smith et al. , 2016].
+The distinction also follows the older psychophysical problem of relating a controlled physical increment to a measured
+sensation. Fechner’s 1860 treatise made measurement, stimulus control, and response comparison explicit parts of the
+scientific object [ Fechner, 1860]. DuckRabbit adopts the stimulus-control and provenance aspects of that tradition, but it
+does not pretend that a canonical digest or media metric is a sensation measurement: observer data still require a task,
+presentation conditions, and a registered analysis.
+4
+
+3.4 Encoding and verification
+For an encoding request 𝑒, the delivered file 𝐹 and decoded inspection 𝐼 are:
+𝐹 = 𝐸 𝑒(𝐴), 𝐼 = 𝐷(𝐹 ), 𝑉 (𝐹 , 𝑀 ) ∈ { verified, failed, unverified} (5)
+The manifest 𝑀 binds 𝐴, 𝐹 , and 𝐼 through hashes, typed summaries, and format-specific tolerances. PNG, GIF, W A V,
+and NPZ use local deterministic adapters. MP4 and muxed audiovisual output use an optional ffmpeg backend. Missing
+backends are reported as capability errors. Writes are atomic, parent directories are created, overwrite behavior is explicit,
+and a conflicting format argument is rejected.
+Canonical NPZ arrays must retain little-endian float32 storage; the reader and inspector reject float64, big-endian or
+integer replacements instead of silently coercing their values into a canonical-looking artifact.
+For NPZ, verification replays declared metrics only under the supported computation, implementation-source and NumPy
+identities. Missing optional metrics receive no metric-verification claim; unsupported historical identities remain unver-
+ified, not relabeled current or falsely classified as corruption. A metric-specific successful check is required to infer
+measured-value agreement. Other encodings retain their disclosed quantization/decoded-fact boundary.
+3.5 Objective metric definitions
+MetricRecord and MetricSuite carry a metric name, value, unit, computation version, source artifact, tolerance, and claim
+level. Luminance statistics, quantization levels, RMS and peak amplitude, spectral summaries, frame deltas, stream
+durations, and synchronization offsets are physical or decoded-media facts. They are not observer responses and cannot
+by themselves establish an illusion effect. For canonical image samples 𝑦1, … , 𝑦𝑛, audio samples 𝑥1, … , 𝑥𝑛, and adjacent
+video frames 𝑌𝑘, 𝑌𝑘+1, the principal metrics are:
+For images, 𝑦 is the grayscale code value or the Rec. 709-weighted RGB channel-value proxy; no RGB transfer decoding or
+display calibration is assumed. The name mean_luminance is an API label, not a photometric measurement. For temporal
+differences, 𝑌𝑘 denotes the complete raw channel array, not the image luminance proxy. RGB audiovisual plots reuse the
+image proxy. Adjacent-frame subtraction and its float32 mean use C-contiguous scratch space, matching the canonical
+layout. This removes layout-dependent summary drift across exact NPZ round trips; Fortran/mixed-layout input rounding
+can therefore differ from older versions, without changing pixels or canonical byte identity.
+𝜇𝑌 = 1𝑛 𝑛∑𝑗=1 𝑦𝑗, 𝜎 𝑌 = √√√⎷ 1𝑛 𝑛∑𝑗=1(𝑦𝑗 − 𝜇𝑌 )2, 𝑅𝑀 𝑆 𝑋 = √√√⎷ 1𝑛 𝑛∑𝑗=1 𝑥2𝑗 (6)
+𝐷𝑘 = 1|𝑌 | ∑𝑝 |𝑌𝑘+1(𝑝) − 𝑌𝑘(𝑝)|, centroid(𝑋) = ∑𝑓 𝑓 𝑀𝑋(𝑓)max(∑𝑓 𝑀𝑋(𝑓), 10−12) (7)
+Here 𝑀𝑋(𝑓) = 𝐶 −1 ∑𝐶𝑐=1 | rFFT(𝑋𝑐)(𝑓)| is the mean of the channel-wise magnitudes of the unwindowed, one-sided real
+FFT, including DC and the Nyquist bin when present. It is not a power or energy spectrum, nor the FFT of a channel-
+averaged waveform. Frequencies are in Hz at the canonical sample rate; the same magnitude weights define the spectral
+bandwidth. The denominator floor yields a zero centroid for silence. The illustrative audio atlas uses separately disclosed
+display-band aggregation; it does not replace this full-resolution metric computation.
+The level count is the cardinality of the finite-value set after canonical quantization; an empty or non-finite artifact is invalid
+rather than assigned a default statistic. Every generated metric carries units, full-window and channel/transfer definitions,
+NumPy and implementation identity, and SHA-256 hashes of the computation/window definitions. The implementation
+fingerprint covers metrics.py and artifacts.py, not NumPy binaries, CPU behavior or a historical platform. These
+identify the calculation, not stimulus bytes (identified separately by canonical digest), calibration, or authorship. Observer
+interpretations remain separate typed claims.
+For a future observer study, the estimand is defined by the protocol rather than by the generator itself:
+𝜓 = 𝔼[𝑌 ∣ condition, protocol] (8)
+This symbol names a planned analysis target only. DuckRabbit ships no human responses, fitted coeﬀicients, or validated
+observer-level estimate.
+5
+
+3.5.1 Synthetic psychophysics boundary
+DuckRabbit’s transparent synthetic-psychophysics diagnostic supports method orchestration. It is a hand-specified feature
+observer, not a pretrained vision model and not an empirical psychophysics substitute. Let 𝜙(𝐴) be the bounded feature
+vector extracted from a canonical artifact, 𝑤 the code-owned feature weights, and 𝜏 > 0 the declared temperature:
+𝑝𝑀 (𝑐 ∣ 𝐴 𝑟, 𝐴𝑐) = 𝜎 ( clip ( 𝑤T𝜙(𝐴𝑐) − 𝑤T𝜙(𝐴𝑟)𝜏 , −60, 60)) (9)
+The enclosing diagnostic serializes model identity/version and fingerprint, actual feature values, weights, temperature, seed,
+calibration statement, canonical digests, numerical clipping/tie rules and human_data=false. Detached predictions retain
+scores and feature names but require that enclosing specification to reconstruct the model. Exact-self and all-zero-weight
+controls yield 0.5; ties choose the comparison deterministically.
+The default sweep also zeroes each declared feature weight and varies temperature by factors 0.5, 1 and 2. Five image
+features are active; nine other ablations and the 1-times temperature reproduce existing curves rather than independent
+evidence. The displayed min/max range covers only these declared configurations, including the null. It is model sensitivity,
+not an empirical confidence interval, a human psychometric function, or uncertainty over all possible models. Joint
+perturbations, preprocessing/quantization sensitivity, calibration and observer variation are not covered. Human work
+still requires task, consent, calibrated presentation, preregistration and actual response data.
+6
+
+4 Results
+4.1 Generated catalog, metrics, and outputs
+The live registry reports 17 implemented generators, 18 catalog entries, 18 evidence records, and 36 source records in the
+checked-in scholarship audit snapshot. The complete catalog is generated in Appendix A rather than copied into prose.
+The companion figure keeps the categorical registry, source namespace, and implementation statuses visible at a glance.
+Figure 1: A matrix lists all catalog entries with modality, mechanism, signature, input requirement, and implementation
+status.
+What this figure shows: A matrix lists all catalog entries with modality, mechanism, signature, input requirement,
+and implementation status. The live catalog matrix contains 18 entries and keeps modality, mechanism, perceptual
+signature, input requirement, evidence status, and implementation status as separate facets. Source data out-
+put/data/catalog_matrix.json preserve the exact taxonomy snapshot and its source-reference namespace; status is not a
+proxy for perceptual validation. Controls: live taxonomy registry; evidence matrix snapshot; seed not applicable to the
+catalog diagram. Objective facts: 18 catalog rows; categorical facets and statuses; no observer-level quantity is applicable.
+Claim level: source_supported. Source data: output/data/catalog_matrix.json (SHA-256 digest recorded in the figure
+registry). Evidence lineage: gregory1997visual, hirst2020sound, bruns2019ventriloquist. Limitations: Taxonomy facets
+are engineering classifications and remain provisional where the literature supports competing accounts. Boundary:
+Catalog coverage is bounded to this registered package and does not enumerate all known illusions.
+The complete catalog matrix fig. 1 is tabulated in the standalone Appendix A sec. 10 and in tbl. 10. The corresponding
+machine-readable evidence matrix records the source role, exact supported claim, engineering departure, and limitation
+for every entry. Keeping the table in an appendix gives the main results narrative room to explain the contract without
+7
+
+turning a mutable registry snapshot into a prose claim.
+4.2 Typed domains and delivery profiles
+Table 1: Typed parameter domains and units.
+Type Unit Validated domain Role
+PixelDimension pixels 8–4096 image/video width and
+height
+GrayscaleLevels levels 2–256 representable grayscale
+levels
+QuantizationLevels levels 2–256 output quantization buckets
+FrequencyHz Hz > 0 and finite oscillator and harmonic
+frequencies
+SampleRate samples/s 1,000–384,000 audio sampling clock
+FrameRate frames/s 1–240 video presentation clock
+SyncOffsetMs ms -10,000–10,000 audio relative to video
+SpatialOffset normalized −1–1 declared crossmodal spatial
+discrepancy
+The parameter contracts are summarized in tbl. 1. They constrain physical construction and serialization; they are not
+psychophysical scales.
+Table 2: Encoding profiles and backend capabilities.
+Format Backend Artifact Profile Status
+PNG Pillow image lossless uint8 raster available
+W A V python wave audio PCM 8/16/24/32-bit available
+GIF Pillow video palette animation
+with declared
+duration
+available
+NPZ NumPy canonical artifact exact little-endian
+float32 archive
+available
+MP4 ffmpeg video/audiovisual H.264 or muxed MP4;
+decode inspected
+available
+The delivery profiles are summarized in tbl. 2. Backend availability is environment-dependent and is recorded at generation
+time.
+The catalog distinguishes a physical construction from an observer claim. For example, the sound-induced-flash generator
+establishes one flash and one or two beep events on a shared clock; it does not establish a reported flash count. Similarly,
+the temporal-ventriloquism generator exposes a declared timing offset, while the literature reports observer-dependent
+temporal judgments under specific tasks and timing conditions [ Vroomen and de Gelder , 2004].
+4.3 Pipeline and provenance
+What this figure shows: Five labeled stages connect a typed request to a deterministic canonical artifact, encoded media,
+decoded inspection, and a verification manifest. This schematic separates a typed request from the canonical artifact
+it generates, the optional delivery encoder, decoded inspection, and the manifest-level verification decision. Arrows in-
+dicate data and provenance dependencies rather than a causal model of perception; the seed is 0 and the complete
+stage record is in source data output/data/architecture.json. Controls: typed request q=(i, 𝜃,s,e) with seed s=0; default
+generator and delivery-independent canonicalization. Objective facts: no unit-bearing objective quantity is applicable
+to this architecture diagram; stage identities and provenance fields are recorded in the sidecar. Claim level: canoni-
+cal_stimulus. Source data: output/data/architecture.json (SHA-256 digest recorded in the figure registry). Evidence lin-
+eage: formalism:eq:typed_request, formalism:eq:canonical_generation, formalism:eq:encoding_verification. Limitations:
+The schematic abstracts implementation boundaries and does not represent an observer study or a causal theory of
+perception. Boundary: The pipeline verifies reproducible media facts, not what a person experiences.
+8
+
+Figure 2: Five labeled stages connect a typed request to a deterministic canonical artifact, encoded media, decoded
+inspection, and a verification manifest.
+The generated architecture figure fig. 2 shows the separation between request, canonical artifact, delivery adapter, decoded
+inspection, and manifest. The canonical digest is the identity of the in-memory stimulus; an encoded hash is the identity
+of the delivered file. The difference is intentional.
+4.4 Visual constructions and parameter sweeps
+What this figure shows: A 9-panel gallery shows every currently implemented visual catalog entry, with stable IDs and
+physical raster summaries: Duck-rabbit ambiguous figure, Simultaneous contrast stimulus, Apparent-motion frame se-
+quence, Müller-Lyer geometric illusion, Poggendorff geometric illusion, Ponzo perspective illusion, Kanizsa illusory-contour
+triangle, Ebbinghaus context-size illusion, Zöllner orientation illusion. This complete gallery presents one deterministic
+representative from each of the 9 currently implemented visual catalog entries: Duck-rabbit ambiguous figure, Simultane-
+ous contrast stimulus, Apparent-motion frame sequence, Müller-Lyer geometric illusion, Poggendorff geometric illusion,
+Ponzo perspective illusion, Kanizsa illusory-contour triangle, Ebbinghaus context-size illusion, Zöllner orientation illusion.
+The panel therefore covers the package’s available visual families—ambiguous figure, contrast, apparent motion, geometric
+context, illusory contour, contextual size, and orientation-related constructions—using typed defaults at seed 0. For the
+temporally expressed apparent-motion entry, the displayed tile is its first frame and the source data preserve the full
+sequence. The source data sidecar output/data/visual_panel.json records the stable ID, generator parameters, canoni-
+cal SHA-256 digest, grayscale code-value or Rec. 709-weighted RGB proxy statistics (no transfer conversion or display
+calibration), raster-level counts, and parameter boundary for every tile. Controls: one default typed parameter object
+per implemented visual entry; seed s=0; dimensions, luminance bounds, grayscale, and quantization controls remain in
+each generator schema; temporal entries display their first frame but retain sequence metrics. Objective facts: per tile:
+mean and standard deviation of the declared uncalibrated channel-value proxy, unique raster levels, and canonical SHA-
+256 digest; temporal entries additionally retain frame count, frame rate, and frame deltas; definitions and units are in
+the source data JSON. Claim level: canonical_stimulus. Source data: output/data/visual_panel.json (SHA-256 digest
+recorded in the figure registry). Evidence lineage: gregory1997visual, brugger1999duckrabbit, howe2005muller, mor-
+gan1999poggendorff, fisher1967ponzo, yildiz2022ponzo, kanizsa1976contours, mruczek2015ebbinghaus, earle1995zollner,
+wertheimer1912motion, sekuler1996wertheimer. Limitations: The gallery is complete for implemented visual entries in
+this package, not a complete survey of visual illusions; literature families, historical displays, and DuckRabbit rasters are
+not pixel-identical by default. Viewing scale, display calibration, viewing distance, and observer conditions can change
+the relevance of a construction; the gallery does not measure an observer’s perceptual report. Boundary: The figure
+establishes coverage of the package’s implemented visual constructions and their deterministic raster facts. It does not
+establish that any viewer will perceive the named signature, nor that the set is exhaustive of the visual-illusion literature.
+The visual panel fig. 3 is deliberately a coverage figure: it contains one deterministic representative for every currently
+implemented visual entry, including apparent motion and Zöllner in addition to the static ambiguous-figure, contrast,
+geometric-context, illusory-contour, and contextual- size families. Equalities, masks, line geometry, luminance bounds,
+and temporal positions are properties of the typed rasters or sequences. They are not observer scores, and the gallery is
+not an exhaustive ontology of visual illusions.
+What this figure shows: A labeled grid crosses five duck–rabbit blend weights with five grayscale and quantization settings,
+9
+
+Figure 3: A 9-panel gallery shows every currently implemented visual catalog entry, with stable IDs and physical raster
+summaries: Duck-rabbit ambiguous figure, Simultaneous contrast stimulus, Apparent-motion frame sequence, Müller-Lyer
+geometric illusion, Poggendorff geometric illusion, Ponzo perspective illusion, Kanizsa illusory-contour triangle, Ebbing-
+haus context-size illusion, Zöllner orientation illusion.
+10
+
+Figure 4: A labeled grid crosses five duck–rabbit blend weights with five grayscale and quantization settings, with physical
+metrics recorded for each cell.
+with physical metrics recorded for each cell. This 5 ×5 sweep varies duck–rabbit blend weight across rows and jointly varies
+grayscale and quantization levels across columns. Each cell is regenerated from an immutable typed parameter object at
+seed 0; source data output/data/visual_sweep.json records canonical digests, unique-level counts, normalized luminance,
+and effective dynamic range for every condition. Controls: duck_weight ∈ {0,.25,.5,.75,1}; grayscale=quantization ∈
+{2,4,8,16,32}; seed s=0. Objective facts: 25 canonical rasters; unique levels, normalized mean luminance, and effective
+dynamic range per cell. Claim level: physical_metric. Source data: output/data/visual_sweep.json (SHA-256 digest
+recorded in the figure registry). Evidence lineage: brugger1999duckrabbit, gregory1997visual. Limitations: The grid is a
+sensitivity of the construction parameters, not a psychophysical sensitivity curve or a validated observer effect. Boundary:
+The chosen grid is an engineering sampling of the parameter domain and does not imply an optimal or perceptually
+uniform spacing.
+The sweep fig. 4 varies duck-weight from 0 to 1 and jointly varies representable grayscale and quantization levels. The
+source data preserve canonical digests and unique-value counts; no perceptual score is assigned to a sweep cell.
+4.5 Temporal and auditory constructions
+What this figure shows: Six ordered frames are labeled with timestamps and paired with a line plot of adjacent-frame nor-
+malized pixel differences. The frame strip exposes the order and timestamps of the apparent-motion construction, while
+the lower trace reports adjacent-frame mean absolute pixel differences. Source data output/data/temporal_sequence.json
+preserve frame count, frame rate, reduced rational timebase, timestamps in seconds, and the nonzero transition se-
+ries; seed 0 identifies the generated sequence. Controls: visual.apparent_motion default typed parameters; frame
+rate and frame count from the canonical sequence; seed s=0. Objective facts: timestamps in seconds, frame rate in
+frames/s, frame count, rational timebase, and adjacent-frame normalized pixel difference. Claim level: physical_metric.
+Source data: output/data/temporal_sequence.json (SHA-256 digest recorded in the figure registry). Evidence lineage:
+wertheimer1912motion, sekuler1996wertheimer. Limitations: Frame succession and frame deltas are physical file proper-
+ties; playback timing, display persistence, and motion reports require a controlled observer task. Boundary: The figure
+documents temporal structure rather than the presence, direction, or strength of perceived motion.
+The temporal figure fig. 5 reports frame succession, rational frame rate, and frame-to-frame mean absolute differences.
+These facts establish temporal structure in the file, not the presence or strength of perceived motion.
+What this figure shows: Five labeled rows show canonical audio waveforms, relative one-sided spectral bars, RMS and
+peak in normalized amplitude, and spectral summaries in hertz. Five implemented auditory constructions—Shepard tone,
+missing fundamental, tritone paradox, octave illusion, and auditory continuity—are shown as canonical waveforms with
+compact one-sided FFT summaries. Source data output/data/audio_signals.json records sample rate, channel layout,
+11
+
+Figure 5: Six ordered frames are labeled with timestamps and paired with a line plot of adjacent-frame normalized pixel
+differences.
+Figure 6: Five labeled rows show canonical audio waveforms, relative one-sided spectral bars, RMS and peak in normalized
+amplitude, and spectral summaries in hertz.
+12
+
+RMS, peak, spectral centroid, bandwidth, crest factor, canonical digest, and the declared display-bin convention; no pitch
+or stream report is inferred. Controls: default typed audio parameters; per-generator channel layout and sample rate;
+seed s=0; one-sided FFT display with 48 frequency-labelled peak-magnitude bands. Objective facts: RMS and peak in
+normalized amplitude; spectral centroid and bandwidth in Hz; sample rate in samples/s; channel layout and canonical
+SHA-256 digest. Claim level: physical_metric. Source data: output/data/audio_signals.json (SHA-256 digest recorded
+in the figure registry). Evidence lineage: shepard1984scale, zatorre2005missing, deutsch1986tritone, repp1997tritone,
+deutsch1974octave, warren1970continuity, riecke2011continuity. Limitations: Playback level, transducer response, dichotic
+separation, masker design, and listener judgments are external to the canonical buffer. Boundary: The figure compares
+generated signal properties and literature-linked families; it does not establish pitch, continuity, or stream organization
+for a listener.
+The auditory figure fig. 6 shows canonical waveforms and spectral summaries for Shepard, missing-fundamental, tritone,
+octave, and continuity constructions. RMS, peak, spectral centroid, bandwidth, and channel layout are calculated from the
+canonical buffer with explicit units and windowing rules. Pitch direction, pitch height, continuity, and stream organization
+remain observer-level outcomes that depend on playback and task conditions.
+4.6 Audiovisual timing and encoding
+Figure 7: Two labeled traces share a time axis in seconds: video mean channel-value proxy and audio absolute amplitude,
+with signed synchronization and spatial offsets printed below.
+What this figure shows: Two labeled traces share a time axis in seconds: video mean channel-value proxy and audio
+absolute amplitude, with signed synchronization and spatial offsets printed below. Video mean channel-value proxy and
+rectified audio amplitude are placed on a common time axis in seconds with video frame holds and actual audio sam-
+ple timestamps for the sound-induced-flash construction. Source data output/data/audiovisual_timeline.json records the
+video frame clock, audio sampling clock, event traces, signed audio-minus-video synchronization offset in milliseconds, and
+normalized spatial discrepancy; alignment is declared by the generator, not estimated from perception. Controls: audiovi-
+sual.sound_induced_flash default shared timeline; declared sync offset ΔA V and spatial offset; seed s=0. Objective facts:
+video frame-hold grayscale/weighted-RGB proxy and mean-channel absolute audio amplitude on shared time in seconds;
+ΔA V in ms; spatial discrepancy in normalized units; frame and sample clocks in the sidecar. Claim level: physical_metric.
+Source data: output/data/audiovisual_timeline.json (SHA-256 digest recorded in the figure registry). Evidence lineage:
+shams2000sifi, hirst2020sound, vroomen2004temporal, hartcherobrien2011temporal. Limitations: Display refresh, audio
+hardware, event latency, and observer temporal binding are not measured by this figure. Boundary: A shared-clock
+construction is not evidence that observers bind the events at the declared or any other perceptual time.
+The audiovisual timeline fig. 7 displays video luminance and audio amplitude against the shared clock, alongside declared
+synchronization and spatial offsets. Ventriloquist stimuli require stereo playback and spatially resolved display; temporal
+binding requires controlled timing and an observer task [ Bruns, 2019, Vroomen and de Gelder , 2004].
+13
+
+Figure 8: A five-row comparison lists format, backend, preserved canonical facts, and the corresponding decoded verifica-
+tion checks.
+What this figure shows: A five-row comparison lists format, backend, preserved canonical facts, and the corresponding
+decoded verification checks. The comparison separates the canonical artifact from delivery containers: PNG, W A V, GIF,
+NPZ, and optional MP4/muxed MP4. Source data output/data/encoding_verification.json records backend identity,
+preserved canonical facts, decoded inspection targets, and capability status as observed in the generation environment;
+the table therefore describes an adapter contract rather than a claim about codec quality. Controls: typed encoding profile
+selected per artifact; overwrite and backend capability checks; seed inherited from the stimulus request. Objective facts:
+format availability and verification scope are environment observations; NPZ is exact while other formats are decoded
+and tolerance-checked. Claim level: encoded_media. Source data: output/data/encoding_verification.json (SHA-256
+digest recorded in the figure registry). Evidence lineage: engineering:typed_media_adapters. Limitations: Backend
+availability, codec versions, container metadata, and lossy tolerances are environment-dependent; playback software can
+expose additional behavior. Boundary: A successful encode or decode does not validate an observer effect or guarantee
+cross-device perceptual equivalence.
+The encoding matrix fig. 8 makes backend capability and verification scope visible. NPZ is the exact canonical archive;
+PNG, W A V, GIF, and MP4 are delivery containers whose decoded facts are checked against the manifest.
+4.7 Objective metric results
+Table 3: Objective metric definitions and epistemic boundary.
+Metric Unit Definition Tolerance Claim level
+mean_luminance normalized_luminanc
+e
+mean grayscale value
+or Rec.709-weighted
+RGB code-value
+proxy; no transfer
+conversion or display
+calibration
+exact canonical physical_metric
+unique_values levels count of distinct
+canonical image
+values
+exact integer physical_metric
+rms normalized_amplitud
+e
+root-mean-square
+audio amplitude
+finite scalar physical_metric
+peak normalized_amplitud
+e
+maximum absolute
+audio amplitude
+finite scalar physical_metric
+14
+
+Metric Unit Definition Tolerance Claim level
+spectral_centroid_hz Hz one-sided frequency
+mean weighted by
+mean-channel
+abs(unwindowed
+rFFT) magnitude,
+not energy
+finite scalar physical_metric
+spectral_bandwidth_
+hz
+Hz spectral standard
+deviation around the
+one-sided centroid
+finite scalar physical_metric
+crest_factor ratio audio peak divided
+by RMS with
+zero-RMS guard
+finite scalar physical_metric
+mean_temporal_delt
+a
+normalized_pixel_dif
+ference
+mean adjacent-frame
+absolute difference
+finite scalar physical_metric
+sync_offset ms declared
+audio-minus-video
+offset
+typed value physical_metric
+The metric definitions in tbl. 3 are computed from canonical or decoded artifacts and do not encode observer interpreta-
+tions.
+The default duck-rabbit artifact contains 3 unique raster levels and has mean normalized luminance 0.7770. These values
+are live generated facts, not perceptual effect sizes.
+4.8 Observer estimands and verification controls
+Table 4: Data-free observer outcomes and preregistered estimands.
+Estimand Response and model Reference and contrast Uncertainty
+sifi_flash_count_contrast forced_choice; logistic_mix
+ed
+sifi_one_beep; log odds of
+choosing ‘two’: sifi_two_be
+ep minus sifi_one_beep
+95% confidence interval
+temporal_binding_offset_c
+ontrast
+forced_choice; logistic_mix
+ed
+temporal_sync; log odds of
+choosing ‘late’: temporal_e
+arly and temporal_late
+versus temporal_sync
+(categorical offsets
+-120/0/+120 ms)
+95% confidence interval
+The analysis contract in tbl. 4 specifies estimands and uncertainty procedures without asserting any result.
+Table 5: Verification failure modes and negative controls.
+Failure mode Control Expected result
+altered encoded file recompute encoded SHA-256 fail
+stale canonical digest recompute canonical little-endian
+float32 digest
+fail
+incorrect decoded dimensions compare inspection facts with
+manifest summary
+fail
+stream timing mismatch compare duration/timebase and
+declared sync offset
+fail
+unsupported backend capability probe before encoding explicit capability error
+conflicting format requests reject format_name/output_spec
+disagreement
+parameter error
+The negative controls in tbl. 5 test package integrity and media contracts; they are not null findings about perception.
+15
+
+4.9 Synthetic psychophysics model diagnostic
+Figure 9: A line plot and model-sensitivity range show deterministic model probability across duck_weight values beside
+the model identity, temperature, no-training-data statement, and human-data boundary.
+What this figure shows: A line plot and model-sensitivity range show deterministic model probability across duck_weight
+values beside the model identity, temperature, no-training-data statement, and human-data boundary. The hand-specified
+feature observer compares duck_weight variants with a fixed canonical reference. Its probability trace is computed analyt-
+ically from serialized features, weights, and temperature; source data output/data/synthetic_psychophysics.json records
+model ID/version, reference and comparison digests, seed, calibration, training_data=none, and human_data=false. The
+shaded range covers the declared zero-weight control, one-at-a-time weight ablations, and temperature multipliers 0.5, 1,
+and 2; it is model sensitivity, not a confidence interval. Controls: duck_weight comparison against fixed reference; serial-
+ized feature weights and temperature; seed s=0. Objective facts: model probability, null baseline, ablations, temperature
+sensitivity and exact-self control; full feature values, specifications and canonical stimulus digests; human_data=false;
+training_data=none. Claim level: synthetic_model_output. Source data: output/data/synthetic_psychophysics.json
+(SHA-256 digest recorded in the figure registry). Evidence lineage: observer:preregistered_estimands. Limitations: The
+model is hand-specified, has no training data, has not been calibrated against observers, and does not estimate a human
+threshold or effect size. Its probabilities and the finite configuration range are model outputs, not participant responses,
+confidence intervals, or a psychometric function. Boundary: This diagnostic tests deterministic orchestration and meta-
+morphic input-output behavior only; empirical psychophysics remains future work.
+The diagnostic fig. 9 evaluates a fully serialized, hand-specified feature observer against a fixed canonical reference while
+varying duck_weight. Its logistic probabilities are model outputs generated from explicit features, weights, temperature,
+and seed; they are not a pretrained vision-model score, a human psychometric function, an assumed human effect size, or
+participant data. A future human study would require a preregistered task, calibrated display and playback, consented
+participants, exclusion and missingness rules, and an analysis contract before any observer claim could be made.
+16
+
+5 Experimental and Computational Setup
+Core generation uses Python, NumPy, Pillow, and the standard library. The default seed is 0 and generation is offline.
+The generators are analytic in their typed parameters: the seed is recorded in manifests and study plans but does not yet
+alter artifact bytes; seed-driven stimulus randomization awaits a stochastic generator. PNG, GIF, W A V, and NPZ are
+available without ffmpeg; MP4 and muxed audiovisual output require both ffmpeg and ffprobe. Optional capabilities fail
+explicitly rather than silently changing the requested artifact.
+The deterministic validation suite executes real NumPy synthesis and real temporary-file media round trips. It checks
+finite normalized arrays, typed parameter boundaries, canonical hashes, dimensions, channel layouts, sample rates, frame
+counts, timebases, duration agreement, synchronization offsets, decoded stream facts, and registry/evidence consistency.
+This is a software-validation protocol, not a psychophysical experiment. The tests establish repeatability under the
+declared software and dependency conditions; they do not establish replicability of an observer effect under a new display,
+playback chain, population, or task. That distinction is why the release reports both the exact environment contract and
+the missing observer evidence.
+The publication workflow writes 15 scientific PNG figures plus a separately provenance-recorded editorial cover, machine-
+readable source-data sidecars, a typed figure registry, 10 markdown tables, and a publication report. Each generated
+figure records its source function, seed, caption, alt text, claim level, and SHA-256 digest. Generated files are disposable;
+the tracked source is the generator and its tests.
+The registry checks captions, source namespaces and file hashes; the strict release gate additionally regenerates every
+scientific panel and compares its data and raster bytes under recorded renderer, font and dependency identities. This is a
+current-code consistency oracle, not an independent scientific model or a substitute for inspecting the rendered pages. The
+cover validator checks real source bytes/dimensions and variant transforms. Historical prompt/model/ selection claims
+are reported but not independently authenticated; caller-supplied images without a history are explicitly unrecorded.
+The observer harness is a data-free design layer. It creates reproducibly randomized trial records, exports typed study
+plans, generates synthetic responses for contract tests, and exposes model templates. It does not collect or ship participant
+data. The publication atlas additionally runs duckrabbit.synthetic.feature_observer, an explicitly hand-specified feature
+model with no training corpus. Its canonical pairwise probabilities are serialized as model output and are useful for end-to-
+end orchestration tests; they are not a real vision-model estimate, a psychometric function, or an observer result. Human
+sensitivity is deferred until a calibrated, consented, preregistered study supplies response data and an analysis contract.
+17
+
+6 Reproducibility and Provenance
+The reproducibility contract is:
+1. construct the same frozen parameter dataclass;
+2. use the same generator ID and the same deterministic seed;
+3. compare the canonical artifact digest;
+4. record the parameter schema, typed parameters, taxonomy, evidence boundary, canonical byte serialization, objec-
+tive metrics, and encoding request;
+5. if a file is written, inspect the decoded media and compare dimensions, channels, rates, frame counts, durations,
+timing offsets, and encoded hash;
+6. retain the v2 manifest and source-data sidecars with the generated figure or table. Note that in this release the
+generators are analytic in their typed parameters: the request seed s is recorded in manifests and study plans and
+excluded from the canonical digest, but it does not yet alter artifact bytes; seed-driven stimulus randomization
+awaits a stochastic generator.
+The contract is deliberately stronger than “the file can be downloaded. ” Research-software guidance treats versioned
+code, executable procedures, dependencies, and retained inputs as part of the reproducible object [ Sandve et al. , 2013,
+Wilson et al. , 2014]. F AIR guidance further asks that digital research objects be findable, accessible, interoperable, and
+reusable, while noting that software has lifecycle and maintenance constraints that are not identical to those of static
+data [ Wilkinson et al. , 2016, Lamprecht et al. , 2020]. DuckRabbit operationalizes those principles with typed metadata,
+deterministic hashes, source-data sidecars, explicit licenses, and release gates rather than by implying that a generated
+media file is a complete scientific replication.
+The package reports implemented, planned, input_required as its catalog status vocabulary and currently covers audio-
+visual, auditory, visual. The evidence layer contains 18 entry records backed by 36 source records, covering 18/18 catalog
+entries. The publication workflow produces 15 figures and 10 tables from the live registry.
+The public software record is the DuckRabbit public GitHub repository , with Daniel Ari Friedman of the Active In-
+ference Institute as author. The historical v0.5.0 archive uses concept DOI 10.5281/zenodo.21419693 and version DOI
+10.5281/zenodo.21419694. Current 0.6.0 metadata is forthcoming: no new DOI is claimed.
+The canonical buffer is the primary identity of a stimulus. Encoded files are delivery artifacts with format-specific
+tolerances. The observer protocol is a separate evidence layer: a manifest can prove what was presented without proving
+what an observer experienced.
+Synthetic psychophysics is a third, deliberately bounded object: the model is a hand-specified deterministic feature ob-
+server; no training data; human_data=false, registered as duckrabbit.synthetic.feature_observer . The model version,
+feature schema, weights, temperature, seed, calibration statement, canonical reference/comparison digests, and human_d
+ata=false flag are retained in output/data/synthetic_psychophysics.json . Re-running this diagnostic checks determin-
+istic model orchestration and stimulus-feature sensitivity; it does not estimate a human observer or replace empirical
+psychophysics.
+The v2 verifier is a relational check rather than a field-presence check. It rejects summaries whose dimensions, dtype, byte
+count, rates, duration, signal range, frame deltas, or signed audiovisual offset disagree. Public manifest and inspection
+mappings are recursively frozen after validation, and rational frame rates are reduced before entering the clock contract.
+The read-only capability probe records whether Pillow, NumPy, ffmpeg, or ffprobe are available in the current environment;
+unavailable delivery paths remain explicit rather than being silently downgraded.
+The minimal regeneration commands are:
+uv run pytest -q --cov=src/duckrabbit --cov-fail-under=90
+uv run python scripts/generate_publication_outputs.py
+uv run python scripts/generate_manuscript_variables.py
+6.1 Runtime-performance reproducibility
+The package also provides scripts/profile_workloads.py for fixed real catalog, hashing, metric, observer, media, publica-
+tion, and audit workloads. Source hashes, runtime-input hashes, environment details, and deterministic result signatures
+accompany the samples. Warm-up and repeated ordinary timing calls are separate from cProfile and allocation-tracing
+calls. A comparison is invalid when its environment, scenario, or result differs; profiling timings are not estimates of
+perceptual latency or participant performance.
+18
+
+Python 3.15 supports the profiling workflow, while the portable package retains its declared Python compatibility range.
+Optional native sampling remains subject to host process-inspection permissions; an unavailable sampler is reported as
+unavailable, not inferred to have succeeded. The dated engineering review and raw timing receipts live in docs/performa
+nce-review-2026-10-17.md and docs/benchmarks/, outside the scientific evidence matrix.
+6.2 Data availability and software citation
+No participant records, fitted observer coeﬀicients, or human psychophysics are bundled. The synthetic diagnostic is
+explicitly model output with human_data=false and training_data=none . Reuse should cite Daniel Ari Friedman and
+the release metadata in CITATION.cff, together with the source-specific scholarship in references.bib. Software-citation
+principles recommend citing the software object itself, with enough version and identity information to distinguish one
+release from another [ Smith et al. , 2016]. The The current DOI fields are empty with doi_status: forthcoming . Historical
+identifiers above remain unchanged and do not silently identify the new version.
+19
+
+7 Scope, Related Work, and Limitations
+7.1 Scope and epistemic boundary
+DuckRabbit is a typed, reproducible stimulus-construction platform. Its unit of work is an immutable request that
+yields a canonical image, audio buffer, video sequence, or audiovisual timeline, together with objective measurements and
+provenance. It is not an exhaustive ontology of all illusions, a perceptual theory, a participant database, or a substitute
+for a controlled psychophysics experiment. The live registry is therefore a deliberately bounded catalog: it enumerates
+the families for which this release has both a generator contract and a stated evidence boundary. Appendix A gives
+the complete current matrix; the absence of a family from that matrix is not a claim that the family is unimportant or
+unsupported in the wider literature.
+The central distinction is between a construction and an observation. A DuckRabbit generator can establish the dimen-
+sions, pixel values, sample values, frequency components, frame clock, declared synchronization offset, encoded hash, and
+decoded media facts of its output. It cannot, from those facts alone, establish what a person sees, hears, counts, localizes,
+groups, or reports. Every figure caption, evidence record, and claim-ledger entry preserves this boundary. In particu-
+lar, a literature citation establishes a source-supported statement about a stimulus family or result under that source’s
+conditions; it does not certify pixel- or task-identical replication by a DuckRabbit artifact.
+The historical foundation is intentionally worldwide and layered. The package does not present a single invention narrative:
+it places ancient Greek, medieval Arabic, classical Chinese, and early-modern European sources beside nineteenth-century
+psychophysics and modern experimental work. This is a scholarly orientation for separating physical construction, inter-
+pretation, and observer evidence; it is not a claim that the current source set exhausts the visual, auditory, or perceptual
+traditions of any region.
+7.2 Visual families
+The modern label “visual illusion” sits on a longer experimental history than the package’s contemporary review sources
+alone suggest. Oppel’s mid-century catalogue of geometrical-optical illusions is now accessible with translation and
+commentary [ Wade et al. , 2017], and the primary nineteenth-century records include Zöllner’s account of crossing-line
+distortions and Müller-Lyer’s report of the arrow-wing configuration [ Zöllner, 1860, Müller-Lyer, 1889]. These sources are
+treated as historical anchors, not as evidence that a present-day raster is identical to an original plate or that its observer
+effect is invariant across conditions.
+Gregory’s classification is useful as a historical and conceptual orientation, but it is not a universally agreed ontology.
+DuckRabbit consequently stores visual modality, mechanism, perceptual signature, stimulus requirements, and evidence
+status as separate facets rather than treating a single label as an explanation [ Gregory, 1997]. The visual atlas covers
+the implemented families currently registered in the package: ambiguous figure, contrast, apparent motion, Müller-Lyer,
+Poggendorff, Ponzo, Kanizsa-type subjective contour, Ebbinghaus contextual size, and Zöllner/Judd orientation-related
+geometry. “Coverage” here means one deterministic representative per live entry, not a claim that one raster captures the
+historical stimulus space.
+The duck/rabbit construction is an explicit example of why that distinction matters. Brugger’s historical analysis discusses
+variation among figure variants and observers; DuckRabbit therefore exposes a blend parameter and labels its output as a
+construction rather than promising a fixed alternation rate or universal bistability [ Brugger, 1999]. The Müller-Lyer entry
+uses typed arrow geometry. Its engineering form is compatible with a family whose image statistics have been analyzed
+as potentially informative about image-source relationships, but the implementation does not adjudicate that account or
+infer a perceived-length report [ Müller-Lyer, 1889, Howe and Purves , 2005].
+The Poggendorff generator makes the occluding geometry and virtual-line orientation explicit. This is appropriate to a
+literature in which orientation estimation and filtering accounts are theoretically relevant, while avoiding the stronger
+claim that a particular raster reproduces a published bias without the same observers, viewing conditions, and response
+task [Morgan, 1999]. The Ponzo construction is similarly bounded: the converging context and test bars are deterministic,
+whereas the literature contains multiple explanations of Ponzo-like effects rather than one settled mechanism [ Fisher, 1967,
+Yildiz et al. , 2022].
+Kanizsa-style subjective contours are represented as an illusory-contour construction with explicit inducer geometry. The
+historical account motivates the family label, while modern reviews place contour completion within a wider literature on
+grouping, figure-ground organization, attention, and neural mechanisms [ Kanizsa, 1976, Wagemans et al. , 2012]. Neither
+source licenses a claim that the generated mask produces a uniform contour percept across observers. The Ebbinghaus
+entry controls target and surround geometry; classic work demonstrates that judged size depends on context, contour,
+and comparison conditions, while later work shows that motion and other parameters can alter the effect [ Weintraub,
+20
+
+1979, Mruczek et al. , 2015]. DuckRabbit’s static default is therefore an engineering baseline rather than a task-identical
+replication. Zöllner/Judd geometry is likewise retained as a source-linked line arrangement. Zöllner’s 1860 report supplies
+the historical primary anchor, while later work supplies a modern analysis of spatial filtering [ Zöllner, 1860, Earle and
+Maskell, 1995]. Its typed line lengths and orientations make the spatial stimulus auditable, while orientation judgments
+remain outside the package contract.
+Finally, apparent motion is included in the visual coverage panel because its defining engineering object is temporal
+succession, not merely a static pattern. The package verifies frame order, frame rate, timestamps, and frame-to-frame
+differences. Wertheimer’s foundational work and Sekuler’s later analysis motivate the family distinction; neither source
+turns a generated frame strip into a universal report of motion [ Wertheimer, 1912, Sekuler, 1996].
+7.3 Auditory families
+The auditory catalog separates harmonic construction, spectral completion, pitch-class context, dichotic channel assign-
+ment, and continuity/masking. A Shepard-like signal is represented through additive partials and explicit envelopes,
+following a historical literature of tone psychology and later work on assimilation to an internalized musical scale [ Stumpf,
+1883, Shepard and Jordan , 1984]. The canonical buffer exposes sample rate, amplitude bounds, channel count, partial
+frequencies, and envelope parameters. It does not determine a listener’s perceived pitch height or direction.
+The missing-fundamental construction removes a low component while retaining harmonically related partials. This makes
+the spectral condition reproducible; the associated pitch interpretation remains a listener-level question [ Zatorre, 2005].
+Tritone and octave entries preserve channel structure, phase, frequency relationships, and timing in typed parameters.
+Deutsch’s foundational accounts and Repp’s analysis of spectral-envelope and context effects motivate the evidence records,
+while also making listener and context dependence central limitations [ Deutsch, 1986, Repp, 1997, Deutsch, 1974].
+Auditory continuity is represented as an interrupted target with a typed masker and gap. Warren’s classic perceptual-
+restoration result and Riecke and colleagues’ separation of sensory and decisional contributions justify the family’s inclu-
+sion, but a generated masker is not evidence that a listener will report an uninterrupted sound [ Warren, 1970, Riecke et al.,
+2011]. The audio atlas therefore reports RMS, peak, spectral centroid, bandwidth, channel layout, and exact sample-level
+provenance—not continuity, pitch, or stream judgments.
+7.4 Audiovisual and temporal binding families
+Audiovisual constructions require a shared clock and an explicit sign convention for offsets. The sound-induced-flash entry
+creates a typed visual event and one or more audio events; the evidence record links it to the primary demonstration and
+to a review of the broader literature [ Shams et al. , 2000, Hirst et al. , 2020]. The package can verify event timestamps,
+sample/frame clocks, and declared offsets. It does not infer a reported flash count, and it does not assume that the same
+temporal window applies across displays, headphones, latencies, or observers.
+The spatial ventriloquist construction treats spatial discrepancy as a parameter and records the channel and display
+requirements. Reviews describe the ventriloquist illusion as a tool for studying multisensory processing, but the review’s
+scope is not a license to claim spatial capture from a file alone [ Bruns, 2019]. More general audiovisual accounts describe
+integration and segregation as a causal-inference problem shaped by temporal regularities and signal reliability [ Noppeney
+and Lee , 2018]. That framework clarifies why a declared offset is an experimental input, not an observer-level outcome.
+Temporal ventriloquism receives a separate temporal-binding signature rather than being collapsed into spatial capture.
+Vroomen and de Gelder manipulated sound–flash timing in a flash-lag task and reported timing-dependent changes under
+those experimental conditions; Hartcher-O’Brien and Alais studied temporal ventriloquism in a purely temporal context
+[Vroomen and de Gelder , 2004, Hartcher-O’Brien and Alais , 2011]. DuckRabbit implements the stimulus-side timing
+contract and leaves the observer-side temporal-recalibration estimate to a future study.
+McGurk remains input_required. The classic speech study motivates the family, but a lawful and reproducible imple-
+mentation requires checksummed speech and video fixtures, licensing or consent records, a precise preprocessing contract,
+and an ethical validation protocol [ McGurk and MacDonald , 1976]. Cataloguing the gap is more informative than silently
+substituting an unrelated synthetic voice or claiming that a generic audiovisual mismatch is a McGurk replication.
+7.5 From literature to engineering contract
+For each entry, the evidence matrix records a source role, exact source-supported claim, engineering basis, limitation, and
+audit status. The roles distinguish primary demonstration, review or synthesis, theoretical account, engineering basis,
+limitation, and input gap. This prevents three common category errors: treating a theory as settled mechanism, treating
+a review as validation of new code, and treating a generator’s deterministic output as a participant result.
+21
+
+The package’s literature fidelity is therefore best described as “family-linked, parameterized engineering construction. ”
+Some defaults are historically motivated; none should be read as a claim of pixel identity unless that identity is sepa-
+rately established. The checked-in scholarship snapshot provides offline structural validation, including citation-key and
+DOI/URL format checks. The explicit network audit adds resolver observations and metadata matching; reachability
+alone is not treated as bibliographic verification. This is a reproducible evidence boundary, not a claim that every source
+is equally accessible or that theoretical disputes have been resolved.
+7.6 Limitations and future observer work
+The package does not claim clinical validity, universal effect sizes, cross-cultural invariance, perceptual equivalence across
+displays or headphones, or observer-level truth from objective media metrics. Playback level, gamma and display calibra-
+tion, viewing distance, refresh rate, stereo separation, room acoustics, audio transducer response, attention, expectation,
+language, expertise, and task can all matter. Codec behavior and device latency can introduce additional differences even
+when decoded media facts match within the declared tolerance.
+The synthetic observer diagnostic is intentionally not a substitute for a real vision model or human data. It is a serialized,
+hand-specified feature function with training_data=none, calibration = analytic , and human_data=false; its metamorphic
+and sensitivity checks test orchestration, not visual consciousness or human discrimination. A future observer study must
+pre-register the response scale, reference condition, estimand, exclusions, missing-data rule, randomization seed, display
+and playback controls, and uncertainty procedure. It must also report the participant and item sampling frame rather
+than importing a model-output probability as an assumed effect size. The observer harness is consequently an illustrative
+protocol and analysis contract, not a preregistration-ready study or result set.
+No participant data are bundled with DuckRabbit. The data-availability boundary is intentional: canonical artifacts,
+encoded fixtures where lawful, source-data sidecars, and deterministic synthetic diagnostics are software outputs; observer
+outcomes require separately governed data collection. Daniel Ari Friedman authors the package. DOI 10.5281/zenod
+o.21419693 identifies the historical v0.5.0 archive, not the current forthcoming version. Current release metadata and
+software-citation guidance use the same manuscript identity contract.
+22
+
+8 Publication Atlas, Caption Contract, and Scholarship Audit
+The publication layer is generated from the same typed package state as the stimuli. It contains 15 scientific figures, 10
+machine-readable tables, and a separately provenance-recorded editorial cover. The cover is an illustration of the project’s
+subject and methods aesthetic; it is not a stimulus, a participant result, or evidence of a perceptual effect.
+8.1 Claim-level visualization
+Figure 10: Four numbered boxes separate canonical stimulus, physical metric, encoded media, and observer hypothesis,
+with a boundary rule stating that observer effects require a separate study.
+What this figure shows: Four numbered boxes separate canonical stimulus, physical metric, encoded media, and observer
+hypothesis, with a boundary rule stating that observer effects require a separate study. The four-stage boundary dis-
+tinguishes what DuckRabbit can establish directly—canonical stimulus identity, physical/media metrics, and decoded
+encoded-media facts—from a future observer hypothesis. Source data output/data/claim_boundary.json records the
+stage definitions and boundary rule; the arrows describe increasing evidential requirements, not an inference that one
+stage establishes the next. Controls: claim levels in the taxonomy and manifest; seed not applicable to the explanatory
+diagram. Objective facts: no unit-bearing objective quantity is applicable; stage definitions and evidence boundaries
+are preserved in the sidecar. Claim level: source_supported. Source data: output/data/claim_boundary.json (SHA-256
+digest recorded in the figure registry). Evidence lineage: formalism:eq:observer_estimand, formalism:eq:canonical_digest.
+Limitations: The diagram is a documentation contract and does not replace a preregistered observer study or empirical
+data. Boundary: A deterministic artifact can support a future hypothesis but cannot supply the observer data required
+to test it.
+The claim boundary in fig. 10 is a typed epistemic interface. A canonical digest identifies a deterministic buffer; objective
+metrics identify properties of that buffer; encoded-media verification identifies facts of the delivered file. A future observer
+hypothesis is a different object with its own protocol, estimand, and uncertainty interval.
+8.2 Scholarship map and lineage
+What this figure shows: Rows map catalog entries to source tiers, exact supported claims, engineering bases, limita-
+tions, and implementation status. The map links every catalog entry to its primary, review, and theory records, then
+preserves the exact source-supported claim, engineering departure, limitation, and implementation status. Source data
+output/data/scholarship_map.json are generated from the checked-in evidence matrix; a source record supports only
+the statement written in that record and does not certify pixel- or task-identical replication. Controls: checked-in evi-
+dence matrix; source roles and entry statuses; audit date recorded in data/evidence_matrix.json. Objective facts: one
+evidence row per catalog entry (18 entries); source-tier counts, exact claim text, engineering basis, limitation, and gap
+23
+
+Figure 11: Rows map catalog entries to source tiers, exact supported claims, engineering bases, limitations, and imple-
+mentation status.
+24
+
+status. Claim level: source_supported. Source data: output/data/scholarship_map.json (SHA-256 digest recorded
+in the figure registry). Evidence lineage: gregory1997visual, brugger1999duckrabbit, yildiz2022ponzo, hirst2020sound,
+bruns2019ventriloquist. Limitations: The offline snapshot validates citation and lineage structure; live resolver status is a
+separate audit, and classifications can remain contested. Boundary: Scholarship coverage bounds the package’s evidence
+record and does not establish that any generated stimulus produces a universal percept.
+The source map fig. 11 and tbl. 7 make five distinctions explicit: a primary demonstration, a review, a theoretical account,
+DuckRabbit’s engineering basis, and an evidence limitation. Brugger’s duck/rabbit study documents variation across figure
+variants and observers; this supports a careful ambiguity-family record, not a universal bistability claim [ Brugger, 1999].
+Yildiz et al. review competing explanations of Ponzo-like illusions, so the catalog retains both a geometric construction
+and an unresolved theoretical boundary [ Yildiz et al. , 2022]. Repp’s tritone analysis likewise motivates listener- and
+context-sensitive limitations [ Repp, 1997].
+The audit also treats software and its metadata as part of the scholarly record. F AIR guidance emphasizes machine-
+actionable provenance and reuse, and software-citation principles emphasize crediting an identifiable version rather than
+citing an undifferentiated project name [ Wilkinson et al. , 2016, Smith et al. , 2016]. Accordingly, the release includes
+CITATION.cff, CodeMeta, Zenodo metadata, versioned manifests, source-data sidecars, and resolver-linked bibliography
+entries. These improve discoverability and attribution; they do not increase the evidential level of any perceptual claim.
+The public software identity is explicit: DuckRabbit is published and citable at the DuckRabbit public GitHub repository
+under the authorship of Daniel Ari Friedman, Active Inference Institute. The development bundle is distinct from the
+already-published v0.5.0 archive. Current source and manuscript corrections require a new versioned deposit; optional
+template typesetting and page-level validation are separate gates, not implied by a passing package audit.
+8.3 Formal traceability and objective metrics
+What this figure shows: Rows connect equation labels to their mathematical definition, implementation paths, tests, figure
+labels, and claim levels. The traceability registry connects the nine numbered equations to symbols, implementation mod-
+ules, tests, and registered figures. Source data output/data/formalism_traceability.json is the machine-readable crosswalk
+used by the manuscript; it demonstrates contract coverage and test linkage without converting formal notation into empir-
+ical evidence. Controls: formalism registry version; seed not applicable to the traceability diagram. Objective facts: nine
+equation records with implementation, test, figure, and claim-level fields; no unit-bearing measurement is plotted. Claim
+level: physical_metric. Source data: output/data/formalism_traceability.json (SHA-256 digest recorded in the figure reg-
+istry). Evidence lineage: formalism:eq:canonical_digest, formalism:eq:clock_definition, formalism:eq:objective_statistics.
+Limitations: Traceability records documentation and verification scope; it does not establish the truth of an observer-level
+theory. Boundary: A linked equation and test can show an implemented contract, not a validated perceptual law.
+The formalism registry fig. 12 links equations eqns. 1, 2, 4, 5, 3, 6, 7, 8, 9 to implementation modules, tests, and figures.
+The contract is intentionally auditable: equation labels point to code-owned records, while empirical claims remain outside
+the generator’s authority.
+What this figure shows: Four artifact cards list image, audio, video, and audiovisual metrics with units, computation
+provenance, and claim level. The dashboard presents representative measurements from image, audio, video, and audiovi-
+sual canonical artifacts. Source data output/data/metrics_dashboard.json retains metric name, value, unit, computation
+version, tolerance, claim level, and canonical digest; image values are an uncalibrated grayscale/weighted-RGB proxy with
+explicit transfer/window definitions and definition hashes, amplitude is normalized, spectra are in hertz, frame differences
+are normalized pixel differences, and synchronization is in milliseconds. Controls: default canonical artifacts; metric
+computation version and tolerance recorded in the source-data sidecar; seed s=0. Objective facts: finite objective values
+with units: normalized luminance/amplitude, Hz, normalized pixel difference, ms, counts, and durations. Claim level:
+physical_metric. Source data: output/data/metrics_dashboard.json (SHA-256 digest recorded in the figure registry).
+Evidence lineage: formalism:eq:objective_statistics, formalism:eq:temporal_spectral_metrics. Limitations: Metrics are
+media properties and do not encode pitch, size, motion, localization, binding, or other observer interpretations. Boundary:
+Metric reproducibility is a package property; interpretation as perception requires a separate observer design and data.
+The metrics dashboard fig. 13 reports units, computation version, and canonical digests. Luminance statistics are nor-
+malized raster properties; RMS and peak are normalized-amplitude properties; spectral values are in Hz; frame deltas are
+normalized pixel differences; and synchronization offsets are in milliseconds. None is a psychophysical score.
+What this figure shows: Horizontal interval markers show typed domains for dimensions, luminance, levels, frequency, sam-
+pling, frame rate, synchronization, and spatial discrepancy. The domain map shows the validated ranges for dimensions,
+luminance, grayscale and quantization levels, frequency, sampling rate, frame rate, synchronization offset, and spatial
+discrepancy. Source data output/data/parameter_domains.json records the type name, unit, interval, and engineering
+25
+
+Figure 12: Rows connect equation labels to their mathematical definition, implementation paths, tests, figure labels, and
+claim levels.
+26
+
+Figure 13: Four artifact cards list image, audio, video, and audiovisual metrics with units, computation provenance, and
+claim level.
+Figure 14: Horizontal interval markers show typed domains for dimensions, luminance, levels, frequency, sampling, frame
+rate, synchronization, and spatial discrepancy.
+27
+
+role; intervals prevent malformed media and are not proposed as sensitivity thresholds. Controls: parameter schema
+version and validated scalar domains; seed not applicable to the domain diagram. Objective facts: dimensionless, pixel,
+level, Hz, samples/s, frames/s, ms, and normalized spatial units as listed per parameter. Claim level: canonical_stimulus.
+Source data: output/data/parameter_domains.json (SHA-256 digest recorded in the figure registry). Evidence lineage:
+formalism:eq:typed_request. Limitations: The intervals are software validation bounds and do not encode safe listening
+levels, display limits, or psychophysical thresholds. Boundary: A valid parameter is a reproducible construction request,
+not evidence that the requested value is perceptually effective.
+The domain map fig. 14 is a validation visualization. Bounds are chosen to prevent malformed media and unsafe encodings,
+not to predict a viewer, listener, or participant’s sensitivity.
+8.4 Observer-design boundary
+Figure 15: A flow diagram connects trial identity, randomization, stimulus manifest, response, aggregate estimand, and
+analysis-model templates, with a synthetic-only boundary.
+What this figure shows: A flow diagram connects trial identity, randomization, stimulus manifest, response, aggregate
+estimand, and analysis-model templates, with a synthetic-only boundary. The data-free protocol template moves from
+pseudonymous trial identity and deterministic randomization to a stimulus manifest and encoded-file hash, typed response
+or missingness, and a preregistered estimand. Source data output/data/observer_protocol.json records the study design,
+randomization seed, model templates, and synthetic-only status; no participant record is included. Controls: study design
+and deterministic randomization seed recorded in the sidecar; synthetic response generation is separate from human data.
+Objective facts: trial counts, condition structure, estimand templates, response schemas, and model families; partici-
+pant outcomes are not applicable. Claim level: observer_hypothesis. Source data: output/data/observer_protocol.json
+(SHA-256 digest recorded in the figure registry). Evidence lineage: observer:preregistered_estimands. Limitations: The
+scaffold specifies future data collection and analysis but supplies no participant responses, fitted coeﬀicients, power claim,
+or validated observer effect. Boundary: The protocol requires ethical review, task and calibration specifications, and
+preregistration before human use, not evidence that the proposed effect exists.
+The observer scaffold fig. 15 starts with a pseudonymous trial identity and deterministic randomization, binds the stimulus
+manifest and encoded hash, records a typed response or missingness state, and ends at a preregistered estimand. The
+companion diagnostic fig. 9 is a deterministic, hand-specified feature observer with training_data=none and human_data=
+28
+
+false; it is not a pretrained vision model, psychometric function, or participant result. Human psychophysics remains a
+future evidence layer requiring calibrated playback, consent, preregistration, and observed responses.
+8.5 Generated audit tables
+Table 6: Code-owned caption, source-data, and accessibility audit.
+Figure / claim level Source and evidence Controls and objective facts
+Limitations, boundary, and
+accessibility
+fig:architecture; canonical_
+stimulus
+output/data/architecture.js
+on; formalism:eq:typed_req
+uest, formalism:eq:canonical
+_generation, formalism:eq:e
+ncoding_verification
+Controls: typed request
+q=(i,𝜃,s,e) with seed s=0;
+default generator and
+delivery-independent
+canonicalization Objective:
+no unit-bearing objective
+quantity is applicable to
+this architecture diagram;
+stage identities and
+provenance fields are
+recorded in the sidecar
+Limitations: The schematic
+abstracts implementation
+boundaries and does not
+represent an observer study
+or a causal theory of
+perception. Boundary: The
+pipeline verifies
+reproducible media facts,
+not what a person
+experiences. Accessibility:
+Stage names, mathematical
+symbols, and arrow
+direction are printed
+directly; color is redundant.
+fig:catalog_matrix; source_
+supported
+output/data/catalog_matri
+x.json; gregory1997visual, h
+irst2020sound, bruns2019ve
+ntriloquist
+Controls: live taxonomy
+registry; evidence matrix
+snapshot; seed not
+applicable to the catalog
+diagram Objective: 18
+catalog rows; categorical
+facets and statuses; no
+observer-level quantity is
+applicable
+Limitations: Taxonomy
+facets are engineering
+classifications and remain
+provisional where the
+literature supports
+competing accounts.
+Boundary: Catalog
+coverage is bounded to this
+registered package and does
+not enumerate all known
+illusions. Accessibility:
+Every status and facet is
+written as text; color only
+reinforces the printed
+status.
+29
+
+Figure / claim level Source and evidence Controls and objective facts
+Limitations, boundary, and
+accessibility
+fig:visual_panel; canonical_
+stimulus
+output/data/visual_panel.j
+son; gregory1997visual, bru
+gger1999duckrabbit, howe2
+005muller, morgan1999pogg
+endorff, fisher1967ponzo, yil
+diz2022ponzo, kanizsa1976c
+ontours, mruczek2015ebbin
+ghaus, earle1995zollner, wer
+theimer1912motion, sekuler
+1996wertheimer
+Controls: one default typed
+parameter object per
+implemented visual entry;
+seed s=0; dimensions,
+luminance bounds,
+grayscale, and quantization
+controls remain in each
+generator schema; temporal
+entries display their first
+frame but retain sequence
+metrics Objective: per tile:
+mean and standard
+deviation of the declared
+uncalibrated channel-value
+proxy, unique raster levels,
+and canonical SHA-256
+digest; temporal entries
+additionally retain frame
+count, frame rate, and
+frame deltas; definitions
+and units are in the source
+data JSON
+Limitations: The gallery is
+complete for implemented
+visual entries in this
+package, not a complete
+survey of visual illusions;
+literature families,
+historical displays, and
+DuckRabbit rasters are not
+pixel-identical by default.
+Viewing scale, display
+calibration, viewing
+distance, and observer
+conditions can change the
+relevance of a construction;
+the gallery does not
+measure an observer’s
+perceptual report.
+Boundary: The figure
+establishes coverage of the
+package’s implemented
+visual constructions and
+their deterministic raster
+facts. It does not establish
+that any viewer will
+perceive the named
+signature, nor that the set
+is exhaustive of the
+visual-illusion literature. Ac
+cessibility: Each tile is
+labeled by stable illusion ID
+and accompanied by
+printed luminance,
+level-count, and digest
+fields; color only reinforces
+grouping and is not
+required to identify a
+stimulus.
+fig:visual_sweep; physical_
+metric
+output/data/visual_sweep.
+json; brugger1999duckrabbi
+t, gregory1997visual
+Controls: duck_weight ∈ {
+0,.25,.5,.75,1}; grayscale=q
+uantization ∈ {2,4,8,16,32};
+seed s=0 Objective: 25
+canonical rasters; unique
+levels, normalized mean
+luminance, and effective
+dynamic range per cell
+Limitations: The grid is a
+sensitivity of the
+construction parameters,
+not a psychophysical
+sensitivity curve or a
+validated observer effect.
+Boundary: The chosen grid
+is an engineering sampling
+of the parameter domain
+and does not imply an
+optimal or perceptually
+uniform spacing. Accessibili
+ty: Row and column labels
+state the parameter values;
+numerical metrics and units
+are available in the sidecar.
+30
+
+Figure / claim level Source and evidence Controls and objective facts
+Limitations, boundary, and
+accessibility
+fig:temporal_sequence; phy
+sical_metric
+output/data/temporal_seq
+uence.json; wertheimer1912
+motion, sekuler1996werthei
+mer
+Controls: visual.apparent_
+motion default typed
+parameters; frame rate and
+frame count from the
+canonical sequence; seed
+s=0 Objective: timestamps
+in seconds, frame rate in
+frames/s, frame count,
+rational timebase, and
+adjacent-frame normalized
+pixel difference
+Limitations: Frame
+succession and frame deltas
+are physical file properties;
+playback timing, display
+persistence, and motion
+reports require a controlled
+observer task. Boundary:
+The figure documents
+temporal structure rather
+than the presence, direction,
+or strength of perceived
+motion. Accessibility:
+Frame index, seconds,
+frames per second, and
+normalized-difference labels
+remain interpretable
+without color.
+fig:audio_signals; physical_
+metric
+output/data/audio_signals.
+json; shepard1984scale, zato
+rre2005missing, deutsch198
+6tritone, repp1997tritone, d
+eutsch1974octave, warren19
+70continuity, riecke2011con
+tinuity
+Controls: default typed
+audio parameters;
+per-generator channel
+layout and sample rate;
+seed s=0; one-sided FFT
+display with 48
+frequency-labelled
+peak-magnitude bands
+Objective: RMS and peak
+in normalized amplitude;
+spectral centroid and
+bandwidth in Hz; sample
+rate in samples/s; channel
+layout and canonical
+SHA-256 digest
+Limitations: Playback level,
+transducer response,
+dichotic separation, masker
+design, and listener
+judgments are external to
+the canonical buffer.
+Boundary: The figure
+compares generated signal
+properties and
+literature-linked families; it
+does not establish pitch,
+continuity, or stream
+organization for a listener.
+Accessibility: Waveform,
+spectral, amplitude, and
+frequency labels are printed;
+bar color is not the sole
+encoding.
+fig:audiovisual_timeline; ph
+ysical_metric
+output/data/audiovisual_ti
+meline.json; shams2000sifi,
+hirst2020sound, vroomen20
+04temporal, hartcherobrien
+2011temporal
+Controls: audiovisual.sound
+_induced_flash default
+shared timeline; declared
+sync offset ΔA V and spatial
+offset; seed s=0 Objective:
+video frame-hold grayscale/
+weighted-RGB proxy and
+mean-channel absolute
+audio amplitude on shared
+time in seconds; ΔA V in
+ms; spatial discrepancy in
+normalized units; frame and
+sample clocks in the sidecar
+Limitations: Display
+refresh, audio hardware,
+event latency, and observer
+temporal binding are not
+measured by this figure.
+Boundary: A shared-clock
+construction is not evidence
+that observers bind the
+events at the declared or
+any other perceptual time.
+Accessibility: The two
+channels, time axis, signed
+offset convention, and
+normalized spatial
+discrepancy are labeled in
+text.
+31
+
+Figure / claim level Source and evidence Controls and objective facts
+Limitations, boundary, and
+accessibility
+fig:encoding_verification; e
+ncoded_media
+output/data/encoding_veri
+fication.json; engineering:ty
+ped_media_adapters
+Controls: typed encoding
+profile selected per artifact;
+overwrite and backend
+capability checks; seed
+inherited from the stimulus
+request Objective: format
+availability and verification
+scope are environment
+observations; NPZ is exact
+while other formats are
+decoded and
+tolerance-checked
+Limitations: Backend
+availability, codec versions,
+container metadata, and
+lossy tolerances are
+environment-dependent;
+playback software can
+expose additional behavior.
+Boundary: A successful
+encode or decode does not
+validate an observer effect
+or guarantee cross-device
+perceptual equivalence. Acc
+essibility: Format, backend,
+preserved fact, and
+verification columns are
+textual and remain usable
+without color.
+fig:synthetic_psychophysics
+; synthetic_model_output
+output/data/synthetic_psy
+chophysics.json; observer:pr
+eregistered_estimands
+Controls: duck_weight
+comparison against fixed
+reference; serialized feature
+weights and temperature;
+seed s=0 Objective: model
+probability, null baseline,
+ablations, temperature
+sensitivity and exact-self
+control; full feature values,
+specifications and canonical
+stimulus digests; human_d
+ata=false; training_data=n
+one
+Limitations: The model is
+hand-specified, has no
+training data, has not been
+calibrated against observers,
+and does not estimate a
+human threshold or effect
+size. Its probabilities and
+the finite configuration
+range are model outputs,
+not participant responses,
+confidence intervals, or a
+psychometric function.
+Boundary: This diagnostic
+tests deterministic
+orchestration and
+metamorphic input-output
+behavior only; empirical
+psychophysics remains
+future work. Accessibility:
+Model scale, reference line,
+model identity, and human\_
+data=false are printed;
+color is not needed to
+interpret the curve.
+fig:claim_boundary; source
+_supported
+output/data/claim_bounda
+ry.json; formalism:eq:observ
+er_estimand, formalism:eq:
+canonical_digest
+Controls: claim levels in the
+taxonomy and manifest;
+seed not applicable to the
+explanatory diagram
+Objective: no unit-bearing
+objective quantity is
+applicable; stage definitions
+and evidence boundaries
+are preserved in the sidecar
+Limitations: The diagram
+is a documentation contract
+and does not replace a
+preregistered observer study
+or empirical data.
+Boundary: A deterministic
+artifact can support a
+future hypothesis but
+cannot supply the observer
+data required to test it. Ac
+cessibility: Each stage is
+named, numbered, and
+described in text; the
+boundary rule is readable
+without color.
+32
+
+Figure / claim level Source and evidence Controls and objective facts
+Limitations, boundary, and
+accessibility
+fig:scholarship_map; source
+_supported
+output/data/scholarship_
+map.json; gregory1997visua
+l, brugger1999duckrabbit, y
+ildiz2022ponzo, hirst2020so
+und, bruns2019ventriloquist
+Controls: checked-in
+evidence matrix; source
+roles and entry statuses;
+audit date recorded in data/
+evidence_matrix.json
+Objective: one evidence row
+per catalog entry (18
+entries); source-tier counts,
+exact claim text,
+engineering basis,
+limitation, and gap status
+Limitations: The offline
+snapshot validates citation
+and lineage structure; live
+resolver status is a separate
+audit, and classifications
+can remain contested.
+Boundary: Scholarship
+coverage bounds the
+package’s evidence record
+and does not establish that
+any generated stimulus
+produces a universal
+percept. Accessibility:
+Source roles, claims,
+limitations, and statuses
+are printed or available in
+the sidecar; no category is
+encoded by color alone.
+fig:formalism_traceability;
+physical_metric
+output/data/formalism_tra
+ceability.json; formalism:eq:
+canonical_digest, formalism
+:eq:clock_definition, formal
+ism:eq:objective_statistics
+Controls: formalism
+registry version; seed not
+applicable to the
+traceability diagram
+Objective: nine equation
+records with
+implementation, test, figure,
+and claim-level fields; no
+unit-bearing measurement
+is plotted
+Limitations: Traceability
+records documentation and
+verification scope; it does
+not establish the truth of
+an observer-level theory.
+Boundary: A linked
+equation and test can show
+an implemented contract,
+not a validated perceptual
+law. Accessibility:
+Equation labels, code paths,
+tests, and figure labels are
+written as text.
+fig:metrics_dashboard; phy
+sical_metric
+output/data/metrics_dash
+board.json; formalism:eq:ob
+jective_statistics, formalis
+m:eq:temporal_spectral_m
+etrics
+Controls: default canonical
+artifacts; metric
+computation version and
+tolerance recorded in the
+source-data sidecar; seed
+s=0 Objective: finite
+objective values with units:
+normalized luminance/ampl
+itude, Hz, normalized pixel
+difference, ms, counts, and
+durations
+Limitations: Metrics are
+media properties and do
+not encode pitch, size,
+motion, localization,
+binding, or other observer i
+nterpretations. Boundary:
+Metric reproducibility is a
+package property;
+interpretation as perception
+requires a separate observer
+design and data. Accessibili
+ty: Every numerical value
+is paired with a printed
+unit or an explicit
+dimensionless definition.
+33
+
+Figure / claim level Source and evidence Controls and objective facts
+Limitations, boundary, and
+accessibility
+fig:parameter_domains; can
+onical_stimulus
+output/data/parameter_do
+mains.json; formalism:eq:ty
+ped_request
+Controls: parameter
+schema version and
+validated scalar domains;
+seed not applicable to the
+domain diagram Objective:
+dimensionless, pixel, level,
+Hz, samples/s, frames/s,
+ms, and normalized spatial
+units as listed per
+parameter
+Limitations: The intervals
+are software validation
+bounds and do not encode
+safe listening levels, display
+limits, or psychophysical
+thresholds. Boundary: A
+valid parameter is a
+reproducible construction
+request, not evidence that
+the requested value is
+perceptually effective. Acce
+ssibility: Type names,
+endpoints, units, and roles
+are printed; interval color is
+redundant.
+fig:observer_protocol; obser
+ver_hypothesis
+output/data/observer_prot
+ocol.json; observer:preregist
+ered_estimands
+Controls: study design and
+deterministic randomization
+seed recorded in the sidecar;
+synthetic response
+generation is separate from
+human data Objective: trial
+counts, condition structure,
+estimand templates,
+response schemas, and
+model families; participant
+outcomes are not applicable
+Limitations: The scaffold
+specifies future data
+collection and analysis but
+supplies no participant
+responses, fitted coeﬀicients,
+power claim, or validated
+observer effect. Boundary:
+The protocol requires
+ethical review, task and
+calibration specifications,
+and preregistration before
+human use, not evidence
+that the proposed effect
+exists. Accessibility: Every
+protocol step and the
+no-participant-data
+boundary is stated in text;
+arrows and labels remain
+legible without color.
+Table 7: Source-tiered evidence, DOI/URL verification, exact supported claims, engineering departures, limitations, and
+explicit planned/input-required gaps.
+Key Record and citations DOI and URL Verification
+Supported claim / en
+gineering / limitation
+gregory1997visual review; gregory1997vi
+sual
+DOI: 10.1016/S1364-
+6613(97)01060-7;
+URL: https://pubme
+d.ncbi.nlm.nih.gov/21
+223901/
+snapshot_validated;
+offline_snapshot
+A non-exhaustive
+classification of visual
+illusion families.
+hirst2020sound review; hirst2020soun
+d
+DOI: 10.1016/j.neubi
+orev.2020.09.006;
+URL: https://www.sc
+iencedirect.com/scien
+ce/article/pii/S01497
+63420305637
+snapshot_validated;
+offline_snapshot
+A review of
+sound-induced flash
+paradigms and
+multisensory
+temporal inference.
+howe2005muller theory; howe2005mull
+er
+DOI: 10.1073/pnas.04
+09314102; URL: https
+://doi.org/10.1073/p
+nas.0409314102
+snapshot_validated;
+offline_snapshot
+A statistical
+image-source account
+of Müller-Lyer
+geometry.
+34
+
+Key Record and citations DOI and URL Verification
+Supported claim / en
+gineering / limitation
+morgan1999poggendo
+rff
+theory; morgan1999p
+oggendorff
+DOI: 10.1016/S0042-
+6989(98)00243-0;
+URL: https://doi.org
+/10.1016/S0042-6989(
+98)00243-0
+snapshot_validated;
+offline_snapshot
+A mechanistic
+account of
+Poggendorff
+orientation
+estimation.
+fisher1967ponzo primary; fisher1967po
+nzo
+DOI: 10.1038/215553
+a0; URL: https://ww
+w.nature.com/articles
+/215553a0
+snapshot_validated;
+offline_snapshot
+A primary
+investigation of
+identical targets
+embedded in an
+angular context.
+kanizsa1976contours primary; kanizsa1976
+contours
+DOI: 10.1038/scientif
+icamerican0476-48;
+URL: https://pubme
+d.ncbi.nlm.nih.gov/12
+57734/
+snapshot_validated;
+offline_snapshot
+Canonical
+illusory-contour
+inducer arrangements
+.
+mruczek2015ebbingha
+us
+primary; mruczek201
+5ebbinghaus
+DOI: 10.3389/fnhum.
+2015.00077; URL: htt
+ps://pmc.ncbi.nlm.ni
+h.gov/articles/PMC4
+332331/
+snapshot_validated;
+offline_snapshot
+Context-dependent
+size judgments in
+Ebbinghaus-family
+stimuli.
+wertheimer1912motio
+n
+primary; wertheimer1
+912motion
+DOI: not_recorded;
+URL: https://bibbase
+.org/network/publica
+tion/wertheimer-expe
+rimentellestudienberd
+assehenvonbewegung-
+1912
+snapshot_validated;
+offline_snapshot
+Foundational
+apparent-motion
+experiments using
+successive spatial
+events.
+sekuler1996wertheime
+r
+review; sekuler1996w
+ertheimer
+DOI: 10.1068/p25124
+3; URL: https://jour
+nals.sagepub.com/doi
+/10.1068/p251243
+snapshot_validated;
+offline_snapshot
+A review connecting
+Wertheimer’s
+successive-event
+findings to later
+apparent-motion
+research and
+clarifying their
+historical scope.
+shepard1984scale primary; shepard1984
+scale
+DOI: 10.1126/science.
+226.4680.1333; URL:
+https://doi.org/10.11
+26/science.226.4680.1
+333
+snapshot_validated;
+offline_snapshot
+Auditory scale and
+pitch-class
+organization in
+Shepard-like tones.
+zatorre2005missing review; zatorre2005mi
+ssing
+DOI: 10.1038/436109
+3a; URL: https://doi.
+org/10.1038/4361093
+a
+snapshot_validated;
+offline_snapshot
+The
+missing-fundamental
+problem as a
+pitch-inference
+phenomenon.
+deutsch1986tritone primary; deutsch1986
+tritone
+DOI: 10.2307/402853
+37; URL: https://onli
+ne.ucpress.edu/mp/ar
+ticle-abstract/3/3/27
+5/62718/A-Musical-P
+aradox
+snapshot_validated;
+offline_snapshot
+The tritone paradox
+and dependence on
+pitch-class context
+and listener.
+deutsch1974octave primary; deutsch1974
+octave
+DOI: 10.1121/1.19195
+87; URL: https://doi.
+org/10.1121/1.191958
+7
+snapshot_validated;
+offline_snapshot
+Dichotic alternating
+high/low tone
+construction
+underlying the octave
+illusion.
+35
+
+Key Record and citations DOI and URL Verification
+Supported claim / en
+gineering / limitation
+shams2000sifi primary; shams2000si
+fi
+DOI: 10.1038/350486
+69; URL: https://doi.
+org/10.1038/3504866
+9
+snapshot_validated;
+offline_snapshot
+The one-flash/two-be
+ep sound-induced
+flash contrast.
+bruns2019ventriloquis
+t
+review; bruns2019ven
+triloquist
+DOI: 10.3389/fnint.2
+019.00051; URL: http
+s://pmc.ncbi.nlm.nih.
+gov/articles/PMC675
+1356/
+snapshot_validated;
+offline_snapshot
+Spatial audiovisual
+capture and
+multisensory
+integration
+constraints.
+vroomen2004tempora
+l
+primary; vroomen200
+4temporal
+DOI: 10.1037/0096-15
+23.30.3.513; URL: htt
+ps://pubmed.ncbi.nl
+m.nih.gov/15161383/
+snapshot_validated;
+offline_snapshot
+Sound timing can
+alter the apparent
+temporal structure of
+a visual event.
+mcgurk1976speech primary; mcgurk1976
+speech
+DOI: 10.1038/264746
+a0; URL: https://doi.
+org/10.1038/264746a
+0
+snapshot_validated;
+offline_snapshot
+Speech-dependent
+audiovisual
+categorical
+integration, requiring
+validated fixtures.
+warren1970continuity primary; warren1970c
+ontinuity
+DOI: 10.1126/science.
+167.3917.392; URL: h
+ttps://doi.org/10.112
+6/science.167.3917.39
+2
+snapshot_validated;
+offline_snapshot
+Auditory continuity/r
+estoration as a future
+calibrated masker
+family.
+brugger1999duckrabb
+it
+primary; brugger1999
+duckrabbit
+DOI: 10.2466/pms.19
+99.89.3.973; URL: htt
+ps://pubmed.ncbi.nl
+m.nih.gov/10665033/
+snapshot_validated;
+offline_snapshot
+Variation in
+duck/rabbit
+ambiguity across
+figure variants and
+observers.
+yildiz2022ponzo review; yildiz2022pon
+zo
+DOI: 10.3758/s13423-
+021-02007-7; URL: ht
+tps://pubmed.ncbi.nl
+m.nih.gov/34613601/
+snapshot_validated;
+offline_snapshot
+Competing
+depth-based and
+non-depth-based
+explanations of
+Ponzo-like illusions.
+repp1997tritone primary; repp1997trit
+one
+DOI: 10.1068/p26064
+5; URL: https://pub
+med.ncbi.nlm.nih.gov
+/9488887/
+snapshot_validated;
+offline_snapshot
+Listener- and
+context-dependent
+effects of spectral
+envelope and
+pitch-class structure
+in tritone judgments.
+hartcherobrien2011te
+mporal
+primary; hartcherobri
+en2011temporal
+DOI: 10.1037/a00242
+34; URL: https://pub
+med.ncbi.nlm.nih.gov
+/21728465/
+snapshot_validated;
+offline_snapshot
+Audiovisual timing
+can shift temporal
+judgments in a purely
+temporal context
+without spatial
+grounding.
+earle1995zollner primary; earle1995zol
+lner
+DOI: 10.1068/p24139
+7; URL: https://jour
+nals.sagepub.com/doi
+/10.1068/p241397
+snapshot_validated;
+offline_snapshot
+Crossing oblique and
+long-line geometry
+used to measure
+orientation
+interactions in the
+Zöllner family.
+36
+
+Key Record and citations DOI and URL Verification
+Supported claim / en
+gineering / limitation
+zoellner1860pseudosc
+opy
+primary; zoellner1860
+pseudoscopy
+DOI: 10.1002/andp.1
+8601860712; URL: ht
+tps://onlinelibrary.wi
+ley.com/doi/10.1002/
+andp.18601860712
+snapshot_validated;
+offline_snapshot
+The
+nineteenth-century
+primary description
+of the crossing-line
+orientation family
+later known as the
+Zöllner illusion.
+riecke2011continuity primary; riecke2011co
+ntinuity
+DOI: 10.1016/j.heares
+.2011.01.013; URL: ht
+tps://doi.org/10.1016
+/j.heares.2011.01.013
+snapshot_validated;
+offline_snapshot
+Interrupted sounds
+with masking context
+and the separation of
+sensory and
+decisional contributio
+ns.
+wagemans2012gestalt review; wagemans201
+2gestalt
+DOI: 10.1037/a00293
+33; URL: https://pub
+med.ncbi.nlm.nih.gov
+/22845751/
+snapshot_validated;
+offline_snapshot
+Contemporary
+perceptual-grouping,
+contour-completion,
+and figure-ground
+accounts relevant to
+Kanizsa-type constru
+ctions.
+weintraub1979ebbing
+haus
+primary; weintraub19
+79ebbinghaus
+DOI: 10.1037/0096-15
+23.5.2.353; URL: http
+s://pubmed.ncbi.nlm.
+nih.gov/528945/
+snapshot_validated;
+offline_snapshot
+A classic
+contextual-size
+experiment varying
+surround geometry
+and comparison
+conditions in
+Ebbinghaus-family
+displays.
+noppeney2018causal review; noppeney2018
+causal
+DOI: 10.1111/nyas.13
+615; URL: https://do
+i.org/10.1111/nyas.13
+615
+snapshot_validated;
+offline_snapshot
+Causal-inference and
+temporal-prediction
+accounts of
+audiovisual
+integration and
+segregation.
+alhazen1989optics primary; alhazen1989
+optics
+DOI: not_recorded;
+URL: https://www.c
+ca.qc.ca/en/search/d
+etails/library/publica
+tion/21530166
+snapshot_validated;
+offline_snapshot
+The English
+translation and
+commentary
+preserves Ibn
+al-Haytham’s
+eleventh-century
+Arabic optics as a
+historical source on
+direct vision and
+geometrical image
+formation.
+37
+
+Key Record and citations DOI and URL Verification
+Supported claim / en
+gineering / limitation
+mozi2023canons review; mozi2023cano
+ns
+DOI: 10.1007/978-3-0
+31-08797-4_3; URL:
+https://link.springer.
+com/chapter/10.1007
+/978-3-031-08797-4_3
+snapshot_validated;
+offline_snapshot
+A modern translation
+and commentary
+documents Mohist
+Canon sections on
+knowledge, optics,
+and mechanics,
+providing a Chinese
+Warring
+States-period context
+for early technical
+reasoning about
+vision.
+ptolemy1996optics primary; ptolemy1996
+optics
+DOI: not_recorded;
+URL: https://sites.dli
+b.nyu.edu/viewer/bo
+oks/isaw_aphs000027
+snapshot_validated;
+offline_snapshot
+The scholarly
+translation makes
+Ptolemy’s
+second-century
+Optics available as an
+early work on visual
+perception and
+mathematical visual
+theory.
+berkeley1709vision primary; berkeley170
+9vision
+DOI: not_recorded;
+URL: https://www.m
+aths.tcd.ie/aboutdwil
+kins/Berkeley/Vision
+/
+snapshot_validated;
+offline_snapshot
+Berkeley’s 1709 essay
+treats visual distance
+and space as
+mediated by learned
+associations rather
+than as a simple
+direct readout of
+visual geometry.
+kircher1646light primary; kircher1646l
+ight
+DOI: not_recorded;
+URL: https://collecti
+ons.st-andrews.ac.uk/
+item/ars-magna-lucis-
+et-umbrae/606862
+snapshot_validated;
+offline_snapshot
+The digitized record
+anchors Kircher’s
+1646 Ars magna lucis
+et umbrae as an
+early-modern work on
+light, shadow, and
+optical display.
+molyneux2020proble
+m
+review; molyneux202
+0problem
+DOI: not_recorded;
+URL: https://plato.st
+anford.edu/archives/f
+all2020/entries/moly
+neux-problem/
+snapshot_validated;
+offline_snapshot
+The historical
+account documents
+Molyneux’s 1688
+question separating
+tactile learning from
+visual recognition and
+its long cross-sensory
+afterlife.
+cheselden1728sight primary; cheselden17
+28sight
+DOI: not_recorded;
+URL: https://archive.
+org/details/jstor-1036
+97
+snapshot_validated;
+offline_snapshot
+The digitized
+Philosophical
+Transactions record
+preserves Cheselden’s
+1728 case report as a
+historical observation
+relevant to visual
+access and the
+separation of observer
+evidence from
+stimulus description.
+38
+
+Key Record and citations DOI and URL Verification
+Supported claim / en
+gineering / limitation
+dai2015chinesescience review; dai2015chines
+escience
+DOI: 10.1007/978-3-6
+62-44257-9_5; URL:
+https://link.springer.
+com/chapter/10.1007
+/978-3-662-44257-9_5
+snapshot_validated;
+offline_snapshot
+A history of Chinese
+science and
+technology surveys
+ancient Chinese
+physics and records
+optical phenomena as
+part of a
+non-European history
+of visual science.
+entry:visual.duck_ra
+bbit
+engineering+limitatio
+n+gap; brugger1999d
+uckrabbit, gregory199
+7visual
+DOI: not_applicable;
+URL: data/evidence_
+matrix.json
+snapshot_validated;
+offline_snapshot
+The entry
+instantiates a
+controllable
+ambiguous-figure
+stimulus family.
+Engineering basis:
+Parameterized
+ambiguous silhouette;
+not a pixel-identical
+reproduction of a
+historical plate.
+Limitation: The
+generator verifies
+geometry and
+luminance, not
+bistable reports.
+Missing contract:
+none
+entry:visual.simultan
+eous_contrast
+engineering+limitatio
+n+gap; gregory1997vi
+sual
+DOI: not_applicable;
+URL: data/evidence_
+matrix.json
+snapshot_validated;
+offline_snapshot
+The physical center
+patches are matched
+while surround
+luminance differs.
+Engineering basis:
+Equal central patches
+on unequal luminance
+surrounds.
+Limitation: Display
+calibration and
+observer adaptation
+are not modeled.
+Missing contract:
+none
+entry:visual.apparent
+_motion
+engineering+limitatio
+n+gap; wertheimer19
+12motion, sekuler199
+6wertheimer
+DOI: not_applicable;
+URL: data/evidence_
+matrix.json
+snapshot_validated;
+offline_snapshot
+The sequence
+contains controlled
+successive spatial
+events. Engineering
+basis: Alternating
+rectangular masks at
+a fixed rational frame
+rate. Limitation: The
+artifact establishes
+temporal succession,
+not perceived motion.
+Missing contract:
+none
+39
+
+Key Record and citations DOI and URL Verification
+Supported claim / en
+gineering / limitation
+entry:audio.shepard_
+tone
+engineering+limitatio
+n+gap; shepard1984s
+cale
+DOI: not_applicable;
+URL: data/evidence_
+matrix.json
+snapshot_validated;
+offline_snapshot
+The audio contains
+octave-related
+partials with
+controlled sweep
+parameters.
+Engineering basis:
+Additive
+octave-spaced partials
+with a deterministic
+envelope. Limitation:
+Playback transducers
+and listener pitch
+judgments are
+external. Missing
+contract: none
+entry:audio.missing_f
+undamental
+engineering+limitatio
+n+gap; zatorre2005m
+issing
+DOI: not_applicable;
+URL: data/evidence_
+matrix.json
+snapshot_validated;
+offline_snapshot
+The nominal
+fundamental
+component is absent
+from the canonical
+spectrum.
+Engineering basis:
+Harmonic
+components are
+synthesized while the
+nominal fundamental
+is omitted.
+Limitation: Pitch
+completion is an
+observer-level
+inference. Missing
+contract: none
+entry:audiovisual.sou
+nd_induced_flash
+engineering+limitatio
+n+gap; shams2000sifi,
+hirst2020sound
+DOI: not_applicable;
+URL: data/evidence_
+matrix.json
+snapshot_validated;
+offline_snapshot
+The declared
+beep/flash event
+counts and offsets are
+physically encoded.
+Engineering basis:
+One flash paired with
+one or two timed
+beeps on a shared
+clock. Limitation:
+The stimulus does not
+establish a reported
+flash count. Missing
+contract: none
+40
+
+Key Record and citations DOI and URL Verification
+Supported claim / en
+gineering / limitation
+entry:audiovisual.ven
+triloquist
+engineering+limitatio
+n+gap; bruns2019ven
+triloquist, noppeney2
+018causal
+DOI: not_applicable;
+URL: data/evidence_
+matrix.json
+snapshot_validated;
+offline_snapshot
+The audio and visual
+channels carry a
+declared spatial
+discrepancy.
+Engineering basis:
+Stereo panning and
+visual displacement
+encode a spatial
+discrepancy.
+Limitation: Perceived
+localization depends
+on room, headphones,
+display, and observer.
+Missing contract:
+none
+entry:visual.muller_l
+yer
+engineering+limitatio
+n+gap; gregory1997vi
+sual, howe2005muller
+DOI: not_applicable;
+URL: data/evidence_
+matrix.json
+snapshot_validated;
+offline_snapshot
+The two bar lengths
+are equal in the
+canonical raster while
+wing geometry varies.
+Engineering basis:
+Equal bars with
+controlled arrow-wing
+geometry. Limitation:
+The chosen
+normalized geometry
+is one engineering
+variant. Missing
+contract: none
+entry:visual.poggendo
+rff
+engineering+limitatio
+n+gap; gregory1997vi
+sual, morgan1999pog
+gendorff
+DOI: not_applicable;
+URL: data/evidence_
+matrix.json
+snapshot_validated;
+offline_snapshot
+The occluder and
+diagonal continuation
+are generated from
+explicit geometry.
+Engineering basis: A
+diagonal continuation
+is separated by a
+rectangular occluder.
+Limitation:
+Alignment judgments
+and orientation filters
+are not measured.
+Missing contract:
+none
+entry:visual.ponzo engineering+limitatio
+n+gap; fisher1967pon
+zo, yildiz2022ponzo
+DOI: not_applicable;
+URL: data/evidence_
+matrix.json
+snapshot_validated;
+offline_snapshot
+Target bars are
+physically equal and
+rails converge toward
+a vanishing region.
+Engineering basis:
+Equal target bars are
+placed inside
+converging rails.
+Limitation:
+Perspective
+interpretation is
+observer- and display-
+dependent. Missing
+contract: none
+41
+
+Key Record and citations DOI and URL Verification
+Supported claim / en
+gineering / limitation
+entry:visual.kanizsa_
+triangle
+engineering+limitatio
+n+gap; kanizsa1976c
+ontours, wagemans20
+12gestalt
+DOI: not_applicable;
+URL: data/evidence_
+matrix.json
+snapshot_validated;
+offline_snapshot
+The image contains
+incomplete inducers
+with no explicitly
+drawn triangle edge.
+Engineering basis:
+Three incomplete
+circular inducers are
+rasterized around a
+triangular gap.
+Limitation: Illusory
+contour completion is
+not directly measured.
+Missing contract:
+none
+entry:visual.ebbingha
+us
+engineering+limitatio
+n+gap; mruczek2015e
+bbinghaus, weintraub
+1979ebbinghaus
+DOI: not_applicable;
+URL: data/evidence_
+matrix.json
+snapshot_validated;
+offline_snapshot
+Central target
+geometry is held
+equal while
+contextual circle
+geometry differs.
+Engineering basis:
+Equal central targets
+are surrounded by
+different
+context-circle sizes.
+Limitation: Perceived
+size depends on
+viewing scale and
+context. Missing
+contract: none
+entry:visual.zollner engineering+limitatio
+n+gap; zoellner1860p
+seudoscopy, earle1995
+zollner, gregory1997vi
+sual
+DOI: not_applicable;
+URL: data/evidence_
+matrix.json
+snapshot_validated;
+offline_snapshot
+The entry
+instantiates a
+controlled
+crossing-line
+orientation stimulus
+family. Engineering
+basis: Vertical long
+lines crossed by short
+oblique inducers with
+explicit normalized
+spacing and angle.
+Limitation: The
+raster verifies line
+geometry, not
+orientation judgments
+or a pixel-identical
+historical reproductio
+n. Missing contract:
+none
+42
+
+Key Record and citations DOI and URL Verification
+Supported claim / en
+gineering / limitation
+entry:audio.tritone_p
+aradox
+engineering+limitatio
+n+gap; deutsch1986tr
+itone, repp1997triton
+e
+DOI: not_applicable;
+URL: data/evidence_
+matrix.json
+snapshot_validated;
+offline_snapshot
+The canonical pair
+has an explicit
+half-octave frequency
+relation. Engineering
+basis: Two
+octave-complex tones
+are separated by a
+half-octave interval.
+Limitation: Ascendin
+g/descending reports
+vary across listeners
+and contexts. Missing
+contract: none
+entry:audio.octave_il
+lusion
+engineering+limitatio
+n+gap; deutsch1974o
+ctave
+DOI: not_applicable;
+URL: data/evidence_
+matrix.json
+snapshot_validated;
+offline_snapshot
+The two channels
+receive alternating
+octave-related tones.
+Engineering basis:
+Alternating high and
+low tones are
+assigned to opposite
+stereo channels.
+Limitation: The
+auditory percept
+depends on dichotic
+presentation and
+listener. Missing
+contract: none
+entry:audio.auditory_
+continuity
+engineering+limitatio
+n+gap; warren1970co
+ntinuity, riecke2011c
+ontinuity
+DOI: not_applicable;
+URL: data/evidence_
+matrix.json
+snapshot_validated;
+offline_snapshot
+The canonical audio
+contains a
+reproducible
+interruption interval
+and masker family.
+Engineering basis:
+An interrupted
+sinusoidal carrier is
+replaced during a
+declared gap by a
+deterministic tone or
+white-noise masker
+with typed amplitude.
+Limitation: The
+generator reports the
+physical interruption
+and masker, not a
+listener’s continuity
+judgment or sensory-
+versus-decisional
+effect. Missing
+contract: none
+43
+
+Key Record and citations DOI and URL Verification
+Supported claim / en
+gineering / limitation
+entry:audiovisual.tem
+poral_ventriloquism
+engineering+limitatio
+n+gap; vroomen2004
+temporal, hartcherobr
+ien2011temporal, hirs
+t2020sound, noppene
+y2018causal
+DOI: not_applicable;
+URL: data/evidence_
+matrix.json
+snapshot_validated;
+offline_snapshot
+Audio and video
+event timing and
+declared offset are
+deterministic and
+inspectable.
+Engineering basis: A
+visual flash and audio
+click share a clock
+with explicit offset.
+Limitation: The
+generated
+single-event pair is a
+simplified engineering
+stimulus. Missing
+contract: none
+entry:audiovisual.mcg
+urk
+engineering+limitatio
+n+gap; mcgurk1976s
+peech
+DOI: not_applicable;
+URL: data/evidence_
+matrix.json
+snapshot_validated;
+offline_snapshot
+The catalog identifies
+a speech-dependent
+audiovisual family
+without claiming imp
+lementation.
+Engineering basis:
+Requires validated
+speech audio/video
+fixtures and licensing
+records. Limitation:
+No fixture, consent
+record, or perceptual
+validation contract is
+bundled. Missing
+contract: A licensed
+or consented
+checksummed speech
+audio/video fixture,
+synchronization
+contract, and
+preregistered
+perceptual validation
+protocol are required.
+Table 8: Formal equation-to-code traceability.
+Label Definition and symbols Implementation and tests Figures and claim level
+eq:typed_request q = (i, 𝜃, s, e) Symbols: i, 𝜃,
+s, e
+Code: registry.py,
+schema.py; Tests: test_gen
+erators.py
+Figures: fig:architecture, fig
+:formalism_traceability;
+Level: canonical_stimulus
+eq:canonical_generation A = G i(𝜃; s) Symbols: A,
+Gi, 𝜃, s
+Code: registry.py, generator
+s.py; Tests: test_generators.
+py, test_v03_contracts.py
+Figures: fig:architecture, fig
+:visual_panel; Level: canon
+ical_stimulus
+eq:canonical_digest c(A) = Serialize_LE,float32
+(A, shape, clock, units);
+h_c(A) = H(c(A)) Symbols:
+c(A), h_c, H
+Code: canonical.py,
+manifest.py; Tests: test_v0
+3_contracts.py
+Figures: fig:architecture, fig
+:encoding_verification;
+Level: physical_metric
+44
+
+Label Definition and symbols Implementation and tests Figures and claim level
+eq:encoding_verification F = E e(A), I = D(F), V(F,
+M) in {verified, failed,
+unverified} Symbols: F, E e,
+D, I, V, M
+Code: render.py, inspection.
+py, manifest.py; Tests: test
+_media_and_render.py, te
+st_v03_contracts.py, test_
+final_integrity.py
+Figures: fig:encoding_verifi
+cation; Level: encoded_me
+dia
+eq:clock_definition N = round(f_s T), t_k =
+k/f_r, Δ_A V = t_audio −
+t_video Symbols: N, f_s,
+T, t_k, f_r, Δ_A V
+Code: parameters.py, artifa
+cts.py; Tests: test_paramet
+ers.py, test_media_and_re
+nder.py
+Figures: fig:temporal_sequ
+ence, fig:audiovisual_timeli
+ne; Level: physical_metric
+eq:objective_statistics 𝜇_Y, 𝜎_Y, RMS_X =
+M(A; units, tolerance,
+version) Symbols: 𝜇_Y,
+𝜎_Y, RMS_X, M
+Code: metrics.py, publicati
+on.py; Tests: test_v04_sch
+olarly.py
+Figures: fig:metrics_dashbo
+ard, fig:audio_signals;
+Level: physical_metric
+eq:temporal_spectral_metr
+ics
+D_k = mean given
+Y_(k+1) − Y_k given ;
+centroid(X) = Σ fM_X(f)/
+max(SigmaM_X(f), 1e-12);
+M_X = channel-mean
+given rFFT(X) given
+Symbols: D_k, M_X, f
+Code: metrics.py, artifacts.
+py; Tests: test_v04_schola
+rly.py
+Figures: fig:temporal_sequ
+ence, fig:metrics_dashboard
+; Level: physical_metric
+eq:observer_estimand 𝜓 = E[Y conditional on
+condition and protocol]
+Symbols: 𝜓, Y, condition,
+protocol
+Code: observer_analysis.py
+, observer.py; Tests: test_v
+04_scholarly.py
+Figures: fig:synthetic_psyc
+hophysics, fig:observer_pro
+tocol; Level: observer_hypo
+thesis
+eq:synthetic_observer p_M(c given A_r,A_c) =
+sigma(clip((w.phi(A_c) −
+w⋅𝜑(A_r))/𝜏 , −60, 60))
+Symbols: p_M, c, A_r,
+A_c, w, 𝜑, 𝜏 , clip
+Code: synthetic_psychophy
+sics.py, metrics.py; Tests: t
+est_synthetic_psychophysi
+cs.py
+Figures: fig:synthetic_psyc
+hophysics; Level: synthetic
+_model_output
+Table 9: Claim ledger separating code-derived facts, scholarship, engineering departures, limitations, scope, and observer
+hypotheses.
+Claim ID Claim and level Basis Lineage and limitation
+catalog:count The catalog contains 18
+entries. Level: canonical_st
+imulus
+derived_from_code Lineage: taxonomy_entries
+() Limitation: Catalog
+membership is not a
+completeness claim about
+all known illusions.
+Manuscript: docs/manuscri
+pt/09_appendix_catalog.m
+d
+evidence:source_count The checked-in evidence
+matrix contains 36 source
+records. Level: source_sup
+ported
+checked_in_scholarship Lineage: data/evidence_ma
+trix.json::sources
+Limitation: The offline
+snapshot does not imply
+that every URL is currently
+reachable or that a source
+supports more than its
+exact record. Manuscript: d
+ocs/manuscript/06_scope_
+and_related_work.md
+45
+
+Claim ID Claim and level Basis Lineage and limitation
+scope:no_participant_data No participant data are
+bundled with the package.
+Level: observer_hypothesis
+derived_from_code Lineage: experiments/obser
+ver_protocol.md; output/d
+ata/synthetic_psychophysi
+cs.json Limitation: Future
+observer studies require
+preregistration, consent,
+calibrated presentation, and
+separate data governance.
+Manuscript: docs/manuscri
+pt/07_publication_audit.m
+d
+synthetic:diagnostic_bound
+ary
+The synthetic observer is a
+deterministic model-output
+diagnostic, not human psyc
+hophysics. Level: synthetic
+_model_output
+synthetic_model_output Lineage: src/duckrabbit/sy
+nthetic_psychophysics.py;
+output/data/synthetic_psy
+chophysics.json Limitation:
+The hand-specified model
+has no training data and
+has not been calibrated
+against observers.
+Manuscript: docs/manuscri
+pt/02_methodology.md
+cover:editorial_boundary The cover is a publication
+illustration, not an
+experimental stimulus or
+observer result. Level: publ
+ication_illustration
+publication_illustration Lineage: output/reports/co
+ver_visualization.json
+Limitation: The editorial
+asset is not part of the
+deterministic scientific
+stimulus registry.
+Manuscript: docs/manuscri
+pt/07_publication_audit.m
+d
+evidence:visual.duck_rabbit The entry instantiates a
+controllable
+ambiguous-figure stimulus
+family. Level: source_supp
+orted
+checked_in_scholarship Lineage: sources=brugger19
+99duckrabbit; gregory1997v
+isual; data/evidence_matri
+x.json; engineering=Parame
+terized ambiguous
+silhouette; not a
+pixel-identical reproduction
+of a historical plate.; limitat
+ion=The generator verifies
+geometry and luminance,
+not bistable reports.; missin
+g_contract=none
+Limitation: The generator
+verifies geometry and
+luminance, not bistable
+reports. Manuscript: docs/
+manuscript/06_scope_and
+_related_work.md
+46
+
+Claim ID Claim and level Basis Lineage and limitation
+evidence:visual.simultaneou
+s_contrast
+The physical center patches
+are matched while surround
+luminance differs. Level: so
+urce_supported
+checked_in_scholarship Lineage: sources=gregory19
+97visual; data/evidence_m
+atrix.json; engineering=Equ
+al central patches on
+unequal luminance
+surrounds.; limitation=Disp
+lay calibration and observer
+adaptation are not
+modeled.; missing_contract
+=none Limitation: Display
+calibration and observer
+adaptation are not modeled.
+Manuscript: docs/manuscri
+pt/06_scope_and_related_
+work.md
+evidence:visual.apparent_m
+otion
+The sequence contains
+controlled successive spatial
+events. Level: source_supp
+orted
+checked_in_scholarship Lineage: sources=wertheim
+er1912motion; sekuler1996w
+ertheimer; data/evidence_
+matrix.json; engineering=A
+lternating rectangular
+masks at a fixed rational
+frame rate.; limitation=The
+artifact establishes
+temporal succession, not
+perceived motion.; missing_
+contract=none Limitation:
+The artifact establishes
+temporal succession, not
+perceived motion.
+Manuscript: docs/manuscri
+pt/06_scope_and_related_
+work.md
+evidence:audio.shepard_ton
+e
+The audio contains
+octave-related partials with
+controlled sweep
+parameters. Level: source_
+supported
+checked_in_scholarship Lineage: sources=shepard1
+984scale; data/evidence_m
+atrix.json; engineering=Ad
+ditive octave-spaced
+partials with a deterministic
+envelope.; limitation=Playb
+ack transducers and listener
+pitch judgments are
+external.; missing_contract
+=none Limitation:
+Playback transducers and
+listener pitch judgments are
+external. Manuscript: docs/
+manuscript/06_scope_and
+_related_work.md
+47
+
+Claim ID Claim and level Basis Lineage and limitation
+evidence:audio.missing_fun
+damental
+The nominal fundamental
+component is absent from
+the canonical spectrum.
+Level: source_supported
+checked_in_scholarship Lineage: sources=zatorre20
+05missing; data/evidence_
+matrix.json; engineering=H
+armonic components are
+synthesized while the
+nominal fundamental is
+omitted.; limitation=Pitch
+completion is an
+observer-level inference.; mi
+ssing_contract=none
+Limitation: Pitch
+completion is an
+observer-level inference.
+Manuscript: docs/manuscri
+pt/06_scope_and_related_
+work.md
+evidence:audiovisual.sound
+_induced_flash
+The declared beep/flash
+event counts and offsets are
+physically encoded. Level: s
+ource_supported
+checked_in_scholarship Lineage: sources=shams200
+0sifi; hirst2020sound; data/
+evidence_matrix.json; engi
+neering=One flash paired
+with one or two timed beeps
+on a shared clock.; limitatio
+n=The stimulus does not
+establish a reported flash
+count.; missing_contract=n
+one Limitation: The
+stimulus does not establish
+a reported flash count.
+Manuscript: docs/manuscri
+pt/06_scope_and_related_
+work.md
+evidence:audiovisual.ventril
+oquist
+The audio and visual
+channels carry a declared
+spatial discrepancy. Level:
+source_supported
+checked_in_scholarship Lineage: sources=bruns201
+9ventriloquist; noppeney201
+8causal; data/evidence_ma
+trix.json; engineering=Stere
+o panning and visual
+displacement encode a
+spatial discrepancy.; limitat
+ion=Perceived localization
+depends on room,
+headphones, display, and
+observer.; missing_contract
+=none Limitation:
+Perceived localization
+depends on room,
+headphones, display, and
+observer. Manuscript: docs/
+manuscript/06_scope_and
+_related_work.md
+48
+
+Claim ID Claim and level Basis Lineage and limitation
+evidence:visual.muller_lyer The two bar lengths are
+equal in the canonical raster
+while wing geometry varies.
+Level: source_supported
+checked_in_scholarship Lineage: sources=gregory19
+97visual; howe2005muller;
+data/evidence_matrix.json;
+engineering=Equal bars
+with controlled arrow-wing
+geometry.; limitation=The
+chosen normalized geometry
+is one engineering variant.;
+missing_contract=none
+Limitation: The chosen
+normalized geometry is one
+engineering variant.
+Manuscript: docs/manuscri
+pt/06_scope_and_related_
+work.md
+evidence:visual.poggendorff The occluder and diagonal
+continuation are generated
+from explicit geometry.
+Level: source_supported
+checked_in_scholarship Lineage: sources=gregory19
+97visual; morgan1999pogge
+ndorff; data/evidence_matr
+ix.json; engineering=A
+diagonal continuation is
+separated by a rectangular
+occluder.; limitation=Align
+ment judgments and
+orientation filters are not
+measured.; missing_contrac
+t=none Limitation:
+Alignment judgments and
+orientation filters are not
+measured. Manuscript: doc
+s/manuscript/06_scope_an
+d_related_work.md
+evidence:visual.ponzo Target bars are physically
+equal and rails converge
+toward a vanishing region.
+Level: source_supported
+checked_in_scholarship Lineage: sources=fisher1967
+ponzo; yildiz2022ponzo; dat
+a/evidence_matrix.json; en
+gineering=Equal target
+bars are placed inside
+converging rails.; limitation
+=Perspective interpretation
+is observer- and display-dep
+endent.; missing_contract=
+none Limitation:
+Perspective interpretation
+is observer- and display-dep
+endent. Manuscript: docs/
+manuscript/06_scope_and
+_related_work.md
+49
+
+Claim ID Claim and level Basis Lineage and limitation
+evidence:visual.kanizsa_tri
+angle
+The image contains
+incomplete inducers with no
+explicitly drawn triangle
+edge. Level: source_suppor
+ted
+checked_in_scholarship Lineage: sources=kanizsa19
+76contours; wagemans2012g
+estalt; data/evidence_matri
+x.json; engineering=Three
+incomplete circular inducers
+are rasterized around a
+triangular gap.; limitation=
+Illusory contour completion
+is not directly measured.; m
+issing_contract=none
+Limitation: Illusory contour
+completion is not directly
+measured. Manuscript: doc
+s/manuscript/06_scope_an
+d_related_work.md
+evidence:visual.ebbinghaus Central target geometry is
+held equal while contextual
+circle geometry differs.
+Level: source_supported
+checked_in_scholarship Lineage: sources=mruczek2
+015ebbinghaus; weintraub1
+979ebbinghaus; data/eviden
+ce_matrix.json; engineering
+=Equal central targets are
+surrounded by different
+context-circle sizes.; limitati
+on=Perceived size depends
+on viewing scale and
+context.; missing_contract
+=none Limitation:
+Perceived size depends on
+viewing scale and context.
+Manuscript: docs/manuscri
+pt/06_scope_and_related_
+work.md
+evidence:visual.zollner The entry instantiates a
+controlled crossing-line
+orientation stimulus family.
+Level: source_supported
+checked_in_scholarship Lineage: sources=zoellner18
+60pseudoscopy; earle1995zo
+llner; gregory1997visual; da
+ta/evidence_matrix.json; e
+ngineering=Vertical long
+lines crossed by short
+oblique inducers with
+explicit normalized spacing
+and angle.; limitation=The
+raster verifies line geometry,
+not orientation judgments
+or a pixel-identical
+historical reproduction.; mis
+sing_contract=none
+Limitation: The raster
+verifies line geometry, not
+orientation judgments or a
+pixel-identical historical rep
+roduction. Manuscript: doc
+s/manuscript/06_scope_an
+d_related_work.md
+50
+
+Claim ID Claim and level Basis Lineage and limitation
+evidence:audio.tritone_para
+dox
+The canonical pair has an
+explicit half-octave
+frequency relation. Level: s
+ource_supported
+checked_in_scholarship Lineage: sources=deutsch19
+86tritone; repp1997tritone;
+data/evidence_matrix.json;
+engineering=Two
+octave-complex tones are
+separated by a half-octave
+interval.; limitation=Ascen
+ding/descending reports
+vary across listeners and
+contexts.; missing_contract
+=none Limitation: Ascendi
+ng/descending reports vary
+across listeners and
+contexts. Manuscript: docs/
+manuscript/06_scope_and
+_related_work.md
+evidence:audio.octave_illusi
+on
+The two channels receive
+alternating octave-related
+tones. Level: source_suppo
+rted
+checked_in_scholarship Lineage: sources=deutsch19
+74octave; data/evidence_m
+atrix.json; engineering=Alt
+ernating high and low tones
+are assigned to opposite
+stereo channels.; limitation
+=The auditory percept
+depends on dichotic
+presentation and listener.;
+missing_contract=none
+Limitation: The auditory
+percept depends on dichotic
+presentation and listener.
+Manuscript: docs/manuscri
+pt/06_scope_and_related_
+work.md
+evidence:audio.auditory_co
+ntinuity
+The canonical audio
+contains a reproducible
+interruption interval and
+masker family. Level: sourc
+e_supported
+checked_in_scholarship Lineage: sources=warren19
+70continuity; riecke2011con
+tinuity; data/evidence_mat
+rix.json; engineering=An
+interrupted sinusoidal
+carrier is replaced during a
+declared gap by a
+deterministic tone or
+white-noise masker with
+typed amplitude.; limitatio
+n=The generator reports
+the physical interruption
+and masker, not a listener’s
+continuity judgment or
+sensory-versus-decisional
+effect.; missing_contract=n
+one Limitation: The
+generator reports the
+physical interruption and
+masker, not a listener’s
+continuity judgment or
+sensory-versus-decisional
+effect. Manuscript: docs/m
+anuscript/06_scope_and_r
+elated_work.md
+51
+
+Claim ID Claim and level Basis Lineage and limitation
+evidence:audiovisual.tempor
+al_ventriloquism
+Audio and video event
+timing and declared offset
+are deterministic and
+inspectable. Level: source_
+supported
+checked_in_scholarship Lineage: sources=vroomen2
+004temporal; hartcherobrie
+n2011temporal; hirst2020so
+und; noppeney2018causal; d
+ata/evidence_matrix.json;
+engineering=A visual flash
+and audio click share a
+clock with explicit offset.; li
+mitation=The generated
+single-event pair is a
+simplified engineering
+stimulus.; missing_contract
+=none Limitation: The
+generated single-event pair
+is a simplified engineering
+stimulus. Manuscript: docs/
+manuscript/06_scope_and
+_related_work.md
+evidence:audiovisual.mcgur
+k
+The catalog identifies a
+speech-dependent
+audiovisual family without
+claiming implementation.
+Level: source_supported
+checked_in_scholarship Lineage: sources=mcgurk19
+76speech; data/evidence_m
+atrix.json; engineering=Req
+uires validated speech
+audio/video fixtures and
+licensing records.; limitation
+=No fixture, consent record,
+or perceptual validation
+contract is bundled.; missin
+g_contract=A licensed or
+consented checksummed
+speech audio/video fixture,
+synchronization contract,
+and preregistered
+perceptual validation
+protocol are required.
+Limitation: No fixture,
+consent record, or
+perceptual validation
+contract is bundled.
+Manuscript: docs/manuscri
+pt/06_scope_and_related_
+work.md
+publication:figure_count The publication atlas
+contains 15 registered
+scientific figures. Level: phy
+sical_metric
+derived_from_code Lineage: publication_capti
+on_specs() Limitation: The
+count is a package-state
+fact, not evidence of
+empirical validity.
+Manuscript: docs/manuscri
+pt/07_publication_audit.m
+d
+52
+
+Claim ID Claim and level Basis Lineage and limitation
+publication:table_count The publication appendix
+contains the generated
+table set defined by the
+publication table payload
+registry. Level: physical_m
+etric
+derived_from_code Lineage: publication_table
+_payloads() Limitation:
+Generated tables
+summarize package state
+and do not replace source
+or observer evidence.
+Manuscript: docs/manuscri
+pt/07_publication_audit.m
+d
+The source-tiered evidence table tbl. 7, caption audit tbl. 6, formalism registry tbl. 8, and claim ledger tbl. 9 are gener-
+ated sidecars. They provide a publication appendix without duplicating mutable counts or silently converting literature
+statements into package results.
+Scientific panels and data are compared with fresh derivations from the trusted current code. Renderer, font and de-
+pendency identities bound exact raster replay; tables and hydrated prose are separately compared with their current
+definitions. This detects coordinated data/hash substitutions but does not authenticate authorship or establish empirical
+scientific validity. Human page inspection remains separate.
+The cover’s real source asset, dimensions, PNG/WebP/thumbnail roles and transforms are verified. Its historical
+prompt/model/candidate history is explicitly reported and unverified rather than inferred from the pixels. Arbitrary
+supplied images receive no such history. Neither scientific nor editorial output supplies an observer result or replaces
+display calibration or behavioral data.
+Formalism checks resolve contained package/test paths, manuscript labels and figure links; file existence is traceability, not
+proof of mathematical equivalence. The network evidence audit covers 36 evidence sources, not every manuscript reference.
+URL reachability, bibliographic identity, full-text support and observer validity remain distinct evidence obligations.
+53
+
+9 Discussion and Conclusion
+DuckRabbit’s principal result is a reproducibility boundary rather than a new psychophysical finding. The same typed
+request can be regenerated, hashed, encoded, decoded, and audited, while the evidence graph and observer layer remain
+explicit about what the package cannot infer. This makes the atlas useful for stimulus construction, source comparison,
+and preregistration without treating a rendered image or sound as behavioral evidence.
+The scholarly contribution is correspondingly modest but operational. Rather than flattening visual, auditory, temporal,
+and multisensory families into a single “illusion” label, the package keeps mechanism, perceptual signature, requirements,
+evidence role, engineering basis, and implementation status separate. A primary demonstration, a review, a theoretical
+account, and a source describing the DuckRabbit implementation answer different questions. The appendix and source-
+data sidecars make those distinctions inspectable at the same time as the generated media.
+The work is best understood as a research-software artifact with a bounded methods contribution. Its novelty claim is
+not that it discovers a new illusion or resolves a disputed mechanism; it is that a heterogeneous stimulus catalog can be
+represented as typed, reproducible, source-linked, and release-audited objects. This framing is consistent with software-
+citation and F AIR guidance, which treats versioned software, metadata, provenance, and reuse conditions as part of the
+research record [ Smith et al. , 2016, Wilkinson et al. , 2016, Lamprecht et al. , 2020].
+The release is authored by Daniel Ari Friedman of the Active Inference Institute and is published and citable at the
+DuckRabbit public GitHub repository . The v0.5.0 archive is a published versioned record. Subsequent source and
+manuscript corrections remain unreleased until a new version is explicitly tagged and deposited. A local package audit
+does not certify that the archived PDF was rebuilt from the current development manuscript.
+9.1 Conclusion
+DuckRabbit v0.6.0 turns multimodal illusion generation into an auditable typed pipeline. A request produces a canonical
+artifact, objective metrics, optional delivery files, decoded inspection, and a versioned evidence-bounded manifest. The
+catalog now records not only what is implemented, but also what the literature supports and what remains unvalidated.
+The main scientific contribution is a boundary: deterministic stimulus facts are reproducible software outputs, while
+perceptual effects are hypotheses that require observer conditions and data. This boundary permits broad generator
+coverage without overclaiming. Future additions should contribute a typed parameter contract, a literature record, an
+engineering-fidelity statement, objective invariants, generated documentation, and tests before entering the implemented
+registry. Promotion is a release decision about software readiness, not a verdict on whether a perceptual phenomenon is
+real.
+The synthetic-psychophysics layer extends this boundary without crossing it. A transparent feature observer makes model
+inputs, weights, calibration, and output hashes inspectable, so the full orchestration can be tested today. Its small curve
+is a diagnostic of that specified model, not evidence that humans share its feature map or response function. Empirical
+observer work remains a separate, ethically and methodologically governed stage.
+54
+
+10 Appendix A. Complete catalog, source tiers, and evidence and imple-
+mentation boundaries
+This appendix is the authoritative rendered snapshot of DuckRabbit’s live catalog. It is generated from the taxonomy
+registry and evidence matrix during the publication build; the table is not hand-maintained. The snapshot records the
+package’s current scope, not a claim to enumerate every illusion described in the literature.
+10.1 How to read the matrix
+Each row identifies a registered illusion family and separates five questions that are often collapsed in informal catalogs:
+1. What modality, mechanism, and signature does the package assign to the construction?
+2. What evidence and implementation status does the checked-in record support?
+3. Which sources support the exact statement written in the row?
+4. What physical claim is supported by the row?
+5. What full source role, resolver, DOI status, and claim level are retained in the machine-readable record?
+implemented means that DuckRabbit has a deterministic generator and a validated canonical artifact contract. It does not
+mean that the generated stimulus is a pixel-identical reproduction of a historical experiment or that an observer effect
+has been re-established. input_required means that the family remains catalogued but lacks a lawful, checksummed input
+fixture and/or the validation contract required for deterministic generation. Evidence status and implementation status
+are deliberately independent.
+The source column is a compact citation-key view. The full source role, resolver or DOI status, exact supported claim,
+engineering departure, and limitation are retained in the machine-readable evidence matrix and in the generated evidence
+audit tbl. 7. A source supports only the narrow claim recorded for it; a review or theory record is not evidence that a
+DuckRabbit rendering produces a universal perceptual effect.
+Table 10: DuckRabbit catalog entries, source tiers, and evidence/implementation boundaries.
+ID Construction Evidence / status Sources Supported claim
+visual.duck_rabbit visual; ambiguity;
+bistability
+literature_backed_en
+gineering_entry;
+implemented
+brugger1999duckrabb
+it, gregory1997visual
+The entry
+instantiates a
+controllable
+ambiguous-figure
+stimulus family.
+visual.simultaneous_
+contrast
+visual; contrast_and
+_context; contrast_d
+istortion
+literature_backed_en
+gineering_entry;
+implemented
+gregory1997visual The physical center
+patches are matched
+while surround
+luminance differs.
+visual.apparent_moti
+on
+visual; temporal_mot
+ion; illusory_motion
+literature_backed_en
+gineering_entry;
+implemented
+wertheimer1912motio
+n, sekuler1996werthei
+mer
+The sequence
+contains controlled
+successive spatial
+events.
+audio.shepard_tone auditory; spectral_ha
+rmonic; continuity
+literature_backed_en
+gineering_entry;
+implemented
+shepard1984scale The audio contains
+octave-related
+partials with
+controlled sweep
+parameters.
+audio.missing_funda
+mental
+auditory; spectral_ha
+rmonic; filling_in
+literature_backed_en
+gineering_entry;
+implemented
+zatorre2005missing The nominal
+fundamental
+component is absent
+from the canonical
+spectrum.
+audiovisual.sound_in
+duced_flash
+audio_visual; crossm
+odal_temporal; fusio
+n_or_fission
+review_backed_engi
+neering_entry;
+implemented
+shams2000sifi, hirst20
+20sound
+The declared
+beep/flash event
+counts and offsets are
+physically encoded.
+55
+
+ID Construction Evidence / status Sources Supported claim
+audiovisual.ventriloq
+uist
+audio_visual; crossm
+odal_spatial; spatial_
+capture
+review_backed_engi
+neering_entry;
+implemented
+bruns2019ventriloquis
+t, noppeney2018causa
+l
+The audio and visual
+channels carry a
+declared spatial
+discrepancy.
+visual.muller_lyer visual; geometric_ali
+gnment; geometric_d
+istortion
+literature_backed_en
+gineering_entry;
+implemented
+gregory1997visual, ho
+we2005muller
+The two bar lengths
+are equal in the
+canonical raster while
+wing geometry varies.
+visual.poggendorff visual; geometric_ali
+gnment; geometric_d
+istortion
+literature_backed_en
+gineering_entry;
+implemented
+gregory1997visual, m
+organ1999poggendorff
+The occluder and
+diagonal continuation
+are generated from
+explicit geometry.
+visual.ponzo visual; geometric_ali
+gnment; geometric_d
+istortion
+literature_backed_en
+gineering_entry;
+implemented
+fisher1967ponzo, yildi
+z2022ponzo
+Target bars are
+physically equal and
+rails converge toward
+a vanishing region.
+visual.kanizsa_triang
+le
+visual; contrast_and
+_context, geometric_
+alignment; filling_in
+literature_backed_en
+gineering_entry;
+implemented
+kanizsa1976contours,
+wagemans2012gestalt
+The image contains
+incomplete inducers
+with no explicitly
+drawn triangle edge.
+visual.ebbinghaus visual; contrast_and
+_context, geometric_
+alignment; geometric
+_distortion
+literature_backed_en
+gineering_entry;
+implemented
+mruczek2015ebbingha
+us, weintraub1979ebb
+inghaus
+Central target
+geometry is held
+equal while
+contextual circle
+geometry differs.
+visual.zollner visual; geometric_ali
+gnment; geometric_d
+istortion
+literature_backed_en
+gineering_entry;
+implemented
+zoellner1860pseudosc
+opy, earle1995zollner,
+gregory1997visual
+The entry
+instantiates a
+controlled
+crossing-line
+orientation stimulus
+family.
+audio.tritone_parado
+x
+auditory; spectral_ha
+rmonic; categorical_r
+ecoding
+literature_backed_en
+gineering_entry;
+implemented
+deutsch1986tritone, r
+epp1997tritone
+The canonical pair
+has an explicit
+half-octave frequency
+relation.
+audio.octave_illusion auditory; stream_seg
+regation; fusion_or_f
+ission
+literature_backed_en
+gineering_entry;
+implemented
+deutsch1974octave The two channels
+receive alternating
+octave-related tones.
+audio.auditory_conti
+nuity
+auditory; stream_seg
+regation; continuity
+literature_backed_en
+gineering_entry;
+implemented
+warren1970continuity
+, riecke2011continuity
+The canonical audio
+contains a
+reproducible
+interruption interval
+and masker family.
+audiovisual.temporal
+_ventriloquism
+audio_visual; crossm
+odal_temporal; temp
+oral_binding_or_rec
+alibration
+review_backed_engi
+neering_entry;
+implemented
+vroomen2004tempora
+l, hartcherobrien2011
+temporal, hirst2020so
+und, noppeney2018ca
+usal
+Audio and video
+event timing and
+declared offset are
+deterministic and
+inspectable.
+audiovisual.mcgurk audio_visual; speech
+_categorization; categ
+orical_recoding
+literature_backed_in
+put_dependent_entr
+y; input_required
+mcgurk1976speech The catalog identifies
+a speech-dependent
+audiovisual family
+without claiming imp
+lementation.
+56
+
+10.2 Evidence boundary and future expansion
+The matrix is intentionally a living registry snapshot. New families may be added when the package can state a typed
+parameter contract, deterministic canonicalization rule, validation invariant, and evidence boundary. Planned or input-
+dependent families are not silently promoted because a source exists: promotion requires an implementable contract,
+reproducible fixtures where needed, and an explicit statement of what remains unvalidated. McGurk therefore remains
+input_required pending a consented or licensed, checksummed speech/ video fixture and a study-ready validation protocol.
+The candidate-future catalog is documented separately from this live matrix so that absence is not misread as a claim
+that a phenomenon is unknown or unimportant.
+57
+
+References
+Ibn al Haytham. The Optics of Ibn al-Haytham. Books I–III, On Direct Vision . Number 40 in Studies of the Warburg
+Institute. Warburg Institute, University of London, London, 1989. URL https://www.cca.qc.ca/en/search/details/libr
+ary/publication/21530166.
+George Berkeley. An Essay Towards a New Theory of Vision . Aaron Rhames for Jeremy Pepyat, Dublin, 1709. URL
+https://www.maths.tcd.ie/~dwilkins/Berkeley/Vision/.
+Peter Brugger. One hundred years of an ambiguous figure: happy birthday, duck/rabbit. Perceptual and Motor Skills , 89
+(3):973–977, 1999. doi: 10.2466/pms.1999.89.3.973. URL https://pubmed.ncbi.nlm.nih.gov/10665033/.
+Patrick Bruns. The ventriloquist illusion as a tool to study multisensory processing: an update. Frontiers in Integrative
+Neuroscience, 13:51, 2019. doi: 10.3389/fnint.2019.00051. URL https://pmc.ncbi.nlm.nih.gov/articles/PMC6751356/.
+William Cheselden. An account of some observations made by a young gentleman who was born blind, or lost his sight so
+early that he had no remembrance of ever having seen, and was couch’d between 13 and 14 years of age. Philosophical
+Transactions of the Royal Society of London , 35(402):447–450, 1728. URL https://archive.org/details/jstor-103697.
+Nianzu Dai. Physics. In Yongxiang Lu, editor, A History of Chinese Science and Technology . Springer, Berlin, 2015. doi:
+10.1007/978-3-662-44257-9_5. URL https://link.springer.com/chapter/10.1007/978-3-662-44257-9_5 .
+Marjolein Degenaar and Gert-Jan Lokhorst. Molyneux’s problem. The Stanford Encyclopedia of Philosophy , 2020. URL
+https://plato.stanford.edu/archives/fall2020/entries/molyneux-problem/.
+Diana Deutsch. An auditory illusion. Journal of the Acoustical Society of America , 55(S1):S18–S19, 1974. doi: 10.1121/
+1.1919587. URL https://doi.org/10.1121/1.1919587.
+Diana Deutsch. A musical paradox. Music Perception , 3(3):275–280, 1986. doi: 10.2307/40285337. URL https:
+//online.ucpress.edu/mp/article-abstract/3/3/275/62718/A-Musical-Paradox .
+David C. Earle and Stephen J. Maskell. Spatial filtering and the Zöllner–Judd geometrical illusion: Further studies.
+Perception, 24(12):1397–1406, 1995. doi: 10.1068/p241397. URL https://journals.sagepub.com/doi/10.1068/p241397.
+Gustav Theodor Fechner. Elemente der Psychophysik . Breitkopf und Härtel, Leipzig, 1860. URL https://archive.org/de
+tails/elementederpsyc00fechgoog.
+Gerald H. Fisher. Detection of visual stimuli located within angles. Nature, 215:553–554, 1967. doi: 10.1038/215553a0.
+URL https://www.nature.com/articles/215553a0.
+Richard L. Gregory. Visual illusions classified. Trends in Cognitive Sciences , 1(5):190–194, 1997. doi: 10.1016/S1364-
+6613(97)01060-7. URL https://pubmed.ncbi.nlm.nih.gov/21223901/.
+Jessica Hartcher-O’Brien and David Alais. Temporal ventriloquism in a purely temporal context. Journal of Experimental
+Psychology: Human Perception and Performance , 37(5):1383–1395, 2011. doi: 10.1037/a0024234. URL https://pubm
+ed.ncbi.nlm.nih.gov/21728465/.
+Hermann von Helmholtz. Handbuch der physiologischen Optik . Leopold Voss, Leipzig, 1867. URL https://www.e-
+rara.ch/zut/content/titleinfo/6569728.
+Rebecca J. Hirst, David P. McGovern, Annalisa Setti, Ladan Shams, and Fiona N. Newell. What you see is what you
+hear: Twenty years of research using the sound-induced flash illusion. Neuroscience and Biobehavioral Reviews , 118:
+759–774, 2020. doi: 10.1016/j.neubiorev.2020.09.006. URL https://www.sciencedirect.com/science/article/pii/S01497
+63420305637.
+Catherine Q. Howe and Dale Purves. The Müller-Lyer illusion explained by the statistics of image-source relationships.
+Proceedings of the National Academy of Sciences , 102(4):1234–1239, 2005. doi: 10.1073/pnas.0409314102. URL
+https://doi.org/10.1073/pnas.0409314102.
+Gaetano Kanizsa. Subjective contours. Scientific American, 234(4):48–52, 1976. doi: 10.1038/scientificamerican0476-48.
+URL https://pubmed.ncbi.nlm.nih.gov/1257734/.
+Athanasius Kircher. Ars Magna Lucis et Umbrae . Ludovico Grignani for Hermann Scheuss, Rome, 1646. URL https:
+//collections.st-andrews.ac.uk/item/ars-magna-lucis-et-umbrae/606862 .
+Anna-Lena Lamprecht, Leyla Garcia, Mateusz Kuzak, Carlos Martinez, Ricardo Arcila, Eva Martin Del Pico, Victoria
+Dominguez Del Angel, Stephanie van de Sandt, Jon Ison, Paula Andrea Martinez, Peter McQuilton, Alfonso Valencia,
+Jennifer Harrow, Fotis Psomopoulos, Josep Ll. Gelpi, Neil Chue Hong, Carole Goble, and Salvador Capella-Gutierrez.
+58
+
+Towards F AIR principles for research software. Data Science , 3(1):37–59, 2020. doi: 10.3233/DS- 190026. URL
+https://doi.org/10.3233/DS-190026.
+Harry McGurk and John MacDonald. Hearing lips and seeing voices. Nature, 264(5588):746–748, 1976. doi: 10.1038/26
+4746a0. URL https://doi.org/10.1038/264746a0.
+M. J. Morgan. The Poggendorff illusion: a bias in the estimation of the orientation of virtual lines by second-stage filters.
+Vision Research, 39(14):2361–2380, 1999. doi: 10.1016/S0042-6989(98)00243-0. URL https://doi.org/10.1016/S0042-
+6989(98)00243-0.
+Ryan E. B. Mruczek, Christopher D. Blair, Lars Strother, and Gideon P. Caplovitz. The dynamic ebbinghaus: motion
+dynamics greatly enhance the classic contextual size illusion. Frontiers in Human Neuroscience , 9:77, 2015. doi:
+10.3389/fnhum.2015.00077. URL https://pmc.ncbi.nlm.nih.gov/articles/PMC4332331/.
+Franz Carl Müller-Lyer. Optische urtheilstäuschungen. Archiv für Physiologie , pages 263–270, 1889. URL https://www.
+psychologie.hu-berlin.de/de/institut/kabinett/ausstellungen/mueller_lyer.pdf.
+Uta Noppeney and Hwee Ling Lee. Causal inference and temporal predictions in audiovisual perception of speech and
+music. Annals of the New York Academy of Sciences , 1423:102–116, 2018. doi: 10.1111/nyas.13615. URL https:
+//doi.org/10.1111/nyas.13615.
+Ptolemy. Ptolemy’s Theory of Visual Perception: An English Translation of the Optics with Introduction and Commentary ,
+volume 86 of Transactions of the American Philosophical Society . American Philosophical Society, Philadelphia, 1996.
+URL https://sites.dlib.nyu.edu/viewer/books/isaw_aphs000027.
+Bruno H. Repp. Spectral envelope and context effects in the tritone paradox. Perception, 26(5):645–665, 1997. doi:
+10.1068/p260645. URL https://pubmed.ncbi.nlm.nih.gov/9488887/.
+Lars Riecke, Christophe Micheyl, Mieke Vanbussel, Claudia S. Schreiner, Daniel Mendelsohn, and Elia Formisano. Recal-
+ibration of the auditory continuity illusion: sensory and decisional effects. Hearing Research, 277(1–2):152–162, 2011.
+doi: 10.1016/j.heares.2011.01.013. URL https://doi.org/10.1016/j.heares.2011.01.013.
+Geir Kjetil Sandve, Anton Nekrutenko, James Taylor, and Eivind Hovig. Ten simple rules for reproducible computational
+research. PLOS Computational Biology , 9(10):e1003285, 2013. doi: 10.1371/journal.pcbi.1003285. URL https:
+//doi.org/10.1371/journal.pcbi.1003285.
+Matthias Schemmel and William G. Boltz. Text and translation. In Theoretical Knowledge in the Mohist Canon , pages
+71–173. Springer, 2022. doi: 10.1007/978-3-031-08797-4_3. URL https://link.springer.com/chapter/10.1007/978-3-
+031-08797-4_3 .
+Robert Sekuler. Motion perception: A modern view of wertheimer’s 1912 monograph. Perception, 25(10), 1996. doi:
+10.1068/p251243. URL https://journals.sagepub.com/doi/10.1068/p251243.
+Ladan Shams, Yukiyasu Kamitani, and Shinsuke Shimojo. What you see is what you hear. Nature, 408:788, 2000. doi:
+10.1038/35048669. URL https://doi.org/10.1038/35048669.
+Roger N. Shepard and D. S. Jordan. Auditory illusions demonstrating that tones are assimilated to an internalized musical
+scale. Science, 226(4680):1333–1334, 1984. doi: 10.1126/science.226.4680.1333. URL https://doi.org/10.1126/science.
+226.4680.1333.
+Arfon M. Smith, Daniel S. Katz, Kyle E. Niemeyer, and FORCE11 Software Citation Working Group. Software citation
+principles. PeerJ Computer Science , 2:e86, 2016. doi: 10.7717/peerj-cs.86. URL https://peerj.com/articles/cs-86/.
+Carl Stumpf. Tonpsychologie. Band 1 . S. Hirzel, Leipzig, 1883. URL https://search.rsl.ru/ru/record/01004444057.
+Jean Vroomen and Beatrice de Gelder. Temporal ventriloquism: Sound modulates the flash-lag effect. Journal of
+Experimental Psychology: Human Perception and Performance , 30(3):513–518, 2004. doi: 10.1037/0096-1523.30.3.513.
+URL https://pubmed.ncbi.nlm.nih.gov/15161383/.
+Nicholas J. Wade, Dejan Todorović, David Phillips, and Bernd Lingelbach. Johann joseph oppel (1855) on geometrical–
+optical illusions: A translation and commentary. i-Perception, 8(5), 2017. doi: 10.1177/2041669517712724. URL
+https://pmc.ncbi.nlm.nih.gov/articles/PMC5484433/.
+Johan Wagemans, James H. Elder, Michael Kubovy, Stephen E. Palmer, Mary A. Peterson, Manish Singh, and Rüdiger
+von der Heydt. A century of Gestalt psychology in visual perception: I. perceptual grouping and figure-ground organi-
+zation. Psychological Bulletin , 138(6):1172–1217, 2012. doi: 10.1037/a0029333. URL https://pubmed.ncbi.nlm.nih.go
+v/22845751/.
+59
+
+Richard M. Warren. Perceptual restoration of missing speech sounds. Science, 167(3917):392–393, 1970. doi: 10.1126/sc
+ience.167.3917.392. URL https://doi.org/10.1126/science.167.3917.392.
+D. J. Weintraub. Ebbinghaus illusion: context, contour, and age influence the judged size of a circle amidst circles. Journal
+of Experimental Psychology: Human Perception and Performance , 5(2):353–364, 1979. doi: 10.1037/0096-1523.5.2.353.
+URL https://pubmed.ncbi.nlm.nih.gov/528945/.
+Max Wertheimer. Experimentelle studien über das sehen von bewegung. Zeitschrift für Psychologie , 61:161–265, 1912.
+URL https://bibbase.org/network/publication/wertheimer-experimentellestudienberdassehenvonbewegung-1912 .
+Charles Wheatstone. Xviii. contributions to the physiology of vision. —part the first. on some remarkable, and hitherto
+unobserved, phenomena of binocular vision. Philosophical Transactions of the Royal Society of London , 128:371–394,
+1838. doi: 10.1098/rstl.1838.0019. URL https://echo-old.mpiwg-berlin.mpg.de/ECHOdocuView?pn=26&url=%2Fpe
+rmanent%2Fvision%2Felib%2FWheatstone_Stereoscope_1838%2Findex.meta&viewMode=index.
+Mark D. Wilkinson, Michel Dumontier, IJsbrand Jan Aalbersberg, Gabrielle Appleton, Myles Axton, Arie Baak, Niklas
+Blomberg, Jan-Willem Boiten, Luiz Bonino da Silva Santos, Philip E. Bourne, Jildau Bouwman, Anthony J. Brookes,
+Tim Clark, Mercè Crosas, Ingrid Dillo, Olivier Dumon, Scott Edmunds, Chris T. Evelo, Richard Finkers, Alejandra
+Gonzalez-Beltran, Alasdair J.G. Gray, Paul Groth, Carole Goble, Jeffrey S. Grethe, Jaap Heringa, Peter A.C ’t Hoen,
+Rob Hooft, Tobias Kuhn, Ruben Kok, Joost Kok, Scott J. Lusher, Maryann E. Martone, Albert Mons, Abel L. Packer,
+Bengt Persson, Philippe Rocca-Serra, Marco Roos, Rene van Schaik, Susanna-Assunta Sansone, Erik Schultes, Thierry
+Sengstag, Ted Slater, George Strawn, Morris A. Swertz, Mark Thompson, Johan van der Lei, Erik van Mulligen, Jan
+Velterop, Andra Waagmeester, Peter Wittenburg, Katherine Wolstencroft, Jun Zhao, and Barend Mons. The F AIR
+guiding principles for scientific data management and stewardship. Scientific Data , 3:160018, 2016. doi: 10.1038/sdat
+a.2016.18. URL https://doi.org/10.1038/sdata.2016.18.
+Greg Wilson, D. A. Aruliah, C. Titus Brown, Neil P. Chue Hong, Matt Davis, Richard T. Guy, Steven H. D. Haddock,
+Kathryn D. Huff, Ian M. Mitchell, Mark D. Plumbley, Ben Waugh, Ethan P. White, and Paul Wilson. Best practices
+for scientific computing. PLOS Biology , 12(1):e1001745, 2014. doi: 10.1371/journal.pbio.1001745. URL https:
+//pubmed.ncbi.nlm.nih.gov/24415924/.
+Gizem Y. Yildiz, Irene Sperandio, Christine Kettle, and Philippe A. Chouinard. A review on various explanations of
+ponzo-like illusions. Psychonomic Bulletin and Review , 29(2):293–320, 2022. doi: 10.3758/s13423-021-02007-7. URL
+https://pubmed.ncbi.nlm.nih.gov/34613601/.
+Robert J. Zatorre. Finding the missing fundamental. Nature, 436:1093–1094, 2005. doi: 10.1038/4361093a. URL
+https://doi.org/10.1038/4361093a.
+Friedrich Zöllner. Ueber eine neue art von pseudoskopie und ihre beziehungen zu den von plateau und oppel beschriebenen
+bewegungsphänomenen. Annalen der Physik , 186:500–523, 1860. doi: 10.1002/andp.18601860712. URL https:
+//onlinelibrary.wiley.com/doi/10.1002/andp.18601860712.
+60

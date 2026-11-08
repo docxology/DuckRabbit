@@ -1,0 +1,163 @@
+# ruff; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python -B -m ruff check src scripts tests
+
+# lock-check; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+uv lock --check --offline
+
+# build; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+uv build --offline --no-build-isolation --python /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python --out-dir /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/package-citation-final
+
+# install-3.11; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+uv pip install --offline --no-deps --reinstall-package duckrabbit --python /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.11/bin/python /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/package-citation-final/duckrabbit-0.6.0-py3-none-any.whl
+
+# deps-3.11; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+uv pip check --python /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.11/bin/python
+
+# suite-3.11; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.11/bin/python -B -m pytest tests --cov=duckrabbit --cov-report=term-missing --cov-report=json:/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/coverage-citation-final-3.11.json
+
+# install-3.12; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+uv pip install --offline --no-deps --reinstall-package duckrabbit --python /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.12/bin/python /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/package-citation-final/duckrabbit-0.6.0-py3-none-any.whl
+
+# deps-3.12; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+uv pip check --python /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.12/bin/python
+
+# suite-3.12; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.12/bin/python -B -m pytest tests --cov=duckrabbit --cov-report=term-missing --cov-report=json:/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/coverage-citation-final-3.12.json
+
+# install-3.14; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+uv pip install --offline --no-deps --reinstall-package duckrabbit --python /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.14/bin/python /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/package-citation-final/duckrabbit-0.6.0-py3-none-any.whl
+
+# deps-3.14; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+uv pip check --python /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.14/bin/python
+
+# suite-3.14; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.14/bin/python -B -m pytest tests --cov=duckrabbit --cov-report=term-missing --cov-report=json:/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/coverage-citation-final-3.14.json
+
+# suite-3.15; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python -B -m pytest tests --cov=duckrabbit --cov-report=term-missing --cov-report=json:/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/coverage-citation-final-3.15.json
+
+# publication; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python -B scripts/generate_publication_outputs.py --output-dir /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/current-citation-final
+
+# manuscript; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python -B scripts/generate_manuscript_variables.py --output-dir /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/current-citation-final
+
+# scholarship-offline; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python -B scripts/validate_scholarship.py
+
+# release-audit; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python -B -m duckrabbit audit --output-root /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/current-citation-final --release
+
+# synthetic-cli; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python -B -m duckrabbit synthetic-psychophysics --output /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/current-citation-final/data/synthetic_psychophysics_cli.json
+
+# wheel-api; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel-smoke-citation-final
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.11/bin/python -I -B -c 'import pathlib,sys,json,duckrabbit;from duckrabbit.evidence import load_evidence_matrix;from duckrabbit.canonical import canonical_digest;from duckrabbit.generators import DuckRabbitParams,generate_duck_rabbit;assert pathlib.Path(duckrabbit.__file__).resolve().is_relative_to(pathlib.Path(sys.prefix).resolve());assert duckrabbit.__version__=='"'"'0.6.0'"'"';a=generate_duck_rabbit(DuckRabbitParams());s,e=load_evidence_matrix();assert len(s)==36 and len(e)==18;print(json.dumps({'"'"'python'"'"':sys.version,'"'"'module'"'"':duckrabbit.__file__,'"'"'digest'"'"':canonical_digest(a),'"'"'sources'"'"':len(s),'"'"'entries'"'"':len(e)}))'
+
+# wheel-list; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel-smoke-citation-final
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.11/bin/python -I -B -m duckrabbit list --json
+
+# wheel-generate; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel-smoke-citation-final
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.11/bin/python -I -B -m duckrabbit generate visual.duck_rabbit --output-dir /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel-smoke-citation-final/media --format npz
+
+# wheel-verify; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel-smoke-citation-final
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.11/bin/python -I -B -m duckrabbit verify /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel-smoke-citation-final/media/visual_duck_rabbit.npz.json
+
+# generate-image; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python -B -m duckrabbit generate visual.duck_rabbit --output-dir /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/image --format png
+
+# inspect-image; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python -B -m duckrabbit inspect /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/image/visual_duck_rabbit.png
+
+# verify-image; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python -B -m duckrabbit verify /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/image/visual_duck_rabbit.png.json
+
+# generate-audio; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python -B -m duckrabbit generate audio.missing_fundamental --output-dir /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/audio --format wav
+
+# inspect-audio; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python -B -m duckrabbit inspect /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/audio/audio_missing_fundamental.wav
+
+# verify-audio; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python -B -m duckrabbit verify /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/audio/audio_missing_fundamental.wav.json
+
+# generate-temporal; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python -B -m duckrabbit generate visual.apparent_motion --output-dir /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/temporal --format gif
+
+# inspect-temporal; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python -B -m duckrabbit inspect /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/temporal/visual_apparent_motion.gif
+
+# verify-temporal; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python -B -m duckrabbit verify /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/temporal/visual_apparent_motion.gif.json
+
+# generate-audiovisual; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python -B -m duckrabbit generate audiovisual.sound_induced_flash --output-dir /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/audiovisual --format mp4
+
+# inspect-audiovisual; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python -B -m duckrabbit inspect /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/audiovisual/audiovisual_sound_induced_flash.mp4
+
+# verify-audiovisual; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python -B -m duckrabbit verify /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/audiovisual/audiovisual_sound_induced_flash.mp4.json
+
+# generate-canonical; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python -B -m duckrabbit generate visual.duck_rabbit --output-dir /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/canonical --format npz
+
+# inspect-canonical; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python -B -m duckrabbit inspect /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/canonical/visual_duck_rabbit.npz
+
+# verify-canonical; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python -B -m duckrabbit verify /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/canonical/visual_duck_rabbit.npz.json
+
+# video-probe; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+ffprobe -v error -show_streams -show_frames -of json /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/audiovisual/audiovisual_sound_induced_flash.mp4
+
+# decode-all-video-frames; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+ffmpeg -hide_banner -loglevel error -i /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/audiovisual/audiovisual_sound_induced_flash.mp4 -map 0:v:0 -fps_mode passthrough -frames:v 8 /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/all-video-frames/frame-%02d.png
+
+# decode-actual-av-audio; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+ffmpeg -hide_banner -loglevel error -i /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/audiovisual/audiovisual_sound_induced_flash.mp4 -map 0:a:0 -c:a pcm_f32le /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/all-video-frames/decoded-audio.wav
+
+# profile-final-citation; observed returncode=0
+# cwd: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python -B scripts/profile_workloads.py --workloads canonical video_metrics observer --iterations 1 --profile --memory --output-dir /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/performance-citation-final

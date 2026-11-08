@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from dataclasses import dataclass
+import hashlib
+import sys
 from pathlib import Path
 from typing import TypeVar
 
@@ -18,10 +20,11 @@ from .cover import validate_cover_manifest
 from .metadata import validate_project_metadata
 from .publication import (
     publication_table_payloads, publication_caption_specs, validate_publication_tables,
-    validate_publication_visual_qa, validate_publication_report,
+    validate_publication_visual_qa, validate_publication_report, validate_publication_derivation,
 )
 from .schema import parameter_schema
 from .taxonomy import ImplementationStatus, validate_taxonomy_catalog
+from .version import __version__
 
 
 @dataclass(frozen=True)
@@ -51,6 +54,7 @@ class AuditReport:
     issues: tuple[AuditIssue, ...]
     generated_artifacts: int
 
+    source_binding: tuple[tuple[str, str], ...] = ()
     def __post_init__(self) -> None:
         if self.schema_version != "duckrabbit/audit/v1" or self.status not in {"passed", "failed"}:
             raise ValueError("unsupported audit report contract")
@@ -71,6 +75,7 @@ class AuditReport:
             "warning_count": len(self.issues) - len(self.errors),
             "generated_artifacts": self.generated_artifacts,
             "issues": [issue.to_dict() for issue in self.issues],
+            "source_binding": dict(self.source_binding),
         }
 
 
@@ -97,6 +102,18 @@ def run_audit(*, project_root: Path | None = None, output_root: Path | None = No
     output = Path(output_root) if output_root is not None else root / "output"
     issues: list[AuditIssue] = []
     checks: list[str] = []
+    executing_root = Path(__file__).resolve().parents[2]
+    if root.resolve() != executing_root.resolve():
+        issue = AuditIssue("executing_source.mismatch", "error", "source",
+                           "execution audits must run from the selected checkout's own package; use metadata/evidence validators for file-only copies")
+        return AuditReport("duckrabbit/audit/v1", "failed", ("executing_source",), (issue,), 0)
+    source_hash = hashlib.sha256()
+    for source in sorted((executing_root / "src" / "duckrabbit").rglob("*.py")):
+        source_hash.update(source.relative_to(executing_root).as_posix().encode() + b"\0")
+        source_hash.update(hashlib.sha256(source.read_bytes()).digest())
+    binding = (("package_version", __version__), ("python", sys.version.split()[0]),
+               ("source_sha256", source_hash.hexdigest()))
+    checks.append("executing_source")
     _check(issues, checks, "taxonomy", validate_taxonomy_catalog)
     metadata = _check(issues, checks, "metadata", lambda: validate_project_metadata(root))
     if metadata is not None and metadata.status == "failed":
@@ -158,8 +175,12 @@ def run_audit(*, project_root: Path | None = None, output_root: Path | None = No
         _check(issues, checks, "publication_bundle", publication_bundle_check)
         _check(issues, checks, "visual_qa", lambda: validate_publication_visual_qa(output))
         _check(issues, checks, "publication_report", lambda: validate_publication_report(output))
+        from .manuscript_variables import validate_manuscript_delivery
+
+        _check(issues, checks, "publication_derivation", lambda: validate_publication_derivation(output))
+        _check(issues, checks, "manuscript_delivery", lambda: validate_manuscript_delivery(root, output))
     status = "failed" if any(issue.severity == "error" for issue in issues) else "passed"
-    return AuditReport("duckrabbit/audit/v1", status, tuple(checks), tuple(issues), generated)
+    return AuditReport("duckrabbit/audit/v1", status, tuple(checks), tuple(issues), generated, binding)
 
 
 __all__ = ["AuditIssue", "AuditReport", "run_audit"]

@@ -1,0 +1,443 @@
+{
+  "artifact": {
+    "channels": 1,
+    "dtype": "<f4",
+    "duration_seconds": 0.5,
+    "nbytes": 16000,
+    "peak": 0.5573328137397766,
+    "rms": 0.14741699397563934,
+    "sample_rate": 8000,
+    "samples": 4000,
+    "type": "audio"
+  },
+  "canonical": {
+    "algorithm": "sha256",
+    "byte_count": 16125,
+    "byte_order": "little",
+    "digest": "6d37ffc494b304c7cab5840eb9d69dcb302861a7a739e9c9baa0ff1d3756b6e8",
+    "dtype": "<f4",
+    "schema_version": "duckrabbit/canonical/v1"
+  },
+  "canonical_digest": "6d37ffc494b304c7cab5840eb9d69dcb302861a7a739e9c9baa0ff1d3756b6e8",
+  "claim_level": "canonical_stimulus",
+  "decoded_inspection": {
+    "backend": "python_wave",
+    "facts": {
+      "channels": 1,
+      "duration_seconds": 0.5,
+      "frames": 4000,
+      "sample_rate": 8000,
+      "sample_width_bytes": 2
+    },
+    "format": "wav",
+    "kind": "audio"
+  },
+  "encoded_size_bytes": 8044,
+  "encoding": {
+    "backend": "python_wave",
+    "format": "wav",
+    "media_type": "audio/wav",
+    "path": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media/audio/audio_missing_fundamental.wav",
+    "profile": {
+      "archive": {
+        "compressed": true
+      },
+      "audio": {
+        "bit_depth": 16
+      },
+      "gif": {
+        "loop": 0,
+        "optimize": false
+      },
+      "mux": {
+        "audio_codec": "aac",
+        "video": {
+          "codec": "libx264",
+          "crf": 18,
+          "pixel_format": "yuv420p"
+        }
+      },
+      "video": {
+        "codec": "libx264",
+        "crf": 18,
+        "pixel_format": "yuv420p"
+      }
+    },
+    "sha256": "8234e8c426f7ade328d31c0c9889cbb9b62751f038c257cf0eb5715156834033",
+    "size_bytes": 8044
+  },
+  "evidence_status": "literature_backed_engineering_entry",
+  "format": "wav",
+  "generator_version": "duckrabbit/0.6.0",
+  "illusion_id": "audio.missing_fundamental",
+  "implementation_status": "implemented",
+  "legacy_manifest": null,
+  "manifest": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media/audio/audio_missing_fundamental.wav.json",
+  "metrics": {
+    "artifact_type": "audio",
+    "computation_version": "duckrabbit/metrics/v3",
+    "records": [
+      {
+        "claim_level": "physical_metric",
+        "computation_sha256": "ab6b9b4aaffcaae2e1cb73e232d66c17e0bc79618a4f99e24201b1168ae4f338",
+        "name": "samples",
+        "provenance": {
+          "algorithm": "duckrabbit/metrics/v3",
+          "channel_rule": "mean_channel_magnitude_rFFT; all_channel_RMS_peak",
+          "color_space": "not_applicable",
+          "implementation_sources": "metrics.py; artifacts.py",
+          "numpy_version": "2.4.2",
+          "source_sha256": "4f45754f8cf0b8368afa8f7e3be2dfec1ac22bc259a124983b002121e02bb4fa",
+          "spectral_window": "rectangular; no_detrending; rFFT_including_DC_and_Nyquist_when_present",
+          "temporal_reduction": "not_applicable",
+          "transfer_function": "not_applicable",
+          "window": "full_audio; samples=[0,4000); channels=1; sample_rate_hz=8000"
+        },
+        "source": "canonical_artifact",
+        "tolerance": null,
+        "unit": "samples",
+        "value": 4000,
+        "window_sha256": "b570feaabc25aa808d45adb2ebf706a943162c3e9e53cddcad9ac9c696375159"
+      },
+      {
+        "claim_level": "physical_metric",
+        "computation_sha256": "691e0f18258d4832a843c91d4e40a378b7ac9157d004754de9fb6cf84ab4675d",
+        "name": "channels",
+        "provenance": {
+          "algorithm": "duckrabbit/metrics/v3",
+          "channel_rule": "mean_channel_magnitude_rFFT; all_channel_RMS_peak",
+          "color_space": "not_applicable",
+          "implementation_sources": "metrics.py; artifacts.py",
+          "numpy_version": "2.4.2",
+          "source_sha256": "4f45754f8cf0b8368afa8f7e3be2dfec1ac22bc259a124983b002121e02bb4fa",
+          "spectral_window": "rectangular; no_detrending; rFFT_including_DC_and_Nyquist_when_present",
+          "temporal_reduction": "not_applicable",
+          "transfer_function": "not_applicable",
+          "window": "full_audio; samples=[0,4000); channels=1; sample_rate_hz=8000"
+        },
+        "source": "canonical_artifact",
+        "tolerance": null,
+        "unit": "channels",
+        "value": 1,
+        "window_sha256": "b570feaabc25aa808d45adb2ebf706a943162c3e9e53cddcad9ac9c696375159"
+      },
+      {
+        "claim_level": "physical_metric",
+        "computation_sha256": "a8d0be96945246715ab532b14ce374240edfc59e611c24cebe8c243093351072",
+        "name": "sample_rate",
+        "provenance": {
+          "algorithm": "duckrabbit/metrics/v3",
+          "channel_rule": "mean_channel_magnitude_rFFT; all_channel_RMS_peak",
+          "color_space": "not_applicable",
+          "implementation_sources": "metrics.py; artifacts.py",
+          "numpy_version": "2.4.2",
+          "source_sha256": "4f45754f8cf0b8368afa8f7e3be2dfec1ac22bc259a124983b002121e02bb4fa",
+          "spectral_window": "rectangular; no_detrending; rFFT_including_DC_and_Nyquist_when_present",
+          "temporal_reduction": "not_applicable",
+          "transfer_function": "not_applicable",
+          "window": "full_audio; samples=[0,4000); channels=1; sample_rate_hz=8000"
+        },
+        "source": "canonical_artifact",
+        "tolerance": null,
+        "unit": "Hz",
+        "value": 8000,
+        "window_sha256": "b570feaabc25aa808d45adb2ebf706a943162c3e9e53cddcad9ac9c696375159"
+      },
+      {
+        "claim_level": "physical_metric",
+        "computation_sha256": "69bead232cf76798ae512e4e370df9705af3d2dd5254743722552774bfeb1b8f",
+        "name": "duration_seconds",
+        "provenance": {
+          "algorithm": "duckrabbit/metrics/v3",
+          "channel_rule": "mean_channel_magnitude_rFFT; all_channel_RMS_peak",
+          "color_space": "not_applicable",
+          "implementation_sources": "metrics.py; artifacts.py",
+          "numpy_version": "2.4.2",
+          "source_sha256": "4f45754f8cf0b8368afa8f7e3be2dfec1ac22bc259a124983b002121e02bb4fa",
+          "spectral_window": "rectangular; no_detrending; rFFT_including_DC_and_Nyquist_when_present",
+          "temporal_reduction": "not_applicable",
+          "transfer_function": "not_applicable",
+          "window": "full_audio; samples=[0,4000); channels=1; sample_rate_hz=8000"
+        },
+        "source": "canonical_artifact",
+        "tolerance": null,
+        "unit": "seconds",
+        "value": 0.5,
+        "window_sha256": "b570feaabc25aa808d45adb2ebf706a943162c3e9e53cddcad9ac9c696375159"
+      },
+      {
+        "claim_level": "physical_metric",
+        "computation_sha256": "6bdb0de6681d763ba6880e26843a2812f310b9f582bc300e4e920db18f3449dd",
+        "name": "peak",
+        "provenance": {
+          "algorithm": "duckrabbit/metrics/v3",
+          "channel_rule": "mean_channel_magnitude_rFFT; all_channel_RMS_peak",
+          "color_space": "not_applicable",
+          "implementation_sources": "metrics.py; artifacts.py",
+          "numpy_version": "2.4.2",
+          "source_sha256": "4f45754f8cf0b8368afa8f7e3be2dfec1ac22bc259a124983b002121e02bb4fa",
+          "spectral_window": "rectangular; no_detrending; rFFT_including_DC_and_Nyquist_when_present",
+          "temporal_reduction": "not_applicable",
+          "transfer_function": "not_applicable",
+          "window": "full_audio; samples=[0,4000); channels=1; sample_rate_hz=8000"
+        },
+        "source": "canonical_artifact",
+        "tolerance": null,
+        "unit": "normalized_amplitude",
+        "value": 0.5573328137397766,
+        "window_sha256": "b570feaabc25aa808d45adb2ebf706a943162c3e9e53cddcad9ac9c696375159"
+      },
+      {
+        "claim_level": "physical_metric",
+        "computation_sha256": "beba41193c8fd4fc11a2e398a0c616eb9b0aaa9a688b29c366a3af1ceb346611",
+        "name": "rms",
+        "provenance": {
+          "algorithm": "duckrabbit/metrics/v3",
+          "channel_rule": "mean_channel_magnitude_rFFT; all_channel_RMS_peak",
+          "color_space": "not_applicable",
+          "implementation_sources": "metrics.py; artifacts.py",
+          "numpy_version": "2.4.2",
+          "source_sha256": "4f45754f8cf0b8368afa8f7e3be2dfec1ac22bc259a124983b002121e02bb4fa",
+          "spectral_window": "rectangular; no_detrending; rFFT_including_DC_and_Nyquist_when_present",
+          "temporal_reduction": "not_applicable",
+          "transfer_function": "not_applicable",
+          "window": "full_audio; samples=[0,4000); channels=1; sample_rate_hz=8000"
+        },
+        "source": "canonical_artifact",
+        "tolerance": null,
+        "unit": "normalized_amplitude",
+        "value": 0.14741699397563934,
+        "window_sha256": "b570feaabc25aa808d45adb2ebf706a943162c3e9e53cddcad9ac9c696375159"
+      },
+      {
+        "claim_level": "physical_metric",
+        "computation_sha256": "5c1aebbe458aaa7ab0e8c84605d756d069291edc3d09ec0a2b3250016785ffbf",
+        "name": "spectral_centroid_hz",
+        "provenance": {
+          "algorithm": "duckrabbit/metrics/v3",
+          "channel_rule": "mean_channel_magnitude_rFFT; all_channel_RMS_peak",
+          "color_space": "not_applicable",
+          "implementation_sources": "metrics.py; artifacts.py",
+          "numpy_version": "2.4.2",
+          "source_sha256": "4f45754f8cf0b8368afa8f7e3be2dfec1ac22bc259a124983b002121e02bb4fa",
+          "spectral_window": "rectangular; no_detrending; rFFT_including_DC_and_Nyquist_when_present",
+          "temporal_reduction": "not_applicable",
+          "transfer_function": "not_applicable",
+          "window": "full_audio; samples=[0,4000); channels=1; sample_rate_hz=8000"
+        },
+        "source": "canonical_artifact",
+        "tolerance": null,
+        "unit": "Hz",
+        "value": 685.7146494705655,
+        "window_sha256": "b570feaabc25aa808d45adb2ebf706a943162c3e9e53cddcad9ac9c696375159"
+      },
+      {
+        "claim_level": "physical_metric",
+        "computation_sha256": "5bf70b9ace2bbde1756cca248982644b9f54489aea8d084e641a9d62055492e9",
+        "name": "dominant_frequency_hz",
+        "provenance": {
+          "algorithm": "duckrabbit/metrics/v3",
+          "channel_rule": "mean_channel_magnitude_rFFT; all_channel_RMS_peak",
+          "color_space": "not_applicable",
+          "implementation_sources": "metrics.py; artifacts.py",
+          "numpy_version": "2.4.2",
+          "source_sha256": "4f45754f8cf0b8368afa8f7e3be2dfec1ac22bc259a124983b002121e02bb4fa",
+          "spectral_window": "rectangular; no_detrending; rFFT_including_DC_and_Nyquist_when_present",
+          "temporal_reduction": "not_applicable",
+          "transfer_function": "not_applicable",
+          "window": "full_audio; samples=[0,4000); channels=1; sample_rate_hz=8000"
+        },
+        "source": "canonical_artifact",
+        "tolerance": null,
+        "unit": "Hz",
+        "value": 440.0,
+        "window_sha256": "b570feaabc25aa808d45adb2ebf706a943162c3e9e53cddcad9ac9c696375159"
+      },
+      {
+        "claim_level": "physical_metric",
+        "computation_sha256": "18d4d16b87ecbf972b498a34c6b8e48f5691361b159570bd46b1d821f130c3d7",
+        "name": "spectral_bandwidth_hz",
+        "provenance": {
+          "algorithm": "duckrabbit/metrics/v3",
+          "channel_rule": "mean_channel_magnitude_rFFT; all_channel_RMS_peak",
+          "color_space": "not_applicable",
+          "implementation_sources": "metrics.py; artifacts.py",
+          "numpy_version": "2.4.2",
+          "source_sha256": "4f45754f8cf0b8368afa8f7e3be2dfec1ac22bc259a124983b002121e02bb4fa",
+          "spectral_window": "rectangular; no_detrending; rFFT_including_DC_and_Nyquist_when_present",
+          "temporal_reduction": "not_applicable",
+          "transfer_function": "not_applicable",
+          "window": "full_audio; samples=[0,4000); channels=1; sample_rate_hz=8000"
+        },
+        "source": "canonical_artifact",
+        "tolerance": null,
+        "unit": "Hz",
+        "value": 240.41372156967662,
+        "window_sha256": "b570feaabc25aa808d45adb2ebf706a943162c3e9e53cddcad9ac9c696375159"
+      },
+      {
+        "claim_level": "physical_metric",
+        "computation_sha256": "60af4cfc7192b7aefc77af44c91daac7703dfbfcd8023e6dcfe2cf3aba689dc7",
+        "name": "crest_factor",
+        "provenance": {
+          "algorithm": "duckrabbit/metrics/v3",
+          "channel_rule": "mean_channel_magnitude_rFFT; all_channel_RMS_peak",
+          "color_space": "not_applicable",
+          "implementation_sources": "metrics.py; artifacts.py",
+          "numpy_version": "2.4.2",
+          "source_sha256": "4f45754f8cf0b8368afa8f7e3be2dfec1ac22bc259a124983b002121e02bb4fa",
+          "spectral_window": "rectangular; no_detrending; rFFT_including_DC_and_Nyquist_when_present",
+          "temporal_reduction": "not_applicable",
+          "transfer_function": "not_applicable",
+          "window": "full_audio; samples=[0,4000); channels=1; sample_rate_hz=8000"
+        },
+        "source": "canonical_artifact",
+        "tolerance": null,
+        "unit": "ratio",
+        "value": 3.7806551246858002,
+        "window_sha256": "b570feaabc25aa808d45adb2ebf706a943162c3e9e53cddcad9ac9c696375159"
+      }
+    ],
+    "values": {
+      "channels": 1,
+      "crest_factor": 3.7806551246858002,
+      "dominant_frequency_hz": 440.0,
+      "duration_seconds": 0.5,
+      "peak": 0.5573328137397766,
+      "rms": 0.14741699397563934,
+      "sample_rate": 8000,
+      "samples": 4000,
+      "spectral_bandwidth_hz": 240.41372156967662,
+      "spectral_centroid_hz": 685.7146494705655
+    }
+  },
+  "modality": [
+    "auditory"
+  ],
+  "output": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media/audio/audio_missing_fundamental.wav",
+  "package_version": "0.6.0",
+  "parameter_schema": {
+    "fields": [
+      {
+        "constraints": [],
+        "default": {
+          "amplitude": {
+            "value": 0.5
+          },
+          "channels": 1,
+          "duration": {
+            "value": 0.5
+          },
+          "envelope": "sine_squared",
+          "phase": {
+            "value": 0.0
+          },
+          "sample_rate": {
+            "value": 8000
+          }
+        },
+        "name": "config",
+        "required": false,
+        "type_name": "AudioConfig"
+      },
+      {
+        "constraints": [
+          "finite and > 0"
+        ],
+        "default": {
+          "value": 220.0
+        },
+        "name": "fundamental",
+        "required": false,
+        "type_name": "FrequencyHz"
+      },
+      {
+        "constraints": [],
+        "default": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "name": "harmonics",
+        "required": false,
+        "type_name": "tuple"
+      }
+    ],
+    "parameter_type": "MissingFundamentalParams",
+    "schema_version": "duckrabbit/parameters/v1"
+  },
+  "parameters": {
+    "config": {
+      "amplitude": {
+        "value": 0.5
+      },
+      "channels": 1,
+      "duration": {
+        "value": 0.5
+      },
+      "envelope": "sine_squared",
+      "phase": {
+        "value": 0.0
+      },
+      "sample_rate": {
+        "value": 8000
+      }
+    },
+    "fundamental": {
+      "value": 220.0
+    },
+    "harmonics": [
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "schema_version": "duckrabbit/artifact/v2",
+  "seed": 0,
+  "taxonomy": {
+    "claim_levels": [
+      "canonical_stimulus",
+      "physical_metric"
+    ],
+    "cognitive_processes": [
+      "spectral_inference"
+    ],
+    "description": "Harmonic partials are rendered while the fundamental component is omitted.",
+    "evidence_references": [
+      "zatorre2005missing"
+    ],
+    "evidence_status": "literature_backed_engineering_entry",
+    "illusion_id": "audio.missing_fundamental",
+    "implementation_status": "implemented",
+    "input_requirement": "none",
+    "mechanisms": [
+      "spectral_harmonic"
+    ],
+    "modalities": [
+      "auditory"
+    ],
+    "name": "Missing-fundamental stimulus",
+    "output_kind": "audio",
+    "signatures": [
+      "filling_in"
+    ],
+    "stimulus_requirements": [
+      "controlled playback level"
+    ]
+  },
+  "verification": {
+    "checks": [
+      "encoded_sha256",
+      "encoded_size_bytes",
+      "decoded_media",
+      "decoded_channels",
+      "decoded_sample_rate",
+      "decoded_samples",
+      "decoded_duration_seconds"
+    ],
+    "errors": [],
+    "status": "verified"
+  }
+}

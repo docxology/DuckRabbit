@@ -1,0 +1,26 @@
+{
+  "backend": "pillow",
+  "facts": {
+    "bands": [
+      "L"
+    ],
+    "container_format": "GIF",
+    "duration_ms": 80,
+    "duration_seconds": 0.5,
+    "frame_durations_ms": [
+      80,
+      90,
+      80,
+      80,
+      90,
+      80
+    ],
+    "frames": 6,
+    "has_transparency": false,
+    "height": 256,
+    "mode": "L",
+    "width": 256
+  },
+  "format": "gif",
+  "kind": "video"
+}

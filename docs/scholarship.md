@@ -131,15 +131,33 @@ metric or synthetic model output does not turn a construction into a universal
 perceptual effect.
 
 The source audit is reproducible offline: `scripts/validate_scholarship.py`
-checks the matrix schema, source URL/DOI shape, citation-identifier syntax,
-catalog/status consistency, taxonomy source references, and BibTeX citation-key
-coverage. `scripts/audit_scholarship.py` is an explicit, network-enabled
-follow-up that distinguishes DOI metadata matches from reachable-but-unresolved,
-access-controlled, mismatched, unavailable, and DOI-less archival records; it
-writes a dated audit report. Ordinary tests use only the checked-in snapshot and
-never depend on network availability. The snapshot's `snapshot_validated`
-status means the offline lineage contract passed, not that a live resolver was
-contacted.
+checks matrix schema, source URL/DOI shape, citation identifiers, exact taxonomy
+source edges, source roles and ordered literal BibTeX titles. Author order and
+year are checked when the matrix supplies those fields; absent fields are not
+invented. Unsupported BibTeX macros fail as uncertain rather than being erased.
+`scripts/audit_scholarship.py` is an explicit network follow-up; DOI metadata
+matches are distinct from reachable-but-unresolved, access-controlled,
+mismatched and unavailable records. HEAD success for a DOI-less archive never
+establishes bibliographic identity. The command fails until all identities are
+verified; a dated report is evidence of observations, not automatic clearance.
+Ordinary tests use the checked-in snapshot and no network. `snapshot_validated`
+means offline lineage passed, not that a resolver or full source was inspected.
+
+The network command's roster is the **36 evidence-source records**, not every
+bibliography entry. The [November audit](audit-2026-11-08.md) also inspected the
+11 remaining manuscript references: across all 47 records, 35 DOI identities
+matched retained primary metadata, ten reachable archival records remained
+unresolved, one retained an author-name mismatch, and one failed TLS validation.
+The native roster and the adjunct evidence are reported separately; neither URL
+reachability nor a display abbreviation is silently promoted to full identity.
+The [dated candidate bundle](../output/review-2026-11-08/) retains both observations
+and publisher peer-checks. The adjunct re-evaluation reused observed metadata;
+it is not a second fresh network observation.
+
+Ordered author comparison includes exact corporate author names. A record with
+both a collective `name` and person `family`/`given` fields is ambiguous and
+fails. Publisher attribution, including FORCE11 collective authorship, must not
+be replaced by an individual contributor merely to simplify rendering.
 
 ## Claim-to-source lineage
 
@@ -152,10 +170,10 @@ and observer hypotheses are marked as future study targets. No figure caption
 is permitted to imply a universal observer effect or participant result.
 
 The explicit network command writes `output/reports/scholarship_audit.json`
-with HTTP observations, source-role counts, one complete row per catalog entry,
-and the planned/input-required gap list. Access-controlled responses such as
-403, 401, and 405 are retained as reachable-source observations rather than
-silently discarded.
+with separate verified/reachable counts, HTTP observations, source roles,
+catalog entries and evidence gaps. Responses 403, 401 and 405 mean
+access-controlled, not verified or confirmed reachable content. Successful
+transport alone cannot establish identity or support a scientific claim.
 
 ## Known gaps
 

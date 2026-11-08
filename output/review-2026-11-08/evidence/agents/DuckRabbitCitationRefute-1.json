@@ -1,0 +1,92 @@
+{
+  "DuckRabbitCitationRefute#1": {
+    "summary": "Both proposed corrections are justified by primary publisher evidence; neither was falsified. Wilson2014 has an omitted middle initial. Smith2016 incorrectly substitutes an individual working-group member for the explicitly credited collective author. These are bibliographic attribution defects, not evidence that either article is fabricated.",
+    "method": "CogSecSkills Claim Provenance Verification, with a defensive red-team check of the alternative that FORCE11 is merely a contributor or editor. Publisher evidence was inspected separately from the supplied Crossref receipt; agreement between them is not counted as independent-origin corroboration.",
+    "report": [
+      {
+        "reference": "wilson2014bestpractices — DOI 10.1371/journal.pbio.1001745",
+        "primary_sources": [
+          {
+            "url": "https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745",
+            "observed_evidence": "Title: “Best Practices for Scientific Computing”. Published: January 7, 2014. The full publisher byline names Steven H. D. Haddock as the seventh author."
+          },
+          {
+            "url": "https://journals.plos.org/plosbiology/article/authors?id=10.1371/journal.pbio.1001745",
+            "observed_evidence": "The dedicated “About the Authors” section independently within the publisher presentation repeats “Steven H. D. Haddock”, with Monterey Bay Aquarium Research Institute affiliation. Author Contributions includes the author initials SHDH."
+          }
+        ],
+        "publisher_ordered_authors": [
+          "Greg Wilson",
+          "D. A. Aruliah",
+          "C. Titus Brown",
+          "Neil P. Chue Hong",
+          "Matt Davis",
+          "Richard T. Guy",
+          "Steven H. D. Haddock",
+          "Kathryn D. Huff",
+          "Ian M. Mitchell",
+          "Mark D. Plumbley",
+          "Ben Waugh",
+          "Ethan P. White",
+          "Paul Wilson"
+        ],
+        "verdict": "SUPPORTED: replace “Haddock, Steven D.” with “Haddock, Steven H. D.”. Preserve the remaining author order, title identity, year 2014, and DOI.",
+        "interpretation": "The publisher establishes the fuller given-name form. The existing entry remains clearly identifiable as the real article; this missing initial does not establish fabrication.",
+        "confidence": "High for the published author form."
+      },
+      {
+        "reference": "smith2016software — DOI 10.7717/peerj-cs.86",
+        "primary_sources": [
+          {
+            "url": "https://peerj.com/articles/cs-86/",
+            "observed_evidence": "Title: “Software citation principles”. Published: 2016-09-19. Byline: Arfon M. Smith, Daniel S. Katz, Kyle E. Niemeyer, FORCE11 Software Citation Working Group. The publisher’s “Cite this article” explicitly says: “Smith AM, Katz DS, Niemeyer KE, FORCE11 Software Citation Working Group. 2016. Software citation principles. PeerJ Computer Science 2:e86 https://doi.org/10.7717/peerj-cs.86”."
+          },
+          {
+            "url": "https://peerj.com/articles/cs-86/#author-4",
+            "observed_evidence": "Publisher HTML explicitly marks the fourth byline entry as an author: <span class=\"contrib\" ... id=\"author-4\" data-jats-contrib-type=\"author\" itemprop=\"author\"><span><span class=\"collab name\" itemprop=\"name\">FORCE11 Software Citation Working Group</span></span></span>. This is collective/group authorship, not an editor or merely an acknowledgement."
+          },
+          {
+            "url": "https://peerj.com/articles/cs-86/#p-88",
+            "observed_evidence": "Appendix A, “Working group membership”, lists “Neil Chue Hong, Software Sustainability Institute”. This establishes his group membership; it does not make him the separately named fourth byline author."
+          },
+          {
+            "url": "https://peerj.com/articles/cs-86/",
+            "observed_evidence": "The article explicitly identifies its Academic Editor as Silvio Peroni, not Neil Chue Hong or the FORCE11 group."
+          }
+        ],
+        "publisher_ordered_authors": [
+          "Arfon M. Smith",
+          "Daniel S. Katz",
+          "Kyle E. Niemeyer",
+          "FORCE11 Software Citation Working Group"
+        ],
+        "verdict": "SUPPORTED: replace the fourth bibliography author “Chue Hong, Neil” with the collective author “FORCE11 Software Citation Working Group”. Do not append Neil as a fifth individual author or enumerate the group membership as the byline.",
+        "corporate_author_vs_contributor_editor": "FORCE11 Software Citation Working Group is the fourth collective author, explicitly encoded as author-4 and collab. Neil is credited within its membership, not separately as author four; collective credit does not imply he made no contribution. The academic editor is Silvio Peroni.",
+        "red_team_counterevidence": "The HTML head’s citation_author meta tags list only the three individual authors. That incomplete export representation does not overturn the explicit group byline, author-4/collab markup, publisher-recommended citation, and matching collective-author record in the supplied Crossref receipt. The alternative “group is only a contributor/editor” is contradicted by the primary evidence.",
+        "recommended_bibtex_author_field": "author = {Smith, Arfon M. and Katz, Daniel S. and Niemeyer, Kyle E. and {FORCE11 Software Citation Working Group}},",
+        "confidence": "High for collective-author status, order, title, and publication year."
+      }
+    ],
+    "files": [
+      {
+        "path": "docs/manuscript/references.bib:327-337",
+        "contents": "Wilson source entry; line 328 contains “Haddock, Steven D.”."
+      },
+      {
+        "path": "docs/manuscript/references.bib:350-359",
+        "contents": "Smith source entry; line 351 incorrectly names “Chue Hong, Neil” as fourth author."
+      },
+      {
+        "path": "src/duckrabbit/_resources/references.bib:327-359",
+        "contents": "Packaged bibliography mirror contains both identical defects; both locations were read."
+      },
+      {
+        "path": "dist/wfz-release/receipts/adjunct-bibliography-identity.json",
+        "contents": "Inspected the two DOI records with a targeted JSON selector. Both are marked metadata_mismatch. Receipt expected values contain the above defects; Crossref author data instead has Steven H. D. Haddock and the FORCE11 collective author, respectively."
+      }
+    ],
+    "architecture": "The two bibliography locations and receipt agree about the existing problematic strings. Publisher article bylines and explicit role markup resolve the proposed author corrections without relying on the strict comparator as an authority on fabrication.",
+    "limitations": "The evidence establishes the published citation identities and roles, not why the existing entries were composed incorrectly or anyone’s intent. No unresolved evidence gap affects these two correction decisions.",
+    "work_performed": "Read-only source and publisher inspection. No edits, builds, tests, lint, formatting, runtime commands, or agents."
+  }
+}

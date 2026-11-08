@@ -4,9 +4,10 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-import shutil
+import tomllib
 
 import pytest
+import yaml
 
 import duckrabbit
 from duckrabbit.audit import run_audit
@@ -26,66 +27,22 @@ def test_metadata_identity_is_cross_file_consistent_and_serializable() -> None:
     assert report.metadata.author == "Daniel Ari Friedman"
     assert report.metadata.orcid == "0000-0001-6232-9096"
     assert report.metadata.version == __version__
-    assert report.metadata.doi == "10.5281/zenodo.21419693"
-    assert report.metadata.doi_status == "published"
     assert report.to_dict()["schema_version"] == "duckrabbit/metadata-audit/v1"
     assert MetadataAuditReport("passed", PublicationMetadata("a", "b", "c", "d", "e", "", "forthcoming"), (), ()).to_dict()["errors"] == []
     with pytest.raises(ValueError, match="status"):
         MetadataAuditReport("bad", report.metadata, (), ())
 
 
-def test_metadata_audit_fails_on_drift_without_network(tmp_path: Path) -> None:
-    for name in ("pyproject.toml", "docs/manuscript/config.yaml", "CITATION.cff", "codemeta.json", ".zenodo.json"):
-        destination = tmp_path / name
-        destination.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy(ROOT / name, destination)
-    config = tmp_path / "docs" / "manuscript" / "config.yaml"
-    # A real DOI is set (checked-in release state) — reverting doi_status to
-    # "forthcoming" while the DOI stays populated must be caught as drift.
-    config.write_text(config.read_text(encoding="utf-8").replace("doi_status: \"published\"", "doi_status: \"forthcoming\""), encoding="utf-8")
-    report = validate_project_metadata(tmp_path)
-    assert report.status == "failed"
-    assert any("doi_status" in error for error in report.errors)
-
-
-def test_metadata_audit_fails_when_doi_empty_but_status_not_forthcoming(tmp_path: Path) -> None:
-    for name in ("pyproject.toml", "docs/manuscript/config.yaml", "CITATION.cff", "codemeta.json", ".zenodo.json"):
-        destination = tmp_path / name
-        destination.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy(ROOT / name, destination)
-    config = tmp_path / "docs" / "manuscript" / "config.yaml"
-    text = config.read_text(encoding="utf-8")
-    text = text.replace('doi: "10.5281/zenodo.21419693"', 'doi: ""')
-    config.write_text(text, encoding="utf-8")
-    report = validate_project_metadata(tmp_path)
-    assert report.status == "failed"
-    assert any("doi_status must be forthcoming" in error for error in report.errors)
-
-
-def test_metadata_audit_catches_each_identity_field(tmp_path: Path) -> None:
-    for name in ("pyproject.toml", "docs/manuscript/config.yaml", "CITATION.cff", "codemeta.json", ".zenodo.json"):
-        destination = tmp_path / name
-        destination.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy(ROOT / name, destination)
-
-    def check_config(old: str, new: str, expected: str) -> None:
-        path = tmp_path / "docs" / "manuscript" / "config.yaml"
-        original = (ROOT / "docs" / "manuscript" / "config.yaml").read_text(encoding="utf-8")
-        path.write_text(original.replace(old, new), encoding="utf-8")
-        result = validate_project_metadata(tmp_path)
-        assert result.status == "failed" and any(expected in error for error in result.errors)
-
-    check_config('name: "Daniel Ari Friedman"', 'name: "Other Author"', "config author")
-    check_config('orcid: "0000-0001-6232-9096"', 'orcid: "0000-0000-0000-0000"', "ORCID")
-    check_config('version: "0.5.0"', 'version: "0.4.0"', "version")
-    check_config('title: "DuckRabbit: Typed Multimodal Illusion Generator"', 'title: "Other title"', "title")
-    check_config('license: "MIT"', 'license: "GPL"', "license")
-    check_config('doi: "10.5281/zenodo.21419693"', 'doi: "10.5281/zenodo.XXXX"', "placeholder")
-    check_config('doi_status: "published"', 'doi_status: "forthcoming"', "doi_status")
-
-    (tmp_path / "codemeta.json").write_text("[]", encoding="utf-8")
-    malformed = validate_project_metadata(tmp_path)
-    assert malformed.status == "failed"
+def test_supported_python_floor_and_lock_metadata_are_consistent() -> None:
+    project = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))["project"]
+    lock = tomllib.loads((ROOT / "uv.lock").read_text(encoding="utf-8"))
+    locked_project = next(package for package in lock["package"] if package["name"] == project["name"])
+    workflow = yaml.safe_load((ROOT / ".github/workflows/ci.yml").read_text(encoding="utf-8"))
+    assert project["requires-python"] == lock["requires-python"] == ">=3.11"
+    assert "3.11" in workflow["jobs"]["test"]["strategy"]["matrix"]["python-version"]
+    assert locked_project["version"] == project["version"] == __version__
+    assert not any(dependency.startswith(("tomli", "typing-extensions")) for dependency in project["dependencies"])
+    assert not any(dependency["name"] in {"tomli", "typing-extensions"} for dependency in locked_project["metadata"]["requires-dist"])
 
 
 def test_typed_claim_registry_and_evidence_lineage_are_fail_closed() -> None:

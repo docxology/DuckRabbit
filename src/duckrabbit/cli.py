@@ -6,6 +6,7 @@ import argparse
 import json
 from json import JSONDecodeError
 from pathlib import Path
+import sys
 from typing import Sequence
 
 from .generators import default_parameters
@@ -26,15 +27,20 @@ def _read_payload(path: Path | None) -> dict[str, object]:
         payload = json.loads(path.read_text(encoding="utf-8"))
     except OSError as exc:
         raise ValueError(f"cannot read parameter file {path}: {exc}") from exc
-    except JSONDecodeError as exc:
-        raise ValueError(f"parameter file {path} is not valid JSON: {exc.msg}") from exc
+    except (JSONDecodeError, RecursionError) as exc:
+        raise ValueError(f"parameter file {path} is not valid bounded JSON: {exc}") from exc
     if not isinstance(payload, dict):
         raise ValueError("parameter file must contain a JSON object")
     return payload
 
 
+class _ArgumentParser(argparse.ArgumentParser):
+    def error(self, message: str) -> None:
+        raise ValueError(message)
+
+
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="duckrabbit", description="Generate deterministic multimodal illusion stimuli")
+    parser = _ArgumentParser(prog="duckrabbit", description="Generate deterministic multimodal illusion stimuli")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     list_parser = subparsers.add_parser("list", help="list taxonomy entries")
@@ -122,7 +128,12 @@ def _run(argv: Sequence[str] | None = None) -> int:
                 "checks": [],
                 "errors": [str(exc)],
                 "manifest": str(args.manifest),
+                "command": "verify",
+                "error_type": type(exc).__name__,
             }
+        if report.get("status") != "verified":
+            report.setdefault("command", "verify")
+            report.setdefault("error_type", "VerificationError")
         print(json.dumps(report, indent=2, sort_keys=True))
         return 0 if report.get("status") == "verified" else 1
 
@@ -176,10 +187,11 @@ def _run(argv: Sequence[str] | None = None) -> int:
 
 def main(argv: Sequence[str] | None = None) -> int:
     """Run the CLI with structured JSON failures for expected user errors."""
+    actual_argv = list(sys.argv[1:] if argv is None else argv)
     try:
-        return _run(argv)
+        return _run(actual_argv)
     except (DuckRabbitError, OSError, ValueError, KeyError, TypeError) as exc:
-        command = argv[0] if argv else None
+        command = actual_argv[0] if actual_argv else None
         print(json.dumps({"status": "failed", "command": command, "error_type": type(exc).__name__, "errors": [str(exc)]}, indent=2, sort_keys=True))
         return 1
 

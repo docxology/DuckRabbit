@@ -1,0 +1,32 @@
+{
+  "data": {
+    "observer_data": "none",
+    "stages": [
+      {
+        "claim_level": "canonical_stimulus",
+        "detail": "typed request \u2192 deterministic buffer"
+      },
+      {
+        "claim_level": "physical_metric",
+        "detail": "shape, clock, luminance, spectrum"
+      },
+      {
+        "claim_level": "encoded_media",
+        "detail": "container + decoded inspection"
+      },
+      {
+        "claim_level": "observer_hypothesis",
+        "detail": "future protocol and estimand"
+      }
+    ]
+  },
+  "figure_label": "fig:claim_boundary",
+  "figure_stem": "claim_boundary",
+  "generator": "duckrabbit.publication._claim_boundary",
+  "parameters": {
+    "figure_stem": "claim_boundary",
+    "seed": 0
+  },
+  "schema_version": "duckrabbit/figure-source/v1",
+  "seed": 0
+}

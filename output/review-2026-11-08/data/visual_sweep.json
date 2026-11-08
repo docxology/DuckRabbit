@@ -1,0 +1,240 @@
+{
+  "data": {
+    "sweep": [
+      {
+        "digest": "d2fb1b8250107af3a8312d0859faf7891bb29a7bfdf67ae19055dbceafd6231c",
+        "duck_weight": 0.0,
+        "effective_dynamic_range": 1.0,
+        "grayscale_levels": 2,
+        "mean_luminance": 0.762176513671875,
+        "quantization_levels": 2,
+        "unique_values": 2
+      },
+      {
+        "digest": "d2fb1b8250107af3a8312d0859faf7891bb29a7bfdf67ae19055dbceafd6231c",
+        "duck_weight": 0.0,
+        "effective_dynamic_range": 1.0,
+        "grayscale_levels": 4,
+        "mean_luminance": 0.762176513671875,
+        "quantization_levels": 4,
+        "unique_values": 2
+      },
+      {
+        "digest": "d2fb1b8250107af3a8312d0859faf7891bb29a7bfdf67ae19055dbceafd6231c",
+        "duck_weight": 0.0,
+        "effective_dynamic_range": 1.0,
+        "grayscale_levels": 8,
+        "mean_luminance": 0.762176513671875,
+        "quantization_levels": 8,
+        "unique_values": 2
+      },
+      {
+        "digest": "d2fb1b8250107af3a8312d0859faf7891bb29a7bfdf67ae19055dbceafd6231c",
+        "duck_weight": 0.0,
+        "effective_dynamic_range": 1.0,
+        "grayscale_levels": 16,
+        "mean_luminance": 0.762176513671875,
+        "quantization_levels": 16,
+        "unique_values": 2
+      },
+      {
+        "digest": "d2fb1b8250107af3a8312d0859faf7891bb29a7bfdf67ae19055dbceafd6231c",
+        "duck_weight": 0.0,
+        "effective_dynamic_range": 1.0,
+        "grayscale_levels": 32,
+        "mean_luminance": 0.762176513671875,
+        "quantization_levels": 32,
+        "unique_values": 2
+      },
+      {
+        "digest": "d2fb1b8250107af3a8312d0859faf7891bb29a7bfdf67ae19055dbceafd6231c",
+        "duck_weight": 0.25,
+        "effective_dynamic_range": 1.0,
+        "grayscale_levels": 2,
+        "mean_luminance": 0.762176513671875,
+        "quantization_levels": 2,
+        "unique_values": 2
+      },
+      {
+        "digest": "980996dea20575de88898cf742c866b4545f97748577d0b4b688bf4ae9e71037",
+        "duck_weight": 0.25,
+        "effective_dynamic_range": 1.0,
+        "grayscale_levels": 4,
+        "mean_luminance": 0.7718709707260132,
+        "quantization_levels": 4,
+        "unique_values": 4
+      },
+      {
+        "digest": "2220d54677b0c0e52172f6934c65389e61f55726484144e7f38894406b4e85bc",
+        "duck_weight": 0.25,
+        "effective_dynamic_range": 1.0,
+        "grayscale_levels": 8,
+        "mean_luminance": 0.7704859972000122,
+        "quantization_levels": 8,
+        "unique_values": 4
+      },
+      {
+        "digest": "9bb635c7637f4c7f81822f2bdd4a6fbec1288a0aa8b1dc8d691593087d0a9153",
+        "duck_weight": 0.25,
+        "effective_dynamic_range": 1.0,
+        "grayscale_levels": 16,
+        "mean_luminance": 0.7699320316314697,
+        "quantization_levels": 16,
+        "unique_values": 4
+      },
+      {
+        "digest": "8d3ca28340bca06c1a20f1db502a60a726336c5d061b81ae3161bc55cc1ed8fc",
+        "duck_weight": 0.25,
+        "effective_dynamic_range": 1.0,
+        "grayscale_levels": 32,
+        "mean_luminance": 0.7696818113327026,
+        "quantization_levels": 32,
+        "unique_values": 4
+      },
+      {
+        "digest": "6b38d3c002ef5b90980177f05e78cc19817746f2cc3cdfac4ceb2e41debc6f9a",
+        "duck_weight": 0.5,
+        "effective_dynamic_range": 1.0,
+        "grayscale_levels": 2,
+        "mean_luminance": 0.705047607421875,
+        "quantization_levels": 2,
+        "unique_values": 2
+      },
+      {
+        "digest": "b83fbddf6c60645ad40ae682f66c330ee059fce8d48a3601c9671510dff41676",
+        "duck_weight": 0.5,
+        "effective_dynamic_range": 1.0,
+        "grayscale_levels": 4,
+        "mean_luminance": 0.8006083369255066,
+        "quantization_levels": 4,
+        "unique_values": 3
+      },
+      {
+        "digest": "20b553b589b100a41962593efcb5f7d5c2571c30aac71413211e28f715ec9ff0",
+        "duck_weight": 0.5,
+        "effective_dynamic_range": 1.0,
+        "grayscale_levels": 8,
+        "mean_luminance": 0.786956787109375,
+        "quantization_levels": 8,
+        "unique_values": 3
+      },
+      {
+        "digest": "a79d34f939aee299298e05ce0f76e9fb4be7d1cc71271f6957a8a9bb5c11620f",
+        "duck_weight": 0.5,
+        "effective_dynamic_range": 1.0,
+        "grayscale_levels": 16,
+        "mean_luminance": 0.7814962267875671,
+        "quantization_levels": 16,
+        "unique_values": 3
+      },
+      {
+        "digest": "d15597c2608d253ab0914ce06073c39a8e7127d019293b49c7f3a4303aec81df",
+        "duck_weight": 0.5,
+        "effective_dynamic_range": 1.0,
+        "grayscale_levels": 32,
+        "mean_luminance": 0.7790300846099854,
+        "quantization_levels": 32,
+        "unique_values": 3
+      },
+      {
+        "digest": "c18318b777f9a99afb1da0a4ba868e543be53ed10853ff08377bffa04a9be99d",
+        "duck_weight": 0.75,
+        "effective_dynamic_range": 1.0,
+        "grayscale_levels": 2,
+        "mean_luminance": 0.791259765625,
+        "quantization_levels": 2,
+        "unique_values": 2
+      },
+      {
+        "digest": "d7ea30cc8a03f3a9b202ecf9dc47f647fc70ef9f6b0aa33ed74925526865abfe",
+        "duck_weight": 0.75,
+        "effective_dynamic_range": 1.0,
+        "grayscale_levels": 4,
+        "mean_luminance": 0.7815653681755066,
+        "quantization_levels": 4,
+        "unique_values": 4
+      },
+      {
+        "digest": "0f64ab78729242503dc1f2cb9e7a160d7d164d28010956ca88bf14cd333b8111",
+        "duck_weight": 0.75,
+        "effective_dynamic_range": 1.0,
+        "grayscale_levels": 8,
+        "mean_luminance": 0.7829502820968628,
+        "quantization_levels": 8,
+        "unique_values": 4
+      },
+      {
+        "digest": "0832bd5265fd7bf1010a23f18d333029569828117d6471459ddce9f61e824e6a",
+        "duck_weight": 0.75,
+        "effective_dynamic_range": 1.0,
+        "grayscale_levels": 16,
+        "mean_luminance": 0.7835042476654053,
+        "quantization_levels": 16,
+        "unique_values": 4
+      },
+      {
+        "digest": "615478bf3244a7cda4626fa055c7ba0ee41a2cc8d924efc61aa3c31338882eaf",
+        "duck_weight": 0.75,
+        "effective_dynamic_range": 1.0,
+        "grayscale_levels": 32,
+        "mean_luminance": 0.7837544679641724,
+        "quantization_levels": 32,
+        "unique_values": 4
+      },
+      {
+        "digest": "c18318b777f9a99afb1da0a4ba868e543be53ed10853ff08377bffa04a9be99d",
+        "duck_weight": 1.0,
+        "effective_dynamic_range": 1.0,
+        "grayscale_levels": 2,
+        "mean_luminance": 0.791259765625,
+        "quantization_levels": 2,
+        "unique_values": 2
+      },
+      {
+        "digest": "c18318b777f9a99afb1da0a4ba868e543be53ed10853ff08377bffa04a9be99d",
+        "duck_weight": 1.0,
+        "effective_dynamic_range": 1.0,
+        "grayscale_levels": 4,
+        "mean_luminance": 0.791259765625,
+        "quantization_levels": 4,
+        "unique_values": 2
+      },
+      {
+        "digest": "c18318b777f9a99afb1da0a4ba868e543be53ed10853ff08377bffa04a9be99d",
+        "duck_weight": 1.0,
+        "effective_dynamic_range": 1.0,
+        "grayscale_levels": 8,
+        "mean_luminance": 0.791259765625,
+        "quantization_levels": 8,
+        "unique_values": 2
+      },
+      {
+        "digest": "c18318b777f9a99afb1da0a4ba868e543be53ed10853ff08377bffa04a9be99d",
+        "duck_weight": 1.0,
+        "effective_dynamic_range": 1.0,
+        "grayscale_levels": 16,
+        "mean_luminance": 0.791259765625,
+        "quantization_levels": 16,
+        "unique_values": 2
+      },
+      {
+        "digest": "c18318b777f9a99afb1da0a4ba868e543be53ed10853ff08377bffa04a9be99d",
+        "duck_weight": 1.0,
+        "effective_dynamic_range": 1.0,
+        "grayscale_levels": 32,
+        "mean_luminance": 0.791259765625,
+        "quantization_levels": 32,
+        "unique_values": 2
+      }
+    ]
+  },
+  "figure_label": "fig:visual_sweep",
+  "figure_stem": "visual_sweep",
+  "generator": "duckrabbit.publication._visual_sweep",
+  "parameters": {
+    "figure_stem": "visual_sweep",
+    "seed": 0
+  },
+  "schema_version": "duckrabbit/figure-source/v1",
+  "seed": 0
+}

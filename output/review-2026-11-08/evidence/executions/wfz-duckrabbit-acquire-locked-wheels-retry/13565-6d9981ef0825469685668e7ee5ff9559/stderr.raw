@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import sys,runpy; sys.path.insert(0,'/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/lib/python3.15/site-packages'); runpy.run_path('/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/download_locked.py',run_name="__main__")
+                                                                                                                                                           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen runpy>", line 292, in run_path
+  File "<frozen runpy>", line 97, in _run_module_code
+  File "<frozen runpy>", line 87, in _run_code
+  File "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/download_locked.py", line 18, in <module>
+    raise RuntimeError("no compatible locked wheel: "+package["name"])
+RuntimeError: no compatible locked wheel: numpy

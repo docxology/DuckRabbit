@@ -114,7 +114,7 @@ checkout or its generated outputs.
 
 ## Optional Python 3.15 native sampling
 
-The portable core targets Python 3.10+. Native sampling is a separate optional
+The portable core targets Python 3.11+. Native sampling is a separate optional
 Python 3.15 capability, not a replacement for uninstrumented measurements.
 These flags were checked against the local Python 3.15.0 help on October 17,
 2026; confirm them on your runtime before use:

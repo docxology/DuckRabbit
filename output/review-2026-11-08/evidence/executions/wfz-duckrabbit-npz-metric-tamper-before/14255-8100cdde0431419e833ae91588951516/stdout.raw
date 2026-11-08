@@ -1,0 +1,1 @@
+{"status": "verified", "checks": ["encoded_sha256", "encoded_size_bytes", "decoded_media", "decoded_width", "decoded_height", "decoded_height", "decoded_width", "decoded_channels", "canonical_digest", "canonical_byte_count", "canonical_full_summary"], "errors": []}

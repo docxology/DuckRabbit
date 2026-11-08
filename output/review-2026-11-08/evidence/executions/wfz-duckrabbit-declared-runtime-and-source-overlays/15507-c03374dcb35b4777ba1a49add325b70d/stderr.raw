@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render_runtime_overrides.py", line 59, in <module>
+    if issues:raise ValueError(str(issues))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: ('Reveal MathJax loader does not use the exact pinned SRI and crossorigin attributes', 'Reveal deck must contain one canonical MathJax configuration before its loader')

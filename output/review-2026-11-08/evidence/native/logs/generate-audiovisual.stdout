@@ -1,0 +1,424 @@
+{
+  "artifact": {
+    "audio": {
+      "channels": 1,
+      "dtype": "<f4",
+      "duration_seconds": 0.5,
+      "nbytes": 16000,
+      "peak": 0.44024911522865295,
+      "rms": 0.08242791891098022,
+      "sample_rate": 8000,
+      "samples": 4000,
+      "type": "audio"
+    },
+    "audio_start_seconds": 0.0,
+    "duration_seconds": 0.5,
+    "nbytes": 1588864,
+    "presentation_duration_seconds": 0.5,
+    "spatial_offset": 0.0,
+    "sync_offset_ms": 0.0,
+    "type": "audiovisual",
+    "video": {
+      "dtype": "<f4",
+      "duration_seconds": 0.5,
+      "frame_rate": 12.0,
+      "frames": 6,
+      "height": 256,
+      "mean_temporal_delta": 0.36765551567077637,
+      "mode": "L",
+      "nbytes": 1572864,
+      "temporal_deltas": [
+        0.0,
+        0.0,
+        0.9191387891769409,
+        0.9191387891769409,
+        0.0
+      ],
+      "type": "video",
+      "width": 256
+    },
+    "video_start_seconds": 0.0
+  },
+  "canonical": {
+    "algorithm": "sha256",
+    "byte_count": 1589332,
+    "byte_order": "little",
+    "digest": "474ee8f0e8d904a220d79ed949de3da393390e379ca0a92dc2feed643fb8903c",
+    "dtype": "<f4",
+    "schema_version": "duckrabbit/canonical/v1"
+  },
+  "canonical_digest": "474ee8f0e8d904a220d79ed949de3da393390e379ca0a92dc2feed643fb8903c",
+  "claim_level": "canonical_stimulus",
+  "decoded_inspection": {
+    "backend": "ffmpeg",
+    "facts": {
+      "audio_onset_seconds": 0.0,
+      "duration_seconds": 0.5,
+      "streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "duration": "0.500000",
+          "height": 256,
+          "nb_frames": "6",
+          "pix_fmt": "yuv420p",
+          "r_frame_rate": "12/1",
+          "start_time": "0.000000",
+          "width": 256
+        },
+        {
+          "channels": 1,
+          "codec_name": "aac",
+          "codec_type": "audio",
+          "duration": "0.500000",
+          "nb_frames": "5",
+          "r_frame_rate": "0/0",
+          "sample_rate": "8000",
+          "start_time": "0.000000"
+        }
+      ]
+    },
+    "format": "mp4",
+    "kind": "audiovisual"
+  },
+  "encoded_size_bytes": 3785,
+  "encoding": {
+    "backend": "ffmpeg",
+    "format": "mp4",
+    "media_type": "video/mp4",
+    "path": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/audiovisual/audiovisual_sound_induced_flash.mp4",
+    "profile": {
+      "archive": {
+        "compressed": true
+      },
+      "audio": {
+        "bit_depth": 16
+      },
+      "gif": {
+        "loop": 0,
+        "optimize": false
+      },
+      "mux": {
+        "audio_codec": "aac",
+        "video": {
+          "codec": "libx264",
+          "crf": 18,
+          "pixel_format": "yuv420p"
+        }
+      },
+      "video": {
+        "codec": "libx264",
+        "crf": 18,
+        "pixel_format": "yuv420p"
+      }
+    },
+    "sha256": "a451096b9c9e43fbe14faba5231a445814957d86552638ff89bb4bd5188563ab",
+    "size_bytes": 3785
+  },
+  "evidence_status": "review_backed_engineering_entry",
+  "format": "mp4",
+  "generator_version": "duckrabbit/0.6.0",
+  "illusion_id": "audiovisual.sound_induced_flash",
+  "implementation_status": "implemented",
+  "legacy_manifest": null,
+  "manifest": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/audiovisual/audiovisual_sound_induced_flash.mp4.json",
+  "metrics": {
+    "artifact_type": "audiovisual",
+    "computation_version": "duckrabbit/metrics/v3",
+    "records": [
+      {
+        "claim_level": "physical_metric",
+        "computation_sha256": "7d139407e1e71967c30bf345a2e184544524723452a8d31fd78670ea30378c3e",
+        "name": "duration_seconds",
+        "provenance": {
+          "algorithm": "duckrabbit/metrics/v3",
+          "channel_rule": "video=all_channels_adjacent_frame_absolute_difference; audio=all_channel_RMS",
+          "color_space": "uncalibrated_normalized_channel_values",
+          "implementation_sources": "metrics.py; artifacts.py",
+          "numpy_version": "2.4.2",
+          "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+          "spectral_window": "not_applicable",
+          "temporal_reduction": "C_contiguous_float32_absolute_difference_mean",
+          "transfer_function": "none_applied; not_display_calibrated",
+          "window": "full_audiovisual; audio_samples=4000; sample_rate_hz=8000; video_frames=6; frame_rate_hz=12.0; audio_start_s=0.0; video_start_s=0.0"
+        },
+        "source": "canonical_artifact",
+        "tolerance": null,
+        "unit": "seconds",
+        "value": 0.5,
+        "window_sha256": "1c86901bd488ced1c341a4831f4ccbf46516040dfe945dd653668e52446410c4"
+      },
+      {
+        "claim_level": "physical_metric",
+        "computation_sha256": "f01275f57978562d7d68b572ca11732a98e2c18550a0ee4f43def1430dbf04ef",
+        "name": "presentation_duration_seconds",
+        "provenance": {
+          "algorithm": "duckrabbit/metrics/v3",
+          "channel_rule": "video=all_channels_adjacent_frame_absolute_difference; audio=all_channel_RMS",
+          "color_space": "uncalibrated_normalized_channel_values",
+          "implementation_sources": "metrics.py; artifacts.py",
+          "numpy_version": "2.4.2",
+          "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+          "spectral_window": "not_applicable",
+          "temporal_reduction": "C_contiguous_float32_absolute_difference_mean",
+          "transfer_function": "none_applied; not_display_calibrated",
+          "window": "full_audiovisual; audio_samples=4000; sample_rate_hz=8000; video_frames=6; frame_rate_hz=12.0; audio_start_s=0.0; video_start_s=0.0"
+        },
+        "source": "canonical_artifact",
+        "tolerance": null,
+        "unit": "seconds",
+        "value": 0.5,
+        "window_sha256": "1c86901bd488ced1c341a4831f4ccbf46516040dfe945dd653668e52446410c4"
+      },
+      {
+        "claim_level": "physical_metric",
+        "computation_sha256": "5ec1f8a7a17b824f16c87ff95c1242cd616fabe10606d12a408962f56bcf3dc4",
+        "name": "sync_offset_ms",
+        "provenance": {
+          "algorithm": "duckrabbit/metrics/v3",
+          "channel_rule": "video=all_channels_adjacent_frame_absolute_difference; audio=all_channel_RMS",
+          "color_space": "uncalibrated_normalized_channel_values",
+          "implementation_sources": "metrics.py; artifacts.py",
+          "numpy_version": "2.4.2",
+          "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+          "spectral_window": "not_applicable",
+          "temporal_reduction": "C_contiguous_float32_absolute_difference_mean",
+          "transfer_function": "none_applied; not_display_calibrated",
+          "window": "full_audiovisual; audio_samples=4000; sample_rate_hz=8000; video_frames=6; frame_rate_hz=12.0; audio_start_s=0.0; video_start_s=0.0"
+        },
+        "source": "canonical_artifact",
+        "tolerance": null,
+        "unit": "milliseconds",
+        "value": 0.0,
+        "window_sha256": "1c86901bd488ced1c341a4831f4ccbf46516040dfe945dd653668e52446410c4"
+      },
+      {
+        "claim_level": "physical_metric",
+        "computation_sha256": "fe48d8d8f5567a9327f720b3682d3cc99343d921746d6c53ed174ce9ad4f1880",
+        "name": "spatial_offset",
+        "provenance": {
+          "algorithm": "duckrabbit/metrics/v3",
+          "channel_rule": "video=all_channels_adjacent_frame_absolute_difference; audio=all_channel_RMS",
+          "color_space": "uncalibrated_normalized_channel_values",
+          "implementation_sources": "metrics.py; artifacts.py",
+          "numpy_version": "2.4.2",
+          "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+          "spectral_window": "not_applicable",
+          "temporal_reduction": "C_contiguous_float32_absolute_difference_mean",
+          "transfer_function": "none_applied; not_display_calibrated",
+          "window": "full_audiovisual; audio_samples=4000; sample_rate_hz=8000; video_frames=6; frame_rate_hz=12.0; audio_start_s=0.0; video_start_s=0.0"
+        },
+        "source": "canonical_artifact",
+        "tolerance": null,
+        "unit": "normalized_spatial_offset",
+        "value": 0.0,
+        "window_sha256": "1c86901bd488ced1c341a4831f4ccbf46516040dfe945dd653668e52446410c4"
+      },
+      {
+        "claim_level": "physical_metric",
+        "computation_sha256": "078c8c08a6caab87536c2069e1ef492396709db627a7acf3f18e5031610bace2",
+        "name": "video_mean_temporal_delta",
+        "provenance": {
+          "algorithm": "duckrabbit/metrics/v3",
+          "channel_rule": "video=all_channels_adjacent_frame_absolute_difference; audio=all_channel_RMS",
+          "color_space": "uncalibrated_normalized_channel_values",
+          "implementation_sources": "metrics.py; artifacts.py",
+          "numpy_version": "2.4.2",
+          "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+          "spectral_window": "not_applicable",
+          "temporal_reduction": "C_contiguous_float32_absolute_difference_mean",
+          "transfer_function": "none_applied; not_display_calibrated",
+          "window": "full_audiovisual; audio_samples=4000; sample_rate_hz=8000; video_frames=6; frame_rate_hz=12.0; audio_start_s=0.0; video_start_s=0.0"
+        },
+        "source": "canonical_artifact",
+        "tolerance": null,
+        "unit": "normalized_pixel_difference",
+        "value": 0.36765551567077637,
+        "window_sha256": "1c86901bd488ced1c341a4831f4ccbf46516040dfe945dd653668e52446410c4"
+      },
+      {
+        "claim_level": "physical_metric",
+        "computation_sha256": "98e07268eff0298ad9b9c8fb4f6973d70a9ef7f4bccf3cef37b5b9cf2c567a66",
+        "name": "audio_rms",
+        "provenance": {
+          "algorithm": "duckrabbit/metrics/v3",
+          "channel_rule": "video=all_channels_adjacent_frame_absolute_difference; audio=all_channel_RMS",
+          "color_space": "uncalibrated_normalized_channel_values",
+          "implementation_sources": "metrics.py; artifacts.py",
+          "numpy_version": "2.4.2",
+          "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+          "spectral_window": "not_applicable",
+          "temporal_reduction": "C_contiguous_float32_absolute_difference_mean",
+          "transfer_function": "none_applied; not_display_calibrated",
+          "window": "full_audiovisual; audio_samples=4000; sample_rate_hz=8000; video_frames=6; frame_rate_hz=12.0; audio_start_s=0.0; video_start_s=0.0"
+        },
+        "source": "canonical_artifact",
+        "tolerance": null,
+        "unit": "normalized_amplitude",
+        "value": 0.08242791891098022,
+        "window_sha256": "1c86901bd488ced1c341a4831f4ccbf46516040dfe945dd653668e52446410c4"
+      }
+    ],
+    "values": {
+      "audio_rms": 0.08242791891098022,
+      "duration_seconds": 0.5,
+      "presentation_duration_seconds": 0.5,
+      "spatial_offset": 0.0,
+      "sync_offset_ms": 0.0,
+      "video_mean_temporal_delta": 0.36765551567077637
+    }
+  },
+  "modality": [
+    "audio_visual"
+  ],
+  "output": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/audiovisual/audiovisual_sound_induced_flash.mp4",
+  "package_version": "0.6.0",
+  "parameter_schema": {
+    "fields": [
+      {
+        "constraints": [],
+        "default": {
+          "audio": {
+            "amplitude": {
+              "value": 0.5
+            },
+            "channels": 1,
+            "duration": {
+              "value": 0.5
+            },
+            "envelope": "sine_squared",
+            "phase": {
+              "value": 0.0
+            },
+            "sample_rate": {
+              "value": 8000
+            }
+          },
+          "spatial_offset": {
+            "value": 0.0
+          },
+          "sync_offset": {
+            "value": 0.0
+          },
+          "video": {
+            "frame_count": 6,
+            "frame_rate": {
+              "value": 12.0
+            },
+            "height": 256,
+            "width": 256
+          }
+        },
+        "name": "config",
+        "required": false,
+        "type_name": "AudiovisualConfig"
+      },
+      {
+        "constraints": [],
+        "default": 2,
+        "name": "beep_count",
+        "required": false,
+        "type_name": "int"
+      },
+      {
+        "constraints": [],
+        "default": 1,
+        "name": "flash_count",
+        "required": false,
+        "type_name": "int"
+      }
+    ],
+    "parameter_type": "SoundInducedFlashParams",
+    "schema_version": "duckrabbit/parameters/v1"
+  },
+  "parameters": {
+    "beep_count": 2,
+    "config": {
+      "audio": {
+        "amplitude": {
+          "value": 0.5
+        },
+        "channels": 1,
+        "duration": {
+          "value": 0.5
+        },
+        "envelope": "sine_squared",
+        "phase": {
+          "value": 0.0
+        },
+        "sample_rate": {
+          "value": 8000
+        }
+      },
+      "spatial_offset": {
+        "value": 0.0
+      },
+      "sync_offset": {
+        "value": 0.0
+      },
+      "video": {
+        "frame_count": 6,
+        "frame_rate": {
+          "value": 12.0
+        },
+        "height": 256,
+        "width": 256
+      }
+    },
+    "flash_count": 1
+  },
+  "schema_version": "duckrabbit/artifact/v2",
+  "seed": 0,
+  "taxonomy": {
+    "claim_levels": [
+      "canonical_stimulus",
+      "physical_metric"
+    ],
+    "cognitive_processes": [
+      "multisensory_integration"
+    ],
+    "description": "A flash and one- or two-beep timing contrast on a shared timeline.",
+    "evidence_references": [
+      "shams2000sifi",
+      "hirst2020sound"
+    ],
+    "evidence_status": "review_backed_engineering_entry",
+    "illusion_id": "audiovisual.sound_induced_flash",
+    "implementation_status": "implemented",
+    "input_requirement": "controlled_playback",
+    "mechanisms": [
+      "crossmodal_temporal"
+    ],
+    "modalities": [
+      "audio_visual"
+    ],
+    "name": "Sound-induced flash stimulus",
+    "output_kind": "audiovisual",
+    "signatures": [
+      "fusion_or_fission"
+    ],
+    "stimulus_requirements": [
+      "stable audio/video clock"
+    ]
+  },
+  "verification": {
+    "checks": [
+      "encoded_sha256",
+      "encoded_size_bytes",
+      "decoded_media",
+      "decoded_channels",
+      "decoded_sample_rate",
+      "decoded_samples",
+      "decoded_duration_seconds",
+      "decoded_width",
+      "decoded_height",
+      "decoded_frames",
+      "decoded_frame_rate",
+      "decoded_duration_seconds",
+      "decoded_presentation_duration_seconds",
+      "decoded_sync_offset_ms"
+    ],
+    "errors": [],
+    "status": "verified"
+  }
+}

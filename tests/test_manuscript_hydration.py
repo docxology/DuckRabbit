@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import re
 from pathlib import Path
+import pytest
 
 from duckrabbit.manuscript_variables import generate_variables, hydrate_manuscript_files, save_variables
 
@@ -15,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_hydrate_manuscript_files_substitutes_copies_and_cleans(tmp_path: Path):
     source_dir = tmp_path / "docs" / "manuscript"
     source_dir.mkdir(parents=True)
-    (source_dir / "chapter.md").write_text("Version {{PACKAGE_VERSION}} keeps {{UNKNOWN_TOKEN}}.\n", encoding="utf-8")
+    (source_dir / "chapter.md").write_text("Version {{PACKAGE_VERSION}}.\n", encoding="utf-8")
     (source_dir / "AGENTS.md").write_text("agent guidance stays out of output\n", encoding="utf-8")
     (source_dir / "config.yaml").write_text("cover_height_fraction: 0.58\n", encoding="utf-8")
     (source_dir / "references.bib").write_text("@misc{key2020, title = {A}}\n", encoding="utf-8")
@@ -26,10 +27,10 @@ def test_hydrate_manuscript_files_substitutes_copies_and_cleans(tmp_path: Path):
     (output_dir / "README.md").write_text("retained output guide\n", encoding="utf-8")
     (output_dir / "AGENTS.md").write_text("retained output instructions\n", encoding="utf-8")
 
-    result = hydrate_manuscript_files({"PACKAGE_VERSION": "0.5.0"}, tmp_path)
+    result = hydrate_manuscript_files({"PACKAGE_VERSION": "candidate"}, tmp_path)
 
     assert result == output_dir
-    assert (output_dir / "chapter.md").read_text(encoding="utf-8") == "Version 0.5.0 keeps {{UNKNOWN_TOKEN}}.\n"
+    assert (output_dir / "chapter.md").read_text(encoding="utf-8") == "Version candidate.\n"
     assert (output_dir / "AGENTS.md").read_text(encoding="utf-8") == "retained output instructions\n"
     assert (output_dir / "README.md").read_text(encoding="utf-8") == "retained output guide\n"
     assert (output_dir / "config.yaml").read_text(encoding="utf-8") == "cover_height_fraction: 0.58\n"
@@ -73,3 +74,15 @@ def test_every_manuscript_template_token_is_a_generated_variable():
     }
     missing = used - set(variables)
     assert not missing, f"manuscript tokens without a generated variable: {sorted(missing)}"
+
+
+def test_unresolved_delivery_token_fails_before_overwriting_existing_manuscript(tmp_path: Path):
+    source = tmp_path / "docs" / "manuscript"
+    source.mkdir(parents=True)
+    (source / "chapter.md").write_text("Count {{UNKNOWN_TOKEN}}\n")
+    destination = tmp_path / "output" / "manuscript"
+    destination.mkdir(parents=True)
+    (destination / "chapter.md").write_text("preserved previous output\n")
+    with pytest.raises(ValueError, match="unresolved manuscript"):
+        hydrate_manuscript_files({}, tmp_path)
+    assert (destination / "chapter.md").read_text() == "preserved previous output\n"

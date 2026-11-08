@@ -47,30 +47,64 @@
         "early",
         "late"
       ]
+    },
+    {
+      "condition_id": "temporal_early",
+      "illusion_id": "audiovisual.temporal_ventriloquism",
+      "parameter_overrides": {
+        "config": {
+          "sync_offset": -120.0
+        }
+      },
+      "response_kind": "forced_choice",
+      "response_labels": [
+        "early",
+        "late"
+      ]
+    },
+    {
+      "condition_id": "temporal_late",
+      "illusion_id": "audiovisual.temporal_ventriloquism",
+      "parameter_overrides": {
+        "config": {
+          "sync_offset": 120.0
+        }
+      },
+      "response_kind": "forced_choice",
+      "response_labels": [
+        "early",
+        "late"
+      ]
     }
   ],
+  "design_status": "illustrative_not_preregistration_ready",
   "estimands": [
     {
-      "model": "poisson_or_ordinal",
+      "model": "logistic_mixed",
       "multiplicity": "Holm correction across confirmatory contrasts",
       "name": "sifi_flash_count_contrast",
-      "primary_contrast": "two-beep minus one-beep event-count response",
+      "primary_contrast": "log odds of choosing 'two': sifi_two_beep minus sifi_one_beep",
       "reference_condition": "sifi_one_beep",
-      "response_kind": "event_count",
+      "response_kind": "forced_choice",
       "uncertainty": "95% confidence interval"
     },
     {
-      "model": "linear_mixed",
+      "model": "logistic_mixed",
       "multiplicity": "Holm correction across confirmatory contrasts",
       "name": "temporal_binding_offset_contrast",
-      "primary_contrast": "reported timing shift per declared sync offset",
+      "primary_contrast": "log odds of choosing 'late': temporal_early and temporal_late versus temporal_sync (categorical offsets -120/0/+120 ms)",
       "reference_condition": "temporal_sync",
-      "response_kind": "continuous_magnitude",
+      "response_kind": "forced_choice",
       "uncertainty": "95% confidence interval"
     }
   ],
   "exclusion_rules": [
     "prespecified technical failure"
+  ],
+  "external_requirements": [
+    "task and contrast specification",
+    "ethics and consent approval",
+    "display and playback calibration"
   ],
   "inclusion_rules": [
     "complete primary response",
@@ -99,8 +133,8 @@
     },
     {
       "family": "lognormal",
-      "formula": "log(reaction_time) ~ condition + (1|participant) + (1|item)",
-      "link": "identity",
+      "formula": "reaction_time ~ condition + (1|participant) + (1|item)",
+      "link": "log",
       "model": "lognormal_mixed",
       "random_effects": [
         "participant",
@@ -129,6 +163,7 @@
   ],
   "observer_data_status": "none_bundled",
   "observers": 24,
+  "randomization": "independent seeded shuffle per observer; not positional counterbalancing",
   "randomization_seed": 0,
   "study_id": "duckrabbit-v04-demo",
   "trials_per_condition": 8

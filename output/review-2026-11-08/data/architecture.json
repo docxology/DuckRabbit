@@ -1,0 +1,25 @@
+{
+  "data": {
+    "equations": [
+      "A = G\u1d62(\u03b8; s)",
+      "h\u208dc\u208e = H(c(A))",
+      "V(F, M) \u2208 {pass, fail}"
+    ],
+    "stages": [
+      "Typed request",
+      "Generator",
+      "Canonical artifact",
+      "Encode / inspect",
+      "Manifest + verify"
+    ]
+  },
+  "figure_label": "fig:architecture",
+  "figure_stem": "architecture",
+  "generator": "duckrabbit.publication._architecture",
+  "parameters": {
+    "figure_stem": "architecture",
+    "seed": 0
+  },
+  "schema_version": "duckrabbit/figure-source/v1",
+  "seed": 0
+}

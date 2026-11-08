@@ -12,7 +12,7 @@ audio-visual illusion stimuli. The public source is
 ```bash
 git clone https://github.com/docxology/DuckRabbit
 cd DuckRabbit
-uv sync --extra dev
+uv sync --locked --extra dev
 ```
 
 Then validate and exercise the package:

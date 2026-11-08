@@ -88,7 +88,7 @@ For an encoding request $e$, the delivered file $F$ and decoded inspection $I$
 are:
 
 $$
-F = E_e(A), \qquad I = D(F), \qquad V(F,M) \in \{\mathrm{pass},\mathrm{fail}\}
+F = E_e(A), \qquad I = D(F), \qquad V(F,M) \in \{\mathrm{verified},\mathrm{failed},\mathrm{unverified}\}
 $$ {#eq:encoding_verification}
 
 The manifest $M$ binds $A$, $F$, and $I$ through hashes, typed summaries, and
@@ -98,6 +98,17 @@ audiovisual output use an optional ffmpeg backend. Missing backends are
 reported as capability errors. Writes are atomic, parent directories are
 created, overwrite behavior is explicit, and a conflicting format argument is
 rejected.
+
+Canonical NPZ arrays must retain little-endian float32 storage; the reader and
+inspector reject float64, big-endian or integer replacements instead of silently
+coercing their values into a canonical-looking artifact.
+
+For NPZ, verification replays declared metrics only under the supported
+computation, implementation-source and NumPy identities. Missing optional
+metrics receive no metric-verification claim; unsupported historical identities
+remain `unverified`, not relabeled current or falsely classified as corruption.
+A metric-specific successful check is required to infer measured-value agreement.
+Other encodings retain their disclosed quantization/decoded-fact boundary.
 
 ## Objective metric definitions {#sec:objective_metric_definitions}
 
@@ -109,6 +120,16 @@ facts. They are not observer responses and cannot by themselves establish an
 illusion effect. For canonical image samples $y_1,\ldots,y_n$, audio samples
 $x_1,\ldots,x_n$, and adjacent video frames $Y_k,Y_{k+1}$, the principal
 metrics are:
+
+For images, $y$ is the grayscale code value or the Rec. 709-weighted RGB
+channel-value proxy; no RGB transfer decoding or display calibration is assumed.
+The name `mean_luminance` is an API label, not a photometric measurement.
+For temporal differences, $Y_k$ denotes the complete raw channel array, not
+the image luminance proxy. RGB audiovisual plots reuse the image proxy.
+Adjacent-frame subtraction and its float32 mean use C-contiguous scratch space,
+matching the canonical layout. This removes layout-dependent summary drift
+across exact NPZ round trips; Fortran/mixed-layout input rounding can therefore
+differ from older versions, without changing pixels or canonical byte identity.
 
 $$
 \mu_Y = \frac{1}{n}\sum_{j=1}^{n} y_j, \qquad
@@ -132,9 +153,13 @@ aggregation; it does not replace this full-resolution metric computation.
 
 The level count is the cardinality of the finite-value set after canonical
 quantization; an empty or non-finite artifact is invalid rather than assigned
-a default statistic. Every metric record carries units and a deterministic
-computation version. Observer interpretations are represented separately by
-the typed observer protocol and claim levels.
+a default statistic. Every generated metric carries units, full-window and
+channel/transfer definitions, NumPy and implementation identity, and SHA-256
+hashes of the computation/window definitions. The implementation fingerprint
+covers `metrics.py` and `artifacts.py`, not NumPy binaries, CPU behavior or a
+historical platform. These identify the calculation, not stimulus bytes
+(identified separately by canonical digest), calibration, or authorship.
+Observer interpretations remain separate typed claims.
 
 For a future observer study, the estimand is defined by the protocol rather
 than by the generator itself:
@@ -148,7 +173,7 @@ responses, fitted coefficients, or validated observer-level estimate.
 
 ### Synthetic psychophysics boundary
 
-DuckRabbit v0.5.0 adds a transparent synthetic-psychophysics diagnostic for
+DuckRabbit's transparent synthetic-psychophysics diagnostic supports
 method orchestration. It is a hand-specified feature observer, not a
 pretrained vision model and not an empirical psychophysics substitute. Let
 $\phi(A)$ be the bounded feature vector extracted from a canonical artifact,
@@ -156,14 +181,22 @@ $w$ the code-owned feature weights, and $\tau>0$ the declared temperature:
 
 $$
 p_M(c\mid A_r,A_c) =
-\sigma\left(\frac{w^\mathsf{T}\phi(A_c)-w^\mathsf{T}\phi(A_r)}{\tau}\right)
+\sigma\left(\operatorname{clip}\left(\frac{w^\mathsf{T}\phi(A_c)-w^\mathsf{T}\phi(A_r)}{\tau},-60,60\right)\right)
 $$ {#eq:synthetic_observer}
 
-The model identity, version, preprocessing features, weights, temperature,
-seed, calibration statement, and the `human_data=false` flag are serialized with
-each prediction. The diagnostic is useful for checking that typed parameter
-sweeps produce deterministic, inspectable model outputs and for exercising
-analysis orchestration end to end. It does not estimate a human psychometric
-function, establish a sensitivity threshold, or support an observer-level
-claim. Human psychophysics remains future work requiring a preregistered task,
-calibrated display/playback, participant data, and an analysis contract.
+The enclosing diagnostic serializes model identity/version and fingerprint,
+actual feature values, weights, temperature, seed, calibration statement,
+canonical digests, numerical clipping/tie rules and `human_data=false`.
+Detached predictions retain scores and feature names but require that enclosing
+specification to reconstruct the model. Exact-self and all-zero-weight controls
+yield 0.5; ties choose the comparison deterministically.
+
+The default sweep also zeroes each declared feature weight and varies temperature
+by factors 0.5, 1 and 2. Five image features are active; nine other ablations and
+the 1-times temperature reproduce existing curves rather than independent evidence.
+The displayed min/max range covers only these declared configurations, including
+the null. It is model sensitivity, not an empirical confidence interval, a human
+psychometric function, or uncertainty over all possible models. Joint perturbations,
+preprocessing/quantization sensitivity, calibration and observer variation are not
+covered. Human work still requires task, consent, calibrated presentation,
+preregistration and actual response data.

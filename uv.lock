@@ -117,7 +117,7 @@ toml = [
 
 [[package]]
 name = "duckrabbit"
-version = "0.5.0"
+version = "0.6.0"
 source = { editable = "." }
 dependencies = [
     { name = "numpy" },
@@ -140,8 +140,6 @@ requires-dist = [
     { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=4.1.0" },
     { name = "pyyaml", marker = "extra == 'dev'", specifier = ">=6.0.3" },
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.6.0" },
-    { name = "tomli", marker = "python_full_version < '3.11'", specifier = ">=2.0.1" },
-    { name = "typing-extensions", marker = "python_full_version < '3.11'", specifier = ">=4.7.0" },
 ]
 provides-extras = ["dev"]
 

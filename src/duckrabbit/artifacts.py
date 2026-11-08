@@ -13,7 +13,7 @@ from typing import Iterator, Literal, TypedDict
 import numpy as np
 
 from .errors import ParameterValidationError
-from .parameters import BackendKind, ColorMode, FrameRate, MediaFormat, SampleRate, Seed, SpatialOffset, SyncOffsetMs
+from .parameters import BackendKind, ColorMode, FrameRate, MediaFormat, SampleRate, Seed, SpatialOffset, SyncOffsetMs, _finite
 from .taxonomy import ImplementationStatus, Modality, TaxonomyEntry
 
 
@@ -160,15 +160,11 @@ class VideoSequence:
 
     @property
     def temporal_deltas(self) -> tuple[float, ...]:
-        """Mean absolute pixel change between each adjacent frame."""
+        """Mean absolute change with canonical C-ordered float32 reduction."""
         if len(self.frames) == 1:
             return ()
-        if not all(frame.pixels.flags.c_contiguous for frame in self.frames):
-            return tuple(
-                float(np.mean(np.abs(current.pixels - previous.pixels)))
-                for previous, current in zip(self.frames, self.frames[1:])
-            )
-        difference = np.empty_like(self.frames[0].pixels)
+        # Canonical bytes ignore memory layout; derived facts must do so too.
+        difference = np.empty(self.frames[0].pixels.shape, dtype=np.float32, order="C")
         deltas = []
         for previous, current in zip(self.frames, self.frames[1:]):
             np.subtract(current.pixels, previous.pixels, out=difference)
@@ -399,14 +395,10 @@ class ArtifactManifest:
             raise ParameterValidationError("manifest canonical_digest must be lowercase SHA-256 hex")
         if self.artifact is not None:
             _validate_artifact_summary(self.artifact)
+            object.__setattr__(self, "artifact", _freeze_profile(self.artifact))
         if self.encoding is not None and not isinstance(self.encoding, EncodedArtifact):
             raise ParameterValidationError("manifest encoding must be EncodedArtifact")
-        if self.duration_seconds is not None and (
-            not isinstance(self.duration_seconds, (int, float))
-            or isinstance(self.duration_seconds, bool)
-            or not math.isfinite(float(self.duration_seconds))
-            or self.duration_seconds < 0
-        ):
+        if self.duration_seconds is not None and _finite(self.duration_seconds, "manifest duration") < 0:
             raise ParameterValidationError("manifest duration must not be negative")
         for name, value in (("output", self.output), ("manifest", self.manifest)):
             if value is not None and not isinstance(value, str):
@@ -441,10 +433,7 @@ def _validate_artifact_summary(summary: ArtifactSummary) -> None:
             raise ParameterValidationError(f"manifest artifact {field_name} must be a positive integer")
 
     def finite_number(field_name: str) -> float:
-        value = summary[field_name]
-        if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(float(value)):
-            raise ParameterValidationError(f"manifest artifact {field_name} must be finite")
-        return float(value)
+        return _finite(summary[field_name], f"manifest artifact {field_name}")
 
     def mode_value(value: object) -> str:
         if isinstance(value, ColorMode):
@@ -506,9 +495,10 @@ def _validate_artifact_summary(summary: ArtifactSummary) -> None:
             raise ParameterValidationError("manifest video temporal_deltas must have frames - 1 values")
         numeric_deltas = []
         for delta in deltas:
-            if isinstance(delta, bool) or not isinstance(delta, (int, float)) or not math.isfinite(float(delta)) or not 0.0 <= float(delta) <= 1.0:
+            numeric = _finite(delta, "manifest video temporal_deltas")
+            if not 0.0 <= numeric <= 1.0:
                 raise ParameterValidationError("manifest video temporal_deltas must be finite values in [0, 1]")
-            numeric_deltas.append(float(delta))
+            numeric_deltas.append(numeric)
         expected_mean = sum(numeric_deltas) / len(numeric_deltas) if numeric_deltas else 0.0
         if not math.isclose(finite_number("mean_temporal_delta"), expected_mean, rel_tol=0.0, abs_tol=1e-9):
             raise ParameterValidationError("manifest video mean_temporal_delta disagrees with temporal_deltas")
@@ -527,6 +517,8 @@ def _validate_artifact_summary(summary: ArtifactSummary) -> None:
     video = summary["video"]
     audio_duration = float(audio["duration_seconds"])
     video_duration = float(video["duration_seconds"])
+    if abs(audio_duration - video_duration) > 1.0 / float(video["frame_rate"]):
+        raise ParameterValidationError("manifest audio/video duration mismatch exceeds one video frame")
     sync_seconds = sync_ms / 1000.0
     audio_start = max(0.0, sync_seconds)
     video_start = max(0.0, -sync_seconds)

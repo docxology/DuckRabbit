@@ -16,11 +16,12 @@ uv run python scripts/validate_scholarship.py
 uv run python -m duckrabbit audit --output-root output --release
 ```
 
-The variable generator reports which hydrator it used. The package fallback
-writes resolved Markdown and bibliography under `output/manuscript/`; it does
-not typeset a PDF or validate rendered page layout. Do not edit those generated
-files. See [`../publication.md`](../publication.md) for the release gates and
-[`../performance.md`](../performance.md) for separately instrumented workloads.
+The source-owned variable generator writes resolved Markdown, configuration and
+bibliography under `output/manuscript/`; `--output-dir` selects an isolated bundle.
+It rejects unresolved delivery tokens before replacing earlier output. It does
+not typeset a PDF or validate rendered page layout. Strict release auditing
+compares the delivered bytes and variables with current source. See
+[`../publication.md`](../publication.md) and [`../performance.md`](../performance.md).
 
 ## Optional typesetting integration
 
@@ -32,6 +33,6 @@ claiming a successful typeset build.
 
 ## Revision identity
 
-Version 0.5.0 is already published with the identifiers in `CITATION.cff`.
-Current development corrections are unreleased and do not revise that archive
-or certify the checked-in historical PDF as a rendering of the current source.
+Version 0.5.0 is already published under concept DOI `10.5281/zenodo.21419693`
+and version DOI `10.5281/zenodo.21419694`. Version 0.6.0 metadata is forthcoming;
+it does not revise that archive or certify its PDF as current-source rendering.

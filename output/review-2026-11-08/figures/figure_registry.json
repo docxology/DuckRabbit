@@ -1,0 +1,738 @@
+{
+  "figure_count": 15,
+  "figures": [
+    {
+      "accessibility": {
+        "color_independent": true,
+        "notes": "Interpret plotted values from the labels and source-data sidecar; color is not the sole encoding.",
+        "text_labels": true
+      },
+      "alt_text": "Five labeled stages connect a typed request to a deterministic canonical artifact, encoded media, decoded inspection, and a verification manifest.",
+      "boundary_statement": "The pipeline verifies reproducible media facts, not what a person experiences.",
+      "caption": "What this figure shows: Five labeled stages connect a typed request to a deterministic canonical artifact, encoded media, decoded inspection, and a verification manifest. This schematic separates a typed request from the canonical artifact it generates, the optional delivery encoder, decoded inspection, and the manifest-level verification decision. Arrows indicate data and provenance dependencies rather than a causal model of perception; the seed is 0 and the complete stage record is in source data output/data/architecture.json. Controls: typed request q=(i,\u03b8,s,e) with seed s=0; default generator and delivery-independent canonicalization. Objective facts: no unit-bearing objective quantity is applicable to this architecture diagram; stage identities and provenance fields are recorded in the sidecar. Claim level: canonical_stimulus. Source data: output/data/architecture.json (SHA-256 digest recorded in the figure registry). Evidence lineage: formalism:eq:typed_request, formalism:eq:canonical_generation, formalism:eq:encoding_verification. Limitations: The schematic abstracts implementation boundaries and does not represent an observer study or a causal theory of perception. Boundary: The pipeline verifies reproducible media facts, not what a person experiences.",
+      "caption_core": "This schematic separates a typed request from the canonical artifact it generates, the optional delivery encoder, decoded inspection, and the manifest-level verification decision. Arrows indicate data and provenance dependencies rather than a causal model of perception; the seed is 0 and the complete stage record is in source data output/data/architecture.json.",
+      "claim_level": "canonical_stimulus",
+      "controls": "typed request q=(i,\u03b8,s,e) with seed s=0; default generator and delivery-independent canonicalization",
+      "evidence_references": [
+        "formalism:eq:typed_request",
+        "formalism:eq:canonical_generation",
+        "formalism:eq:encoding_verification"
+      ],
+      "filename": "architecture.png",
+      "generated_by": "duckrabbit.publication.generate_publication_outputs",
+      "generator": "duckrabbit.publication.generate_publication_outputs",
+      "label": "fig:architecture",
+      "limitations": [
+        "The schematic abstracts implementation boundaries and does not represent an observer study or a causal theory of perception."
+      ],
+      "objective_facts": "no unit-bearing objective quantity is applicable to this architecture diagram; stage identities and provenance fields are recorded in the sidecar",
+      "parameters": {
+        "figure_stem": "architecture",
+        "seed": 0
+      },
+      "path": "output/figures/architecture.png",
+      "seed": 0,
+      "sha256": "45aecca2a17f5add3801efa00ea4b1db0aab64e91202a167213977495792ff83",
+      "source_data": "output/data/architecture.json",
+      "source_data_sha256": "56dfe00d4ab4a94c4ec186860adb6f6443b8aaa3826c5e40eddbaca92d590814",
+      "title": "Architecture and provenance pipeline",
+      "visual_qa": {
+        "height_px": 760,
+        "mode": "RGB",
+        "scales": [
+          "full",
+          "thumbnail"
+        ],
+        "thumbnail_height_px": 135,
+        "thumbnail_sha256": "bbb7177df8812f791dc45e50c77f8ff998fc10f4bea8cb5e453046fd1bec628c",
+        "thumbnail_width_px": 320,
+        "width_px": 1800
+      }
+    },
+    {
+      "accessibility": {
+        "color_independent": true,
+        "notes": "Interpret plotted values from the labels and source-data sidecar; color is not the sole encoding.",
+        "text_labels": true
+      },
+      "alt_text": "A matrix lists all catalog entries with modality, mechanism, signature, input requirement, and implementation status.",
+      "boundary_statement": "Catalog coverage is bounded to this registered package and does not enumerate all known illusions.",
+      "caption": "What this figure shows: A matrix lists all catalog entries with modality, mechanism, signature, input requirement, and implementation status. The live catalog matrix contains 18 entries and keeps modality, mechanism, perceptual signature, input requirement, evidence status, and implementation status as separate facets. Source data output/data/catalog_matrix.json preserve the exact taxonomy snapshot and its source-reference namespace; status is not a proxy for perceptual validation. Controls: live taxonomy registry; evidence matrix snapshot; seed not applicable to the catalog diagram. Objective facts: 18 catalog rows; categorical facets and statuses; no observer-level quantity is applicable. Claim level: source_supported. Source data: output/data/catalog_matrix.json (SHA-256 digest recorded in the figure registry). Evidence lineage: gregory1997visual, hirst2020sound, bruns2019ventriloquist. Limitations: Taxonomy facets are engineering classifications and remain provisional where the literature supports competing accounts. Boundary: Catalog coverage is bounded to this registered package and does not enumerate all known illusions.",
+      "caption_core": "The live catalog matrix contains 18 entries and keeps modality, mechanism, perceptual signature, input requirement, evidence status, and implementation status as separate facets. Source data output/data/catalog_matrix.json preserve the exact taxonomy snapshot and its source-reference namespace; status is not a proxy for perceptual validation.",
+      "claim_level": "source_supported",
+      "controls": "live taxonomy registry; evidence matrix snapshot; seed not applicable to the catalog diagram",
+      "evidence_references": [
+        "gregory1997visual",
+        "hirst2020sound",
+        "bruns2019ventriloquist"
+      ],
+      "filename": "catalog_matrix.png",
+      "generated_by": "duckrabbit.publication.generate_publication_outputs",
+      "generator": "duckrabbit.publication.generate_publication_outputs",
+      "label": "fig:catalog_matrix",
+      "limitations": [
+        "Taxonomy facets are engineering classifications and remain provisional where the literature supports competing accounts."
+      ],
+      "objective_facts": "18 catalog rows; categorical facets and statuses; no observer-level quantity is applicable",
+      "parameters": {
+        "figure_stem": "catalog_matrix",
+        "seed": 0
+      },
+      "path": "output/figures/catalog_matrix.png",
+      "seed": 0,
+      "sha256": "f448ea743a0c6994c67cf90258f2239a3ba95c6bd7058f1bc4cfe6f5fbec5490",
+      "source_data": "output/data/catalog_matrix.json",
+      "source_data_sha256": "22014b5c16cccae5b95bdd478f191c35f9ed6957692039e79c774f06ba553fed",
+      "title": "Catalog taxonomy and scholarship",
+      "visual_qa": {
+        "height_px": 1700,
+        "mode": "RGB",
+        "scales": [
+          "full",
+          "thumbnail"
+        ],
+        "thumbnail_height_px": 286,
+        "thumbnail_sha256": "960fada2d4401fcc3e7066bc40f47ebe69f898f92facb60f232796725361cd6f",
+        "thumbnail_width_px": 320,
+        "width_px": 1900
+      }
+    },
+    {
+      "accessibility": {
+        "color_independent": true,
+        "notes": "Interpret plotted values from the labels and source-data sidecar; color is not the sole encoding.",
+        "text_labels": true
+      },
+      "alt_text": "A 9-panel gallery shows every currently implemented visual catalog entry, with stable IDs and physical raster summaries: Duck-rabbit ambiguous figure, Simultaneous contrast stimulus, Apparent-motion frame sequence, M\u00fcller-Lyer geometric illusion, Poggendorff geometric illusion, Ponzo perspective illusion, Kanizsa illusory-contour triangle, Ebbinghaus context-size illusion, Z\u00f6llner orientation illusion.",
+      "boundary_statement": "The figure establishes coverage of the package's implemented visual constructions and their deterministic raster facts. It does not establish that any viewer will perceive the named signature, nor that the set is exhaustive of the visual-illusion literature.",
+      "caption": "What this figure shows: A 9-panel gallery shows every currently implemented visual catalog entry, with stable IDs and physical raster summaries: Duck-rabbit ambiguous figure, Simultaneous contrast stimulus, Apparent-motion frame sequence, M\u00fcller-Lyer geometric illusion, Poggendorff geometric illusion, Ponzo perspective illusion, Kanizsa illusory-contour triangle, Ebbinghaus context-size illusion, Z\u00f6llner orientation illusion. This complete gallery presents one deterministic representative from each of the 9 currently implemented visual catalog entries: Duck-rabbit ambiguous figure, Simultaneous contrast stimulus, Apparent-motion frame sequence, M\u00fcller-Lyer geometric illusion, Poggendorff geometric illusion, Ponzo perspective illusion, Kanizsa illusory-contour triangle, Ebbinghaus context-size illusion, Z\u00f6llner orientation illusion. The panel therefore covers the package's available visual families\u2014ambiguous figure, contrast, apparent motion, geometric context, illusory contour, contextual size, and orientation-related constructions\u2014using typed defaults at seed 0. For the temporally expressed apparent-motion entry, the displayed tile is its first frame and the source data preserve the full sequence. The source data sidecar output/data/visual_panel.json records the stable ID, generator parameters, canonical SHA-256 digest, grayscale code-value or Rec. 709-weighted RGB proxy statistics (no transfer conversion or display calibration), raster-level counts, and parameter boundary for every tile. Controls: one default typed parameter object per implemented visual entry; seed s=0; dimensions, luminance bounds, grayscale, and quantization controls remain in each generator schema; temporal entries display their first frame but retain sequence metrics. Objective facts: per tile: mean and standard deviation of the declared uncalibrated channel-value proxy, unique raster levels, and canonical SHA-256 digest; temporal entries additionally retain frame count, frame rate, and frame deltas; definitions and units are in the source data JSON. Claim level: canonical_stimulus. Source data: output/data/visual_panel.json (SHA-256 digest recorded in the figure registry). Evidence lineage: gregory1997visual, brugger1999duckrabbit, howe2005muller, morgan1999poggendorff, fisher1967ponzo, yildiz2022ponzo, kanizsa1976contours, mruczek2015ebbinghaus, earle1995zollner, wertheimer1912motion, sekuler1996wertheimer. Limitations: The gallery is complete for implemented visual entries in this package, not a complete survey of visual illusions; literature families, historical displays, and DuckRabbit rasters are not pixel-identical by default. Viewing scale, display calibration, viewing distance, and observer conditions can change the relevance of a construction; the gallery does not measure an observer's perceptual report. Boundary: The figure establishes coverage of the package's implemented visual constructions and their deterministic raster facts. It does not establish that any viewer will perceive the named signature, nor that the set is exhaustive of the visual-illusion literature.",
+      "caption_core": "This complete gallery presents one deterministic representative from each of the 9 currently implemented visual catalog entries: Duck-rabbit ambiguous figure, Simultaneous contrast stimulus, Apparent-motion frame sequence, M\u00fcller-Lyer geometric illusion, Poggendorff geometric illusion, Ponzo perspective illusion, Kanizsa illusory-contour triangle, Ebbinghaus context-size illusion, Z\u00f6llner orientation illusion. The panel therefore covers the package's available visual families\u2014ambiguous figure, contrast, apparent motion, geometric context, illusory contour, contextual size, and orientation-related constructions\u2014using typed defaults at seed 0. For the temporally expressed apparent-motion entry, the displayed tile is its first frame and the source data preserve the full sequence. The source data sidecar output/data/visual_panel.json records the stable ID, generator parameters, canonical SHA-256 digest, grayscale code-value or Rec. 709-weighted RGB proxy statistics (no transfer conversion or display calibration), raster-level counts, and parameter boundary for every tile.",
+      "claim_level": "canonical_stimulus",
+      "controls": "one default typed parameter object per implemented visual entry; seed s=0; dimensions, luminance bounds, grayscale, and quantization controls remain in each generator schema; temporal entries display their first frame but retain sequence metrics",
+      "evidence_references": [
+        "gregory1997visual",
+        "brugger1999duckrabbit",
+        "howe2005muller",
+        "morgan1999poggendorff",
+        "fisher1967ponzo",
+        "yildiz2022ponzo",
+        "kanizsa1976contours",
+        "mruczek2015ebbinghaus",
+        "earle1995zollner",
+        "wertheimer1912motion",
+        "sekuler1996wertheimer"
+      ],
+      "filename": "visual_panel.png",
+      "generated_by": "duckrabbit.publication.generate_publication_outputs",
+      "generator": "duckrabbit.publication.generate_publication_outputs",
+      "label": "fig:visual_panel",
+      "limitations": [
+        "The gallery is complete for implemented visual entries in this package, not a complete survey of visual illusions; literature families, historical displays, and DuckRabbit rasters are not pixel-identical by default.",
+        "Viewing scale, display calibration, viewing distance, and observer conditions can change the relevance of a construction; the gallery does not measure an observer's perceptual report."
+      ],
+      "objective_facts": "per tile: mean and standard deviation of the declared uncalibrated channel-value proxy, unique raster levels, and canonical SHA-256 digest; temporal entries additionally retain frame count, frame rate, and frame deltas; definitions and units are in the source data JSON",
+      "parameters": {
+        "figure_stem": "visual_panel",
+        "seed": 0
+      },
+      "path": "output/figures/visual_panel.png",
+      "seed": 0,
+      "sha256": "64a490ef69874f1092036ba68131f183641b2cc5034b6712d99810bc1686f73f",
+      "source_data": "output/data/visual_panel.json",
+      "source_data_sha256": "09aec1a31e988f99ed5d198972543c597fe335f7845432b4b124e38963790304",
+      "title": "Complete panel of implemented visual constructions",
+      "visual_qa": {
+        "height_px": 1770,
+        "mode": "RGB",
+        "scales": [
+          "full",
+          "thumbnail"
+        ],
+        "thumbnail_height_px": 298,
+        "thumbnail_sha256": "924ae4963b0e2f9903200d7edc3947c55e13a1161ddaaf23d8d81dbd0c8da4ec",
+        "thumbnail_width_px": 320,
+        "width_px": 1900
+      }
+    },
+    {
+      "accessibility": {
+        "color_independent": true,
+        "notes": "Interpret plotted values from the labels and source-data sidecar; color is not the sole encoding.",
+        "text_labels": true
+      },
+      "alt_text": "A labeled grid crosses five duck\u2013rabbit blend weights with five grayscale and quantization settings, with physical metrics recorded for each cell.",
+      "boundary_statement": "The chosen grid is an engineering sampling of the parameter domain and does not imply an optimal or perceptually uniform spacing.",
+      "caption": "What this figure shows: A labeled grid crosses five duck\u2013rabbit blend weights with five grayscale and quantization settings, with physical metrics recorded for each cell. This 5\u00d75 sweep varies duck\u2013rabbit blend weight across rows and jointly varies grayscale and quantization levels across columns. Each cell is regenerated from an immutable typed parameter object at seed 0; source data output/data/visual_sweep.json records canonical digests, unique-level counts, normalized luminance, and effective dynamic range for every condition. Controls: duck_weight \u2208 {0,.25,.5,.75,1}; grayscale=quantization \u2208 {2,4,8,16,32}; seed s=0. Objective facts: 25 canonical rasters; unique levels, normalized mean luminance, and effective dynamic range per cell. Claim level: physical_metric. Source data: output/data/visual_sweep.json (SHA-256 digest recorded in the figure registry). Evidence lineage: brugger1999duckrabbit, gregory1997visual. Limitations: The grid is a sensitivity of the construction parameters, not a psychophysical sensitivity curve or a validated observer effect. Boundary: The chosen grid is an engineering sampling of the parameter domain and does not imply an optimal or perceptually uniform spacing.",
+      "caption_core": "This 5\u00d75 sweep varies duck\u2013rabbit blend weight across rows and jointly varies grayscale and quantization levels across columns. Each cell is regenerated from an immutable typed parameter object at seed 0; source data output/data/visual_sweep.json records canonical digests, unique-level counts, normalized luminance, and effective dynamic range for every condition.",
+      "claim_level": "physical_metric",
+      "controls": "duck_weight \u2208 {0,.25,.5,.75,1}; grayscale=quantization \u2208 {2,4,8,16,32}; seed s=0",
+      "evidence_references": [
+        "brugger1999duckrabbit",
+        "gregory1997visual"
+      ],
+      "filename": "visual_sweep.png",
+      "generated_by": "duckrabbit.publication.generate_publication_outputs",
+      "generator": "duckrabbit.publication.generate_publication_outputs",
+      "label": "fig:visual_sweep",
+      "limitations": [
+        "The grid is a sensitivity of the construction parameters, not a psychophysical sensitivity curve or a validated observer effect."
+      ],
+      "objective_facts": "25 canonical rasters; unique levels, normalized mean luminance, and effective dynamic range per cell",
+      "parameters": {
+        "figure_stem": "visual_sweep",
+        "seed": 0
+      },
+      "path": "output/figures/visual_sweep.png",
+      "seed": 0,
+      "sha256": "2f9d0dee01c817943d9e94c5ef86f6978ed154f4b03d6be60d8059d1b4e9b14a",
+      "source_data": "output/data/visual_sweep.json",
+      "source_data_sha256": "67d9ecff4ccaba01d7f9f0a0cd3dcce967e274447fcf84e7b491d9ac9224741b",
+      "title": "Visual parameter sweep with physical readouts",
+      "visual_qa": {
+        "height_px": 1050,
+        "mode": "RGB",
+        "scales": [
+          "full",
+          "thumbnail"
+        ],
+        "thumbnail_height_px": 187,
+        "thumbnail_sha256": "a39445e2dc7df10f976edc7fda154d7ddd85611e26411c992d1685a46e22de01",
+        "thumbnail_width_px": 320,
+        "width_px": 1800
+      }
+    },
+    {
+      "accessibility": {
+        "color_independent": true,
+        "notes": "Interpret plotted values from the labels and source-data sidecar; color is not the sole encoding.",
+        "text_labels": true
+      },
+      "alt_text": "Six ordered frames are labeled with timestamps and paired with a line plot of adjacent-frame normalized pixel differences.",
+      "boundary_statement": "The figure documents temporal structure rather than the presence, direction, or strength of perceived motion.",
+      "caption": "What this figure shows: Six ordered frames are labeled with timestamps and paired with a line plot of adjacent-frame normalized pixel differences. The frame strip exposes the order and timestamps of the apparent-motion construction, while the lower trace reports adjacent-frame mean absolute pixel differences. Source data output/data/temporal_sequence.json preserve frame count, frame rate, reduced rational timebase, timestamps in seconds, and the nonzero transition series; seed 0 identifies the generated sequence. Controls: visual.apparent_motion default typed parameters; frame rate and frame count from the canonical sequence; seed s=0. Objective facts: timestamps in seconds, frame rate in frames/s, frame count, rational timebase, and adjacent-frame normalized pixel difference. Claim level: physical_metric. Source data: output/data/temporal_sequence.json (SHA-256 digest recorded in the figure registry). Evidence lineage: wertheimer1912motion, sekuler1996wertheimer. Limitations: Frame succession and frame deltas are physical file properties; playback timing, display persistence, and motion reports require a controlled observer task. Boundary: The figure documents temporal structure rather than the presence, direction, or strength of perceived motion.",
+      "caption_core": "The frame strip exposes the order and timestamps of the apparent-motion construction, while the lower trace reports adjacent-frame mean absolute pixel differences. Source data output/data/temporal_sequence.json preserve frame count, frame rate, reduced rational timebase, timestamps in seconds, and the nonzero transition series; seed 0 identifies the generated sequence.",
+      "claim_level": "physical_metric",
+      "controls": "visual.apparent_motion default typed parameters; frame rate and frame count from the canonical sequence; seed s=0",
+      "evidence_references": [
+        "wertheimer1912motion",
+        "sekuler1996wertheimer"
+      ],
+      "filename": "temporal_sequence.png",
+      "generated_by": "duckrabbit.publication.generate_publication_outputs",
+      "generator": "duckrabbit.publication.generate_publication_outputs",
+      "label": "fig:temporal_sequence",
+      "limitations": [
+        "Frame succession and frame deltas are physical file properties; playback timing, display persistence, and motion reports require a controlled observer task."
+      ],
+      "objective_facts": "timestamps in seconds, frame rate in frames/s, frame count, rational timebase, and adjacent-frame normalized pixel difference",
+      "parameters": {
+        "figure_stem": "temporal_sequence",
+        "seed": 0
+      },
+      "path": "output/figures/temporal_sequence.png",
+      "seed": 0,
+      "sha256": "b5cad92b79a2f5595c824430ec5b4f9fd0216059446b4b43db72b0f04c9d7fe2",
+      "source_data": "output/data/temporal_sequence.json",
+      "source_data_sha256": "de8158e5d09d8e5868b5c566223a51dafca6cc0b4e5b3d11284d64b5bc854a06",
+      "title": "Temporal sequence, clock, and frame deltas",
+      "visual_qa": {
+        "height_px": 820,
+        "mode": "RGB",
+        "scales": [
+          "full",
+          "thumbnail"
+        ],
+        "thumbnail_height_px": 138,
+        "thumbnail_sha256": "be831ca2cc5ae53be4b2de63beab18c9106aea98dcda5f19de6313a922e91f81",
+        "thumbnail_width_px": 320,
+        "width_px": 1900
+      }
+    },
+    {
+      "accessibility": {
+        "color_independent": true,
+        "notes": "Interpret plotted values from the labels and source-data sidecar; color is not the sole encoding.",
+        "text_labels": true
+      },
+      "alt_text": "Five labeled rows show canonical audio waveforms, relative one-sided spectral bars, RMS and peak in normalized amplitude, and spectral summaries in hertz.",
+      "boundary_statement": "The figure compares generated signal properties and literature-linked families; it does not establish pitch, continuity, or stream organization for a listener.",
+      "caption": "What this figure shows: Five labeled rows show canonical audio waveforms, relative one-sided spectral bars, RMS and peak in normalized amplitude, and spectral summaries in hertz. Five implemented auditory constructions\u2014Shepard tone, missing fundamental, tritone paradox, octave illusion, and auditory continuity\u2014are shown as canonical waveforms with compact one-sided FFT summaries. Source data output/data/audio_signals.json records sample rate, channel layout, RMS, peak, spectral centroid, bandwidth, crest factor, canonical digest, and the declared display-bin convention; no pitch or stream report is inferred. Controls: default typed audio parameters; per-generator channel layout and sample rate; seed s=0; one-sided FFT display with 48 frequency-labelled peak-magnitude bands. Objective facts: RMS and peak in normalized amplitude; spectral centroid and bandwidth in Hz; sample rate in samples/s; channel layout and canonical SHA-256 digest. Claim level: physical_metric. Source data: output/data/audio_signals.json (SHA-256 digest recorded in the figure registry). Evidence lineage: shepard1984scale, zatorre2005missing, deutsch1986tritone, repp1997tritone, deutsch1974octave, warren1970continuity, riecke2011continuity. Limitations: Playback level, transducer response, dichotic separation, masker design, and listener judgments are external to the canonical buffer. Boundary: The figure compares generated signal properties and literature-linked families; it does not establish pitch, continuity, or stream organization for a listener.",
+      "caption_core": "Five implemented auditory constructions\u2014Shepard tone, missing fundamental, tritone paradox, octave illusion, and auditory continuity\u2014are shown as canonical waveforms with compact one-sided FFT summaries. Source data output/data/audio_signals.json records sample rate, channel layout, RMS, peak, spectral centroid, bandwidth, crest factor, canonical digest, and the declared display-bin convention; no pitch or stream report is inferred.",
+      "claim_level": "physical_metric",
+      "controls": "default typed audio parameters; per-generator channel layout and sample rate; seed s=0; one-sided FFT display with 48 frequency-labelled peak-magnitude bands",
+      "evidence_references": [
+        "shepard1984scale",
+        "zatorre2005missing",
+        "deutsch1986tritone",
+        "repp1997tritone",
+        "deutsch1974octave",
+        "warren1970continuity",
+        "riecke2011continuity"
+      ],
+      "filename": "audio_signals.png",
+      "generated_by": "duckrabbit.publication.generate_publication_outputs",
+      "generator": "duckrabbit.publication.generate_publication_outputs",
+      "label": "fig:audio_signals",
+      "limitations": [
+        "Playback level, transducer response, dichotic separation, masker design, and listener judgments are external to the canonical buffer."
+      ],
+      "objective_facts": "RMS and peak in normalized amplitude; spectral centroid and bandwidth in Hz; sample rate in samples/s; channel layout and canonical SHA-256 digest",
+      "parameters": {
+        "figure_stem": "audio_signals",
+        "seed": 0
+      },
+      "path": "output/figures/audio_signals.png",
+      "seed": 0,
+      "sha256": "316793f0c691e4bfa8ab41cacab388ee8b06fd4f21197c85c05b8f4d01899f60",
+      "source_data": "output/data/audio_signals.json",
+      "source_data_sha256": "bb0c574ed9dadfc2c411913f74da9477caf1bb8c96a9f622e3820278d83d1fde",
+      "title": "Auditory canonical signals and spectral summaries",
+      "visual_qa": {
+        "height_px": 1650,
+        "mode": "RGB",
+        "scales": [
+          "full",
+          "thumbnail"
+        ],
+        "thumbnail_height_px": 278,
+        "thumbnail_sha256": "2a132984ceb7d5440ab508cbef5ba0953a650bb026a557fd12a8c2418641c174",
+        "thumbnail_width_px": 320,
+        "width_px": 1900
+      }
+    },
+    {
+      "accessibility": {
+        "color_independent": true,
+        "notes": "Interpret plotted values from the labels and source-data sidecar; color is not the sole encoding.",
+        "text_labels": true
+      },
+      "alt_text": "Two labeled traces share a time axis in seconds: video mean channel-value proxy and audio absolute amplitude, with signed synchronization and spatial offsets printed below.",
+      "boundary_statement": "A shared-clock construction is not evidence that observers bind the events at the declared or any other perceptual time.",
+      "caption": "What this figure shows: Two labeled traces share a time axis in seconds: video mean channel-value proxy and audio absolute amplitude, with signed synchronization and spatial offsets printed below. Video mean channel-value proxy and rectified audio amplitude are placed on a common time axis in seconds with video frame holds and actual audio sample timestamps for the sound-induced-flash construction. Source data output/data/audiovisual_timeline.json records the video frame clock, audio sampling clock, event traces, signed audio-minus-video synchronization offset in milliseconds, and normalized spatial discrepancy; alignment is declared by the generator, not estimated from perception. Controls: audiovisual.sound_induced_flash default shared timeline; declared sync offset \u0394AV and spatial offset; seed s=0. Objective facts: video frame-hold grayscale/weighted-RGB proxy and mean-channel absolute audio amplitude on shared time in seconds; \u0394AV in ms; spatial discrepancy in normalized units; frame and sample clocks in the sidecar. Claim level: physical_metric. Source data: output/data/audiovisual_timeline.json (SHA-256 digest recorded in the figure registry). Evidence lineage: shams2000sifi, hirst2020sound, vroomen2004temporal, hartcherobrien2011temporal. Limitations: Display refresh, audio hardware, event latency, and observer temporal binding are not measured by this figure. Boundary: A shared-clock construction is not evidence that observers bind the events at the declared or any other perceptual time.",
+      "caption_core": "Video mean channel-value proxy and rectified audio amplitude are placed on a common time axis in seconds with video frame holds and actual audio sample timestamps for the sound-induced-flash construction. Source data output/data/audiovisual_timeline.json records the video frame clock, audio sampling clock, event traces, signed audio-minus-video synchronization offset in milliseconds, and normalized spatial discrepancy; alignment is declared by the generator, not estimated from perception.",
+      "claim_level": "physical_metric",
+      "controls": "audiovisual.sound_induced_flash default shared timeline; declared sync offset \u0394AV and spatial offset; seed s=0",
+      "evidence_references": [
+        "shams2000sifi",
+        "hirst2020sound",
+        "vroomen2004temporal",
+        "hartcherobrien2011temporal"
+      ],
+      "filename": "audiovisual_timeline.png",
+      "generated_by": "duckrabbit.publication.generate_publication_outputs",
+      "generator": "duckrabbit.publication.generate_publication_outputs",
+      "label": "fig:audiovisual_timeline",
+      "limitations": [
+        "Display refresh, audio hardware, event latency, and observer temporal binding are not measured by this figure."
+      ],
+      "objective_facts": "video frame-hold grayscale/weighted-RGB proxy and mean-channel absolute audio amplitude on shared time in seconds; \u0394AV in ms; spatial discrepancy in normalized units; frame and sample clocks in the sidecar",
+      "parameters": {
+        "figure_stem": "audiovisual_timeline",
+        "seed": 0
+      },
+      "path": "output/figures/audiovisual_timeline.png",
+      "seed": 0,
+      "sha256": "041cabf61d0d791a4c366564b2c088cb1d535f3fa7ab2d1194a3ee659f00cae5",
+      "source_data": "output/data/audiovisual_timeline.json",
+      "source_data_sha256": "8960c626ea1df603965230615f70b8fa9a23a59d6ec62a23ebb1811bcfa12b72",
+      "title": "Audiovisual shared-clock timeline and declared offsets",
+      "visual_qa": {
+        "height_px": 1020,
+        "mode": "RGB",
+        "scales": [
+          "full",
+          "thumbnail"
+        ],
+        "thumbnail_height_px": 172,
+        "thumbnail_sha256": "0a885d49e034a9049305e150e1ccf1fa420bb1c8300ad52881239256a2c815da",
+        "thumbnail_width_px": 320,
+        "width_px": 1900
+      }
+    },
+    {
+      "accessibility": {
+        "color_independent": true,
+        "notes": "Interpret plotted values from the labels and source-data sidecar; color is not the sole encoding.",
+        "text_labels": true
+      },
+      "alt_text": "A five-row comparison lists format, backend, preserved canonical facts, and the corresponding decoded verification checks.",
+      "boundary_statement": "A successful encode or decode does not validate an observer effect or guarantee cross-device perceptual equivalence.",
+      "caption": "What this figure shows: A five-row comparison lists format, backend, preserved canonical facts, and the corresponding decoded verification checks. The comparison separates the canonical artifact from delivery containers: PNG, WAV, GIF, NPZ, and optional MP4/muxed MP4. Source data output/data/encoding_verification.json records backend identity, preserved canonical facts, decoded inspection targets, and capability status as observed in the generation environment; the table therefore describes an adapter contract rather than a claim about codec quality. Controls: typed encoding profile selected per artifact; overwrite and backend capability checks; seed inherited from the stimulus request. Objective facts: format availability and verification scope are environment observations; NPZ is exact while other formats are decoded and tolerance-checked. Claim level: encoded_media. Source data: output/data/encoding_verification.json (SHA-256 digest recorded in the figure registry). Evidence lineage: engineering:typed_media_adapters. Limitations: Backend availability, codec versions, container metadata, and lossy tolerances are environment-dependent; playback software can expose additional behavior. Boundary: A successful encode or decode does not validate an observer effect or guarantee cross-device perceptual equivalence.",
+      "caption_core": "The comparison separates the canonical artifact from delivery containers: PNG, WAV, GIF, NPZ, and optional MP4/muxed MP4. Source data output/data/encoding_verification.json records backend identity, preserved canonical facts, decoded inspection targets, and capability status as observed in the generation environment; the table therefore describes an adapter contract rather than a claim about codec quality.",
+      "claim_level": "encoded_media",
+      "controls": "typed encoding profile selected per artifact; overwrite and backend capability checks; seed inherited from the stimulus request",
+      "evidence_references": [
+        "engineering:typed_media_adapters"
+      ],
+      "filename": "encoding_verification.png",
+      "generated_by": "duckrabbit.publication.generate_publication_outputs",
+      "generator": "duckrabbit.publication.generate_publication_outputs",
+      "label": "fig:encoding_verification",
+      "limitations": [
+        "Backend availability, codec versions, container metadata, and lossy tolerances are environment-dependent; playback software can expose additional behavior."
+      ],
+      "objective_facts": "format availability and verification scope are environment observations; NPZ is exact while other formats are decoded and tolerance-checked",
+      "parameters": {
+        "figure_stem": "encoding_verification",
+        "seed": 0
+      },
+      "path": "output/figures/encoding_verification.png",
+      "seed": 0,
+      "sha256": "1e39b2315c10e70661a9d655d92b7a1b01f4b899a3dab5c12e0c97e5325f8f74",
+      "source_data": "output/data/encoding_verification.json",
+      "source_data_sha256": "8acf49c46c7a7f6b95495e9aec3c41a2aa9f7802802a2a5b0f9e594698031242",
+      "title": "Encoding profiles and verification scope",
+      "visual_qa": {
+        "height_px": 900,
+        "mode": "RGB",
+        "scales": [
+          "full",
+          "thumbnail"
+        ],
+        "thumbnail_height_px": 152,
+        "thumbnail_sha256": "55f63d927a1118dfb61604cb72fde3c4fd6d468c18b25a9616a513fd25631046",
+        "thumbnail_width_px": 320,
+        "width_px": 1900
+      }
+    },
+    {
+      "accessibility": {
+        "color_independent": true,
+        "notes": "Interpret plotted values from the labels and source-data sidecar; color is not the sole encoding.",
+        "text_labels": true
+      },
+      "alt_text": "A line plot and model-sensitivity range show deterministic model probability across duck_weight values beside the model identity, temperature, no-training-data statement, and human-data boundary.",
+      "boundary_statement": "This diagnostic tests deterministic orchestration and metamorphic input-output behavior only; empirical psychophysics remains future work.",
+      "caption": "What this figure shows: A line plot and model-sensitivity range show deterministic model probability across duck_weight values beside the model identity, temperature, no-training-data statement, and human-data boundary. The hand-specified feature observer compares duck_weight variants with a fixed canonical reference. Its probability trace is computed analytically from serialized features, weights, and temperature; source data output/data/synthetic_psychophysics.json records model ID/version, reference and comparison digests, seed, calibration, `training_data=none`, and `human_data=false`. The shaded range covers the declared zero-weight control, one-at-a-time weight ablations, and temperature multipliers 0.5, 1, and 2; it is model sensitivity, not a confidence interval. Controls: duck_weight comparison against fixed reference; serialized feature weights and temperature; seed s=0. Objective facts: model probability, null baseline, ablations, temperature sensitivity and exact-self control; full feature values, specifications and canonical stimulus digests; human_data=false; training_data=none. Claim level: synthetic_model_output. Source data: output/data/synthetic_psychophysics.json (SHA-256 digest recorded in the figure registry). Evidence lineage: observer:preregistered_estimands. Limitations: The model is hand-specified, has no training data, has not been calibrated against observers, and does not estimate a human threshold or effect size. Its probabilities and the finite configuration range are model outputs, not participant responses, confidence intervals, or a psychometric function. Boundary: This diagnostic tests deterministic orchestration and metamorphic input-output behavior only; empirical psychophysics remains future work.",
+      "caption_core": "The hand-specified feature observer compares duck_weight variants with a fixed canonical reference. Its probability trace is computed analytically from serialized features, weights, and temperature; source data output/data/synthetic_psychophysics.json records model ID/version, reference and comparison digests, seed, calibration, `training_data=none`, and `human_data=false`. The shaded range covers the declared zero-weight control, one-at-a-time weight ablations, and temperature multipliers 0.5, 1, and 2; it is model sensitivity, not a confidence interval.",
+      "claim_level": "synthetic_model_output",
+      "controls": "duck_weight comparison against fixed reference; serialized feature weights and temperature; seed s=0",
+      "evidence_references": [
+        "observer:preregistered_estimands"
+      ],
+      "filename": "synthetic_psychophysics.png",
+      "generated_by": "duckrabbit.publication.generate_publication_outputs",
+      "generator": "duckrabbit.publication.generate_publication_outputs",
+      "label": "fig:synthetic_psychophysics",
+      "limitations": [
+        "The model is hand-specified, has no training data, has not been calibrated against observers, and does not estimate a human threshold or effect size.",
+        "Its probabilities and the finite configuration range are model outputs, not participant responses, confidence intervals, or a psychometric function."
+      ],
+      "objective_facts": "model probability, null baseline, ablations, temperature sensitivity and exact-self control; full feature values, specifications and canonical stimulus digests; human_data=false; training_data=none",
+      "parameters": {
+        "figure_stem": "synthetic_psychophysics",
+        "seed": 0
+      },
+      "path": "output/figures/synthetic_psychophysics.png",
+      "seed": 0,
+      "sha256": "a99ed7f125f811437173144c424fce0cf8d0f9085cd69d44d9bb8253e7b823f9",
+      "source_data": "output/data/synthetic_psychophysics.json",
+      "source_data_sha256": "efdabc3a5e94f6760b76b13f1a4d670e4f06319165fc500b6b0800b5f4c5269d",
+      "title": "Synthetic observer diagnostic\u2014model output, not human psychophysics",
+      "visual_qa": {
+        "height_px": 1050,
+        "mode": "RGB",
+        "scales": [
+          "full",
+          "thumbnail"
+        ],
+        "thumbnail_height_px": 177,
+        "thumbnail_sha256": "95b0ebe32a1798d5d364a3d9099d07344ccec951fe158abac83f649faa0233ef",
+        "thumbnail_width_px": 320,
+        "width_px": 1900
+      }
+    },
+    {
+      "accessibility": {
+        "color_independent": true,
+        "notes": "Interpret plotted values from the labels and source-data sidecar; color is not the sole encoding.",
+        "text_labels": true
+      },
+      "alt_text": "Four numbered boxes separate canonical stimulus, physical metric, encoded media, and observer hypothesis, with a boundary rule stating that observer effects require a separate study.",
+      "boundary_statement": "A deterministic artifact can support a future hypothesis but cannot supply the observer data required to test it.",
+      "caption": "What this figure shows: Four numbered boxes separate canonical stimulus, physical metric, encoded media, and observer hypothesis, with a boundary rule stating that observer effects require a separate study. The four-stage boundary distinguishes what DuckRabbit can establish directly\u2014canonical stimulus identity, physical/media metrics, and decoded encoded-media facts\u2014from a future observer hypothesis. Source data output/data/claim_boundary.json records the stage definitions and boundary rule; the arrows describe increasing evidential requirements, not an inference that one stage establishes the next. Controls: claim levels in the taxonomy and manifest; seed not applicable to the explanatory diagram. Objective facts: no unit-bearing objective quantity is applicable; stage definitions and evidence boundaries are preserved in the sidecar. Claim level: source_supported. Source data: output/data/claim_boundary.json (SHA-256 digest recorded in the figure registry). Evidence lineage: formalism:eq:observer_estimand, formalism:eq:canonical_digest. Limitations: The diagram is a documentation contract and does not replace a preregistered observer study or empirical data. Boundary: A deterministic artifact can support a future hypothesis but cannot supply the observer data required to test it.",
+      "caption_core": "The four-stage boundary distinguishes what DuckRabbit can establish directly\u2014canonical stimulus identity, physical/media metrics, and decoded encoded-media facts\u2014from a future observer hypothesis. Source data output/data/claim_boundary.json records the stage definitions and boundary rule; the arrows describe increasing evidential requirements, not an inference that one stage establishes the next.",
+      "claim_level": "source_supported",
+      "controls": "claim levels in the taxonomy and manifest; seed not applicable to the explanatory diagram",
+      "evidence_references": [
+        "formalism:eq:observer_estimand",
+        "formalism:eq:canonical_digest"
+      ],
+      "filename": "claim_boundary.png",
+      "generated_by": "duckrabbit.publication.generate_publication_outputs",
+      "generator": "duckrabbit.publication.generate_publication_outputs",
+      "label": "fig:claim_boundary",
+      "limitations": [
+        "The diagram is a documentation contract and does not replace a preregistered observer study or empirical data."
+      ],
+      "objective_facts": "no unit-bearing objective quantity is applicable; stage definitions and evidence boundaries are preserved in the sidecar",
+      "parameters": {
+        "figure_stem": "claim_boundary",
+        "seed": 0
+      },
+      "path": "output/figures/claim_boundary.png",
+      "seed": 0,
+      "sha256": "04631b9f34be2ecf6d7571788e7c4522786c0256b53d13f6062e3680822162b4",
+      "source_data": "output/data/claim_boundary.json",
+      "source_data_sha256": "2e90af87b66b943bc02516d3e5d38cbd17fc4f476887ac1a8c6c92416aa50d3f",
+      "title": "Claim-level boundary from artifact to observer hypothesis",
+      "visual_qa": {
+        "height_px": 1050,
+        "mode": "RGB",
+        "scales": [
+          "full",
+          "thumbnail"
+        ],
+        "thumbnail_height_px": 177,
+        "thumbnail_sha256": "99bd268c774bd8cf2dff080063c40637fd9a98b24af38f41b2785a3364c04759",
+        "thumbnail_width_px": 320,
+        "width_px": 1900
+      }
+    },
+    {
+      "accessibility": {
+        "color_independent": true,
+        "notes": "Interpret plotted values from the labels and source-data sidecar; color is not the sole encoding.",
+        "text_labels": true
+      },
+      "alt_text": "Rows map catalog entries to source tiers, exact supported claims, engineering bases, limitations, and implementation status.",
+      "boundary_statement": "Scholarship coverage bounds the package\u2019s evidence record and does not establish that any generated stimulus produces a universal percept.",
+      "caption": "What this figure shows: Rows map catalog entries to source tiers, exact supported claims, engineering bases, limitations, and implementation status. The map links every catalog entry to its primary, review, and theory records, then preserves the exact source-supported claim, engineering departure, limitation, and implementation status. Source data output/data/scholarship_map.json are generated from the checked-in evidence matrix; a source record supports only the statement written in that record and does not certify pixel- or task-identical replication. Controls: checked-in evidence matrix; source roles and entry statuses; audit date recorded in data/evidence_matrix.json. Objective facts: one evidence row per catalog entry (18 entries); source-tier counts, exact claim text, engineering basis, limitation, and gap status. Claim level: source_supported. Source data: output/data/scholarship_map.json (SHA-256 digest recorded in the figure registry). Evidence lineage: gregory1997visual, brugger1999duckrabbit, yildiz2022ponzo, hirst2020sound, bruns2019ventriloquist. Limitations: The offline snapshot validates citation and lineage structure; live resolver status is a separate audit, and classifications can remain contested. Boundary: Scholarship coverage bounds the package\u2019s evidence record and does not establish that any generated stimulus produces a universal percept.",
+      "caption_core": "The map links every catalog entry to its primary, review, and theory records, then preserves the exact source-supported claim, engineering departure, limitation, and implementation status. Source data output/data/scholarship_map.json are generated from the checked-in evidence matrix; a source record supports only the statement written in that record and does not certify pixel- or task-identical replication.",
+      "claim_level": "source_supported",
+      "controls": "checked-in evidence matrix; source roles and entry statuses; audit date recorded in data/evidence_matrix.json",
+      "evidence_references": [
+        "gregory1997visual",
+        "brugger1999duckrabbit",
+        "yildiz2022ponzo",
+        "hirst2020sound",
+        "bruns2019ventriloquist"
+      ],
+      "filename": "scholarship_map.png",
+      "generated_by": "duckrabbit.publication.generate_publication_outputs",
+      "generator": "duckrabbit.publication.generate_publication_outputs",
+      "label": "fig:scholarship_map",
+      "limitations": [
+        "The offline snapshot validates citation and lineage structure; live resolver status is a separate audit, and classifications can remain contested."
+      ],
+      "objective_facts": "one evidence row per catalog entry (18 entries); source-tier counts, exact claim text, engineering basis, limitation, and gap status",
+      "parameters": {
+        "figure_stem": "scholarship_map",
+        "seed": 0
+      },
+      "path": "output/figures/scholarship_map.png",
+      "seed": 0,
+      "sha256": "85e5ce57d17aa43982d4f1f424b58699b5d7a8d21de05f3e3a1afae575ca4f80",
+      "source_data": "output/data/scholarship_map.json",
+      "source_data_sha256": "2eeb7d1962e8181f07d359a66605356558b334a9b1e5920d090bbe75d94ff679",
+      "title": "Source-tiered scholarship map and evidence gaps",
+      "visual_qa": {
+        "height_px": 2320,
+        "mode": "RGB",
+        "scales": [
+          "full",
+          "thumbnail"
+        ],
+        "thumbnail_height_px": 320,
+        "thumbnail_sha256": "ab97c58aa1ac16a579cf6ce329aa96689f35e4dce77189c2c746d5921699dbb4",
+        "thumbnail_width_px": 283,
+        "width_px": 2050
+      }
+    },
+    {
+      "accessibility": {
+        "color_independent": true,
+        "notes": "Interpret plotted values from the labels and source-data sidecar; color is not the sole encoding.",
+        "text_labels": true
+      },
+      "alt_text": "Rows connect equation labels to their mathematical definition, implementation paths, tests, figure labels, and claim levels.",
+      "boundary_statement": "A linked equation and test can show an implemented contract, not a validated perceptual law.",
+      "caption": "What this figure shows: Rows connect equation labels to their mathematical definition, implementation paths, tests, figure labels, and claim levels. The traceability registry connects the nine numbered equations to symbols, implementation modules, tests, and registered figures. Source data output/data/formalism_traceability.json is the machine-readable crosswalk used by the manuscript; it demonstrates contract coverage and test linkage without converting formal notation into empirical evidence. Controls: formalism registry version; seed not applicable to the traceability diagram. Objective facts: nine equation records with implementation, test, figure, and claim-level fields; no unit-bearing measurement is plotted. Claim level: physical_metric. Source data: output/data/formalism_traceability.json (SHA-256 digest recorded in the figure registry). Evidence lineage: formalism:eq:canonical_digest, formalism:eq:clock_definition, formalism:eq:objective_statistics. Limitations: Traceability records documentation and verification scope; it does not establish the truth of an observer-level theory. Boundary: A linked equation and test can show an implemented contract, not a validated perceptual law.",
+      "caption_core": "The traceability registry connects the nine numbered equations to symbols, implementation modules, tests, and registered figures. Source data output/data/formalism_traceability.json is the machine-readable crosswalk used by the manuscript; it demonstrates contract coverage and test linkage without converting formal notation into empirical evidence.",
+      "claim_level": "physical_metric",
+      "controls": "formalism registry version; seed not applicable to the traceability diagram",
+      "evidence_references": [
+        "formalism:eq:canonical_digest",
+        "formalism:eq:clock_definition",
+        "formalism:eq:objective_statistics"
+      ],
+      "filename": "formalism_traceability.png",
+      "generated_by": "duckrabbit.publication.generate_publication_outputs",
+      "generator": "duckrabbit.publication.generate_publication_outputs",
+      "label": "fig:formalism_traceability",
+      "limitations": [
+        "Traceability records documentation and verification scope; it does not establish the truth of an observer-level theory."
+      ],
+      "objective_facts": "nine equation records with implementation, test, figure, and claim-level fields; no unit-bearing measurement is plotted",
+      "parameters": {
+        "figure_stem": "formalism_traceability",
+        "seed": 0
+      },
+      "path": "output/figures/formalism_traceability.png",
+      "seed": 0,
+      "sha256": "fbc19173cb6e3b11d66616e4db54beeec270a8ba50b8e23a6aa90463f765fc46",
+      "source_data": "output/data/formalism_traceability.json",
+      "source_data_sha256": "79594cd44a9d81313886807b110f7330c767a2eae8edd51a02418140b60ba4eb",
+      "title": "Formal definitions and implementation traceability",
+      "visual_qa": {
+        "height_px": 1840,
+        "mode": "RGB",
+        "scales": [
+          "full",
+          "thumbnail"
+        ],
+        "thumbnail_height_px": 287,
+        "thumbnail_sha256": "347f70fceb85a8178c969a8a62914da70317eec16ba4903e9b94def32eaafde6",
+        "thumbnail_width_px": 320,
+        "width_px": 2050
+      }
+    },
+    {
+      "accessibility": {
+        "color_independent": true,
+        "notes": "Interpret plotted values from the labels and source-data sidecar; color is not the sole encoding.",
+        "text_labels": true
+      },
+      "alt_text": "Four artifact cards list image, audio, video, and audiovisual metrics with units, computation provenance, and claim level.",
+      "boundary_statement": "Metric reproducibility is a package property; interpretation as perception requires a separate observer design and data.",
+      "caption": "What this figure shows: Four artifact cards list image, audio, video, and audiovisual metrics with units, computation provenance, and claim level. The dashboard presents representative measurements from image, audio, video, and audiovisual canonical artifacts. Source data output/data/metrics_dashboard.json retains metric name, value, unit, computation version, tolerance, claim level, and canonical digest; image values are an uncalibrated grayscale/weighted-RGB proxy with explicit transfer/window definitions and definition hashes, amplitude is normalized, spectra are in hertz, frame differences are normalized pixel differences, and synchronization is in milliseconds. Controls: default canonical artifacts; metric computation version and tolerance recorded in the source-data sidecar; seed s=0. Objective facts: finite objective values with units: normalized luminance/amplitude, Hz, normalized pixel difference, ms, counts, and durations. Claim level: physical_metric. Source data: output/data/metrics_dashboard.json (SHA-256 digest recorded in the figure registry). Evidence lineage: formalism:eq:objective_statistics, formalism:eq:temporal_spectral_metrics. Limitations: Metrics are media properties and do not encode pitch, size, motion, localization, binding, or other observer interpretations. Boundary: Metric reproducibility is a package property; interpretation as perception requires a separate observer design and data.",
+      "caption_core": "The dashboard presents representative measurements from image, audio, video, and audiovisual canonical artifacts. Source data output/data/metrics_dashboard.json retains metric name, value, unit, computation version, tolerance, claim level, and canonical digest; image values are an uncalibrated grayscale/weighted-RGB proxy with explicit transfer/window definitions and definition hashes, amplitude is normalized, spectra are in hertz, frame differences are normalized pixel differences, and synchronization is in milliseconds.",
+      "claim_level": "physical_metric",
+      "controls": "default canonical artifacts; metric computation version and tolerance recorded in the source-data sidecar; seed s=0",
+      "evidence_references": [
+        "formalism:eq:objective_statistics",
+        "formalism:eq:temporal_spectral_metrics"
+      ],
+      "filename": "metrics_dashboard.png",
+      "generated_by": "duckrabbit.publication.generate_publication_outputs",
+      "generator": "duckrabbit.publication.generate_publication_outputs",
+      "label": "fig:metrics_dashboard",
+      "limitations": [
+        "Metrics are media properties and do not encode pitch, size, motion, localization, binding, or other observer interpretations."
+      ],
+      "objective_facts": "finite objective values with units: normalized luminance/amplitude, Hz, normalized pixel difference, ms, counts, and durations",
+      "parameters": {
+        "figure_stem": "metrics_dashboard",
+        "seed": 0
+      },
+      "path": "output/figures/metrics_dashboard.png",
+      "seed": 0,
+      "sha256": "089206adbbe5d9d42e2d99f6c974ffd0377319582c90b94ba141792424e3b47d",
+      "source_data": "output/data/metrics_dashboard.json",
+      "source_data_sha256": "b70b4e6153fcd773b9c0a5dc67ac4a5a12ebcba3de44d2a777e80e4e5d0a03ae",
+      "title": "Objective metrics dashboard with units and provenance",
+      "visual_qa": {
+        "height_px": 1250,
+        "mode": "RGB",
+        "scales": [
+          "full",
+          "thumbnail"
+        ],
+        "thumbnail_height_px": 205,
+        "thumbnail_sha256": "f5999af7b73b3fa956c501127bc6097ffd5b18aedc6a71f27fd602dd0ed5a928",
+        "thumbnail_width_px": 320,
+        "width_px": 1950
+      }
+    },
+    {
+      "accessibility": {
+        "color_independent": true,
+        "notes": "Interpret plotted values from the labels and source-data sidecar; color is not the sole encoding.",
+        "text_labels": true
+      },
+      "alt_text": "Horizontal interval markers show typed domains for dimensions, luminance, levels, frequency, sampling, frame rate, synchronization, and spatial discrepancy.",
+      "boundary_statement": "A valid parameter is a reproducible construction request, not evidence that the requested value is perceptually effective.",
+      "caption": "What this figure shows: Horizontal interval markers show typed domains for dimensions, luminance, levels, frequency, sampling, frame rate, synchronization, and spatial discrepancy. The domain map shows the validated ranges for dimensions, luminance, grayscale and quantization levels, frequency, sampling rate, frame rate, synchronization offset, and spatial discrepancy. Source data output/data/parameter_domains.json records the type name, unit, interval, and engineering role; intervals prevent malformed media and are not proposed as sensitivity thresholds. Controls: parameter schema version and validated scalar domains; seed not applicable to the domain diagram. Objective facts: dimensionless, pixel, level, Hz, samples/s, frames/s, ms, and normalized spatial units as listed per parameter. Claim level: canonical_stimulus. Source data: output/data/parameter_domains.json (SHA-256 digest recorded in the figure registry). Evidence lineage: formalism:eq:typed_request. Limitations: The intervals are software validation bounds and do not encode safe listening levels, display limits, or psychophysical thresholds. Boundary: A valid parameter is a reproducible construction request, not evidence that the requested value is perceptually effective.",
+      "caption_core": "The domain map shows the validated ranges for dimensions, luminance, grayscale and quantization levels, frequency, sampling rate, frame rate, synchronization offset, and spatial discrepancy. Source data output/data/parameter_domains.json records the type name, unit, interval, and engineering role; intervals prevent malformed media and are not proposed as sensitivity thresholds.",
+      "claim_level": "canonical_stimulus",
+      "controls": "parameter schema version and validated scalar domains; seed not applicable to the domain diagram",
+      "evidence_references": [
+        "formalism:eq:typed_request"
+      ],
+      "filename": "parameter_domains.png",
+      "generated_by": "duckrabbit.publication.generate_publication_outputs",
+      "generator": "duckrabbit.publication.generate_publication_outputs",
+      "label": "fig:parameter_domains",
+      "limitations": [
+        "The intervals are software validation bounds and do not encode safe listening levels, display limits, or psychophysical thresholds."
+      ],
+      "objective_facts": "dimensionless, pixel, level, Hz, samples/s, frames/s, ms, and normalized spatial units as listed per parameter",
+      "parameters": {
+        "figure_stem": "parameter_domains",
+        "seed": 0
+      },
+      "path": "output/figures/parameter_domains.png",
+      "seed": 0,
+      "sha256": "fc7b1a43c2a462aa22e31ddb3a46916227c7d2d5a0de97b51dd391c3e65534ef",
+      "source_data": "output/data/parameter_domains.json",
+      "source_data_sha256": "028103bfa0cd307ff9f84aa10de14ae06266ad78222d84112c6f487ab090f975",
+      "title": "Typed parameter domains and units",
+      "visual_qa": {
+        "height_px": 1300,
+        "mode": "RGB",
+        "scales": [
+          "full",
+          "thumbnail"
+        ],
+        "thumbnail_height_px": 213,
+        "thumbnail_sha256": "09425c26b9491e83cc26e64ae44ab2325ec66e094642d71a3ef15ead3bc2ee5c",
+        "thumbnail_width_px": 320,
+        "width_px": 1950
+      }
+    },
+    {
+      "accessibility": {
+        "color_independent": true,
+        "notes": "Interpret plotted values from the labels and source-data sidecar; color is not the sole encoding.",
+        "text_labels": true
+      },
+      "alt_text": "A flow diagram connects trial identity, randomization, stimulus manifest, response, aggregate estimand, and analysis-model templates, with a synthetic-only boundary.",
+      "boundary_statement": "The protocol requires ethical review, task and calibration specifications, and preregistration before human use, not evidence that the proposed effect exists.",
+      "caption": "What this figure shows: A flow diagram connects trial identity, randomization, stimulus manifest, response, aggregate estimand, and analysis-model templates, with a synthetic-only boundary. The data-free protocol template moves from pseudonymous trial identity and deterministic randomization to a stimulus manifest and encoded-file hash, typed response or missingness, and a preregistered estimand. Source data output/data/observer_protocol.json records the study design, randomization seed, model templates, and synthetic-only status; no participant record is included. Controls: study design and deterministic randomization seed recorded in the sidecar; synthetic response generation is separate from human data. Objective facts: trial counts, condition structure, estimand templates, response schemas, and model families; participant outcomes are not applicable. Claim level: observer_hypothesis. Source data: output/data/observer_protocol.json (SHA-256 digest recorded in the figure registry). Evidence lineage: observer:preregistered_estimands. Limitations: The scaffold specifies future data collection and analysis but supplies no participant responses, fitted coefficients, power claim, or validated observer effect. Boundary: The protocol requires ethical review, task and calibration specifications, and preregistration before human use, not evidence that the proposed effect exists.",
+      "caption_core": "The data-free protocol template moves from pseudonymous trial identity and deterministic randomization to a stimulus manifest and encoded-file hash, typed response or missingness, and a preregistered estimand. Source data output/data/observer_protocol.json records the study design, randomization seed, model templates, and synthetic-only status; no participant record is included.",
+      "claim_level": "observer_hypothesis",
+      "controls": "study design and deterministic randomization seed recorded in the sidecar; synthetic response generation is separate from human data",
+      "evidence_references": [
+        "observer:preregistered_estimands"
+      ],
+      "filename": "observer_protocol.png",
+      "generated_by": "duckrabbit.publication.generate_publication_outputs",
+      "generator": "duckrabbit.publication.generate_publication_outputs",
+      "label": "fig:observer_protocol",
+      "limitations": [
+        "The scaffold specifies future data collection and analysis but supplies no participant responses, fitted coefficients, power claim, or validated observer effect."
+      ],
+      "objective_facts": "trial counts, condition structure, estimand templates, response schemas, and model families; participant outcomes are not applicable",
+      "parameters": {
+        "figure_stem": "observer_protocol",
+        "seed": 0
+      },
+      "path": "output/figures/observer_protocol.png",
+      "seed": 0,
+      "sha256": "87c885849fc193eaa054d6c1d1a26958cdd9eff33d1ec802572fa83ad85b377d",
+      "source_data": "output/data/observer_protocol.json",
+      "source_data_sha256": "bdd99e8d7c89865a82dad4fdca756b3f72ac99daa116df25944fc130ce31f92c",
+      "title": "Observer protocol scaffold and estimand boundary",
+      "visual_qa": {
+        "height_px": 1320,
+        "mode": "RGB",
+        "scales": [
+          "full",
+          "thumbnail"
+        ],
+        "thumbnail_height_px": 206,
+        "thumbnail_sha256": "060aef6c5bc8d081bd427a6f96c997427f17ca29fa3be5059b0beb8f2ba18dab",
+        "thumbnail_width_px": 320,
+        "width_px": 2050
+      }
+    }
+  ],
+  "render_environment": {
+    "font_file": "Arial.ttf",
+    "font_sha256": "525979822591a3447cfc49d943d6f7683508e25543407871c0ed8fed05fd2bd9",
+    "numpy": "2.4.2",
+    "pillow": "13.0.0",
+    "renderer_sha256": "d7812de44efbc3c48feb0d03548e961374bb3f0eaaf16733e7f105393b3f18e8"
+  },
+  "schema_version": "duckrabbit/figures/v1"
+}

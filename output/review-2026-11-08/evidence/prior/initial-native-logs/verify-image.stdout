@@ -1,0 +1,34 @@
+{
+  "checks": [
+    "encoded_sha256",
+    "encoded_size_bytes",
+    "decoded_media",
+    "decoded_width",
+    "decoded_height",
+    "decoded_mode",
+    "decoded_image_frame_count",
+    "decoded_channels"
+  ],
+  "errors": [],
+  "inspection": {
+    "backend": "pillow",
+    "facts": {
+      "bands": [
+        "L"
+      ],
+      "container_format": "PNG",
+      "duration_ms": null,
+      "frames": 1,
+      "has_transparency": false,
+      "height": 256,
+      "mode": "L",
+      "width": 256
+    },
+    "format": "png",
+    "kind": "image"
+  },
+  "manifest": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media/image/visual_duck_rabbit.png.json",
+  "output": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media/image/visual_duck_rabbit.png",
+  "status": "verified",
+  "unavailable": []
+}

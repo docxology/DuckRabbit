@@ -1,0 +1,12 @@
+{
+  "documents": 21,
+  "local_links": 33,
+  "external_links_not_network_reaudited": 48,
+  "issues": [
+    {
+      "document": "README.md",
+      "url": "docs/audit-2026-11-08.md#historical-pdf-identities--newly-observed-provenance-gap",
+      "reason": "missing Markdown heading"
+    }
+  ]
+}

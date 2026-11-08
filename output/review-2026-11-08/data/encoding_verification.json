@@ -1,0 +1,46 @@
+{
+  "data": {
+    "canonical_identity": "Canonical digest retained in provenance; exact canonical arrays only in NPZ; PNG stores uint8-quantized raster pixels.",
+    "profiles": [
+      {
+        "backend": "Pillow",
+        "delivery fact": "raster dimensions; uint8 quantization",
+        "format": "PNG",
+        "verification": "dimensions / uint8 pixels"
+      },
+      {
+        "backend": "wave",
+        "delivery fact": "sample count + clock",
+        "format": "WAV",
+        "verification": "rate/channels/samples"
+      },
+      {
+        "backend": "Pillow",
+        "delivery fact": "frame count + timing",
+        "format": "GIF",
+        "verification": "decoded frames"
+      },
+      {
+        "backend": "NumPy",
+        "delivery fact": "exact arrays + digest",
+        "format": "NPZ",
+        "verification": "exact canonical round trip"
+      },
+      {
+        "backend": "ffmpeg",
+        "delivery fact": "canonical artifact + stream facts",
+        "format": "MP4",
+        "verification": "optional capability"
+      }
+    ]
+  },
+  "figure_label": "fig:encoding_verification",
+  "figure_stem": "encoding_verification",
+  "generator": "duckrabbit.publication._encoding",
+  "parameters": {
+    "figure_stem": "encoding_verification",
+    "seed": 0
+  },
+  "schema_version": "duckrabbit/figure-source/v1",
+  "seed": 0
+}

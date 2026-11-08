@@ -5,7 +5,7 @@ from __future__ import annotations
 import pytest
 
 from duckrabbit.errors import ParameterValidationError
-from duckrabbit.generators import DuckRabbitParams, ShepardToneParams
+from duckrabbit.generators import DuckRabbitParams, ShepardToneParams, VentriloquistParams
 from duckrabbit.parameters import (
     Amplitude,
     AngleDegrees,
@@ -31,6 +31,7 @@ from duckrabbit.parameters import (
     QuantizationLevels,
     PhaseRadians,
     RationalFrameRate,
+    SampleCount,
     SampleRate,
     SpatialOffset,
     SyncOffsetMs,
@@ -176,3 +177,37 @@ def test_expanded_integer_enums_and_output_spec_are_typed_and_json_friendly():
         OutputSpec(format="flac")  # type: ignore[arg-type]
     with pytest.raises(ParameterValidationError, match="bools"):
         OutputSpec(include_manifest=1)  # type: ignore[arg-type]
+
+
+@pytest.mark.parametrize("count", [0.25, 0.5, SampleCount.maximum + 1.0, 1e100, 1e308])
+def test_audio_config_rejects_unrepresentable_sample_counts_before_generation(count):
+    with pytest.raises(ParameterValidationError, match="sample count"):
+        AudioConfig(sample_rate=SampleRate(8192), duration=DurationSeconds(count / 8192))
+
+
+def test_audio_config_rejects_finite_duration_multiplication_overflow():
+    with pytest.raises(ParameterValidationError, match="sample count"):
+        AudioConfig(duration=DurationSeconds(1e308))
+    with pytest.raises(ParameterValidationError, match="sample count"):
+        replace_from_mapping(ShepardToneParams(), {"config": {"duration": 1e308}})
+
+
+@pytest.mark.parametrize("count,expected", [(1.0, 1), (1.5, 2), (2.5, 2), (3.5, 4), (SampleCount.maximum, SampleCount.maximum), (SampleCount.maximum + 0.5, SampleCount.maximum)])
+def test_audio_config_sample_count_preserves_rounding_and_supported_bounds(count, expected):
+    config = AudioConfig(sample_rate=SampleRate(8192), duration=DurationSeconds(count / 8192))
+    assert isinstance(config.sample_count, SampleCount)
+    assert config.sample_count == expected
+
+
+@pytest.mark.parametrize("value", [None, 0.0, -0.35, 0.35, {"value": 0.0}, {"value": -0.35}, {"value": 0.35}])
+def test_optional_spatial_offset_overrides_follow_declared_value_type(value):
+    parameters = replace_from_mapping(VentriloquistParams(), {"visual_offset": value})
+    raw = value["value"] if isinstance(value, dict) else value
+    assert parameters.visual_offset == (None if raw is None else SpatialOffset(raw))
+    assert replace_from_mapping(parameters, {"visual_offset": None}).visual_offset is None
+
+
+@pytest.mark.parametrize("value", [True, "0.2", [], {}, {"value": 0.2, "extra": 1}, {"value": None}, {"value": float("inf")}, 2.0])
+def test_optional_spatial_offset_overrides_reject_malformed_values(value):
+    with pytest.raises(ParameterValidationError):
+        replace_from_mapping(VentriloquistParams(), {"visual_offset": value})

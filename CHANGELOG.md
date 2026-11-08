@@ -1,6 +1,51 @@
 # Changelog
 
-## Unreleased — documentation and robustness improvement pass
+## 0.6.0 — unreleased candidate (2026-11-08)
+
+- Reject missing/extra MP4 streams, transparent or mismatched PNG containers,
+  malformed legacy downgrades and NPZ summary/digest/byte-count tampering.
+  Reconstruct exact canonical arrays and reject silently coerced NPZ dtypes;
+  retain failed encoding evidence.
+- Correct PCM32 endpoint conversion, short high-rate GIF timing, optional typed
+  parameter restoration and finite-duration overflow before allocation.
+- Restore visible Poggendorff occluder contrast instead of white-on-white
+  erasure. This intentionally changes that family's canonical raster and metrics;
+  it does not demonstrate an observer-level illusion effect.
+- Add metrics/v3 explicit uncalibrated color/transfer/window/channel provenance
+  and computation-definition hashes; align audiovisual RGB traces with images.
+- Replay declared NPZ metrics, distinguish unsupported historical computations,
+  and make temporal summaries independent of input array memory layout. C-order
+  float32 reductions can change older Fortran-layout rounding, not canonical bytes.
+  Reject unrepresentable JSON numerics through structured domain errors.
+- Add synthetic zero-difference controls, per-weight ablations and temperature
+  sensitivity, with complete features and finite, non-empirical envelopes.
+- Make observer plans coherent illustrative forced-choice designs; use exact
+  two-sided Fisher tests for binary power, report Monte Carlo intervals, retain
+  zero response categories and leave singleton variance/intervals unavailable.
+- Validate actual HTML citation anchors, ordered bibliographic identity and
+  exact taxonomy/source-role relationships. URL reachability no longer passes
+  as DOI-less archival identity; release gates retain unresolved failures.
+- Replace fabricated cover-generation certainty with cover/v2 byte/variant
+  verification, replayed WebP derivation and unverified historical reports.
+- Require consistent single-author metadata on every current release surface;
+  reject equal-valued boolean/number substitutions in scientific source data.
+- Replay scientific figure data/raster derivations and source-owned manuscript
+  hydration during strict release audits; refuse auditing another checkout with
+  the executing package's code. Record the renderer/runtime boundary honestly.
+- Set the supported floor to Python 3.11 and CI through 3.15; synchronize 0.6.0
+  metadata without reusing the immutable v0.5.0 DOI or claiming a new deposit.
+- Preserve literal table identifiers, citation keys and complete DOI/URL values;
+  add lossless line breaks instead of deleting characters or source locators.
+- Correct publisher-verified author credit and initials, retain the complete
+  53-author FAIR record and complete Wheatstone title, and accept exact ordered
+  corporate authors while rejecting ambiguous person/group metadata.
+- Deliver a separately named current-source manuscript/PDF/HTML/slide review
+  with source-only semantic-preservation overlays, canonical table references,
+  intact equation glyphs, local pinned web assets and scroll-accessible content.
+  Digital review is not projection, accessibility or human-perception certification.
+- Pin the qualified build backend, hydrate the manuscript before CI release
+  auditing, and retain failed live bibliographic identities and the three distinct
+  historical PDF identities rather than declaring or rewriting a release.
 
 - Corrected audiovisual plots to use actual shared-clock seconds and frame
   holds; audio spectra now expose frequency-labelled peak-aggregated bands,
@@ -27,9 +72,9 @@
 - Fixed observer overrides, nested immutability, response provenance and
   validation, duplicate submissions, large-rate Poisson sampling, and
   impossible power assumptions. Synthetic outputs remain non-human data.
-- Bundled evidence resources for installed wheels, restored Python 3.10
-  imports, included YAML in the dev extra, and expanded CI interpreter and
-  installed-wheel checks.
+- Bundled evidence resources for installed wheels, included YAML in the dev
+  extra, and expanded CI interpreter and installed-wheel checks. The supported
+  Python floor is now 3.11, not the older README's 3.10 claim.
 - Made canonical hashing incremental and enforced finite, unambiguous JSON
   serialization and typed nested schema constraints. See the dated review
   in `docs/review-2026-10-17.md` for scope and validation.

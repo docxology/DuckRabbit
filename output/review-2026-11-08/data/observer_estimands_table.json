@@ -1,0 +1,31 @@
+{
+  "body": "| sifi\\_flash\\_count\\_contrast | forced\\_choice; logistic\\_mixed | sifi\\_one\\_beep; log odds of choosing 'two': sifi_two_beep minus sifi_one_beep | 95% confidence interval |\n| temporal\\_binding\\_offset\\_contrast | forced\\_choice; logistic\\_mixed | temporal\\_sync; log odds of choosing 'late': temporal_early and temporal_late versus temporal_sync (categorical offsets -120/0/+120 ms) | 95% confidence interval |",
+  "caption": "This is a data-free analysis design; no participant result is included.",
+  "headers": [
+    "Estimand",
+    "Response and model",
+    "Reference and contrast",
+    "Uncertainty"
+  ],
+  "label": "tbl:observer_estimands",
+  "records": [
+    {
+      "contrast": "log odds of choosing 'two': sifi_two_beep minus sifi_one_beep",
+      "estimand": "sifi_flash_count_contrast",
+      "model": "logistic_mixed",
+      "reference": "sifi_one_beep",
+      "response": "forced_choice",
+      "uncertainty": "95% confidence interval"
+    },
+    {
+      "contrast": "log odds of choosing 'late': temporal_early and temporal_late versus temporal_sync (categorical offsets -120/0/+120 ms)",
+      "estimand": "temporal_binding_offset_contrast",
+      "model": "logistic_mixed",
+      "reference": "temporal_sync",
+      "response": "forced_choice",
+      "uncertainty": "95% confidence interval"
+    }
+  ],
+  "schema_version": "duckrabbit/table/v1",
+  "title": "Observer outcomes and preregistered estimands"
+}

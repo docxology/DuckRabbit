@@ -35,7 +35,7 @@ PDF was rebuilt from the current development manuscript.
 
 ## Conclusion {#sec:conclusion}
 
-DuckRabbit v0.5.0 turns multimodal illusion generation into an auditable typed
+DuckRabbit v{{PACKAGE_VERSION}} turns multimodal illusion generation into an auditable typed
 pipeline. A request produces a canonical artifact, objective metrics, optional
 delivery files, decoded inspection, and a versioned evidence-bounded manifest.
 The catalog now records not only what is implemented, but also what the

@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "<string>", line 22, in <module>
+    m.make_slide_overlay(Path('dist/wfz-release/render-review-complete/project/output/manuscript'),Path('dist/wfz-release/overlay-diagnostic-entities'),Path('/opt/homebrew/bin/pandoc'))
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/build_slide_overlay.py", line 355, in make_slide_overlay
+    _require_equal(adapted, decoded, section.name + " complete overlay roundtrip")
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 18, in diagnostic
+    try:original(a,b,description)
+        ~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/build_slide_overlay.py", line 61, in _require_equal
+    raise ValueError(description + ": semantic JSON changed (expected " +
+                     _digest(_normalize(expected)) + ", got " +
+                     _digest(_normalize(actual)) + ")")
+ValueError: 05_reproducibility.md complete overlay roundtrip: semantic JSON changed (expected 1087be98412e0b3053486f94646c799efa7ebb51474e8a22599277e92e6f9ec5, got ac17dab4edd91759ec54f36f0a175a6355b72b86206e1bd5efd3181158f2cfb1)

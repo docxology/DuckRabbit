@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/qa_complete.py", line 48, in <module>
+    assert all(not r["broken_destinations"] and not r["unresolved_token_pages"] and not r["unsupported_uri_schemes"] and not r["missing_bibliography_destinations"] for r in results)
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

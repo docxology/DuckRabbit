@@ -94,7 +94,7 @@ def test_rendered_citations_require_reference_and_resolver_links(tmp_path: Path)
     html = tmp_path / "index.html"
     html.write_text(
         f'<a href="#ref-{source.citation_key}">Gregory</a>'
-        f'<a href="https://doi.org/{source.doi}">{source.doi}</a>',
+        f'<div id="ref-{source.citation_key}"><a href="https://doi.org/{source.doi}">{source.doi}</a></div>',
         encoding="utf-8",
     )
     validate_rendered_citation_links(html, {source.key: source})
@@ -124,15 +124,15 @@ def test_bibliography_integrity_and_rendered_links_are_complete(tmp_path: Path):
 
     html = tmp_path / "index.html"
     html.write_text(
-        '<a href="#ref-doi_entry">DOI</a><a href="https://doi.org/10.1234/example">resolver</a>'
-        '<a href="#ref-url_entry">URL</a><a href="https://example.org/source">resolver</a>',
+        '<a href="#ref-doi_entry">DOI</a><div id="ref-doi_entry"><a href="https://doi.org/10.1234/example">resolver</a></div>'
+        '<a href="#ref-url_entry">URL</a><div id="ref-url_entry"><a href="https://example.org/source">resolver</a></div>',
         encoding="utf-8",
     )
     validate_rendered_bibliography_links(html, bibliography)
     html.write_text('<a href="#ref-doi_entry">DOI</a>', encoding="utf-8")
     with pytest.raises(ParameterValidationError, match="bibliography anchors"):
         validate_rendered_bibliography_links(html, bibliography)
-    html.write_text('<a href="#ref-doi_entry">DOI</a><a href="#ref-url_entry">URL</a>', encoding="utf-8")
+    html.write_text('<a href="#ref-doi_entry">DOI</a><a href="#ref-url_entry">URL</a><div id="ref-doi_entry"></div><div id="ref-url_entry"></div>', encoding="utf-8")
     with pytest.raises(ParameterValidationError, match="resolver links"):
         validate_rendered_bibliography_links(html, bibliography)
 
@@ -179,7 +179,7 @@ def test_observer_design_randomization_synthetic_responses_and_power(tmp_path: P
     trials_a = build_trial_sequence(design, ("observer-a", "observer-b"))
     trials_b = build_trial_sequence(design, ("observer-a", "observer-b"))
     assert trials_a == trials_b
-    assert len(trials_a) == 64
+    assert len(trials_a) == len(design.conditions) * design.trials_per_condition * 2
     temporal_trial = next(trial for trial in trials_a if trial.condition == "temporal_sync")
     assert temporal_trial.parameter_overrides == {"config": {"sync_offset": 0.0}}
     responses = simulate_binary_responses(

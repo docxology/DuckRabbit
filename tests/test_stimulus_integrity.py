@@ -12,6 +12,8 @@ from duckrabbit.artifacts import _validate_artifact_summary
 from duckrabbit.errors import ParameterValidationError
 from duckrabbit.formalism import formalism_registry, validate_formalism_registry
 from duckrabbit.generators import (
+    default_parameters,
+    default_registry,
     EbbinghausParams,
     KanizsaParams,
     MullerLyerParams,
@@ -43,6 +45,7 @@ from duckrabbit.parameters import (
     PhaseRadians,
     SampleRate,
     VideoConfig,
+    replace_from_mapping,
 )
 from duckrabbit.render import artifact_summary
 from duckrabbit.synthetic_psychophysics import SyntheticModelSpec, extract_features
@@ -92,7 +95,9 @@ def test_poggendorff_segments_share_actual_line_and_occlusion(angle, occluder):
     horizontal, vertical = _grid(parameters.config)
     expected_y = 0.52 + math.tan(math.radians(angle)) * (horizontal - 0.5)
     hidden = np.abs(horizontal - 0.5) <= occluder / 2.0 - 1e-12
-    assert np.all(pixels[hidden] == 1.0)
+    band = pixels[parameters.config.height // 2, parameters.config.width // 2]
+    assert 0.0 < band < pixels[0, 0]
+    assert np.all(pixels[hidden] == band)
     for side in (-1, 1):
         selected = (pixels == 0.0) & (side * (horizontal - 0.5) > occluder / 2.0) & (horizontal > 0.10) & (horizontal < 0.90)
         assert selected.any()
@@ -248,3 +253,19 @@ def test_audiovisual_summary_enforces_exact_child_discriminants(child, replaceme
     summary["nbytes"] = summary["audio"]["nbytes"] + summary["video"]["nbytes"]
     with pytest.raises(ParameterValidationError, match=f"{child} must have type"):
         _validate_artifact_summary(summary)
+
+
+@pytest.mark.parametrize("illusion_id", ["audio.shepard_tone", "audio.missing_fundamental", "audio.auditory_continuity", "audio.tritone_paradox", "audio.octave_illusion", "audiovisual.sound_induced_flash", "audiovisual.ventriloquist", "audiovisual.temporal_ventriloquism"])
+@pytest.mark.parametrize("count,expected", [(4096.5, 4096), (4097.5, 4098)])
+def test_every_audio_generator_uses_validated_nearest_even_sample_count(illusion_id, count, expected):
+    controls = {"sample_rate": 8192, "duration": count / 8192}
+    audiovisual = illusion_id.startswith("audiovisual.")
+    overrides = {"config": {"audio": controls} if audiovisual else controls}
+    parameters = replace_from_mapping(default_parameters(illusion_id), overrides)
+    config = parameters.config.audio if audiovisual else parameters.config
+    artifact = default_registry.generate(illusion_id, parameters)
+    audio = artifact.audio if audiovisual else artifact
+    assert config.sample_count == expected
+    assert audio.sample_count == expected
+    assert audio.duration_seconds == expected / 8192
+    assert np.isfinite(audio.samples).all()

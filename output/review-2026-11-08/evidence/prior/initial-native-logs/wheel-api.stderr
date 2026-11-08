@@ -1,0 +1,3 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ImportError: cannot import name 'artifact_digest' from 'duckrabbit.canonical' (/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel311/lib/python3.11/site-packages/duckrabbit/canonical.py)

@@ -1,0 +1,50 @@
+........................................................................ [ 21%]
+........................................................................ [ 43%]
+.............................................................F.......... [ 65%]
+........................................................................ [ 87%]
+................................F...F...F                                [100%]
+=================================== FAILURES ===================================
+_______ test_supplied_authors_accept_normalized_names_but_not_reordering _______
+tests/test_scholarship_audit.py:96: in test_supplied_authors_accept_normalized_names_but_not_reordering
+    assert compare_doi_metadata(source, {**_metadata(), "author": authors}) is SourceVerificationStatus.DOI_METADATA_MATCH
+E   AssertionError: assert <SourceVerificationStatus.METADATA_MISMATCH: 'metadata_mismatch'> is <SourceVerificationStatus.DOI_METADATA_MATCH: 'doi_metadata_match'>
+E    +  where <SourceVerificationStatus.METADATA_MISMATCH: 'metadata_mismatch'> = compare_doi_metadata(SourceRecord(key='test_source', citation_key='testsource1997', title='Visual Capture of Gravity', source_type='primary...lidated'>, verified_on=None, resolver='offline_snapshot', authors=('Matthias Schemmel', 'William G. Boltz'), year=1997), {'DOI': 'https://doi.org/10.1234/ABC', 'title': ['Visual Capture of Gravity!'], 'published-print': {'date-parts': [[1997, 5, 1]]}, 'author': [{'family': 'Schemmel', 'given': 'Matthias'}, {'family': 'Boltz', 'given': 'William G'}]})
+E    +  and   <SourceVerificationStatus.DOI_METADATA_MATCH: 'doi_metadata_match'> = SourceVerificationStatus.DOI_METADATA_MATCH
+________________ test_manuscript_variables_follow_live_registry ________________
+tests/test_cli.py:46: in test_manuscript_variables_follow_live_registry
+    variables = generate_variables()
+                ^^^^^^^^^^^^^^^^^^^^
+src/duckrabbit/manuscript_variables.py:26: in generate_variables
+    sources, evidence = load_evidence_matrix()
+                        ^^^^^^^^^^^^^^^^^^^^^^
+src/duckrabbit/evidence.py:330: in load_evidence_matrix
+    validate_evidence_matrix(sources, entries)
+src/duckrabbit/evidence.py:598: in validate_evidence_matrix
+    raise ParameterValidationError(f"taxonomy evidence edges disagree for {illusion_id}")
+E   duckrabbit.errors.ParameterValidationError: taxonomy evidence edges disagree for visual.apparent_motion
+_____________________ test_cli_reports_bad_parameter_files _____________________
+tests/test_cli.py:94: in test_cli_reports_bad_parameter_files
+    assert "not valid JSON" in json.loads(capsys.readouterr().out)["errors"][0]
+E   AssertionError: assert 'not valid JSON' in 'parameter file /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/tmp/pytes...r0/invalid.json is not valid bounded JSON: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)'
+_______ test_real_entrypoint_deep_configuration_is_a_structured_failure ________
+tests/test_cli.py:132: in test_real_entrypoint_deep_configuration_is_a_structured_failure
+    assert report["command"] == "validate" and report["error_type"] == "ValueError"
+E   AssertionError: assert ('validate' == 'validate'
+E     
+E       validate and 'ParameterValidationError' == 'ValueError'
+E     
+E     - ValueError
+E     + ParameterValidationError)
+=========================== short test summary info ============================
+FAILED tests/test_scholarship_audit.py::test_supplied_authors_accept_normalized_names_but_not_reordering - AssertionError: assert <SourceVerificationStatus.METADATA_MISMATCH: 'metadata_mismatch'> is <SourceVerificationStatus.DOI_METADATA_MATCH: 'doi_metadata_match'>
+ +  where <SourceVerificationStatus.METADATA_MISMATCH: 'metadata_mismatch'> = compare_doi_metadata(SourceRecord(key='test_source', citation_key='testsource1997', title='Visual Capture of Gravity', source_type='primary...lidated'>, verified_on=None, resolver='offline_snapshot', authors=('Matthias Schemmel', 'William G. Boltz'), year=1997), {'DOI': 'https://doi.org/10.1234/ABC', 'title': ['Visual Capture of Gravity!'], 'published-print': {'date-parts': [[1997, 5, 1]]}, 'author': [{'family': 'Schemmel', 'given': 'Matthias'}, {'family': 'Boltz', 'given': 'William G'}]})
+ +  and   <SourceVerificationStatus.DOI_METADATA_MATCH: 'doi_metadata_match'> = SourceVerificationStatus.DOI_METADATA_MATCH
+FAILED tests/test_cli.py::test_manuscript_variables_follow_live_registry - duckrabbit.errors.ParameterValidationError: taxonomy evidence edges disagree for visual.apparent_motion
+FAILED tests/test_cli.py::test_cli_reports_bad_parameter_files - AssertionError: assert 'not valid JSON' in 'parameter file /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/tmp/pytes...r0/invalid.json is not valid bounded JSON: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)'
+FAILED tests/test_cli.py::test_real_entrypoint_deep_configuration_is_a_structured_failure - AssertionError: assert ('validate' == 'validate'
+  
+    validate and 'ParameterValidationError' == 'ValueError'
+  
+  - ValueError
+  + ParameterValidationError)
+4 failed, 325 passed in 4.98s

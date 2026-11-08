@@ -1,0 +1,129 @@
+[
+  {
+    "name": "ruff",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "-m",
+      "ruff",
+      "check",
+      "src",
+      "scripts",
+      "tests"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0
+  },
+  {
+    "name": "lock",
+    "argv": [
+      "uv",
+      "lock",
+      "--check",
+      "--offline"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0
+  },
+  {
+    "name": "relocated-bundle-audit",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "-m",
+      "duckrabbit",
+      "audit",
+      "--output-root",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/output/review-2026-11-08",
+      "--release"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0
+  },
+  {
+    "name": "install-final-wheel",
+    "argv": [
+      "uv",
+      "pip",
+      "install",
+      "--offline",
+      "--no-deps",
+      "--reinstall-package",
+      "duckrabbit",
+      "--python",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.11/bin/python",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/package-main-candidate/duckrabbit-0.6.0-py3-none-any.whl"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0
+  },
+  {
+    "name": "installed-dependencies",
+    "argv": [
+      "uv",
+      "pip",
+      "check",
+      "--python",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.11/bin/python"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0
+  },
+  {
+    "name": "installed-citation-api",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.11/bin/python",
+      "-I",
+      "-B",
+      "-c",
+      "import json,pathlib,re,sys;from importlib.metadata import metadata;import duckrabbit;from duckrabbit.evidence import SourceRecord,_bibliography_entries;from duckrabbit.scholarship import compare_doi_metadata;assert pathlib.Path(duckrabbit.__file__).is_relative_to(pathlib.Path(sys.prefix));assert duckrabbit.__version__=='0.6.0';assert metadata('duckrabbit')['Requires-Python']=='>=3.11';entries=_bibliography_entries();assert len(re.split(r'\\s+and\\s+',entries['wilkinson2016fair']['author']))==53;observed=json.loads(pathlib.Path(sys.argv[1]).read_text());matched=[]\nfor row in observed['results']:\n if not row['verified']:continue\n b=entries[row['key']];s=SourceRecord(key=row['key'],citation_key=row['key'],title=b['title'],source_type='theory',url=b['url'],doi=b['doi'],supports='Metadata identity observation only.',authors=tuple(re.split(r'\\s+and\\s+',b['author'])),year=int(b['year']));assert compare_doi_metadata(s,row['metadata']).value=='doi_metadata_match',row['key'];matched.append(row['key'])\nassert len(matched)==7;print(json.dumps({'version':duckrabbit.__version__,'module':duckrabbit.__file__,'python':sys.version,'matched_installed_bibliography_records':matched,'fair_authors':53}))\n",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/receipts/adjunct-bibliography-corrected.json"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel-main-acceptance",
+    "returncode": 0
+  },
+  {
+    "name": "installed-real-generate",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.11/bin/python",
+      "-I",
+      "-B",
+      "-m",
+      "duckrabbit",
+      "generate",
+      "visual.duck_rabbit",
+      "--output-dir",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel-main-acceptance/media",
+      "--format",
+      "npz"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel-main-acceptance",
+    "returncode": 0
+  },
+  {
+    "name": "installed-real-verify",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.11/bin/python",
+      "-I",
+      "-B",
+      "-m",
+      "duckrabbit",
+      "verify",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel-main-acceptance/media/visual_duck_rabbit.npz.json"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheel-main-acceptance",
+    "returncode": 0
+  },
+  {
+    "name": "edited-markdown-inventory",
+    "argv": [
+      "git",
+      "diff",
+      "--name-only",
+      "--",
+      "*.md"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0
+  }
+]

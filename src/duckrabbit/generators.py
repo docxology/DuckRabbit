@@ -267,7 +267,7 @@ def generate_shepard_tone(parameters: ShepardToneParams, *, seed: int = 0) -> Au
     del seed
     sample_rate = parameters.config.sample_rate.value
     duration = parameters.config.duration.value
-    time = np.arange(int(round(sample_rate * duration)), dtype=np.float64) / sample_rate
+    time = np.arange(parameters.config.sample_count, dtype=np.float64) / sample_rate
     signal = np.zeros_like(time)
     center = (parameters.partial_count - 1) / 2
     spread = max(parameters.partial_count / 3, 1.0)
@@ -321,7 +321,7 @@ def generate_missing_fundamental(parameters: MissingFundamentalParams, *, seed: 
     if parameters.fundamental.value * max(parameters.harmonics) >= sample_rate / 2.0:
         raise ParameterValidationError("harmonic complex exceeds the configured Nyquist frequency")
     duration = parameters.config.duration.value
-    time = np.arange(int(round(sample_rate * duration)), dtype=np.float64) / sample_rate
+    time = np.arange(parameters.config.sample_count, dtype=np.float64) / sample_rate
     signal = sum(
         np.sin(2.0 * np.pi * parameters.fundamental.value * harmonic * time + parameters.config.phase.value) / harmonic
         for harmonic in parameters.harmonics
@@ -343,7 +343,7 @@ def _make_beeps(config: AudioConfig, beep_count: int, *, frequency: float = 880.
     if not math.isfinite(frequency) or not 0.0 < frequency < sample_rate / 2.0:
         raise ParameterValidationError("beep frequency must be positive and below the audio Nyquist frequency")
     duration = config.duration.value
-    time = np.arange(int(round(sample_rate * duration)), dtype=np.float64) / sample_rate
+    time = np.arange(config.sample_count, dtype=np.float64) / sample_rate
     centers = (duration * 0.5,) if beep_count == 1 else (duration * 0.4, duration * 0.6)
     width = min(0.025, duration / 10.0)
     signal = np.zeros_like(time)
@@ -422,7 +422,7 @@ def generate_ventriloquist(parameters: VentriloquistParams, *, seed: int = 0) ->
     audio_config = config.audio
     sample_rate = audio_config.sample_rate.value
     duration = audio_config.duration.value
-    time = np.arange(int(round(sample_rate * duration)), dtype=np.float64) / sample_rate
+    time = np.arange(audio_config.sample_count, dtype=np.float64) / sample_rate
     tone = np.sin(2.0 * np.pi * 440.0 * time + audio_config.phase.value) * _envelope(time, duration, audio_config) * audio_config.amplitude.value
     effective_offset = parameters.visual_offset if parameters.visual_offset is not None else config.spatial_offset
     pan = (effective_offset.value + 1.0) / 2.0
@@ -475,7 +475,7 @@ def generate_poggendorff(parameters: PoggendorffParams, *, seed: int = 0) -> Ima
     values = np.minimum(values, 1.0 - _segment_mask(x, y, start, stop, line_width))
     occluder_left = 0.5 - parameters.occluder_fraction.value / 2.0
     occluder_right = 0.5 + parameters.occluder_fraction.value / 2.0
-    values[(x >= occluder_left) & (x <= occluder_right)] = 1.0
+    values[(x >= occluder_left) & (x <= occluder_right)] = 0.5
     return _image_from_values(values, parameters.config)
 
 
@@ -706,7 +706,7 @@ def generate_auditory_continuity(parameters: AuditoryContinuityParams, *, seed: 
     """
     config = parameters.config
     sample_rate = config.sample_rate.value
-    total_samples = int(round(sample_rate * config.duration.value))
+    total_samples = config.sample_count
     time = np.arange(total_samples, dtype=np.float64) / sample_rate
     signal = np.sin(2.0 * np.pi * parameters.carrier_frequency.value * time + config.phase.value)
     gap_width = max(1, int(round(total_samples * parameters.interruption_fraction.value)))
@@ -750,7 +750,7 @@ def generate_tritone_paradox(parameters: TritoneParadoxParams, *, seed: int = 0)
     del seed
     sample_rate = parameters.config.sample_rate.value
     half_duration = parameters.config.duration.value / 2.0
-    time = np.arange(int(round(sample_rate * parameters.config.duration.value)), dtype=np.float64) / sample_rate
+    time = np.arange(parameters.config.sample_count, dtype=np.float64) / sample_rate
     signal = np.zeros_like(time)
     semitone_ratio = 2.0 ** (parameters.interval_semitones / 12.0)
     for index in range(parameters.partial_count):
@@ -791,7 +791,7 @@ def generate_octave_illusion(parameters: OctaveIllusionParams, *, seed: int = 0)
     """Generate alternating high/low tones in opposite stereo channels."""
     del seed
     sample_rate = parameters.config.sample_rate.value
-    total_samples = int(round(sample_rate * parameters.config.duration.value))
+    total_samples = parameters.config.sample_count
     segment_count = parameters.cycles * 2
     boundaries = np.linspace(0, total_samples, segment_count + 1, dtype=int)
     samples = np.zeros((total_samples, 2), dtype=np.float32)
@@ -827,7 +827,7 @@ def generate_temporal_ventriloquism(parameters: TemporalVentriloquismParams, *, 
     config = parameters.config
     sample_rate = config.audio.sample_rate.value
     duration = config.audio.duration.value
-    time = np.arange(int(round(sample_rate * duration)), dtype=np.float64) / sample_rate
+    time = np.arange(config.audio.sample_count, dtype=np.float64) / sample_rate
     center = duration / 2.0
     click_width = min(0.01, duration / 20.0)
     window = np.maximum(0.0, 1.0 - np.abs(time - center) / click_width)

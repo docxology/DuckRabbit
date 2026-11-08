@@ -1,0 +1,39 @@
+{
+  "observed_at": "2026-11-08T03:54:13.935598+00:00",
+  "reason": "Refresh wheel/sdist and source README/changelog after final documentation integration; package Python implementation remains459e77f7fb6d9715887ef1b9fdfec854a58eefcf6813441e9afda3f0e86115fe. Preserve prior actually tested package bytes separately. Remove generated egg-info from source snapshot, not source checkout.",
+  "commands": [
+    {
+      "name": "build-main-candidate",
+      "argv": [
+        "uv",
+        "build",
+        "--offline",
+        "--no-build-isolation",
+        "--python",
+        "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+        "--out-dir",
+        "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/package-main-candidate"
+      ],
+      "returncode": 0,
+      "evidence": "The successful build preceded the failed .gitignore enumeration; build-main-candidate.stdout/.stderr and qualified launch16340 retain that observation. No build repeated."
+    }
+  ],
+  "new_packages": {
+    "duckrabbit-0.6.0-py3-none-any.whl": {
+      "sha256": "5385210e1a7b00db46fb6d032ecae266153351e8be919c0b6e769b73b4278377",
+      "bytes": 184202
+    },
+    "duckrabbit-0.6.0.tar.gz": {
+      "sha256": "e776d96bcfaa9e31dbed3a83a7bbb139519a8cb92e6088e92076dcded67b9dca",
+      "bytes": 250582
+    }
+  },
+  "removed_generated_snapshot_files": [
+    "source/package/src/duckrabbit.egg-info/PKG-INFO",
+    "source/package/src/duckrabbit.egg-info/SOURCES.txt",
+    "source/package/src/duckrabbit.egg-info/entry_points.txt",
+    "source/package/src/duckrabbit.egg-info/requires.txt",
+    "source/package/src/duckrabbit.egg-info/top_level.txt",
+    "source/package/src/duckrabbit.egg-info/dependency_links.txt"
+  ]
+}

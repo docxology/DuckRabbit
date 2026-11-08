@@ -91,7 +91,9 @@ def test_cli_reports_bad_parameter_files(tmp_path, capsys):
     invalid = tmp_path / "invalid.json"
     invalid.write_text("{", encoding="utf-8")
     assert main(["validate", "visual.duck_rabbit", "--config", str(invalid)]) == 1
-    assert "not valid JSON" in json.loads(capsys.readouterr().out)["errors"][0]
+    report = json.loads(capsys.readouterr().out)
+    assert report["status"] == "failed" and report["command"] == "validate"
+    assert report["error_type"] == "ValueError"
 
 
 def test_cli_capabilities_are_typed_and_structured(capsys):
@@ -107,3 +109,27 @@ def test_cli_verify_returns_structured_failure_for_malformed_manifest(tmp_path, 
     report = json.loads(capsys.readouterr().out)
     assert report["status"] == "failed"
     assert report["errors"]
+
+
+def test_real_entrypoint_parser_errors_have_json_and_actual_command(tmp_path):
+    import subprocess
+    import sys
+
+    result = subprocess.run([sys.executable, "-m", "duckrabbit", "generate", "visual.duck_rabbit", "--seed", "invalid"], capture_output=True, text=True, cwd=tmp_path)
+    assert result.returncode == 1 and result.stderr == ""
+    report = json.loads(result.stdout)
+    assert report["status"] == "failed" and report["command"] == "generate"
+    assert report["error_type"] == "ValueError" and report["errors"]
+
+
+def test_real_entrypoint_deep_configuration_is_a_structured_failure(tmp_path):
+    import subprocess
+    import sys
+
+    path = tmp_path / "deep.json"
+    path.write_text('{"duck_weight":' + '[' * 2000 + '0' + ']' * 2000 + '}')
+    result = subprocess.run([sys.executable, "-m", "duckrabbit", "validate", "visual.duck_rabbit", "--config", str(path)], capture_output=True, text=True, cwd=tmp_path)
+    assert result.returncode == 1 and result.stderr == ""
+    report = json.loads(result.stdout)
+    assert report["status"] == "failed" and report["command"] == "validate"
+    assert report["error_type"] in {"ValueError", "ParameterValidationError"}

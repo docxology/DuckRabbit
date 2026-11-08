@@ -1,0 +1,204 @@
+--- native/02_methodology_slides.html
++++ hardened/02_methodology_slides.html
+@@ -36,6 +36,70 @@
+   </style>
+   <link rel="stylesheet" href="https://unpkg.com/reveal.js@5.2.1/dist/theme/white.css" id="theme">
+   <link rel="stylesheet" href="digital-review.css"/>
++<script data-template-mathjax-config>
++window.MathJax = window.MathJax || {};
++window.MathJax.chtml = Object.assign({}, window.MathJax.chtml, {
++  fontURL: "https://cdn.jsdelivr.net/npm/@mathjax/mathjax-newcm-font@4.0.0/chtml/woff2",
++  dynamicPrefix: "https://cdn.jsdelivr.net/npm/@mathjax/mathjax-newcm-font@4.0.0/chtml/dynamic"
++});
++var templateMathOutput = window.MathJax.output || {};
++window.MathJax.output = Object.assign({}, templateMathOutput, {
++  displayOverflow: "linebreak",
++  linebreaks: Object.assign({}, templateMathOutput.linebreaks, {
++    inline: true,
++    width: "100%",
++    lineleading: 0.5
++  })
++});
++window.normalizeTemplateMathJaxAria = function () {
++  document.querySelectorAll("mjx-speech[aria-roledescription]").forEach(function (node) {
++    var roleDescription = node.getAttribute("aria-roledescription") || "";
++    if (/[-]/.test(roleDescription)) {
++      node.setAttribute("aria-roledescription", "mathematical expression");
++    }
++  });
++};
++window.MathJax.startup = Object.assign({}, window.MathJax.startup, {
++  ready: function () {
++    var measuredWidth = document.documentElement.clientWidth;
++    var reflowQueued = false;
++    window.MathJax.startup.defaultReady();
++    window.templateMathJaxReflowPromise = window.MathJax.startup.promise.then(
++      window.normalizeTemplateMathJaxAria
++    );
++    function reflowDisplayMath() {
++      if (reflowQueued || document.documentElement.clientWidth === measuredWidth) return;
++      reflowQueued = true;
++      window.templateMathJaxReflowPromise = window.templateMathJaxReflowPromise
++        .catch(function () { /* A later resize may retry a failed render. */ })
++        .then(async function () {
++          var width = document.documentElement.clientWidth;
++          try {
++            // MathJax 4 MathItem.STATE.METRICS = 110. The default RERENDER
++            // state retains old container metrics and cannot reflow on zoom.
++            await window.MathJax.startup.document.rerenderPromise(110);
++            window.normalizeTemplateMathJaxAria();
++            window.templateMathJaxReflowError = null;
++          } catch (error) {
++            window.templateMathJaxReflowError = String(error);
++            console.error("MathJax viewport reflow failed", error);
++            throw error;
++          } finally {
++            measuredWidth = width;
++            reflowQueued = false;
++          }
++        })
++        .then(reflowDisplayMath);
++      // Keep failure observable to callers without an unhandled rejection.
++      window.templateMathJaxReflowPromise.catch(function () {});
++    }
++    window.addEventListener("resize", reflowDisplayMath);
++    // Also cover a resize that happened during the initial asynchronous render.
++    window.templateMathJaxReflowPromise.then(reflowDisplayMath);
++  }
++});
++</script>
++<script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-chtml.js" integrity="sha384-2BWc4dVaHADUocwKrUrK9u3iDwHxVMKXWEcoRmUkXYSFKhAsgVAYClu9ydNuo5Oz" crossorigin="anonymous"></script>
+ </head>
+ <body>
+   <div class="reveal">
+@@ -52,16 +116,15 @@
+ <section id="request-and-canonical-artifact" class="slide level2">
+ <h2>Request and canonical artifact</h2>
+ <p>DuckRabbit starts from a typed request</p>
+-<p><span class="math display">\[q = (i, \theta, s, e)\]</span>
+-{#eq:typed_request}</p>
++<p><span class="math display" id="eq:typed_request">\[q = (i, \theta, s, e)\]</span></p>
+ <p>where <span class="math inline">\(i\)</span> is an illusion
+ identifier, <span class="math inline">\(\theta\)</span> is an immutable
+ parameter object, <span class="math inline">\(s\)</span> is a
+ deterministic seed, and <span class="math inline">\(e\)</span> is an
+ optional encoding request. A registered generator maps the request to a
+ canonical artifact:</p>
+-<p><span class="math display">\[A = G_i(\theta; s), \qquad A \in \{I, X,
+-V, AV\}\]</span> {#eq:canonical_generation}</p>
++<p><span class="math display" id="eq:canonical_generation">\[A = G_i(\theta; s), \qquad A \in \{I, X,
++V, AV\}\]</span></p>
+ <p>The four artifact types are an image frame <span
+ class="math inline">\(I\)</span>, audio buffer <span
+ class="math inline">\(X\)</span>, video sequence <span
+@@ -88,10 +151,9 @@
+ index <span class="math inline">\(k\)</span> is timestamped on the
+ presentation clock. The audio-minus-video sign convention is
+ explicit:</p>
+-<p><span class="math display">\[N = \operatorname{round}(f_s T), \qquad
++<p><span class="math display" id="eq:clock_definition">\[N = \operatorname{round}(f_s T), \qquad
+ t_k = k/f_r, \qquad
+-\Delta_{AV} = t_{\mathrm{audio}} - t_{\mathrm{video}}\]</span>
+-{#eq:clock_definition}</p>
++\Delta_{AV} = t_{\mathrm{audio}} - t_{\mathrm{video}}\]</span></p>
+ <p>The package rejects non-finite values, invalid shapes, out-of-range
+ samples, aliasing frequencies, incompatible channel layouts, impossible
+ frame rates, and contradictory encoding requests.</p>
+@@ -103,10 +165,10 @@
+ explicit metadata. Serialization includes the array values, shape,
+ clock, and units; metadata are part of the identity rather than an
+ informal annotation:</p>
+-<p><span class="math display">\[c(A) =
++<p><span class="math display" id="eq:canonical_digest">\[c(A) =
+ \operatorname{Serialize}_{\mathrm{LE,float32}}
+ (A, \mathrm{shape}, \mathrm{clock}, \mathrm{units}),
+-\qquad h_c(A) = H(c(A))\]</span> {#eq:canonical_digest}</p>
++\qquad h_c(A) = H(c(A))\]</span></p>
+ <p>The canonical digest is independent of PNG, WAV, GIF, MP4, and NPZ
+ delivery choices. The v2 manifest records the parameter schema,
+ serialized parameters, taxonomy, evidence boundary, canonical facts,
+@@ -141,10 +203,9 @@
+ <p>For an encoding request <span class="math inline">\(e\)</span>, the
+ delivered file <span class="math inline">\(F\)</span> and decoded
+ inspection <span class="math inline">\(I\)</span> are:</p>
+-<p><span class="math display">\[F = E_e(A), \qquad I = D(F), \qquad
++<p><span class="math display" id="eq:encoding_verification">\[F = E_e(A), \qquad I = D(F), \qquad
+ V(F,M) \in
+-\{\mathrm{verified},\mathrm{failed},\mathrm{unverified}\}\]</span>
+-{#eq:encoding_verification}</p>
++\{\mathrm{verified},\mathrm{failed},\mathrm{unverified}\}\]</span></p>
+ <p>The manifest <span class="math inline">\(M\)</span> binds <span
+ class="math inline">\(A\)</span>, <span
+ class="math inline">\(F\)</span>, and <span
+@@ -191,15 +252,14 @@
+ layout-dependent summary drift across exact NPZ round trips;
+ Fortran/mixed-layout input rounding can therefore differ from older
+ versions, without changing pixels or canonical byte identity.</p>
+-<p><span class="math display">\[\mu_Y = \frac{1}{n}\sum_{j=1}^{n} y_j,
++<p><span class="math display" id="eq:objective_statistics">\[\mu_Y = \frac{1}{n}\sum_{j=1}^{n} y_j,
+ \qquad
+ \sigma_Y = \sqrt{\frac{1}{n}\sum_{j=1}^{n}(y_j-\mu_Y)^2}, \qquad
+-RMS_X = \sqrt{\frac{1}{n}\sum_{j=1}^{n}x_j^2}\]</span>
+-{#eq:objective_statistics}</p>
+-<p><span class="math display">\[D_k = \frac{1}{\lvert
++RMS_X = \sqrt{\frac{1}{n}\sum_{j=1}^{n}x_j^2}\]</span></p>
++<p><span class="math display" id="eq:temporal_spectral_metrics">\[D_k = \frac{1}{\lvert
+ Y\rvert}\sum_{p}\lvert Y_{k+1}(p)-Y_k(p)\rvert, \qquad
+ \mathrm{centroid}(X) = \frac{\sum_f f\,M_X(f)}{\max(\sum_f
+-M_X(f),10^{-12})}\]</span> {#eq:temporal_spectral_metrics}</p>
++M_X(f),10^{-12})}\]</span></p>
+ <p>Here <span
+ class="math inline">\(M_X(f)=C^{-1}\sum_{c=1}^{C}|\operatorname{rFFT}(X_c)(f)|\)</span>
+ is the mean of the channel-wise magnitudes of the unwindowed, one-sided
+@@ -223,9 +283,8 @@
+ separate typed claims.</p>
+ <p>For a future observer study, the estimand is defined by the protocol
+ rather than by the generator itself:</p>
+-<p><span class="math display">\[\psi = \mathbb{E}[Y \mid
+-\mathrm{condition},\ \mathrm{protocol}]\]</span>
+-{#eq:observer_estimand}</p>
++<p><span class="math display" id="eq:observer_estimand">\[\psi = \mathbb{E}[Y \mid
++\mathrm{condition},\ \mathrm{protocol}]\]</span></p>
+ <p>This symbol names a planned analysis target only. DuckRabbit ships no
+ human responses, fitted coefficients, or validated observer-level
+ estimate.</p>
+@@ -239,9 +298,8 @@
+ class="math inline">\(w\)</span> the code-owned feature weights, and
+ <span class="math inline">\(\tau&gt;0\)</span> the declared
+ temperature:</p>
+-<p><span class="math display">\[p_M(c\mid A_r,A_c) =
+-\sigma\left(\operatorname{clip}\left(\frac{w^\mathsf{T}\phi(A_c)-w^\mathsf{T}\phi(A_r)}{\tau},-60,60\right)\right)\]</span>
+-{#eq:synthetic_observer}</p>
++<p><span class="math display" id="eq:synthetic_observer">\[p_M(c\mid A_r,A_c) =
++\sigma\left(\operatorname{clip}\left(\frac{w^\mathsf{T}\phi(A_c)-w^\mathsf{T}\phi(A_r)}{\tau},-60,60\right)\right)\]</span></p>
+ <p>The enclosing diagnostic serializes model identity/version and
+ fingerprint, actual feature values, weights, temperature, seed,
+ calibration statement, canonical digests, numerical clipping/tie rules
+@@ -417,26 +475,9 @@
+         // viewDistance in order to save resources.
+         mobileViewDistance: 2,
+ 
+-        math: {
+-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-chtml.js',
+-          config: 'TeX-AMS_HTML-full',
+-          tex2jax: {
+-            inlineMath: [['\\(','\\)']],
+-            displayMath: [['\\[','\\]']],
+-            balanceBraces: true,
+-            processEscapes: false,
+-            processRefs: true,
+-            processEnvironments: true,
+-            preview: 'TeX',
+-            skipTags: ['script','noscript','style','textarea','pre','code'],
+-            ignoreClass: 'tex2jax_ignore',
+-            processClass: 'tex2jax_process'
+-          },
+-        },
+-
+         // reveal.js plugins
+         plugins: [
+-          RevealMath,
++
+           RevealNotes,
+           RevealSearch,
+           RevealZoom

@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render_candidate_final.py", line 589, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render_candidate_final.py", line 230, in main
+    require(not review.exists() and not review.is_symlink(), "Refusing occupied destination: " + str(review))
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render_candidate_final.py", line 35, in require
+    raise ValueError(message)
+ValueError: Refusing occupied destination: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-final

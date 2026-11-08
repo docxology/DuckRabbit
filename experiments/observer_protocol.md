@@ -1,8 +1,8 @@
 # Observer validation protocol scaffold
 
-This document is a study-ready design contract, not a completed observer study.
-It separates perceptual evidence from deterministic stimulus construction. The
-package contains no participant data and no fitted human-response model.
+This is an illustrative data-free protocol template, not a preregistration-ready
+or completed observer study. Task, ethics, calibration, item design and analysis
+decisions remain required. No participant data or fitted human model are bundled.
 
 ## Study object
 
@@ -17,8 +17,9 @@ Each preregistered condition specifies:
 
 `StudyDesign` records condition order, trial count, observer count, randomization
 seed, inclusion rules, exclusion rules, and analysis-model templates. The
-default design includes a sound-induced-flash count contrast and a temporal
-binding timing contrast, but its effect sizes are not empirical results.
+default uses forced-choice SIFI judgments and early/synchronous/late audiovisual
+timing conditions at -120/0/+120 ms, with compatible logistic contrasts. These
+are proposed designs, not empirical effect estimates.
 
 `ParticipantId` accepts only a pseudonymous token. `StimulusReference` binds a
 trial to a manifest SHA-256 digest and, when a delivery file exists, an encoded
@@ -30,11 +31,12 @@ sample count, uncertainty interval, and observer-level claim boundary.
 ## Randomization and responses
 
 `build_trial_sequence()` creates observer-specific trial IDs and uses a recorded
-local seed for counterbalancing. Raw responses should contain only pseudonymous
-observer keys, trial IDs, response values, reaction times, and presentation
-timestamps. `simulate_binary_responses()` exists only for deterministic harness
-tests. `summarize_binary_responses()` reports counts, proportions, and Wilson
-intervals for synthetic or future records.
+local seed for independent per-observer shuffling, not positional counterbalancing.
+Raw responses should contain only pseudonymous observer keys, trial IDs, response
+values, reaction times, and presentation timestamps. Synthetic response factories
+exercise the harness only. Binary summaries include zero-count categories and
+descriptive independent-trial Wilson intervals; repeated participant trials are
+not independent evidence for participant-level or mixed-effects inference.
 
 ## Analysis templates
 
@@ -48,9 +50,11 @@ The analysis plan selects a model family before data collection:
 
 The primary estimand, reference condition, planned contrast, missing-data rule,
 exclusion criteria, confidence interval, multiplicity correction, and subject
-or item random effects must be fixed before unblinding. Power curves use
-explicitly assumed probability differences and are labeled as planning
-quantities.
+or item random effects must be fixed before unblinding. Independent-arm power
+simulation uses a two-sided Fisher conditional test with assumed Bernoulli
+probabilities and reports its parameters and Monte Carlo Wilson uncertainty.
+It is not the power of the repeated-measures default study. A singleton numeric
+observation has unavailable variance/interval, not zero-width inferential certainty.
 
 `AnalysisModelSpec` records the formula, outcome family, link, and participant
 or item random effects for each template. The serialized plan records these

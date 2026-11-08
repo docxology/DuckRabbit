@@ -1,0 +1,22 @@
+{
+  "backend": "numpy",
+  "facts": {
+    "arrays": [
+      "pixels"
+    ],
+    "channels": 1,
+    "height": 256,
+    "metadata": {
+      "kind": "image",
+      "mode": "L"
+    },
+    "mode": "L",
+    "pixels_shape": [
+      256,
+      256
+    ],
+    "width": 256
+  },
+  "format": "npz",
+  "kind": "image"
+}

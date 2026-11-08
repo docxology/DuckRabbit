@@ -1,0 +1,7 @@
+Using Python 3.14.10 environment at: dist/wfz-release/compat-3.14
+Resolved 1 package in 0.71ms
+Prepared 1 package in 0.20ms
+Uninstalled 1 package in 3ms
+Installed 1 package in 19ms
+ - duckrabbit==0.6.0 (from file:///Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/package-delivery/duckrabbit-0.6.0-py3-none-any.whl)
+ + duckrabbit==0.6.0 (from file:///Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/package-citation-final/duckrabbit-0.6.0-py3-none-any.whl)

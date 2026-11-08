@@ -2,8 +2,12 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+import hashlib
+import json
 from math import isfinite
+from pathlib import Path
+from types import MappingProxyType
 from typing import Mapping
 
 import numpy as np
@@ -13,6 +17,13 @@ from .taxonomy import ClaimLevel
 
 
 MetricValue = float | int | tuple[float, ...]
+
+COMPUTATION_VERSION = "duckrabbit/metrics/v3"
+_SOURCE_SHA256 = hashlib.sha256(Path(__file__).read_bytes() + b"\0" + Path(__file__).with_name("artifacts.py").read_bytes()).hexdigest()
+
+
+def _definition_hash(value: object) -> str:
+    return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
 
 
 @dataclass(frozen=True)
@@ -25,9 +36,13 @@ class MetricRecord:
     source: str = "canonical_artifact"
     claim_level: ClaimLevel = ClaimLevel.PHYSICAL_METRIC
     tolerance: float | None = None
+    provenance: Mapping[str, str] = field(default_factory=lambda: {
+        "color_space": "unspecified", "transfer_function": "unspecified",
+        "window": "unspecified", "algorithm": "externally_supplied",
+    })
 
     def __post_init__(self) -> None:
-        if not self.name or not self.unit or not self.source:
+        if not all(isinstance(value, str) and value.strip() for value in (self.name, self.unit, self.source)):
             raise ValueError("metric name, unit, and source are required")
         if not isinstance(self.claim_level, ClaimLevel) or self.claim_level not in {ClaimLevel.PHYSICAL_METRIC, ClaimLevel.ENCODED_MEDIA}:
             raise ValueError("metric claim_level must be physical_metric or encoded_media")
@@ -35,8 +50,15 @@ class MetricRecord:
         empty_temporal_observations = not values and self.name == "temporal_deltas" and self.unit == "normalized_pixel_difference"
         if (not values and not empty_temporal_observations) or not all(type(item) in (int, float) and isfinite(float(item)) for item in values):
             raise ValueError(f"metric {self.name} contains a non-finite or invalid value")
-        if self.tolerance is not None and (not isfinite(self.tolerance) or self.tolerance < 0):
+        if self.tolerance is not None and (type(self.tolerance) not in (int, float) or not isfinite(self.tolerance) or self.tolerance < 0):
             raise ValueError(f"metric {self.name} tolerance must be finite and non-negative")
+        required = {"color_space", "transfer_function", "window", "algorithm"}
+        if not isinstance(self.provenance, Mapping) or not required <= self.provenance.keys() or any(
+            not isinstance(key, str) or not isinstance(value, str) or not value.strip()
+            for key, value in self.provenance.items()
+        ):
+            raise ValueError("metric provenance requires nonempty string definitions")
+        object.__setattr__(self, "provenance", MappingProxyType(dict(self.provenance)))
 
     def to_dict(self) -> dict[str, object]:
         return {
@@ -46,6 +68,9 @@ class MetricRecord:
             "source": self.source,
             "claim_level": self.claim_level.value,
             "tolerance": self.tolerance,
+            "provenance": dict(self.provenance),
+            "computation_sha256": _definition_hash({"metric": self.name, "unit": self.unit, **self.provenance}),
+            "window_sha256": _definition_hash(self.provenance["window"]),
         }
 
 
@@ -55,7 +80,7 @@ class MetricSuite:
 
     artifact_type: str
     records: tuple[MetricRecord, ...]
-    computation_version: str = "duckrabbit/metrics/v2"
+    computation_version: str = COMPUTATION_VERSION
 
     def __post_init__(self) -> None:
         if self.artifact_type not in {"image", "audio", "video", "audiovisual"} or not self.records:
@@ -64,8 +89,9 @@ class MetricSuite:
             raise ValueError("metric suite records must be MetricRecord objects")
         if len({record.name for record in self.records}) != len(self.records):
             raise ValueError("metric names must be unique")
-        if not self.computation_version:
+        if not isinstance(self.computation_version, str) or not self.computation_version.strip():
             raise ValueError("metric computation version is required")
+        object.__setattr__(self, "records", tuple(self.records))
 
     @property
     def values(self) -> Mapping[str, MetricValue]:
@@ -90,16 +116,28 @@ class MetricSuite:
 StimulusMetrics = MetricSuite
 
 
-def _suite(artifact_type: str, values: Mapping[str, MetricValue], units: Mapping[str, str]) -> MetricSuite:
+def _suite(artifact_type: str, values: Mapping[str, MetricValue], units: Mapping[str, str], *, scope: str) -> MetricSuite:
     missing_units = sorted(set(values) - set(units))
     if missing_units:
         raise ValueError(f"metrics missing units: {missing_units}")
-    records = tuple(MetricRecord(name, value, units[name]) for name, value in values.items())
+    provenance = {
+        "color_space": "uncalibrated_normalized_channel_values" if artifact_type in {"image", "video", "audiovisual"} else "not_applicable",
+        "transfer_function": "none_applied; not_display_calibrated" if artifact_type in {"image", "video", "audiovisual"} else "not_applicable",
+        "window": scope,
+        "algorithm": COMPUTATION_VERSION,
+        "source_sha256": _SOURCE_SHA256,
+        "numpy_version": np.__version__,
+        "implementation_sources": "metrics.py; artifacts.py",
+        "temporal_reduction": "C_contiguous_float32_absolute_difference_mean" if artifact_type in {"video", "audiovisual"} else "not_applicable",
+        "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity" if artifact_type == "image" else "mean_channel_magnitude_rFFT; all_channel_RMS_peak" if artifact_type == "audio" else "video=all_channels_adjacent_frame_absolute_difference; audio=all_channel_RMS" if artifact_type == "audiovisual" else "all_channels_adjacent_frame_absolute_difference",
+        "spectral_window": "rectangular; no_detrending; rFFT_including_DC_and_Nyquist_when_present" if artifact_type == "audio" else "not_applicable",
+    }
+    records = tuple(MetricRecord(name, value, units[name], provenance=provenance) for name, value in values.items())
     return MetricSuite(artifact_type, records)
 
 
 def _relative_luminance(pixels: np.ndarray) -> np.ndarray:
-    """Return Rec. 709 relative luminance for grayscale or RGB pixels."""
+    """Return a Rec. 709-weighted channel proxy, not calibrated luminance."""
     if pixels.ndim == 2:
         return pixels
     if pixels.ndim == 3 and pixels.shape[-1] == 3:
@@ -138,6 +176,7 @@ def measure_artifact(artifact: CanonicalArtifact) -> MetricSuite:
                 "max_luminance": "normalized_luminance",
                 "effective_dynamic_range": "normalized_luminance",
             },
+            scope=f"full_image; shape={values.shape}; grayscale_identity_or_RGB_weighted_proxy",
         )
     if isinstance(artifact, AudioBuffer):
         samples = artifact.samples
@@ -178,6 +217,7 @@ def measure_artifact(artifact: CanonicalArtifact) -> MetricSuite:
                 "spectral_bandwidth_hz": "Hz",
                 "crest_factor": "ratio",
             },
+            scope=f"full_audio; samples=[0,{artifact.sample_count}); channels={artifact.channels}; sample_rate_hz={artifact.sample_rate.value}",
         )
     if isinstance(artifact, VideoSequence):
         deltas = artifact.temporal_deltas
@@ -201,6 +241,7 @@ def measure_artifact(artifact: CanonicalArtifact) -> MetricSuite:
                 "mean_temporal_delta": "normalized_pixel_difference",
                 "temporal_deltas": "normalized_pixel_difference",
             },
+            scope=f"all_adjacent_frames; frames={artifact.frame_count}; frame_rate_hz={artifact.frame_rate.value}; shape={artifact.frames[0].pixels.shape}",
         )
     if isinstance(artifact, AudiovisualTimeline):
         child = measure_artifact(artifact.video)
@@ -222,6 +263,7 @@ def measure_artifact(artifact: CanonicalArtifact) -> MetricSuite:
                 "video_mean_temporal_delta": "normalized_pixel_difference",
                 "audio_rms": "normalized_amplitude",
             },
+            scope=f"full_audiovisual; audio_samples={artifact.audio.sample_count}; sample_rate_hz={artifact.audio.sample_rate.value}; video_frames={artifact.video.frame_count}; frame_rate_hz={artifact.video.frame_rate.value}; audio_start_s={artifact.audio_start_seconds}; video_start_s={artifact.video_start_seconds}",
         )
     raise TypeError(f"unsupported artifact type: {type(artifact).__name__}")
 

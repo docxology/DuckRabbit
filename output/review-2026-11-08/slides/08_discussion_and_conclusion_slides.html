@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>08_discussion_and_conclusion</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../web/assets/reveal.js-5.2.1/dist/reset.css">
+  <link rel="stylesheet" href="../web/assets/reveal.js-5.2.1/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../web/assets/reveal.js-5.2.1/dist/theme/white.css" id="theme">
+  <link rel="stylesheet" href="digital-review.css"/>
+<script data-template-mathjax-config>
+window.MathJax = window.MathJax || {};
+window.MathJax.loader = Object.assign({},window.MathJax.loader,{paths:{mathjax:new URL("../web/assets/mathjax-4.0.0/mathjax",document.baseURI).href}});
+window.MathJax.chtml = Object.assign({}, window.MathJax.chtml, {
+  fontURL: new URL("../web/assets/mathjax-4.0.0/newcm/chtml/woff2",document.baseURI).href,
+  dynamicPrefix: new URL("../web/assets/mathjax-4.0.0/newcm/chtml/dynamic",document.baseURI).href
+});
+var templateMathOutput = window.MathJax.output || {};
+window.MathJax.output = Object.assign({}, templateMathOutput, {
+  displayOverflow: "linebreak",
+  linebreaks: Object.assign({}, templateMathOutput.linebreaks, {
+    inline: true,
+    width: "100%",
+    lineleading: 0.5
+  })
+});
+window.normalizeTemplateMathJaxAria = function () {
+  document.querySelectorAll("mjx-speech[aria-roledescription]").forEach(function (node) {
+    var roleDescription = node.getAttribute("aria-roledescription") || "";
+    if (/[-]/.test(roleDescription)) {
+      node.setAttribute("aria-roledescription", "mathematical expression");
+    }
+  });
+};
+window.MathJax.startup = Object.assign({}, window.MathJax.startup, {
+  ready: function () {
+    var measuredWidth = document.documentElement.clientWidth;
+    var reflowQueued = false;
+    window.MathJax.startup.defaultReady();
+    window.templateMathJaxReflowPromise = window.MathJax.startup.promise.then(
+      window.normalizeTemplateMathJaxAria
+    );
+    function reflowDisplayMath() {
+      if (reflowQueued || document.documentElement.clientWidth === measuredWidth) return;
+      reflowQueued = true;
+      window.templateMathJaxReflowPromise = window.templateMathJaxReflowPromise
+        .catch(function () { /* A later resize may retry a failed render. */ })
+        .then(async function () {
+          var width = document.documentElement.clientWidth;
+          try {
+            // MathJax 4 MathItem.STATE.METRICS = 110. The default RERENDER
+            // state retains old container metrics and cannot reflow on zoom.
+            await window.MathJax.startup.document.rerenderPromise(110);
+            window.normalizeTemplateMathJaxAria();
+            window.templateMathJaxReflowError = null;
+          } catch (error) {
+            window.templateMathJaxReflowError = String(error);
+            console.error("MathJax viewport reflow failed", error);
+            throw error;
+          } finally {
+            measuredWidth = width;
+            reflowQueued = false;
+          }
+        })
+        .then(reflowDisplayMath);
+      // Keep failure observable to callers without an unhandled rejection.
+      window.templateMathJaxReflowPromise.catch(function () {});
+    }
+    window.addEventListener("resize", reflowDisplayMath);
+    // Also cover a resize that happened during the initial asynchronous render.
+    window.templateMathJaxReflowPromise.then(reflowDisplayMath);
+  }
+});
+</script>
+<script src="../web/assets/mathjax-4.0.0/mathjax/tex-chtml.js" integrity="sha384-2BWc4dVaHADUocwKrUrK9u3iDwHxVMKXWEcoRmUkXYSFKhAsgVAYClu9ydNuo5Oz" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section>
+<section id="sec:discussion" class="title-slide slide level1">
+<h1>Discussion and Conclusion</h1>
+<p>Numbered-table references point to the <a
+href="../web/index.html">canonical manuscript</a>; they are not
+standalone local deck numbers.</p>
+<p>DuckRabbit’s principal result is a reproducibility boundary rather
+than a new psychophysical finding. The same typed request can be
+regenerated, hashed, encoded, decoded, and audited, while the evidence
+graph and observer layer remain explicit about what the package cannot
+infer. This makes the atlas useful for stimulus construction, source
+comparison, and preregistration without treating a rendered image or
+sound as behavioral evidence.</p>
+<p>The scholarly contribution is correspondingly modest but operational.
+Rather than flattening visual, auditory, temporal, and multisensory
+families into a single “illusion” label, the package keeps mechanism,
+perceptual signature, requirements, evidence role, engineering basis,
+and implementation status separate. A primary demonstration, a review, a
+theoretical account, and a source describing the DuckRabbit
+implementation answer different questions. The appendix and source-data
+sidecars make those distinctions inspectable at the same time as the
+generated media.</p>
+<p>The work is best understood as a research-software artifact with a
+bounded methods contribution. Its novelty claim is not that it discovers
+a new illusion or resolves a disputed mechanism; it is that a
+heterogeneous stimulus catalog can be represented as typed,
+reproducible, source-linked, and release-audited objects. This framing
+is consistent with software-citation and FAIR guidance, which treats
+versioned software, metadata, provenance, and reuse conditions as part
+of the research record <span class="citation"
+data-cites="smith2016software wilkinson2016fair lamprecht2020fairsoftware">(Smith
+et al. 2016; Wilkinson et al. 2016; Lamprecht et al. 2020)</span>.</p>
+<p>The release is authored by Daniel Ari Friedman of the Active
+Inference Institute and is published and citable at <a
+href="https://github.com/docxology/DuckRabbit">the DuckRabbit public
+GitHub repository</a>. The v0.5.0 archive is a published versioned
+record. Subsequent source and manuscript corrections remain unreleased
+until a new version is explicitly tagged and deposited. A local package
+audit does not certify that the archived PDF was rebuilt from the
+current development manuscript.</p>
+</section>
+<section id="sec:conclusion" class="slide level2">
+<h2>Conclusion</h2>
+<p>DuckRabbit v0.6.0 turns multimodal illusion generation into an
+auditable typed pipeline. A request produces a canonical artifact,
+objective metrics, optional delivery files, decoded inspection, and a
+versioned evidence-bounded manifest. The catalog now records not only
+what is implemented, but also what the literature supports and what
+remains unvalidated.</p>
+<p>The main scientific contribution is a boundary: deterministic
+stimulus facts are reproducible software outputs, while perceptual
+effects are hypotheses that require observer conditions and data. This
+boundary permits broad generator coverage without overclaiming. Future
+additions should contribute a typed parameter contract, a literature
+record, an engineering-fidelity statement, objective invariants,
+generated documentation, and tests before entering the implemented
+registry. Promotion is a release decision about software readiness, not
+a verdict on whether a perceptual phenomenon is real.</p>
+<p>The synthetic-psychophysics layer extends this boundary without
+crossing it. A transparent feature observer makes model inputs, weights,
+calibration, and output hashes inspectable, so the full orchestration
+can be tested today. Its small curve is a diagnostic of that specified
+model, not evidence that humans share its feature map or response
+function. Empirical observer work remains a separate, ethically and
+methodologically governed stage.</p>
+</section></section>
+    </div>
+  </div>
+
+  <script src="../web/assets/reveal.js-5.2.1/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="../web/assets/reveal.js-5.2.1/plugin/notes/notes.js"></script>
+  <script src="../web/assets/reveal.js-5.2.1/plugin/search/search.js"></script>
+  <script src="../web/assets/reveal.js-5.2.1/plugin/zoom/zoom.js"></script>
+  
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>

@@ -12,10 +12,12 @@ from importlib.resources import files
 from dataclasses import dataclass
 from datetime import date
 from enum import Enum
+from html.parser import HTMLParser
 from pathlib import Path
 import re
 from typing import TYPE_CHECKING, Mapping
 from urllib.parse import urlparse
+import unicodedata
 
 from .errors import ParameterValidationError
 from .taxonomy import ClaimLevel, EvidenceStatus, ImplementationStatus, taxonomy_entries
@@ -48,6 +50,13 @@ class SourceVerificationStatus(str, Enum):
     DOI_LESS_ARCHIVAL = "doi_less_archival"
 
 
+def _immutable_strings(value: object, *, context: str) -> tuple[str, ...]:
+    """Detach supported caller-owned sequences before validating their elements."""
+    if not isinstance(value, (tuple, list)) or not all(isinstance(item, str) and item.strip() for item in value):
+        raise ParameterValidationError(f"{context} must be a sequence of non-empty strings")
+    return tuple(value)
+
+
 @dataclass(frozen=True)
 class EvidenceLineage:
     """One typed edge from evidence or engineering state to a claim."""
@@ -58,6 +67,7 @@ class EvidenceLineage:
     claim_level: ClaimLevel = ClaimLevel.SOURCE_SUPPORTED
 
     def __post_init__(self) -> None:
+        object.__setattr__(self, "source_keys", _immutable_strings(self.source_keys, context="evidence lineage source_keys"))
         if not isinstance(self.role, EvidenceRole) or not isinstance(self.statement, str) or not self.statement.strip():
             raise ParameterValidationError("evidence lineage requires a role and statement")
         if not all(isinstance(key, str) and key.strip() for key in self.source_keys):
@@ -115,8 +125,7 @@ class SourceRecord:
                 raise ParameterValidationError(f"source {self.key} verified_on must be an ISO date") from exc
         if not isinstance(self.resolver, str) or not self.resolver.strip():
             raise ParameterValidationError(f"source {self.key} resolver is required")
-        if not isinstance(self.authors, tuple) or not all(isinstance(author, str) and author.strip() for author in self.authors):
-            raise ParameterValidationError(f"source {self.key} authors must be non-empty strings")
+        object.__setattr__(self, "authors", _immutable_strings(self.authors, context=f"source {self.key} authors"))
         # Historical scholarship is part of the evidence graph; do not impose
         # a modern-publication floor on source years.  Year 0 is excluded
         # because the proleptic Gregorian convention has no year zero.
@@ -150,14 +159,18 @@ class EvidenceRecord:
     missing_contract: str | None = None
 
     def __post_init__(self) -> None:
-        if not self.illusion_id or not isinstance(self.evidence_status, EvidenceStatus):
+        if not isinstance(self.illusion_id, str) or not self.illusion_id.strip() or not isinstance(self.evidence_status, EvidenceStatus):
             raise ParameterValidationError("evidence identity and status are required")
+        if not isinstance(self.implementation_status, ImplementationStatus):
+            raise ParameterValidationError("evidence implementation_status must be ImplementationStatus")
+        for name in ("primary_sources", "review_sources", "theory_sources", "evidence_limitations"):
+            object.__setattr__(self, name, _immutable_strings(getattr(self, name), context=f"evidence {self.illusion_id} {name}"))
         source_keys = self.primary_sources + self.review_sources + self.theory_sources
         if not source_keys:
             raise ParameterValidationError(f"evidence {self.illusion_id} requires at least one source")
         if not all(isinstance(key, str) and key for key in source_keys) or len(set(source_keys)) != len(source_keys):
             raise ParameterValidationError(f"evidence {self.illusion_id} has invalid or duplicate source keys")
-        if not self.engineering_basis or not self.supported_claim:
+        if not all(isinstance(item, str) and item.strip() for item in (self.engineering_basis, self.supported_claim)):
             raise ParameterValidationError(f"evidence {self.illusion_id} requires claim text")
         if not self.evidence_limitations or not all(isinstance(item, str) and item.strip() for item in self.evidence_limitations):
             raise ParameterValidationError(f"evidence {self.illusion_id} requires limitations")
@@ -190,18 +203,8 @@ class EvidenceRecord:
 
 
 def default_manuscript_dir() -> Path:
-    """Canonical manuscript directory with legacy fallback.
-
-    The manuscript lives at ``docs/manuscript/``; the legacy top-level
-    ``manuscript/`` path is still accepted for checkouts that have not been
-    relocated. docs-first matches the resolver convention used across the
-    sibling template ecosystem.
-    """
-    root = Path(__file__).resolve().parents[2]
-    relocated = root / "docs" / "manuscript"
-    if relocated.is_dir():
-        return relocated
-    return root / "manuscript"
+    """Return the sole canonical checkout manuscript directory."""
+    return Path(__file__).resolve().parents[2] / "docs" / "manuscript"
 
 
 def _runtime_resource(name: str) -> Traversable:
@@ -273,8 +276,8 @@ def load_evidence_matrix(
         if not isinstance(row, Mapping):
             raise ParameterValidationError("evidence sources must be objects")
         try:
-            raw_authors = row.get("authors", ())
-            if raw_authors not in ((), None) and (not isinstance(raw_authors, list) or not all(isinstance(author, str) and author.strip() for author in raw_authors)):
+            raw_authors = row.get("authors", [])
+            if not isinstance(raw_authors, list) or not all(isinstance(author, str) and author.strip() for author in raw_authors):
                 raise ParameterValidationError("evidence source authors must be an array of non-empty strings")
             raw_year = row.get("year")
             if raw_year is not None and type(raw_year) is not int:
@@ -345,61 +348,121 @@ def validate_citation_keys(sources: Mapping[str, SourceRecord], bibliography_pat
         raise ParameterValidationError(f"evidence sources missing bibliography keys: {missing}")
 
 
-def validate_bibliography_links(sources: Mapping[str, SourceRecord], bibliography_path: Path | None = None) -> None:
-    """Require every evidence record's bibliography entry to carry link metadata.
+def _bibliographic_tokens(value: str) -> tuple[str, ...]:
+    """Normalize case, grouping, punctuation and explicit TeX accents, not words."""
+    accents = {'"': '\u0308', "'": '\u0301', '`': '\u0300', '^': '\u0302', '~': '\u0303', '=': '\u0304', '.': '\u0307'}
+    # Accept both conventional TeX accents and the legacy {"u} spelling in
+    # the checked-in bibliography; unknown commands are uncertain, not erased.
+    value = re.sub(r'\{\\?(["\'`^~=\.])\s*([A-Za-z])\}', lambda m: unicodedata.normalize("NFC", m[2] + accents[m[1]]), value)
+    value = re.sub(r'\\(["\'`^~=\.])\s*\{?([A-Za-z])\}?', lambda m: unicodedata.normalize("NFC", m[2] + accents[m[1]]), value)
+    value = value.replace(r"\&", "&").replace(r"\ss", "ß")
+    if "\\" in value:
+        raise ParameterValidationError("uncertain bibliography identity: unsupported TeX command")
+    value = unicodedata.normalize("NFC", value.replace("{", "").replace("}", "")).casefold()
+    return tuple(re.findall(r"[^\W_]+", value))
 
-    Pandoc/citeproc links in-text citations to reference anchors, while the
-    ``url``/``doi`` fields make the reference entries themselves resolvable.
-    Keeping both values equal to the evidence matrix prevents a readable but
-    stale bibliography from silently drifting away from the audited source.
+
+def _author_identity(value: str) -> tuple[str, ...]:
+    """Compare full names, retaining sequence and all supplied name components."""
+    parts = value.split(",")
+    if len(parts) == 2:
+        value = f"{parts[1]} {parts[0]}"
+    elif len(parts) > 2:
+        raise ParameterValidationError("uncertain bibliography identity: unsupported author name form")
+    return _bibliographic_tokens(value)
+
+
+def validate_bibliography_links(sources: Mapping[str, SourceRecord], bibliography_path: Path | None = None) -> None:
+    """Check resolver and bibliographic identity against every supplied source field.
+
+    Matrix author lists may include credited translators, so compare the ordered
+    author and translator fields together. Absent matrix fields are not invented.
     """
-    path = Path(bibliography_path) if bibliography_path is not None else _runtime_resource("references.bib")
-    try:
-        text = path.read_text(encoding="utf-8")
-    except OSError as exc:
-        raise ParameterValidationError(f"cannot read bibliography {path}: {exc}") from exc
-    blocks = re.split(r"(?m)^@", text)
-    missing: list[str] = []
-    mismatched: list[str] = []
-    for source in sources.values():
-        block = next((candidate for candidate in blocks if f"{{{source.citation_key}," in candidate), None)
-        if block is None:
-            missing.append(source.citation_key)
-            continue
-        url_match = re.search(r"(?mi)^\s*url\s*=\s*\{([^}]*)\}", block)
-        doi_match = re.search(r"(?mi)^\s*doi\s*=\s*\{([^}]*)\}", block)
-        observed_url = url_match.group(1).strip() if url_match else ""
-        observed_doi = doi_match.group(1).strip() if doi_match else None
-        if observed_url != source.url or observed_doi != source.doi:
-            mismatched.append(source.citation_key)
+    entries = _bibliography_entries(bibliography_path)
+    missing = sorted({source.citation_key for source in sources.values()} - entries.keys())
     if missing:
-        raise ParameterValidationError(f"bibliography sources missing URL fields: {sorted(missing)}")
-    if mismatched:
-        raise ParameterValidationError(f"bibliography link metadata disagrees with evidence matrix: {sorted(mismatched)}")
+        raise ParameterValidationError(f"bibliography sources missing URL fields: {missing}")
+    for source in sources.values():
+        record = entries[source.citation_key]
+        if record.get("url") != source.url or record.get("doi") != source.doi:
+            raise ParameterValidationError(f"bibliography link metadata disagrees with evidence matrix: {source.citation_key}")
+        try:
+            if not record.get("title") or _bibliographic_tokens(record["title"]) != _bibliographic_tokens(source.title):
+                raise ParameterValidationError("title differs")
+            if source.year is not None and record.get("year") != str(source.year):
+                raise ParameterValidationError("year differs")
+            if source.authors:
+                credited = []
+                for field in ("author", "translator"):
+                    if record.get(field):
+                        credited.extend(re.split(r"\s+and\s+", record[field]))
+                if tuple(_author_identity(name) for name in credited) != tuple(_author_identity(name) for name in source.authors):
+                    raise ParameterValidationError("authors differ")
+        except ParameterValidationError as exc:
+            raise ParameterValidationError(f"bibliography identity disagrees or is uncertain for {source.citation_key}: {exc}") from exc
 
 
 def _bibliography_entries(bibliography_path: Path | None = None) -> dict[str, dict[str, str | None]]:
-    """Parse the small, controlled BibTeX surface used by the manuscript."""
+    """Parse literal BibTeX values with balanced braces; reject uncertain macros."""
     path = Path(bibliography_path) if bibliography_path is not None else _runtime_resource("references.bib")
     try:
         text = path.read_text(encoding="utf-8")
     except OSError as exc:
         raise ParameterValidationError(f"cannot read bibliography {path}: {exc}") from exc
     entries: dict[str, dict[str, str | None]] = {}
-    blocks = re.finditer(r"(?ms)^@[A-Za-z]+\{([^,]+),(.*?)(?=^@|\Z)", text)
-    for match in blocks:
-        key = match.group(1).strip()
-        body = match.group(2)
+    for match in re.finditer(r"(?m)^@[A-Za-z]+\s*\{\s*([^,]+),", text):
+        key = match[1].strip()
         if not re.fullmatch(r"[A-Za-z][A-Za-z0-9:_-]*", key):
             raise ParameterValidationError(f"bibliography citation identifier is invalid: {key!r}")
-        url_match = re.search(r"(?mi)^\s*url\s*=\s*\{([^}]*)\}", body)
-        doi_match = re.search(r"(?mi)^\s*doi\s*=\s*\{([^}]*)\}", body)
         if key in entries:
             raise ParameterValidationError(f"duplicate bibliography citation key: {key}")
-        entries[key] = {
-            "url": url_match.group(1).strip() if url_match else None,
-            "doi": doi_match.group(1).strip() if doi_match else None,
-        }
+        fields: dict[str, str | None] = {"doi": None, "url": None}
+        position = match.end()
+        while position < len(text):
+            separator = re.match(r"\s*,?\s*", text[position:])
+            position += separator.end()
+            if position < len(text) and text[position] == "}":
+                break
+            field = re.match(r"([A-Za-z]+)\s*=\s*", text[position:])
+            if field is None:
+                raise ParameterValidationError(f"uncertain BibTeX field for {key}")
+            name = field[1].lower()
+            position += field.end()
+            if position >= len(text):
+                raise ParameterValidationError(f"unterminated BibTeX entry {key}")
+            opening = text[position]
+            if opening in {'{', '"'}:
+                position += 1
+                start = position
+                depth = 1
+                while position < len(text):
+                    character = text[position]
+                    if character == "\\":
+                        position += 2
+                        continue
+                    if opening == "{" and character == "{":
+                        depth += 1
+                    if (opening == "{" and character == "}") or (opening == '"' and character == '"'):
+                        depth -= 1
+                        if depth == 0:
+                            break
+                    position += 1
+                if depth:
+                    raise ParameterValidationError(f"unterminated BibTeX value for {key}: {name}")
+                value = text[start:position]
+                position += 1
+            else:
+                literal = re.match(r"\d+", text[position:])
+                if literal is None:
+                    raise ParameterValidationError(f"uncertain BibTeX macro for {key}: {name}")
+                value = literal[0]
+                position += literal.end()
+            if name in fields and fields[name] is not None:
+                raise ParameterValidationError(f"duplicate BibTeX field for {key}: {name}")
+            fields[name] = value.strip()
+        else:
+            raise ParameterValidationError(f"unterminated BibTeX entry {key}")
+        entries[key] = fields
     if not entries:
         raise ParameterValidationError(f"bibliography contains no entries: {path}")
     return entries
@@ -439,44 +502,76 @@ def validate_bibliography_integrity(
     return {"entry_count": len(entries), "cited_count": len(cited), "linked_count": len(entries) - len(missing_links)}
 
 
-def validate_rendered_bibliography_links(html_path: Path, bibliography_path: Path | None = None) -> None:
-    """Check reference anchors and DOI/URL links for every bibliography entry."""
+class _CitationHTML(HTMLParser):
+    """Collect actual anchors and their containing reference, ignoring comments."""
+
+    _VOID = frozenset({"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"})
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.ids: dict[str, int] = {}
+        self.anchors: list[tuple[str, str | None]] = []
+        self.stack: list[tuple[str, str | None]] = []
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        attributes = dict(attrs)
+        identity = attributes.get("id")
+        if identity:
+            self.ids[identity] = self.ids.get(identity, 0) + 1
+        reference = identity if identity and identity.startswith("ref-") else next((ref for _, ref in reversed(self.stack) if ref), None)
+        if tag == "a" and attributes.get("href"):
+            self.anchors.append((attributes["href"], reference))
+        if tag not in self._VOID:
+            self.stack.append((tag, reference))
+
+    def handle_startendtag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        self.handle_starttag(tag, attrs)
+        if tag not in self._VOID:
+            self.handle_endtag(tag)
+
+    def handle_endtag(self, tag: str) -> None:
+        for index in range(len(self.stack) - 1, -1, -1):
+            if self.stack[index][0] == tag:
+                del self.stack[index:]
+                break
+
+
+def _validate_html_links(html_path: Path, resolvers: Mapping[str, str], *, context: str) -> None:
     try:
         html = Path(html_path).read_text(encoding="utf-8")
     except OSError as exc:
         raise ParameterValidationError(f"cannot read rendered HTML {html_path}: {exc}") from exc
-    entries = _bibliography_entries(bibliography_path)
-    missing_anchors = sorted(key for key in entries if f'href="#ref-{key}"' not in html)
+    document = _CitationHTML()
+    document.feed(html)
+    document.close()
+    missing_anchors = []
     missing_resolvers = []
-    for key, record in entries.items():
-        resolver = f"{DOI_RESOLVER_PREFIX}{record['doi']}" if record["doi"] else record["url"]
-        if resolver and resolver not in html:
+    for key, resolver in resolvers.items():
+        reference = f"ref-{key}"
+        if document.ids.get(reference) != 1 or not any(href == f"#{reference}" and parent != reference for href, parent in document.anchors):
+            missing_anchors.append(key)
+        if not any(href == resolver and parent == reference for href, parent in document.anchors):
             missing_resolvers.append(key)
     if missing_anchors:
-        raise ParameterValidationError(f"rendered HTML is missing bibliography anchors: {missing_anchors}")
+        raise ParameterValidationError(f"rendered HTML is missing {context} anchors or unique reference destinations: {sorted(missing_anchors)}")
     if missing_resolvers:
-        raise ParameterValidationError(f"rendered HTML is missing bibliography resolver links: {sorted(missing_resolvers)}")
+        raise ParameterValidationError(f"rendered HTML is missing {context} resolver links inside their references: {sorted(missing_resolvers)}")
+
+
+def validate_rendered_bibliography_links(html_path: Path, bibliography_path: Path | None = None) -> None:
+    """Require citation anchors, unique destinations and reference-local resolvers."""
+    entries = _bibliography_entries(bibliography_path)
+    resolvers = {key: f"{DOI_RESOLVER_PREFIX}{record['doi']}" if record["doi"] else record["url"] for key, record in entries.items()}
+    if any(not resolver for resolver in resolvers.values()):
+        raise ParameterValidationError("bibliography entries missing DOI and URL metadata")
+    _validate_html_links(html_path, resolvers, context="bibliography")
 
 
 def validate_rendered_citation_links(html_path: Path, sources: Mapping[str, SourceRecord] | None = None) -> None:
-    """Check that rendered HTML links citations to references and resolvers."""
-    try:
-        html = Path(html_path).read_text(encoding="utf-8")
-    except OSError as exc:
-        raise ParameterValidationError(f"cannot read rendered HTML {html_path}: {exc}") from exc
+    """Require real citation/reference/resolver edges for the selected sources."""
     selected = sources if sources is not None else load_evidence_matrix()[0]
-    missing_anchors: list[str] = []
-    missing_resolvers: list[str] = []
-    for source in selected.values():
-        if f'href="#ref-{source.citation_key}"' not in html:
-            missing_anchors.append(source.citation_key)
-        resolver = f"{DOI_RESOLVER_PREFIX}{source.doi}" if source.doi else source.url
-        if resolver not in html:
-            missing_resolvers.append(source.citation_key)
-    if missing_anchors:
-        raise ParameterValidationError(f"rendered HTML is missing citation anchors: {sorted(missing_anchors)}")
-    if missing_resolvers:
-        raise ParameterValidationError(f"rendered HTML is missing citation resolver links: {sorted(missing_resolvers)}")
+    resolvers = {source.citation_key: f"{DOI_RESOLVER_PREFIX}{source.doi}" if source.doi else source.url for source in selected.values()}
+    _validate_html_links(html_path, resolvers, context="citation")
 
 
 def validate_evidence_matrix(
@@ -498,6 +593,12 @@ def validate_evidence_matrix(
             raise ParameterValidationError(f"implemented entry {illusion_id} lacks primary or review evidence")
         if any(reference not in sources for reference in entry.evidence_references):
             raise ParameterValidationError(f"taxonomy evidence reference is not in the evidence matrix for {illusion_id}")
+        source_keys = record.primary_sources + record.review_sources + record.theory_sources
+        if set(source_keys) != set(entry.evidence_references):
+            raise ParameterValidationError(f"taxonomy evidence edges disagree for {illusion_id}")
+        for role, keys in (("primary", record.primary_sources), ("review", record.review_sources), ("theory", record.theory_sources)):
+            if any(key not in sources or sources[key].source_type != role for key in keys):
+                raise ParameterValidationError(f"evidence source role disagrees for {illusion_id}: {role}")
         if record.supported_claim_level is not ClaimLevel.SOURCE_SUPPORTED:
             raise ParameterValidationError(f"evidence claim level must be source_supported for {illusion_id}")
         for lineage in record.lineage_records(sources):

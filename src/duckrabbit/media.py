@@ -166,18 +166,22 @@ def _pcm_bytes(audio: AudioBuffer, bit_depth: PcmBitDepth) -> bytes:
     signed little-endian.  24-bit values are computed as 32-bit integers
     and truncated to 3 bytes per sample.
     """
+    if bit_depth == 32:
+        # INT32_MAX is exact in float64, but rounds out of range in float32.
+        values = audio.samples.astype(np.float64)
+        np.clip(values, -1.0, 1.0, out=values)
+        values *= 2147483647.0
+        np.rint(values, out=values)
+        return values.astype("<i4").tobytes()
     samples = np.clip(audio.samples, -1.0, 1.0)
     if bit_depth == 8:
         # Unsigned 8-bit: map [-1, 1] to [0, 255]
         return np.rint((samples + 1.0) * 127.5).astype("u1").tobytes()
     if bit_depth == 16:
         return np.rint(samples * 32767.0).astype("<i2").tobytes()
-    if bit_depth == 24:
-        # Compute as 32-bit signed, then take the low 3 bytes (little-endian)
-        values = np.rint(samples * 8388607.0).astype("<i4")
-        return values.view("u1").reshape(-1, 4)[:, :3].tobytes()
-    # 32-bit signed
-    return np.rint(samples * 2147483647.0).astype("<i4").tobytes()
+    # 24-bit signed: take the low three little-endian bytes per sample.
+    values = np.rint(samples * 8388607.0).astype("<i4")
+    return values.view("u1").reshape(-1, 4)[:, :3].tobytes()
 
 
 def write_wav(audio: AudioBuffer, path: Path, *, encoding: AudioEncoding = AudioEncoding(), overwrite: bool = True) -> Path:
@@ -324,6 +328,14 @@ def write_audiovisual(
     return path
 
 
+def _canonical_npz_array(archive, name: str) -> np.ndarray:
+    """Reject storage-type coercion in an exact canonical archive."""
+    values = archive[name]
+    if values.dtype.str != "<f4":
+        raise ValueError(f"canonical NPZ {name} must use little-endian float32 storage")
+    return values
+
+
 def write_npz(
     artifact: ImageFrame | AudioBuffer | VideoSequence | AudiovisualTimeline,
     path: Path,
@@ -377,15 +389,15 @@ def read_npz(path: Path) -> ImageFrame | AudioBuffer | VideoSequence | Audiovisu
                 raise TypeError("NPZ metadata must contain an object")
             kind = metadata["kind"]
             if kind == "image":
-                return ImageFrame(archive["pixels"], mode=ColorMode(metadata["mode"]))
+                return ImageFrame(_canonical_npz_array(archive, "pixels"), mode=ColorMode(metadata["mode"]))
             if kind == "audio":
-                return AudioBuffer(archive["samples"], SampleRate(metadata["sample_rate"]))
+                return AudioBuffer(_canonical_npz_array(archive, "samples"), SampleRate(metadata["sample_rate"]))
             if kind == "video":
-                frames = tuple(ImageFrame(frame, mode=ColorMode(metadata["mode"])) for frame in archive["frames"])
+                frames = tuple(ImageFrame(frame, mode=ColorMode(metadata["mode"])) for frame in _canonical_npz_array(archive, "frames"))
                 return VideoSequence(frames, FrameRate(metadata["frame_rate"]))
             if kind == "audiovisual":
-                audio = AudioBuffer(archive["samples"], SampleRate(metadata["sample_rate"]))
-                frames = tuple(ImageFrame(frame, mode=ColorMode(metadata["mode"])) for frame in archive["frames"])
+                audio = AudioBuffer(_canonical_npz_array(archive, "samples"), SampleRate(metadata["sample_rate"]))
+                frames = tuple(ImageFrame(frame, mode=ColorMode(metadata["mode"])) for frame in _canonical_npz_array(archive, "frames"))
                 video = VideoSequence(frames, FrameRate(metadata["frame_rate"]))
                 return AudiovisualTimeline(
                     audio,
@@ -394,6 +406,6 @@ def read_npz(path: Path) -> ImageFrame | AudioBuffer | VideoSequence | Audiovisu
                     spatial_offset=SpatialOffset(metadata["spatial_offset"]),
                     metadata=metadata.get("timeline_metadata", {}),
                 )
-    except (OSError, KeyError, ValueError, TypeError, EOFError, zipfile.BadZipFile, zlib.error) as exc:
+    except (OSError, KeyError, ValueError, TypeError, OverflowError, RecursionError, EOFError, zipfile.BadZipFile, zlib.error) as exc:
         raise MediaEncodingError(f"cannot read canonical NPZ archive {path}: {exc}") from exc
     raise MediaEncodingError(f"unsupported canonical NPZ kind {kind!r}")

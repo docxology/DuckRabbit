@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Explicit network audit of the checked-in scholarship URL snapshot."""
+"""Audit scholarly identity; reachable-but-unresolved sources fail the gate."""
 
 from __future__ import annotations
 
@@ -26,7 +26,7 @@ def main() -> int:
         print(json.dumps({"status": "failed", "error_type": type(exc).__name__, "errors": [str(exc)]}, sort_keys=True), file=sys.stderr)
         return 1
     atomic_write_text(args.output, json.dumps(payload, indent=2, sort_keys=True) + "\n")
-    print(json.dumps({key: payload[key] for key in ("entry_count", "source_count", "verified_count", "audited_on")}, sort_keys=True))
+    print(json.dumps({key: payload[key] for key in ("entry_count", "source_count", "verified_count", "reachable_count", "audited_on")}, sort_keys=True))
     return 0 if payload["verified_count"] == payload["source_count"] else 1
 
 

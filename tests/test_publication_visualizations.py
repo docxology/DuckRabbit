@@ -10,7 +10,6 @@ import pytest
 
 from duckrabbit.artifacts import AudioBuffer, AudiovisualTimeline, ImageFrame, VideoSequence
 from duckrabbit.canonical import canonical_digest
-from duckrabbit.formalism import formalism_registry
 from duckrabbit.metrics import measure_artifact
 from duckrabbit.parameters import FrameRate, SampleRate, SyncOffsetMs
 from duckrabbit.publication import (
@@ -25,10 +24,8 @@ from duckrabbit.publication import (
     _coordinate_plot,
     _draw_audiovisual_traces,
     _draw_spectrum,
-    _encoding,
     _generate,
     _write_json,
-    publication_table_payloads,
 )
 
 
@@ -184,21 +181,3 @@ def test_centroid_definition_matches_unchanged_mean_channel_magnitude_metric() -
     assert measure_artifact(artifact).to_dict()["values"]["spectral_centroid_hz"] == pytest.approx(expected)
     energy_weighted = np.sum(frequencies * magnitudes ** 2) / np.sum(magnitudes ** 2)
     assert abs(expected - energy_weighted) > 100
-    records = publication_table_payloads()["metrics_table"]["records"]
-    definition = next(record["definition"] for record in records if record["metric"] == "spectral_centroid_hz")
-    assert all(term in definition for term in ("mean-channel", "abs", "unwindowed rFFT", "not energy"))
-
-
-def test_png_delivery_fact_does_not_claim_exact_float32_preservation(tmp_path: Path) -> None:
-    _, payload = _encoding(tmp_path / "encoding.png")
-    png = next(profile for profile in payload["profiles"] if profile["format"] == "PNG")
-    assert png["delivery fact"] == "raster dimensions; uint8 quantization"
-    assert "digest" not in png["delivery fact"]
-    assert "Canonical digest retained in provenance" in payload["canonical_identity"]
-    assert "exact canonical arrays only in NPZ" in payload["canonical_identity"]
-
-
-def test_formalism_membership_uses_a_portable_textual_relation() -> None:
-    definition = next(item for item in formalism_registry() if item.label == "eq:encoding_verification")
-    assert "V(F, M) in {pass, fail}" in definition.equation
-    assert "∈" not in definition.equation

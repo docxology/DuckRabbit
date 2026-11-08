@@ -1,0 +1,46 @@
+Generating beamer slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides/.03_results-wchkbqdl.archive.json
+Resolved 1 cross-deck reference(s) in slides from _combined_manuscript.aux
+Remapped 8 projection-unsupported glyph(s) to LaTeX math
+Made 2 long monospace path span(s) breakable in slides
+Inserted safe frame breaks in 7 dense slide frame(s)
+Compiling /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides/03_results_slides.tex with xelatex
+LaTeX compilation completed in 5.18s
+Generated beamer slides: 03_results_slides.pdf
+slides-03_results-beamer passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides/03_results_slides.pdf
+Generating beamer slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides/.07_publication_audit-76qhhomb.archive.json
+Resolved 10 cross-deck reference(s) in slides from _combined_manuscript.aux
+Remapped 31 projection-unsupported glyph(s) to LaTeX math
+Made 3 long monospace path span(s) breakable in slides
+Inserted safe frame breaks in 26 dense slide frame(s)
+Compiling /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides/07_publication_audit_slides.tex with xelatex
+LaTeX compilation completed in 7.54s
+Generated beamer slides: 07_publication_audit_slides.pdf
+slides-07_publication_audit-beamer passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides/07_publication_audit_slides.pdf
+Generating beamer slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides-flat-manuscript/09_appendix_catalog.md
+Inserted safe frame breaks in 1 dense slide frame(s)
+Compiling /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides/09_appendix_catalog_slides.tex with xelatex
+LaTeX compilation completed in 3.01s
+Generated beamer slides: 09_appendix_catalog_slides.pdf
+slides-09_appendix_catalog-beamer passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides/09_appendix_catalog_slides.pdf
+Generating reveal.js slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides-flat-manuscript/00_abstract.md
+slides-00_abstract-revealjs passed
+Generating reveal.js slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides-flat-manuscript/01_introduction.md
+slides-01_introduction-revealjs passed
+Generating reveal.js slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides-flat-manuscript/02_methodology.md
+slides-02_methodology-revealjs passed
+Generating reveal.js slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides-flat-manuscript/03_results.md
+slides-03_results-revealjs passed
+Generating reveal.js slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides-flat-manuscript/04_experimental_setup.md
+slides-04_experimental_setup-revealjs passed
+Generating reveal.js slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides-flat-manuscript/05_reproducibility.md
+slides-05_reproducibility-revealjs passed
+Generating reveal.js slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides-flat-manuscript/06_scope_and_related_work.md
+slides-06_scope_and_related_work-revealjs passed
+Generating reveal.js slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides-flat-manuscript/07_publication_audit.md
+slides-07_publication_audit-revealjs passed
+Generating reveal.js slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides-flat-manuscript/08_discussion_and_conclusion.md
+slides-08_discussion_and_conclusion-revealjs passed
+Generating reveal.js slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides-flat-manuscript/09_appendix_catalog.md
+slides-09_appendix_catalog-revealjs passed
+Generating reveal.js slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-complete/project/output/slides-flat-manuscript/99_references.md
+slides-99_references-revealjs passed

@@ -1,0 +1,538 @@
+Appendix A. Complete catalog, source tiers, and evidence and implementation
+boundaries
+
+Appendix A. Complete catalog, source tiers, and evidence and implementation
+boundaries I
+Numbered-table references point to the canonical manuscript ; they
+are not standalone local deck numbers.
+This appendix is the authoritative rendered snapshot of
+DuckRabbit’s live catalog. It is generated from the taxonomy
+registry and evidence matrix during the publication build; the table
+is not hand-maintained. The snapshot records the package’s
+current scope, not a claim to enumerate every illusion described in
+the literature.
+
+How to read the matrix I
+Each row identifies a registered illusion family and separates five
+questions that are often collapsed in informal catalogs:
+
+How to read the matrix I
+1. What modality, mechanism, and signature does the package assign to the
+construction?
+2. What evidence and implementation status does the checked-in record
+support?
+3. Which sources support the exact statement written in the row?
+4. What physical claim is supported by the row?
+5. What full source role, resolver, DOI status, and claim level are retained in
+the machine-readable record?
+
+How to read the matrix I
+implemented means that DuckRabbit has a deterministic
+generator and a validated canonical artifact contract. It does not
+mean that the generated stimulus is a pixel-identical reproduction
+of a historical experiment or that an observer effect has been
+re-established. input_required means that the family remains
+catalogued but lacks a lawful, checksummed input fixture and/or
+the validation contract required for deterministic generation.
+Evidence status and implementation status are deliberately
+independent.
+
+How to read the matrix I
+The source column is a compact citation-key view. The full source
+role, resolver or DOI status, exact supported claim, engineering
+departure, and limitation are retained in the machine-readable
+evidence matrix and in the generated evidence audit Table 7. A
+source supports only the narrow claim recorded for it; a review or
+theory record is not evidence that a DuckRabbit rendering
+produces a universal perceptual effect.
+
+How to read the matrix I
+DuckRabbit catalog entries, source tiers, and
+evidence/implementation boundaries.
+
+Table 10 — header row 1 I
+Column 1 — header:
+ID
+Value:
+ID
+Column 2 — header:
+Construction
+Value:
+Construction
+Column 3 — header:
+Evidence / status
+Value:
+
+Table 10 — header row 1 II
+Evidence / status
+Column 4 — header:
+Sources
+Value:
+Sources
+Column 5 — header:
+Supported claim
+Value:
+Supported claim
+
+Table 10 — row 1 I
+Column 1 — header:
+ID
+Value:
+visual.duck_rabbit
+Column 2 — header:
+Construction
+Value:
+visual; ambiguity; bistability
+Column 3 — header:
+Evidence / status
+Value:
+
+Table 10 — row 1 II
+literature_backed_engineering_entry; implemented
+Column 4 — header:
+Sources
+Value:
+brugger1999duckrabbit, gregory1997visual
+Column 5 — header:
+Supported claim
+Value:
+The entry instantiates a controllable ambiguous-figure stimulus
+family.
+
+Table 10 — row 2 I
+Column 1 — header:
+ID
+Value:
+visual.simultaneous_contrast
+Column 2 — header:
+Construction
+Value:
+visual; contrast_and_context; contrast_distortion
+Column 3 — header:
+Evidence / status
+Value:
+
+Table 10 — row 2 II
+literature_backed_engineering_entry; implemented
+Column 4 — header:
+Sources
+Value:
+gregory1997visual
+Column 5 — header:
+Supported claim
+Value:
+The physical center patches are matched while surround luminance
+differs.
+
+Table 10 — row 3 I
+Column 1 — header:
+ID
+Value:
+visual.apparent_motion
+Column 2 — header:
+Construction
+Value:
+visual; temporal_motion; illusory_motion
+Column 3 — header:
+Evidence / status
+Value:
+
+Table 10 — row 3 II
+literature_backed_engineering_entry; implemented
+Column 4 — header:
+Sources
+Value:
+wertheimer1912motion, sekuler1996wertheimer
+Column 5 — header:
+Supported claim
+Value:
+The sequence contains controlled successive spatial events.
+
+Table 10 — row 4 I
+Column 1 — header:
+ID
+Value:
+audio.shepard_tone
+Column 2 — header:
+Construction
+Value:
+auditory; spectral_harmonic; continuity
+Column 3 — header:
+Evidence / status
+Value:
+
+Table 10 — row 4 II
+literature_backed_engineering_entry; implemented
+Column 4 — header:
+Sources
+Value:
+shepard1984scale
+Column 5 — header:
+Supported claim
+Value:
+The audio contains octave-related partials with controlled sweep
+parameters.
+
+Table 10 — row 5 I
+Column 1 — header:
+ID
+Value:
+audio.missing_fundamental
+Column 2 — header:
+Construction
+Value:
+auditory; spectral_harmonic; filling_in
+Column 3 — header:
+Evidence / status
+Value:
+
+Table 10 — row 5 II
+literature_backed_engineering_entry; implemented
+Column 4 — header:
+Sources
+Value:
+zatorre2005missing
+Column 5 — header:
+Supported claim
+Value:
+The nominal fundamental component is absent from the canonical
+spectrum.
+
+Table 10 — row 6 I
+Column 1 — header:
+ID
+Value:
+audiovisual.sound_induced_flash
+Column 2 — header:
+Construction
+Value:
+audio_visual; crossmodal_temporal; fusion_or_fission
+Column 3 — header:
+Evidence / status
+Value:
+
+Table 10 — row 6 II
+review_backed_engineering_entry; implemented
+Column 4 — header:
+Sources
+Value:
+shams2000sifi, hirst2020sound
+Column 5 — header:
+Supported claim
+Value:
+The declared beep/flash event counts and offsets are physically
+encoded.
+
+Table 10 — row 7 I
+Column 1 — header:
+ID
+Value:
+audiovisual.ventriloquist
+Column 2 — header:
+Construction
+Value:
+audio_visual; crossmodal_spatial; spatial_capture
+Column 3 — header:
+Evidence / status
+Value:
+
+Table 10 — row 7 II
+review_backed_engineering_entry; implemented
+Column 4 — header:
+Sources
+Value:
+bruns2019ventriloquist, noppeney2018causal
+Column 5 — header:
+Supported claim
+Value:
+The audio and visual channels carry a declared spatial discrepancy.
+
+Table 10 — row 8 I
+Column 1 — header:
+ID
+Value:
+visual.muller_lyer
+Column 2 — header:
+Construction
+Value:
+visual; geometric_alignment; geometric_distortion
+Column 3 — header:
+Evidence / status
+Value:
+
+Table 10 — row 8 II
+literature_backed_engineering_entry; implemented
+Column 4 — header:
+Sources
+Value:
+gregory1997visual, howe2005muller
+Column 5 — header:
+Supported claim
+Value:
+The two bar lengths are equal in the canonical raster while wing
+geometry varies.
+
+Table 10 — row 9 I
+Column 1 — header:
+ID
+Value:
+visual.poggendorff
+Column 2 — header:
+Construction
+Value:
+visual; geometric_alignment; geometric_distortion
+Column 3 — header:
+Evidence / status
+Value:
+
+Table 10 — row 9 II
+literature_backed_engineering_entry; implemented
+Column 4 — header:
+Sources
+Value:
+gregory1997visual, morgan1999poggendorff
+Column 5 — header:
+Supported claim
+Value:
+The occluder and diagonal continuation are generated from explicit
+geometry.
+
+Table 10 — row 10 I
+Column 1 — header:
+ID
+Value:
+visual.ponzo
+Column 2 — header:
+Construction
+Value:
+visual; geometric_alignment; geometric_distortion
+Column 3 — header:
+Evidence / status
+Value:
+
+Table 10 — row 10 II
+literature_backed_engineering_entry; implemented
+Column 4 — header:
+Sources
+Value:
+fisher1967ponzo, yildiz2022ponzo
+Column 5 — header:
+Supported claim
+Value:
+Target bars are physically equal and rails converge toward a
+vanishing region.
+
+Table 10 — row 11 I
+Column 1 — header:
+ID
+Value:
+visual.kanizsa_triangle
+Column 2 — header:
+Construction
+Value:
+visual; contrast_and_context, geometric_alignment; filling_in
+Column 3 — header:
+Evidence / status
+Value:
+
+Table 10 — row 11 II
+literature_backed_engineering_entry; implemented
+Column 4 — header:
+Sources
+Value:
+kanizsa1976contours, wagemans2012gestalt
+Column 5 — header:
+Supported claim
+Value:
+The image contains incomplete inducers with no explicitly drawn
+triangle edge.
+
+Table 10 — row 12 I
+Column 1 — header:
+ID
+Value:
+visual.ebbinghaus
+Column 2 — header:
+Construction
+Value:
+visual; contrast_and_context, geometric_alignment;
+geometric_distortion
+Column 3 — header:
+Evidence / status
+Value:
+
+Table 10 — row 12 II
+literature_backed_engineering_entry; implemented
+Column 4 — header:
+Sources
+Value:
+mruczek2015ebbinghaus, weintraub1979ebbinghaus
+Column 5 — header:
+Supported claim
+Value:
+Central target geometry is held equal while contextual circle
+geometry differs.
+
+Table 10 — row 13 I
+Column 1 — header:
+ID
+Value:
+visual.zollner
+Column 2 — header:
+Construction
+Value:
+visual; geometric_alignment; geometric_distortion
+Column 3 — header:
+Evidence / status
+Value:
+
+Table 10 — row 13 II
+literature_backed_engineering_entry; implemented
+Column 4 — header:
+Sources
+Value:
+zoellner1860pseudoscopy, earle1995zollner, gregory1997visual
+Column 5 — header:
+Supported claim
+Value:
+The entry instantiates a controlled crossing-line orientation
+stimulus family.
+
+Table 10 — row 14 I
+Column 1 — header:
+ID
+Value:
+audio.tritone_paradox
+Column 2 — header:
+Construction
+Value:
+auditory; spectral_harmonic; categorical_recoding
+Column 3 — header:
+Evidence / status
+Value:
+
+Table 10 — row 14 II
+literature_backed_engineering_entry; implemented
+Column 4 — header:
+Sources
+Value:
+deutsch1986tritone, repp1997tritone
+Column 5 — header:
+Supported claim
+Value:
+The canonical pair has an explicit half-octave frequency relation.
+
+Table 10 — row 15 I
+Column 1 — header:
+ID
+Value:
+audio.octave_illusion
+Column 2 — header:
+Construction
+Value:
+auditory; stream_segregation; fusion_or_fission
+Column 3 — header:
+Evidence / status
+Value:
+
+Table 10 — row 15 II
+literature_backed_engineering_entry; implemented
+Column 4 — header:
+Sources
+Value:
+deutsch1974octave
+Column 5 — header:
+Supported claim
+Value:
+The two channels receive alternating octave-related tones.
+
+Table 10 — row 16 I
+Column 1 — header:
+ID
+Value:
+audio.auditory_continuity
+Column 2 — header:
+Construction
+Value:
+auditory; stream_segregation; continuity
+Column 3 — header:
+Evidence / status
+Value:
+
+Table 10 — row 16 II
+literature_backed_engineering_entry; implemented
+Column 4 — header:
+Sources
+Value:
+warren1970continuity, riecke2011continuity
+Column 5 — header:
+Supported claim
+Value:
+The canonical audio contains a reproducible interruption interval
+and masker family.
+
+Table 10 — row 17 I
+Column 1 — header:
+ID
+Value:
+audiovisual.temporal_ventriloquism
+Column 2 — header:
+Construction
+Value:
+audio_visual; crossmodal_temporal;
+temporal_binding_or_recalibration
+Column 3 — header:
+Evidence / status
+Value:
+
+Table 10 — row 17 II
+review_backed_engineering_entry; implemented
+Column 4 — header:
+Sources
+Value:
+vroomen2004temporal, hartcherobrien2011temporal,
+hirst2020sound, noppeney2018causal
+Column 5 — header:
+Supported claim
+Value:
+Audio and video event timing and declared offset are deterministic
+and inspectable.
+
+Table 10 — row 18 I
+Column 1 — header:
+ID
+Value:
+audiovisual.mcgurk
+Column 2 — header:
+Construction
+Value:
+audio_visual; speech_categorization; categorical_recoding
+Column 3 — header:
+Evidence / status
+Value:
+
+Table 10 — row 18 II
+literature_backed_input_dependent_entry; input_required
+Column 4 — header:
+Sources
+Value:
+mcgurk1976speech
+Column 5 — header:
+Supported claim
+Value:
+The catalog identifies a speech-dependent audiovisual family
+without claiming implementation.
+
+Evidence boundary and future expansion I
+The matrix is intentionally a living registry snapshot. New families
+may be added when the package can state a typed parameter
+contract, deterministic canonicalization rule, validation invariant,
+and evidence boundary. Planned or input-dependent families are
+not silently promoted because a source exists: promotion requires
+an implementable contract, reproducible fixtures where needed,
+and an explicit statement of what remains unvalidated. McGurk
+therefore remains input_required pending a consented or
+licensed, checksummed speech/ video fixture and a study-ready
+validation protocol. The candidate-future catalog is documented
+separately from this live matrix so that absence is not misread as a
+claim that a phenomenon is unknown or unimportant.

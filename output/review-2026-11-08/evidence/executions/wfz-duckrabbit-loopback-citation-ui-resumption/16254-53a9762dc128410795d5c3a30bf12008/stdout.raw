@@ -1,0 +1,23 @@
+DUCKRABBIT_PROOF_READY
+{"method": "GET", "path": "/__duckrabbit_proof_health", "status": "200"}
+{"method": "GET", "path": "/slides/99_references_slides.html", "status": "200"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/reset.css", "status": "200"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/reveal.css", "status": "200"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/theme/white.css", "status": "200"}
+{"method": "GET", "path": "/slides/digital-review.css", "status": "200"}
+{"method": "GET", "path": "/web/assets/mathjax-4.0.0/mathjax/tex-chtml.js", "status": "200"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/reveal.js", "status": "200"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/plugin/search/search.js", "status": "200"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/plugin/notes/notes.js", "status": "200"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/plugin/zoom/zoom.js", "status": "200"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/theme/fonts/source-sans-pro/source-sans-pro.css", "status": "200"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/theme/fonts/source-sans-pro/source-sans-pro-italic.woff", "status": "200"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/theme/fonts/source-sans-pro/source-sans-pro-semibold.woff", "status": "200"}
+{"method": "GET", "path": "/web/assets/reveal.js-5.2.1/dist/theme/fonts/source-sans-pro/source-sans-pro-regular.woff", "status": "200"}
+{"method": "GET", "path": "/web/assets/mathjax-4.0.0/mathjax/sre/speech-worker.js", "status": "200"}
+{"method": "GET", "path": "/favicon.ico", "status": "File not found"}
+{"method": "GET", "path": "/favicon.ico", "status": "404"}
+{"method": "GET", "path": "/slides/00_abstract_slides.html", "status": "200"}
+{"method": "GET", "path": "/web/assets/mathjax-4.0.0/mathjax/sre/mathmaps/base.json", "status": "200"}
+{"method": "POST", "path": "/__duckrabbit_proof_finish", "status": "200"}
+DUCKRABBIT_PROOF_FINISHED True

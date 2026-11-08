@@ -1,0 +1,167 @@
+
+============================================================
+COMBINED MANUSCRIPT RENDERING
+============================================================
+Combining 11 section(s):
+  [ 1/11] 00_abstract.md                           (   2.3 KB)
+  [ 2/11] 01_introduction.md                       (   4.4 KB)
+  [ 3/11] 02_methodology.md                        (   9.8 KB)
+  [ 4/11] 03_results.md                            (  25.1 KB)
+  [ 5/11] 04_experimental_setup.md                 (   3.0 KB)
+  [ 6/11] 05_reproducibility.md                    (   5.8 KB)
+  [ 7/11] 06_scope_and_related_work.md             (  13.4 KB)
+  [ 8/11] 07_publication_audit.md                  (  61.1 KB)
+  [ 9/11] 08_discussion_and_conclusion.md          (   3.5 KB)
+  [10/11] 09_appendix_catalog.md                   (   7.3 KB)
+  [11/11] 99_references.md                         (   0.0 KB)
+  Total input size:                                ( 135.8 KB)
+============================================================
+
+✓ Normalised 15 figure path(s) to ../figures/ in combined markdown
+Converting combined markdown to LaTeX...
+Using pandoc-crossref at /opt/homebrew/bin/pandoc-crossref
+✓ Disabled lmodern package to prevent XeLaTeX font conflicts
+✓ Patched hidelinks → colorlinks=true (uniform red hyperlinks)
+✓ Normalised 1 \hypersetup block(s) to uniform red link colours
+✓ Remapped 43 Unicode glyph(s) to PDF-safe output: θ×6, Δ×6, −×6, ∈×4, σ×3, φ×3, μ×2, τ×2, ψ×2, Σ×2, ·×2, ₑ×2, ᵢ×2, ××1
+✓ Made 21 long monospace path span(s) breakable
+✓ Extracted preamble from preamble.md
+✓ Inserted \clearpage and \bibliography{...} before \end{document}
+Verifying 16 figure reference(s)...
+  Found: 16/16 figures
+Rendering combined manuscript to PDF: DuckRabbit-0.6.0-review_combined.pdf
+  Source files: 11
+  Bibliography: references.bib
+  LaTeX compilation pass 1/4...
+  Bibliography processing...
+Processing bibliography with bibtex...
+
+Successfully combined 11 sections
+   Output: DuckRabbit-0.6.0-review_combined.pdf
+   Size: 3894.4 KB (3.80 MB)
+   Location: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/pdf
+   Duration: 21.06 seconds
+pdf passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/pdf/DuckRabbit-0.6.0-review_combined.pdf
+
+============================================================
+COMBINED HTML RENDERING
+============================================================
+Combining 11 section(s):
+  [ 1/11] 00_abstract.md                           (   2.3 KB)
+  [ 2/11] 01_introduction.md                       (   4.4 KB)
+  [ 3/11] 02_methodology.md                        (   9.8 KB)
+  [ 4/11] 03_results.md                            (  25.1 KB)
+  [ 5/11] 04_experimental_setup.md                 (   3.0 KB)
+  [ 6/11] 05_reproducibility.md                    (   5.8 KB)
+  [ 7/11] 06_scope_and_related_work.md             (  13.4 KB)
+  [ 8/11] 07_publication_audit.md                  (  61.1 KB)
+  [ 9/11] 08_discussion_and_conclusion.md          (   3.5 KB)
+  [10/11] 09_appendix_catalog.md                   (   7.3 KB)
+  [11/11] 99_references.md                         (   0.0 KB)
+  Total input size:                                ( 135.8 KB)
+============================================================
+
+Using pandoc-crossref at /opt/homebrew/bin/pandoc-crossref for combined HTML
+Converting combined markdown to HTML...
+✓ Embedded CSS styling in index.html
+✅ Generated combined HTML: index.html
+html passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/web/index.html
+Generating beamer slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/manuscript/00_abstract.md
+Made 1 long monospace path span(s) breakable in slides
+Inserted safe frame breaks in 1 dense slide frame(s)
+Compiling /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/00_abstract_slides.tex with xelatex
+LaTeX compilation completed in 3.30s
+Generated beamer slides: 00_abstract_slides.pdf
+slides-00_abstract-beamer passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/00_abstract_slides.pdf
+Generating reveal.js slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/manuscript/00_abstract.md
+slides-00_abstract-revealjs passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/00_abstract_slides.html
+Generating beamer slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/manuscript/01_introduction.md
+Inserted safe frame breaks in 1 dense slide frame(s)
+Compiling /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/01_introduction_slides.tex with xelatex
+LaTeX compilation completed in 3.32s
+Generated beamer slides: 01_introduction_slides.pdf
+slides-01_introduction-beamer passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/01_introduction_slides.pdf
+Generating reveal.js slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/manuscript/01_introduction.md
+slides-01_introduction-revealjs passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/01_introduction_slides.html
+Generating beamer slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/manuscript/02_methodology.md
+Made 1 long monospace path span(s) breakable in slides
+Inserted safe frame breaks in 5 dense slide frame(s)
+Compiling /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/02_methodology_slides.tex with xelatex
+LaTeX compilation completed in 3.57s
+Generated beamer slides: 02_methodology_slides.pdf
+slides-02_methodology-beamer passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/02_methodology_slides.pdf
+Generating reveal.js slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/manuscript/02_methodology.md
+slides-02_methodology-revealjs passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/02_methodology_slides.html
+Generating beamer slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/.03_results-gje1wcxu.archive.json
+Resolved 2 cross-deck reference(s) in slides from _combined_manuscript.aux
+Remapped 8 projection-unsupported glyph(s) to LaTeX math
+Made 2 long monospace path span(s) breakable in slides
+Inserted safe frame breaks in 9 dense slide frame(s)
+Compiling /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/03_results_slides.tex with xelatex
+LaTeX compilation completed in 5.46s
+Generated beamer slides: 03_results_slides.pdf
+slides-03_results-beamer passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/03_results_slides.pdf
+Generating reveal.js slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/manuscript/03_results.md
+slides-03_results-revealjs passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/03_results_slides.html
+Generating beamer slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/manuscript/04_experimental_setup.md
+Made 1 long monospace path span(s) breakable in slides
+Inserted safe frame breaks in 1 dense slide frame(s)
+Compiling /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/04_experimental_setup_slides.tex with xelatex
+LaTeX compilation completed in 3.22s
+Generated beamer slides: 04_experimental_setup_slides.pdf
+slides-04_experimental_setup-beamer passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/04_experimental_setup_slides.pdf
+Generating reveal.js slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/manuscript/04_experimental_setup.md
+slides-04_experimental_setup-revealjs passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/04_experimental_setup_slides.html
+Generating beamer slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/manuscript/05_reproducibility.md
+Made 9 long monospace path span(s) breakable in slides
+Inserted safe frame breaks in 2 dense slide frame(s)
+Compiling /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/05_reproducibility_slides.tex with xelatex
+LaTeX compilation completed in 3.40s
+Generated beamer slides: 05_reproducibility_slides.pdf
+slides-05_reproducibility-beamer passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/05_reproducibility_slides.pdf
+Generating reveal.js slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/manuscript/05_reproducibility.md
+slides-05_reproducibility-revealjs passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/05_reproducibility_slides.html
+Generating beamer slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/manuscript/06_scope_and_related_work.md
+Made 4 long monospace path span(s) breakable in slides
+Inserted safe frame breaks in 6 dense slide frame(s)
+Compiling /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/06_scope_and_related_work_slides.tex with xelatex
+LaTeX compilation completed in 3.99s
+Generated beamer slides: 06_scope_and_related_work_slides.pdf
+slides-06_scope_and_related_work-beamer passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/06_scope_and_related_work_slides.pdf
+Generating reveal.js slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/manuscript/06_scope_and_related_work.md
+slides-06_scope_and_related_work-revealjs passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/06_scope_and_related_work_slides.html
+Generating beamer slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/.07_publication_audit-p7cbww6s.archive.json
+Resolved 10 cross-deck reference(s) in slides from _combined_manuscript.aux
+Remapped 31 projection-unsupported glyph(s) to LaTeX math
+Made 3 long monospace path span(s) breakable in slides
+Inserted safe frame breaks in 5 dense slide frame(s)
+Compiling /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/07_publication_audit_slides.tex with xelatex
+LaTeX compilation completed in 6.48s
+Generated beamer slides: 07_publication_audit_slides.pdf
+slides-07_publication_audit-beamer passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/07_publication_audit_slides.pdf
+Generating reveal.js slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/manuscript/07_publication_audit.md
+slides-07_publication_audit-revealjs passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/07_publication_audit_slides.html
+Generating beamer slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/manuscript/08_discussion_and_conclusion.md
+Inserted safe frame breaks in 2 dense slide frame(s)
+Compiling /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/08_discussion_and_conclusion_slides.tex with xelatex
+LaTeX compilation completed in 4.09s
+Generated beamer slides: 08_discussion_and_conclusion_slides.pdf
+slides-08_discussion_and_conclusion-beamer passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/08_discussion_and_conclusion_slides.pdf
+Generating reveal.js slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/manuscript/08_discussion_and_conclusion.md
+slides-08_discussion_and_conclusion-revealjs passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/08_discussion_and_conclusion_slides.html
+Generating beamer slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/manuscript/09_appendix_catalog.md
+Resolved 1 cross-deck reference(s) in slides from _combined_manuscript.aux
+Inserted safe frame breaks in 1 dense slide frame(s)
+Compiling /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/09_appendix_catalog_slides.tex with xelatex
+LaTeX compilation completed in 5.30s
+Generated beamer slides: 09_appendix_catalog_slides.pdf
+slides-09_appendix_catalog-beamer passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/09_appendix_catalog_slides.pdf
+Generating reveal.js slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/manuscript/09_appendix_catalog.md
+slides-09_appendix_catalog-revealjs passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/09_appendix_catalog_slides.html
+Generating beamer slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/manuscript/99_references.md
+Compiling /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/99_references_slides.tex with xelatex
+LaTeX compilation completed in 3.82s
+Generated beamer slides: 99_references_slides.pdf
+slides-99_references-beamer passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/99_references_slides.pdf
+Generating reveal.js slides from /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/manuscript/99_references.md
+slides-99_references-revealjs passed /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review/project/output/slides/99_references_slides.html

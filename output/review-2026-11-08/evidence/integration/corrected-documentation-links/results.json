@@ -1,0 +1,14 @@
+[
+  {
+    "name": "edited-markdown-inventory",
+    "argv": [
+      "git",
+      "diff",
+      "--name-only",
+      "--",
+      "*.md"
+    ],
+    "cwd": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit",
+    "returncode": 0
+  }
+]

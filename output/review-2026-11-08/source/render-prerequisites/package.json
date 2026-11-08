@@ -1,0 +1,17 @@
+{
+  "name": "research-project-template-tooling",
+  "private": true,
+  "description": "Pinned repository tooling for documentation validation",
+  "engines": {
+    "node": "24.x"
+  },
+  "devDependencies": {
+    "@mathjax/mathjax-newcm-font": "4.0.0",
+    "@mermaid-js/mermaid-cli": "12.2.0",
+    "mathjax": "4.0.0"
+  },
+  "packageManager": "npm@11.20.0",
+  "scripts": {
+    "test:katex-trust": "node --test tests/infra_tests/rendering/test_katex_trust.mjs"
+  }
+}

@@ -1,0 +1,253 @@
+warning: The cache directory `dist/wfz-release/cache` is inside the build source directory `.` and may be included in distributions
+Building source distribution...
+running sdist
+running egg_info
+writing src/duckrabbit.egg-info/PKG-INFO
+writing dependency_links to src/duckrabbit.egg-info/dependency_links.txt
+writing entry points to src/duckrabbit.egg-info/entry_points.txt
+writing requirements to src/duckrabbit.egg-info/requires.txt
+writing top-level names to src/duckrabbit.egg-info/top_level.txt
+reading manifest file 'src/duckrabbit.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file 'src/duckrabbit.egg-info/SOURCES.txt'
+running check
+creating duckrabbit-0.6.0
+creating duckrabbit-0.6.0/src/duckrabbit
+creating duckrabbit-0.6.0/src/duckrabbit.egg-info
+creating duckrabbit-0.6.0/src/duckrabbit/_resources
+creating duckrabbit-0.6.0/tests
+copying files to duckrabbit-0.6.0...
+copying LICENSE -> duckrabbit-0.6.0
+copying README.md -> duckrabbit-0.6.0
+copying pyproject.toml -> duckrabbit-0.6.0
+copying src/duckrabbit/__init__.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/__main__.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/artifacts.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/audit.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/canonical.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/claims.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/cli.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/cover.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/errors.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/evidence.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/fixtures.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/formalism.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/generators.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/inspection.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/io.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/manifest.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/manuscript_variables.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/media.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/metadata.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/metrics.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/observer.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/observer_analysis.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/parameters.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/performance.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/publication.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/publication_specs.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/py.typed -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/registry.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/render.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/schema.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/scholarship.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/serialization.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/synthetic_psychophysics.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/taxonomy.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/urls.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit/version.py -> duckrabbit-0.6.0/src/duckrabbit
+copying src/duckrabbit.egg-info/PKG-INFO -> duckrabbit-0.6.0/src/duckrabbit.egg-info
+copying src/duckrabbit.egg-info/SOURCES.txt -> duckrabbit-0.6.0/src/duckrabbit.egg-info
+copying src/duckrabbit.egg-info/dependency_links.txt -> duckrabbit-0.6.0/src/duckrabbit.egg-info
+copying src/duckrabbit.egg-info/entry_points.txt -> duckrabbit-0.6.0/src/duckrabbit.egg-info
+copying src/duckrabbit.egg-info/requires.txt -> duckrabbit-0.6.0/src/duckrabbit.egg-info
+copying src/duckrabbit.egg-info/top_level.txt -> duckrabbit-0.6.0/src/duckrabbit.egg-info
+copying src/duckrabbit/_resources/evidence_matrix.json -> duckrabbit-0.6.0/src/duckrabbit/_resources
+copying src/duckrabbit/_resources/references.bib -> duckrabbit-0.6.0/src/duckrabbit/_resources
+copying tests/test_catalog_contracts.py -> duckrabbit-0.6.0/tests
+copying tests/test_cli.py -> duckrabbit-0.6.0/tests
+copying tests/test_evidence_contracts.py -> duckrabbit-0.6.0/tests
+copying tests/test_experiment_contracts.py -> duckrabbit-0.6.0/tests
+copying tests/test_final_integrity.py -> duckrabbit-0.6.0/tests
+copying tests/test_fixtures.py -> duckrabbit-0.6.0/tests
+copying tests/test_generators.py -> duckrabbit-0.6.0/tests
+copying tests/test_import_boundaries.py -> duckrabbit-0.6.0/tests
+copying tests/test_io.py -> duckrabbit-0.6.0/tests
+copying tests/test_manuscript_hydration.py -> duckrabbit-0.6.0/tests
+copying tests/test_media_and_render.py -> duckrabbit-0.6.0/tests
+copying tests/test_media_integrity.py -> duckrabbit-0.6.0/tests
+copying tests/test_metadata_integrity.py -> duckrabbit-0.6.0/tests
+copying tests/test_metrics_statistics.py -> duckrabbit-0.6.0/tests
+copying tests/test_observer_integrity.py -> duckrabbit-0.6.0/tests
+copying tests/test_observer_statistics.py -> duckrabbit-0.6.0/tests
+copying tests/test_packaging_contracts.py -> duckrabbit-0.6.0/tests
+copying tests/test_parameters.py -> duckrabbit-0.6.0/tests
+copying tests/test_performance.py -> duckrabbit-0.6.0/tests
+copying tests/test_project_audit.py -> duckrabbit-0.6.0/tests
+copying tests/test_publication_integrity.py -> duckrabbit-0.6.0/tests
+copying tests/test_publication_v05.py -> duckrabbit-0.6.0/tests
+copying tests/test_publication_visualizations.py -> duckrabbit-0.6.0/tests
+copying tests/test_release_contracts.py -> duckrabbit-0.6.0/tests
+copying tests/test_release_derivation.py -> duckrabbit-0.6.0/tests
+copying tests/test_schema_serialization.py -> duckrabbit-0.6.0/tests
+copying tests/test_scholarship_audit.py -> duckrabbit-0.6.0/tests
+copying tests/test_stimulus_integrity.py -> duckrabbit-0.6.0/tests
+copying tests/test_synthetic_psychophysics.py -> duckrabbit-0.6.0/tests
+copying tests/test_v03_contracts.py -> duckrabbit-0.6.0/tests
+copying tests/test_v04_scholarly.py -> duckrabbit-0.6.0/tests
+Writing duckrabbit-0.6.0/setup.cfg
+Creating tar archive
+removing 'duckrabbit-0.6.0' (and everything under it)
+Building wheel from source distribution...
+running bdist_wheel
+running build
+running build_py
+creating build/lib/duckrabbit
+copying src/duckrabbit/observer.py -> build/lib/duckrabbit
+copying src/duckrabbit/scholarship.py -> build/lib/duckrabbit
+copying src/duckrabbit/metrics.py -> build/lib/duckrabbit
+copying src/duckrabbit/media.py -> build/lib/duckrabbit
+copying src/duckrabbit/cover.py -> build/lib/duckrabbit
+copying src/duckrabbit/formalism.py -> build/lib/duckrabbit
+copying src/duckrabbit/observer_analysis.py -> build/lib/duckrabbit
+copying src/duckrabbit/metadata.py -> build/lib/duckrabbit
+copying src/duckrabbit/version.py -> build/lib/duckrabbit
+copying src/duckrabbit/audit.py -> build/lib/duckrabbit
+copying src/duckrabbit/synthetic_psychophysics.py -> build/lib/duckrabbit
+copying src/duckrabbit/manifest.py -> build/lib/duckrabbit
+copying src/duckrabbit/render.py -> build/lib/duckrabbit
+copying src/duckrabbit/registry.py -> build/lib/duckrabbit
+copying src/duckrabbit/io.py -> build/lib/duckrabbit
+copying src/duckrabbit/claims.py -> build/lib/duckrabbit
+copying src/duckrabbit/__init__.py -> build/lib/duckrabbit
+copying src/duckrabbit/inspection.py -> build/lib/duckrabbit
+copying src/duckrabbit/generators.py -> build/lib/duckrabbit
+copying src/duckrabbit/manuscript_variables.py -> build/lib/duckrabbit
+copying src/duckrabbit/publication_specs.py -> build/lib/duckrabbit
+copying src/duckrabbit/cli.py -> build/lib/duckrabbit
+copying src/duckrabbit/taxonomy.py -> build/lib/duckrabbit
+copying src/duckrabbit/canonical.py -> build/lib/duckrabbit
+copying src/duckrabbit/publication.py -> build/lib/duckrabbit
+copying src/duckrabbit/parameters.py -> build/lib/duckrabbit
+copying src/duckrabbit/artifacts.py -> build/lib/duckrabbit
+copying src/duckrabbit/errors.py -> build/lib/duckrabbit
+copying src/duckrabbit/performance.py -> build/lib/duckrabbit
+copying src/duckrabbit/urls.py -> build/lib/duckrabbit
+copying src/duckrabbit/evidence.py -> build/lib/duckrabbit
+copying src/duckrabbit/__main__.py -> build/lib/duckrabbit
+copying src/duckrabbit/serialization.py -> build/lib/duckrabbit
+copying src/duckrabbit/fixtures.py -> build/lib/duckrabbit
+copying src/duckrabbit/schema.py -> build/lib/duckrabbit
+running egg_info
+writing src/duckrabbit.egg-info/PKG-INFO
+writing dependency_links to src/duckrabbit.egg-info/dependency_links.txt
+writing entry points to src/duckrabbit.egg-info/entry_points.txt
+writing requirements to src/duckrabbit.egg-info/requires.txt
+writing top-level names to src/duckrabbit.egg-info/top_level.txt
+reading manifest file 'src/duckrabbit.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file 'src/duckrabbit.egg-info/SOURCES.txt'
+copying src/duckrabbit/py.typed -> build/lib/duckrabbit
+creating build/lib/duckrabbit/_resources
+copying src/duckrabbit/_resources/evidence_matrix.json -> build/lib/duckrabbit/_resources
+copying src/duckrabbit/_resources/references.bib -> build/lib/duckrabbit/_resources
+warning: build_py: byte-compiling is disabled, skipping.
+
+installing to build/bdist.macosx-11.0-arm64/wheel
+running install
+running install_lib
+creating build/bdist.macosx-11.0-arm64/wheel
+creating build/bdist.macosx-11.0-arm64/wheel/duckrabbit
+copying build/lib/duckrabbit/observer.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/scholarship.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/metrics.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/media.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/cover.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/formalism.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/observer_analysis.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/metadata.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/version.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/audit.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/synthetic_psychophysics.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/manifest.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/render.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/registry.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/io.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/claims.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/inspection.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/generators.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/manuscript_variables.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/publication_specs.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/cli.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/taxonomy.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/canonical.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/publication.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+creating build/bdist.macosx-11.0-arm64/wheel/duckrabbit/_resources
+copying build/lib/duckrabbit/_resources/references.bib -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit/_resources
+copying build/lib/duckrabbit/_resources/evidence_matrix.json -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit/_resources
+copying build/lib/duckrabbit/parameters.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/py.typed -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/artifacts.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/errors.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/performance.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/urls.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/evidence.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/__main__.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/serialization.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/fixtures.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+copying build/lib/duckrabbit/schema.py -> build/bdist.macosx-11.0-arm64/wheel/./duckrabbit
+warning: install_lib: byte-compiling is disabled, skipping.
+
+running install_egg_info
+Copying src/duckrabbit.egg-info to build/bdist.macosx-11.0-arm64/wheel/./duckrabbit-0.6.0-py3.15.egg-info
+running install_scripts
+creating build/bdist.macosx-11.0-arm64/wheel/duckrabbit-0.6.0.dist-info/WHEEL
+creating '/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/package-citation-final/.tmp-vgjuog5d/duckrabbit-0.6.0-py3-none-any.whl' and adding 'build/bdist.macosx-11.0-arm64/wheel' to it
+adding 'duckrabbit/__init__.py'
+adding 'duckrabbit/__main__.py'
+adding 'duckrabbit/artifacts.py'
+adding 'duckrabbit/audit.py'
+adding 'duckrabbit/canonical.py'
+adding 'duckrabbit/claims.py'
+adding 'duckrabbit/cli.py'
+adding 'duckrabbit/cover.py'
+adding 'duckrabbit/errors.py'
+adding 'duckrabbit/evidence.py'
+adding 'duckrabbit/fixtures.py'
+adding 'duckrabbit/formalism.py'
+adding 'duckrabbit/generators.py'
+adding 'duckrabbit/inspection.py'
+adding 'duckrabbit/io.py'
+adding 'duckrabbit/manifest.py'
+adding 'duckrabbit/manuscript_variables.py'
+adding 'duckrabbit/media.py'
+adding 'duckrabbit/metadata.py'
+adding 'duckrabbit/metrics.py'
+adding 'duckrabbit/observer.py'
+adding 'duckrabbit/observer_analysis.py'
+adding 'duckrabbit/parameters.py'
+adding 'duckrabbit/performance.py'
+adding 'duckrabbit/publication.py'
+adding 'duckrabbit/publication_specs.py'
+adding 'duckrabbit/py.typed'
+adding 'duckrabbit/registry.py'
+adding 'duckrabbit/render.py'
+adding 'duckrabbit/schema.py'
+adding 'duckrabbit/scholarship.py'
+adding 'duckrabbit/serialization.py'
+adding 'duckrabbit/synthetic_psychophysics.py'
+adding 'duckrabbit/taxonomy.py'
+adding 'duckrabbit/urls.py'
+adding 'duckrabbit/version.py'
+adding 'duckrabbit/_resources/evidence_matrix.json'
+adding 'duckrabbit/_resources/references.bib'
+adding 'duckrabbit-0.6.0.dist-info/licenses/LICENSE'
+adding 'duckrabbit-0.6.0.dist-info/METADATA'
+adding 'duckrabbit-0.6.0.dist-info/WHEEL'
+adding 'duckrabbit-0.6.0.dist-info/entry_points.txt'
+adding 'duckrabbit-0.6.0.dist-info/top_level.txt'
+adding 'duckrabbit-0.6.0.dist-info/RECORD'
+removing build/bdist.macosx-11.0-arm64/wheel
+Successfully built dist/wfz-release/package-citation-final/duckrabbit-0.6.0.tar.gz
+Successfully built dist/wfz-release/package-citation-final/duckrabbit-0.6.0-py3-none-any.whl

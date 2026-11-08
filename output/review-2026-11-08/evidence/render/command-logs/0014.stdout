@@ -1,0 +1,4 @@
+| Estimand | Response and model | Reference and contrast | Uncertainty |
+|------------------|------------------|------------------|------------------|
+| `\breakseq{sifi\_flash\_count\_contrast}`{=latex} | `\breakseq{forced\_choice;}`{=latex} `\breakseq{logistic\_mixed}`{=latex} | `\breakseq{sifi\_one\_beep;}`{=latex} log odds of choosing 'two': `\breakseq{sifi\_two\_beep}`{=latex} minus `\breakseq{sifi\_one\_beep}`{=latex} | 95% confidence interval |
+| `\breakseq{temporal\_binding\_offset\_contrast}`{=latex} | `\breakseq{forced\_choice;}`{=latex} `\breakseq{logistic\_mixed}`{=latex} | `\breakseq{temporal\_sync;}`{=latex} log odds of choosing 'late': `\breakseq{temporal\_early}`{=latex} and `\breakseq{temporal\_late}`{=latex} versus `\breakseq{temporal\_sync}`{=latex} (categorical offsets -120/0/+120 ms) | 95% confidence interval |

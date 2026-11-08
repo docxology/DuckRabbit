@@ -13,10 +13,7 @@ import json
 from pathlib import Path
 import re
 
-try:
-    import tomllib
-except ModuleNotFoundError:
-    import tomli as tomllib
+import tomllib
 
 from .version import __version__
 from .urls import DOI_RESOLVER_PREFIX, ORCID_PREFIX
@@ -92,7 +89,16 @@ def _yaml_scalar(text: str, key: str, *, allow_empty: bool = False) -> str:
     return match.group(1).strip()
 
 
+def _single_yaml_author_block(text: str, source: str) -> str:
+    """This release has one named author across every metadata surface."""
+    block = re.search(r"^authors:[ \t]*\n(.*?)(?=^[A-Za-z][A-Za-z0-9_-]*:|\Z)", text, re.MULTILINE | re.DOTALL)
+    if block is None or len(re.findall(r"^[ \t]*-[ \t]+", block[1], re.MULTILINE)) != 1:
+        raise ValueError(f"{source} must declare exactly one author")
+    return block[1]
+
+
 def _yaml_author(text: str) -> tuple[str, str]:
+    text = _single_yaml_author_block(text, "manuscript/config.yaml")
     match = re.search(
         r"^\s*- name:\s*[\"']?([^\"'\n]+?)[\"']?\s*$.*?^\s+orcid:\s*[\"']?([^\"'\n]+?)[\"']?\s*$",
         text,
@@ -112,9 +118,10 @@ def _cff(text: str) -> dict[str, object]:
             raise ValueError(f"CITATION.cff is missing {key}")
         return match.group(1).strip()
 
-    family = re.search(r"^\s*-\s*family-names:\s*([^\n]+)$", text, re.MULTILINE)
-    given = re.search(r"^\s+given-names:\s*([^\n]+)$", text, re.MULTILINE)
-    orcid = re.search(r"^\s+orcid:\s*[\"']?([^\"'\n]+?)[\"']?\s*$", text, re.MULTILINE)
+    authors = _single_yaml_author_block(text, "CITATION.cff")
+    family = re.search(r"^\s*-\s*family-names:\s*([^\n]+)$", authors, re.MULTILINE)
+    given = re.search(r"^\s+given-names:\s*([^\n]+)$", authors, re.MULTILINE)
+    orcid = re.search(r"^\s+orcid:\s*[\"']?([^\"'\n]+?)[\"']?\s*$", authors, re.MULTILINE)
     if not family or not given or not orcid:
         raise ValueError("CITATION.cff must declare family, given, and ORCID")
     return {
@@ -130,8 +137,8 @@ def _cff(text: str) -> dict[str, object]:
 
 def _first_record(payload: dict[str, object], key: str, source: str) -> dict[str, object]:
     records = payload.get(key)
-    if not isinstance(records, list) or not records or not all(isinstance(record, dict) for record in records):
-        raise ValueError(f"{source} {key} must contain a non-empty array of objects")
+    if not isinstance(records, list) or len(records) != 1 or not isinstance(records[0], dict):
+        raise ValueError(f"{source} {key} must contain exactly one author object")
     return records[0]
 
 
@@ -162,10 +169,11 @@ def validate_project_metadata(project_root: Path | None = None) -> MetadataAudit
     """Validate identity, version, license, and DOI status across sidecars."""
     root = Path(project_root) if project_root is not None else Path(__file__).resolve().parents[2]
     errors: list[str] = []
-    files = ("pyproject.toml", "CITATION.cff", "codemeta.json", ".zenodo.json")
+    manuscript_config = default_manuscript_dir(root) / "config.yaml"
+    files = ("pyproject.toml", "CITATION.cff", "codemeta.json", ".zenodo.json", manuscript_config.relative_to(root).as_posix())
     try:
         pyproject = tomllib.loads((root / "pyproject.toml").read_text(encoding="utf-8"))
-        config_text = (default_manuscript_dir(root) / "config.yaml").read_text(encoding="utf-8")
+        config_text = manuscript_config.read_text(encoding="utf-8")
         cff = _cff((root / "CITATION.cff").read_text(encoding="utf-8"))
         codemeta = _json(root, "codemeta.json")
         zenodo = _json(root, ".zenodo.json")
@@ -179,6 +187,9 @@ def validate_project_metadata(project_root: Path | None = None) -> MetadataAudit
             "author": config_author,
             "orcid": config_orcid,
         }
+        for key in ("version_doi", "version_record"):
+            if re.search(rf"^\s*{key}:", config_text, re.MULTILINE):
+                config[key] = _yaml_scalar(config_text, key, allow_empty=True)
         project = pyproject.get("project", {})
         if not isinstance(project, dict):
             raise ValueError("pyproject project must contain an object")
@@ -217,7 +228,7 @@ def validate_project_metadata(project_root: Path | None = None) -> MetadataAudit
         for source, value in orcids.items():
             if value != EXPECTED_ORCID:
                 errors.append(f"{source} ORCID disagrees with {EXPECTED_ORCID}: {value!r}")
-        versions = {"pyproject": str(project.get("version", "")), "config": config["version"], "CITATION": cff["version"], "codemeta": str(codemeta.get("version", "")), "Zenodo": str(zenodo.get("version", ""))}
+        versions = {"pyproject": str(project.get("version", "")), "config": config["version"], "CITATION": cff["version"], "codemeta": str(codemeta.get("version", "")), "codemeta softwareVersion": str(codemeta.get("softwareVersion", "")), "Zenodo": str(zenodo.get("version", ""))}
         for source, value in versions.items():
             if value != EXPECTED_VERSION:
                 errors.append(f"{source} version disagrees with {EXPECTED_VERSION}: {value!r}")
@@ -245,12 +256,22 @@ def validate_project_metadata(project_root: Path | None = None) -> MetadataAudit
         codemeta_version_doi = str(codemeta.get("identifier", "")).removeprefix(DOI_RESOLVER_PREFIX)
         if version_doi != codemeta_version_doi:
             errors.append("CITATION and codemeta version DOI disagree")
+        if "version_doi" in config and config["version_doi"] != version_doi:
+            errors.append("manuscript version_doi disagrees with CITATION version DOI")
+        expected_record = f"https://zenodo.org/records/{version_doi.rsplit('.', 1)[-1]}" if version_doi else ""
+        if "version_record" in config and config["version_record"] != expected_record:
+            errors.append("manuscript version_record disagrees with version DOI")
+        identifier_dois = cff["identifier_dois"]
+        if len(identifier_dois) != len(set(identifier_dois)):
+            errors.append("CITATION DOI identifiers must not contain duplicates")
         if config["doi"]:
             if not isinstance(version_doi, str) or not re.fullmatch(r"10\.5281/zenodo\.\d+", version_doi):
                 errors.append("version DOI must be a well-formed Zenodo DOI")
-            if set(cff["identifier_dois"]) != {config["doi"], version_doi}:
+            if version_doi == config["doi"]:
+                errors.append("concept and version DOI must be distinct")
+            if len(identifier_dois) != 2 or set(identifier_dois) != {config["doi"], version_doi}:
                 errors.append("CITATION DOI identifiers must include exactly the concept and version DOI")
-        elif version_doi or cff["identifier_dois"]:
+        elif version_doi or identifier_dois:
             errors.append("forthcoming metadata must not retain published DOI identifiers")
         if "XXXX" in config["doi"] or "placeholder" in config["doi"].lower():
             errors.append("fake DOI placeholder detected")

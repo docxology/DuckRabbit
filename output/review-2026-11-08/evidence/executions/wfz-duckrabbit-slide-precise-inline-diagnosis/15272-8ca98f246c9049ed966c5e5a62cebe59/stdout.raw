@@ -1,0 +1,80 @@
+05_reproducibility.md complete overlay roundtrip
+FIRST_DIFFERENCE ["root.blocks[4].c", "length", 185, 177]
+--- 
++++ 
+@@ -1123,34 +1123,44 @@
+         },
+         {
+-          "t": "Str",
+-          "c": "“the"
+-        },
+-        {
+-          "t": "Space"
+-        },
+-        {
+-          "t": "Str",
+-          "c": "file"
+-        },
+-        {
+-          "t": "Space"
+-        },
+-        {
+-          "t": "Str",
+-          "c": "can"
+-        },
+-        {
+-          "t": "Space"
+-        },
+-        {
+-          "t": "Str",
+-          "c": "be"
+-        },
+-        {
+-          "t": "Space"
+-        },
+-        {
+-          "t": "Str",
+-          "c": "downloaded.”"
++          "t": "Quoted",
++          "c": [
++            {
++              "t": "DoubleQuote"
++            },
++            [
++              {
++                "t": "Str",
++                "c": "the"
++              },
++              {
++                "t": "Space"
++              },
++              {
++                "t": "Str",
++                "c": "file"
++              },
++              {
++                "t": "Space"
++              },
++              {
++                "t": "Str",
++                "c": "can"
++              },
++              {
++                "t": "Space"
++              },
++              {
++                "t": "Str",
++                "c": "be"
++              },
++              {
++                "t": "Space"
++              },
++              {
++                "t": "Str",
++                "c": "downloaded."
++              }
++            ]
++          ]
+         },
+         {
+

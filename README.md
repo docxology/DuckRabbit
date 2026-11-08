@@ -11,23 +11,30 @@ exact canonical NPZ archive.
 
 The public repository at https://github.com/docxology/DuckRabbit carries
 the software, manuscript, evidence matrix, and
-release bundle (including the DOI-bearing PDF under `output/pdf/`). DuckRabbit
-is released under the MIT License. It is an extensible v0.5.0, not a claim
-that every known illusion has already been implemented; the catalog
-distinguishes `implemented`, `planned`, and `input_required` entries.
+historical deliveries under `output/` (see the distinct
+[artifact identities](docs/audit-2026-11-08.md#historical-pdfs--actual-downloaded-byte-verification)).
+The current development candidate is **0.6.0, unreleased**; the latest released
+version remains v0.5.0. The separately named
+[current-source review bundle](output/review-2026-11-08/) preserves historical
+outputs rather than silently replacing them. DuckRabbit uses the MIT License.
+This extensible catalog is not a claim that every known illusion is implemented;
+it distinguishes `implemented`, `planned`, and `input_required` entries.
 
 ## Authorship and citation
 
 DuckRabbit is authored by Daniel Ari Friedman of the Active Inference Institute
 (ORCID
-[`0000-0001-6232-9096`](https://orcid.org/0000-0001-6232-9096)). The release
-is archived on Zenodo:
+[`0000-0001-6232-9096`](https://orcid.org/0000-0001-6232-9096)). The historical
+v0.5.0 release is archived on Zenodo:
 
 - Concept DOI (always resolves to the latest version):
   [10.5281/zenodo.21419693](https://doi.org/10.5281/zenodo.21419693)
 - Version DOI for v0.5.0:
   [10.5281/zenodo.21419694](https://doi.org/10.5281/zenodo.21419694)
   ([Zenodo record](https://zenodo.org/records/21419694))
+
+Version 0.6.0 has no minted DOI yet (`doi_status: forthcoming`). The v0.5.0
+PDF and identifiers above remain immutable; they do not identify this source.
 
 Cite the release metadata in `CITATION.cff`, the public repository, and the
 underlying scholarship listed in `docs/manuscript/references.bib`.
@@ -37,7 +44,7 @@ underlying scholarship listed in `docs/manuscript/references.bib`.
 From this project directory:
 
 ```bash
-uv sync --extra dev
+uv sync --locked --extra dev
 uv run python -m duckrabbit list
 uv run python -m duckrabbit generate visual.duck_rabbit --output-dir output/media
 uv run python -m duckrabbit generate audio.shepard_tone --output-dir output/media
@@ -54,11 +61,21 @@ uv run python -m duckrabbit audit --output-root output
 uv run python -m duckrabbit audit --output-root output --release
 ```
 
-Python 3.10 or newer is supported. CI exercises Python 3.10, 3.12, 3.14, and 3.15,
+Python 3.11 or newer is supported. CI exercises Python 3.11, 3.12, 3.14, and 3.15,
 including an installed-wheel smoke test outside the source checkout. Built
 wheels bundle the runtime evidence snapshot and bibliography; manuscript
 rendering and checkout/release audits require the full repository. The
 `dev` extra includes every dependency required by the test suite.
+
+Metrics v3 declare code-value color/transfer semantics, full computation windows,
+and definition hashes. `mean_luminance` remains the grayscale value or
+Rec. 709-weighted RGB **proxy**, not calibrated display luminance. Synthetic
+diagnostics include null/self controls, feature ablations and temperature
+sensitivity; their finite model range is not a confidence interval or human data.
+
+Strict release auditing replays all scientific figure data and rasters, checks
+fresh resolved Markdown/variables, and refuses execution attributed to another
+checkout. These are trusted-code consistency checks, not authorship authentication.
 
 See [`docs/review-2026-10-17.md`](docs/review-2026-10-17.md) for the
 correctness and integrity review. Geometry corrections change canonical
@@ -191,6 +208,10 @@ It remains `input_required` until the fixture contract in
 - `inspection.py` treats manifests as untrusted input: it rejects missing or
   conflicting encoded metadata, unsafe output paths, malformed summaries, and
   stale canonical NPZ digests after real decode/reconstruction.
+  Supported NPZ metric declarations are replayed against decoded canonical
+  arrays; unsupported historical computation/runtime identities remain
+  `unverified`. Consumers needing metric assurance require `canonical_metrics`
+  in successful checks. Optional absent metrics receive no such claim.
 - v2 manifest summaries are relationally validated: shape, dtype, byte count,
   sample/frame rate, duration, signal range, frame deltas, and audiovisual
   offset fields must agree rather than merely being present. Public mappings
@@ -219,9 +240,9 @@ encoding is attempted.
 Figure rendering environment: the publication figures render with Pillow
 using the first available TrueType font — `$DUCKRABBIT_FONT_PATH` when set,
 otherwise common platform fonts (Arial on macOS/Windows, DejaVu Sans or
-Liberation Sans on Linux). Byte-identical regeneration is guaranteed within
-one platform/font combination; set `DUCKRABBIT_FONT_PATH` to pin the font
-explicitly.
+Liberation Sans on Linux). Byte comparisons require matching source, parameters,
+runtime/dependencies and font bindings; a platform/font name alone is not a
+cross-environment guarantee. Set `DUCKRABBIT_FONT_PATH` to pin the font explicitly.
 
 `duckrabbit synthetic-psychophysics` writes the end-to-end model diagnostic
 sidecar. Its output includes the feature schema, weights, temperature, seed,
@@ -272,6 +293,11 @@ uv run python -m duckrabbit publish --output-dir output --clean
 uv run python scripts/generate_manuscript_variables.py
 uv run python -m duckrabbit audit --output-root output --release
 ```
+
+`--clean` deletes unknown PNG/WebP files under figures and JSON/Markdown files
+under data. Use it only in a fresh, wholly owned output tree; omit it for shared
+outputs. Markdown generation is source-owned and accepts `--output-dir` for an
+isolated bundle. Typesetting remains an explicit separate renderer operation.
 
 The shared template engine stays outside the package tree. Its PDF/HTML/slides
 build and page-level validation are separate from these package checks. The

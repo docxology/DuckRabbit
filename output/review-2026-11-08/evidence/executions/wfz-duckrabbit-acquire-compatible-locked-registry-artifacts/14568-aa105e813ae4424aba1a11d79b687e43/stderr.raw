@@ -1,0 +1,21 @@
+Resolved 14 packages in 3ms
+Downloading pygments (1.2MiB)
+Downloading pillow (4.6MiB)
+ Downloaded pygments
+ Downloaded pillow
+Prepared 5 packages in 577ms
+Uninstalled 8 packages in 161ms
+Installed 5 packages in 152ms
+ - coverage==7.13.4 (from file:///Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/coverage-7.13.4-py3-none-any.whl)
+ + coverage==7.13.4
+ - duckrabbit==0.6.0 (from file:///Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit)
+ - iniconfig==2.3.0 (from file:///Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/iniconfig-2.3.0-py3-none-any.whl)
+ + iniconfig==2.3.0
+ - numpy==2.4.2
+ - pillow==13.0.0 (from file:///Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/pillow-13.0.0-cp315-cp315-macosx_11_0_arm64.whl)
+ + pillow==13.0.0
+ - pygments==2.21.0 (from file:///Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/pygments-2.21.0-py3-none-any.whl)
+ + pygments==2.21.0
+ - pytest==9.2.0 (from file:///Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/pytest-9.2.0-py3-none-any.whl)
+ + pytest==9.2.0
+ - setuptools==84.2.1 (from file:///Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/setuptools-84.2.1-py3-none-any.whl)

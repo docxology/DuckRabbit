@@ -1,0 +1,96 @@
+{
+  "data": {
+    "domains": [
+      {
+        "finite": true,
+        "maximum": 4096,
+        "maximum_inclusive": true,
+        "minimum": 8,
+        "minimum_inclusive": true,
+        "type": "PixelDimension",
+        "unit": "pixels"
+      },
+      {
+        "finite": true,
+        "maximum": 1,
+        "maximum_inclusive": true,
+        "minimum": 0,
+        "minimum_inclusive": true,
+        "type": "Luminance",
+        "unit": "normalized"
+      },
+      {
+        "finite": true,
+        "maximum": 256,
+        "maximum_inclusive": true,
+        "minimum": 2,
+        "minimum_inclusive": true,
+        "type": "GrayscaleLevels",
+        "unit": "levels"
+      },
+      {
+        "finite": true,
+        "maximum": 256,
+        "maximum_inclusive": true,
+        "minimum": 2,
+        "minimum_inclusive": true,
+        "type": "QuantizationLevels",
+        "unit": "levels"
+      },
+      {
+        "finite": true,
+        "maximum": null,
+        "maximum_inclusive": false,
+        "minimum": 0,
+        "minimum_inclusive": false,
+        "type": "FrequencyHz",
+        "unit": "Hz"
+      },
+      {
+        "finite": true,
+        "maximum": 384000,
+        "maximum_inclusive": true,
+        "minimum": 1000,
+        "minimum_inclusive": true,
+        "type": "SampleRate",
+        "unit": "samples/s"
+      },
+      {
+        "finite": true,
+        "maximum": 240,
+        "maximum_inclusive": true,
+        "minimum": 1,
+        "minimum_inclusive": true,
+        "type": "FrameRate",
+        "unit": "frames/s"
+      },
+      {
+        "finite": true,
+        "maximum": 10000,
+        "maximum_inclusive": true,
+        "minimum": -10000,
+        "minimum_inclusive": true,
+        "type": "SyncOffsetMs",
+        "unit": "ms"
+      },
+      {
+        "finite": true,
+        "maximum": 1,
+        "maximum_inclusive": true,
+        "minimum": -1,
+        "minimum_inclusive": true,
+        "type": "SpatialOffset",
+        "unit": "normalized"
+      }
+    ]
+  },
+  "figure_label": "fig:parameter_domains",
+  "figure_stem": "parameter_domains",
+  "generator": "duckrabbit.publication._parameter_domains",
+  "parameters": {
+    "figure_stem": "parameter_domains",
+    "seed": 0
+  },
+  "schema_version": "duckrabbit/figure-source/v1",
+  "seed": 0
+}

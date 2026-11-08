@@ -20,9 +20,9 @@ from .artifacts import (
     VideoSequence,
 )
 from .canonical import canonical_digest, canonical_digest_and_size
-from .errors import UnsupportedFormatError
+from .errors import DuckRabbitError, UnsupportedFormatError, VerificationError
 from .generators import default_parameters, default_registry
-from .inspection import _compare_expected_facts, inspect_media
+from .inspection import _compare_expected_facts, _compare_npz_canonical, inspect_media
 from .io import sha256_file
 from .manifest import (
     CanonicalRecord,
@@ -304,10 +304,20 @@ def generate_artifact(
                 }
             ),
         )
-        inspection = inspect_media(output_path, selected_format)
-        checks = ["encoded_sha256", "decoded_media"]
+        checks = ["encoded_sha256", "encoded_size_bytes"]
         errors: list[str] = []
-        _compare_expected_facts(manifest.artifact, inspection, errors, checks)
+        inspection = None
+        try:
+            inspection = inspect_media(output_path, selected_format)
+            checks.append("decoded_media")
+            _compare_expected_facts(manifest.artifact, inspection, errors, checks)
+            if selected_format is MediaFormat.NPZ:
+                unavailable: list[str] = []
+                _compare_npz_canonical(output_path, manifest.to_dict(), errors, checks, unavailable)
+                # Newly generated metrics must be replayable by this process.
+                errors.extend(unavailable)
+        except DuckRabbitError as exc:
+            errors.append(f"post-encode inspection failed: {exc}")
         manifest = Manifest(
             **{
                 **manifest.__dict__,
@@ -332,6 +342,8 @@ def generate_artifact(
         }
         with _atomic_destination(manifest_path, overwrite=spec.overwrite) as temporary_path:
             temporary_path.write_text(json.dumps(saved_payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if manifest.verification.status is VerificationStatus.FAILED:
+        raise VerificationError("post-encode verification failed: " + "; ".join(manifest.verification.errors))
     return artifact, payload
 
 

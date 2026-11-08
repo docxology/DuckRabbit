@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render_resume_uri.py", line 29, in <module>
+    slide_audit=make_slide_overlay(manuscript,slide_source,Path(tools["pandoc"]["path"]))
+  File "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/build_slide_overlay.py", line 373, in make_slide_overlay
+    _require_equal(adapted, decoded, section.name + " complete overlay roundtrip")
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/build_slide_overlay.py", line 76, in _require_equal
+    raise ValueError(description + ": semantic JSON changed (expected " +
+                     _digest(_normalize(expected)) + ", got " +
+                     _digest(_normalize(actual)) + ")")
+ValueError: 99_references.md complete overlay roundtrip: semantic JSON changed (expected e42a149893841d84b62c332e22702e6628e7cde1fbf7e7df1d6b69660b4853f6, got 22f64b9e8c64e611aa000122ac0acb6e302e8fcd6af9c579838778ecbbd618a0)

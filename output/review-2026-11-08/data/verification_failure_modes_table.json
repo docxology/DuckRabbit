@@ -1,0 +1,44 @@
+{
+  "body": "| altered encoded file | recompute encoded SHA-256 | fail |\n| stale canonical digest | recompute canonical little-endian float32 digest | fail |\n| incorrect decoded dimensions | compare inspection facts with manifest summary | fail |\n| stream timing mismatch | compare duration/timebase and declared sync offset | fail |\n| unsupported backend | capability probe before encoding | explicit capability error |\n| conflicting format requests | reject format_name/output_spec disagreement | parameter error |",
+  "caption": "Negative controls define package failure behavior, not scientific null results.",
+  "headers": [
+    "Failure mode",
+    "Control",
+    "Expected result"
+  ],
+  "label": "tbl:verification",
+  "records": [
+    {
+      "control": "recompute encoded SHA-256",
+      "failure_mode": "altered encoded file",
+      "result": "fail"
+    },
+    {
+      "control": "recompute canonical little-endian float32 digest",
+      "failure_mode": "stale canonical digest",
+      "result": "fail"
+    },
+    {
+      "control": "compare inspection facts with manifest summary",
+      "failure_mode": "incorrect decoded dimensions",
+      "result": "fail"
+    },
+    {
+      "control": "compare duration/timebase and declared sync offset",
+      "failure_mode": "stream timing mismatch",
+      "result": "fail"
+    },
+    {
+      "control": "capability probe before encoding",
+      "failure_mode": "unsupported backend",
+      "result": "explicit capability error"
+    },
+    {
+      "control": "reject format_name/output_spec disagreement",
+      "failure_mode": "conflicting format requests",
+      "result": "parameter error"
+    }
+  ],
+  "schema_version": "duckrabbit/table/v1",
+  "title": "Verification failure modes and negative controls"
+}

@@ -1,0 +1,221 @@
+{
+  "figure_count": 15,
+  "figures": [
+    {
+      "height_px": 760,
+      "label": "fig:architecture",
+      "mode": "RGB",
+      "path": "output/figures/architecture.png",
+      "scales": [
+        "full",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 135,
+      "thumbnail_sha256": "bbb7177df8812f791dc45e50c77f8ff998fc10f4bea8cb5e453046fd1bec628c",
+      "thumbnail_width_px": 320,
+      "width_px": 1800
+    },
+    {
+      "height_px": 1700,
+      "label": "fig:catalog_matrix",
+      "mode": "RGB",
+      "path": "output/figures/catalog_matrix.png",
+      "scales": [
+        "full",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 286,
+      "thumbnail_sha256": "960fada2d4401fcc3e7066bc40f47ebe69f898f92facb60f232796725361cd6f",
+      "thumbnail_width_px": 320,
+      "width_px": 1900
+    },
+    {
+      "height_px": 1770,
+      "label": "fig:visual_panel",
+      "mode": "RGB",
+      "path": "output/figures/visual_panel.png",
+      "scales": [
+        "full",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 298,
+      "thumbnail_sha256": "924ae4963b0e2f9903200d7edc3947c55e13a1161ddaaf23d8d81dbd0c8da4ec",
+      "thumbnail_width_px": 320,
+      "width_px": 1900
+    },
+    {
+      "height_px": 1050,
+      "label": "fig:visual_sweep",
+      "mode": "RGB",
+      "path": "output/figures/visual_sweep.png",
+      "scales": [
+        "full",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 187,
+      "thumbnail_sha256": "a39445e2dc7df10f976edc7fda154d7ddd85611e26411c992d1685a46e22de01",
+      "thumbnail_width_px": 320,
+      "width_px": 1800
+    },
+    {
+      "height_px": 820,
+      "label": "fig:temporal_sequence",
+      "mode": "RGB",
+      "path": "output/figures/temporal_sequence.png",
+      "scales": [
+        "full",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 138,
+      "thumbnail_sha256": "be831ca2cc5ae53be4b2de63beab18c9106aea98dcda5f19de6313a922e91f81",
+      "thumbnail_width_px": 320,
+      "width_px": 1900
+    },
+    {
+      "height_px": 1650,
+      "label": "fig:audio_signals",
+      "mode": "RGB",
+      "path": "output/figures/audio_signals.png",
+      "scales": [
+        "full",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 278,
+      "thumbnail_sha256": "2a132984ceb7d5440ab508cbef5ba0953a650bb026a557fd12a8c2418641c174",
+      "thumbnail_width_px": 320,
+      "width_px": 1900
+    },
+    {
+      "height_px": 1020,
+      "label": "fig:audiovisual_timeline",
+      "mode": "RGB",
+      "path": "output/figures/audiovisual_timeline.png",
+      "scales": [
+        "full",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 172,
+      "thumbnail_sha256": "0a885d49e034a9049305e150e1ccf1fa420bb1c8300ad52881239256a2c815da",
+      "thumbnail_width_px": 320,
+      "width_px": 1900
+    },
+    {
+      "height_px": 900,
+      "label": "fig:encoding_verification",
+      "mode": "RGB",
+      "path": "output/figures/encoding_verification.png",
+      "scales": [
+        "full",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 152,
+      "thumbnail_sha256": "55f63d927a1118dfb61604cb72fde3c4fd6d468c18b25a9616a513fd25631046",
+      "thumbnail_width_px": 320,
+      "width_px": 1900
+    },
+    {
+      "height_px": 1050,
+      "label": "fig:synthetic_psychophysics",
+      "mode": "RGB",
+      "path": "output/figures/synthetic_psychophysics.png",
+      "scales": [
+        "full",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 177,
+      "thumbnail_sha256": "95b0ebe32a1798d5d364a3d9099d07344ccec951fe158abac83f649faa0233ef",
+      "thumbnail_width_px": 320,
+      "width_px": 1900
+    },
+    {
+      "height_px": 1050,
+      "label": "fig:claim_boundary",
+      "mode": "RGB",
+      "path": "output/figures/claim_boundary.png",
+      "scales": [
+        "full",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 177,
+      "thumbnail_sha256": "99bd268c774bd8cf2dff080063c40637fd9a98b24af38f41b2785a3364c04759",
+      "thumbnail_width_px": 320,
+      "width_px": 1900
+    },
+    {
+      "height_px": 2320,
+      "label": "fig:scholarship_map",
+      "mode": "RGB",
+      "path": "output/figures/scholarship_map.png",
+      "scales": [
+        "full",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 320,
+      "thumbnail_sha256": "ab97c58aa1ac16a579cf6ce329aa96689f35e4dce77189c2c746d5921699dbb4",
+      "thumbnail_width_px": 283,
+      "width_px": 2050
+    },
+    {
+      "height_px": 1840,
+      "label": "fig:formalism_traceability",
+      "mode": "RGB",
+      "path": "output/figures/formalism_traceability.png",
+      "scales": [
+        "full",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 287,
+      "thumbnail_sha256": "347f70fceb85a8178c969a8a62914da70317eec16ba4903e9b94def32eaafde6",
+      "thumbnail_width_px": 320,
+      "width_px": 2050
+    },
+    {
+      "height_px": 1250,
+      "label": "fig:metrics_dashboard",
+      "mode": "RGB",
+      "path": "output/figures/metrics_dashboard.png",
+      "scales": [
+        "full",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 205,
+      "thumbnail_sha256": "f5999af7b73b3fa956c501127bc6097ffd5b18aedc6a71f27fd602dd0ed5a928",
+      "thumbnail_width_px": 320,
+      "width_px": 1950
+    },
+    {
+      "height_px": 1300,
+      "label": "fig:parameter_domains",
+      "mode": "RGB",
+      "path": "output/figures/parameter_domains.png",
+      "scales": [
+        "full",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 213,
+      "thumbnail_sha256": "09425c26b9491e83cc26e64ae44ab2325ec66e094642d71a3ef15ead3bc2ee5c",
+      "thumbnail_width_px": 320,
+      "width_px": 1950
+    },
+    {
+      "height_px": 1320,
+      "label": "fig:observer_protocol",
+      "mode": "RGB",
+      "path": "output/figures/observer_protocol.png",
+      "scales": [
+        "full",
+        "thumbnail"
+      ],
+      "thumbnail_height_px": 206,
+      "thumbnail_sha256": "060aef6c5bc8d081bd427a6f96c997427f17ca29fa3be5059b0beb8f2ba18dab",
+      "thumbnail_width_px": 320,
+      "width_px": 2050
+    }
+  ],
+  "scales": [
+    "full",
+    "publication_column",
+    "thumbnail"
+  ],
+  "schema_version": "duckrabbit/visual-qa/v1"
+}

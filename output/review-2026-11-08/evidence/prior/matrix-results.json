@@ -1,0 +1,314 @@
+[
+  {
+    "name": "build-final",
+    "argv": [
+      "uv",
+      "build",
+      "--offline",
+      "--no-build-isolation",
+      "--python",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "--out-dir",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/package-final"
+    ],
+    "returncode": 0,
+    "seconds": 0.5507788750110194
+  },
+  {
+    "name": "venv-3.11",
+    "argv": [
+      "uv",
+      "venv",
+      "--offline",
+      "--python",
+      "/Users/friedman/.local/share/uv/python/cpython-3.11.18-macos-aarch64-none/bin/python3.11",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.11"
+    ],
+    "returncode": 0,
+    "seconds": 0.0095725420396775
+  },
+  {
+    "name": "install-3.11",
+    "argv": [
+      "uv",
+      "pip",
+      "install",
+      "--offline",
+      "--no-deps",
+      "--python",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.11/bin/python",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/package-final/duckrabbit-0.6.0-py3-none-any.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/coverage-7.13.4-cp311-cp311-macosx_11_0_arm64.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/iniconfig-2.3.0-py3-none-any.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/numpy-2.4.2-cp311-cp311-macosx_11_0_arm64.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/packaging-26.0-py3-none-any.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/pillow-13.0.0-cp311-cp311-macosx_11_0_arm64.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/pluggy-1.6.0-py3-none-any.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/pygments-2.21.0-py3-none-any.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/pytest-9.2.0-py3-none-any.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/pytest_cov-7.0.0-py3-none-any.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/pyyaml-6.0.3-cp311-cp311-macosx_11_0_arm64.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/ruff-0.15.21-py3-none-macosx_11_0_arm64.whl"
+    ],
+    "returncode": 0,
+    "seconds": 0.7361627090140246
+  },
+  {
+    "name": "deps-3.11",
+    "argv": [
+      "uv",
+      "pip",
+      "check",
+      "--python",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.11/bin/python"
+    ],
+    "returncode": 0,
+    "seconds": 0.009918292053043842
+  },
+  {
+    "name": "suite-3.11",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.11/bin/python",
+      "-B",
+      "-m",
+      "pytest",
+      "tests",
+      "--cov=duckrabbit",
+      "--cov-report=term-missing",
+      "--cov-report=json:/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/coverage-3.11.json"
+    ],
+    "returncode": 0,
+    "seconds": 93.618115417019
+  },
+  {
+    "name": "venv-3.12",
+    "argv": [
+      "uv",
+      "venv",
+      "--offline",
+      "--python",
+      "/Users/friedman/.local/share/uv/python/cpython-3.12.16-macos-aarch64-none/bin/python3.12",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.12"
+    ],
+    "returncode": 0,
+    "seconds": 0.040913207980338484
+  },
+  {
+    "name": "install-3.12",
+    "argv": [
+      "uv",
+      "pip",
+      "install",
+      "--offline",
+      "--no-deps",
+      "--python",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.12/bin/python",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/package-final/duckrabbit-0.6.0-py3-none-any.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/coverage-7.13.4-cp312-cp312-macosx_11_0_arm64.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/iniconfig-2.3.0-py3-none-any.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/numpy-2.4.2-cp312-cp312-macosx_11_0_arm64.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/packaging-26.0-py3-none-any.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/pillow-13.0.0-cp312-cp312-macosx_11_0_arm64.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/pluggy-1.6.0-py3-none-any.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/pygments-2.21.0-py3-none-any.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/pytest-9.2.0-py3-none-any.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/pytest_cov-7.0.0-py3-none-any.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/pyyaml-6.0.3-cp312-cp312-macosx_11_0_arm64.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/ruff-0.15.21-py3-none-macosx_11_0_arm64.whl"
+    ],
+    "returncode": 0,
+    "seconds": 0.5203488749684766
+  },
+  {
+    "name": "deps-3.12",
+    "argv": [
+      "uv",
+      "pip",
+      "check",
+      "--python",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.12/bin/python"
+    ],
+    "returncode": 0,
+    "seconds": 0.009133542014751583
+  },
+  {
+    "name": "suite-3.12",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.12/bin/python",
+      "-B",
+      "-m",
+      "pytest",
+      "tests",
+      "--cov=duckrabbit",
+      "--cov-report=term-missing",
+      "--cov-report=json:/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/coverage-3.12.json"
+    ],
+    "returncode": 0,
+    "seconds": 96.51934491598513
+  },
+  {
+    "name": "venv-3.14",
+    "argv": [
+      "uv",
+      "venv",
+      "--offline",
+      "--python",
+      "/Users/friedman/.local/share/uv/python/cpython-3.14.10-macos-aarch64-none/bin/python3.14",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.14"
+    ],
+    "returncode": 0,
+    "seconds": 0.029946916038170457
+  },
+  {
+    "name": "install-3.14",
+    "argv": [
+      "uv",
+      "pip",
+      "install",
+      "--offline",
+      "--no-deps",
+      "--python",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.14/bin/python",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/package-final/duckrabbit-0.6.0-py3-none-any.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/coverage-7.13.4-cp314-cp314-macosx_11_0_arm64.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/iniconfig-2.3.0-py3-none-any.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/numpy-2.4.2-cp314-cp314-macosx_11_0_arm64.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/packaging-26.0-py3-none-any.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/pillow-13.0.0-cp314-cp314-macosx_11_0_arm64.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/pluggy-1.6.0-py3-none-any.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/pygments-2.21.0-py3-none-any.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/pytest-9.2.0-py3-none-any.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/pytest_cov-7.0.0-py3-none-any.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/pyyaml-6.0.3-cp314-cp314-macosx_11_0_arm64.whl",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/wheels/ruff-0.15.21-py3-none-macosx_11_0_arm64.whl"
+    ],
+    "returncode": 0,
+    "seconds": 0.5438437089906074
+  },
+  {
+    "name": "deps-3.14",
+    "argv": [
+      "uv",
+      "pip",
+      "check",
+      "--python",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.14/bin/python"
+    ],
+    "returncode": 0,
+    "seconds": 0.01001383300172165
+  },
+  {
+    "name": "suite-3.14",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/compat-3.14/bin/python",
+      "-B",
+      "-m",
+      "pytest",
+      "tests",
+      "--cov=duckrabbit",
+      "--cov-report=term-missing",
+      "--cov-report=json:/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/coverage-3.14.json"
+    ],
+    "returncode": 0,
+    "seconds": 86.45913004199974
+  },
+  {
+    "name": "suite-3.15",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "-m",
+      "pytest",
+      "tests",
+      "--cov=duckrabbit",
+      "--cov-report=term-missing",
+      "--cov-report=json:/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/coverage-final.json"
+    ],
+    "returncode": 0,
+    "seconds": 85.21555962500861
+  },
+  {
+    "name": "ruff-final",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "-m",
+      "ruff",
+      "check",
+      "src",
+      "scripts",
+      "tests"
+    ],
+    "returncode": 0,
+    "seconds": 0.0281514169764705
+  },
+  {
+    "name": "publication-final",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "scripts/generate_publication_outputs.py",
+      "--output-dir",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/current-final"
+    ],
+    "returncode": 0,
+    "seconds": 2.062019583012443
+  },
+  {
+    "name": "manuscript-final",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "scripts/generate_manuscript_variables.py",
+      "--output-dir",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/current-final"
+    ],
+    "returncode": 0,
+    "seconds": 0.2691787079675123
+  },
+  {
+    "name": "scholarship-offline-final",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "scripts/validate_scholarship.py"
+    ],
+    "returncode": 0,
+    "seconds": 0.16136470797937363
+  },
+  {
+    "name": "release-audit-final",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "-m",
+      "duckrabbit",
+      "audit",
+      "--output-root",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/current-final",
+      "--release"
+    ],
+    "returncode": 0,
+    "seconds": 1.5516455409815535
+  },
+  {
+    "name": "profile-native",
+    "argv": [
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python",
+      "-B",
+      "scripts/profile_workloads.py",
+      "--workloads",
+      "canonical",
+      "video_metrics",
+      "observer",
+      "--iterations",
+      "1",
+      "--profile",
+      "--memory",
+      "--output-dir",
+      "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/performance-final"
+    ],
+    "returncode": 0,
+    "seconds": 0.4675082080066204
+  }
+]

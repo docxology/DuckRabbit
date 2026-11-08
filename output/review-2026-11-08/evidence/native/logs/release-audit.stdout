@@ -1,0 +1,29 @@
+{
+  "checks": [
+    "executing_source",
+    "taxonomy",
+    "metadata",
+    "evidence",
+    "formalism",
+    "generators",
+    "figure_registry",
+    "cover",
+    "publication_bundle",
+    "visual_qa",
+    "publication_report",
+    "publication_derivation",
+    "manuscript_delivery"
+  ],
+  "error_count": 0,
+  "generated_artifacts": 17,
+  "issue_count": 0,
+  "issues": [],
+  "schema_version": "duckrabbit/audit/v1",
+  "source_binding": {
+    "package_version": "0.6.0",
+    "python": "3.15.2",
+    "source_sha256": "459e77f7fb6d9715887ef1b9fdfec854a58eefcf6813441e9afda3f0e86115fe"
+  },
+  "status": "passed",
+  "warning_count": 0
+}

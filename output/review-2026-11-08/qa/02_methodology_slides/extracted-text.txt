@@ -1,0 +1,199 @@
+Methodology
+
+Methodology I
+Numbered-table references point to the canonical manuscript ; they
+are not standalone local deck numbers.
+
+Request and canonical artifact
+
+Request and canonical artifact I
+DuckRabbit starts from a typed request
+𝑞 = (𝑖, 𝜃, 𝑠, 𝑒) (1)
+where 𝑖 is an illusion identifier, 𝜃 is an immutable parameter object,
+𝑠 is a deterministic seed, and 𝑒 is an optional encoding request. A
+registered generator maps the request to a canonical artifact:
+𝐴 = 𝐺 𝑖(𝜃; 𝑠), 𝐴 ∈ {𝐼, 𝑋, 𝑉 , 𝐴𝑉 } (2)
+The four artifact types are an image frame 𝐼, audio buffer 𝑋,
+video sequence 𝑉 , and audiovisual timeline 𝐴𝑉 . The generator
+core is independent of Pillow, WA V containers, GIF, MP4, and
+ffmpeg. Each artifact retains its shape, dtype, units, clock,
+channels, and timing offsets.
+
+Typed parameter domains
+
+Typed parameter domains I
+Value objects validate finite ranges at construction time. Image
+parameters include dimensions, color mode, luminance bounds,
+grayscale levels, and quantization levels. Audio parameters include
+frequency, phase, amplitude, duration, envelope, sample rate,
+channel count, and PCM depth. Video parameters include
+dimensions, rational frame rate, frame count, and temporal offsets.
+Audiovisual parameters compose audio and video clocks with
+declared synchronization and spatial discrepancies.
+
+Typed parameter domains I
+The canonical sample count and frame timestamps are explicit. For
+audio duration 𝑇 and sample rate 𝑓𝑠, 𝑁 is rounded once at
+construction. For a video with frame rate 𝑓𝑟, frame index 𝑘 is
+timestamped on the presentation clock. The audio-minus-video
+sign convention is explicit:
+𝑁 = round(𝑓𝑠𝑇 ), 𝑡 𝑘 = 𝑘/𝑓𝑟, Δ 𝐴𝑉 = 𝑡audio − 𝑡video (3)
+The package rejects non-finite values, invalid shapes, out-of-range
+samples, aliasing frequencies, incompatible channel layouts,
+impossible frame rates, and contradictory encoding requests.
+
+Canonical serialization and provenance
+
+Canonical serialization and provenance I
+Canonical arrays are contiguous little-endian float32 buffers with
+explicit metadata. Serialization includes the array values, shape,
+clock, and units; metadata are part of the identity rather than an
+informal annotation:
+𝑐(𝐴) = SerializeLE,float32(𝐴, shape, clock, units), ℎ 𝑐(𝐴) = 𝐻(𝑐(𝐴)) (4)
+The canonical digest is independent of PNG, WA V, GIF, MP4, and
+NPZ delivery choices. The v2 manifest records the parameter
+schema, serialized parameters, taxonomy, evidence boundary,
+canonical facts, objective metrics, encoding profile, backend
+identity, decoded inspection, and verification status. A v1 reader
+remains available and marks upconverted records unverified until
+the encoded file is re-inspected.
+
+Canonical serialization and provenance I
+This separation follows a reproducibility principle from
+computational research: a result is not made reproducible merely
+by publishing a final file; the executable inputs, transformation
+steps, versioned software, and provenance must remain identifiable
+(Sandve et al. 2013; Wilson et al. 2014). The manifest therefore
+records the construction identity and delivery identity separately. A
+downstream user can cite the software version and regenerate the
+canonical object, or cite a particular encoded artifact when the
+delivery file itself is the relevant research object (Smith et al.
+2016).
+
+Canonical serialization and provenance I
+The distinction also follows the older psychophysical problem of
+relating a controlled physical increment to a measured sensation.
+Fechner’s 1860 treatise made measurement, stimulus control, and
+response comparison explicit parts of the scientific object (Fechner
+1860). DuckRabbit adopts the stimulus-control and provenance
+aspects of that tradition, but it does not pretend that a canonical
+digest or media metric is a sensation measurement: observer data
+still require a task, presentation conditions, and a registered
+analysis.
+
+Encoding and verification
+
+Encoding and verification I
+For an encoding request 𝑒, the delivered file 𝐹 and decoded
+inspection 𝐼 are:
+𝐹 = 𝐸 𝑒(𝐴), 𝐼 = 𝐷(𝐹 ), 𝑉 (𝐹 , 𝑀) ∈ { verified, failed, unverified} (5)
+The manifest 𝑀 binds 𝐴, 𝐹 , and 𝐼 through hashes, typed
+summaries, and format-specific tolerances. PNG, GIF, WA V, and
+NPZ use local deterministic adapters. MP4 and muxed audiovisual
+output use an optional ffmpeg backend. Missing backends are
+reported as capability errors. Writes are atomic, parent directories
+are created, overwrite behavior is explicit, and a conflicting format
+argument is rejected.
+
+Encoding and verification I
+Canonical NPZ arrays must retain little-endian float32 storage; the
+reader and inspector reject float64, big-endian or integer
+replacements instead of silently coercing their values into a
+canonical-looking artifact.
+For NPZ, verification replays declared metrics only under the
+supported computation, implementation-source and NumPy
+identities. Missing optional metrics receive no metric-verification
+claim; unsupported historical identities remain unverified, not
+relabeled current or falsely classified as corruption. A
+metric-specific successful check is required to infer measured-value
+agreement. Other encodings retain their disclosed
+quantization/decoded-fact boundary.
+
+Objective metric definitions
+
+Objective metric definitions I
+MetricRecord and MetricSuite carry a metric name, value, unit,
+computation version, source artifact, tolerance, and claim level.
+Luminance statistics, quantization levels, RMS and peak
+amplitude, spectral summaries, frame deltas, stream durations, and
+synchronization offsets are physical or decoded-media facts. They
+are not observer responses and cannot by themselves establish an
+illusion effect. For canonical image samples 𝑦1, … , 𝑦𝑛, audio
+samples 𝑥1, … , 𝑥𝑛, and adjacent video frames 𝑌𝑘, 𝑌𝑘+1, the
+principal metrics are:
+
+Objective metric definitions I
+For images, 𝑦 is the grayscale code value or the Rec. 709-weighted
+RGB channel-value proxy; no RGB transfer decoding or display
+calibration is assumed. The name mean_luminance is an API
+label, not a photometric measurement. For temporal differences,
+𝑌𝑘 denotes the complete raw channel array, not the image
+luminance proxy. RGB audiovisual plots reuse the image proxy.
+Adjacent-frame subtraction and its float32 mean use C-contiguous
+scratch space, matching the canonical layout. This removes
+layout-dependent summary drift across exact NPZ round trips;
+Fortran/mixed-layout input rounding can therefore differ from older
+versions, without changing pixels or canonical byte identity.
+
+Objective metric definitions I
+𝜇𝑌 = 1𝑛 𝑛∑𝑗=1 𝑦𝑗, 𝜎 𝑌 = √√√⎷ 1𝑛 𝑛∑𝑗=1(𝑦𝑗 − 𝜇𝑌 )2, 𝑅𝑀𝑆 𝑋 = √√√⎷ 1𝑛 𝑛∑𝑗=1 𝑥2𝑗 (6)
+𝐷𝑘 = 1|𝑌 | ∑𝑝 |𝑌𝑘+1(𝑝) − 𝑌𝑘(𝑝)|, centroid(𝑋) = ∑𝑓 𝑓 𝑀𝑋(𝑓)max(∑𝑓 𝑀𝑋(𝑓), 10−12) (7)
+Here 𝑀𝑋(𝑓) = 𝐶 −1 ∑𝐶𝑐=1 | rFFT(𝑋𝑐)(𝑓)| is the mean of the
+channel-wise magnitudes of the unwindowed, one-sided real FFT,
+including DC and the Nyquist bin when present. It is not a power
+or energy spectrum, nor the FFT of a channel-averaged waveform.
+Frequencies are in Hz at the canonical sample rate; the same
+magnitude weights define the spectral bandwidth. The
+denominator floor yields a zero centroid for silence. The illustrative
+audio atlas uses separately disclosed display-band aggregation; it
+does not replace this full-resolution metric computation.
+
+Objective metric definitions I
+The level count is the cardinality of the finite-value set after
+canonical quantization; an empty or non-finite artifact is invalid
+rather than assigned a default statistic. Every generated metric
+carries units, full-window and channel/transfer definitions, NumPy
+and implementation identity, and SHA-256 hashes of the
+computation/window definitions. The implementation fingerprint
+covers metrics.py and artifacts.py, not NumPy binaries, CPU
+behavior or a historical platform. These identify the calculation,
+not stimulus bytes (identified separately by canonical digest),
+calibration, or authorship. Observer interpretations remain separate
+typed claims.
+
+Objective metric definitions I
+For a future observer study, the estimand is defined by the protocol
+rather than by the generator itself:
+𝜓 = 𝔼[𝑌 ∣ condition, protocol] (8)
+This symbol names a planned analysis target only. DuckRabbit
+ships no human responses, fitted coeﬀicients, or validated
+observer-level estimate.
+
+Synthetic psychophysics boundary I
+DuckRabbit’s transparent synthetic-psychophysics diagnostic
+supports method orchestration. It is a hand-specified feature
+observer, not a pretrained vision model and not an empirical
+psychophysics substitute. Let 𝜙(𝐴) be the bounded feature vector
+extracted from a canonical artifact, 𝑤 the code-owned feature
+weights, and 𝜏 > 0 the declared temperature:
+𝑝𝑀 (𝑐 ∣ 𝐴 𝑟, 𝐴𝑐) = 𝜎 ( clip ( 𝑤T𝜙(𝐴𝑐) − 𝑤T𝜙(𝐴𝑟)𝜏 , −60, 60)) (9)
+The enclosing diagnostic serializes model identity/version and
+fingerprint, actual feature values, weights, temperature, seed,
+calibration statement, canonical digests, numerical clipping/tie
+rules and human_data=false. Detached predictions retain scores
+and feature names but require that enclosing specification to
+reconstruct the model. Exact-self and all-zero-weight controls yield
+0.5; ties choose the comparison deterministically.
+
+Synthetic psychophysics boundary I
+The default sweep also zeroes each declared feature weight and
+varies temperature by factors 0.5, 1 and 2. Five image features are
+active; nine other ablations and the 1-times temperature reproduce
+existing curves rather than independent evidence. The displayed
+min/max range covers only these declared configurations, including
+the null. It is model sensitivity, not an empirical confidence
+interval, a human psychometric function, or uncertainty over all
+possible models. Joint perturbations, preprocessing/quantization
+sensitivity, calibration and observer variation are not covered.
+Human work still requires task, consent, calibrated presentation,
+preregistration and actual response data.

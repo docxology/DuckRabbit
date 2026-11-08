@@ -1,0 +1,138 @@
+[
+  {
+    "file": "00_abstract.md",
+    "source_sha256": "5eff89a4e915773e91915bca12eb6a86c1f1da2acb698ec9c58e4f309c9a102f",
+    "render_source_sha256": "148c08132be686c0e54947e28b5688e1dd9182cd7f9a26124783f28faf6084c3",
+    "visible_and_literal_content_unchanged": true,
+    "roundtrip_preserved": true,
+    "reserved_anchor_renames": {}
+  },
+  {
+    "file": "01_introduction.md",
+    "source_sha256": "eed9d9d79dc9c6f907818b79d90e07e9df473fd5c6facaf528fb6878524312f1",
+    "render_source_sha256": "93be4e89f9fad22d42efd2749ccea32b5ae722e3c7241c40506cb7e4d81b9208",
+    "visible_and_literal_content_unchanged": true,
+    "roundtrip_preserved": true,
+    "reserved_anchor_renames": {}
+  },
+  {
+    "file": "02_methodology.md",
+    "source_sha256": "639f01c0d0462fad4912e002f268618dd9b28b7aced30513d5db55f84b0bfc9d",
+    "render_source_sha256": "b7d206159f2a2c6a9e17c6ac730d903ebdd29725c99930ea83e088108e19daea",
+    "visible_and_literal_content_unchanged": true,
+    "roundtrip_preserved": true,
+    "reserved_anchor_renames": {}
+  },
+  {
+    "file": "03_results.md",
+    "source_sha256": "e1cb694f16006872d3169bd402dac850bb4e469f8255a158b4b76b969768d8be",
+    "render_source_sha256": "c9efd399d61db4ac9ccb47f8e1aa17bc5adb87f910ed4f295113191aa17b0609",
+    "visible_and_literal_content_unchanged": true,
+    "roundtrip_preserved": true,
+    "reserved_anchor_renames": {}
+  },
+  {
+    "file": "04_experimental_setup.md",
+    "source_sha256": "ad4d606891f3b5cecf756e7314958239a6214a39adde2318732273104af07e40",
+    "render_source_sha256": "343907e344bfbd2d61ee4f35d59dd84d97327b277b73e7346d05c1154c46f8f3",
+    "visible_and_literal_content_unchanged": true,
+    "roundtrip_preserved": true,
+    "reserved_anchor_renames": {}
+  },
+  {
+    "file": "05_reproducibility.md",
+    "source_sha256": "4970ffd65424be7ecd1e4159326cb321b90af06930ecf25f1ba232ac7b3c9b49",
+    "render_source_sha256": "6d1ef2d640280901d419d1313e325978a6820e77a152fdfa9b9acb0644a90149",
+    "visible_and_literal_content_unchanged": true,
+    "roundtrip_preserved": true,
+    "reserved_anchor_renames": {}
+  },
+  {
+    "file": "06_scope_and_related_work.md",
+    "source_sha256": "38d94cb7b64d53ff7cb2cd526f44473973e6339880b8e6664b10027f67c92fba",
+    "render_source_sha256": "8e38e9f34eae8791efb7d939077b88bd929b91c6e6150ec42663bd92ed6b271f",
+    "visible_and_literal_content_unchanged": true,
+    "roundtrip_preserved": true,
+    "reserved_anchor_renames": {}
+  },
+  {
+    "file": "07_publication_audit.md",
+    "source_sha256": "f891ed32766ff64167d8b4b86133a8f9b68a4db2e7980a4ba6173096f532f4c7",
+    "render_source_sha256": "63c440760e0718ad492a1bd30eed20a719f854fb31ef6a53160cbe7ea2dc1ab6",
+    "visible_and_literal_content_unchanged": true,
+    "roundtrip_preserved": true,
+    "reserved_anchor_renames": {}
+  },
+  {
+    "file": "08_discussion_and_conclusion.md",
+    "source_sha256": "1dfb8370e080f323fb8fe71e9ec4e67ac75acdff4d851431f424934be6f3f8c2",
+    "render_source_sha256": "18e4a4ef23a6ed0990758ecd75ce4fa7f139e8bc6131d1a9a0b15e9f4bb5e274",
+    "visible_and_literal_content_unchanged": true,
+    "roundtrip_preserved": true,
+    "reserved_anchor_renames": {}
+  },
+  {
+    "file": "09_appendix_catalog.md",
+    "source_sha256": "b609e74b82d423a0f51e71b5b6805d343fe558f66e349b4e9e0a23e85be1328e",
+    "render_source_sha256": "840567cca47a6234791a4f04c7021bf1afc59e2fff0aa9c21a03d0bb76a4f942",
+    "visible_and_literal_content_unchanged": true,
+    "roundtrip_preserved": true,
+    "reserved_anchor_renames": {}
+  },
+  {
+    "file": "99_references.md",
+    "source_sha256": "ca5478e9e0422c728a1af6443b1b6a3b12fb701309a08b5417594205cd45ba57",
+    "render_source_sha256": "2b45024ec48c3e22ad5b62379f290e84942a737ad817e79b02784e220a7191a9",
+    "visible_and_literal_content_unchanged": true,
+    "roundtrip_preserved": true,
+    "reserved_anchor_renames": {
+      "ref-alhazen1989optics": "slide-source-alhazen1989optics",
+      "ref-berkeley1709vision": "slide-source-berkeley1709vision",
+      "ref-brugger1999duckrabbit": "slide-source-brugger1999duckrabbit",
+      "ref-bruns2019ventriloquist": "slide-source-bruns2019ventriloquist",
+      "ref-cheselden1728sight": "slide-source-cheselden1728sight",
+      "ref-dai2015chinesescience": "slide-source-dai2015chinesescience",
+      "ref-molyneux2020problem": "slide-source-molyneux2020problem",
+      "ref-deutsch1974octave": "slide-source-deutsch1974octave",
+      "ref-deutsch1986tritone": "slide-source-deutsch1986tritone",
+      "ref-earle1995zollner": "slide-source-earle1995zollner",
+      "ref-fechner1860psychophysics": "slide-source-fechner1860psychophysics",
+      "ref-fisher1967ponzo": "slide-source-fisher1967ponzo",
+      "ref-gregory1997visual": "slide-source-gregory1997visual",
+      "ref-hartcherobrien2011temporal": "slide-source-hartcherobrien2011temporal",
+      "ref-helmholtz1867optics": "slide-source-helmholtz1867optics",
+      "ref-hirst2020sound": "slide-source-hirst2020sound",
+      "ref-howe2005muller": "slide-source-howe2005muller",
+      "ref-kanizsa1976contours": "slide-source-kanizsa1976contours",
+      "ref-kircher1646light": "slide-source-kircher1646light",
+      "ref-lamprecht2020fairsoftware": "slide-source-lamprecht2020fairsoftware",
+      "ref-mcgurk1976speech": "slide-source-mcgurk1976speech",
+      "ref-morgan1999poggendorff": "slide-source-morgan1999poggendorff",
+      "ref-mruczek2015ebbinghaus": "slide-source-mruczek2015ebbinghaus",
+      "ref-mullerlyer1889optical": "slide-source-mullerlyer1889optical",
+      "ref-noppeney2018causal": "slide-source-noppeney2018causal",
+      "ref-ptolemy1996optics": "slide-source-ptolemy1996optics",
+      "ref-repp1997tritone": "slide-source-repp1997tritone",
+      "ref-riecke2011continuity": "slide-source-riecke2011continuity",
+      "ref-sandve2013simple": "slide-source-sandve2013simple",
+      "ref-mozi2023canons": "slide-source-mozi2023canons",
+      "ref-sekuler1996wertheimer": "slide-source-sekuler1996wertheimer",
+      "ref-shams2000sifi": "slide-source-shams2000sifi",
+      "ref-shepard1984scale": "slide-source-shepard1984scale",
+      "ref-smith2016software": "slide-source-smith2016software",
+      "ref-stumpf1883tonpsychology": "slide-source-stumpf1883tonpsychology",
+      "ref-vroomen2004temporal": "slide-source-vroomen2004temporal",
+      "ref-wade2017oppel": "slide-source-wade2017oppel",
+      "ref-wagemans2012gestalt": "slide-source-wagemans2012gestalt",
+      "ref-warren1970continuity": "slide-source-warren1970continuity",
+      "ref-weintraub1979ebbinghaus": "slide-source-weintraub1979ebbinghaus",
+      "ref-wertheimer1912motion": "slide-source-wertheimer1912motion",
+      "ref-wheatstone1838binocular": "slide-source-wheatstone1838binocular",
+      "ref-wilkinson2016fair": "slide-source-wilkinson2016fair",
+      "ref-wilson2014bestpractices": "slide-source-wilson2014bestpractices",
+      "ref-yildiz2022ponzo": "slide-source-yildiz2022ponzo",
+      "ref-zatorre2005missing": "slide-source-zatorre2005missing",
+      "ref-zoellner1860pseudoscopy": "slide-source-zoellner1860pseudoscopy"
+    }
+  }
+]

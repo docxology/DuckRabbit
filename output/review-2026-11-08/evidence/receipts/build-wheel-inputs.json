@@ -1,0 +1,23 @@
+[
+  {
+    "url": "https://files.pythonhosted.org/packages/ef/55/6dc6d6bb953bdfc52519a0059592c52b6e3b8ad51cf8256dffceb55b0610/setuptools-84.2.1-py3-none-any.whl",
+    "size": 876263,
+    "sha256": "ca140b45d5325a9478f880e351484f62fef15f336462e449ca0c03c873d589c2",
+    "purpose": "build backend",
+    "filename": "setuptools-84.2.1-py3-none-any.whl"
+  },
+  {
+    "url": "https://files.pythonhosted.org/packages/74/41/5d17d4058bd0cd96bcbd4d9ff0fb2e21f52702aab9a72e4a594efa18692f/numpy-2.4.2-cp311-cp311-macosx_11_0_arm64.whl",
+    "size": 14965467,
+    "sha256": "7edc794af8b36ca37ef5fcb5e0d128c7e0595c7b96a2318d1badb6fcd8ee86b1",
+    "purpose": "independent Python 3.11 locked runtime",
+    "filename": "numpy-2.4.2-cp311-cp311-macosx_11_0_arm64.whl"
+  },
+  {
+    "url": "https://files.pythonhosted.org/packages/0b/d2/2c12cb4fbb5d95f38d1001ff3d95fafcb830077018cba40e56a8f932dfbc/pillow-13.0.0-cp311-cp311-macosx_11_0_arm64.whl",
+    "size": 4856298,
+    "sha256": "37290fbef0c73e2d51d594eb78fded7dc7170d1c3ad0a890269e6fd8c8c4e061",
+    "purpose": "independent Python 3.11 locked runtime",
+    "filename": "pillow-13.0.0-cp311-cp311-macosx_11_0_arm64.whl"
+  }
+]

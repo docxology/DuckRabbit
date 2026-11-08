@@ -9,10 +9,12 @@ from pathlib import Path
 import shutil
 
 import pytest
+from PIL import Image
 
 from duckrabbit.audit import run_audit
 from duckrabbit.claims import ClaimBasis, ClaimRecord, default_claim_registry
-from duckrabbit.evidence import SourceRecord, SourceVerificationStatus
+from duckrabbit.cover import install_cover, validate_cover_manifest
+from duckrabbit.evidence import SourceRecord, SourceVerificationStatus, load_evidence_matrix
 from duckrabbit.publication import (
     generate_publication_outputs,
     publication_table_payloads,
@@ -174,7 +176,7 @@ def test_refreshed_sidecar_hash_cannot_hide_forged_provenance(mutable_bundle: Pa
 
 
 @pytest.mark.parametrize("corruption", ["evidence", "bibliography", "legacy_bibliography"])
-def test_checkout_audit_uses_selected_evidence_and_bibliography(tmp_path: Path, corruption: str) -> None:
+def test_file_only_validation_uses_selected_evidence_and_bibliography(tmp_path: Path, corruption: str) -> None:
     checkout = tmp_path / "checkout"
     for directory in ("src", "docs", "tests", "data", "experiments"):
         shutil.copytree(ROOT / directory, checkout / directory)
@@ -184,15 +186,14 @@ def test_checkout_audit_uses_selected_evidence_and_bibliography(tmp_path: Path, 
     if corruption == "legacy_bibliography":
         manuscript.rename(checkout / "manuscript")
         manuscript = checkout / "manuscript"
-    baseline = run_audit(project_root=checkout, output_root=tmp_path / "absent")
-    assert "evidence.failed" not in {issue.code for issue in baseline.errors}
+    sources, records = load_evidence_matrix(checkout / "data" / "evidence_matrix.json", bibliography_path=manuscript / "references.bib", manuscript_dir=manuscript)
+    assert "visual.duck_rabbit" in records and "gregory1997visual" in sources
     if corruption == "evidence":
         (checkout / "data" / "evidence_matrix.json").write_text("NOT JSON", encoding="utf-8")
     else:
         (manuscript / "references.bib").write_text("NOT A BIBLIOGRAPHY", encoding="utf-8")
-    report = run_audit(project_root=checkout, output_root=tmp_path / "absent")
-    assert report.status == "failed"
-    assert "evidence.failed" in {issue.code for issue in report.errors}
+    with pytest.raises(ValueError):
+        load_evidence_matrix(checkout / "data" / "evidence_matrix.json", bibliography_path=manuscript / "references.bib", manuscript_dir=manuscript)
 
 
 def _source() -> SourceRecord:
@@ -249,3 +250,189 @@ def test_claim_registry_preserves_bounded_scope_and_future_hypotheses() -> None:
     assert default_claim_registry()
     ClaimRecord("future", "Observers perceive a rabbit.", ClaimBasis.FUTURE_OBSERVER_HYPOTHESIS, ClaimLevel.OBSERVER_HYPOTHESIS, ("protocol",), "Unvalidated future hypothesis", "manuscript/x.md")
     assert len(publication_table_payloads()) == 10
+
+
+@pytest.fixture
+def supplied_cover_bundle(tmp_path: Path) -> tuple[Path, Path, dict[str, object]]:
+    source = tmp_path / "supplied.png"
+    image = Image.linear_gradient("L").resize((400, 500)).convert("RGBA")
+    image.putalpha(127)
+    image.save(source)
+    output = tmp_path / "delivery"
+    return source, output, install_cover(output, source)
+
+
+def test_supplied_cover_does_not_inherit_historical_generation_claims(supplied_cover_bundle) -> None:
+    source, output, manifest = supplied_cover_bundle
+    original = source.read_bytes()
+    assert manifest["schema_version"] == "duckrabbit/cover/v2"
+    assert manifest["source_kind"] == "supplied_editorial_image"
+    assert manifest["source_scope"] == "external_input"
+    assert manifest["source_asset_path"] == source.resolve().as_posix()
+    assert manifest["source_asset_sha256"] == hashlib.sha256(original).hexdigest()
+    assert manifest["source_asset_format"] == "PNG"
+    assert manifest["generation_provenance"]["status"] == "not_recorded"
+    assert manifest["generation_provenance"]["reported_claims"] is None
+    assert not {"model", "prompt_sha256", "selected_candidate", "previewed"} & manifest.keys()
+    with Image.open(source) as decoded, Image.open(output / "figures/cover_visualization.png") as png:
+        rgb = decoded.convert("RGB")
+        assert png.tobytes() == rgb.tobytes()
+        rgb.thumbnail((320, 400), Image.Resampling.LANCZOS)
+        with Image.open(output / "figures/cover_visualization-thumb.png") as thumbnail:
+            assert thumbnail.size == (320, 400)
+            assert thumbnail.tobytes() == rgb.tobytes()
+    assert source.read_bytes() == original
+
+
+@pytest.mark.parametrize("field,value", [
+    ("source_asset_sha256", "0" * 64),
+    ("source_kind", "supplied_editorial_image"),
+    ("generation_provenance", {"status": "confirmed", "reported_claims": None}),
+    ("previewed", False),
+])
+def test_historical_cover_rejects_forged_source_and_confirmation_claims(publication_bundle: Path, field: str, value: object) -> None:
+    manifest = _read(publication_bundle / "reports/cover_visualization.json")
+    manifest[field] = value
+    with pytest.raises(ValueError, match="source_asset_sha256|source_kind|generation"):
+        validate_cover_manifest(manifest, output_dir=publication_bundle)
+
+
+@pytest.mark.parametrize("field,value", [
+    ("prompt_sha256", "1" * 64), ("model", "authenticated-model"),
+    ("selected_candidate", 999), ("selected_candidate", 4.0),
+    ("previewed", False), ("previewed", 1),
+])
+def test_reported_cover_history_is_code_owned_but_not_authenticated(publication_bundle: Path, field: str, value: object) -> None:
+    manifest = _read(publication_bundle / "reports/cover_visualization.json")
+    assert manifest["generation_provenance"]["status"] == "reported_unverified"
+    manifest["generation_provenance"]["reported_claims"][field] = value
+    with pytest.raises(ValueError, match="generation_provenance"):
+        validate_cover_manifest(manifest, output_dir=publication_bundle)
+
+
+def test_supplied_cover_cannot_claim_historical_generation_provenance(supplied_cover_bundle, publication_bundle: Path) -> None:
+    _, output, manifest = supplied_cover_bundle
+    historical = _read(publication_bundle / "reports/cover_visualization.json")
+    manifest["generation_provenance"] = historical["generation_provenance"]
+    with pytest.raises(ValueError, match="generation_provenance"):
+        validate_cover_manifest(manifest, output_dir=output)
+
+
+@pytest.mark.parametrize("corruption", ["digest", "dimensions", "format", "source_bytes"])
+def test_cover_source_facts_are_independently_checked(supplied_cover_bundle, corruption: str) -> None:
+    source, output, manifest = supplied_cover_bundle
+    if corruption == "digest":
+        manifest["source_asset_sha256"] = "0" * 64
+    elif corruption == "dimensions":
+        manifest["dimensions_px"] = {"width": 404, "height": 505}
+        manifest["source_asset_dimensions_px"] = {"width": 404, "height": 505}
+    elif corruption == "format":
+        manifest["source_asset_format"] = "JPEG"
+    else:
+        Image.new("RGB", (400, 500), "red").save(source)
+    with pytest.raises(ValueError, match="source_asset"):
+        validate_cover_manifest(manifest, output_dir=output)
+
+
+@pytest.mark.parametrize("variant,corruption", [
+    ("png", "format"), ("webp", "format"), ("thumbnail", "format"),
+    ("png", "dimensions"), ("webp", "dimensions"), ("thumbnail", "dimensions"),
+    ("png", "pixels"), ("webp", "pixels"), ("thumbnail", "pixels"),
+])
+def test_refreshed_cover_hash_cannot_hide_wrong_media_or_pixels(supplied_cover_bundle, variant: str, corruption: str) -> None:
+    _, output, manifest = supplied_cover_bundle
+    record = manifest["variants"][variant]
+    path = output / record["path"].removeprefix("output/")
+    size = tuple(record["dimensions_px"][key] for key in ("width", "height"))
+    if corruption == "dimensions":
+        size = (size[0] + 1, size[1])
+    image = Image.new("RGB", size, "red")
+    image.save(path, format="JPEG" if corruption == "format" else record["format"])
+    record["sha256"] = hashlib.sha256(path.read_bytes()).hexdigest()
+    with pytest.raises(ValueError, match=f"variant {variant} (actual|pixels)"):
+        validate_cover_manifest(manifest, output_dir=output)
+
+
+@pytest.mark.parametrize("field,value", [
+    ("path", "output/figures/cover_visualization.png"),
+    ("format", "PNG"), ("role", "primary_image"),
+    ("dimensions_px", {"width": 320, "height": 400}),
+])
+def test_cover_variant_roles_and_distinct_filenames_are_not_interchangeable(supplied_cover_bundle, field: str, value: object) -> None:
+    _, output, manifest = supplied_cover_bundle
+    manifest["variants"]["webp"][field] = value
+    with pytest.raises(ValueError, match="variant webp"):
+        validate_cover_manifest(manifest, output_dir=output)
+
+
+def test_cover_missing_source_does_not_turn_history_into_verified_fact(supplied_cover_bundle) -> None:
+    source, output, manifest = supplied_cover_bundle
+    source.unlink()
+    checked = validate_cover_manifest(manifest, output_dir=output)
+    assert checked["generation_provenance"]["status"] == "not_recorded"
+    assert "when the source is available" in checked["provenance_boundary"]
+    record = manifest["variants"]["thumbnail"]
+    path = output / record["path"].removeprefix("output/")
+    Image.new("RGB", (320, 400), "red").save(path)
+    record["sha256"] = hashlib.sha256(path.read_bytes()).hexdigest()
+    with pytest.raises(ValueError, match="thumbnail pixels"):
+        validate_cover_manifest(manifest, output_dir=output)
+
+
+def test_cover_rejects_v1_without_compatibility_shim(supplied_cover_bundle) -> None:
+    _, output, manifest = supplied_cover_bundle
+    manifest["schema_version"] = "duckrabbit/cover/v1"
+    with pytest.raises(ValueError, match="schema version"):
+        validate_cover_manifest(manifest, output_dir=output)
+
+
+@pytest.mark.parametrize("size", [(80, 100), (403, 500), (400, 503)])
+def test_cover_thumbnail_rounding_and_no_upscaling(tmp_path: Path, size: tuple[int, int]) -> None:
+    source = tmp_path / "source.png"
+    image = Image.linear_gradient("L").resize(size).convert("RGB")
+    image.save(source)
+    manifest = install_cover(tmp_path / "out", source)
+    image.thumbnail((320, 400), Image.Resampling.LANCZOS)
+    assert manifest["variants"]["thumbnail"]["dimensions_px"] == {"width": image.width, "height": image.height}
+    validate_cover_manifest(manifest, output_dir=tmp_path / "out")
+
+
+def test_cover_installation_rejects_output_symlink_escape(tmp_path: Path) -> None:
+    source = tmp_path / "source.png"
+    Image.new("RGB", (80, 100), "blue").save(source)
+    outside = tmp_path / "outside"
+    outside.mkdir()
+    output = tmp_path / "out"
+    output.mkdir()
+    (output / "figures").symlink_to(outside, target_is_directory=True)
+    with pytest.raises(ValueError, match="escapes output"):
+        install_cover(output, source)
+    assert not tuple(outside.iterdir())
+
+
+def test_cover_validation_rejects_real_variant_symlink_escape(supplied_cover_bundle) -> None:
+    _, output, manifest = supplied_cover_bundle
+    variant = output / "figures/cover_visualization.png"
+    outside = output.parent / "outside.png"
+    variant.rename(outside)
+    variant.symlink_to(outside)
+    with pytest.raises(ValueError, match="escapes output"):
+        validate_cover_manifest(manifest, output_dir=output)
+
+
+def test_cover_delivery_never_overwrites_supplied_source(tmp_path: Path) -> None:
+    source = tmp_path / "figures/cover_visualization.png"
+    source.parent.mkdir()
+    Image.new("RGB", (80, 100), "blue").save(source)
+    original = source.read_bytes()
+    with pytest.raises(ValueError, match="overwrite its source"):
+        install_cover(tmp_path, source)
+    assert source.read_bytes() == original
+
+
+@pytest.mark.parametrize("field", ["caption", "alt_text", "provenance_boundary"])
+def test_cover_descriptions_cannot_claim_authenticated_generation(supplied_cover_bundle, field: str) -> None:
+    _, output, manifest = supplied_cover_bundle
+    manifest[field] = "The model, prompt, candidate, and preview quality are independently confirmed."
+    with pytest.raises(ValueError, match="provenance|boundary"):
+        validate_cover_manifest(manifest, output_dir=output)

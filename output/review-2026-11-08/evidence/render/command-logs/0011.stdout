@@ -1,0 +1,11 @@
+| Metric | Unit | Definition | Tolerance | Claim level |
+|---------------|---------------|---------------|---------------|---------------|
+| `\breakseq{mean\_luminance}`{=latex} | `\breakseq{normalized\_luminance}`{=latex} | mean grayscale value or `\breakseq{Rec.709-weighted}`{=latex} RGB code-value proxy; no transfer conversion or display calibration | exact canonical | `\breakseq{physical\_metric}`{=latex} |
+| `\breakseq{unique\_values}`{=latex} | levels | count of distinct canonical image values | exact integer | `\breakseq{physical\_metric}`{=latex} |
+| rms | `\breakseq{normalized\_amplitude}`{=latex} | root-mean-square audio amplitude | finite scalar | `\breakseq{physical\_metric}`{=latex} |
+| peak | `\breakseq{normalized\_amplitude}`{=latex} | maximum absolute audio amplitude | finite scalar | `\breakseq{physical\_metric}`{=latex} |
+| `\breakseq{spectral\_centroid\_hz}`{=latex} | Hz | one-sided frequency mean weighted by mean-channel abs(unwindowed rFFT) magnitude, not energy | finite scalar | `\breakseq{physical\_metric}`{=latex} |
+| `\breakseq{spectral\_bandwidth\_hz}`{=latex} | Hz | spectral standard deviation around the one-sided centroid | finite scalar | `\breakseq{physical\_metric}`{=latex} |
+| crest_factor | ratio | audio peak divided by RMS with zero-RMS guard | finite scalar | `\breakseq{physical\_metric}`{=latex} |
+| `\breakseq{mean\_temporal\_delta}`{=latex} | `\breakseq{normalized\_pixel\_difference}`{=latex} | mean adjacent-frame absolute difference | finite scalar | `\breakseq{physical\_metric}`{=latex} |
+| sync_offset | ms | declared audio-minus-video offset | typed value | `\breakseq{physical\_metric}`{=latex} |

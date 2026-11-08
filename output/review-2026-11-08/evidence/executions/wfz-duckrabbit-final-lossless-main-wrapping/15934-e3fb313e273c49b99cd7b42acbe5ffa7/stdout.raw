@@ -1,0 +1,44 @@
+
+============================================================
+COMBINED MANUSCRIPT RENDERING
+============================================================
+Combining 11 section(s):
+  [ 1/11] 00_abstract.md                           (   2.3 KB)
+  [ 2/11] 01_introduction.md                       (   4.4 KB)
+  [ 3/11] 02_methodology.md                        (  10.0 KB)
+  [ 4/11] 03_results.md                            (  26.2 KB)
+  [ 5/11] 04_experimental_setup.md                 (   3.0 KB)
+  [ 6/11] 05_reproducibility.md                    (   5.8 KB)
+  [ 7/11] 06_scope_and_related_work.md             (  13.4 KB)
+  [ 8/11] 07_publication_audit.md                  (  80.7 KB)
+  [ 9/11] 08_discussion_and_conclusion.md          (   3.5 KB)
+  [10/11] 09_appendix_catalog.md                   (   9.6 KB)
+  [11/11] 99_references.md                         (   0.0 KB)
+  Total input size:                                ( 159.0 KB)
+============================================================
+
+✓ Normalised 15 figure path(s) to ../figures/ in combined markdown
+Converting combined markdown to LaTeX...
+Using pandoc-crossref at /opt/homebrew/bin/pandoc-crossref
+✓ Disabled lmodern package to prevent XeLaTeX font conflicts
+✓ Patched hidelinks → colorlinks=true (uniform red hyperlinks)
+✓ Normalised 1 \hypersetup block(s) to uniform red link colours
+✓ Remapped 43 Unicode glyph(s) to PDF-safe output: θ×6, Δ×6, −×6, ∈×4, σ×3, φ×3, μ×2, τ×2, ψ×2, Σ×2, ·×2, ₑ×2, ᵢ×2, ××1
+✓ Made 20 long monospace path span(s) breakable
+✓ Extracted preamble from preamble.md
+✓ Inserted \clearpage and \bibliography{...} before \end{document}
+Verifying 16 figure reference(s)...
+  Found: 16/16 figures
+Rendering combined manuscript to PDF: DuckRabbit-0.6.0-review_combined.pdf
+  Source files: 11
+  Bibliography: references.bib
+  LaTeX compilation pass 1/4...
+  Bibliography processing...
+Processing bibliography with bibtex...
+
+Successfully combined 11 sections
+   Output: DuckRabbit-0.6.0-review_combined.pdf
+   Size: 3901.2 KB (3.81 MB)
+   Location: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-delivery/project/output/pdf
+   Duration: 15.35 seconds
+{"pdf": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render-review-delivery/project/output/pdf/DuckRabbit-0.6.0-review_combined.pdf", "pages": 61, "sha256": "a35439465d7671e0eb393bb0c9630f42f94dacf8beea185a99520e14c10f016e", "canonical_reference_map_unchanged": true, "overfull_or_missing_glyph": []}

@@ -1,0 +1,11 @@
+--- native/slides/digital-review.css
++++ offline/slides/digital-review.css
+@@ -0,0 +1,8 @@
++.reveal{font-size:28px;background:#fff;color:#222}
++.reveal .slides section:not(.stack){height:100%;max-height:100%;overflow-y:auto!important;overflow-x:auto!important;box-sizing:border-box;padding:0 20px 40px;text-align:left}
++.reveal .slides section.stack{overflow:visible}
++.reveal h1,.reveal h2{font-size:1.4em}
++.reveal img{max-width:100%;max-height:55vh;object-fit:contain}
++.reveal p,.reveal li,.reveal code,.reveal a{overflow-wrap:anywhere;word-break:break-word;max-width:none}
++.reveal pre{white-space:pre-wrap;max-width:100%;overflow:auto}
++.reveal mjx-container[display="true"]{max-width:100%;overflow-x:auto;overflow-y:visible}

@@ -30,12 +30,14 @@ Each generated figure records its source function, seed, caption, alt text,
 claim level, and SHA-256 digest. Generated files are disposable; the tracked
 source is the generator and its tests.
 
-The registry and cover report are independently revalidated after generation.
-The registry validator rechecks code-owned captions, evidence namespaces,
-source-data hashes, and figure hashes. The cover validator rechecks the
-editorial source digest, portrait dimensions, variant set, and delivery hashes.
-These checks prevent a successfully rendered image from becoming an
-unexamined publication claim.
+The registry checks captions, source namespaces and file hashes; the strict
+release gate additionally regenerates every scientific panel and compares its
+data and raster bytes under recorded renderer, font and dependency identities.
+This is a current-code consistency oracle, not an independent scientific model
+or a substitute for inspecting the rendered pages. The cover validator checks
+real source bytes/dimensions and variant transforms. Historical prompt/model/
+selection claims are reported but not independently authenticated; caller-supplied
+images without a history are explicitly unrecorded.
 
 The observer harness is a data-free design layer. It creates reproducibly
 randomized trial records, exports typed study plans, generates synthetic

@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/render_resume_semantic.py", line 29, in <module>
+    slide_audit=make_slide_overlay(manuscript,slide_source,Path(tools["pandoc"]["path"]))
+  File "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/build_slide_overlay.py", line 384, in make_slide_overlay
+    _require_equal(original, restored, section.name + " original non-table content")
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/build_slide_overlay.py", line 61, in _require_equal
+    raise ValueError(description + ": semantic JSON changed (expected " +
+                     _digest(_normalize(expected)) + ", got " +
+                     _digest(_normalize(actual)) + ")")
+ValueError: 03_results.md original non-table content: semantic JSON changed (expected 89f2ddc08d2cc45a86cb59a86cb9b8e218d4a07c7c2f893eb7ffc1298f868d7b, got 9c7f144b26e81e469aba4c72f4ba1f90d14a75ab00348af5d19b90672f3c6925)

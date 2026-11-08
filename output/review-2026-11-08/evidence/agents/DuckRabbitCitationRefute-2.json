@@ -1,0 +1,105 @@
+{
+  "DuckRabbitCitationRefute#2": {
+    "summary": "Both proposals are justified as bibliographic-completeness normalization, not fabrication repairs. Nature independently displays all 53 FAIR authors in the Crossref order. The Royal Society’s own archive displays the complete XVIII-prefixed Wheatstone title, DOI, publication date, and Charles Wheatstone credit. Direct Royal Society journal HTML/PDF requests were blocked, but an official publisher-owned archive record supplied the requested corroboration.",
+    "method": "Applied CogSecSkills critical_review.citation_integrity_review, scoped to citation identity and proposed metadata changes—not whether either paper supports particular manuscript claims. Read-only investigation; no edits, builds, tests, or runtime commands.",
+    "files": [
+      {
+        "path": "docs/manuscript/references.bib:339-349",
+        "holds": "FAIR entry: first ten correctly ordered authors followed by the valid BibTeX abbreviation 'and others'; correct DOI, year, journal, volume, and article number."
+      },
+      {
+        "path": "docs/manuscript/references.bib:373-383",
+        "holds": "Wheatstone entry: Charles Wheatstone, 1838, correct DOI; title omits XVIII. and the dash preceding Part the first."
+      },
+      {
+        "path": "src/duckrabbit/_resources/references.bib:339-349,373-383",
+        "holds": "Resource bibliography has the same two existing author/title forms, confirmed by targeted search."
+      },
+      {
+        "path": "dist/wfz-release/receipts/adjunct-bibliography-identity.json",
+        "holds": "Actual Crossref responses and expected bibliography fields for both entries. Wilkinson author count is 53; Wheatstone record supplies the XVIII-prefixed title."
+      }
+    ],
+    "architecture": "The bibliography stores citation fields; the receipt compares expected fields against full Crossref identities. A truncated author list and a title omitting an article-number prefix can fail exact matching without being false citations.",
+    "report_markdown": "## Citation identity audit\n\n| Entry | Primary publisher evidence | Verdict |\n|---|---|---|\n| `wilkinson2016fair` | [Nature / Scientific Data article](https://www.nature.com/articles/sdata201618). HTML metadata: `citation_title=\"The FAIR Guiding Principles for scientific data management and stewardship\"`; `citation_online_date=\"2016/03/15\"`; `citation_doi=\"10.1038/sdata.2016.18\"`. All 53 ordered `citation_author` tags match the receipt. | **Expansion justified** if complete ordered metadata is required. Retain DOI and 2016. Current first ten authors are correct and ordered correctly. `and others` is an explicit valid abbreviation, not fabricated credit. |\n| `wheatstone1838binocular` | [The Royal Society: Science in the Making, RR/1/260](https://makingscience.royalsociety.org/items/rr_1_260/referees-report-by-john-bostock-on-a-paper-contributions-to-the-physiology-of-vision-part-the-first-on-some-remarkable-and-hitherto-unobserved-phenomena-of-binocular-vision-by-charles-wheatstone). Its **Related Publications** section prints the full XVIII-prefixed title, `Date: 31st December 1838`, and `DOI: 10.1098/rstl.1838.0019`. The record heading explicitly identifies the paper as by Charles Wheatstone. | **Full-title alignment justified.** Retain Charles Wheatstone and 1838. Existing title identifies the same real work; its omission of the numeral and dash is not fabrication. John Bostock is the referee/report creator, **not** a coauthor of the paper. |\n\n### Direct evidence against calling FAIR’s abbreviation fabricated\n\nNature’s article itself says:\n\n> **How to cite this article:** Wilkinson, M. D. *et al.* The FAIR Guiding Principles for scientific data management and stewardship. *Sci. Data* 3:160018 doi: 10.1038/sdata.2016.18 (2016).\n\nIts separate **Cite this article** section likewise uses “Wilkinson, M., Dumontier, M., Aalbersberg, I. *et al.*”. Thus the publisher explicitly endorses abbreviated author credit for this work.\n\n### Exact Wheatstone title to use\n\n`XVIII. Contributions to the physiology of vision. —Part the first. On some remarkable, and hitherto unobserved, phenomena of binocular vision`\n\nThis is the exact wording and punctuation displayed in the Royal Society archive’s Related Publications entry and in the supplied Crossref response. The proposed change restores the leading `XVIII.` and dash; capitalization differences in the existing bibliography do not imply a different work.\n\n### Access and provenance limitations\n\nDirect requests to the Royal Society DOI landing page, canonical new article URL, and publisher PDF URLs returned HTTP 403. The archive’s direct HTTPS request failed certificate verification. The full official archive page was successfully read through this [text retrieval URL](https://r.jina.ai/https://makingscience.royalsociety.org/items/rr_1_260/referees-report-by-john-bostock-on-a-paper-contributions-to-the-physiology-of-vision-part-the-first-on-some-remarkable-and-hitherto-unobserved-phenomena-of-binocular-vision-by-charles-wheatstone), which identifies its original URL and reproduces the publisher-owned record. The underlying official archive URL is the source citation; the proxy is the disclosed retrieval route. This confirms what the publisher displays independently of the local receipt; the upstream origin of its Related Publications metadata is not established, so this should not be described as proof of a wholly independent metadata-generation pipeline.\n\n**Confidence:** high in FAIR identity, order, and expansion; high in Wheatstone identity and the publisher-displayed complete title, with the disclosed limitation that direct journal-page metadata was not extractable. Weakest link is that journal-page access gap; direct journal HTML or the publisher scan would be the discriminating evidence if typography or upstream metadata independence is contested. No evidence supports classifying either original citation as fabricated.",
+    "fair_primary_evidence": {
+      "url": "https://www.nature.com/articles/sdata201618",
+      "raw_metadata_url": "https://www.nature.com/articles/sdata201618:315-334,423-530:raw",
+      "title": "The FAIR Guiding Principles for scientific data management and stewardship",
+      "doi": "10.1038/sdata.2016.18",
+      "publication_date": "2016-03-15",
+      "journal": "Scientific Data",
+      "volume": "3",
+      "article_number": "160018",
+      "author_count": 53,
+      "ordered_authors_family_given": [
+        "Wilkinson, Mark D.",
+        "Dumontier, Michel",
+        "Aalbersberg, IJsbrand Jan",
+        "Appleton, Gabrielle",
+        "Axton, Myles",
+        "Baak, Arie",
+        "Blomberg, Niklas",
+        "Boiten, Jan-Willem",
+        "da Silva Santos, Luiz Bonino",
+        "Bourne, Philip E.",
+        "Bouwman, Jildau",
+        "Brookes, Anthony J.",
+        "Clark, Tim",
+        "Crosas, Mercè",
+        "Dillo, Ingrid",
+        "Dumon, Olivier",
+        "Edmunds, Scott",
+        "Evelo, Chris T.",
+        "Finkers, Richard",
+        "Gonzalez-Beltran, Alejandra",
+        "Gray, Alasdair J.G.",
+        "Groth, Paul",
+        "Goble, Carole",
+        "Grethe, Jeffrey S.",
+        "Heringa, Jaap",
+        "’t Hoen, Peter A.C",
+        "Hooft, Rob",
+        "Kuhn, Tobias",
+        "Kok, Ruben",
+        "Kok, Joost",
+        "Lusher, Scott J.",
+        "Martone, Maryann E.",
+        "Mons, Albert",
+        "Packer, Abel L.",
+        "Persson, Bengt",
+        "Rocca-Serra, Philippe",
+        "Roos, Marco",
+        "van Schaik, Rene",
+        "Sansone, Susanna-Assunta",
+        "Schultes, Erik",
+        "Sengstag, Thierry",
+        "Slater, Ted",
+        "Strawn, George",
+        "Swertz, Morris A.",
+        "Thompson, Mark",
+        "van der Lei, Johan",
+        "van Mulligen, Erik",
+        "Velterop, Jan",
+        "Waagmeester, Andra",
+        "Wittenburg, Peter",
+        "Wolstencroft, Katherine",
+        "Zhao, Jun",
+        "Mons, Barend"
+      ],
+      "transcription_notes": "Preserve the publisher’s spelling and name parsing, especially IJsbrand Jan, Jildau, Mercè, Gonzalez-Beltran, Alasdair J.G., ’t Hoen (family) / Peter A.C (given), Rene van Schaik, and the distinct Albert Mons and Barend Mons. These are observed publisher citation_author values, not plausible author corrections."
+    },
+    "wheatstone_primary_evidence": {
+      "official_archive_url": "https://makingscience.royalsociety.org/items/rr_1_260/referees-report-by-john-bostock-on-a-paper-contributions-to-the-physiology-of-vision-part-the-first-on-some-remarkable-and-hitherto-unobserved-phenomena-of-binocular-vision-by-charles-wheatstone",
+      "canonical_journal_url_from_receipt": "https://royalsocietypublishing.org/rstl/article/doi/10.1098/rstl.1838.0019/118085/XVIII-Contributions-to-the-physiology-of-vision",
+      "canonical_journal_access": "HTTP 403; not used as retrieved page evidence",
+      "archive_heading": "Referee's report by John Bostock, on a paper 'Contributions to the physiology of vision - Part the first. On some remarkable, and hitherto unobserved, phenomena of binocular vision' by Charles Wheatstone",
+      "archive_description_excerpt": "Recommended for publication in Philosophical Transactions. ... [Published in Philosophical Transactions, 1838].",
+      "related_publication_title": "XVIII. Contributions to the physiology of vision. —Part the first. On some remarkable, and hitherto unobserved, phenomena of binocular vision",
+      "related_publication_date": "31st December 1838",
+      "related_publication_doi": "10.1098/rstl.1838.0019",
+      "paper_author": "Charles Wheatstone",
+      "referee_not_paper_author": "John Bostock"
+    }
+  }
+}

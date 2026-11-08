@@ -1,0 +1,272 @@
+--- native/03_results_slides.html
++++ hardened/03_results_slides.html
+@@ -36,6 +36,70 @@
+   </style>
+   <link rel="stylesheet" href="https://unpkg.com/reveal.js@5.2.1/dist/theme/white.css" id="theme">
+   <link rel="stylesheet" href="digital-review.css"/>
++<script data-template-mathjax-config>
++window.MathJax = window.MathJax || {};
++window.MathJax.chtml = Object.assign({}, window.MathJax.chtml, {
++  fontURL: "https://cdn.jsdelivr.net/npm/@mathjax/mathjax-newcm-font@4.0.0/chtml/woff2",
++  dynamicPrefix: "https://cdn.jsdelivr.net/npm/@mathjax/mathjax-newcm-font@4.0.0/chtml/dynamic"
++});
++var templateMathOutput = window.MathJax.output || {};
++window.MathJax.output = Object.assign({}, templateMathOutput, {
++  displayOverflow: "linebreak",
++  linebreaks: Object.assign({}, templateMathOutput.linebreaks, {
++    inline: true,
++    width: "100%",
++    lineleading: 0.5
++  })
++});
++window.normalizeTemplateMathJaxAria = function () {
++  document.querySelectorAll("mjx-speech[aria-roledescription]").forEach(function (node) {
++    var roleDescription = node.getAttribute("aria-roledescription") || "";
++    if (/[-]/.test(roleDescription)) {
++      node.setAttribute("aria-roledescription", "mathematical expression");
++    }
++  });
++};
++window.MathJax.startup = Object.assign({}, window.MathJax.startup, {
++  ready: function () {
++    var measuredWidth = document.documentElement.clientWidth;
++    var reflowQueued = false;
++    window.MathJax.startup.defaultReady();
++    window.templateMathJaxReflowPromise = window.MathJax.startup.promise.then(
++      window.normalizeTemplateMathJaxAria
++    );
++    function reflowDisplayMath() {
++      if (reflowQueued || document.documentElement.clientWidth === measuredWidth) return;
++      reflowQueued = true;
++      window.templateMathJaxReflowPromise = window.templateMathJaxReflowPromise
++        .catch(function () { /* A later resize may retry a failed render. */ })
++        .then(async function () {
++          var width = document.documentElement.clientWidth;
++          try {
++            // MathJax 4 MathItem.STATE.METRICS = 110. The default RERENDER
++            // state retains old container metrics and cannot reflow on zoom.
++            await window.MathJax.startup.document.rerenderPromise(110);
++            window.normalizeTemplateMathJaxAria();
++            window.templateMathJaxReflowError = null;
++          } catch (error) {
++            window.templateMathJaxReflowError = String(error);
++            console.error("MathJax viewport reflow failed", error);
++            throw error;
++          } finally {
++            measuredWidth = width;
++            reflowQueued = false;
++          }
++        })
++        .then(reflowDisplayMath);
++      // Keep failure observable to callers without an unhandled rejection.
++      window.templateMathJaxReflowPromise.catch(function () {});
++    }
++    window.addEventListener("resize", reflowDisplayMath);
++    // Also cover a resize that happened during the initial asynchronous render.
++    window.templateMathJaxReflowPromise.then(reflowDisplayMath);
++  }
++});
++</script>
++<script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-chtml.js" integrity="sha384-2BWc4dVaHADUocwKrUrK9u3iDwHxVMKXWEcoRmUkXYSFKhAsgVAYClu9ydNuo5Oz" crossorigin="anonymous"></script>
+ </head>
+ <body>
+   <div class="reveal">
+@@ -59,7 +123,7 @@
+ categorical registry, source namespace, and implementation statuses
+ visible at a glance.</p>
+ <figure id="fig:catalog_matrix">
+-<img data-src="../../output/figures/catalog_matrix.png"
++<img data-src="../figures/catalog_matrix.png"
+ alt="A matrix lists all catalog entries with modality, mechanism, signature, input requirement, and implementation status." />
+ <figcaption aria-hidden="true">A matrix lists all catalog entries with
+ modality, mechanism, signature, input requirement, and implementation
+@@ -82,10 +146,8 @@
+ classifications and remain provisional where the literature supports
+ competing accounts. Boundary: Catalog coverage is bounded to this
+ registered package and does not enumerate all known illusions.</p>
+-<p>The complete catalog matrix <span class="citation"
+-data-cites="fig:catalog_matrix">(<strong>fig:catalog_matrix?</strong>)</span>
+-is tabulated in the standalone Appendix A <span class="citation"
+-data-cites="sec:appendix_catalog">(<strong>sec:appendix_catalog?</strong>)</span>
++<p>The complete catalog matrix <a class="cross-reference" href="#fig:catalog_matrix">Figure 1</a>
++is tabulated in the standalone Appendix A <span class="cross-reference">Section 10</span>
+ and in <a href="../web/index.html#tbl:catalog">Table 10</a>. The
+ corresponding machine-readable evidence matrix records the source role,
+ exact supported claim, engineering departure, and limitation for every
+@@ -446,7 +508,7 @@
+ <section id="pipeline-and-provenance" class="slide level2">
+ <h2>Pipeline and provenance</h2>
+ <figure id="fig:architecture">
+-<img data-src="../../output/figures/architecture.png"
++<img data-src="../figures/architecture.png"
+ alt="Five labeled stages connect a typed request to a deterministic canonical artifact, encoded media, decoded inspection, and a verification manifest." />
+ <figcaption aria-hidden="true">Five labeled stages connect a typed
+ request to a deterministic canonical artifact, encoded media, decoded
+@@ -471,8 +533,7 @@
+ implementation boundaries and does not represent an observer study or a
+ causal theory of perception. Boundary: The pipeline verifies
+ reproducible media facts, not what a person experiences.</p>
+-<p>The generated architecture figure <span class="citation"
+-data-cites="fig:architecture">(<strong>fig:architecture?</strong>)</span>
++<p>The generated architecture figure <a class="cross-reference" href="#fig:architecture">2</a>
+ shows the separation between request, canonical artifact, delivery
+ adapter, decoded inspection, and manifest. The canonical digest is the
+ identity of the in-memory stimulus; an encoded hash is the identity of
+@@ -482,7 +543,7 @@
+ class="slide level2">
+ <h2>Visual constructions and parameter sweeps</h2>
+ <figure id="fig:visual_panel">
+-<img data-src="../../output/figures/visual_panel.png"
++<img data-src="../figures/visual_panel.png"
+ alt="A 9-panel gallery shows every currently implemented visual catalog entry, with stable IDs and physical raster summaries: Duck-rabbit ambiguous figure, Simultaneous contrast stimulus, Apparent-motion frame sequence, Müller-Lyer geometric illusion, Poggendorff geometric illusion, Ponzo perspective illusion, Kanizsa illusory-contour triangle, Ebbinghaus context-size illusion, Zöllner orientation illusion." />
+ <figcaption aria-hidden="true">A 9-panel gallery shows every currently
+ implemented visual catalog entry, with stable IDs and physical raster
+@@ -538,8 +599,7 @@
+ deterministic raster facts. It does not establish that any viewer will
+ perceive the named signature, nor that the set is exhaustive of the
+ visual-illusion literature.</p>
+-<p>The visual panel <span class="citation"
+-data-cites="fig:visual_panel">(<strong>fig:visual_panel?</strong>)</span>
++<p>The visual panel <a class="cross-reference" href="#fig:visual_panel">Figure 3</a>
+ is deliberately a coverage figure: it contains one deterministic
+ representative for every currently implemented visual entry, including
+ apparent motion and Zöllner in addition to the static ambiguous-figure,
+@@ -549,7 +609,7 @@
+ They are not observer scores, and the gallery is not an exhaustive
+ ontology of visual illusions.</p>
+ <figure id="fig:visual_sweep">
+-<img data-src="../../output/figures/visual_sweep.png"
++<img data-src="../figures/visual_sweep.png"
+ alt="A labeled grid crosses five duck–rabbit blend weights with five grayscale and quantization settings, with physical metrics recorded for each cell." />
+ <figcaption aria-hidden="true">A labeled grid crosses five duck–rabbit
+ blend weights with five grayscale and quantization settings, with
+@@ -573,8 +633,7 @@
+ sensitivity curve or a validated observer effect. Boundary: The chosen
+ grid is an engineering sampling of the parameter domain and does not
+ imply an optimal or perceptually uniform spacing.</p>
+-<p>The sweep <span class="citation"
+-data-cites="fig:visual_sweep">(<strong>fig:visual_sweep?</strong>)</span>
++<p>The sweep <a class="cross-reference" href="#fig:visual_sweep">Figure 4</a>
+ varies duck-weight from 0 to 1 and jointly varies representable
+ grayscale and quantization levels. The source data preserve canonical
+ digests and unique-value counts; no perceptual score is assigned to a
+@@ -583,7 +642,7 @@
+ <section id="temporal-and-auditory-constructions" class="slide level2">
+ <h2>Temporal and auditory constructions</h2>
+ <figure id="fig:temporal_sequence">
+-<img data-src="../../output/figures/temporal_sequence.png"
++<img data-src="../figures/temporal_sequence.png"
+ alt="Six ordered frames are labeled with timestamps and paired with a line plot of adjacent-frame normalized pixel differences." />
+ <figcaption aria-hidden="true">Six ordered frames are labeled with
+ timestamps and paired with a line plot of adjacent-frame normalized
+@@ -608,13 +667,12 @@
+ timing, display persistence, and motion reports require a controlled
+ observer task. Boundary: The figure documents temporal structure rather
+ than the presence, direction, or strength of perceived motion.</p>
+-<p>The temporal figure <span class="citation"
+-data-cites="fig:temporal_sequence">(<strong>fig:temporal_sequence?</strong>)</span>
++<p>The temporal figure <a class="cross-reference" href="#fig:temporal_sequence">5</a>
+ reports frame succession, rational frame rate, and frame-to-frame mean
+ absolute differences. These facts establish temporal structure in the
+ file, not the presence or strength of perceived motion.</p>
+ <figure id="fig:audio_signals">
+-<img data-src="../../output/figures/audio_signals.png"
++<img data-src="../figures/audio_signals.png"
+ alt="Five labeled rows show canonical audio waveforms, relative one-sided spectral bars, RMS and peak in normalized amplitude, and spectral summaries in hertz." />
+ <figcaption aria-hidden="true">Five labeled rows show canonical audio
+ waveforms, relative one-sided spectral bars, RMS and peak in normalized
+@@ -643,8 +701,7 @@
+ to the canonical buffer. Boundary: The figure compares generated signal
+ properties and literature-linked families; it does not establish pitch,
+ continuity, or stream organization for a listener.</p>
+-<p>The auditory figure <span class="citation"
+-data-cites="fig:audio_signals">(<strong>fig:audio_signals?</strong>)</span>
++<p>The auditory figure <a class="cross-reference" href="#fig:audio_signals">6</a>
+ shows canonical waveforms and spectral summaries for Shepard,
+ missing-fundamental, tritone, octave, and continuity constructions. RMS,
+ peak, spectral centroid, bandwidth, and channel layout are calculated
+@@ -655,7 +712,7 @@
+ <section id="audiovisual-timing-and-encoding" class="slide level2">
+ <h2>Audiovisual timing and encoding</h2>
+ <figure id="fig:audiovisual_timeline">
+-<img data-src="../../output/figures/audiovisual_timeline.png"
++<img data-src="../figures/audiovisual_timeline.png"
+ alt="Two labeled traces share a time axis in seconds: video mean channel-value proxy and audio absolute amplitude, with signed synchronization and spatial offsets printed below." />
+ <figcaption aria-hidden="true">Two labeled traces share a time axis in
+ seconds: video mean channel-value proxy and audio absolute amplitude,
+@@ -685,8 +742,7 @@
+ are not measured by this figure. Boundary: A shared-clock construction
+ is not evidence that observers bind the events at the declared or any
+ other perceptual time.</p>
+-<p>The audiovisual timeline <span class="citation"
+-data-cites="fig:audiovisual_timeline">(<strong>fig:audiovisual_timeline?</strong>)</span>
++<p>The audiovisual timeline <a class="cross-reference" href="#fig:audiovisual_timeline">Figure 7</a>
+ displays video luminance and audio amplitude against the shared clock,
+ alongside declared synchronization and spatial offsets. Ventriloquist
+ stimuli require stereo playback and spatially resolved display; temporal
+@@ -695,7 +751,7 @@
+ data-cites="bruns2019ventriloquist vroomen2004temporal">(Bruns 2019;
+ Vroomen and Gelder 2004)</span>.</p>
+ <figure id="fig:encoding_verification">
+-<img data-src="../../output/figures/encoding_verification.png"
++<img data-src="../figures/encoding_verification.png"
+ alt="A five-row comparison lists format, backend, preserved canonical facts, and the corresponding decoded verification checks." />
+ <figcaption aria-hidden="true">A five-row comparison lists format,
+ backend, preserved canonical facts, and the corresponding decoded
+@@ -721,8 +777,7 @@
+ expose additional behavior. Boundary: A successful encode or decode does
+ not validate an observer effect or guarantee cross-device perceptual
+ equivalence.</p>
+-<p>The encoding matrix <span class="citation"
+-data-cites="fig:encoding_verification">(<strong>fig:encoding_verification?</strong>)</span>
++<p>The encoding matrix <a class="cross-reference" href="#fig:encoding_verification">Figure 8</a>
+ makes backend capability and verification scope visible. NPZ is the
+ exact canonical archive; PNG, WAV, GIF, and MP4 are delivery containers
+ whose decoded facts are checked against the manifest.</p>
+@@ -1181,7 +1236,7 @@
+ class="slide level2">
+ <h2>Synthetic psychophysics model diagnostic</h2>
+ <figure id="fig:synthetic_psychophysics">
+-<img data-src="../../output/figures/synthetic_psychophysics.png"
++<img data-src="../figures/synthetic_psychophysics.png"
+ alt="A line plot and model-sensitivity range show deterministic model probability across duck_weight values beside the model identity, temperature, no-training-data statement, and human-data boundary." />
+ <figcaption aria-hidden="true">A line plot and model-sensitivity range
+ show deterministic model probability across duck_weight values beside
+@@ -1215,8 +1270,7 @@
+ intervals, or a psychometric function. Boundary: This diagnostic tests
+ deterministic orchestration and metamorphic input-output behavior only;
+ empirical psychophysics remains future work.</p>
+-<p>The diagnostic <span class="citation"
+-data-cites="fig:synthetic_psychophysics">(<strong>fig:synthetic_psychophysics?</strong>)</span>
++<p>The diagnostic <a class="cross-reference" href="#fig:synthetic_psychophysics">Figure 9</a>
+ evaluates a fully serialized, hand-specified feature observer against a
+ fixed canonical reference while varying <code>duck_weight</code>. Its
+ logistic probabilities are model outputs generated from explicit
+@@ -1383,26 +1437,9 @@
+         // viewDistance in order to save resources.
+         mobileViewDistance: 2,
+ 
+-        math: {
+-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-chtml.js',
+-          config: 'TeX-AMS_HTML-full',
+-          tex2jax: {
+-            inlineMath: [['\\(','\\)']],
+-            displayMath: [['\\[','\\]']],
+-            balanceBraces: true,
+-            processEscapes: false,
+-            processRefs: true,
+-            processEnvironments: true,
+-            preview: 'TeX',
+-            skipTags: ['script','noscript','style','textarea','pre','code'],
+-            ignoreClass: 'tex2jax_ignore',
+-            processClass: 'tex2jax_process'
+-          },
+-        },
+-
+         // reveal.js plugins
+         plugins: [
+-          RevealMath,
++
+           RevealNotes,
+           RevealSearch,
+           RevealZoom

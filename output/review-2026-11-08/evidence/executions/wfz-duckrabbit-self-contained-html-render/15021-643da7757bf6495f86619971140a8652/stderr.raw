@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/web_local.py", line 14, in <module>
+    path=WebRenderer(config).render_combined(sections,manuscript,project_name="DuckRabbit-0.6.0-review")
+  File "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/renderer-snapshot/infrastructure/rendering/web_renderer.py", line 211, in render_combined
+    write_manuscript_composition(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        output_dir.parents[1],
+        ^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        algorithm=WEB_ALGORITHM if layout.frontmatter else "web-renderer-combine-v1",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/renderer-snapshot/infrastructure/rendering/manuscript_composition.py", line 155, in write_manuscript_composition
+    composition = build_manuscript_composition(
+        project_root,
+    ...<3 lines>...
+        algorithm=algorithm,
+    )
+  File "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/renderer-snapshot/infrastructure/rendering/manuscript_composition.py", line 109, in build_manuscript_composition
+    raise ValueError(f"combined composition path must be {COMBINED_RELATIVE_PATH.as_posix()}")
+ValueError: combined composition path must be output/web/_combined_manuscript.md

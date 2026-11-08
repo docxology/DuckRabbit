@@ -1,0 +1,228 @@
+--- native/07_publication_audit_slides.html
++++ hardened/07_publication_audit_slides.html
+@@ -36,6 +36,70 @@
+   </style>
+   <link rel="stylesheet" href="https://unpkg.com/reveal.js@5.2.1/dist/theme/white.css" id="theme">
+   <link rel="stylesheet" href="digital-review.css"/>
++<script data-template-mathjax-config>
++window.MathJax = window.MathJax || {};
++window.MathJax.chtml = Object.assign({}, window.MathJax.chtml, {
++  fontURL: "https://cdn.jsdelivr.net/npm/@mathjax/mathjax-newcm-font@4.0.0/chtml/woff2",
++  dynamicPrefix: "https://cdn.jsdelivr.net/npm/@mathjax/mathjax-newcm-font@4.0.0/chtml/dynamic"
++});
++var templateMathOutput = window.MathJax.output || {};
++window.MathJax.output = Object.assign({}, templateMathOutput, {
++  displayOverflow: "linebreak",
++  linebreaks: Object.assign({}, templateMathOutput.linebreaks, {
++    inline: true,
++    width: "100%",
++    lineleading: 0.5
++  })
++});
++window.normalizeTemplateMathJaxAria = function () {
++  document.querySelectorAll("mjx-speech[aria-roledescription]").forEach(function (node) {
++    var roleDescription = node.getAttribute("aria-roledescription") || "";
++    if (/[-]/.test(roleDescription)) {
++      node.setAttribute("aria-roledescription", "mathematical expression");
++    }
++  });
++};
++window.MathJax.startup = Object.assign({}, window.MathJax.startup, {
++  ready: function () {
++    var measuredWidth = document.documentElement.clientWidth;
++    var reflowQueued = false;
++    window.MathJax.startup.defaultReady();
++    window.templateMathJaxReflowPromise = window.MathJax.startup.promise.then(
++      window.normalizeTemplateMathJaxAria
++    );
++    function reflowDisplayMath() {
++      if (reflowQueued || document.documentElement.clientWidth === measuredWidth) return;
++      reflowQueued = true;
++      window.templateMathJaxReflowPromise = window.templateMathJaxReflowPromise
++        .catch(function () { /* A later resize may retry a failed render. */ })
++        .then(async function () {
++          var width = document.documentElement.clientWidth;
++          try {
++            // MathJax 4 MathItem.STATE.METRICS = 110. The default RERENDER
++            // state retains old container metrics and cannot reflow on zoom.
++            await window.MathJax.startup.document.rerenderPromise(110);
++            window.normalizeTemplateMathJaxAria();
++            window.templateMathJaxReflowError = null;
++          } catch (error) {
++            window.templateMathJaxReflowError = String(error);
++            console.error("MathJax viewport reflow failed", error);
++            throw error;
++          } finally {
++            measuredWidth = width;
++            reflowQueued = false;
++          }
++        })
++        .then(reflowDisplayMath);
++      // Keep failure observable to callers without an unhandled rejection.
++      window.templateMathJaxReflowPromise.catch(function () {});
++    }
++    window.addEventListener("resize", reflowDisplayMath);
++    // Also cover a resize that happened during the initial asynchronous render.
++    window.templateMathJaxReflowPromise.then(reflowDisplayMath);
++  }
++});
++</script>
++<script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-chtml.js" integrity="sha384-2BWc4dVaHADUocwKrUrK9u3iDwHxVMKXWEcoRmUkXYSFKhAsgVAYClu9ydNuo5Oz" crossorigin="anonymous"></script>
+ </head>
+ <body>
+   <div class="reveal">
+@@ -58,7 +122,7 @@
+ <section id="claim-level-visualization" class="slide level2">
+ <h2>Claim-level visualization</h2>
+ <figure id="fig:claim_boundary">
+-<img data-src="../../output/figures/claim_boundary.png"
++<img data-src="../figures/claim_boundary.png"
+ alt="Four numbered boxes separate canonical stimulus, physical metric, encoded media, and observer hypothesis, with a boundary rule stating that observer effects require a separate study." />
+ <figcaption aria-hidden="true">Four numbered boxes separate canonical
+ stimulus, physical metric, encoded media, and observer hypothesis, with
+@@ -85,8 +149,7 @@
+ study or empirical data. Boundary: A deterministic artifact can support
+ a future hypothesis but cannot supply the observer data required to test
+ it.</p>
+-<p>The claim boundary in <span class="citation"
+-data-cites="fig:claim_boundary">(<strong>fig:claim_boundary?</strong>)</span>
++<p>The claim boundary in <a class="cross-reference" href="#fig:claim_boundary">Figure 10</a>
+ is a typed epistemic interface. A canonical digest identifies a
+ deterministic buffer; objective metrics identify properties of that
+ buffer; encoded-media verification identifies facts of the delivered
+@@ -96,7 +159,7 @@
+ <section id="scholarship-map-and-lineage" class="slide level2">
+ <h2>Scholarship map and lineage</h2>
+ <figure id="fig:scholarship_map">
+-<img data-src="../../output/figures/scholarship_map.png"
++<img data-src="../figures/scholarship_map.png"
+ alt="Rows map catalog entries to source tiers, exact supported claims, engineering bases, limitations, and implementation status." />
+ <figcaption aria-hidden="true">Rows map catalog entries to source tiers,
+ exact supported claims, engineering bases, limitations, and
+@@ -123,8 +186,7 @@
+ contested. Boundary: Scholarship coverage bounds the package’s evidence
+ record and does not establish that any generated stimulus produces a
+ universal percept.</p>
+-<p>The source map <span class="citation"
+-data-cites="fig:scholarship_map">(<strong>fig:scholarship_map?</strong>)</span>
++<p>The source map <a class="cross-reference" href="#fig:scholarship_map">Figure 11</a>
+ and <a href="../web/index.html#tbl:evidence_audit">Table 7</a> make five
+ distinctions explicit: a primary demonstration, a review, a theoretical
+ account, DuckRabbit’s engineering basis, and an evidence limitation.
+@@ -164,7 +226,7 @@
+ class="slide level2">
+ <h2>Formal traceability and objective metrics</h2>
+ <figure id="fig:formalism_traceability">
+-<img data-src="../../output/figures/formalism_traceability.png"
++<img data-src="../figures/formalism_traceability.png"
+ alt="Rows connect equation labels to their mathematical definition, implementation paths, tests, figure labels, and claim levels." />
+ <figcaption aria-hidden="true">Rows connect equation labels to their
+ mathematical definition, implementation paths, tests, figure labels, and
+@@ -188,23 +250,13 @@
+ documentation and verification scope; it does not establish the truth of
+ an observer-level theory. Boundary: A linked equation and test can show
+ an implemented contract, not a validated perceptual law.</p>
+-<p>The formalism registry <span class="citation"
+-data-cites="fig:formalism_traceability">(<strong>fig:formalism_traceability?</strong>)</span>
+-links equations <span class="citation"
+-data-cites="eq:typed_request eq:canonical_generation eq:canonical_digest eq:encoding_verification eq:clock_definition eq:objective_statistics eq:temporal_spectral_metrics eq:observer_estimand eq:synthetic_observer">(<strong>eq:typed_request?</strong>;
+-<strong>eq:canonical_generation?</strong>;
+-<strong>eq:canonical_digest?</strong>;
+-<strong>eq:encoding_verification?</strong>;
+-<strong>eq:clock_definition?</strong>;
+-<strong>eq:objective_statistics?</strong>;
+-<strong>eq:temporal_spectral_metrics?</strong>;
+-<strong>eq:observer_estimand?</strong>;
+-<strong>eq:synthetic_observer?</strong>)</span> to implementation
++<p>The formalism registry <a class="cross-reference" href="#fig:formalism_traceability">Figure 12</a>
++links equations <span class="cross-reference">Equation (1)</span>; <span class="cross-reference">Equation (2)</span>; <span class="cross-reference">Equation (4)</span>; <span class="cross-reference">Equation (5)</span>; <span class="cross-reference">Equation (3)</span>; <span class="cross-reference">Equation (6)</span>; <span class="cross-reference">Equation (7)</span>; <span class="cross-reference">Equation (8)</span>; <span class="cross-reference">Equation (9)</span> to implementation
+ modules, tests, and figures. The contract is intentionally auditable:
+ equation labels point to code-owned records, while empirical claims
+ remain outside the generator’s authority.</p>
+ <figure id="fig:metrics_dashboard">
+-<img data-src="../../output/figures/metrics_dashboard.png"
++<img data-src="../figures/metrics_dashboard.png"
+ alt="Four artifact cards list image, audio, video, and audiovisual metrics with units, computation provenance, and claim level." />
+ <figcaption aria-hidden="true">Four artifact cards list image, audio,
+ video, and audiovisual metrics with units, computation provenance, and
+@@ -232,15 +284,14 @@
+ or other observer interpretations. Boundary: Metric reproducibility is a
+ package property; interpretation as perception requires a separate
+ observer design and data.</p>
+-<p>The metrics dashboard <span class="citation"
+-data-cites="fig:metrics_dashboard">(<strong>fig:metrics_dashboard?</strong>)</span>
++<p>The metrics dashboard <a class="cross-reference" href="#fig:metrics_dashboard">Figure 13</a>
+ reports units, computation version, and canonical digests. Luminance
+ statistics are normalized raster properties; RMS and peak are
+ normalized-amplitude properties; spectral values are in Hz; frame deltas
+ are normalized pixel differences; and synchronization offsets are in
+ milliseconds. None is a psychophysical score.</p>
+ <figure id="fig:parameter_domains">
+-<img data-src="../../output/figures/parameter_domains.png"
++<img data-src="../figures/parameter_domains.png"
+ alt="Horizontal interval markers show typed domains for dimensions, luminance, levels, frequency, sampling, frame rate, synchronization, and spatial discrepancy." />
+ <figcaption aria-hidden="true">Horizontal interval markers show typed
+ domains for dimensions, luminance, levels, frequency, sampling, frame
+@@ -265,8 +316,7 @@
+ thresholds. Boundary: A valid parameter is a reproducible construction
+ request, not evidence that the requested value is perceptually
+ effective.</p>
+-<p>The domain map <span class="citation"
+-data-cites="fig:parameter_domains">(<strong>fig:parameter_domains?</strong>)</span>
++<p>The domain map <a class="cross-reference" href="#fig:parameter_domains">Figure 14</a>
+ is a validation visualization. Bounds are chosen to prevent malformed
+ media and unsafe encodings, not to predict a viewer, listener, or
+ participant’s sensitivity.</p>
+@@ -274,7 +324,7 @@
+ <section id="observer-design-boundary" class="slide level2">
+ <h2>Observer-design boundary</h2>
+ <figure id="fig:observer_protocol">
+-<img data-src="../../output/figures/observer_protocol.png"
++<img data-src="../figures/observer_protocol.png"
+ alt="A flow diagram connects trial identity, randomization, stimulus manifest, response, aggregate estimand, and analysis-model templates, with a synthetic-only boundary." />
+ <figcaption aria-hidden="true">A flow diagram connects trial identity,
+ randomization, stimulus manifest, response, aggregate estimand, and
+@@ -301,13 +351,11 @@
+ effect. Boundary: The protocol requires ethical review, task and
+ calibration specifications, and preregistration before human use, not
+ evidence that the proposed effect exists.</p>
+-<p>The observer scaffold <span class="citation"
+-data-cites="fig:observer_protocol">(<strong>fig:observer_protocol?</strong>)</span>
++<p>The observer scaffold <a class="cross-reference" href="#fig:observer_protocol">Figure 15</a>
+ starts with a pseudonymous trial identity and deterministic
+ randomization, binds the stimulus manifest and encoded hash, records a
+ typed response or missingness state, and ends at a preregistered
+-estimand. The companion diagnostic <span class="citation"
+-data-cites="fig:synthetic_psychophysics">(<strong>fig:synthetic_psychophysics?</strong>)</span>
++estimand. The companion diagnostic <span class="cross-reference">Figure 9</span>
+ is a deterministic, hand-specified feature observer with
+ <code>training_data=none</code> and <code>human_data=false</code>; it is
+ not a pretrained vision model, psychometric function, or participant
+@@ -3387,26 +3435,9 @@
+         // viewDistance in order to save resources.
+         mobileViewDistance: 2,
+ 
+-        math: {
+-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-chtml.js',
+-          config: 'TeX-AMS_HTML-full',
+-          tex2jax: {
+-            inlineMath: [['\\(','\\)']],
+-            displayMath: [['\\[','\\]']],
+-            balanceBraces: true,
+-            processEscapes: false,
+-            processRefs: true,
+-            processEnvironments: true,
+-            preview: 'TeX',
+-            skipTags: ['script','noscript','style','textarea','pre','code'],
+-            ignoreClass: 'tex2jax_ignore',
+-            processClass: 'tex2jax_process'
+-          },
+-        },
+-
+         // reveal.js plugins
+         plugins: [
+-          RevealMath,
++
+           RevealNotes,
+           RevealSearch,
+           RevealZoom

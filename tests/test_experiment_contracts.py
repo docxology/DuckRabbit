@@ -11,7 +11,6 @@ from __future__ import annotations
 
 import json
 import math
-import statistics
 
 try:
     import tomllib
@@ -92,23 +91,31 @@ def test_observer_analysis_plan_matches_default_study_design() -> None:
     assert plan == default_study_design().to_dict()
 
 
-def test_simulate_power_matches_two_proportion_closed_form() -> None:
-    # n=24 per arm, baseline 0.5, effect 0.2: SE_H1 = sqrt((0.25+0.21)/24),
-    # power = Phi(effect/SE - z_{0.975}) ~= 0.3032. The pre-fix estimator
-    # divided the pooled variance by 2n and returned ~0.53 for this point.
+def _exact_rejection_probability(n, reference_probability, treatment_probability, alpha=0.05):
+    from duckrabbit.observer_analysis import _fisher_exact_two_sided
+
+    return sum(
+        math.comb(n, a) * reference_probability ** a * (1 - reference_probability) ** (n - a)
+        * math.comb(n, b) * treatment_probability ** b * (1 - treatment_probability) ** (n - b)
+        for a in range(n + 1) for b in range(n + 1)
+        if _fisher_exact_two_sided(a, n - a, b, n - b) <= alpha
+    )
+
+
+def test_simulated_independent_arm_power_agrees_with_exact_sampling_distribution() -> None:
     estimate = simulate_power(24, 0.2, repetitions=600, seed=7)
-    se = math.sqrt((0.5 * 0.5 + 0.7 * 0.3) / 24)
-    expected = statistics.NormalDist().cdf(0.2 / se - statistics.NormalDist().inv_cdf(0.975))
+    expected = _exact_rejection_probability(24, 0.5, 0.7)
     assert estimate.repetitions == 600
     assert estimate.power == pytest.approx(expected, abs=0.05)
+    assert estimate.to_dict()["sample_size_per_group"] == 24
+    assert estimate.to_dict()["detection_count"] / 600 == estimate.power
 
 
-def test_simulate_power_null_effect_calibrates_to_alpha() -> None:
-    # Under H0 the two-proportion z statistic is standard normal, so the
-    # nominal 5% test must reject about 5% of the time (the pre-fix SE made
-    # this ~16.6%).
+def test_exact_test_null_size_is_conservative_and_simulation_agrees() -> None:
+    expected = _exact_rejection_probability(24, 0.5, 0.5)
+    assert 0 <= expected <= 0.05
     estimate = simulate_power(24, 0.0, repetitions=1000, seed=11)
-    assert estimate.power == pytest.approx(0.05, abs=0.03)
+    assert estimate.power == pytest.approx(expected, abs=0.03)
 
 
 def test_wilson_interval_matches_closed_form_and_rejects_invalid_input() -> None:

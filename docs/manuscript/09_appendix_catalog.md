@@ -1,4 +1,4 @@
-# Appendix A. Complete catalog, source tiers, and evidence/implementation boundaries {#sec:appendix_catalog}
+# Appendix A. Complete catalog, source tiers, and evidence and implementation boundaries {#sec:appendix_catalog}
 
 This appendix is the authoritative rendered snapshot of DuckRabbit's live
 catalog. It is generated from the taxonomy registry and evidence matrix during

@@ -1,0 +1,3674 @@
+{
+  "data": {
+    "extracted_features": {
+      "comparisons": [
+        {
+          "dynamic_range": 1.0,
+          "edge_energy": 0.006663602776825428,
+          "mean_luminance": 0.762176513671875,
+          "quantization_fraction": 0.0078125,
+          "std_luminance": 0.4257504940032959
+        },
+        {
+          "dynamic_range": 1.0,
+          "edge_energy": 0.006225310266017914,
+          "mean_luminance": 0.7694758176803589,
+          "quantization_fraction": 0.015625,
+          "std_luminance": 0.38786107301712036
+        },
+        {
+          "dynamic_range": 1.0,
+          "edge_energy": 0.005782091058790684,
+          "mean_luminance": 0.7769991755485535,
+          "quantization_fraction": 0.01171875,
+          "std_luminance": 0.370724618434906
+        },
+        {
+          "dynamic_range": 1.0,
+          "edge_energy": 0.005370830651372671,
+          "mean_luminance": 0.7839604020118713,
+          "quantization_fraction": 0.015625,
+          "std_luminance": 0.37738558650016785
+        },
+        {
+          "dynamic_range": 1.0,
+          "edge_energy": 0.004947916604578495,
+          "mean_luminance": 0.791259765625,
+          "quantization_fraction": 0.0078125,
+          "std_luminance": 0.4064083397388458
+        }
+      ],
+      "reference": {
+        "dynamic_range": 1.0,
+        "edge_energy": 0.005782091058790684,
+        "mean_luminance": 0.7769991755485535,
+        "quantization_fraction": 0.01171875,
+        "std_luminance": 0.370724618434906
+      }
+    },
+    "model": {
+      "calibration": "analytic logistic calibration; no human or pretrained-model fit",
+      "claim_level": "synthetic_model_output",
+      "computation_version": "duckrabbit.synthetic.feature_observer/v1",
+      "epistemic_status": "model_output_not_human_data",
+      "feature_extraction": "duckrabbit.synthetic_psychophysics.extract_features/v1",
+      "feature_weights": {
+        "crest_factor_fraction": 0.15,
+        "dynamic_range": 0.2,
+        "edge_energy": 0.3,
+        "frame_rate_fraction": 0.15,
+        "mean_luminance": 0.1,
+        "peak": 0.15,
+        "quantization_fraction": 0.15,
+        "rms": 0.25,
+        "spatial_offset_fraction": 0.2,
+        "spectral_bandwidth_fraction": 0.2,
+        "spectral_centroid_fraction": 0.25,
+        "std_luminance": 0.25,
+        "sync_offset_fraction": 0.25,
+        "temporal_delta": 0.4
+      },
+      "human_data": false,
+      "human_validation": "not performed",
+      "logit_clip": [
+        -60.0,
+        60.0
+      ],
+      "model_id": "duckrabbit.synthetic.feature_observer",
+      "model_spec_digest": "1a62faab932ebc23f37734299821c2db9b489543bc4c7c6a275f6e34a09aba78",
+      "probability_rule": "clipped_logistic_score_difference_over_temperature",
+      "seed": 0,
+      "temperature": 0.05,
+      "tie_choice": "comparison",
+      "training_data": "none",
+      "version": "1.0"
+    },
+    "plot": {
+      "probability_axis": [
+        0.47098222709938586,
+        0.6373011839964968
+      ],
+      "range_kind": "model_sensitivity_not_confidence_interval"
+    },
+    "points": [
+      {
+        "prediction": {
+          "choice": "comparison",
+          "claim_level": "synthetic_model_output",
+          "comparison_digest": "d2fb1b8250107af3a8312d0859faf7891bb29a7bfdf67ae19055dbceafd6231c",
+          "condition_id": "duck_weight",
+          "feature_schema": [
+            "dynamic_range",
+            "edge_energy",
+            "mean_luminance",
+            "quantization_fraction",
+            "std_luminance"
+          ],
+          "human_data": false,
+          "model_id": "duckrabbit.synthetic.feature_observer",
+          "probability_comparison": 0.559480601560351,
+          "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+          "score_comparison": 0.3858262307010591,
+          "score_delta": 0.01195271871984005,
+          "score_reference": 0.37387351198121904,
+          "seed": 0,
+          "trial_id": "duck_weight:0"
+        },
+        "x_label": "0.00",
+        "x_value": 0.0
+      },
+      {
+        "prediction": {
+          "choice": "comparison",
+          "claim_level": "synthetic_model_output",
+          "comparison_digest": "3a2f4bfb68c45800fd6a08ce23e9a7854544330ddc9839ecc914f583f25f04e8",
+          "condition_id": "duck_weight",
+          "feature_schema": [
+            "dynamic_range",
+            "edge_energy",
+            "mean_luminance",
+            "quantization_fraction",
+            "std_luminance"
+          ],
+          "human_data": false,
+          "model_id": "duckrabbit.synthetic.feature_observer",
+          "probability_comparison": 0.5212406144258287,
+          "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+          "score_comparison": 0.37812419310212136,
+          "score_delta": 0.004250681120902322,
+          "score_reference": 0.37387351198121904,
+          "seed": 0,
+          "trial_id": "duck_weight:1"
+        },
+        "x_label": "0.25",
+        "x_value": 0.25
+      },
+      {
+        "prediction": {
+          "choice": "comparison",
+          "claim_level": "synthetic_model_output",
+          "comparison_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+          "condition_id": "duck_weight",
+          "feature_schema": [
+            "dynamic_range",
+            "edge_energy",
+            "mean_luminance",
+            "quantization_fraction",
+            "std_luminance"
+          ],
+          "human_data": false,
+          "model_id": "duckrabbit.synthetic.feature_observer",
+          "probability_comparison": 0.5,
+          "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+          "score_comparison": 0.37387351198121904,
+          "score_delta": 0.0,
+          "score_reference": 0.37387351198121904,
+          "seed": 0,
+          "trial_id": "duck_weight:2"
+        },
+        "x_label": "0.50",
+        "x_value": 0.5
+      },
+      {
+        "prediction": {
+          "choice": "comparison",
+          "claim_level": "synthetic_model_output",
+          "comparison_digest": "8d8581e0bfe584b39458cd0d23bd0605781dfe81335577b0da8884fb9912940a",
+          "condition_id": "duck_weight",
+          "feature_schema": [
+            "dynamic_range",
+            "edge_energy",
+            "mean_luminance",
+            "quantization_fraction",
+            "std_luminance"
+          ],
+          "human_data": false,
+          "model_id": "duckrabbit.synthetic.feature_observer",
+          "probability_comparison": 0.5141158681464516,
+          "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+          "score_comparison": 0.3766974360216409,
+          "score_delta": 0.0028239240404218657,
+          "score_reference": 0.37387351198121904,
+          "seed": 0,
+          "trial_id": "duck_weight:3"
+        },
+        "x_label": "0.75",
+        "x_value": 0.75
+      },
+      {
+        "prediction": {
+          "choice": "comparison",
+          "claim_level": "synthetic_model_output",
+          "comparison_digest": "c18318b777f9a99afb1da0a4ba868e543be53ed10853ff08377bffa04a9be99d",
+          "condition_id": "duck_weight",
+          "feature_schema": [
+            "dynamic_range",
+            "edge_energy",
+            "mean_luminance",
+            "quantization_fraction",
+            "std_luminance"
+          ],
+          "human_data": false,
+          "model_id": "duckrabbit.synthetic.feature_observer",
+          "probability_comparison": 0.5474111306721864,
+          "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+          "score_comparison": 0.38338431147858504,
+          "score_delta": 0.009510799497365996,
+          "score_reference": 0.37387351198121904,
+          "seed": 0,
+          "trial_id": "duck_weight:4"
+        },
+        "x_label": "1.00",
+        "x_value": 1.0
+      }
+    ],
+    "reference": {
+      "canonical_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+      "label": "duck_weight=0.50"
+    },
+    "summary": {
+      "claim_level": "synthetic_model_output",
+      "epistemic_status": "model_output_not_human_data",
+      "evaluation_boundary": "A deterministic feature observer is a diagnostic; it is not a pretrained vision model and not a human psychophysics result.",
+      "human_data": false,
+      "model_id": "duckrabbit.synthetic.feature_observer",
+      "point_count": 5,
+      "probability_max": 0.559480601560351,
+      "probability_mean": 0.5284496429609635,
+      "probability_min": 0.5
+    },
+    "uncertainty": {
+      "configuration_count": 19,
+      "configuration_ids": [
+        "duckrabbit.synthetic.feature_observer",
+        "duckrabbit.synthetic.feature_observer:without:crest_factor_fraction",
+        "duckrabbit.synthetic.feature_observer:without:dynamic_range",
+        "duckrabbit.synthetic.feature_observer:without:edge_energy",
+        "duckrabbit.synthetic.feature_observer:without:frame_rate_fraction",
+        "duckrabbit.synthetic.feature_observer:without:mean_luminance",
+        "duckrabbit.synthetic.feature_observer:without:peak",
+        "duckrabbit.synthetic.feature_observer:without:quantization_fraction",
+        "duckrabbit.synthetic.feature_observer:without:rms",
+        "duckrabbit.synthetic.feature_observer:without:spatial_offset_fraction",
+        "duckrabbit.synthetic.feature_observer:without:spectral_bandwidth_fraction",
+        "duckrabbit.synthetic.feature_observer:without:spectral_centroid_fraction",
+        "duckrabbit.synthetic.feature_observer:without:std_luminance",
+        "duckrabbit.synthetic.feature_observer:without:sync_offset_fraction",
+        "duckrabbit.synthetic.feature_observer:without:temporal_delta",
+        "duckrabbit.synthetic.feature_observer:null",
+        "duckrabbit.synthetic.feature_observer:temperature:0.5",
+        "duckrabbit.synthetic.feature_observer:temperature:1",
+        "duckrabbit.synthetic.feature_observer:temperature:2"
+      ],
+      "empirical_uncertainty": "not_estimated_no_observer_data",
+      "human_data": false,
+      "interpretation": "Min/max spread over declared analyst-chosen configurations, not confidence intervals or empirical uncertainty.",
+      "kind": "model_sensitivity",
+      "points": [
+        {
+          "probability_max": 0.6173011839964968,
+          "probability_min": 0.4909822270993859,
+          "probability_spread": 0.12631895689711092,
+          "x_label": "0.00",
+          "x_value": 0.0
+        },
+        {
+          "probability_max": 0.5424047030006435,
+          "probability_min": 0.4998328373829718,
+          "probability_spread": 0.04257186561767168,
+          "x_label": "0.25",
+          "x_value": 0.25
+        },
+        {
+          "probability_max": 0.5,
+          "probability_min": 0.5,
+          "probability_spread": 0.0,
+          "x_label": "0.50",
+          "x_value": 0.5
+        },
+        {
+          "probability_max": 0.5282092526459162,
+          "probability_min": 0.5,
+          "probability_spread": 0.028209252645916227,
+          "x_label": "0.75",
+          "x_value": 0.75
+        },
+        {
+          "probability_max": 0.5939772870056711,
+          "probability_min": 0.5,
+          "probability_spread": 0.0939772870056711,
+          "x_label": "1.00",
+          "x_value": 1.0
+        }
+      ],
+      "temperature_factors": [
+        0.5,
+        1.0,
+        2.0
+      ]
+    },
+    "variants": [
+      {
+        "ablated_feature": "crest_factor_fraction",
+        "kind": "feature_ablation",
+        "model": {
+          "calibration": "analytic logistic calibration; no human or pretrained-model fit",
+          "claim_level": "synthetic_model_output",
+          "computation_version": "duckrabbit.synthetic.feature_observer/v1",
+          "epistemic_status": "model_output_not_human_data",
+          "feature_extraction": "duckrabbit.synthetic_psychophysics.extract_features/v1",
+          "feature_weights": {
+            "crest_factor_fraction": 0.0,
+            "dynamic_range": 0.2,
+            "edge_energy": 0.3,
+            "frame_rate_fraction": 0.15,
+            "mean_luminance": 0.1,
+            "peak": 0.15,
+            "quantization_fraction": 0.15,
+            "rms": 0.25,
+            "spatial_offset_fraction": 0.2,
+            "spectral_bandwidth_fraction": 0.2,
+            "spectral_centroid_fraction": 0.25,
+            "std_luminance": 0.25,
+            "sync_offset_fraction": 0.25,
+            "temporal_delta": 0.4
+          },
+          "human_data": false,
+          "human_validation": "not performed",
+          "logit_clip": [
+            -60.0,
+            60.0
+          ],
+          "model_id": "duckrabbit.synthetic.feature_observer:without:crest_factor_fraction",
+          "model_spec_digest": "2b2d5b4d759b0041d205d58a48e3ce6650574f533dedf0fca06dc078468d1253",
+          "probability_rule": "clipped_logistic_score_difference_over_temperature",
+          "seed": 0,
+          "temperature": 0.05,
+          "tie_choice": "comparison",
+          "training_data": "none",
+          "version": "1.0"
+        },
+        "points": [
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "d2fb1b8250107af3a8312d0859faf7891bb29a7bfdf67ae19055dbceafd6231c",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:crest_factor_fraction",
+              "probability_comparison": 0.559480601560351,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3858262307010591,
+              "score_delta": 0.01195271871984005,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:0"
+            },
+            "x_label": "0.00",
+            "x_value": 0.0
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "3a2f4bfb68c45800fd6a08ce23e9a7854544330ddc9839ecc914f583f25f04e8",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:crest_factor_fraction",
+              "probability_comparison": 0.5212406144258287,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.37812419310212136,
+              "score_delta": 0.004250681120902322,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:1"
+            },
+            "x_label": "0.25",
+            "x_value": 0.25
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:crest_factor_fraction",
+              "probability_comparison": 0.5,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.37387351198121904,
+              "score_delta": 0.0,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:2"
+            },
+            "x_label": "0.50",
+            "x_value": 0.5
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "8d8581e0bfe584b39458cd0d23bd0605781dfe81335577b0da8884fb9912940a",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:crest_factor_fraction",
+              "probability_comparison": 0.5141158681464516,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3766974360216409,
+              "score_delta": 0.0028239240404218657,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:3"
+            },
+            "x_label": "0.75",
+            "x_value": 0.75
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "c18318b777f9a99afb1da0a4ba868e543be53ed10853ff08377bffa04a9be99d",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:crest_factor_fraction",
+              "probability_comparison": 0.5474111306721864,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.38338431147858504,
+              "score_delta": 0.009510799497365996,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:4"
+            },
+            "x_label": "1.00",
+            "x_value": 1.0
+          }
+        ],
+        "summary": {
+          "claim_level": "synthetic_model_output",
+          "epistemic_status": "model_output_not_human_data",
+          "evaluation_boundary": "A deterministic feature observer is a diagnostic; it is not a pretrained vision model and not a human psychophysics result.",
+          "human_data": false,
+          "model_id": "duckrabbit.synthetic.feature_observer:without:crest_factor_fraction",
+          "point_count": 5,
+          "probability_max": 0.559480601560351,
+          "probability_mean": 0.5284496429609635,
+          "probability_min": 0.5
+        },
+        "temperature_factor": null
+      },
+      {
+        "ablated_feature": "dynamic_range",
+        "kind": "feature_ablation",
+        "model": {
+          "calibration": "analytic logistic calibration; no human or pretrained-model fit",
+          "claim_level": "synthetic_model_output",
+          "computation_version": "duckrabbit.synthetic.feature_observer/v1",
+          "epistemic_status": "model_output_not_human_data",
+          "feature_extraction": "duckrabbit.synthetic_psychophysics.extract_features/v1",
+          "feature_weights": {
+            "crest_factor_fraction": 0.15,
+            "dynamic_range": 0.0,
+            "edge_energy": 0.3,
+            "frame_rate_fraction": 0.15,
+            "mean_luminance": 0.1,
+            "peak": 0.15,
+            "quantization_fraction": 0.15,
+            "rms": 0.25,
+            "spatial_offset_fraction": 0.2,
+            "spectral_bandwidth_fraction": 0.2,
+            "spectral_centroid_fraction": 0.25,
+            "std_luminance": 0.25,
+            "sync_offset_fraction": 0.25,
+            "temporal_delta": 0.4
+          },
+          "human_data": false,
+          "human_validation": "not performed",
+          "logit_clip": [
+            -60.0,
+            60.0
+          ],
+          "model_id": "duckrabbit.synthetic.feature_observer:without:dynamic_range",
+          "model_spec_digest": "1e113a8cf50628ed8302ac4734397e58f2873254438a832ed237dbdca8ebe259",
+          "probability_rule": "clipped_logistic_score_difference_over_temperature",
+          "seed": 0,
+          "temperature": 0.05,
+          "tie_choice": "comparison",
+          "training_data": "none",
+          "version": "1.0"
+        },
+        "points": [
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "d2fb1b8250107af3a8312d0859faf7891bb29a7bfdf67ae19055dbceafd6231c",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:dynamic_range",
+              "probability_comparison": 0.559480601560351,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.1858262307010591,
+              "score_delta": 0.01195271871984005,
+              "score_reference": 0.17387351198121906,
+              "seed": 0,
+              "trial_id": "duck_weight:0"
+            },
+            "x_label": "0.00",
+            "x_value": 0.0
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "3a2f4bfb68c45800fd6a08ce23e9a7854544330ddc9839ecc914f583f25f04e8",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:dynamic_range",
+              "probability_comparison": 0.5212406144258286,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.17812419310212135,
+              "score_delta": 0.004250681120902294,
+              "score_reference": 0.17387351198121906,
+              "seed": 0,
+              "trial_id": "duck_weight:1"
+            },
+            "x_label": "0.25",
+            "x_value": 0.25
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:dynamic_range",
+              "probability_comparison": 0.5,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.17387351198121906,
+              "score_delta": 0.0,
+              "score_reference": 0.17387351198121906,
+              "seed": 0,
+              "trial_id": "duck_weight:2"
+            },
+            "x_label": "0.50",
+            "x_value": 0.5
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "8d8581e0bfe584b39458cd0d23bd0605781dfe81335577b0da8884fb9912940a",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:dynamic_range",
+              "probability_comparison": 0.5141158681464515,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.1766974360216409,
+              "score_delta": 0.002823924040421838,
+              "score_reference": 0.17387351198121906,
+              "seed": 0,
+              "trial_id": "duck_weight:3"
+            },
+            "x_label": "0.75",
+            "x_value": 0.75
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "c18318b777f9a99afb1da0a4ba868e543be53ed10853ff08377bffa04a9be99d",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:dynamic_range",
+              "probability_comparison": 0.547411130672186,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.183384311478585,
+              "score_delta": 0.00951079949736594,
+              "score_reference": 0.17387351198121906,
+              "seed": 0,
+              "trial_id": "duck_weight:4"
+            },
+            "x_label": "1.00",
+            "x_value": 1.0
+          }
+        ],
+        "summary": {
+          "claim_level": "synthetic_model_output",
+          "epistemic_status": "model_output_not_human_data",
+          "evaluation_boundary": "A deterministic feature observer is a diagnostic; it is not a pretrained vision model and not a human psychophysics result.",
+          "human_data": false,
+          "model_id": "duckrabbit.synthetic.feature_observer:without:dynamic_range",
+          "point_count": 5,
+          "probability_max": 0.559480601560351,
+          "probability_mean": 0.5284496429609634,
+          "probability_min": 0.5
+        },
+        "temperature_factor": null
+      },
+      {
+        "ablated_feature": "edge_energy",
+        "kind": "feature_ablation",
+        "model": {
+          "calibration": "analytic logistic calibration; no human or pretrained-model fit",
+          "claim_level": "synthetic_model_output",
+          "computation_version": "duckrabbit.synthetic.feature_observer/v1",
+          "epistemic_status": "model_output_not_human_data",
+          "feature_extraction": "duckrabbit.synthetic_psychophysics.extract_features/v1",
+          "feature_weights": {
+            "crest_factor_fraction": 0.15,
+            "dynamic_range": 0.2,
+            "edge_energy": 0.0,
+            "frame_rate_fraction": 0.15,
+            "mean_luminance": 0.1,
+            "peak": 0.15,
+            "quantization_fraction": 0.15,
+            "rms": 0.25,
+            "spatial_offset_fraction": 0.2,
+            "spectral_bandwidth_fraction": 0.2,
+            "spectral_centroid_fraction": 0.25,
+            "std_luminance": 0.25,
+            "sync_offset_fraction": 0.25,
+            "temporal_delta": 0.4
+          },
+          "human_data": false,
+          "human_validation": "not performed",
+          "logit_clip": [
+            -60.0,
+            60.0
+          ],
+          "model_id": "duckrabbit.synthetic.feature_observer:without:edge_energy",
+          "model_spec_digest": "c72aa18535283821d75bb28bae3e5c2f57522be7cebaaf6629f226450323c67c",
+          "probability_rule": "clipped_logistic_score_difference_over_temperature",
+          "seed": 0,
+          "temperature": 0.05,
+          "tie_choice": "comparison",
+          "training_data": "none",
+          "version": "1.0"
+        },
+        "points": [
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "d2fb1b8250107af3a8312d0859faf7891bb29a7bfdf67ae19055dbceafd6231c",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:edge_energy",
+              "probability_comparison": 0.5581766392241149,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3838271498680115,
+              "score_delta": 0.011688265204429615,
+              "score_reference": 0.37213888466358186,
+              "seed": 0,
+              "trial_id": "duck_weight:0"
+            },
+            "x_label": "0.00",
+            "x_value": 0.0
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "3a2f4bfb68c45800fd6a08ce23e9a7854544330ddc9839ecc914f583f25f04e8",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:edge_energy",
+              "probability_comparison": 0.5205769483051079,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.376256600022316,
+              "score_delta": 0.00411771535873412,
+              "score_reference": 0.37213888466358186,
+              "seed": 0,
+              "trial_id": "duck_weight:1"
+            },
+            "x_label": "0.25",
+            "x_value": 0.25
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:edge_energy",
+              "probability_comparison": 0.5,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.37213888466358186,
+              "score_delta": 0.0,
+              "score_reference": 0.37213888466358186,
+              "seed": 0,
+              "trial_id": "duck_weight:2"
+            },
+            "x_label": "0.50",
+            "x_value": 0.5
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "8d8581e0bfe584b39458cd0d23bd0605781dfe81335577b0da8884fb9912940a",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:edge_energy",
+              "probability_comparison": 0.5147322452944086,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.37508618682622913,
+              "score_delta": 0.0029473021626472695,
+              "score_reference": 0.37213888466358186,
+              "seed": 0,
+              "trial_id": "duck_weight:3"
+            },
+            "x_label": "0.75",
+            "x_value": 0.75
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "c18318b777f9a99afb1da0a4ba868e543be53ed10853ff08377bffa04a9be99d",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:edge_energy",
+              "probability_comparison": 0.548650845166929,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3818999364972115,
+              "score_delta": 0.00976105183362963,
+              "score_reference": 0.37213888466358186,
+              "seed": 0,
+              "trial_id": "duck_weight:4"
+            },
+            "x_label": "1.00",
+            "x_value": 1.0
+          }
+        ],
+        "summary": {
+          "claim_level": "synthetic_model_output",
+          "epistemic_status": "model_output_not_human_data",
+          "evaluation_boundary": "A deterministic feature observer is a diagnostic; it is not a pretrained vision model and not a human psychophysics result.",
+          "human_data": false,
+          "model_id": "duckrabbit.synthetic.feature_observer:without:edge_energy",
+          "point_count": 5,
+          "probability_max": 0.5581766392241149,
+          "probability_mean": 0.5284273355981121,
+          "probability_min": 0.5
+        },
+        "temperature_factor": null
+      },
+      {
+        "ablated_feature": "frame_rate_fraction",
+        "kind": "feature_ablation",
+        "model": {
+          "calibration": "analytic logistic calibration; no human or pretrained-model fit",
+          "claim_level": "synthetic_model_output",
+          "computation_version": "duckrabbit.synthetic.feature_observer/v1",
+          "epistemic_status": "model_output_not_human_data",
+          "feature_extraction": "duckrabbit.synthetic_psychophysics.extract_features/v1",
+          "feature_weights": {
+            "crest_factor_fraction": 0.15,
+            "dynamic_range": 0.2,
+            "edge_energy": 0.3,
+            "frame_rate_fraction": 0.0,
+            "mean_luminance": 0.1,
+            "peak": 0.15,
+            "quantization_fraction": 0.15,
+            "rms": 0.25,
+            "spatial_offset_fraction": 0.2,
+            "spectral_bandwidth_fraction": 0.2,
+            "spectral_centroid_fraction": 0.25,
+            "std_luminance": 0.25,
+            "sync_offset_fraction": 0.25,
+            "temporal_delta": 0.4
+          },
+          "human_data": false,
+          "human_validation": "not performed",
+          "logit_clip": [
+            -60.0,
+            60.0
+          ],
+          "model_id": "duckrabbit.synthetic.feature_observer:without:frame_rate_fraction",
+          "model_spec_digest": "4ab5fefb404fbe0d738560b13e53dcf3f0cce861871fc4b7840632d137d4d3a8",
+          "probability_rule": "clipped_logistic_score_difference_over_temperature",
+          "seed": 0,
+          "temperature": 0.05,
+          "tie_choice": "comparison",
+          "training_data": "none",
+          "version": "1.0"
+        },
+        "points": [
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "d2fb1b8250107af3a8312d0859faf7891bb29a7bfdf67ae19055dbceafd6231c",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:frame_rate_fraction",
+              "probability_comparison": 0.559480601560351,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3858262307010591,
+              "score_delta": 0.01195271871984005,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:0"
+            },
+            "x_label": "0.00",
+            "x_value": 0.0
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "3a2f4bfb68c45800fd6a08ce23e9a7854544330ddc9839ecc914f583f25f04e8",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:frame_rate_fraction",
+              "probability_comparison": 0.5212406144258287,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.37812419310212136,
+              "score_delta": 0.004250681120902322,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:1"
+            },
+            "x_label": "0.25",
+            "x_value": 0.25
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:frame_rate_fraction",
+              "probability_comparison": 0.5,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.37387351198121904,
+              "score_delta": 0.0,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:2"
+            },
+            "x_label": "0.50",
+            "x_value": 0.5
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "8d8581e0bfe584b39458cd0d23bd0605781dfe81335577b0da8884fb9912940a",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:frame_rate_fraction",
+              "probability_comparison": 0.5141158681464516,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3766974360216409,
+              "score_delta": 0.0028239240404218657,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:3"
+            },
+            "x_label": "0.75",
+            "x_value": 0.75
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "c18318b777f9a99afb1da0a4ba868e543be53ed10853ff08377bffa04a9be99d",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:frame_rate_fraction",
+              "probability_comparison": 0.5474111306721864,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.38338431147858504,
+              "score_delta": 0.009510799497365996,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:4"
+            },
+            "x_label": "1.00",
+            "x_value": 1.0
+          }
+        ],
+        "summary": {
+          "claim_level": "synthetic_model_output",
+          "epistemic_status": "model_output_not_human_data",
+          "evaluation_boundary": "A deterministic feature observer is a diagnostic; it is not a pretrained vision model and not a human psychophysics result.",
+          "human_data": false,
+          "model_id": "duckrabbit.synthetic.feature_observer:without:frame_rate_fraction",
+          "point_count": 5,
+          "probability_max": 0.559480601560351,
+          "probability_mean": 0.5284496429609635,
+          "probability_min": 0.5
+        },
+        "temperature_factor": null
+      },
+      {
+        "ablated_feature": "mean_luminance",
+        "kind": "feature_ablation",
+        "model": {
+          "calibration": "analytic logistic calibration; no human or pretrained-model fit",
+          "claim_level": "synthetic_model_output",
+          "computation_version": "duckrabbit.synthetic.feature_observer/v1",
+          "epistemic_status": "model_output_not_human_data",
+          "feature_extraction": "duckrabbit.synthetic_psychophysics.extract_features/v1",
+          "feature_weights": {
+            "crest_factor_fraction": 0.15,
+            "dynamic_range": 0.2,
+            "edge_energy": 0.3,
+            "frame_rate_fraction": 0.15,
+            "mean_luminance": 0.0,
+            "peak": 0.15,
+            "quantization_fraction": 0.15,
+            "rms": 0.25,
+            "spatial_offset_fraction": 0.2,
+            "spectral_bandwidth_fraction": 0.2,
+            "spectral_centroid_fraction": 0.25,
+            "std_luminance": 0.25,
+            "sync_offset_fraction": 0.25,
+            "temporal_delta": 0.4
+          },
+          "human_data": false,
+          "human_validation": "not performed",
+          "logit_clip": [
+            -60.0,
+            60.0
+          ],
+          "model_id": "duckrabbit.synthetic.feature_observer:without:mean_luminance",
+          "model_spec_digest": "300e2515aa9a204367f56a9ac9446f63681a167796f4560fc9f871d526ef895c",
+          "probability_rule": "clipped_logistic_score_difference_over_temperature",
+          "seed": 0,
+          "temperature": 0.05,
+          "tie_choice": "comparison",
+          "training_data": "none",
+          "version": "1.0"
+        },
+        "points": [
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "d2fb1b8250107af3a8312d0859faf7891bb29a7bfdf67ae19055dbceafd6231c",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:mean_luminance",
+              "probability_comparison": 0.5667736549503061,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3096085793338716,
+              "score_delta": 0.013434984907507885,
+              "score_reference": 0.2961735944263637,
+              "seed": 0,
+              "trial_id": "duck_weight:0"
+            },
+            "x_label": "0.00",
+            "x_value": 0.0
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "3a2f4bfb68c45800fd6a08ce23e9a7854544330ddc9839ecc914f583f25f04e8",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:mean_luminance",
+              "probability_comparison": 0.5249942343462825,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.30117661133408546,
+              "score_delta": 0.005003016907721758,
+              "score_reference": 0.2961735944263637,
+              "seed": 0,
+              "trial_id": "duck_weight:1"
+            },
+            "x_label": "0.25",
+            "x_value": 0.25
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:mean_luminance",
+              "probability_comparison": 0.5,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.2961735944263637,
+              "score_delta": 0.0,
+              "score_reference": 0.2961735944263637,
+              "seed": 0,
+              "trial_id": "duck_weight:2"
+            },
+            "x_label": "0.50",
+            "x_value": 0.5
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "8d8581e0bfe584b39458cd0d23bd0605781dfe81335577b0da8884fb9912940a",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:mean_luminance",
+              "probability_comparison": 0.5106374016439582,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.2983013958204538,
+              "score_delta": 0.0021278013940900786,
+              "score_reference": 0.2961735944263637,
+              "seed": 0,
+              "trial_id": "duck_weight:3"
+            },
+            "x_label": "0.75",
+            "x_value": 0.75
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "c18318b777f9a99afb1da0a4ba868e543be53ed10853ff08377bffa04a9be99d",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:mean_luminance",
+              "probability_comparison": 0.5403358582577288,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.304258334916085,
+              "score_delta": 0.008084740489721298,
+              "score_reference": 0.2961735944263637,
+              "seed": 0,
+              "trial_id": "duck_weight:4"
+            },
+            "x_label": "1.00",
+            "x_value": 1.0
+          }
+        ],
+        "summary": {
+          "claim_level": "synthetic_model_output",
+          "epistemic_status": "model_output_not_human_data",
+          "evaluation_boundary": "A deterministic feature observer is a diagnostic; it is not a pretrained vision model and not a human psychophysics result.",
+          "human_data": false,
+          "model_id": "duckrabbit.synthetic.feature_observer:without:mean_luminance",
+          "point_count": 5,
+          "probability_max": 0.5667736549503061,
+          "probability_mean": 0.5285482298396551,
+          "probability_min": 0.5
+        },
+        "temperature_factor": null
+      },
+      {
+        "ablated_feature": "peak",
+        "kind": "feature_ablation",
+        "model": {
+          "calibration": "analytic logistic calibration; no human or pretrained-model fit",
+          "claim_level": "synthetic_model_output",
+          "computation_version": "duckrabbit.synthetic.feature_observer/v1",
+          "epistemic_status": "model_output_not_human_data",
+          "feature_extraction": "duckrabbit.synthetic_psychophysics.extract_features/v1",
+          "feature_weights": {
+            "crest_factor_fraction": 0.15,
+            "dynamic_range": 0.2,
+            "edge_energy": 0.3,
+            "frame_rate_fraction": 0.15,
+            "mean_luminance": 0.1,
+            "peak": 0.0,
+            "quantization_fraction": 0.15,
+            "rms": 0.25,
+            "spatial_offset_fraction": 0.2,
+            "spectral_bandwidth_fraction": 0.2,
+            "spectral_centroid_fraction": 0.25,
+            "std_luminance": 0.25,
+            "sync_offset_fraction": 0.25,
+            "temporal_delta": 0.4
+          },
+          "human_data": false,
+          "human_validation": "not performed",
+          "logit_clip": [
+            -60.0,
+            60.0
+          ],
+          "model_id": "duckrabbit.synthetic.feature_observer:without:peak",
+          "model_spec_digest": "4ed5b7ea7bab110d114a81c1e2b6b92e76c8d12355c75ed974087dda094da13f",
+          "probability_rule": "clipped_logistic_score_difference_over_temperature",
+          "seed": 0,
+          "temperature": 0.05,
+          "tie_choice": "comparison",
+          "training_data": "none",
+          "version": "1.0"
+        },
+        "points": [
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "d2fb1b8250107af3a8312d0859faf7891bb29a7bfdf67ae19055dbceafd6231c",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:peak",
+              "probability_comparison": 0.559480601560351,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3858262307010591,
+              "score_delta": 0.01195271871984005,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:0"
+            },
+            "x_label": "0.00",
+            "x_value": 0.0
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "3a2f4bfb68c45800fd6a08ce23e9a7854544330ddc9839ecc914f583f25f04e8",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:peak",
+              "probability_comparison": 0.5212406144258287,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.37812419310212136,
+              "score_delta": 0.004250681120902322,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:1"
+            },
+            "x_label": "0.25",
+            "x_value": 0.25
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:peak",
+              "probability_comparison": 0.5,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.37387351198121904,
+              "score_delta": 0.0,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:2"
+            },
+            "x_label": "0.50",
+            "x_value": 0.5
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "8d8581e0bfe584b39458cd0d23bd0605781dfe81335577b0da8884fb9912940a",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:peak",
+              "probability_comparison": 0.5141158681464516,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3766974360216409,
+              "score_delta": 0.0028239240404218657,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:3"
+            },
+            "x_label": "0.75",
+            "x_value": 0.75
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "c18318b777f9a99afb1da0a4ba868e543be53ed10853ff08377bffa04a9be99d",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:peak",
+              "probability_comparison": 0.5474111306721864,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.38338431147858504,
+              "score_delta": 0.009510799497365996,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:4"
+            },
+            "x_label": "1.00",
+            "x_value": 1.0
+          }
+        ],
+        "summary": {
+          "claim_level": "synthetic_model_output",
+          "epistemic_status": "model_output_not_human_data",
+          "evaluation_boundary": "A deterministic feature observer is a diagnostic; it is not a pretrained vision model and not a human psychophysics result.",
+          "human_data": false,
+          "model_id": "duckrabbit.synthetic.feature_observer:without:peak",
+          "point_count": 5,
+          "probability_max": 0.559480601560351,
+          "probability_mean": 0.5284496429609635,
+          "probability_min": 0.5
+        },
+        "temperature_factor": null
+      },
+      {
+        "ablated_feature": "quantization_fraction",
+        "kind": "feature_ablation",
+        "model": {
+          "calibration": "analytic logistic calibration; no human or pretrained-model fit",
+          "claim_level": "synthetic_model_output",
+          "computation_version": "duckrabbit.synthetic.feature_observer/v1",
+          "epistemic_status": "model_output_not_human_data",
+          "feature_extraction": "duckrabbit.synthetic_psychophysics.extract_features/v1",
+          "feature_weights": {
+            "crest_factor_fraction": 0.15,
+            "dynamic_range": 0.2,
+            "edge_energy": 0.3,
+            "frame_rate_fraction": 0.15,
+            "mean_luminance": 0.1,
+            "peak": 0.15,
+            "quantization_fraction": 0.0,
+            "rms": 0.25,
+            "spatial_offset_fraction": 0.2,
+            "spectral_bandwidth_fraction": 0.2,
+            "spectral_centroid_fraction": 0.25,
+            "std_luminance": 0.25,
+            "sync_offset_fraction": 0.25,
+            "temporal_delta": 0.4
+          },
+          "human_data": false,
+          "human_validation": "not performed",
+          "logit_clip": [
+            -60.0,
+            60.0
+          ],
+          "model_id": "duckrabbit.synthetic.feature_observer:without:quantization_fraction",
+          "model_spec_digest": "067f43021428b813e48f470bfdbf0d788e6256d8b4307737625aefcaf725f5d4",
+          "probability_rule": "clipped_logistic_score_difference_over_temperature",
+          "seed": 0,
+          "temperature": 0.05,
+          "tie_choice": "comparison",
+          "training_data": "none",
+          "version": "1.0"
+        },
+        "points": [
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "d2fb1b8250107af3a8312d0859faf7891bb29a7bfdf67ae19055dbceafd6231c",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:quantization_fraction",
+              "probability_comparison": 0.5623667839936273,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3846543557010591,
+              "score_delta": 0.012538656219840016,
+              "score_reference": 0.3721156994812191,
+              "seed": 0,
+              "trial_id": "duck_weight:0"
+            },
+            "x_label": "0.00",
+            "x_value": 0.0
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "3a2f4bfb68c45800fd6a08ce23e9a7854544330ddc9839ecc914f583f25f04e8",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:quantization_fraction",
+              "probability_comparison": 0.5183155193799311,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3757804431021214,
+              "score_delta": 0.0036647436209023,
+              "score_reference": 0.3721156994812191,
+              "seed": 0,
+              "trial_id": "duck_weight:1"
+            },
+            "x_label": "0.25",
+            "x_value": 0.25
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:quantization_fraction",
+              "probability_comparison": 0.5,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3721156994812191,
+              "score_delta": 0.0,
+              "score_reference": 0.3721156994812191,
+              "seed": 0,
+              "trial_id": "duck_weight:2"
+            },
+            "x_label": "0.50",
+            "x_value": 0.5
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "8d8581e0bfe584b39458cd0d23bd0605781dfe81335577b0da8884fb9912940a",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:quantization_fraction",
+              "probability_comparison": 0.5111880648858078,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.37435368602164093,
+              "score_delta": 0.0022379865404218435,
+              "score_reference": 0.3721156994812191,
+              "seed": 0,
+              "trial_id": "duck_weight:3"
+            },
+            "x_label": "0.75",
+            "x_value": 0.75
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "c18318b777f9a99afb1da0a4ba868e543be53ed10853ff08377bffa04a9be99d",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:quantization_fraction",
+              "probability_comparison": 0.550312831196798,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.38221243647858505,
+              "score_delta": 0.010096736997365963,
+              "score_reference": 0.3721156994812191,
+              "seed": 0,
+              "trial_id": "duck_weight:4"
+            },
+            "x_label": "1.00",
+            "x_value": 1.0
+          }
+        ],
+        "summary": {
+          "claim_level": "synthetic_model_output",
+          "epistemic_status": "model_output_not_human_data",
+          "evaluation_boundary": "A deterministic feature observer is a diagnostic; it is not a pretrained vision model and not a human psychophysics result.",
+          "human_data": false,
+          "model_id": "duckrabbit.synthetic.feature_observer:without:quantization_fraction",
+          "point_count": 5,
+          "probability_max": 0.5623667839936273,
+          "probability_mean": 0.5284366398912328,
+          "probability_min": 0.5
+        },
+        "temperature_factor": null
+      },
+      {
+        "ablated_feature": "rms",
+        "kind": "feature_ablation",
+        "model": {
+          "calibration": "analytic logistic calibration; no human or pretrained-model fit",
+          "claim_level": "synthetic_model_output",
+          "computation_version": "duckrabbit.synthetic.feature_observer/v1",
+          "epistemic_status": "model_output_not_human_data",
+          "feature_extraction": "duckrabbit.synthetic_psychophysics.extract_features/v1",
+          "feature_weights": {
+            "crest_factor_fraction": 0.15,
+            "dynamic_range": 0.2,
+            "edge_energy": 0.3,
+            "frame_rate_fraction": 0.15,
+            "mean_luminance": 0.1,
+            "peak": 0.15,
+            "quantization_fraction": 0.15,
+            "rms": 0.0,
+            "spatial_offset_fraction": 0.2,
+            "spectral_bandwidth_fraction": 0.2,
+            "spectral_centroid_fraction": 0.25,
+            "std_luminance": 0.25,
+            "sync_offset_fraction": 0.25,
+            "temporal_delta": 0.4
+          },
+          "human_data": false,
+          "human_validation": "not performed",
+          "logit_clip": [
+            -60.0,
+            60.0
+          ],
+          "model_id": "duckrabbit.synthetic.feature_observer:without:rms",
+          "model_spec_digest": "826d7a0ce956919da05106268854c9dd4bccc2bb67008b2f6877cc6109361713",
+          "probability_rule": "clipped_logistic_score_difference_over_temperature",
+          "seed": 0,
+          "temperature": 0.05,
+          "tie_choice": "comparison",
+          "training_data": "none",
+          "version": "1.0"
+        },
+        "points": [
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "d2fb1b8250107af3a8312d0859faf7891bb29a7bfdf67ae19055dbceafd6231c",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:rms",
+              "probability_comparison": 0.559480601560351,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3858262307010591,
+              "score_delta": 0.01195271871984005,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:0"
+            },
+            "x_label": "0.00",
+            "x_value": 0.0
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "3a2f4bfb68c45800fd6a08ce23e9a7854544330ddc9839ecc914f583f25f04e8",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:rms",
+              "probability_comparison": 0.5212406144258287,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.37812419310212136,
+              "score_delta": 0.004250681120902322,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:1"
+            },
+            "x_label": "0.25",
+            "x_value": 0.25
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:rms",
+              "probability_comparison": 0.5,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.37387351198121904,
+              "score_delta": 0.0,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:2"
+            },
+            "x_label": "0.50",
+            "x_value": 0.5
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "8d8581e0bfe584b39458cd0d23bd0605781dfe81335577b0da8884fb9912940a",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:rms",
+              "probability_comparison": 0.5141158681464516,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3766974360216409,
+              "score_delta": 0.0028239240404218657,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:3"
+            },
+            "x_label": "0.75",
+            "x_value": 0.75
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "c18318b777f9a99afb1da0a4ba868e543be53ed10853ff08377bffa04a9be99d",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:rms",
+              "probability_comparison": 0.5474111306721864,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.38338431147858504,
+              "score_delta": 0.009510799497365996,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:4"
+            },
+            "x_label": "1.00",
+            "x_value": 1.0
+          }
+        ],
+        "summary": {
+          "claim_level": "synthetic_model_output",
+          "epistemic_status": "model_output_not_human_data",
+          "evaluation_boundary": "A deterministic feature observer is a diagnostic; it is not a pretrained vision model and not a human psychophysics result.",
+          "human_data": false,
+          "model_id": "duckrabbit.synthetic.feature_observer:without:rms",
+          "point_count": 5,
+          "probability_max": 0.559480601560351,
+          "probability_mean": 0.5284496429609635,
+          "probability_min": 0.5
+        },
+        "temperature_factor": null
+      },
+      {
+        "ablated_feature": "spatial_offset_fraction",
+        "kind": "feature_ablation",
+        "model": {
+          "calibration": "analytic logistic calibration; no human or pretrained-model fit",
+          "claim_level": "synthetic_model_output",
+          "computation_version": "duckrabbit.synthetic.feature_observer/v1",
+          "epistemic_status": "model_output_not_human_data",
+          "feature_extraction": "duckrabbit.synthetic_psychophysics.extract_features/v1",
+          "feature_weights": {
+            "crest_factor_fraction": 0.15,
+            "dynamic_range": 0.2,
+            "edge_energy": 0.3,
+            "frame_rate_fraction": 0.15,
+            "mean_luminance": 0.1,
+            "peak": 0.15,
+            "quantization_fraction": 0.15,
+            "rms": 0.25,
+            "spatial_offset_fraction": 0.0,
+            "spectral_bandwidth_fraction": 0.2,
+            "spectral_centroid_fraction": 0.25,
+            "std_luminance": 0.25,
+            "sync_offset_fraction": 0.25,
+            "temporal_delta": 0.4
+          },
+          "human_data": false,
+          "human_validation": "not performed",
+          "logit_clip": [
+            -60.0,
+            60.0
+          ],
+          "model_id": "duckrabbit.synthetic.feature_observer:without:spatial_offset_fraction",
+          "model_spec_digest": "9f50acb80d3e4f51a09d05012bf2d638c22fe9b81057decfc260e020d2e6cfdf",
+          "probability_rule": "clipped_logistic_score_difference_over_temperature",
+          "seed": 0,
+          "temperature": 0.05,
+          "tie_choice": "comparison",
+          "training_data": "none",
+          "version": "1.0"
+        },
+        "points": [
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "d2fb1b8250107af3a8312d0859faf7891bb29a7bfdf67ae19055dbceafd6231c",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:spatial_offset_fraction",
+              "probability_comparison": 0.559480601560351,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3858262307010591,
+              "score_delta": 0.01195271871984005,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:0"
+            },
+            "x_label": "0.00",
+            "x_value": 0.0
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "3a2f4bfb68c45800fd6a08ce23e9a7854544330ddc9839ecc914f583f25f04e8",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:spatial_offset_fraction",
+              "probability_comparison": 0.5212406144258287,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.37812419310212136,
+              "score_delta": 0.004250681120902322,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:1"
+            },
+            "x_label": "0.25",
+            "x_value": 0.25
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:spatial_offset_fraction",
+              "probability_comparison": 0.5,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.37387351198121904,
+              "score_delta": 0.0,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:2"
+            },
+            "x_label": "0.50",
+            "x_value": 0.5
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "8d8581e0bfe584b39458cd0d23bd0605781dfe81335577b0da8884fb9912940a",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:spatial_offset_fraction",
+              "probability_comparison": 0.5141158681464516,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3766974360216409,
+              "score_delta": 0.0028239240404218657,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:3"
+            },
+            "x_label": "0.75",
+            "x_value": 0.75
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "c18318b777f9a99afb1da0a4ba868e543be53ed10853ff08377bffa04a9be99d",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:spatial_offset_fraction",
+              "probability_comparison": 0.5474111306721864,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.38338431147858504,
+              "score_delta": 0.009510799497365996,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:4"
+            },
+            "x_label": "1.00",
+            "x_value": 1.0
+          }
+        ],
+        "summary": {
+          "claim_level": "synthetic_model_output",
+          "epistemic_status": "model_output_not_human_data",
+          "evaluation_boundary": "A deterministic feature observer is a diagnostic; it is not a pretrained vision model and not a human psychophysics result.",
+          "human_data": false,
+          "model_id": "duckrabbit.synthetic.feature_observer:without:spatial_offset_fraction",
+          "point_count": 5,
+          "probability_max": 0.559480601560351,
+          "probability_mean": 0.5284496429609635,
+          "probability_min": 0.5
+        },
+        "temperature_factor": null
+      },
+      {
+        "ablated_feature": "spectral_bandwidth_fraction",
+        "kind": "feature_ablation",
+        "model": {
+          "calibration": "analytic logistic calibration; no human or pretrained-model fit",
+          "claim_level": "synthetic_model_output",
+          "computation_version": "duckrabbit.synthetic.feature_observer/v1",
+          "epistemic_status": "model_output_not_human_data",
+          "feature_extraction": "duckrabbit.synthetic_psychophysics.extract_features/v1",
+          "feature_weights": {
+            "crest_factor_fraction": 0.15,
+            "dynamic_range": 0.2,
+            "edge_energy": 0.3,
+            "frame_rate_fraction": 0.15,
+            "mean_luminance": 0.1,
+            "peak": 0.15,
+            "quantization_fraction": 0.15,
+            "rms": 0.25,
+            "spatial_offset_fraction": 0.2,
+            "spectral_bandwidth_fraction": 0.0,
+            "spectral_centroid_fraction": 0.25,
+            "std_luminance": 0.25,
+            "sync_offset_fraction": 0.25,
+            "temporal_delta": 0.4
+          },
+          "human_data": false,
+          "human_validation": "not performed",
+          "logit_clip": [
+            -60.0,
+            60.0
+          ],
+          "model_id": "duckrabbit.synthetic.feature_observer:without:spectral_bandwidth_fraction",
+          "model_spec_digest": "5e5c43abe53a5639693a5f8506113ac4df1ba0df76700eba5e0e262afc6aa761",
+          "probability_rule": "clipped_logistic_score_difference_over_temperature",
+          "seed": 0,
+          "temperature": 0.05,
+          "tie_choice": "comparison",
+          "training_data": "none",
+          "version": "1.0"
+        },
+        "points": [
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "d2fb1b8250107af3a8312d0859faf7891bb29a7bfdf67ae19055dbceafd6231c",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:spectral_bandwidth_fraction",
+              "probability_comparison": 0.559480601560351,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3858262307010591,
+              "score_delta": 0.01195271871984005,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:0"
+            },
+            "x_label": "0.00",
+            "x_value": 0.0
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "3a2f4bfb68c45800fd6a08ce23e9a7854544330ddc9839ecc914f583f25f04e8",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:spectral_bandwidth_fraction",
+              "probability_comparison": 0.5212406144258287,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.37812419310212136,
+              "score_delta": 0.004250681120902322,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:1"
+            },
+            "x_label": "0.25",
+            "x_value": 0.25
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:spectral_bandwidth_fraction",
+              "probability_comparison": 0.5,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.37387351198121904,
+              "score_delta": 0.0,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:2"
+            },
+            "x_label": "0.50",
+            "x_value": 0.5
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "8d8581e0bfe584b39458cd0d23bd0605781dfe81335577b0da8884fb9912940a",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:spectral_bandwidth_fraction",
+              "probability_comparison": 0.5141158681464516,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3766974360216409,
+              "score_delta": 0.0028239240404218657,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:3"
+            },
+            "x_label": "0.75",
+            "x_value": 0.75
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "c18318b777f9a99afb1da0a4ba868e543be53ed10853ff08377bffa04a9be99d",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:spectral_bandwidth_fraction",
+              "probability_comparison": 0.5474111306721864,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.38338431147858504,
+              "score_delta": 0.009510799497365996,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:4"
+            },
+            "x_label": "1.00",
+            "x_value": 1.0
+          }
+        ],
+        "summary": {
+          "claim_level": "synthetic_model_output",
+          "epistemic_status": "model_output_not_human_data",
+          "evaluation_boundary": "A deterministic feature observer is a diagnostic; it is not a pretrained vision model and not a human psychophysics result.",
+          "human_data": false,
+          "model_id": "duckrabbit.synthetic.feature_observer:without:spectral_bandwidth_fraction",
+          "point_count": 5,
+          "probability_max": 0.559480601560351,
+          "probability_mean": 0.5284496429609635,
+          "probability_min": 0.5
+        },
+        "temperature_factor": null
+      },
+      {
+        "ablated_feature": "spectral_centroid_fraction",
+        "kind": "feature_ablation",
+        "model": {
+          "calibration": "analytic logistic calibration; no human or pretrained-model fit",
+          "claim_level": "synthetic_model_output",
+          "computation_version": "duckrabbit.synthetic.feature_observer/v1",
+          "epistemic_status": "model_output_not_human_data",
+          "feature_extraction": "duckrabbit.synthetic_psychophysics.extract_features/v1",
+          "feature_weights": {
+            "crest_factor_fraction": 0.15,
+            "dynamic_range": 0.2,
+            "edge_energy": 0.3,
+            "frame_rate_fraction": 0.15,
+            "mean_luminance": 0.1,
+            "peak": 0.15,
+            "quantization_fraction": 0.15,
+            "rms": 0.25,
+            "spatial_offset_fraction": 0.2,
+            "spectral_bandwidth_fraction": 0.2,
+            "spectral_centroid_fraction": 0.0,
+            "std_luminance": 0.25,
+            "sync_offset_fraction": 0.25,
+            "temporal_delta": 0.4
+          },
+          "human_data": false,
+          "human_validation": "not performed",
+          "logit_clip": [
+            -60.0,
+            60.0
+          ],
+          "model_id": "duckrabbit.synthetic.feature_observer:without:spectral_centroid_fraction",
+          "model_spec_digest": "f2227115a3e3008b4a00c787dbee353d03ddb2bfdfeda395602887f8b2703b86",
+          "probability_rule": "clipped_logistic_score_difference_over_temperature",
+          "seed": 0,
+          "temperature": 0.05,
+          "tie_choice": "comparison",
+          "training_data": "none",
+          "version": "1.0"
+        },
+        "points": [
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "d2fb1b8250107af3a8312d0859faf7891bb29a7bfdf67ae19055dbceafd6231c",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:spectral_centroid_fraction",
+              "probability_comparison": 0.559480601560351,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3858262307010591,
+              "score_delta": 0.01195271871984005,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:0"
+            },
+            "x_label": "0.00",
+            "x_value": 0.0
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "3a2f4bfb68c45800fd6a08ce23e9a7854544330ddc9839ecc914f583f25f04e8",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:spectral_centroid_fraction",
+              "probability_comparison": 0.5212406144258287,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.37812419310212136,
+              "score_delta": 0.004250681120902322,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:1"
+            },
+            "x_label": "0.25",
+            "x_value": 0.25
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:spectral_centroid_fraction",
+              "probability_comparison": 0.5,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.37387351198121904,
+              "score_delta": 0.0,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:2"
+            },
+            "x_label": "0.50",
+            "x_value": 0.5
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "8d8581e0bfe584b39458cd0d23bd0605781dfe81335577b0da8884fb9912940a",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:spectral_centroid_fraction",
+              "probability_comparison": 0.5141158681464516,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3766974360216409,
+              "score_delta": 0.0028239240404218657,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:3"
+            },
+            "x_label": "0.75",
+            "x_value": 0.75
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "c18318b777f9a99afb1da0a4ba868e543be53ed10853ff08377bffa04a9be99d",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:spectral_centroid_fraction",
+              "probability_comparison": 0.5474111306721864,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.38338431147858504,
+              "score_delta": 0.009510799497365996,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:4"
+            },
+            "x_label": "1.00",
+            "x_value": 1.0
+          }
+        ],
+        "summary": {
+          "claim_level": "synthetic_model_output",
+          "epistemic_status": "model_output_not_human_data",
+          "evaluation_boundary": "A deterministic feature observer is a diagnostic; it is not a pretrained vision model and not a human psychophysics result.",
+          "human_data": false,
+          "model_id": "duckrabbit.synthetic.feature_observer:without:spectral_centroid_fraction",
+          "point_count": 5,
+          "probability_max": 0.559480601560351,
+          "probability_mean": 0.5284496429609635,
+          "probability_min": 0.5
+        },
+        "temperature_factor": null
+      },
+      {
+        "ablated_feature": "std_luminance",
+        "kind": "feature_ablation",
+        "model": {
+          "calibration": "analytic logistic calibration; no human or pretrained-model fit",
+          "claim_level": "synthetic_model_output",
+          "computation_version": "duckrabbit.synthetic.feature_observer/v1",
+          "epistemic_status": "model_output_not_human_data",
+          "feature_extraction": "duckrabbit.synthetic_psychophysics.extract_features/v1",
+          "feature_weights": {
+            "crest_factor_fraction": 0.15,
+            "dynamic_range": 0.2,
+            "edge_energy": 0.3,
+            "frame_rate_fraction": 0.15,
+            "mean_luminance": 0.1,
+            "peak": 0.15,
+            "quantization_fraction": 0.15,
+            "rms": 0.25,
+            "spatial_offset_fraction": 0.2,
+            "spectral_bandwidth_fraction": 0.2,
+            "spectral_centroid_fraction": 0.25,
+            "std_luminance": 0.0,
+            "sync_offset_fraction": 0.25,
+            "temporal_delta": 0.4
+          },
+          "human_data": false,
+          "human_validation": "not performed",
+          "logit_clip": [
+            -60.0,
+            60.0
+          ],
+          "model_id": "duckrabbit.synthetic.feature_observer:without:std_luminance",
+          "model_spec_digest": "72534733c16f5b91bccdc91102dac1df59f15ade9142567f2e6397ecd02a027a",
+          "probability_rule": "clipped_logistic_score_difference_over_temperature",
+          "seed": 0,
+          "temperature": 0.05,
+          "tie_choice": "comparison",
+          "training_data": "none",
+          "version": "1.0"
+        },
+        "points": [
+          {
+            "prediction": {
+              "choice": "reference",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "d2fb1b8250107af3a8312d0859faf7891bb29a7bfdf67ae19055dbceafd6231c",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:std_luminance",
+              "probability_comparison": 0.4909822270993859,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.2793886072002351,
+              "score_delta": -0.0018037501722574234,
+              "score_reference": 0.28119235737249254,
+              "seed": 0,
+              "trial_id": "duck_weight:0"
+            },
+            "x_label": "0.00",
+            "x_value": 0.0
+          },
+          {
+            "prediction": {
+              "choice": "reference",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "3a2f4bfb68c45800fd6a08ce23e9a7854544330ddc9839ecc914f583f25f04e8",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:std_luminance",
+              "probability_comparison": 0.4998328373829718,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.2811589248478413,
+              "score_delta": -3.343252465126678e-05,
+              "score_reference": 0.28119235737249254,
+              "seed": 0,
+              "trial_id": "duck_weight:1"
+            },
+            "x_label": "0.25",
+            "x_value": 0.25
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:std_luminance",
+              "probability_comparison": 0.5,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.28119235737249254,
+              "score_delta": 0.0,
+              "score_reference": 0.28119235737249254,
+              "seed": 0,
+              "trial_id": "duck_weight:2"
+            },
+            "x_label": "0.50",
+            "x_value": 0.5
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "8d8581e0bfe584b39458cd0d23bd0605781dfe81335577b0da8884fb9912940a",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:std_luminance",
+              "probability_comparison": 0.505793150870848,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.28235103939659895,
+              "score_delta": 0.0011586820241064055,
+              "score_reference": 0.28119235737249254,
+              "seed": 0,
+              "trial_id": "duck_weight:3"
+            },
+            "x_label": "0.75",
+            "x_value": 0.75
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "c18318b777f9a99afb1da0a4ba868e543be53ed10853ff08377bffa04a9be99d",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:std_luminance",
+              "probability_comparison": 0.5029493116503136,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.2817822265438736,
+              "score_delta": 0.0005898691713810411,
+              "score_reference": 0.28119235737249254,
+              "seed": 0,
+              "trial_id": "duck_weight:4"
+            },
+            "x_label": "1.00",
+            "x_value": 1.0
+          }
+        ],
+        "summary": {
+          "claim_level": "synthetic_model_output",
+          "epistemic_status": "model_output_not_human_data",
+          "evaluation_boundary": "A deterministic feature observer is a diagnostic; it is not a pretrained vision model and not a human psychophysics result.",
+          "human_data": false,
+          "model_id": "duckrabbit.synthetic.feature_observer:without:std_luminance",
+          "point_count": 5,
+          "probability_max": 0.505793150870848,
+          "probability_mean": 0.49991150540070384,
+          "probability_min": 0.4909822270993859
+        },
+        "temperature_factor": null
+      },
+      {
+        "ablated_feature": "sync_offset_fraction",
+        "kind": "feature_ablation",
+        "model": {
+          "calibration": "analytic logistic calibration; no human or pretrained-model fit",
+          "claim_level": "synthetic_model_output",
+          "computation_version": "duckrabbit.synthetic.feature_observer/v1",
+          "epistemic_status": "model_output_not_human_data",
+          "feature_extraction": "duckrabbit.synthetic_psychophysics.extract_features/v1",
+          "feature_weights": {
+            "crest_factor_fraction": 0.15,
+            "dynamic_range": 0.2,
+            "edge_energy": 0.3,
+            "frame_rate_fraction": 0.15,
+            "mean_luminance": 0.1,
+            "peak": 0.15,
+            "quantization_fraction": 0.15,
+            "rms": 0.25,
+            "spatial_offset_fraction": 0.2,
+            "spectral_bandwidth_fraction": 0.2,
+            "spectral_centroid_fraction": 0.25,
+            "std_luminance": 0.25,
+            "sync_offset_fraction": 0.0,
+            "temporal_delta": 0.4
+          },
+          "human_data": false,
+          "human_validation": "not performed",
+          "logit_clip": [
+            -60.0,
+            60.0
+          ],
+          "model_id": "duckrabbit.synthetic.feature_observer:without:sync_offset_fraction",
+          "model_spec_digest": "58b3ba60bd9bbf2172ef3f86dfd37613ffd74dad55b0d9ceb1ce051206639526",
+          "probability_rule": "clipped_logistic_score_difference_over_temperature",
+          "seed": 0,
+          "temperature": 0.05,
+          "tie_choice": "comparison",
+          "training_data": "none",
+          "version": "1.0"
+        },
+        "points": [
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "d2fb1b8250107af3a8312d0859faf7891bb29a7bfdf67ae19055dbceafd6231c",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:sync_offset_fraction",
+              "probability_comparison": 0.559480601560351,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3858262307010591,
+              "score_delta": 0.01195271871984005,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:0"
+            },
+            "x_label": "0.00",
+            "x_value": 0.0
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "3a2f4bfb68c45800fd6a08ce23e9a7854544330ddc9839ecc914f583f25f04e8",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:sync_offset_fraction",
+              "probability_comparison": 0.5212406144258287,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.37812419310212136,
+              "score_delta": 0.004250681120902322,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:1"
+            },
+            "x_label": "0.25",
+            "x_value": 0.25
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:sync_offset_fraction",
+              "probability_comparison": 0.5,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.37387351198121904,
+              "score_delta": 0.0,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:2"
+            },
+            "x_label": "0.50",
+            "x_value": 0.5
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "8d8581e0bfe584b39458cd0d23bd0605781dfe81335577b0da8884fb9912940a",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:sync_offset_fraction",
+              "probability_comparison": 0.5141158681464516,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3766974360216409,
+              "score_delta": 0.0028239240404218657,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:3"
+            },
+            "x_label": "0.75",
+            "x_value": 0.75
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "c18318b777f9a99afb1da0a4ba868e543be53ed10853ff08377bffa04a9be99d",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:sync_offset_fraction",
+              "probability_comparison": 0.5474111306721864,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.38338431147858504,
+              "score_delta": 0.009510799497365996,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:4"
+            },
+            "x_label": "1.00",
+            "x_value": 1.0
+          }
+        ],
+        "summary": {
+          "claim_level": "synthetic_model_output",
+          "epistemic_status": "model_output_not_human_data",
+          "evaluation_boundary": "A deterministic feature observer is a diagnostic; it is not a pretrained vision model and not a human psychophysics result.",
+          "human_data": false,
+          "model_id": "duckrabbit.synthetic.feature_observer:without:sync_offset_fraction",
+          "point_count": 5,
+          "probability_max": 0.559480601560351,
+          "probability_mean": 0.5284496429609635,
+          "probability_min": 0.5
+        },
+        "temperature_factor": null
+      },
+      {
+        "ablated_feature": "temporal_delta",
+        "kind": "feature_ablation",
+        "model": {
+          "calibration": "analytic logistic calibration; no human or pretrained-model fit",
+          "claim_level": "synthetic_model_output",
+          "computation_version": "duckrabbit.synthetic.feature_observer/v1",
+          "epistemic_status": "model_output_not_human_data",
+          "feature_extraction": "duckrabbit.synthetic_psychophysics.extract_features/v1",
+          "feature_weights": {
+            "crest_factor_fraction": 0.15,
+            "dynamic_range": 0.2,
+            "edge_energy": 0.3,
+            "frame_rate_fraction": 0.15,
+            "mean_luminance": 0.1,
+            "peak": 0.15,
+            "quantization_fraction": 0.15,
+            "rms": 0.25,
+            "spatial_offset_fraction": 0.2,
+            "spectral_bandwidth_fraction": 0.2,
+            "spectral_centroid_fraction": 0.25,
+            "std_luminance": 0.25,
+            "sync_offset_fraction": 0.25,
+            "temporal_delta": 0.0
+          },
+          "human_data": false,
+          "human_validation": "not performed",
+          "logit_clip": [
+            -60.0,
+            60.0
+          ],
+          "model_id": "duckrabbit.synthetic.feature_observer:without:temporal_delta",
+          "model_spec_digest": "555ceca51bc89e3f5e37e76144d6fc353266d5163b273e513eb7c2956f0d3eaf",
+          "probability_rule": "clipped_logistic_score_difference_over_temperature",
+          "seed": 0,
+          "temperature": 0.05,
+          "tie_choice": "comparison",
+          "training_data": "none",
+          "version": "1.0"
+        },
+        "points": [
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "d2fb1b8250107af3a8312d0859faf7891bb29a7bfdf67ae19055dbceafd6231c",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:temporal_delta",
+              "probability_comparison": 0.559480601560351,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3858262307010591,
+              "score_delta": 0.01195271871984005,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:0"
+            },
+            "x_label": "0.00",
+            "x_value": 0.0
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "3a2f4bfb68c45800fd6a08ce23e9a7854544330ddc9839ecc914f583f25f04e8",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:temporal_delta",
+              "probability_comparison": 0.5212406144258287,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.37812419310212136,
+              "score_delta": 0.004250681120902322,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:1"
+            },
+            "x_label": "0.25",
+            "x_value": 0.25
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:temporal_delta",
+              "probability_comparison": 0.5,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.37387351198121904,
+              "score_delta": 0.0,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:2"
+            },
+            "x_label": "0.50",
+            "x_value": 0.5
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "8d8581e0bfe584b39458cd0d23bd0605781dfe81335577b0da8884fb9912940a",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:temporal_delta",
+              "probability_comparison": 0.5141158681464516,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3766974360216409,
+              "score_delta": 0.0028239240404218657,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:3"
+            },
+            "x_label": "0.75",
+            "x_value": 0.75
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "c18318b777f9a99afb1da0a4ba868e543be53ed10853ff08377bffa04a9be99d",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:without:temporal_delta",
+              "probability_comparison": 0.5474111306721864,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.38338431147858504,
+              "score_delta": 0.009510799497365996,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:4"
+            },
+            "x_label": "1.00",
+            "x_value": 1.0
+          }
+        ],
+        "summary": {
+          "claim_level": "synthetic_model_output",
+          "epistemic_status": "model_output_not_human_data",
+          "evaluation_boundary": "A deterministic feature observer is a diagnostic; it is not a pretrained vision model and not a human psychophysics result.",
+          "human_data": false,
+          "model_id": "duckrabbit.synthetic.feature_observer:without:temporal_delta",
+          "point_count": 5,
+          "probability_max": 0.559480601560351,
+          "probability_mean": 0.5284496429609635,
+          "probability_min": 0.5
+        },
+        "temperature_factor": null
+      },
+      {
+        "ablated_feature": null,
+        "kind": "null_weights",
+        "model": {
+          "calibration": "analytic logistic calibration; no human or pretrained-model fit",
+          "claim_level": "synthetic_model_output",
+          "computation_version": "duckrabbit.synthetic.feature_observer/v1",
+          "epistemic_status": "model_output_not_human_data",
+          "feature_extraction": "duckrabbit.synthetic_psychophysics.extract_features/v1",
+          "feature_weights": {
+            "crest_factor_fraction": 0.0,
+            "dynamic_range": 0.0,
+            "edge_energy": 0.0,
+            "frame_rate_fraction": 0.0,
+            "mean_luminance": 0.0,
+            "peak": 0.0,
+            "quantization_fraction": 0.0,
+            "rms": 0.0,
+            "spatial_offset_fraction": 0.0,
+            "spectral_bandwidth_fraction": 0.0,
+            "spectral_centroid_fraction": 0.0,
+            "std_luminance": 0.0,
+            "sync_offset_fraction": 0.0,
+            "temporal_delta": 0.0
+          },
+          "human_data": false,
+          "human_validation": "not performed",
+          "logit_clip": [
+            -60.0,
+            60.0
+          ],
+          "model_id": "duckrabbit.synthetic.feature_observer:null",
+          "model_spec_digest": "77de9c9253b6c30e0c7aaf3f3460b2eb5207c9ef7f93aa29ce22932457ffd171",
+          "probability_rule": "clipped_logistic_score_difference_over_temperature",
+          "seed": 0,
+          "temperature": 0.05,
+          "tie_choice": "comparison",
+          "training_data": "none",
+          "version": "1.0"
+        },
+        "points": [
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "d2fb1b8250107af3a8312d0859faf7891bb29a7bfdf67ae19055dbceafd6231c",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:null",
+              "probability_comparison": 0.5,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.0,
+              "score_delta": 0.0,
+              "score_reference": 0.0,
+              "seed": 0,
+              "trial_id": "duck_weight:0"
+            },
+            "x_label": "0.00",
+            "x_value": 0.0
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "3a2f4bfb68c45800fd6a08ce23e9a7854544330ddc9839ecc914f583f25f04e8",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:null",
+              "probability_comparison": 0.5,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.0,
+              "score_delta": 0.0,
+              "score_reference": 0.0,
+              "seed": 0,
+              "trial_id": "duck_weight:1"
+            },
+            "x_label": "0.25",
+            "x_value": 0.25
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:null",
+              "probability_comparison": 0.5,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.0,
+              "score_delta": 0.0,
+              "score_reference": 0.0,
+              "seed": 0,
+              "trial_id": "duck_weight:2"
+            },
+            "x_label": "0.50",
+            "x_value": 0.5
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "8d8581e0bfe584b39458cd0d23bd0605781dfe81335577b0da8884fb9912940a",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:null",
+              "probability_comparison": 0.5,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.0,
+              "score_delta": 0.0,
+              "score_reference": 0.0,
+              "seed": 0,
+              "trial_id": "duck_weight:3"
+            },
+            "x_label": "0.75",
+            "x_value": 0.75
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "c18318b777f9a99afb1da0a4ba868e543be53ed10853ff08377bffa04a9be99d",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:null",
+              "probability_comparison": 0.5,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.0,
+              "score_delta": 0.0,
+              "score_reference": 0.0,
+              "seed": 0,
+              "trial_id": "duck_weight:4"
+            },
+            "x_label": "1.00",
+            "x_value": 1.0
+          }
+        ],
+        "summary": {
+          "claim_level": "synthetic_model_output",
+          "epistemic_status": "model_output_not_human_data",
+          "evaluation_boundary": "A deterministic feature observer is a diagnostic; it is not a pretrained vision model and not a human psychophysics result.",
+          "human_data": false,
+          "model_id": "duckrabbit.synthetic.feature_observer:null",
+          "point_count": 5,
+          "probability_max": 0.5,
+          "probability_mean": 0.5,
+          "probability_min": 0.5
+        },
+        "temperature_factor": null
+      },
+      {
+        "ablated_feature": null,
+        "kind": "temperature",
+        "model": {
+          "calibration": "analytic logistic calibration; no human or pretrained-model fit",
+          "claim_level": "synthetic_model_output",
+          "computation_version": "duckrabbit.synthetic.feature_observer/v1",
+          "epistemic_status": "model_output_not_human_data",
+          "feature_extraction": "duckrabbit.synthetic_psychophysics.extract_features/v1",
+          "feature_weights": {
+            "crest_factor_fraction": 0.15,
+            "dynamic_range": 0.2,
+            "edge_energy": 0.3,
+            "frame_rate_fraction": 0.15,
+            "mean_luminance": 0.1,
+            "peak": 0.15,
+            "quantization_fraction": 0.15,
+            "rms": 0.25,
+            "spatial_offset_fraction": 0.2,
+            "spectral_bandwidth_fraction": 0.2,
+            "spectral_centroid_fraction": 0.25,
+            "std_luminance": 0.25,
+            "sync_offset_fraction": 0.25,
+            "temporal_delta": 0.4
+          },
+          "human_data": false,
+          "human_validation": "not performed",
+          "logit_clip": [
+            -60.0,
+            60.0
+          ],
+          "model_id": "duckrabbit.synthetic.feature_observer:temperature:0.5",
+          "model_spec_digest": "0cda9076b50664b1e03782056ff0e4ac188f974d43ba60aa49e6ee408e18fd59",
+          "probability_rule": "clipped_logistic_score_difference_over_temperature",
+          "seed": 0,
+          "temperature": 0.025,
+          "tie_choice": "comparison",
+          "training_data": "none",
+          "version": "1.0"
+        },
+        "points": [
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "d2fb1b8250107af3a8312d0859faf7891bb29a7bfdf67ae19055dbceafd6231c",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:temperature:0.5",
+              "probability_comparison": 0.6173011839964968,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3858262307010591,
+              "score_delta": 0.01195271871984005,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:0"
+            },
+            "x_label": "0.00",
+            "x_value": 0.0
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "3a2f4bfb68c45800fd6a08ce23e9a7854544330ddc9839ecc914f583f25f04e8",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:temperature:0.5",
+              "probability_comparison": 0.5424047030006435,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.37812419310212136,
+              "score_delta": 0.004250681120902322,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:1"
+            },
+            "x_label": "0.25",
+            "x_value": 0.25
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:temperature:0.5",
+              "probability_comparison": 0.5,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.37387351198121904,
+              "score_delta": 0.0,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:2"
+            },
+            "x_label": "0.50",
+            "x_value": 0.5
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "8d8581e0bfe584b39458cd0d23bd0605781dfe81335577b0da8884fb9912940a",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:temperature:0.5",
+              "probability_comparison": 0.5282092526459162,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3766974360216409,
+              "score_delta": 0.0028239240404218657,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:3"
+            },
+            "x_label": "0.75",
+            "x_value": 0.75
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "c18318b777f9a99afb1da0a4ba868e543be53ed10853ff08377bffa04a9be99d",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:temperature:0.5",
+              "probability_comparison": 0.5939772870056711,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.38338431147858504,
+              "score_delta": 0.009510799497365996,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:4"
+            },
+            "x_label": "1.00",
+            "x_value": 1.0
+          }
+        ],
+        "summary": {
+          "claim_level": "synthetic_model_output",
+          "epistemic_status": "model_output_not_human_data",
+          "evaluation_boundary": "A deterministic feature observer is a diagnostic; it is not a pretrained vision model and not a human psychophysics result.",
+          "human_data": false,
+          "model_id": "duckrabbit.synthetic.feature_observer:temperature:0.5",
+          "point_count": 5,
+          "probability_max": 0.6173011839964968,
+          "probability_mean": 0.5563784853297455,
+          "probability_min": 0.5
+        },
+        "temperature_factor": 0.5
+      },
+      {
+        "ablated_feature": null,
+        "kind": "temperature",
+        "model": {
+          "calibration": "analytic logistic calibration; no human or pretrained-model fit",
+          "claim_level": "synthetic_model_output",
+          "computation_version": "duckrabbit.synthetic.feature_observer/v1",
+          "epistemic_status": "model_output_not_human_data",
+          "feature_extraction": "duckrabbit.synthetic_psychophysics.extract_features/v1",
+          "feature_weights": {
+            "crest_factor_fraction": 0.15,
+            "dynamic_range": 0.2,
+            "edge_energy": 0.3,
+            "frame_rate_fraction": 0.15,
+            "mean_luminance": 0.1,
+            "peak": 0.15,
+            "quantization_fraction": 0.15,
+            "rms": 0.25,
+            "spatial_offset_fraction": 0.2,
+            "spectral_bandwidth_fraction": 0.2,
+            "spectral_centroid_fraction": 0.25,
+            "std_luminance": 0.25,
+            "sync_offset_fraction": 0.25,
+            "temporal_delta": 0.4
+          },
+          "human_data": false,
+          "human_validation": "not performed",
+          "logit_clip": [
+            -60.0,
+            60.0
+          ],
+          "model_id": "duckrabbit.synthetic.feature_observer:temperature:1",
+          "model_spec_digest": "5793fb5239ed9504bf4f899269b1a7339d4b1e71ecd68d0c905e7e1639efda57",
+          "probability_rule": "clipped_logistic_score_difference_over_temperature",
+          "seed": 0,
+          "temperature": 0.05,
+          "tie_choice": "comparison",
+          "training_data": "none",
+          "version": "1.0"
+        },
+        "points": [
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "d2fb1b8250107af3a8312d0859faf7891bb29a7bfdf67ae19055dbceafd6231c",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:temperature:1",
+              "probability_comparison": 0.559480601560351,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3858262307010591,
+              "score_delta": 0.01195271871984005,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:0"
+            },
+            "x_label": "0.00",
+            "x_value": 0.0
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "3a2f4bfb68c45800fd6a08ce23e9a7854544330ddc9839ecc914f583f25f04e8",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:temperature:1",
+              "probability_comparison": 0.5212406144258287,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.37812419310212136,
+              "score_delta": 0.004250681120902322,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:1"
+            },
+            "x_label": "0.25",
+            "x_value": 0.25
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:temperature:1",
+              "probability_comparison": 0.5,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.37387351198121904,
+              "score_delta": 0.0,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:2"
+            },
+            "x_label": "0.50",
+            "x_value": 0.5
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "8d8581e0bfe584b39458cd0d23bd0605781dfe81335577b0da8884fb9912940a",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:temperature:1",
+              "probability_comparison": 0.5141158681464516,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3766974360216409,
+              "score_delta": 0.0028239240404218657,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:3"
+            },
+            "x_label": "0.75",
+            "x_value": 0.75
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "c18318b777f9a99afb1da0a4ba868e543be53ed10853ff08377bffa04a9be99d",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:temperature:1",
+              "probability_comparison": 0.5474111306721864,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.38338431147858504,
+              "score_delta": 0.009510799497365996,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:4"
+            },
+            "x_label": "1.00",
+            "x_value": 1.0
+          }
+        ],
+        "summary": {
+          "claim_level": "synthetic_model_output",
+          "epistemic_status": "model_output_not_human_data",
+          "evaluation_boundary": "A deterministic feature observer is a diagnostic; it is not a pretrained vision model and not a human psychophysics result.",
+          "human_data": false,
+          "model_id": "duckrabbit.synthetic.feature_observer:temperature:1",
+          "point_count": 5,
+          "probability_max": 0.559480601560351,
+          "probability_mean": 0.5284496429609635,
+          "probability_min": 0.5
+        },
+        "temperature_factor": 1.0
+      },
+      {
+        "ablated_feature": null,
+        "kind": "temperature",
+        "model": {
+          "calibration": "analytic logistic calibration; no human or pretrained-model fit",
+          "claim_level": "synthetic_model_output",
+          "computation_version": "duckrabbit.synthetic.feature_observer/v1",
+          "epistemic_status": "model_output_not_human_data",
+          "feature_extraction": "duckrabbit.synthetic_psychophysics.extract_features/v1",
+          "feature_weights": {
+            "crest_factor_fraction": 0.15,
+            "dynamic_range": 0.2,
+            "edge_energy": 0.3,
+            "frame_rate_fraction": 0.15,
+            "mean_luminance": 0.1,
+            "peak": 0.15,
+            "quantization_fraction": 0.15,
+            "rms": 0.25,
+            "spatial_offset_fraction": 0.2,
+            "spectral_bandwidth_fraction": 0.2,
+            "spectral_centroid_fraction": 0.25,
+            "std_luminance": 0.25,
+            "sync_offset_fraction": 0.25,
+            "temporal_delta": 0.4
+          },
+          "human_data": false,
+          "human_validation": "not performed",
+          "logit_clip": [
+            -60.0,
+            60.0
+          ],
+          "model_id": "duckrabbit.synthetic.feature_observer:temperature:2",
+          "model_spec_digest": "3c44b143dd4595aea85e560dec2bae2f92330c89f8e3bc7c10e58c4d8d5c84b5",
+          "probability_rule": "clipped_logistic_score_difference_over_temperature",
+          "seed": 0,
+          "temperature": 0.1,
+          "tie_choice": "comparison",
+          "training_data": "none",
+          "version": "1.0"
+        },
+        "points": [
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "d2fb1b8250107af3a8312d0859faf7891bb29a7bfdf67ae19055dbceafd6231c",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:temperature:2",
+              "probability_comparison": 0.5298462714100515,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3858262307010591,
+              "score_delta": 0.01195271871984005,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:0"
+            },
+            "x_label": "0.00",
+            "x_value": 0.0
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "3a2f4bfb68c45800fd6a08ce23e9a7854544330ddc9839ecc914f583f25f04e8",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:temperature:2",
+              "probability_comparison": 0.5106251030384061,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.37812419310212136,
+              "score_delta": 0.004250681120902322,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:1"
+            },
+            "x_label": "0.25",
+            "x_value": 0.25
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:temperature:2",
+              "probability_comparison": 0.5,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.37387351198121904,
+              "score_delta": 0.0,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:2"
+            },
+            "x_label": "0.50",
+            "x_value": 0.5
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "8d8581e0bfe584b39458cd0d23bd0605781dfe81335577b0da8884fb9912940a",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:temperature:2",
+              "probability_comparison": 0.5070593409819034,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.3766974360216409,
+              "score_delta": 0.0028239240404218657,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:3"
+            },
+            "x_label": "0.75",
+            "x_value": 0.75
+          },
+          {
+            "prediction": {
+              "choice": "comparison",
+              "claim_level": "synthetic_model_output",
+              "comparison_digest": "c18318b777f9a99afb1da0a4ba868e543be53ed10853ff08377bffa04a9be99d",
+              "condition_id": "duck_weight",
+              "feature_schema": [
+                "dynamic_range",
+                "edge_energy",
+                "mean_luminance",
+                "quantization_fraction",
+                "std_luminance"
+              ],
+              "human_data": false,
+              "model_id": "duckrabbit.synthetic.feature_observer:temperature:2",
+              "probability_comparison": 0.5237590919765053,
+              "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+              "score_comparison": 0.38338431147858504,
+              "score_delta": 0.009510799497365996,
+              "score_reference": 0.37387351198121904,
+              "seed": 0,
+              "trial_id": "duck_weight:4"
+            },
+            "x_label": "1.00",
+            "x_value": 1.0
+          }
+        ],
+        "summary": {
+          "claim_level": "synthetic_model_output",
+          "epistemic_status": "model_output_not_human_data",
+          "evaluation_boundary": "A deterministic feature observer is a diagnostic; it is not a pretrained vision model and not a human psychophysics result.",
+          "human_data": false,
+          "model_id": "duckrabbit.synthetic.feature_observer:temperature:2",
+          "point_count": 5,
+          "probability_max": 0.5298462714100515,
+          "probability_mean": 0.5142579614813733,
+          "probability_min": 0.5
+        },
+        "temperature_factor": 2.0
+      }
+    ],
+    "zero_difference_control": {
+      "choice": "comparison",
+      "claim_level": "synthetic_model_output",
+      "comparison_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+      "condition_id": "zero_difference_control",
+      "feature_schema": [
+        "dynamic_range",
+        "edge_energy",
+        "mean_luminance",
+        "quantization_fraction",
+        "std_luminance"
+      ],
+      "human_data": false,
+      "model_id": "duckrabbit.synthetic.feature_observer",
+      "probability_comparison": 0.5,
+      "reference_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+      "score_comparison": 0.37387351198121904,
+      "score_delta": 0.0,
+      "score_reference": 0.37387351198121904,
+      "seed": 0,
+      "trial_id": "zero_difference_control"
+    }
+  },
+  "figure_label": "fig:synthetic_psychophysics",
+  "figure_stem": "synthetic_psychophysics",
+  "generator": "duckrabbit.publication._observer",
+  "parameters": {
+    "figure_stem": "synthetic_psychophysics",
+    "seed": 0
+  },
+  "schema_version": "duckrabbit/figure-source/v1",
+  "seed": 0
+}

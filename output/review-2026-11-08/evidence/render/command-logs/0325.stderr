@@ -1,0 +1,11 @@
+[WARNING] Deprecated: --mathjax. Use --math-method=mathjax[:URL] instead.
+[WARNING] Citeproc: citation fig:architecture not found
+[WARNING] Citeproc: citation fig:audio_signals not found
+[WARNING] Citeproc: citation fig:audiovisual_timeline not found
+[WARNING] Citeproc: citation fig:catalog_matrix not found
+[WARNING] Citeproc: citation fig:encoding_verification not found
+[WARNING] Citeproc: citation fig:synthetic_psychophysics not found
+[WARNING] Citeproc: citation fig:temporal_sequence not found
+[WARNING] Citeproc: citation fig:visual_panel not found
+[WARNING] Citeproc: citation fig:visual_sweep not found
+[WARNING] Citeproc: citation sec:appendix_catalog not found

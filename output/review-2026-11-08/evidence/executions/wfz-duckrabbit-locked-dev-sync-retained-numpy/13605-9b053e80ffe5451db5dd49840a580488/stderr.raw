@@ -1,0 +1,5 @@
+Resolved 14 packages in 4ms
+error: Failed to download `pygments==2.21.0`
+  cause: Network connectivity is disabled, but the requested data wasn't found in the cache: https://files.pythonhosted.org/packages/71/46/17f022dd3e953bf20a04a028a21ec746d942f8d2af30fa0f124fa0e6a684/pygments-2.21.0-py3-none-any.whl
+
+hint: `pygments` (v2.21.0) was included because `duckrabbit[dev]` (v0.5.0) depends on `pytest` (v9.2.0) which depends on `pygments`

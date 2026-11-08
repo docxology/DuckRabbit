@@ -341,6 +341,10 @@ from duckrabbit.performance import _run_workloads
 if {scenario!r} == 'audit':
     from duckrabbit.publication import generate_publication_outputs
     generate_publication_outputs(Path('output'))
+    from duckrabbit.manuscript_variables import generate_variables, hydrate_manuscript_files, save_variables
+    variables = generate_variables()
+    save_variables(variables, Path('output/data/manuscript_variables.json'))
+    hydrate_manuscript_files(variables, Path.cwd())
 changed = False
 def mutate_after_operation(frame, event, argument):
     global changed

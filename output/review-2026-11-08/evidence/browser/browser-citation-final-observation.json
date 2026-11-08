@@ -1,0 +1,3498 @@
+{
+  "status": "failed",
+  "source_sha256": "459e77f7fb6d9715887ef1b9fdfec854a58eefcf6813441e9afda3f0e86115fe",
+  "main_html_sha256": "adb7c54b21e1365d67c117fb518df39b22181018d959cdf9296b8b43058bd023",
+  "decks": [
+    {
+      "slides": [
+        {
+          "id": "sec:abstract",
+          "indices": {
+            "h": 0
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1502,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        }
+      ],
+      "before": {
+        "h": 0,
+        "v": 0
+      },
+      "after": {
+        "h": 0,
+        "v": 0
+      },
+      "mathTargets": 0,
+      "renderedMath": 0,
+      "mathErrors": 0,
+      "loadedImages": true,
+      "file": "00_abstract_slides.html"
+    },
+    {
+      "slides": [
+        {
+          "id": "sec:introduction",
+          "indices": {
+            "h": 0
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 2674,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        }
+      ],
+      "before": {
+        "h": 0,
+        "v": 0
+      },
+      "after": {
+        "h": 0,
+        "v": 0
+      },
+      "mathTargets": 0,
+      "renderedMath": 0,
+      "mathErrors": 0,
+      "loadedImages": true,
+      "file": "01_introduction_slides.html"
+    },
+    {
+      "slides": [
+        {
+          "id": "sec:methodology",
+          "indices": {
+            "h": 0,
+            "v": 0
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "request-and-canonical-artifact",
+          "indices": {
+            "h": 0,
+            "v": 1
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "typed-parameter-domains",
+          "indices": {
+            "h": 0,
+            "v": 2
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 765,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "canonical-serialization-and-provenance",
+          "indices": {
+            "h": 0,
+            "v": 3
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1145,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "encoding-and-verification",
+          "indices": {
+            "h": 0,
+            "v": 4
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 901,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "sec:objective_metric_definitions",
+          "indices": {
+            "h": 0,
+            "v": 5
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 3070,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        }
+      ],
+      "before": {
+        "h": 0,
+        "v": 0
+      },
+      "after": {
+        "h": 0,
+        "v": 1
+      },
+      "mathTargets": 38,
+      "renderedMath": 38,
+      "mathErrors": 0,
+      "loadedImages": true,
+      "file": "02_methodology_slides.html"
+    },
+    {
+      "slides": [
+        {
+          "id": "sec:results",
+          "indices": {
+            "h": 0,
+            "v": 0
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "generated-catalog-metrics-and-outputs",
+          "indices": {
+            "h": 0,
+            "v": 1
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1787,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "typed-domains-and-delivery-profiles",
+          "indices": {
+            "h": 0,
+            "v": 2
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-1-header-1-heading",
+          "indices": {
+            "h": 0,
+            "v": 3
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1009,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-1-data-1-heading",
+          "indices": {
+            "h": 0,
+            "v": 4
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1009,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-1-data-2-heading",
+          "indices": {
+            "h": 0,
+            "v": 5
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1009,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-1-data-3-heading",
+          "indices": {
+            "h": 0,
+            "v": 6
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1009,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-1-data-4-heading",
+          "indices": {
+            "h": 0,
+            "v": 7
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1009,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-1-data-5-heading",
+          "indices": {
+            "h": 0,
+            "v": 8
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1009,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-1-data-6-heading",
+          "indices": {
+            "h": 0,
+            "v": 9
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1009,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-1-data-7-heading",
+          "indices": {
+            "h": 0,
+            "v": 10
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1009,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-1-data-8-heading",
+          "indices": {
+            "h": 0,
+            "v": 11
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1159,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-2-header-1-heading",
+          "indices": {
+            "h": 0,
+            "v": 12
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-2-data-1-heading",
+          "indices": {
+            "h": 0,
+            "v": 13
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-2-data-2-heading",
+          "indices": {
+            "h": 0,
+            "v": 14
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-2-data-3-heading",
+          "indices": {
+            "h": 0,
+            "v": 15
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-2-data-4-heading",
+          "indices": {
+            "h": 0,
+            "v": 16
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-2-data-5-heading",
+          "indices": {
+            "h": 0,
+            "v": 17
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1566,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "pipeline-and-provenance",
+          "indices": {
+            "h": 0,
+            "v": 18
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1479,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "visual-constructions-and-parameter-sweeps",
+          "indices": {
+            "h": 0,
+            "v": 19
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 4156,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "temporal-and-auditory-constructions",
+          "indices": {
+            "h": 0,
+            "v": 20
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 3075,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "audiovisual-timing-and-encoding",
+          "indices": {
+            "h": 0,
+            "v": 21
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 3149,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "sec:objective_metric_results",
+          "indices": {
+            "h": 0,
+            "v": 22
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-3-header-1-heading",
+          "indices": {
+            "h": 0,
+            "v": 23
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-3-data-1-heading",
+          "indices": {
+            "h": 0,
+            "v": 24
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1271,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-3-data-2-heading",
+          "indices": {
+            "h": 0,
+            "v": 25
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-3-data-3-heading",
+          "indices": {
+            "h": 0,
+            "v": 26
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-3-data-4-heading",
+          "indices": {
+            "h": 0,
+            "v": 27
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-3-data-5-heading",
+          "indices": {
+            "h": 0,
+            "v": 28
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1271,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-3-data-6-heading",
+          "indices": {
+            "h": 0,
+            "v": 29
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-3-data-7-heading",
+          "indices": {
+            "h": 0,
+            "v": 30
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-3-data-8-heading",
+          "indices": {
+            "h": 0,
+            "v": 31
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-3-data-9-heading",
+          "indices": {
+            "h": 0,
+            "v": 32
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1457,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "observer-estimands-and-verification-controls",
+          "indices": {
+            "h": 0,
+            "v": 33
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-4-header-1-heading",
+          "indices": {
+            "h": 0,
+            "v": 34
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1009,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-4-data-1-heading",
+          "indices": {
+            "h": 0,
+            "v": 35
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1009,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-4-data-2-heading",
+          "indices": {
+            "h": 0,
+            "v": 36
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1195,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-5-header-1-heading",
+          "indices": {
+            "h": 0,
+            "v": 37
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 784,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-5-data-1-heading",
+          "indices": {
+            "h": 0,
+            "v": 38
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 784,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-5-data-2-heading",
+          "indices": {
+            "h": 0,
+            "v": 39
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 784,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-5-data-3-heading",
+          "indices": {
+            "h": 0,
+            "v": 40
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 784,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-5-data-4-heading",
+          "indices": {
+            "h": 0,
+            "v": 41
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 784,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-5-data-5-heading",
+          "indices": {
+            "h": 0,
+            "v": 42
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 784,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-03_results-table-5-data-6-heading",
+          "indices": {
+            "h": 0,
+            "v": 43
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 877,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "synthetic-psychophysics-model-diagnostic",
+          "indices": {
+            "h": 0,
+            "v": 44
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 2024,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        }
+      ],
+      "before": {
+        "h": 0,
+        "v": 0
+      },
+      "after": {
+        "h": 0,
+        "v": 1
+      },
+      "mathTargets": 0,
+      "renderedMath": 0,
+      "mathErrors": 0,
+      "loadedImages": true,
+      "file": "03_results_slides.html"
+    },
+    {
+      "slides": [
+        {
+          "id": "sec:experimental_setup",
+          "indices": {
+            "h": 0
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1922,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        }
+      ],
+      "before": {
+        "h": 0,
+        "v": 0
+      },
+      "after": {
+        "h": 0,
+        "v": 0
+      },
+      "mathTargets": 0,
+      "renderedMath": 0,
+      "mathErrors": 0,
+      "loadedImages": true,
+      "file": "04_experimental_setup_slides.html"
+    },
+    {
+      "slides": [
+        {
+          "id": "sec:reproducibility",
+          "indices": {
+            "h": 0,
+            "v": 0
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 2563,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "runtime-performance-reproducibility",
+          "indices": {
+            "h": 0,
+            "v": 1
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "data-availability-and-software-citation",
+          "indices": {
+            "h": 0,
+            "v": 2
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        }
+      ],
+      "before": {
+        "h": 0,
+        "v": 0
+      },
+      "after": {
+        "h": 0,
+        "v": 1
+      },
+      "mathTargets": 0,
+      "renderedMath": 0,
+      "mathErrors": 0,
+      "loadedImages": true,
+      "file": "05_reproducibility_slides.html"
+    },
+    {
+      "slides": [
+        {
+          "id": "sec:scope",
+          "indices": {
+            "h": 0,
+            "v": 0
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "scope-and-epistemic-boundary",
+          "indices": {
+            "h": 0,
+            "v": 1
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1150,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "visual-families",
+          "indices": {
+            "h": 0,
+            "v": 2
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 2411,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "auditory-families",
+          "indices": {
+            "h": 0,
+            "v": 3
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1041,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "audiovisual-and-temporal-binding-families",
+          "indices": {
+            "h": 0,
+            "v": 4
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1296,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "from-literature-to-engineering-contract",
+          "indices": {
+            "h": 0,
+            "v": 5
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 729,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "limitations-and-future-observer-work",
+          "indices": {
+            "h": 0,
+            "v": 6
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1189,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        }
+      ],
+      "before": {
+        "h": 0,
+        "v": 0
+      },
+      "after": {
+        "h": 0,
+        "v": 1
+      },
+      "mathTargets": 0,
+      "renderedMath": 0,
+      "mathErrors": 0,
+      "loadedImages": true,
+      "file": "06_scope_and_related_work_slides.html"
+    },
+    {
+      "slides": [
+        {
+          "id": "sec:publication_audit",
+          "indices": {
+            "h": 0,
+            "v": 0
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "claim-level-visualization",
+          "indices": {
+            "h": 0,
+            "v": 1
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1658,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "scholarship-map-and-lineage",
+          "indices": {
+            "h": 0,
+            "v": 2
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 2391,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "formal-traceability-and-objective-metrics",
+          "indices": {
+            "h": 0,
+            "v": 3
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 4688,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "observer-design-boundary",
+          "indices": {
+            "h": 0,
+            "v": 4
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1842,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "generated-audit-tables",
+          "indices": {
+            "h": 0,
+            "v": 5
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-1-header-1-heading",
+          "indices": {
+            "h": 0,
+            "v": 6
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1009,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-1-data-1-heading",
+          "indices": {
+            "h": 0,
+            "v": 7
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1301,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-1-data-2-heading",
+          "indices": {
+            "h": 0,
+            "v": 8
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1264,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-1-data-3-heading",
+          "indices": {
+            "h": 0,
+            "v": 9
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1737,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-1-data-4-heading",
+          "indices": {
+            "h": 0,
+            "v": 10
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1264,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-1-data-5-heading",
+          "indices": {
+            "h": 0,
+            "v": 11
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1337,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-1-data-6-heading",
+          "indices": {
+            "h": 0,
+            "v": 12
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1410,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-1-data-7-heading",
+          "indices": {
+            "h": 0,
+            "v": 13
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1337,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-1-data-8-heading",
+          "indices": {
+            "h": 0,
+            "v": 14
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1301,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-1-data-9-heading",
+          "indices": {
+            "h": 0,
+            "v": 15
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1411,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-1-data-10-heading",
+          "indices": {
+            "h": 0,
+            "v": 16
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1301,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-1-data-11-heading",
+          "indices": {
+            "h": 0,
+            "v": 17
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1373,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-1-data-12-heading",
+          "indices": {
+            "h": 0,
+            "v": 18
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1264,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-1-data-13-heading",
+          "indices": {
+            "h": 0,
+            "v": 19
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1301,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-1-data-14-heading",
+          "indices": {
+            "h": 0,
+            "v": 20
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1228,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-1-data-15-heading",
+          "indices": {
+            "h": 0,
+            "v": 21
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1430,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-header-1-heading",
+          "indices": {
+            "h": 0,
+            "v": 22
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-1-heading",
+          "indices": {
+            "h": 0,
+            "v": 23
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1271,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-2-heading",
+          "indices": {
+            "h": 0,
+            "v": 24
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1308,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-3-heading",
+          "indices": {
+            "h": 0,
+            "v": 25
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-4-heading",
+          "indices": {
+            "h": 0,
+            "v": 26
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1271,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-5-heading",
+          "indices": {
+            "h": 0,
+            "v": 27
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-6-heading",
+          "indices": {
+            "h": 0,
+            "v": 28
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1271,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-7-heading",
+          "indices": {
+            "h": 0,
+            "v": 29
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1271,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-8-heading",
+          "indices": {
+            "h": 0,
+            "v": 30
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1271,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-9-heading",
+          "indices": {
+            "h": 0,
+            "v": 31
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1308,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-10-heading",
+          "indices": {
+            "h": 0,
+            "v": 32
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1271,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-11-heading",
+          "indices": {
+            "h": 0,
+            "v": 33
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-12-heading",
+          "indices": {
+            "h": 0,
+            "v": 34
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1271,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-13-heading",
+          "indices": {
+            "h": 0,
+            "v": 35
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-14-heading",
+          "indices": {
+            "h": 0,
+            "v": 36
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-15-heading",
+          "indices": {
+            "h": 0,
+            "v": 37
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1271,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-16-heading",
+          "indices": {
+            "h": 0,
+            "v": 38
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1271,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-17-heading",
+          "indices": {
+            "h": 0,
+            "v": 39
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1271,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-18-heading",
+          "indices": {
+            "h": 0,
+            "v": 40
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1271,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-19-heading",
+          "indices": {
+            "h": 0,
+            "v": 41
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1271,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-20-heading",
+          "indices": {
+            "h": 0,
+            "v": 42
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1308,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-21-heading",
+          "indices": {
+            "h": 0,
+            "v": 43
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1271,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-22-heading",
+          "indices": {
+            "h": 0,
+            "v": 44
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1271,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-23-heading",
+          "indices": {
+            "h": 0,
+            "v": 45
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1308,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-24-heading",
+          "indices": {
+            "h": 0,
+            "v": 46
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1308,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-25-heading",
+          "indices": {
+            "h": 0,
+            "v": 47
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1308,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-26-heading",
+          "indices": {
+            "h": 0,
+            "v": 48
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1271,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-27-heading",
+          "indices": {
+            "h": 0,
+            "v": 49
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1308,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-28-heading",
+          "indices": {
+            "h": 0,
+            "v": 50
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1271,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-29-heading",
+          "indices": {
+            "h": 0,
+            "v": 51
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1344,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-30-heading",
+          "indices": {
+            "h": 0,
+            "v": 52
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1344,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-31-heading",
+          "indices": {
+            "h": 0,
+            "v": 53
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1308,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-32-heading",
+          "indices": {
+            "h": 0,
+            "v": 54
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1271,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-33-heading",
+          "indices": {
+            "h": 0,
+            "v": 55
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1308,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-34-heading",
+          "indices": {
+            "h": 0,
+            "v": 56
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1308,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-35-heading",
+          "indices": {
+            "h": 0,
+            "v": 57
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1308,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-36-heading",
+          "indices": {
+            "h": 0,
+            "v": 58
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1344,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-37-heading",
+          "indices": {
+            "h": 0,
+            "v": 59
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1344,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-38-heading",
+          "indices": {
+            "h": 0,
+            "v": 60
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1344,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-39-heading",
+          "indices": {
+            "h": 0,
+            "v": 61
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1344,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-40-heading",
+          "indices": {
+            "h": 0,
+            "v": 62
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1344,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-41-heading",
+          "indices": {
+            "h": 0,
+            "v": 63
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1344,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-42-heading",
+          "indices": {
+            "h": 0,
+            "v": 64
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1344,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-43-heading",
+          "indices": {
+            "h": 0,
+            "v": 65
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1344,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-44-heading",
+          "indices": {
+            "h": 0,
+            "v": 66
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1344,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-45-heading",
+          "indices": {
+            "h": 0,
+            "v": 67
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1344,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-46-heading",
+          "indices": {
+            "h": 0,
+            "v": 68
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1344,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-47-heading",
+          "indices": {
+            "h": 0,
+            "v": 69
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1344,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-48-heading",
+          "indices": {
+            "h": 0,
+            "v": 70
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1381,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-49-heading",
+          "indices": {
+            "h": 0,
+            "v": 71
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1417,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-50-heading",
+          "indices": {
+            "h": 0,
+            "v": 72
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1344,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-51-heading",
+          "indices": {
+            "h": 0,
+            "v": 73
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1344,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-52-heading",
+          "indices": {
+            "h": 0,
+            "v": 74
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1417,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-53-heading",
+          "indices": {
+            "h": 0,
+            "v": 75
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1381,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-2-data-54-heading",
+          "indices": {
+            "h": 0,
+            "v": 76
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1473,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-3-header-1-heading",
+          "indices": {
+            "h": 0,
+            "v": 77
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1009,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-3-data-1-heading",
+          "indices": {
+            "h": 0,
+            "v": 78
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1009,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-3-data-2-heading",
+          "indices": {
+            "h": 0,
+            "v": 79
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1046,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-3-data-3-heading",
+          "indices": {
+            "h": 0,
+            "v": 80
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1046,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-3-data-4-heading",
+          "indices": {
+            "h": 0,
+            "v": 81
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1046,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-3-data-5-heading",
+          "indices": {
+            "h": 0,
+            "v": 82
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1119,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-3-data-6-heading",
+          "indices": {
+            "h": 0,
+            "v": 83
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1009,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-3-data-7-heading",
+          "indices": {
+            "h": 0,
+            "v": 84
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1046,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-3-data-8-heading",
+          "indices": {
+            "h": 0,
+            "v": 85
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1082,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-3-data-9-heading",
+          "indices": {
+            "h": 0,
+            "v": 86
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1175,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-4-header-1-heading",
+          "indices": {
+            "h": 0,
+            "v": 87
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1009,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-4-data-1-heading",
+          "indices": {
+            "h": 0,
+            "v": 88
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1082,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-4-data-2-heading",
+          "indices": {
+            "h": 0,
+            "v": 89
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1155,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-4-data-3-heading",
+          "indices": {
+            "h": 0,
+            "v": 90
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1119,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-4-data-4-heading",
+          "indices": {
+            "h": 0,
+            "v": 91
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1155,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-4-data-5-heading",
+          "indices": {
+            "h": 0,
+            "v": 92
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1119,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-4-data-6-heading",
+          "indices": {
+            "h": 0,
+            "v": 93
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1264,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-4-data-7-heading",
+          "indices": {
+            "h": 0,
+            "v": 94
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1228,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-4-data-8-heading",
+          "indices": {
+            "h": 0,
+            "v": 95
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1228,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-4-data-9-heading",
+          "indices": {
+            "h": 0,
+            "v": 96
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1228,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-4-data-10-heading",
+          "indices": {
+            "h": 0,
+            "v": 97
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1228,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-4-data-11-heading",
+          "indices": {
+            "h": 0,
+            "v": 98
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1191,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-4-data-12-heading",
+          "indices": {
+            "h": 0,
+            "v": 99
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1228,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-4-data-13-heading",
+          "indices": {
+            "h": 0,
+            "v": 100
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1228,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-4-data-14-heading",
+          "indices": {
+            "h": 0,
+            "v": 101
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1228,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-4-data-15-heading",
+          "indices": {
+            "h": 0,
+            "v": 102
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1228,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-4-data-16-heading",
+          "indices": {
+            "h": 0,
+            "v": 103
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1228,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-4-data-17-heading",
+          "indices": {
+            "h": 0,
+            "v": 104
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1228,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-4-data-18-heading",
+          "indices": {
+            "h": 0,
+            "v": 105
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1301,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-4-data-19-heading",
+          "indices": {
+            "h": 0,
+            "v": 106
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1228,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-4-data-20-heading",
+          "indices": {
+            "h": 0,
+            "v": 107
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1228,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-4-data-21-heading",
+          "indices": {
+            "h": 0,
+            "v": 108
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1337,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-4-data-22-heading",
+          "indices": {
+            "h": 0,
+            "v": 109
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1264,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-4-data-23-heading",
+          "indices": {
+            "h": 0,
+            "v": 110
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1301,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-4-data-24-heading",
+          "indices": {
+            "h": 0,
+            "v": 111
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1119,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-07_publication_audit-table-4-data-25-heading",
+          "indices": {
+            "h": 0,
+            "v": 112
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1927,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        }
+      ],
+      "before": {
+        "h": 0,
+        "v": 0
+      },
+      "after": {
+        "h": 0,
+        "v": 1
+      },
+      "mathTargets": 0,
+      "renderedMath": 0,
+      "mathErrors": 0,
+      "loadedImages": true,
+      "file": "07_publication_audit_slides.html"
+    },
+    {
+      "slides": [
+        {
+          "id": "sec:discussion",
+          "indices": {
+            "h": 0,
+            "v": 0
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1299,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "sec:conclusion",
+          "indices": {
+            "h": 0,
+            "v": 1
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 859,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        }
+      ],
+      "before": {
+        "h": 0,
+        "v": 0
+      },
+      "after": {
+        "h": 0,
+        "v": 1
+      },
+      "mathTargets": 0,
+      "renderedMath": 0,
+      "mathErrors": 0,
+      "loadedImages": true,
+      "file": "08_discussion_and_conclusion_slides.html"
+    },
+    {
+      "slides": [
+        {
+          "id": "sec:appendix_catalog",
+          "indices": {
+            "h": 0,
+            "v": 0
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "how-to-read-the-matrix",
+          "indices": {
+            "h": 0,
+            "v": 1
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1119,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-09_appendix_catalog-table-1-header-1-heading",
+          "indices": {
+            "h": 0,
+            "v": 2
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-09_appendix_catalog-table-1-data-1-heading",
+          "indices": {
+            "h": 0,
+            "v": 3
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-09_appendix_catalog-table-1-data-2-heading",
+          "indices": {
+            "h": 0,
+            "v": 4
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-09_appendix_catalog-table-1-data-3-heading",
+          "indices": {
+            "h": 0,
+            "v": 5
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-09_appendix_catalog-table-1-data-4-heading",
+          "indices": {
+            "h": 0,
+            "v": 6
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-09_appendix_catalog-table-1-data-5-heading",
+          "indices": {
+            "h": 0,
+            "v": 7
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-09_appendix_catalog-table-1-data-6-heading",
+          "indices": {
+            "h": 0,
+            "v": 8
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-09_appendix_catalog-table-1-data-7-heading",
+          "indices": {
+            "h": 0,
+            "v": 9
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-09_appendix_catalog-table-1-data-8-heading",
+          "indices": {
+            "h": 0,
+            "v": 10
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1271,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-09_appendix_catalog-table-1-data-9-heading",
+          "indices": {
+            "h": 0,
+            "v": 11
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-09_appendix_catalog-table-1-data-10-heading",
+          "indices": {
+            "h": 0,
+            "v": 12
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-09_appendix_catalog-table-1-data-11-heading",
+          "indices": {
+            "h": 0,
+            "v": 13
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1271,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-09_appendix_catalog-table-1-data-12-heading",
+          "indices": {
+            "h": 0,
+            "v": 14
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-09_appendix_catalog-table-1-data-13-heading",
+          "indices": {
+            "h": 0,
+            "v": 15
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-09_appendix_catalog-table-1-data-14-heading",
+          "indices": {
+            "h": 0,
+            "v": 16
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-09_appendix_catalog-table-1-data-15-heading",
+          "indices": {
+            "h": 0,
+            "v": 17
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1235,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-09_appendix_catalog-table-1-data-16-heading",
+          "indices": {
+            "h": 0,
+            "v": 18
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1271,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-09_appendix_catalog-table-1-data-17-heading",
+          "indices": {
+            "h": 0,
+            "v": 19
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1308,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-09_appendix_catalog-table-1-data-18-heading",
+          "indices": {
+            "h": 0,
+            "v": 20
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 1271,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "evidence-boundary-and-future-expansion",
+          "indices": {
+            "h": 0,
+            "v": 21
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        }
+      ],
+      "before": {
+        "h": 0,
+        "v": 0
+      },
+      "after": {
+        "h": 0,
+        "v": 1
+      },
+      "mathTargets": 0,
+      "renderedMath": 0,
+      "mathErrors": 0,
+      "loadedImages": true,
+      "file": "09_appendix_catalog_slides.html"
+    },
+    {
+      "slides": [
+        {
+          "id": "sec:references",
+          "indices": {
+            "h": 0,
+            "v": 0
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-1-heading",
+          "indices": {
+            "h": 0,
+            "v": 1
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-2-heading",
+          "indices": {
+            "h": 0,
+            "v": 2
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-3-heading",
+          "indices": {
+            "h": 0,
+            "v": 3
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-4-heading",
+          "indices": {
+            "h": 0,
+            "v": 4
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-5-heading",
+          "indices": {
+            "h": 0,
+            "v": 5
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-6-heading",
+          "indices": {
+            "h": 0,
+            "v": 6
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-7-heading",
+          "indices": {
+            "h": 0,
+            "v": 7
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-8-heading",
+          "indices": {
+            "h": 0,
+            "v": 8
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-9-heading",
+          "indices": {
+            "h": 0,
+            "v": 9
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-10-heading",
+          "indices": {
+            "h": 0,
+            "v": 10
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-11-heading",
+          "indices": {
+            "h": 0,
+            "v": 11
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-12-heading",
+          "indices": {
+            "h": 0,
+            "v": 12
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-13-heading",
+          "indices": {
+            "h": 0,
+            "v": 13
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-14-heading",
+          "indices": {
+            "h": 0,
+            "v": 14
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-15-heading",
+          "indices": {
+            "h": 0,
+            "v": 15
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-16-heading",
+          "indices": {
+            "h": 0,
+            "v": 16
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-17-heading",
+          "indices": {
+            "h": 0,
+            "v": 17
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-18-heading",
+          "indices": {
+            "h": 0,
+            "v": 18
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-19-heading",
+          "indices": {
+            "h": 0,
+            "v": 19
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-20-heading",
+          "indices": {
+            "h": 0,
+            "v": 20
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-21-heading",
+          "indices": {
+            "h": 0,
+            "v": 21
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-22-heading",
+          "indices": {
+            "h": 0,
+            "v": 22
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-23-heading",
+          "indices": {
+            "h": 0,
+            "v": 23
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-24-heading",
+          "indices": {
+            "h": 0,
+            "v": 24
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-25-heading",
+          "indices": {
+            "h": 0,
+            "v": 25
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-26-heading",
+          "indices": {
+            "h": 0,
+            "v": 26
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-27-heading",
+          "indices": {
+            "h": 0,
+            "v": 27
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-28-heading",
+          "indices": {
+            "h": 0,
+            "v": 28
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-29-heading",
+          "indices": {
+            "h": 0,
+            "v": 29
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-30-heading",
+          "indices": {
+            "h": 0,
+            "v": 30
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-31-heading",
+          "indices": {
+            "h": 0,
+            "v": 31
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-32-heading",
+          "indices": {
+            "h": 0,
+            "v": 32
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-33-heading",
+          "indices": {
+            "h": 0,
+            "v": 33
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-34-heading",
+          "indices": {
+            "h": 0,
+            "v": 34
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-35-heading",
+          "indices": {
+            "h": 0,
+            "v": 35
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-36-heading",
+          "indices": {
+            "h": 0,
+            "v": 36
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-37-heading",
+          "indices": {
+            "h": 0,
+            "v": 37
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-38-heading",
+          "indices": {
+            "h": 0,
+            "v": 38
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-39-heading",
+          "indices": {
+            "h": 0,
+            "v": 39
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-40-heading",
+          "indices": {
+            "h": 0,
+            "v": 40
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-41-heading",
+          "indices": {
+            "h": 0,
+            "v": 41
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-42-heading",
+          "indices": {
+            "h": 0,
+            "v": 42
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-43-heading",
+          "indices": {
+            "h": 0,
+            "v": 43
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-44-heading",
+          "indices": {
+            "h": 0,
+            "v": 44
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-45-heading",
+          "indices": {
+            "h": 0,
+            "v": 45
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-46-heading",
+          "indices": {
+            "h": 0,
+            "v": 46
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        },
+        {
+          "id": "dr-slide-99_references-bibliography-47-heading",
+          "indices": {
+            "h": 0,
+            "v": 47
+          },
+          "width": 960,
+          "scrollWidth": 960,
+          "height": 700,
+          "scrollHeight": 700,
+          "overflowX": "auto",
+          "overflowY": "auto"
+        }
+      ],
+      "before": {
+        "h": 0,
+        "v": 0
+      },
+      "after": {
+        "h": 0,
+        "v": 1
+      },
+      "mathTargets": 0,
+      "renderedMath": 0,
+      "mathErrors": 0,
+      "loadedImages": true,
+      "file": "99_references_slides.html"
+    }
+  ],
+  "main": {
+    "mathTargets": 38,
+    "renderedMath": 38,
+    "mathErrors": 0,
+    "loadedImages": true,
+    "imageCount": 15,
+    "groupCredit": "Smith, Arfon M., Daniel S. Katz, Kyle E. Niemeyer, and FORCE11 Software Citation Working Group. 2016. \u201cSoftware Citation Principles.\u201d PeerJ Computer Science 2: e86. https://doi.org/10.7717/peerj-cs.86.",
+    "sourceTitle": "Skip to main content\nDuckRabbit: Typed Multimodal Illusion Generator\n\nDeterministic visual, auditory, temporal, and audio-visual stimulus construction \u2014 unreleased 0.6.0 digital review; source 459e77f7fb6d9715\n\nDaniel Ari Friedman\n\n1 Abstract\n2 Introduction\n3 Methodology\n3.1 Request and canonical artifact\n3.2 Typed parameter domains\n3.3 Canonical serialization and provenance\n3.4 Encoding and verification\n3.5 Objective metric definitions\n3.5.1 Synthetic psychophysics boundary\n4 Results\n4.1 Genera"
+  },
+  "browser": "Chrome/157.0.8103.39",
+  "citation": {
+    "hash": "#ref-smith2016software",
+    "text": "Smith, Arfon M., Daniel S. Katz, Kyle E. Niemeyer, and FORCE11 Software Citation Working Group. 2016. \u201cSoftware Citation Principles.\u201d PeerJ Computer Science 2: e86. https://doi.org/10.7717/peerj-cs.86."
+  },
+  "failure": "{\"exceptionId\":1,\"text\":\"Uncaught\",\"lineNumber\":0,\"columnNumber\":129,\"scriptId\":\"87\",\"stackTrace\":{\"callFrames\":[{\"functionName\":\"\",\"scriptId\":\"87\",\"url\":\"\",\"lineNumber\":0,\"columnNumber\":135},{\"functionName\":\"\",\"scriptId\":\"87\",\"url\":\"\",\"lineNumber\":0,\"columnNumber\":254}]},\"exception\":{\"type\":\"object\",\"subtype\":\"error\",\"className\":\"Error\",\"description\":\"Error: missing group credit\\n    at <anonymous>:1:136\\n    at <anonymous>:1:255\",\"objectId\":\"5487647930645502119.25.2\"}}",
+  "errors": {
+    "entries": [],
+    "nextSeq": 4,
+    "dropped": 0
+  },
+  "console": {
+    "entries": [
+      {
+        "seq": 1,
+        "ts": 1794109018274.356,
+        "type": "console",
+        "level": "warn",
+        "text": "No version information available for component http://127.0.0.1:53944/web/assets/mathjax-4.0.0/newcm/chtml/dynamic/double-struck.js",
+        "location": "http://127.0.0.1:53944/web/assets/mathjax-4.0.0/mathjax/tex-chtml.js:0:148236",
+        "args": [
+          "No version information available for component http://127.0.0.1:53944/web/assets/mathjax-4.0.0/newcm/chtml/dynamic/double-struck.js"
+        ]
+      },
+      {
+        "seq": 2,
+        "ts": 1794109018287.987,
+        "type": "console",
+        "level": "warn",
+        "text": "No version information available for component http://127.0.0.1:53944/web/assets/mathjax-4.0.0/newcm/chtml/dynamic/sans-serif.js",
+        "location": "http://127.0.0.1:53944/web/assets/mathjax-4.0.0/mathjax/tex-chtml.js:0:148236",
+        "args": [
+          "No version information available for component http://127.0.0.1:53944/web/assets/mathjax-4.0.0/newcm/chtml/dynamic/sans-serif.js"
+        ]
+      },
+      {
+        "seq": 3,
+        "ts": 1794109022027.421,
+        "type": "console",
+        "level": "warn",
+        "text": "No version information available for component http://127.0.0.1:53944/web/assets/mathjax-4.0.0/newcm/chtml/dynamic/double-struck.js",
+        "location": "http://127.0.0.1:53944/web/assets/mathjax-4.0.0/mathjax/tex-chtml.js:0:148236",
+        "args": [
+          "No version information available for component http://127.0.0.1:53944/web/assets/mathjax-4.0.0/newcm/chtml/dynamic/double-struck.js"
+        ]
+      },
+      {
+        "seq": 4,
+        "ts": 1794109022032.79,
+        "type": "console",
+        "level": "warn",
+        "text": "No version information available for component http://127.0.0.1:53944/web/assets/mathjax-4.0.0/newcm/chtml/dynamic/sans-serif.js",
+        "location": "http://127.0.0.1:53944/web/assets/mathjax-4.0.0/mathjax/tex-chtml.js:0:148236",
+        "args": [
+          "No version information available for component http://127.0.0.1:53944/web/assets/mathjax-4.0.0/newcm/chtml/dynamic/sans-serif.js"
+        ]
+      }
+    ],
+    "nextSeq": 4,
+    "dropped": 0
+  }
+}

@@ -41,6 +41,12 @@ def _trial_record(kind: ResponseKind, value: object, **kwargs: object) -> TrialR
     )
 
 
+def _with_conditions(conditions: tuple[ConditionSpec, ...]) -> duckrabbit.StudyDesign:
+    design = default_study_design()
+    estimand = replace(design.estimands[0], reference_condition=conditions[0].condition_id)
+    return replace(design, conditions=conditions, estimands=(estimand,))
+
+
 def test_every_default_condition_resolves_and_generates() -> None:
     design = default_study_design()
     for condition, serialized in zip(design.conditions, design.to_dict()["conditions"]):
@@ -56,7 +62,7 @@ def test_every_default_condition_resolves_and_generates() -> None:
 @pytest.mark.parametrize("rate", [0.0, 0.05, 2.0, 1_000.0, 10_000.0])
 def test_poisson_distribution_and_seed_repeatability(rate: float) -> None:
     design = replace(default_study_design(), trials_per_condition=1_000)
-    design = replace(design, conditions=(design.conditions[0],))
+    design = replace(_with_conditions((design.conditions[0],)), trials_per_condition=1_000)
     rates = {design.conditions[0].condition_id: rate}
     first = simulate_event_counts(design, ("observer",), rates, seed=83)
     assert first == simulate_event_counts(design, ("observer",), rates, seed=83)
@@ -127,7 +133,7 @@ def test_manifest_digest_is_mandatory_valid_sha256(digest: object) -> None:
 
 def test_nested_overrides_are_snapshots_and_serialization_is_detached() -> None:
     overrides = {"config": {"sync_offset": 0.0}, "items": [{"values": [1, 2]}]}
-    condition = ConditionSpec("nested", "visual.duck_rabbit", overrides, ("duck",))
+    condition = ConditionSpec("nested", "visual.duck_rabbit", overrides, ("duck", "rabbit"))
     trial = TrialSpec("trial", "visual.duck_rabbit", "nested", 0, ("duck",), overrides)
     overrides["config"]["sync_offset"] = 20
     overrides["items"][0]["values"].append(3)
@@ -138,7 +144,7 @@ def test_nested_overrides_are_snapshots_and_serialization_is_detached() -> None:
             record.parameter_overrides["config"]["sync_offset"] = 30
         with pytest.raises(TypeError):
             record.parameter_overrides["items"][0]["values"][0] = 30
-    design = replace(default_study_design(), conditions=(condition,))
+    design = _with_conditions((condition,))
     for payload in (trial.to_dict(), design.to_dict()["conditions"][0]):
         json.dumps(payload)
         payload["parameter_overrides"]["config"]["sync_offset"] = 40
@@ -215,10 +221,10 @@ def test_override_arrays_are_snapshots_and_nonfinite_values_are_rejected() -> No
 
 
 def test_composite_trial_id_collisions_are_rejected() -> None:
-    design = replace(default_study_design(), conditions=(
-        ConditionSpec("b:c", "visual.duck_rabbit", {}, ("duck",)),
-        ConditionSpec("c", "visual.duck_rabbit", {}, ("duck",)),
-    ), trials_per_condition=1)
+    design = replace(_with_conditions((
+        ConditionSpec("b:c", "visual.duck_rabbit", {}, ("duck", "rabbit")),
+        ConditionSpec("c", "visual.duck_rabbit", {}, ("duck", "rabbit")),
+    )), trials_per_condition=1)
     with pytest.raises(ParameterValidationError, match="trial IDs must be unique"):
         build_trial_sequence(design, ("a", "a:b"))
 
@@ -236,7 +242,7 @@ def test_override_normalization_freezes_supported_nested_values() -> None:
         "kind": ResponseKind.EVENT_COUNT, "scalar": np.int64(3),
     })
     records = (
-        ConditionSpec("condition", "visual.duck_rabbit", overrides, ("duck",)),
+        ConditionSpec("condition", "visual.duck_rabbit", overrides, ("duck", "rabbit")),
         TrialSpec("trial", "visual.duck_rabbit", "condition", 0, ("duck",), overrides),
     )
     array[0, 0] = 1
@@ -249,7 +255,7 @@ def test_override_normalization_freezes_supported_nested_values() -> None:
 
     def serialize(record: ConditionSpec | TrialSpec) -> dict[str, object]:
         if isinstance(record, ConditionSpec):
-            return replace(default_study_design(), conditions=(record,)).to_dict()["conditions"][0]
+            return _with_conditions((record,)).to_dict()["conditions"][0]
         return record.to_dict()
 
     for record in records:
@@ -295,14 +301,14 @@ def test_probability_and_effect_apis_reject_invalid_numeric_values(invalid: obje
     with pytest.raises(ParameterValidationError, match="alpha"):
         simulate_power(2, 0.0, repetitions=1, alpha=invalid)
     with pytest.raises(ParameterValidationError, match="effect/power"):
-        PowerEstimate(invalid, 0.5, 1)
+        PowerEstimate(invalid, 0.5, 1, 2, 0.05, 0.5, 0, 0)
     with pytest.raises(ParameterValidationError, match="effect/power"):
-        PowerEstimate(0.0, invalid, 1)
+        PowerEstimate(0.0, invalid, 1, 2, 0.05, 0.5, 0, 0)
     for name in ("proportion", "interval_low", "interval_high"):
         values = dict(proportion=0.5, interval_low=0.0, interval_high=1.0)
         values[name] = invalid
         with pytest.raises(ParameterValidationError, match="interval"):
-            ResponseSummary("condition", "duck", 1, 2, **values)
+            ResponseSummary("condition", "duck", 1, 2, observer_count=1, **values)
 
 
 @pytest.mark.parametrize("probability", [0.0, 1.0])

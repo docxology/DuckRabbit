@@ -1,0 +1,158 @@
+{
+  "observed_at": "2026-11-08T03:03:19.934386+00:00",
+  "uv_lock_sha256": "e70f5cb83eb13d8258ade08a99d00f5ccfae40fb070d78a9f78dd77f2479e86c",
+  "pyproject_sha256": "c240adaa9ddd0fd1e68295b0d35d634740781faefb84355ac025291713a83038",
+  "queries": [
+    {
+      "name": "colorama",
+      "version": "0.4.6",
+      "ecosystem": "PyPI",
+      "url": "https://pypi.org/pypi/colorama/0.4.6/json",
+      "status": "observed",
+      "vulnerabilities": [],
+      "last_serial": 15517557
+    },
+    {
+      "name": "coverage",
+      "version": "7.13.4",
+      "ecosystem": "PyPI",
+      "url": "https://pypi.org/pypi/coverage/7.13.4/json",
+      "status": "observed",
+      "vulnerabilities": [],
+      "last_serial": 43206007
+    },
+    {
+      "name": "iniconfig",
+      "version": "2.3.0",
+      "ecosystem": "PyPI",
+      "url": "https://pypi.org/pypi/iniconfig/2.3.0/json",
+      "status": "observed",
+      "vulnerabilities": [],
+      "last_serial": 41901840
+    },
+    {
+      "name": "numpy",
+      "version": "2.4.2",
+      "ecosystem": "PyPI",
+      "url": "https://pypi.org/pypi/numpy/2.4.2/json",
+      "status": "observed",
+      "vulnerabilities": [],
+      "last_serial": 42981571
+    },
+    {
+      "name": "packaging",
+      "version": "26.0",
+      "ecosystem": "PyPI",
+      "url": "https://pypi.org/pypi/packaging/26.0/json",
+      "status": "observed",
+      "vulnerabilities": [],
+      "last_serial": 39691657
+    },
+    {
+      "name": "pillow",
+      "version": "13.0.0",
+      "ecosystem": "PyPI",
+      "url": "https://pypi.org/pypi/pillow/13.0.0/json",
+      "status": "observed",
+      "vulnerabilities": [],
+      "last_serial": 42342064
+    },
+    {
+      "name": "pluggy",
+      "version": "1.6.0",
+      "ecosystem": "PyPI",
+      "url": "https://pypi.org/pypi/pluggy/1.6.0/json",
+      "status": "observed",
+      "vulnerabilities": [],
+      "last_serial": 42267252
+    },
+    {
+      "name": "pygments",
+      "version": "2.21.0",
+      "ecosystem": "PyPI",
+      "url": "https://pypi.org/pypi/pygments/2.21.0/json",
+      "status": "observed",
+      "vulnerabilities": [],
+      "last_serial": 40098558
+    },
+    {
+      "name": "pytest",
+      "version": "9.2.0",
+      "ecosystem": "PyPI",
+      "url": "https://pypi.org/pypi/pytest/9.2.0/json",
+      "status": "observed",
+      "vulnerabilities": [],
+      "last_serial": 42838779
+    },
+    {
+      "name": "pytest-cov",
+      "version": "7.0.0",
+      "ecosystem": "PyPI",
+      "url": "https://pypi.org/pypi/pytest-cov/7.0.0/json",
+      "status": "observed",
+      "vulnerabilities": [],
+      "last_serial": 35351768
+    },
+    {
+      "name": "pyyaml",
+      "version": "6.0.3",
+      "ecosystem": "PyPI",
+      "url": "https://pypi.org/pypi/pyyaml/6.0.3/json",
+      "status": "observed",
+      "vulnerabilities": [],
+      "last_serial": 31526105
+    },
+    {
+      "name": "ruff",
+      "version": "0.15.21",
+      "ecosystem": "PyPI",
+      "url": "https://pypi.org/pypi/ruff/0.15.21/json",
+      "status": "observed",
+      "vulnerabilities": [],
+      "last_serial": 43257910
+    },
+    {
+      "name": "tomli",
+      "version": "2.4.0",
+      "ecosystem": "PyPI",
+      "url": "https://pypi.org/pypi/tomli/2.4.0/json",
+      "status": "observed",
+      "vulnerabilities": [],
+      "last_serial": 41929294
+    },
+    {
+      "name": "setuptools",
+      "version": "84.2.1",
+      "ecosystem": "PyPI",
+      "url": "https://pypi.org/pypi/setuptools/84.2.1/json",
+      "status": "observed",
+      "vulnerabilities": [],
+      "last_serial": 42507617
+    },
+    {
+      "name": "mathjax",
+      "version": "4.0.0",
+      "ecosystem": "npm",
+      "url": "https://api.osv.dev/v1/query",
+      "status": "observed",
+      "vulnerabilities": []
+    },
+    {
+      "name": "@mathjax/mathjax-newcm-font",
+      "version": "4.0.0",
+      "ecosystem": "npm",
+      "url": "https://api.osv.dev/v1/query",
+      "status": "observed",
+      "vulnerabilities": []
+    },
+    {
+      "name": "reveal.js",
+      "version": "5.2.1",
+      "ecosystem": "npm",
+      "url": "https://api.osv.dev/v1/query",
+      "status": "observed",
+      "vulnerabilities": []
+    }
+  ],
+  "limitations": "Dated primary metadata observation only. No guarantee of absence, exploitability certification, native-binary/OS/transitive-renderer security audit, or package-supply-chain authenticity."
+}

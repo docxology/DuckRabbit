@@ -1,0 +1,2 @@
+Resolved 14 packages in 108ms
+error: Distribution `numpy==2.4.2 @ registry+https://pypi.org/simple` can't be installed because it is marked as `--no-build` but has no binary distribution

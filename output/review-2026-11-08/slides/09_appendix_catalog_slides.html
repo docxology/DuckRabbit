@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>09_appendix_catalog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../web/assets/reveal.js-5.2.1/dist/reset.css">
+  <link rel="stylesheet" href="../web/assets/reveal.js-5.2.1/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../web/assets/reveal.js-5.2.1/dist/theme/white.css" id="theme">
+  <link rel="stylesheet" href="digital-review.css"/>
+<script data-template-mathjax-config>
+window.MathJax = window.MathJax || {};
+window.MathJax.loader = Object.assign({},window.MathJax.loader,{paths:{mathjax:new URL("../web/assets/mathjax-4.0.0/mathjax",document.baseURI).href}});
+window.MathJax.chtml = Object.assign({}, window.MathJax.chtml, {
+  fontURL: new URL("../web/assets/mathjax-4.0.0/newcm/chtml/woff2",document.baseURI).href,
+  dynamicPrefix: new URL("../web/assets/mathjax-4.0.0/newcm/chtml/dynamic",document.baseURI).href
+});
+var templateMathOutput = window.MathJax.output || {};
+window.MathJax.output = Object.assign({}, templateMathOutput, {
+  displayOverflow: "linebreak",
+  linebreaks: Object.assign({}, templateMathOutput.linebreaks, {
+    inline: true,
+    width: "100%",
+    lineleading: 0.5
+  })
+});
+window.normalizeTemplateMathJaxAria = function () {
+  document.querySelectorAll("mjx-speech[aria-roledescription]").forEach(function (node) {
+    var roleDescription = node.getAttribute("aria-roledescription") || "";
+    if (/[-]/.test(roleDescription)) {
+      node.setAttribute("aria-roledescription", "mathematical expression");
+    }
+  });
+};
+window.MathJax.startup = Object.assign({}, window.MathJax.startup, {
+  ready: function () {
+    var measuredWidth = document.documentElement.clientWidth;
+    var reflowQueued = false;
+    window.MathJax.startup.defaultReady();
+    window.templateMathJaxReflowPromise = window.MathJax.startup.promise.then(
+      window.normalizeTemplateMathJaxAria
+    );
+    function reflowDisplayMath() {
+      if (reflowQueued || document.documentElement.clientWidth === measuredWidth) return;
+      reflowQueued = true;
+      window.templateMathJaxReflowPromise = window.templateMathJaxReflowPromise
+        .catch(function () { /* A later resize may retry a failed render. */ })
+        .then(async function () {
+          var width = document.documentElement.clientWidth;
+          try {
+            // MathJax 4 MathItem.STATE.METRICS = 110. The default RERENDER
+            // state retains old container metrics and cannot reflow on zoom.
+            await window.MathJax.startup.document.rerenderPromise(110);
+            window.normalizeTemplateMathJaxAria();
+            window.templateMathJaxReflowError = null;
+          } catch (error) {
+            window.templateMathJaxReflowError = String(error);
+            console.error("MathJax viewport reflow failed", error);
+            throw error;
+          } finally {
+            measuredWidth = width;
+            reflowQueued = false;
+          }
+        })
+        .then(reflowDisplayMath);
+      // Keep failure observable to callers without an unhandled rejection.
+      window.templateMathJaxReflowPromise.catch(function () {});
+    }
+    window.addEventListener("resize", reflowDisplayMath);
+    // Also cover a resize that happened during the initial asynchronous render.
+    window.templateMathJaxReflowPromise.then(reflowDisplayMath);
+  }
+});
+</script>
+<script src="../web/assets/mathjax-4.0.0/mathjax/tex-chtml.js" integrity="sha384-2BWc4dVaHADUocwKrUrK9u3iDwHxVMKXWEcoRmUkXYSFKhAsgVAYClu9ydNuo5Oz" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section>
+<section id="sec:appendix_catalog" class="title-slide slide level1">
+<h1>Appendix A. Complete catalog, source tiers, and evidence and
+implementation boundaries</h1>
+<p>Numbered-table references point to the <a
+href="../web/index.html">canonical manuscript</a>; they are not
+standalone local deck numbers.</p>
+<p>This appendix is the authoritative rendered snapshot of DuckRabbit’s
+live catalog. It is generated from the taxonomy registry and evidence
+matrix during the publication build; the table is not hand-maintained.
+The snapshot records the package’s current scope, not a claim to
+enumerate every illusion described in the literature.</p>
+</section>
+<section id="how-to-read-the-matrix" class="slide level2">
+<h2>How to read the matrix</h2>
+<p>Each row identifies a registered illusion family and separates five
+questions that are often collapsed in informal catalogs:</p>
+<ol type="1">
+<li>What modality, mechanism, and signature does the package assign to
+the construction?</li>
+<li>What evidence and implementation status does the checked-in record
+support?</li>
+<li>Which sources support the exact statement written in the row?</li>
+<li>What physical claim is supported by the row?</li>
+<li>What full source role, resolver, DOI status, and claim level are
+retained in the machine-readable record?</li>
+</ol>
+<p><code>implemented</code> means that DuckRabbit has a deterministic
+generator and a validated canonical artifact contract. It does not mean
+that the generated stimulus is a pixel-identical reproduction of a
+historical experiment or that an observer effect has been
+re-established. <code>input_required</code> means that the family
+remains catalogued but lacks a lawful, checksummed input fixture and/or
+the validation contract required for deterministic generation. Evidence
+status and implementation status are deliberately independent.</p>
+<p>The source column is a compact citation-key view. The full source
+role, resolver or DOI status, exact supported claim, engineering
+departure, and limitation are retained in the machine-readable evidence
+matrix and in the generated evidence audit <a
+href="../web/index.html#tbl:evidence_audit">Table 7</a>. A source
+supports only the narrow claim recorded for it; a review or theory
+record is not evidence that a DuckRabbit rendering produces a universal
+perceptual effect.</p>
+<div id="tbl:catalog">
+
+</div>
+<p>DuckRabbit catalog entries, source tiers, and evidence/implementation
+boundaries.</p>
+</section>
+<section id="dr-slide-09_appendix_catalog-table-1-header-1-heading"
+class="slide level2">
+<h2>Table 10 — header row 1</h2>
+<p>Column 1 — header:</p>
+<p>ID</p>
+<p>Value:</p>
+<p>ID</p>
+<p>Column 2 — header:</p>
+<p>Construction</p>
+<p>Value:</p>
+<p>Construction</p>
+<p>Column 3 — header:</p>
+<p>Evidence / status</p>
+<p>Value:</p>
+<p>Evidence / status</p>
+<p>Column 4 — header:</p>
+<p>Sources</p>
+<p>Value:</p>
+<p>Sources</p>
+<p>Column 5 — header:</p>
+<p>Supported claim</p>
+<p>Value:</p>
+<p>Supported claim</p>
+</section>
+<section id="dr-slide-09_appendix_catalog-table-1-data-1-heading"
+class="slide level2">
+<h2>Table 10 — row 1</h2>
+<p>Column 1 — header:</p>
+<p>ID</p>
+<p>Value:</p>
+<p>visual.duck_rabbit</p>
+<p>Column 2 — header:</p>
+<p>Construction</p>
+<p>Value:</p>
+<p>visual; ambiguity; bistability</p>
+<p>Column 3 — header:</p>
+<p>Evidence / status</p>
+<p>Value:</p>
+<p>literature_backed_engineering_entry; implemented</p>
+<p>Column 4 — header:</p>
+<p>Sources</p>
+<p>Value:</p>
+<p>brugger1999duckrabbit, gregory1997visual</p>
+<p>Column 5 — header:</p>
+<p>Supported claim</p>
+<p>Value:</p>
+<p>The entry instantiates a controllable ambiguous-figure stimulus
+family.</p>
+</section>
+<section id="dr-slide-09_appendix_catalog-table-1-data-2-heading"
+class="slide level2">
+<h2>Table 10 — row 2</h2>
+<p>Column 1 — header:</p>
+<p>ID</p>
+<p>Value:</p>
+<p>visual.simultaneous_contrast</p>
+<p>Column 2 — header:</p>
+<p>Construction</p>
+<p>Value:</p>
+<p>visual; contrast_and_context; contrast_distortion</p>
+<p>Column 3 — header:</p>
+<p>Evidence / status</p>
+<p>Value:</p>
+<p>literature_backed_engineering_entry; implemented</p>
+<p>Column 4 — header:</p>
+<p>Sources</p>
+<p>Value:</p>
+<p>gregory1997visual</p>
+<p>Column 5 — header:</p>
+<p>Supported claim</p>
+<p>Value:</p>
+<p>The physical center patches are matched while surround luminance
+differs.</p>
+</section>
+<section id="dr-slide-09_appendix_catalog-table-1-data-3-heading"
+class="slide level2">
+<h2>Table 10 — row 3</h2>
+<p>Column 1 — header:</p>
+<p>ID</p>
+<p>Value:</p>
+<p>visual.apparent_motion</p>
+<p>Column 2 — header:</p>
+<p>Construction</p>
+<p>Value:</p>
+<p>visual; temporal_motion; illusory_motion</p>
+<p>Column 3 — header:</p>
+<p>Evidence / status</p>
+<p>Value:</p>
+<p>literature_backed_engineering_entry; implemented</p>
+<p>Column 4 — header:</p>
+<p>Sources</p>
+<p>Value:</p>
+<p>wertheimer1912motion, sekuler1996wertheimer</p>
+<p>Column 5 — header:</p>
+<p>Supported claim</p>
+<p>Value:</p>
+<p>The sequence contains controlled successive spatial events.</p>
+</section>
+<section id="dr-slide-09_appendix_catalog-table-1-data-4-heading"
+class="slide level2">
+<h2>Table 10 — row 4</h2>
+<p>Column 1 — header:</p>
+<p>ID</p>
+<p>Value:</p>
+<p>audio.shepard_tone</p>
+<p>Column 2 — header:</p>
+<p>Construction</p>
+<p>Value:</p>
+<p>auditory; spectral_harmonic; continuity</p>
+<p>Column 3 — header:</p>
+<p>Evidence / status</p>
+<p>Value:</p>
+<p>literature_backed_engineering_entry; implemented</p>
+<p>Column 4 — header:</p>
+<p>Sources</p>
+<p>Value:</p>
+<p>shepard1984scale</p>
+<p>Column 5 — header:</p>
+<p>Supported claim</p>
+<p>Value:</p>
+<p>The audio contains octave-related partials with controlled sweep
+parameters.</p>
+</section>
+<section id="dr-slide-09_appendix_catalog-table-1-data-5-heading"
+class="slide level2">
+<h2>Table 10 — row 5</h2>
+<p>Column 1 — header:</p>
+<p>ID</p>
+<p>Value:</p>
+<p>audio.missing_fundamental</p>
+<p>Column 2 — header:</p>
+<p>Construction</p>
+<p>Value:</p>
+<p>auditory; spectral_harmonic; filling_in</p>
+<p>Column 3 — header:</p>
+<p>Evidence / status</p>
+<p>Value:</p>
+<p>literature_backed_engineering_entry; implemented</p>
+<p>Column 4 — header:</p>
+<p>Sources</p>
+<p>Value:</p>
+<p>zatorre2005missing</p>
+<p>Column 5 — header:</p>
+<p>Supported claim</p>
+<p>Value:</p>
+<p>The nominal fundamental component is absent from the canonical
+spectrum.</p>
+</section>
+<section id="dr-slide-09_appendix_catalog-table-1-data-6-heading"
+class="slide level2">
+<h2>Table 10 — row 6</h2>
+<p>Column 1 — header:</p>
+<p>ID</p>
+<p>Value:</p>
+<p>audiovisual.sound_induced_flash</p>
+<p>Column 2 — header:</p>
+<p>Construction</p>
+<p>Value:</p>
+<p>audio_visual; crossmodal_temporal; fusion_or_fission</p>
+<p>Column 3 — header:</p>
+<p>Evidence / status</p>
+<p>Value:</p>
+<p>review_backed_engineering_entry; implemented</p>
+<p>Column 4 — header:</p>
+<p>Sources</p>
+<p>Value:</p>
+<p>shams2000sifi, hirst2020sound</p>
+<p>Column 5 — header:</p>
+<p>Supported claim</p>
+<p>Value:</p>
+<p>The declared beep/flash event counts and offsets are physically
+encoded.</p>
+</section>
+<section id="dr-slide-09_appendix_catalog-table-1-data-7-heading"
+class="slide level2">
+<h2>Table 10 — row 7</h2>
+<p>Column 1 — header:</p>
+<p>ID</p>
+<p>Value:</p>
+<p>audiovisual.ventriloquist</p>
+<p>Column 2 — header:</p>
+<p>Construction</p>
+<p>Value:</p>
+<p>audio_visual; crossmodal_spatial; spatial_capture</p>
+<p>Column 3 — header:</p>
+<p>Evidence / status</p>
+<p>Value:</p>
+<p>review_backed_engineering_entry; implemented</p>
+<p>Column 4 — header:</p>
+<p>Sources</p>
+<p>Value:</p>
+<p>bruns2019ventriloquist, noppeney2018causal</p>
+<p>Column 5 — header:</p>
+<p>Supported claim</p>
+<p>Value:</p>
+<p>The audio and visual channels carry a declared spatial
+discrepancy.</p>
+</section>
+<section id="dr-slide-09_appendix_catalog-table-1-data-8-heading"
+class="slide level2">
+<h2>Table 10 — row 8</h2>
+<p>Column 1 — header:</p>
+<p>ID</p>
+<p>Value:</p>
+<p>visual.muller_lyer</p>
+<p>Column 2 — header:</p>
+<p>Construction</p>
+<p>Value:</p>
+<p>visual; geometric_alignment; geometric_distortion</p>
+<p>Column 3 — header:</p>
+<p>Evidence / status</p>
+<p>Value:</p>
+<p>literature_backed_engineering_entry; implemented</p>
+<p>Column 4 — header:</p>
+<p>Sources</p>
+<p>Value:</p>
+<p>gregory1997visual, howe2005muller</p>
+<p>Column 5 — header:</p>
+<p>Supported claim</p>
+<p>Value:</p>
+<p>The two bar lengths are equal in the canonical raster while wing
+geometry varies.</p>
+</section>
+<section id="dr-slide-09_appendix_catalog-table-1-data-9-heading"
+class="slide level2">
+<h2>Table 10 — row 9</h2>
+<p>Column 1 — header:</p>
+<p>ID</p>
+<p>Value:</p>
+<p>visual.poggendorff</p>
+<p>Column 2 — header:</p>
+<p>Construction</p>
+<p>Value:</p>
+<p>visual; geometric_alignment; geometric_distortion</p>
+<p>Column 3 — header:</p>
+<p>Evidence / status</p>
+<p>Value:</p>
+<p>literature_backed_engineering_entry; implemented</p>
+<p>Column 4 — header:</p>
+<p>Sources</p>
+<p>Value:</p>
+<p>gregory1997visual, morgan1999poggendorff</p>
+<p>Column 5 — header:</p>
+<p>Supported claim</p>
+<p>Value:</p>
+<p>The occluder and diagonal continuation are generated from explicit
+geometry.</p>
+</section>
+<section id="dr-slide-09_appendix_catalog-table-1-data-10-heading"
+class="slide level2">
+<h2>Table 10 — row 10</h2>
+<p>Column 1 — header:</p>
+<p>ID</p>
+<p>Value:</p>
+<p>visual.ponzo</p>
+<p>Column 2 — header:</p>
+<p>Construction</p>
+<p>Value:</p>
+<p>visual; geometric_alignment; geometric_distortion</p>
+<p>Column 3 — header:</p>
+<p>Evidence / status</p>
+<p>Value:</p>
+<p>literature_backed_engineering_entry; implemented</p>
+<p>Column 4 — header:</p>
+<p>Sources</p>
+<p>Value:</p>
+<p>fisher1967ponzo, yildiz2022ponzo</p>
+<p>Column 5 — header:</p>
+<p>Supported claim</p>
+<p>Value:</p>
+<p>Target bars are physically equal and rails converge toward a
+vanishing region.</p>
+</section>
+<section id="dr-slide-09_appendix_catalog-table-1-data-11-heading"
+class="slide level2">
+<h2>Table 10 — row 11</h2>
+<p>Column 1 — header:</p>
+<p>ID</p>
+<p>Value:</p>
+<p>visual.kanizsa_triangle</p>
+<p>Column 2 — header:</p>
+<p>Construction</p>
+<p>Value:</p>
+<p>visual; contrast_and_context, geometric_alignment; filling_in</p>
+<p>Column 3 — header:</p>
+<p>Evidence / status</p>
+<p>Value:</p>
+<p>literature_backed_engineering_entry; implemented</p>
+<p>Column 4 — header:</p>
+<p>Sources</p>
+<p>Value:</p>
+<p>kanizsa1976contours, wagemans2012gestalt</p>
+<p>Column 5 — header:</p>
+<p>Supported claim</p>
+<p>Value:</p>
+<p>The image contains incomplete inducers with no explicitly drawn
+triangle edge.</p>
+</section>
+<section id="dr-slide-09_appendix_catalog-table-1-data-12-heading"
+class="slide level2">
+<h2>Table 10 — row 12</h2>
+<p>Column 1 — header:</p>
+<p>ID</p>
+<p>Value:</p>
+<p>visual.ebbinghaus</p>
+<p>Column 2 — header:</p>
+<p>Construction</p>
+<p>Value:</p>
+<p>visual; contrast_and_context, geometric_alignment;
+geometric_distortion</p>
+<p>Column 3 — header:</p>
+<p>Evidence / status</p>
+<p>Value:</p>
+<p>literature_backed_engineering_entry; implemented</p>
+<p>Column 4 — header:</p>
+<p>Sources</p>
+<p>Value:</p>
+<p>mruczek2015ebbinghaus, weintraub1979ebbinghaus</p>
+<p>Column 5 — header:</p>
+<p>Supported claim</p>
+<p>Value:</p>
+<p>Central target geometry is held equal while contextual circle
+geometry differs.</p>
+</section>
+<section id="dr-slide-09_appendix_catalog-table-1-data-13-heading"
+class="slide level2">
+<h2>Table 10 — row 13</h2>
+<p>Column 1 — header:</p>
+<p>ID</p>
+<p>Value:</p>
+<p>visual.zollner</p>
+<p>Column 2 — header:</p>
+<p>Construction</p>
+<p>Value:</p>
+<p>visual; geometric_alignment; geometric_distortion</p>
+<p>Column 3 — header:</p>
+<p>Evidence / status</p>
+<p>Value:</p>
+<p>literature_backed_engineering_entry; implemented</p>
+<p>Column 4 — header:</p>
+<p>Sources</p>
+<p>Value:</p>
+<p>zoellner1860pseudoscopy, earle1995zollner, gregory1997visual</p>
+<p>Column 5 — header:</p>
+<p>Supported claim</p>
+<p>Value:</p>
+<p>The entry instantiates a controlled crossing-line orientation
+stimulus family.</p>
+</section>
+<section id="dr-slide-09_appendix_catalog-table-1-data-14-heading"
+class="slide level2">
+<h2>Table 10 — row 14</h2>
+<p>Column 1 — header:</p>
+<p>ID</p>
+<p>Value:</p>
+<p>audio.tritone_paradox</p>
+<p>Column 2 — header:</p>
+<p>Construction</p>
+<p>Value:</p>
+<p>auditory; spectral_harmonic; categorical_recoding</p>
+<p>Column 3 — header:</p>
+<p>Evidence / status</p>
+<p>Value:</p>
+<p>literature_backed_engineering_entry; implemented</p>
+<p>Column 4 — header:</p>
+<p>Sources</p>
+<p>Value:</p>
+<p>deutsch1986tritone, repp1997tritone</p>
+<p>Column 5 — header:</p>
+<p>Supported claim</p>
+<p>Value:</p>
+<p>The canonical pair has an explicit half-octave frequency
+relation.</p>
+</section>
+<section id="dr-slide-09_appendix_catalog-table-1-data-15-heading"
+class="slide level2">
+<h2>Table 10 — row 15</h2>
+<p>Column 1 — header:</p>
+<p>ID</p>
+<p>Value:</p>
+<p>audio.octave_illusion</p>
+<p>Column 2 — header:</p>
+<p>Construction</p>
+<p>Value:</p>
+<p>auditory; stream_segregation; fusion_or_fission</p>
+<p>Column 3 — header:</p>
+<p>Evidence / status</p>
+<p>Value:</p>
+<p>literature_backed_engineering_entry; implemented</p>
+<p>Column 4 — header:</p>
+<p>Sources</p>
+<p>Value:</p>
+<p>deutsch1974octave</p>
+<p>Column 5 — header:</p>
+<p>Supported claim</p>
+<p>Value:</p>
+<p>The two channels receive alternating octave-related tones.</p>
+</section>
+<section id="dr-slide-09_appendix_catalog-table-1-data-16-heading"
+class="slide level2">
+<h2>Table 10 — row 16</h2>
+<p>Column 1 — header:</p>
+<p>ID</p>
+<p>Value:</p>
+<p>audio.auditory_continuity</p>
+<p>Column 2 — header:</p>
+<p>Construction</p>
+<p>Value:</p>
+<p>auditory; stream_segregation; continuity</p>
+<p>Column 3 — header:</p>
+<p>Evidence / status</p>
+<p>Value:</p>
+<p>literature_backed_engineering_entry; implemented</p>
+<p>Column 4 — header:</p>
+<p>Sources</p>
+<p>Value:</p>
+<p>warren1970continuity, riecke2011continuity</p>
+<p>Column 5 — header:</p>
+<p>Supported claim</p>
+<p>Value:</p>
+<p>The canonical audio contains a reproducible interruption interval and
+masker family.</p>
+</section>
+<section id="dr-slide-09_appendix_catalog-table-1-data-17-heading"
+class="slide level2">
+<h2>Table 10 — row 17</h2>
+<p>Column 1 — header:</p>
+<p>ID</p>
+<p>Value:</p>
+<p>audiovisual.temporal_ventriloquism</p>
+<p>Column 2 — header:</p>
+<p>Construction</p>
+<p>Value:</p>
+<p>audio_visual; crossmodal_temporal;
+temporal_binding_or_recalibration</p>
+<p>Column 3 — header:</p>
+<p>Evidence / status</p>
+<p>Value:</p>
+<p>review_backed_engineering_entry; implemented</p>
+<p>Column 4 — header:</p>
+<p>Sources</p>
+<p>Value:</p>
+<p>vroomen2004temporal, hartcherobrien2011temporal, hirst2020sound,
+noppeney2018causal</p>
+<p>Column 5 — header:</p>
+<p>Supported claim</p>
+<p>Value:</p>
+<p>Audio and video event timing and declared offset are deterministic
+and inspectable.</p>
+</section>
+<section id="dr-slide-09_appendix_catalog-table-1-data-18-heading"
+class="slide level2">
+<h2>Table 10 — row 18</h2>
+<p>Column 1 — header:</p>
+<p>ID</p>
+<p>Value:</p>
+<p>audiovisual.mcgurk</p>
+<p>Column 2 — header:</p>
+<p>Construction</p>
+<p>Value:</p>
+<p>audio_visual; speech_categorization; categorical_recoding</p>
+<p>Column 3 — header:</p>
+<p>Evidence / status</p>
+<p>Value:</p>
+<p>literature_backed_input_dependent_entry; input_required</p>
+<p>Column 4 — header:</p>
+<p>Sources</p>
+<p>Value:</p>
+<p>mcgurk1976speech</p>
+<p>Column 5 — header:</p>
+<p>Supported claim</p>
+<p>Value:</p>
+<p>The catalog identifies a speech-dependent audiovisual family without
+claiming implementation.</p>
+</section>
+<section id="evidence-boundary-and-future-expansion"
+class="slide level2">
+<h2>Evidence boundary and future expansion</h2>
+<p>The matrix is intentionally a living registry snapshot. New families
+may be added when the package can state a typed parameter contract,
+deterministic canonicalization rule, validation invariant, and evidence
+boundary. Planned or input-dependent families are not silently promoted
+because a source exists: promotion requires an implementable contract,
+reproducible fixtures where needed, and an explicit statement of what
+remains unvalidated. McGurk therefore remains
+<code>input_required</code> pending a consented or licensed, checksummed
+speech/ video fixture and a study-ready validation protocol. The
+candidate-future catalog is documented separately from this live matrix
+so that absence is not misread as a claim that a phenomenon is unknown
+or unimportant.</p>
+</section></section>
+    </div>
+  </div>
+
+  <script src="../web/assets/reveal.js-5.2.1/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="../web/assets/reveal.js-5.2.1/plugin/notes/notes.js"></script>
+  <script src="../web/assets/reveal.js-5.2.1/plugin/search/search.js"></script>
+  <script src="../web/assets/reveal.js-5.2.1/plugin/zoom/zoom.js"></script>
+  
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>

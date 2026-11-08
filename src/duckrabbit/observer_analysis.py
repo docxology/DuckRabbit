@@ -1,8 +1,8 @@
-"""Study-ready observer schemas and deterministic synthetic-data utilities.
+"""Illustrative observer schemas and deterministic synthetic-data utilities.
 
-This module describes how a future human-observer study can be run.  Synthetic
-responses exist only to test serialization, randomization, and analysis code;
-they are never presented as empirical evidence.
+External task definitions, ethics approval, and presentation calibration are
+required before preregistration or data collection. Synthetic responses test
+the harness only; they are never empirical evidence.
 """
 
 from __future__ import annotations
@@ -182,6 +182,9 @@ class AnalysisModelSpec:
             raise ParameterValidationError("analysis model specification is incomplete")
         if not self.random_effects or not all(self.random_effects):
             raise ParameterValidationError("analysis model random effects are required")
+        if isinstance(self.random_effects, str) or not all(isinstance(effect, str) and effect for effect in self.random_effects):
+            raise ParameterValidationError("analysis model random effects must be named strings")
+        object.__setattr__(self, "random_effects", tuple(self.random_effects))
 
     def to_dict(self) -> dict[str, object]:
         return {"model": self.model.value, "formula": self.formula, "family": self.family, "link": self.link, "random_effects": list(self.random_effects)}
@@ -241,6 +244,8 @@ class ConditionSpec:
             raise ParameterValidationError("condition parameter_overrides must be a string-keyed mapping")
         if not self.response_labels or not all(isinstance(label, str) and label for label in self.response_labels):
             raise ParameterValidationError("condition response_labels must be non-empty strings")
+        if isinstance(self.response_labels, str) or len(set(self.response_labels)) != len(self.response_labels):
+            raise ParameterValidationError("condition response_labels must be distinct labels")
         if not isinstance(self.response_kind, ResponseKind):
             raise ParameterValidationError("condition response_kind must be ResponseKind")
         object.__setattr__(self, "parameter_overrides", _freeze_overrides(self.parameter_overrides))
@@ -265,11 +270,21 @@ class Estimand:
                 raise ParameterValidationError(f"estimand {name} is required")
         if not isinstance(self.response_kind, ResponseKind) or not isinstance(self.model, AnalysisModel):
             raise ParameterValidationError("estimand response_kind and model are typed enums")
+        compatible = {
+            ResponseKind.FORCED_CHOICE: AnalysisModel.LOGISTIC_MIXED,
+            ResponseKind.CONTINUOUS_MAGNITUDE: AnalysisModel.LINEAR_MIXED,
+            ResponseKind.LOCALIZATION: AnalysisModel.LINEAR_MIXED,
+            ResponseKind.REACTION_TIME: AnalysisModel.LOGNORMAL_MIXED,
+            ResponseKind.EVENT_COUNT: AnalysisModel.POISSON_OR_ORDINAL,
+            ResponseKind.REVERSAL: AnalysisModel.TRANSITION_RATE,
+        }
+        if self.model is not compatible[self.response_kind]:
+            raise ParameterValidationError("estimand response kind and model are incompatible")
 
 
 @dataclass(frozen=True)
 class StudyDesign:
-    """Complete condition, randomization, and analysis contract."""
+    """Illustrative condition, randomization, and analysis contract, not approval."""
 
     study_id: str
     conditions: tuple[ConditionSpec, ...]
@@ -283,6 +298,16 @@ class StudyDesign:
     def __post_init__(self) -> None:
         if not self.study_id or not self.conditions or not self.estimands:
             raise ParameterValidationError("study requires identity, conditions, and estimands")
+        for name, kind in (("conditions", ConditionSpec), ("estimands", Estimand)):
+            values = getattr(self, name)
+            if not all(isinstance(value, kind) for value in values):
+                raise ParameterValidationError(f"study {name} must contain typed records")
+            object.__setattr__(self, name, tuple(values))
+        for name in ("inclusion_rules", "exclusion_rules"):
+            values = getattr(self, name)
+            if isinstance(values, str) or not all(isinstance(value, str) and value for value in values):
+                raise ParameterValidationError(f"study {name} must contain rule strings")
+            object.__setattr__(self, name, tuple(values))
         if type(self.trials_per_condition) is not int or self.trials_per_condition < 1:
             raise ParameterValidationError("trials_per_condition must be positive")
         if type(self.observers) is not int or self.observers < 1:
@@ -291,6 +316,15 @@ class StudyDesign:
             object.__setattr__(self, "randomization_seed", Seed(self.randomization_seed))
         if len({condition.condition_id for condition in self.conditions}) != len(self.conditions):
             raise ParameterValidationError("condition IDs must be unique")
+        by_id = {condition.condition_id: condition for condition in self.conditions}
+        for estimand in self.estimands:
+            reference = by_id.get(estimand.reference_condition)
+            if reference is None:
+                raise ParameterValidationError("estimand reference condition does not exist")
+            if reference.response_kind is not estimand.response_kind:
+                raise ParameterValidationError("estimand response kind does not match its reference condition")
+            if estimand.model is AnalysisModel.LOGISTIC_MIXED and len(reference.response_labels) != 2:
+                raise ParameterValidationError("logistic estimand requires exactly two response labels")
 
     def to_dict(self) -> dict[str, object]:
         return {
@@ -323,13 +357,16 @@ class StudyDesign:
             "inclusion_rules": list(self.inclusion_rules),
             "exclusion_rules": list(self.exclusion_rules),
             "observer_data_status": "none_bundled",
+            "design_status": "illustrative_not_preregistration_ready",
+            "external_requirements": ["task and contrast specification", "ethics and consent approval", "display and playback calibration"],
+            "randomization": "independent seeded shuffle per observer; not positional counterbalancing",
             "model_templates": [spec.to_dict() for spec in default_model_specs()],
         }
 
 
 @dataclass(frozen=True)
 class ResponseSummary:
-    """Aggregate response facts with a Wilson interval for binary proportions."""
+    """Descriptive pooled-trial facts; Wilson assumes independent binary trials."""
 
     condition_id: str
     label: str
@@ -338,6 +375,7 @@ class ResponseSummary:
     proportion: float
     interval_low: float
     interval_high: float
+    observer_count: int
 
     def __post_init__(self) -> None:
         if not self.condition_id or not self.label or type(self.count) is not int or type(self.total) is not int:
@@ -346,6 +384,10 @@ class ResponseSummary:
             raise ParameterValidationError("response summary counts are invalid")
         if not all(_is_finite_number(value) for value in (self.interval_low, self.proportion, self.interval_high)) or not (0 <= self.interval_low <= self.proportion <= self.interval_high <= 1):
             raise ParameterValidationError("response summary interval is invalid")
+        if type(self.observer_count) is not int or not 1 <= self.observer_count <= self.total:
+            raise ParameterValidationError("response summary observer_count is invalid")
+        if self.proportion != self.count / self.total:
+            raise ParameterValidationError("response summary proportion must match counts")
 
     def to_dict(self) -> dict[str, object]:
         return {
@@ -356,16 +398,24 @@ class ResponseSummary:
             "proportion": self.proportion,
             "interval_low": self.interval_low,
             "interval_high": self.interval_high,
+            "observer_count": self.observer_count,
+            "interval_method": "descriptive 95% independent-trial Wilson",
+            "inference_boundary": "Pooled repeated trials are not independent; this interval does not estimate participant or item effects. Use the prespecified hierarchical analysis for repeated measures.",
         }
 
 
 @dataclass(frozen=True)
 class PowerEstimate:
-    """One assumed-effect point in a deterministic design simulation."""
+    """Monte Carlo detection fraction for an assumed independent-groups design."""
 
     effect: float
     power: float
     repetitions: int
+    sample_size_per_group: int
+    alpha: float
+    baseline: float
+    seed: Seed
+    detection_count: int
     assumed: bool = True
 
     def __post_init__(self) -> None:
@@ -373,9 +423,30 @@ class PowerEstimate:
             raise ParameterValidationError("power point effect/power is invalid")
         if type(self.repetitions) is not int or self.repetitions < 1:
             raise ParameterValidationError("power repetitions must be positive")
+        if type(self.sample_size_per_group) is not int or self.sample_size_per_group < 2:
+            raise ParameterValidationError("power sample_size_per_group must be at least two")
+        if not _is_finite_number(self.alpha) or not 0 < self.alpha < 1:
+            raise ParameterValidationError("power alpha must be between zero and one")
+        if not _is_finite_number(self.baseline) or not 0 <= self.baseline <= 1 or not 0 <= self.baseline + self.effect <= 1:
+            raise ParameterValidationError("power baseline and effect imply invalid probabilities")
+        if type(self.detection_count) is not int or not 0 <= self.detection_count <= self.repetitions or self.power != self.detection_count / self.repetitions:
+            raise ParameterValidationError("power must match detection_count / repetitions")
+        if self.assumed is not True:
+            raise ParameterValidationError("power estimates must remain assumed")
+        object.__setattr__(self, "seed", Seed(self.seed))
 
     def to_dict(self) -> dict[str, object]:
-        return {"effect": self.effect, "power": self.power, "repetitions": self.repetitions, "assumed": self.assumed}
+        low, high = _wilson(self.detection_count, self.repetitions)
+        return {
+            "effect": self.effect, "power": self.power, "repetitions": self.repetitions,
+            "assumed": self.assumed, "sample_size_per_group": self.sample_size_per_group,
+            "alpha": self.alpha, "baseline": self.baseline, "alternative": self.baseline + self.effect,
+            "seed": int(self.seed), "detection_count": self.detection_count,
+            "test": "two-sided Fisher exact conditional; probability-ordering; reject p <= alpha",
+            "assumptions": ["two independent groups", "independent Bernoulli trials within groups", "fixed equal sample sizes", "no participant/item clustering or repeated-measures effects", "not power for the illustrative mixed-model study design"],
+            "monte_carlo_interval_low": low, "monte_carlo_interval_high": high,
+            "monte_carlo_interval_method": "95% Wilson interval for the simulated detection fraction; not uncertainty about an observed effect",
+        }
 
 
 # Compatibility alias retained for callers of the 0.4/0.5 public API.
@@ -436,9 +507,10 @@ class NumericSummary:
     unit: str
     sample_count: int
     mean: float
-    standard_deviation: float
-    interval_low: float
-    interval_high: float
+    standard_deviation: float | None
+    interval_low: float | None
+    interval_high: float | None
+    observer_count: int
     claim_level: ClaimLevel = ClaimLevel.OBSERVER_HYPOTHESIS
     synthetic_only: bool = True
 
@@ -447,10 +519,17 @@ class NumericSummary:
             raise ParameterValidationError("numeric summary identity, response kind, and unit are required")
         if type(self.sample_count) is not int or self.sample_count < 1:
             raise ParameterValidationError("numeric summary sample_count must be positive")
-        values = (self.mean, self.standard_deviation, self.interval_low, self.interval_high)
-        if not all(math.isfinite(float(value)) for value in values) or self.standard_deviation < 0:
-            raise ParameterValidationError("numeric summary values must be finite and non-negative where required")
-        if not self.interval_low <= self.mean <= self.interval_high:
+        if not _is_finite_number(self.mean):
+            raise ParameterValidationError("numeric summary mean must be finite")
+        if type(self.observer_count) is not int or not 1 <= self.observer_count <= self.sample_count:
+            raise ParameterValidationError("numeric summary observer_count is invalid")
+        uncertainty = (self.standard_deviation, self.interval_low, self.interval_high)
+        if self.sample_count == 1:
+            if any(value is not None for value in uncertainty):
+                raise ParameterValidationError("single-observation variance and interval are unavailable")
+        elif not all(_is_finite_number(value) for value in uncertainty) or self.standard_deviation < 0:
+            raise ParameterValidationError("numeric summary uncertainty must be finite and non-negative where required")
+        elif not self.interval_low <= self.mean <= self.interval_high:
             raise ParameterValidationError("numeric summary interval must contain the mean")
         if self.claim_level is not ClaimLevel.OBSERVER_HYPOTHESIS or self.synthetic_only is not True:
             raise ParameterValidationError("numeric summaries must remain synthetic observer hypotheses")
@@ -465,13 +544,16 @@ class NumericSummary:
             "standard_deviation": self.standard_deviation,
             "interval_low": self.interval_low,
             "interval_high": self.interval_high,
+            "observer_count": self.observer_count,
+            "interval_method": "unavailable_n_less_than_two" if self.sample_count == 1 else "descriptive 95% independent-trial normal approximation",
+            "inference_boundary": "Synthetic pooled trials only; repeated measures require participant/item-aware inference. No participant effects are estimated.",
             "claim_level": self.claim_level.value,
             "synthetic_only": self.synthetic_only,
         }
 
 
 def build_trial_sequence(design: StudyDesign, observer_keys: Sequence[str]) -> tuple[TrialSpec, ...]:
-    """Build a reproducibly counterbalanced trial sequence."""
+    """Build independently seeded shuffled orders, not positional counterbalancing."""
     if not observer_keys or not all(isinstance(key, str) and key for key in observer_keys):
         raise ParameterValidationError("observer_keys must be non-empty")
     if len(set(observer_keys)) != len(observer_keys):
@@ -529,20 +611,35 @@ def _wilson(count: int, total: int, alpha: float = 0.05) -> tuple[float, float]:
 def summarize_binary_responses(
     conditions: Sequence[ConditionSpec], responses: Sequence[tuple[str, str, str]]
 ) -> tuple[ResponseSummary, ...]:
-    """Summarize ``(condition_id, label, observer_key)`` records."""
-    allowed = {condition.condition_id: set(condition.response_labels) for condition in conditions}
+    """Pool binary trial labels descriptively, retaining distinct observer counts.
+
+    Intervals assume independent trials and must not be used as participant-level
+    inference when an observer contributes repeated responses. Conditions with
+    no responses have no estimable proportion and are omitted.
+    """
+    allowed = {}
+    for condition in conditions:
+        if condition.condition_id in allowed:
+            raise ParameterValidationError("binary summary condition IDs must be unique")
+        if condition.response_kind is not ResponseKind.FORCED_CHOICE or len(condition.response_labels) != 2:
+            raise ParameterValidationError("binary summary requires exactly two forced-choice labels")
+        allowed[condition.condition_id] = condition.response_labels
     groups: dict[tuple[str, str], int] = {}
     totals: dict[str, int] = {}
+    observers: dict[str, set[str]] = {}
     for condition_id, label, observer_key in responses:
-        if condition_id not in allowed or label not in allowed[condition_id] or not observer_key:
+        if condition_id not in allowed or label not in allowed[condition_id] or not isinstance(observer_key, str) or not observer_key:
             raise ParameterValidationError("response does not match the study design")
         groups[(condition_id, label)] = groups.get((condition_id, label), 0) + 1
         totals[condition_id] = totals.get(condition_id, 0) + 1
+        observers.setdefault(condition_id, set()).add(observer_key)
     result = []
-    for (condition_id, label), count in sorted(groups.items()):
+    for condition_id in sorted(totals):
         total = totals[condition_id]
-        low, high = _wilson(count, total)
-        result.append(ResponseSummary(condition_id, label, count, total, count / total, low, high))
+        for label in sorted(allowed[condition_id]):
+            count = groups.get((condition_id, label), 0)
+            low, high = _wilson(count, total)
+            result.append(ResponseSummary(condition_id, label, count, total, count / total, low, high, len(observers[condition_id])))
     return tuple(result)
 
 
@@ -550,6 +647,8 @@ def simulate_binary_responses(
     design: StudyDesign, observer_keys: Sequence[str], probabilities: Mapping[str, float]
 ) -> tuple[tuple[str, str, str], ...]:
     """Generate explicitly synthetic binary responses for harness tests."""
+    if any(condition.response_kind is not ResponseKind.FORCED_CHOICE or len(condition.response_labels) != 2 for condition in design.conditions):
+        raise ParameterValidationError("binary simulation requires exactly two forced-choice labels")
     trials = build_trial_sequence(design, observer_keys)
     rng = _deterministic_rng(design.randomization_seed)
     records: list[tuple[str, str, str]] = []
@@ -562,6 +661,27 @@ def simulate_binary_responses(
     return tuple(records)
 
 
+def _fisher_exact_two_sided(a: int, b: int, c: int, d: int) -> float:
+    """Conditional two-sided probability-ordering test for a 2x2 count table.
+
+    Integer hypergeometric weights make probability ties exact, without SciPy
+    or tolerance-dependent decisions. Row totals are fixed group sizes.
+    """
+    if any(type(value) is not int or value < 0 for value in (a, b, c, d)):
+        raise ParameterValidationError("Fisher table must contain non-negative integer counts")
+    first, second, successes = a + b, c + d, a + c
+    low, high = max(0, successes - second), min(first, successes)
+    observed = math.comb(first, a) * math.comb(second, c)
+    weight = math.comb(first, low) * math.comb(second, successes - low)
+    tail = 0
+    for count in range(low, high + 1):
+        if weight <= observed:
+            tail += weight
+        if count < high:
+            weight = weight * (first - count) * (successes - count) // ((count + 1) * (second - successes + count + 1))
+    return tail / math.comb(first + second, successes)
+
+
 def simulate_power(
     sample_size: int,
     effect: float,
@@ -570,9 +690,10 @@ def simulate_power(
     seed: int | Seed = 0,
     alpha: float = 0.05,
 ) -> PowerEstimate:
-    """Estimate binary-contrast power without external statistics dependencies.
+    """Simulate an exact two-sided Fisher test in two independent groups.
 
-    The effect is an assumed probability difference, not an observed result.
+    ``sample_size`` is n per group; baseline is 0.5 and ``effect`` is an
+    assumed probability difference. This is not repeated-measures study power.
     """
     if type(sample_size) is not int or sample_size < 2 or type(repetitions) is not int or repetitions < 1:
         raise ParameterValidationError("sample_size and repetitions must be positive integers")
@@ -582,14 +703,18 @@ def simulate_power(
     alternative = baseline + effect
     rng = _deterministic_rng(seed)
     detected = 0
-    critical = statistics.NormalDist().inv_cdf(1 - alpha / 2)
+    p_values: dict[tuple[int, int], float] = {}  # local to this run, never persistent
     for _ in range(repetitions):
-        reference = sum(rng.random() < baseline for _ in range(sample_size)) / sample_size
-        treatment = sum(rng.random() < alternative for _ in range(sample_size)) / sample_size
-        pooled = max((reference * (1 - reference) + treatment * (1 - treatment)) / sample_size, 1e-12)
-        if abs(treatment - reference) / math.sqrt(pooled) >= critical:
+        reference = sum(rng.random() < baseline for _ in range(sample_size))
+        treatment = sum(rng.random() < alternative for _ in range(sample_size))
+        key = (min(reference, treatment), max(reference, treatment))
+        p_value = p_values.get(key)
+        if p_value is None:
+            p_value = _fisher_exact_two_sided(reference, sample_size - reference, treatment, sample_size - treatment)
+            p_values[key] = p_value
+        if p_value <= alpha:
             detected += 1
-    return PowerEstimate(effect, detected / repetitions, repetitions)
+    return PowerEstimate(effect, detected / repetitions, repetitions, sample_size, alpha, baseline, Seed(seed), detected)
 
 
 
@@ -679,21 +804,26 @@ def simulate_reaction_times(
 
 
 def summarize_numeric_responses(observations: Sequence[SyntheticObservation]) -> tuple[NumericSummary, ...]:
-    """Summarize synthetic numeric records with a normal-approximation interval."""
+    """Describe synthetic pooled trials; normal intervals need independent trials."""
     groups: dict[tuple[str, ResponseKind, str], list[float]] = {}
+    observers: dict[tuple[str, ResponseKind, str], set[str]] = {}
     for observation in observations:
         if observation.claim_level is not ClaimLevel.OBSERVER_HYPOTHESIS or observation.response_kind is ResponseKind.FORCED_CHOICE:
             raise ParameterValidationError("numeric summary accepts only synthetic numeric observations")
         if not isinstance(observation.value, (int, float)) or isinstance(observation.value, bool):
             raise ParameterValidationError("numeric summary received a non-numeric value")
         groups.setdefault((observation.condition_id, observation.response_kind, observation.unit), []).append(float(observation.value))
+        observers.setdefault((observation.condition_id, observation.response_kind, observation.unit), set()).add(observation.observer_key)
     result = []
     for (condition_id, response_kind, unit), values in sorted(groups.items(), key=lambda item: item[0]):
         mean = sum(values) / len(values)
-        variance = sum((value - mean) ** 2 for value in values) / max(len(values) - 1, 1)
-        standard_deviation = math.sqrt(variance)
-        half_width = 1.96 * standard_deviation / math.sqrt(len(values))
-        result.append(NumericSummary(condition_id, response_kind, unit, len(values), mean, standard_deviation, mean - half_width, mean + half_width))
+        if len(values) == 1:
+            standard_deviation = low = high = None
+        else:
+            standard_deviation = statistics.stdev(values)
+            half_width = statistics.NormalDist().inv_cdf(0.975) * standard_deviation / math.sqrt(len(values))
+            low, high = mean - half_width, mean + half_width
+        result.append(NumericSummary(condition_id, response_kind, unit, len(values), mean, standard_deviation, low, high, len(observers[(condition_id, response_kind, unit)])))
     return tuple(result)
 
 
@@ -720,7 +850,7 @@ def write_analysis_plan(design: StudyDesign, path: Path) -> Path:
 
 
 def default_study_design() -> StudyDesign:
-    """Return a small preregistration-ready design covering the main claims."""
+    """Return a data-free illustration requiring external study/ethics/calibration."""
     return StudyDesign(
         study_id="duckrabbit-v04-demo",
         conditions=(
@@ -728,6 +858,8 @@ def default_study_design() -> StudyDesign:
             ConditionSpec("sifi_one_beep", "audiovisual.sound_induced_flash", {"beep_count": 1}, ("one", "two")),
             ConditionSpec("sifi_two_beep", "audiovisual.sound_induced_flash", {"beep_count": 2}, ("one", "two")),
             ConditionSpec("temporal_sync", "audiovisual.temporal_ventriloquism", {"config": {"sync_offset": 0.0}}, ("early", "late")),
+            ConditionSpec("temporal_early", "audiovisual.temporal_ventriloquism", {"config": {"sync_offset": -120.0}}, ("early", "late")),
+            ConditionSpec("temporal_late", "audiovisual.temporal_ventriloquism", {"config": {"sync_offset": 120.0}}, ("early", "late")),
         ),
         trials_per_condition=8,
         observers=24,
@@ -735,16 +867,16 @@ def default_study_design() -> StudyDesign:
         estimands=(
             Estimand(
                 "sifi_flash_count_contrast",
-                ResponseKind.EVENT_COUNT,
-                AnalysisModel.POISSON_OR_ORDINAL,
-                "two-beep minus one-beep event-count response",
+                ResponseKind.FORCED_CHOICE,
+                AnalysisModel.LOGISTIC_MIXED,
+                "log odds of choosing 'two': sifi_two_beep minus sifi_one_beep",
                 "sifi_one_beep",
             ),
             Estimand(
                 "temporal_binding_offset_contrast",
-                ResponseKind.CONTINUOUS_MAGNITUDE,
-                AnalysisModel.LINEAR_MIXED,
-                "reported timing shift per declared sync offset",
+                ResponseKind.FORCED_CHOICE,
+                AnalysisModel.LOGISTIC_MIXED,
+                "log odds of choosing 'late': temporal_early and temporal_late versus temporal_sync (categorical offsets -120/0/+120 ms)",
                 "temporal_sync",
             ),
         ),
@@ -752,11 +884,11 @@ def default_study_design() -> StudyDesign:
 
 
 def default_model_specs() -> tuple[AnalysisModelSpec, ...]:
-    """Return preregistration model templates without fitted coefficients."""
+    """Return illustrative model templates without fitted coefficients or approval."""
     return (
         AnalysisModelSpec(AnalysisModel.LOGISTIC_MIXED, "response ~ condition + (1|participant) + (1|item)", "binomial", "logit", ("participant", "item")),
         AnalysisModelSpec(AnalysisModel.LINEAR_MIXED, "magnitude ~ condition + (1|participant) + (1|item)", "Gaussian", "identity", ("participant", "item")),
-        AnalysisModelSpec(AnalysisModel.LOGNORMAL_MIXED, "log(reaction_time) ~ condition + (1|participant) + (1|item)", "lognormal", "identity", ("participant", "item")),
+        AnalysisModelSpec(AnalysisModel.LOGNORMAL_MIXED, "reaction_time ~ condition + (1|participant) + (1|item)", "lognormal", "log", ("participant", "item")),
         AnalysisModelSpec(AnalysisModel.POISSON_OR_ORDINAL, "count ~ condition + (1|participant) + (1|item)", "Poisson/negative-binomial/ordinal", "log or cumulative", ("participant", "item")),
         AnalysisModelSpec(AnalysisModel.TRANSITION_RATE, "reversal_transition ~ condition + (1|participant)", "survival or transition-rate", "hazard", ("participant",)),
     )

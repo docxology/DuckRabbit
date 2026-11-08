@@ -1,0 +1,267 @@
+{
+  "data": {
+    "human_study": {
+      "participant_data": false,
+      "status": "future"
+    },
+    "models": [
+      {
+        "family": "binomial",
+        "formula": "response ~ condition + (1|participant) + (1|item)",
+        "link": "logit",
+        "model": "logistic_mixed",
+        "random_effects": [
+          "participant",
+          "item"
+        ]
+      },
+      {
+        "family": "Gaussian",
+        "formula": "magnitude ~ condition + (1|participant) + (1|item)",
+        "link": "identity",
+        "model": "linear_mixed",
+        "random_effects": [
+          "participant",
+          "item"
+        ]
+      },
+      {
+        "family": "lognormal",
+        "formula": "reaction_time ~ condition + (1|participant) + (1|item)",
+        "link": "log",
+        "model": "lognormal_mixed",
+        "random_effects": [
+          "participant",
+          "item"
+        ]
+      },
+      {
+        "family": "Poisson/negative-binomial/ordinal",
+        "formula": "count ~ condition + (1|participant) + (1|item)",
+        "link": "log or cumulative",
+        "model": "poisson_or_ordinal",
+        "random_effects": [
+          "participant",
+          "item"
+        ]
+      },
+      {
+        "family": "survival or transition-rate",
+        "formula": "reversal_transition ~ condition + (1|participant)",
+        "link": "hazard",
+        "model": "transition_rate",
+        "random_effects": [
+          "participant"
+        ]
+      }
+    ],
+    "randomization_seed": 0,
+    "steps": [
+      {
+        "detail": "pseudonym + condition + index",
+        "name": "trial identity"
+      },
+      {
+        "detail": "seed=0; seeded shuffle",
+        "name": "randomization"
+      },
+      {
+        "detail": "canonical + encoded SHA-256",
+        "name": "stimulus manifest"
+      },
+      {
+        "detail": "typed value + missingness",
+        "name": "response"
+      },
+      {
+        "detail": "contrast + uncertainty interval",
+        "name": "estimand"
+      }
+    ],
+    "study_design": {
+      "conditions": [
+        {
+          "condition_id": "duck_default",
+          "illusion_id": "visual.duck_rabbit",
+          "parameter_overrides": {},
+          "response_kind": "forced_choice",
+          "response_labels": [
+            "duck",
+            "rabbit"
+          ]
+        },
+        {
+          "condition_id": "sifi_one_beep",
+          "illusion_id": "audiovisual.sound_induced_flash",
+          "parameter_overrides": {
+            "beep_count": 1
+          },
+          "response_kind": "forced_choice",
+          "response_labels": [
+            "one",
+            "two"
+          ]
+        },
+        {
+          "condition_id": "sifi_two_beep",
+          "illusion_id": "audiovisual.sound_induced_flash",
+          "parameter_overrides": {
+            "beep_count": 2
+          },
+          "response_kind": "forced_choice",
+          "response_labels": [
+            "one",
+            "two"
+          ]
+        },
+        {
+          "condition_id": "temporal_sync",
+          "illusion_id": "audiovisual.temporal_ventriloquism",
+          "parameter_overrides": {
+            "config": {
+              "sync_offset": 0.0
+            }
+          },
+          "response_kind": "forced_choice",
+          "response_labels": [
+            "early",
+            "late"
+          ]
+        },
+        {
+          "condition_id": "temporal_early",
+          "illusion_id": "audiovisual.temporal_ventriloquism",
+          "parameter_overrides": {
+            "config": {
+              "sync_offset": -120.0
+            }
+          },
+          "response_kind": "forced_choice",
+          "response_labels": [
+            "early",
+            "late"
+          ]
+        },
+        {
+          "condition_id": "temporal_late",
+          "illusion_id": "audiovisual.temporal_ventriloquism",
+          "parameter_overrides": {
+            "config": {
+              "sync_offset": 120.0
+            }
+          },
+          "response_kind": "forced_choice",
+          "response_labels": [
+            "early",
+            "late"
+          ]
+        }
+      ],
+      "design_status": "illustrative_not_preregistration_ready",
+      "estimands": [
+        {
+          "model": "logistic_mixed",
+          "multiplicity": "Holm correction across confirmatory contrasts",
+          "name": "sifi_flash_count_contrast",
+          "primary_contrast": "log odds of choosing 'two': sifi_two_beep minus sifi_one_beep",
+          "reference_condition": "sifi_one_beep",
+          "response_kind": "forced_choice",
+          "uncertainty": "95% confidence interval"
+        },
+        {
+          "model": "logistic_mixed",
+          "multiplicity": "Holm correction across confirmatory contrasts",
+          "name": "temporal_binding_offset_contrast",
+          "primary_contrast": "log odds of choosing 'late': temporal_early and temporal_late versus temporal_sync (categorical offsets -120/0/+120 ms)",
+          "reference_condition": "temporal_sync",
+          "response_kind": "forced_choice",
+          "uncertainty": "95% confidence interval"
+        }
+      ],
+      "exclusion_rules": [
+        "prespecified technical failure"
+      ],
+      "external_requirements": [
+        "task and contrast specification",
+        "ethics and consent approval",
+        "display and playback calibration"
+      ],
+      "inclusion_rules": [
+        "complete primary response",
+        "reaction time > 0"
+      ],
+      "model_templates": [
+        {
+          "family": "binomial",
+          "formula": "response ~ condition + (1|participant) + (1|item)",
+          "link": "logit",
+          "model": "logistic_mixed",
+          "random_effects": [
+            "participant",
+            "item"
+          ]
+        },
+        {
+          "family": "Gaussian",
+          "formula": "magnitude ~ condition + (1|participant) + (1|item)",
+          "link": "identity",
+          "model": "linear_mixed",
+          "random_effects": [
+            "participant",
+            "item"
+          ]
+        },
+        {
+          "family": "lognormal",
+          "formula": "reaction_time ~ condition + (1|participant) + (1|item)",
+          "link": "log",
+          "model": "lognormal_mixed",
+          "random_effects": [
+            "participant",
+            "item"
+          ]
+        },
+        {
+          "family": "Poisson/negative-binomial/ordinal",
+          "formula": "count ~ condition + (1|participant) + (1|item)",
+          "link": "log or cumulative",
+          "model": "poisson_or_ordinal",
+          "random_effects": [
+            "participant",
+            "item"
+          ]
+        },
+        {
+          "family": "survival or transition-rate",
+          "formula": "reversal_transition ~ condition + (1|participant)",
+          "link": "hazard",
+          "model": "transition_rate",
+          "random_effects": [
+            "participant"
+          ]
+        }
+      ],
+      "observer_data_status": "none_bundled",
+      "observers": 24,
+      "randomization": "independent seeded shuffle per observer; not positional counterbalancing",
+      "randomization_seed": 0,
+      "study_id": "duckrabbit-v04-demo",
+      "trials_per_condition": 8
+    },
+    "study_id": "duckrabbit-v04-demo",
+    "synthetic_model": {
+      "human_data": false,
+      "model_id": "duckrabbit.synthetic.feature_observer",
+      "training_data": "none"
+    }
+  },
+  "figure_label": "fig:observer_protocol",
+  "figure_stem": "observer_protocol",
+  "generator": "duckrabbit.publication._observer_protocol",
+  "parameters": {
+    "figure_stem": "observer_protocol",
+    "seed": 0
+  },
+  "schema_version": "duckrabbit/figure-source/v1",
+  "seed": 0
+}

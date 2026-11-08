@@ -1,0 +1,82 @@
+[
+  {
+    "available": true,
+    "backend": "pillow",
+    "dependency": "Pillow",
+    "detail": "PNG raster encoder",
+    "format": "png",
+    "operation": "encode"
+  },
+  {
+    "available": true,
+    "backend": "pillow",
+    "dependency": "Pillow",
+    "detail": "PNG decoder",
+    "format": "png",
+    "operation": "inspect"
+  },
+  {
+    "available": true,
+    "backend": "pillow",
+    "dependency": "Pillow",
+    "detail": "GIF animation encoder",
+    "format": "gif",
+    "operation": "encode"
+  },
+  {
+    "available": true,
+    "backend": "pillow",
+    "dependency": "Pillow",
+    "detail": "GIF decoder",
+    "format": "gif",
+    "operation": "inspect"
+  },
+  {
+    "available": true,
+    "backend": "python_wave",
+    "dependency": "Python standard library",
+    "detail": "PCM WAV encoder",
+    "format": "wav",
+    "operation": "encode"
+  },
+  {
+    "available": true,
+    "backend": "python_wave",
+    "dependency": "Python standard library",
+    "detail": "PCM WAV decoder",
+    "format": "wav",
+    "operation": "inspect"
+  },
+  {
+    "available": true,
+    "backend": "numpy",
+    "dependency": "NumPy",
+    "detail": "exact canonical archive encoder",
+    "format": "npz",
+    "operation": "encode"
+  },
+  {
+    "available": true,
+    "backend": "numpy",
+    "dependency": "NumPy",
+    "detail": "exact canonical archive decoder",
+    "format": "npz",
+    "operation": "inspect"
+  },
+  {
+    "available": true,
+    "backend": "ffmpeg",
+    "dependency": "ffmpeg",
+    "detail": "MP4 encoder",
+    "format": "mp4",
+    "operation": "encode"
+  },
+  {
+    "available": true,
+    "backend": "ffmpeg",
+    "dependency": "ffprobe",
+    "detail": "MP4 stream inspector",
+    "format": "mp4",
+    "operation": "inspect"
+  }
+]

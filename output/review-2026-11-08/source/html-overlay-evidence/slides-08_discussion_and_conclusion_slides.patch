@@ -1,0 +1,60 @@
+--- native/slides/08_discussion_and_conclusion_slides.html
++++ offline/slides/08_discussion_and_conclusion_slides.html
+@@ -7,8 +7,8 @@
+   <meta name="apple-mobile-web-app-capable" content="yes">
+   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+-  <link rel="stylesheet" href="https://unpkg.com/reveal.js@5.2.1/dist/reset.css">
+-  <link rel="stylesheet" href="https://unpkg.com/reveal.js@5.2.1/dist/reveal.css">
++  <link rel="stylesheet" href="../web/assets/reveal.js-5.2.1/dist/reset.css">
++  <link rel="stylesheet" href="../web/assets/reveal.js-5.2.1/dist/reveal.css">
+   <style>
+     .reveal .sourceCode {  /* see #7635 */
+       overflow: visible;
+@@ -34,13 +34,14 @@
+       vertical-align: middle;
+     }
+   </style>
+-  <link rel="stylesheet" href="https://unpkg.com/reveal.js@5.2.1/dist/theme/white.css" id="theme">
++  <link rel="stylesheet" href="../web/assets/reveal.js-5.2.1/dist/theme/white.css" id="theme">
+   <link rel="stylesheet" href="digital-review.css"/>
+ <script data-template-mathjax-config>
+ window.MathJax = window.MathJax || {};
++window.MathJax.loader = Object.assign({},window.MathJax.loader,{paths:{mathjax:new URL("../web/assets/mathjax-4.0.0/mathjax",document.baseURI).href}});
+ window.MathJax.chtml = Object.assign({}, window.MathJax.chtml, {
+-  fontURL: "https://cdn.jsdelivr.net/npm/@mathjax/mathjax-newcm-font@4.0.0/chtml/woff2",
+-  dynamicPrefix: "https://cdn.jsdelivr.net/npm/@mathjax/mathjax-newcm-font@4.0.0/chtml/dynamic"
++  fontURL: new URL("../web/assets/mathjax-4.0.0/newcm/chtml/woff2",document.baseURI).href,
++  dynamicPrefix: new URL("../web/assets/mathjax-4.0.0/newcm/chtml/dynamic",document.baseURI).href
+ });
+ var templateMathOutput = window.MathJax.output || {};
+ window.MathJax.output = Object.assign({}, templateMathOutput, {
+@@ -99,7 +100,7 @@
+   }
+ });
+ </script>
+-<script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-chtml.js" integrity="sha384-2BWc4dVaHADUocwKrUrK9u3iDwHxVMKXWEcoRmUkXYSFKhAsgVAYClu9ydNuo5Oz" crossorigin="anonymous"></script>
++<script src="../web/assets/mathjax-4.0.0/mathjax/tex-chtml.js" integrity="sha384-2BWc4dVaHADUocwKrUrK9u3iDwHxVMKXWEcoRmUkXYSFKhAsgVAYClu9ydNuo5Oz" crossorigin="anonymous"></script>
+ </head>
+ <body>
+   <div class="reveal">
+@@ -175,14 +176,13 @@
+     </div>
+   </div>
+ 
+-  <script src="https://unpkg.com/reveal.js@5.2.1/dist/reveal.js"></script>
++  <script src="../web/assets/reveal.js-5.2.1/dist/reveal.js"></script>
+ 
+   <!-- reveal.js plugins -->
+-  <script src="https://unpkg.com/reveal.js@5.2.1/dist/plugin/notes.js"></script>
+-  <script src="https://unpkg.com/reveal.js@5.2.1/dist/plugin/search.js"></script>
+-  <script src="https://unpkg.com/reveal.js@5.2.1/dist/plugin/zoom.js"></script>
+-  <script src="https://unpkg.com/reveal.js@5.2.1/dist/plugin/math.js"></script>
+-
++  <script src="../web/assets/reveal.js-5.2.1/plugin/notes/notes.js"></script>
++  <script src="../web/assets/reveal.js-5.2.1/plugin/search/search.js"></script>
++  <script src="../web/assets/reveal.js-5.2.1/plugin/zoom/zoom.js"></script>
++  
+   <script>
+ 
+       // Full list of configuration options available at:

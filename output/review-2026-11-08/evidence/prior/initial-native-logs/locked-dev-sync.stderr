@@ -1,0 +1,5 @@
+Resolved 14 packages in 4ms
+error: Failed to download `pillow==13.0.0`
+  cause: Network connectivity is disabled, but the requested data wasn't found in the cache: https://files.pythonhosted.org/packages/72/f5/a6b0610f946e9b54ae888ba7ad29d6e2f8d9b11f69e212d70416b7186c09/pillow-13.0.0-cp315-cp315-macosx_11_0_arm64.whl
+
+hint: `pillow` (v13.0.0) was included because `duckrabbit` (v0.6.0) depends on `pillow`

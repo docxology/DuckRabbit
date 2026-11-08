@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "prior_observation": "browser-citation-final-observation.json",
+  "source_sha256": "459e77f7fb6d9715887ef1b9fdfec854a58eefcf6813441e9afda3f0e86115fe",
+  "main_html_sha256": "adb7c54b21e1365d67c117fb518df39b22181018d959cdf9296b8b43058bd023",
+  "harness_correction": "Normalize HTML whitespace before semantic text selection; original source contains FORCE11 followed by a newline and Software. No product or artifact changes.",
+  "reference_group": {
+    "indices": {
+      "h": 0,
+      "v": 34
+    },
+    "text": "REFERENCE 34\n\nSmith, Arfon M., Daniel S. Katz, Kyle E. Niemeyer, and FORCE11 Software Citation Working Group. 2016. \u201cSoftware Citation Principles.\u201d PeerJ Computer Science 2: e86. https://doi.org/10.7717/peerj-cs.86."
+  },
+  "wheel": {
+    "top": 700,
+    "client": 700,
+    "total": 1502
+  },
+  "errors": {
+    "entries": [],
+    "nextSeq": 0,
+    "dropped": 0
+  },
+  "console": {
+    "entries": [],
+    "nextSeq": 0,
+    "dropped": 0
+  }
+}

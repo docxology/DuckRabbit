@@ -1,0 +1,17 @@
+{
+  "backend": "pillow",
+  "facts": {
+    "bands": [
+      "L"
+    ],
+    "container_format": "PNG",
+    "duration_ms": null,
+    "frames": 1,
+    "has_transparency": false,
+    "height": 256,
+    "mode": "L",
+    "width": 256
+  },
+  "format": "png",
+  "kind": "image"
+}

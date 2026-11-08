@@ -1,0 +1,44 @@
+{
+  "checks": [
+    "encoded_sha256",
+    "encoded_size_bytes",
+    "decoded_media",
+    "decoded_width",
+    "decoded_height",
+    "decoded_height",
+    "decoded_width",
+    "decoded_channels",
+    "canonical_digest",
+    "canonical_byte_count",
+    "canonical_full_summary",
+    "canonical_metrics"
+  ],
+  "errors": [],
+  "inspection": {
+    "backend": "numpy",
+    "facts": {
+      "arrays": [
+        "pixels"
+      ],
+      "channels": 1,
+      "height": 256,
+      "metadata": {
+        "kind": "image",
+        "mode": "L"
+      },
+      "mode": "L",
+      "pixels_dtype": "<f4",
+      "pixels_shape": [
+        256,
+        256
+      ],
+      "width": 256
+    },
+    "format": "npz",
+    "kind": "image"
+  },
+  "manifest": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/canonical/visual_duck_rabbit.npz.json",
+  "output": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/canonical/visual_duck_rabbit.npz",
+  "status": "verified",
+  "unavailable": []
+}

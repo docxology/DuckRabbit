@@ -1,0 +1,53 @@
+FFFFFF
+=================================== FAILURES ===================================
+_____ test_npz_metrics_are_replayed_not_merely_self_described[projection] ______
+tests/test_final_integrity.py:26: in test_npz_metrics_are_replayed_not_merely_self_described
+    _, payload = generate_artifact("visual.duck_rabbit", output_dir=tmp_path, format_name="npz")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/duckrabbit/render.py:315: in generate_artifact
+    _compare_npz_canonical(output_path, manifest.to_dict(), errors, checks)
+E   TypeError: _compare_npz_canonical() missing 1 required positional argument: 'unavailable'
+_______ test_npz_metrics_are_replayed_not_merely_self_described[record] ________
+tests/test_final_integrity.py:26: in test_npz_metrics_are_replayed_not_merely_self_described
+    _, payload = generate_artifact("visual.duck_rabbit", output_dir=tmp_path, format_name="npz")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/duckrabbit/render.py:315: in generate_artifact
+    _compare_npz_canonical(output_path, manifest.to_dict(), errors, checks)
+E   TypeError: _compare_npz_canonical() missing 1 required positional argument: 'unavailable'
+________ test_npz_metrics_are_replayed_not_merely_self_described[both] _________
+tests/test_final_integrity.py:26: in test_npz_metrics_are_replayed_not_merely_self_described
+    _, payload = generate_artifact("visual.duck_rabbit", output_dir=tmp_path, format_name="npz")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/duckrabbit/render.py:315: in generate_artifact
+    _compare_npz_canonical(output_path, manifest.to_dict(), errors, checks)
+E   TypeError: _compare_npz_canonical() missing 1 required positional argument: 'unavailable'
+________ test_npz_metrics_are_replayed_not_merely_self_described[unit] _________
+tests/test_final_integrity.py:26: in test_npz_metrics_are_replayed_not_merely_self_described
+    _, payload = generate_artifact("visual.duck_rabbit", output_dir=tmp_path, format_name="npz")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/duckrabbit/render.py:315: in generate_artifact
+    _compare_npz_canonical(output_path, manifest.to_dict(), errors, checks)
+E   TypeError: _compare_npz_canonical() missing 1 required positional argument: 'unavailable'
+_______ test_npz_metrics_are_replayed_not_merely_self_described[boolean] _______
+tests/test_final_integrity.py:26: in test_npz_metrics_are_replayed_not_merely_self_described
+    _, payload = generate_artifact("visual.duck_rabbit", output_dir=tmp_path, format_name="npz")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/duckrabbit/render.py:315: in generate_artifact
+    _compare_npz_canonical(output_path, manifest.to_dict(), errors, checks)
+E   TypeError: _compare_npz_canonical() missing 1 required positional argument: 'unavailable'
+_____ test_npz_metrics_are_replayed_not_merely_self_described[definition] ______
+tests/test_final_integrity.py:26: in test_npz_metrics_are_replayed_not_merely_self_described
+    _, payload = generate_artifact("visual.duck_rabbit", output_dir=tmp_path, format_name="npz")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/duckrabbit/render.py:315: in generate_artifact
+    _compare_npz_canonical(output_path, manifest.to_dict(), errors, checks)
+E   TypeError: _compare_npz_canonical() missing 1 required positional argument: 'unavailable'
+=========================== short test summary info ============================
+FAILED tests/test_final_integrity.py::test_npz_metrics_are_replayed_not_merely_self_described[projection] - TypeError: _compare_npz_canonical() missing 1 required positional argument: 'unavailable'
+FAILED tests/test_final_integrity.py::test_npz_metrics_are_replayed_not_merely_self_described[record] - TypeError: _compare_npz_canonical() missing 1 required positional argument: 'unavailable'
+FAILED tests/test_final_integrity.py::test_npz_metrics_are_replayed_not_merely_self_described[both] - TypeError: _compare_npz_canonical() missing 1 required positional argument: 'unavailable'
+FAILED tests/test_final_integrity.py::test_npz_metrics_are_replayed_not_merely_self_described[unit] - TypeError: _compare_npz_canonical() missing 1 required positional argument: 'unavailable'
+FAILED tests/test_final_integrity.py::test_npz_metrics_are_replayed_not_merely_self_described[boolean] - TypeError: _compare_npz_canonical() missing 1 required positional argument: 'unavailable'
+FAILED tests/test_final_integrity.py::test_npz_metrics_are_replayed_not_merely_self_described[definition] - TypeError: _compare_npz_canonical() missing 1 required positional argument: 'unavailable'
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 6 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+6 failed in 0.25s

@@ -1,0 +1,979 @@
+{
+  "schema_version": "duckrabbit/performance/v1",
+  "source_sha256": "ffa44dcf01949f7589d8e467426d1edaaed3b46772f7bdb622e7c7ca3a085fa4",
+  "source_files": {
+    "pyproject.toml": "c240adaa9ddd0fd1e68295b0d35d634740781faefb84355ac025291713a83038",
+    "scripts/profile_workloads.py": "069643c24e155662c16e09f49491e52aca148e9195e987a469ec479ac6f01854",
+    "src/duckrabbit/__init__.py": "f599a67b2da95b043ed362ec7d3327403ce3cd97cc80d4226dd074b4f20c9e31",
+    "src/duckrabbit/__main__.py": "38a44d8a531c692cde2dad2f4ed8f2b03d4e8e6e9665f2a0748db8d3e8ed4c5f",
+    "src/duckrabbit/artifacts.py": "a1d981208b0403ba6d5eee24d87514fea13a93a50a673136a4ef285d3bc8476e",
+    "src/duckrabbit/audit.py": "dfe3ebd7998dd3ae43dad1f00ba9e676b0972c6514aa55c5b2459267bc90b373",
+    "src/duckrabbit/canonical.py": "341cd875cf3b932b78c21a204279a6a4436032ecae2940d036ff78d5a32dd5ba",
+    "src/duckrabbit/claims.py": "cef7601a5737dff7dd3d05319a135c1637b4b94b267e0ff35eed5d282da43c9a",
+    "src/duckrabbit/cli.py": "facede69a035c75f4ab839686011d84762a17c5135f37a52ba373dbc1ebfb674",
+    "src/duckrabbit/cover.py": "3aff60e396eaab34c0a5e5e06c953591b541d4f110a09e96bf73baa7eb9b53ae",
+    "src/duckrabbit/errors.py": "0427c790ac511f233d34831c4c5a564284feb3d8178c627452d05d0b2adcb982",
+    "src/duckrabbit/evidence.py": "f7814d88f5c0c7097a8c9bdb4fa21a4f0d21956c06c74d2c07fdb95ae8cc88b9",
+    "src/duckrabbit/fixtures.py": "fc476897da838a3e0b58cfd238284c557ef25a7f480c4eca903350163ef8ab2c",
+    "src/duckrabbit/formalism.py": "6080df9c1669340a10bb16b1b8fce8d23919a69be183237c9ad9bc6012179273",
+    "src/duckrabbit/generators.py": "82f256aa39a34319e6c55bd25f5b4b5d017250decd1ea91311ec75e494ec8784",
+    "src/duckrabbit/inspection.py": "aae0da5438c37c83c2aa33f893e05f00f8b508fd379fcc925560889122a8c773",
+    "src/duckrabbit/io.py": "e0733086584534933917ef586df80ee252b0d41fa486d65bb169e4abb384b672",
+    "src/duckrabbit/manifest.py": "27b035ae29f4a92d112d3a58f1cd092270d298df713aa44dbc0becd2782ad9c0",
+    "src/duckrabbit/manuscript_variables.py": "93d4cfc7f0848f4942897130bc2ecf33f32f44e51e0a94c949e47b23220cfcbe",
+    "src/duckrabbit/media.py": "6af69a21672345b54dbf23d565e4c8ff491a11c4e84321120ae23c0e50d96425",
+    "src/duckrabbit/metadata.py": "6c8f2a2d4cd8be65b3f7e3d0369c0b29ad3096528b5bcec3240e65db84050a9b",
+    "src/duckrabbit/metrics.py": "8164dc184a9a63591e8b87f4a1616e473664fbd65332185c0ae02deee541f576",
+    "src/duckrabbit/observer.py": "335b837a06d36b19c2eb06de14c5986b973d262261f75459c3ddad4c2a4e80b3",
+    "src/duckrabbit/observer_analysis.py": "00c0b6fe591bb150364ab7a239d89636dfccd38ba73e331928afb9d8ba2525f3",
+    "src/duckrabbit/parameters.py": "88017c3dc02a96b0dad6ab2c5a8268a61817b343ffab87788d249f5ce677e30e",
+    "src/duckrabbit/performance.py": "6111eb9dbfb802712605b0b0d455d4d1e9076059d1244fa52efc6d6658d775d8",
+    "src/duckrabbit/publication.py": "d7812de44efbc3c48feb0d03548e961374bb3f0eaaf16733e7f105393b3f18e8",
+    "src/duckrabbit/publication_specs.py": "5a516979ef8b3a3ca06dc26bc9051d37b6c93d00e8b3232cd5eae3b0097be4cc",
+    "src/duckrabbit/registry.py": "57cc07270e6d5e82ec76d57f28f6754010987c64d7e928a5027ba34c2a42ce83",
+    "src/duckrabbit/render.py": "cc44f19811cb999f56d5848429985f20a02fda1ca915ad2ce3f8a5b5b2c84f07",
+    "src/duckrabbit/schema.py": "1a7a9006a5909a7c578c4715f0fb8ad0ed9a93c14fd071a32b4bbfbb791f239c",
+    "src/duckrabbit/scholarship.py": "a228666bea1204a3d47738721723f6db2441d6eac8b79a5ad61a09132313aa74",
+    "src/duckrabbit/serialization.py": "2f8ad9938db971bc6b71bde18bb15258f566402635c693dfa2f89ae5e30a7563",
+    "src/duckrabbit/synthetic_psychophysics.py": "808522c0195b8363d2f12b58df850ebfb71fb8bd3fac0da59930811fc3e34da2",
+    "src/duckrabbit/taxonomy.py": "acba4cc8d45b2628e12a006563de5ac40f8325d9eff5ac52898b038d4d2532e8",
+    "src/duckrabbit/urls.py": "106e6cff9db04e3c56a01fc19d08c2864bbc4b402a8df0c339cc46a36c892017",
+    "src/duckrabbit/version.py": "1798629dd12ef42e6d9bf0b5e9803bbf2c47652ab93b218aba28a3fc8353b2b1"
+  },
+  "environment": {
+    "python": "3.15.2 (main, Oct 26 2026, 13:59:33) [Clang 23.1.3 ]",
+    "implementation": "CPython",
+    "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "processor": "arm",
+    "dependencies": {
+      "numpy": "2.4.2",
+      "Pillow": "13.0.0"
+    },
+    "font": {
+      "path": "/System/Library/Fonts/Supplemental/Arial.ttf",
+      "sha256": "525979822591a3447cfc49d943d6f7683508e25543407871c0ed8fed05fd2bd9",
+      "name": [
+        "Arial",
+        "Regular"
+      ],
+      "freetype": "2.14.3"
+    },
+    "zlib": "1.3.1.zlib-ng"
+  },
+  "iterations": 1,
+  "warmup_iterations": 1,
+  "notes": [
+    "Only samples_seconds are unprofiled timings; cProfile/memory are separate extra calls.",
+    "tracemalloc peak measures traced allocations, not full process RSS."
+  ],
+  "workloads": {
+    "canonical": {
+      "config": {
+        "definition_sha256": "a5b84c41c3ce665e996c9e47f3b9d5e489c30c9031513f1b57f1bcebfcfca203",
+        "input_digest": "6ff12dc6d633183d4eaef875e826c0c3350eacfe8ca8ce3ed5915427e521b36f",
+        "parameters": {
+          "bar_width": {
+            "value": 0.12
+          },
+          "config": {
+            "frame_count": 24,
+            "frame_rate": {
+              "value": 12.0
+            },
+            "height": 384,
+            "width": 512
+          },
+          "displacement": {
+            "value": 0.55
+          }
+        },
+        "seed": 0
+      },
+      "result_signature": "a67d897ae6ba131558a8b8dfe50d3bf3980be73c7e7f7a4456e01d44c981357c",
+      "samples_seconds": [
+        0.012049708981066942
+      ],
+      "cprofile": [
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/performance.py",
+          "line": 111,
+          "function": "<lambda>",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 1.125e-06,
+          "cumulative_seconds": 0.012803750000000001
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/canonical.py",
+          "line": 94,
+          "function": "canonical_digest",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 2.042e-06,
+          "cumulative_seconds": 0.012802625000000002
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/canonical.py",
+          "line": 84,
+          "function": "canonical_digest_and_size",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 3.3093e-05,
+          "cumulative_seconds": 0.012800583
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'update' of '_hashlib.HASH' objects>",
+          "primitive_calls": 49,
+          "calls": 49,
+          "self_seconds": 0.008500454000000001,
+          "cumulative_seconds": 0.008500454000000001
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/canonical.py",
+          "line": 37,
+          "function": "_canonical_chunks",
+          "primitive_calls": 50,
+          "calls": 50,
+          "self_seconds": 2.4624e-05,
+          "cumulative_seconds": 0.004258331000000001
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/canonical.py",
+          "line": 27,
+          "function": "_array_chunks",
+          "primitive_calls": 72,
+          "calls": 72,
+          "self_seconds": 3.1618e-05,
+          "cumulative_seconds": 0.004204123000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method numpy.ascontiguousarray>",
+          "primitive_calls": 24,
+          "calls": 24,
+          "self_seconds": 0.004165586000000001,
+          "cumulative_seconds": 0.004165586000000001
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/canonical.py",
+          "line": 18,
+          "function": "_header",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 4.833e-06,
+          "cumulative_seconds": 2.4750000000000002e-05
+        },
+        {
+          "file": "/Users/friedman/.local/share/uv/python/cpython-3.15.2-macos-aarch64-none/lib/python3.15/json/__init__.py",
+          "line": 184,
+          "function": "dumps",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 3.458e-06,
+          "cumulative_seconds": 1.8750000000000002e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'disable' of '_lsprof.Profiler' objects>",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 1.8667000000000003e-05,
+          "cumulative_seconds": 1.8667000000000003e-05
+        },
+        {
+          "file": "/Users/friedman/.local/share/uv/python/cpython-3.15.2-macos-aarch64-none/lib/python3.15/json/encoder.py",
+          "line": 185,
+          "function": "encode",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 4.168000000000001e-06,
+          "cumulative_seconds": 1.4917000000000001e-05
+        },
+        {
+          "file": "/Users/friedman/.local/share/uv/python/cpython-3.15.2-macos-aarch64-none/lib/python3.15/json/encoder.py",
+          "line": 207,
+          "function": "iterencode",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 1.0208000000000001e-05,
+          "cumulative_seconds": 1.0208000000000001e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.len>",
+          "primitive_calls": 51,
+          "calls": 51,
+          "self_seconds": 5.455e-06,
+          "cumulative_seconds": 5.455e-06
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method _struct.pack>",
+          "primitive_calls": 25,
+          "calls": 25,
+          "self_seconds": 4.1270000000000005e-06,
+          "cumulative_seconds": 4.1270000000000005e-06
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'cast' of 'memoryview' objects>",
+          "primitive_calls": 24,
+          "calls": 24,
+          "self_seconds": 3.2920000000000004e-06,
+          "cumulative_seconds": 3.2920000000000004e-06
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'hexdigest' of '_hashlib.HASH' objects>",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 2.8340000000000003e-06,
+          "cumulative_seconds": 2.8340000000000003e-06
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/artifacts.py",
+          "line": 184,
+          "function": "height",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 4.5800000000000005e-07,
+          "cumulative_seconds": 1.5e-06
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/artifacts.py",
+          "line": 64,
+          "function": "height",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 1.0420000000000001e-06,
+          "cumulative_seconds": 1.0420000000000001e-06
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.isinstance>",
+          "primitive_calls": 5,
+          "calls": 5,
+          "self_seconds": 8.750000000000001e-07,
+          "cumulative_seconds": 8.750000000000001e-07
+        },
+        {
+          "file": "/Users/friedman/.local/share/uv/python/cpython-3.15.2-macos-aarch64-none/lib/python3.15/enum.py",
+          "line": 188,
+          "function": "__get__",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 7.09e-07,
+          "cumulative_seconds": 8.340000000000001e-07
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/artifacts.py",
+          "line": 188,
+          "function": "frame_count",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 6.25e-07,
+          "cumulative_seconds": 7.5e-07
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method _hashlib.openssl_sha256>",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 7.08e-07,
+          "cumulative_seconds": 7.08e-07
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/artifacts.py",
+          "line": 180,
+          "function": "width",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 4.16e-07,
+          "cumulative_seconds": 5.830000000000001e-07
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'encode' of 'str' objects>",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 5.000000000000001e-07,
+          "cumulative_seconds": 5.000000000000001e-07
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/artifacts.py",
+          "line": 68,
+          "function": "channels",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 4.5800000000000005e-07,
+          "cumulative_seconds": 4.5800000000000005e-07
+        }
+      ],
+      "traced_peak_bytes": 1574209,
+      "median_seconds": 0.012049708981066942,
+      "range_seconds": [
+        0.012049708981066942,
+        0.012049708981066942
+      ]
+    },
+    "video_metrics": {
+      "config": {
+        "definition_sha256": "a5b84c41c3ce665e996c9e47f3b9d5e489c30c9031513f1b57f1bcebfcfca203",
+        "input_digest": "6ff12dc6d633183d4eaef875e826c0c3350eacfe8ca8ce3ed5915427e521b36f",
+        "parameters": {
+          "bar_width": {
+            "value": 0.12
+          },
+          "config": {
+            "frame_count": 24,
+            "frame_rate": {
+              "value": 12.0
+            },
+            "height": 384,
+            "width": 512
+          },
+          "displacement": {
+            "value": 0.55
+          }
+        },
+        "seed": 0
+      },
+      "result_signature": "e4c3577d32a87a83dff4019f64013ed214bbe0851be387353f57075b8cc11e96",
+      "samples_seconds": [
+        0.009388500009663403
+      ],
+      "cprofile": [
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/performance.py",
+          "line": 112,
+          "function": "<lambda>",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 6.875e-06,
+          "cumulative_seconds": 0.009992125000000001
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/metrics.py",
+          "line": 148,
+          "function": "measure_artifact",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 2.0207e-05,
+          "cumulative_seconds": 0.009862958
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/artifacts.py",
+          "line": 161,
+          "function": "temporal_deltas",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 0.008732456000000001,
+          "cumulative_seconds": 0.009657209
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/lib/python3.15/site-packages/numpy/_core/fromnumeric.py",
+          "line": 3699,
+          "function": "mean",
+          "primitive_calls": 24,
+          "calls": 24,
+          "self_seconds": 3.1333e-05,
+          "cumulative_seconds": 0.000933957
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/lib/python3.15/site-packages/numpy/_core/_methods.py",
+          "line": 115,
+          "function": "_mean",
+          "primitive_calls": 24,
+          "calls": 24,
+          "self_seconds": 9.371000000000001e-05,
+          "cumulative_seconds": 0.0009026240000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+          "primitive_calls": 24,
+          "calls": 24,
+          "self_seconds": 0.0007364600000000001,
+          "cumulative_seconds": 0.0007364600000000001
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/metrics.py",
+          "line": 119,
+          "function": "_suite",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 1.9958e-05,
+          "cumulative_seconds": 0.00016312500000000002
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/metrics.py",
+          "line": 135,
+          "function": "<genexpr>",
+          "primitive_calls": 8,
+          "calls": 8,
+          "self_seconds": 7.249e-06,
+          "cumulative_seconds": 0.00013375
+        },
+        {
+          "file": "<string>",
+          "line": 2,
+          "function": "__init__",
+          "primitive_calls": 7,
+          "calls": 7,
+          "self_seconds": 1.1419e-05,
+          "cumulative_seconds": 0.000126501
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/metrics.py",
+          "line": 107,
+          "function": "to_dict",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 5.0020000000000006e-06,
+          "cumulative_seconds": 0.000122292
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/metrics.py",
+          "line": 44,
+          "function": "__post_init__",
+          "primitive_calls": 7,
+          "calls": 7,
+          "self_seconds": 3.5989000000000004e-05,
+          "cumulative_seconds": 0.00011508200000000001
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/metrics.py",
+          "line": 63,
+          "function": "to_dict",
+          "primitive_calls": 7,
+          "calls": 7,
+          "self_seconds": 2.1832e-05,
+          "cumulative_seconds": 0.00011454100000000001
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/metrics.py",
+          "line": 25,
+          "function": "_definition_hash",
+          "primitive_calls": 14,
+          "calls": 14,
+          "self_seconds": 1.5623e-05,
+          "cumulative_seconds": 8.8793e-05
+        },
+        {
+          "file": "/Users/friedman/.local/share/uv/python/cpython-3.15.2-macos-aarch64-none/lib/python3.15/json/__init__.py",
+          "line": 184,
+          "function": "dumps",
+          "primitive_calls": 14,
+          "calls": 14,
+          "self_seconds": 1.4834e-05,
+          "cumulative_seconds": 5.8625e-05
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/lib/python3.15/site-packages/numpy/_core/_methods.py",
+          "line": 73,
+          "function": "_count_reduce_items",
+          "primitive_calls": 24,
+          "calls": 24,
+          "self_seconds": 4.6248e-05,
+          "cumulative_seconds": 5.1708e-05
+        },
+        {
+          "file": "/Users/friedman/.local/share/uv/python/cpython-3.15.2-macos-aarch64-none/lib/python3.15/json/encoder.py",
+          "line": 185,
+          "function": "encode",
+          "primitive_calls": 14,
+          "calls": 14,
+          "self_seconds": 1.0332e-05,
+          "cumulative_seconds": 4.1e-05
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/metrics.py",
+          "line": 56,
+          "function": "<genexpr>",
+          "primitive_calls": 77,
+          "calls": 77,
+          "self_seconds": 2.4753000000000002e-05,
+          "cumulative_seconds": 3.7459e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.isinstance>",
+          "primitive_calls": 245,
+          "calls": 259,
+          "self_seconds": 2.2205000000000002e-05,
+          "cumulative_seconds": 3.4287e-05
+        },
+        {
+          "file": "/Users/friedman/.local/share/uv/python/cpython-3.15.2-macos-aarch64-none/lib/python3.15/json/encoder.py",
+          "line": 207,
+          "function": "iterencode",
+          "primitive_calls": 7,
+          "calls": 7,
+          "self_seconds": 2.6542e-05,
+          "cumulative_seconds": 2.6542e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<method 'disable' of '_lsprof.Profiler' objects>",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 1.6459e-05,
+          "cumulative_seconds": 1.6459e-05
+        },
+        {
+          "file": "/Users/friedman/.local/share/uv/python/cpython-3.15.2-macos-aarch64-none/lib/python3.15/typing.py",
+          "line": 1338,
+          "function": "__instancecheck__",
+          "primitive_calls": 7,
+          "calls": 7,
+          "self_seconds": 2.9580000000000003e-06,
+          "cumulative_seconds": 1.3292e-05
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/metrics.py",
+          "line": 51,
+          "function": "<genexpr>",
+          "primitive_calls": 36,
+          "calls": 36,
+          "self_seconds": 9.918e-06,
+          "cumulative_seconds": 1.1505e-05
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/metrics.py",
+          "line": 45,
+          "function": "<genexpr>",
+          "primitive_calls": 28,
+          "calls": 28,
+          "self_seconds": 7.588000000000001e-06,
+          "cumulative_seconds": 1.1084000000000001e-05
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.issubclass>",
+          "primitive_calls": 55,
+          "calls": 55,
+          "self_seconds": 7.1200000000000004e-06,
+          "cumulative_seconds": 1.0831e-05
+        },
+        {
+          "file": "/Users/friedman/.local/share/uv/python/cpython-3.15.2-macos-aarch64-none/lib/python3.15/typing.py",
+          "line": 1634,
+          "function": "__subclasscheck__",
+          "primitive_calls": 7,
+          "calls": 7,
+          "self_seconds": 3.04e-06,
+          "cumulative_seconds": 1.0334000000000001e-05
+        }
+      ],
+      "traced_peak_bytes": 853656,
+      "median_seconds": 0.009388500009663403,
+      "range_seconds": [
+        0.009388500009663403,
+        0.009388500009663403
+      ]
+    },
+    "observer": {
+      "config": {
+        "definition_sha256": "a5b84c41c3ce665e996c9e47f3b9d5e489c30c9031513f1b57f1bcebfcfca203",
+        "design": {
+          "conditions": [
+            {
+              "condition_id": "duck_default",
+              "illusion_id": "visual.duck_rabbit",
+              "parameter_overrides": {},
+              "response_kind": "forced_choice",
+              "response_labels": [
+                "duck",
+                "rabbit"
+              ]
+            },
+            {
+              "condition_id": "sifi_one_beep",
+              "illusion_id": "audiovisual.sound_induced_flash",
+              "parameter_overrides": {
+                "beep_count": 1
+              },
+              "response_kind": "forced_choice",
+              "response_labels": [
+                "one",
+                "two"
+              ]
+            },
+            {
+              "condition_id": "sifi_two_beep",
+              "illusion_id": "audiovisual.sound_induced_flash",
+              "parameter_overrides": {
+                "beep_count": 2
+              },
+              "response_kind": "forced_choice",
+              "response_labels": [
+                "one",
+                "two"
+              ]
+            },
+            {
+              "condition_id": "temporal_sync",
+              "illusion_id": "audiovisual.temporal_ventriloquism",
+              "parameter_overrides": {
+                "config": {
+                  "sync_offset": 0.0
+                }
+              },
+              "response_kind": "forced_choice",
+              "response_labels": [
+                "early",
+                "late"
+              ]
+            },
+            {
+              "condition_id": "temporal_early",
+              "illusion_id": "audiovisual.temporal_ventriloquism",
+              "parameter_overrides": {
+                "config": {
+                  "sync_offset": -120.0
+                }
+              },
+              "response_kind": "forced_choice",
+              "response_labels": [
+                "early",
+                "late"
+              ]
+            },
+            {
+              "condition_id": "temporal_late",
+              "illusion_id": "audiovisual.temporal_ventriloquism",
+              "parameter_overrides": {
+                "config": {
+                  "sync_offset": 120.0
+                }
+              },
+              "response_kind": "forced_choice",
+              "response_labels": [
+                "early",
+                "late"
+              ]
+            }
+          ],
+          "estimands": [
+            {
+              "model": "logistic_mixed",
+              "multiplicity": "Holm correction across confirmatory contrasts",
+              "name": "sifi_flash_count_contrast",
+              "primary_contrast": "log odds of choosing 'two': sifi_two_beep minus sifi_one_beep",
+              "reference_condition": "sifi_one_beep",
+              "response_kind": "forced_choice",
+              "uncertainty": "95% confidence interval"
+            },
+            {
+              "model": "logistic_mixed",
+              "multiplicity": "Holm correction across confirmatory contrasts",
+              "name": "temporal_binding_offset_contrast",
+              "primary_contrast": "log odds of choosing 'late': temporal_early and temporal_late versus temporal_sync (categorical offsets -120/0/+120 ms)",
+              "reference_condition": "temporal_sync",
+              "response_kind": "forced_choice",
+              "uncertainty": "95% confidence interval"
+            }
+          ],
+          "exclusion_rules": [
+            "prespecified technical failure"
+          ],
+          "inclusion_rules": [
+            "complete primary response",
+            "reaction time > 0"
+          ],
+          "observers": 24,
+          "randomization_seed": 0,
+          "study_id": "duckrabbit-v04-demo",
+          "trials_per_condition": 8
+        },
+        "observers": [
+          "observer-0",
+          "observer-1",
+          "observer-2",
+          "observer-3",
+          "observer-4",
+          "observer-5",
+          "observer-6",
+          "observer-7",
+          "observer-8",
+          "observer-9",
+          "observer-10",
+          "observer-11",
+          "observer-12",
+          "observer-13",
+          "observer-14",
+          "observer-15",
+          "observer-16",
+          "observer-17",
+          "observer-18",
+          "observer-19",
+          "observer-20",
+          "observer-21",
+          "observer-22",
+          "observer-23"
+        ],
+        "probabilities": {
+          "duck_default": 0.65,
+          "sifi_one_beep": 0.65,
+          "sifi_two_beep": 0.65,
+          "temporal_early": 0.65,
+          "temporal_late": 0.65,
+          "temporal_sync": 0.65
+        }
+      },
+      "result_signature": "f283b6b0faaf1b8b2163fec66462f34282734c055a149e0ca96b81600f16b4f1",
+      "samples_seconds": [
+        0.009262165986001492
+      ],
+      "cprofile": [
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/performance.py",
+          "line": 141,
+          "function": "<lambda>",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 0.000110376,
+          "cumulative_seconds": 0.035501417
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/observer_analysis.py",
+          "line": 555,
+          "function": "build_trial_sequence",
+          "primitive_calls": 2,
+          "calls": 2,
+          "self_seconds": 0.0023185550000000004,
+          "cumulative_seconds": 0.032062625000000004
+        },
+        {
+          "file": "<string>",
+          "line": 2,
+          "function": "__init__",
+          "primitive_calls": 2304,
+          "calls": 2304,
+          "self_seconds": 0.0015277740000000002,
+          "cumulative_seconds": 0.024361938000000003
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/observer.py",
+          "line": 54,
+          "function": "__post_init__",
+          "primitive_calls": 2304,
+          "calls": 2304,
+          "self_seconds": 0.003764327,
+          "cumulative_seconds": 0.022834164
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/observer_analysis.py",
+          "line": 646,
+          "function": "simulate_binary_responses",
+          "primitive_calls": 1,
+          "calls": 1,
+          "self_seconds": 0.0008520190000000001,
+          "cumulative_seconds": 0.019171166
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/observer.py",
+          "line": 15,
+          "function": "_freeze_overrides",
+          "primitive_calls": 2304,
+          "calls": 2304,
+          "self_seconds": 0.000746922,
+          "cumulative_seconds": 0.01510796
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/serialization.py",
+          "line": 16,
+          "function": "jsonable",
+          "primitive_calls": 2304,
+          "calls": 5376,
+          "self_seconds": 0.004877223,
+          "cumulative_seconds": 0.011387784000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.isinstance>",
+          "primitive_calls": 55540,
+          "calls": 55540,
+          "self_seconds": 0.00463986,
+          "cumulative_seconds": 0.011006851000000002
+        },
+        {
+          "file": "<frozen abc>",
+          "line": 117,
+          "function": "__instancecheck__",
+          "primitive_calls": 9265,
+          "calls": 9265,
+          "self_seconds": 0.001225137,
+          "cumulative_seconds": 0.006366991000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method _abc._abc_instancecheck>",
+          "primitive_calls": 9265,
+          "calls": 9265,
+          "self_seconds": 0.0018325610000000001,
+          "cumulative_seconds": 0.005141854
+        },
+        {
+          "file": "<frozen abc>",
+          "line": 121,
+          "function": "__subclasscheck__",
+          "primitive_calls": 9264,
+          "calls": 9264,
+          "self_seconds": 0.001203494,
+          "cumulative_seconds": 0.003309293
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/parameters.py",
+          "line": 53,
+          "function": "__new__",
+          "primitive_calls": 2353,
+          "calls": 2353,
+          "self_seconds": 0.000979683,
+          "cumulative_seconds": 0.00326032
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/observer.py",
+          "line": 20,
+          "function": "_freeze_normalized_overrides",
+          "primitive_calls": 2304,
+          "calls": 5376,
+          "self_seconds": 0.00226166,
+          "cumulative_seconds": 0.0029732540000000003
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method _abc._abc_subclasscheck>",
+          "primitive_calls": 9264,
+          "calls": 9264,
+          "self_seconds": 0.001738107,
+          "cumulative_seconds": 0.002105799
+        },
+        {
+          "file": "/Users/friedman/.local/share/uv/python/cpython-3.15.2-macos-aarch64-none/lib/python3.15/random.py",
+          "line": 356,
+          "function": "shuffle",
+          "primitive_calls": 48,
+          "calls": 48,
+          "self_seconds": 0.000305364,
+          "cumulative_seconds": 0.0014236250000000002
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/observer_analysis.py",
+          "line": 28,
+          "function": "_is_finite_number",
+          "primitive_calls": 1152,
+          "calls": 1152,
+          "self_seconds": 0.000347178,
+          "cumulative_seconds": 0.0013626810000000001
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/observer.py",
+          "line": 59,
+          "function": "<genexpr>",
+          "primitive_calls": 6912,
+          "calls": 6912,
+          "self_seconds": 0.000868761,
+          "cumulative_seconds": 0.001129921
+        },
+        {
+          "file": "/Users/friedman/.local/share/uv/python/cpython-3.15.2-macos-aarch64-none/lib/python3.15/random.py",
+          "line": 245,
+          "function": "_randbelow_with_getrandbits",
+          "primitive_calls": 2256,
+          "calls": 2256,
+          "self_seconds": 0.0006916120000000001,
+          "cumulative_seconds": 0.0011132590000000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.sorted>",
+          "primitive_calls": 3456,
+          "calls": 3456,
+          "self_seconds": 0.000737047,
+          "cumulative_seconds": 0.001099249
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/observer_analysis.py",
+          "line": 591,
+          "function": "_trial_observer_key",
+          "primitive_calls": 1152,
+          "calls": 1152,
+          "self_seconds": 0.0005200280000000001,
+          "cumulative_seconds": 0.0008282690000000001
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/observer.py",
+          "line": 61,
+          "function": "<genexpr>",
+          "primitive_calls": 4224,
+          "calls": 4224,
+          "self_seconds": 0.000500064,
+          "cumulative_seconds": 0.0006058340000000001
+        },
+        {
+          "file": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/src/duckrabbit/observer_analysis.py",
+          "line": 37,
+          "function": "_deterministic_rng",
+          "primitive_calls": 49,
+          "calls": 49,
+          "self_seconds": 4.0159e-05,
+          "cumulative_seconds": 0.000530835
+        },
+        {
+          "file": "/Users/friedman/.local/share/uv/python/cpython-3.15.2-macos-aarch64-none/lib/python3.15/random.py",
+          "line": 119,
+          "function": "__init__",
+          "primitive_calls": 49,
+          "calls": 49,
+          "self_seconds": 1.5788000000000002e-05,
+          "cumulative_seconds": 0.00041871100000000005
+        },
+        {
+          "file": "/Users/friedman/.local/share/uv/python/cpython-3.15.2-macos-aarch64-none/lib/python3.15/random.py",
+          "line": 128,
+          "function": "seed",
+          "primitive_calls": 49,
+          "calls": 49,
+          "self_seconds": 3.8826000000000004e-05,
+          "cumulative_seconds": 0.000402923
+        },
+        {
+          "file": "<frozen _collections_abc>",
+          "line": 439,
+          "function": "__subclasshook__",
+          "primitive_calls": 5760,
+          "calls": 5760,
+          "self_seconds": 0.00036769200000000003,
+          "cumulative_seconds": 0.00036769200000000003
+        }
+      ],
+      "traced_peak_bytes": 1439440,
+      "median_seconds": 0.009262165986001492,
+      "range_seconds": [
+        0.009262165986001492,
+        0.009262165986001492
+      ]
+    }
+  }
+}

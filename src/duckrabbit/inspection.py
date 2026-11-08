@@ -15,7 +15,7 @@ from pathlib import Path
 
 import numpy as np
 
-from .canonical import canonical_digest
+from .canonical import canonical_digest_and_size
 from .errors import (
     BackendUnavailableError,
     DuckRabbitError,
@@ -30,8 +30,9 @@ from .manifest import (
     upconvert_v1_manifest,
     validate_manifest_payload,
 )
-from .media import read_npz
-from .parameters import BackendKind, MediaFormat
+from .media import _canonical_npz_array, read_npz
+from .parameters import BackendKind, FrameRate, MediaFormat, SampleRate
+from .serialization import jsonable
 
 InspectionResult = DecodedInspection
 
@@ -60,19 +61,23 @@ def inspect_media(path: Path, format_name: str | MediaFormat | None = None) -> I
         try:
             with Image.open(path) as image:
                 facts = {
+                    "container_format": image.format,
+                    "bands": list(image.getbands()),
+                    "has_transparency": "A" in image.getbands() or "transparency" in image.info,
                     "width": image.width,
                     "height": image.height,
                     "mode": image.mode,
                     "frames": getattr(image, "n_frames", 1),
                     "duration_ms": image.info.get("duration"),
                 }
-                duration_ms = 0
+                frame_durations = []
                 for frame_index in range(facts["frames"]):
                     image.seek(frame_index)
                     image.load()
-                    duration_ms += image.info.get("duration", 0)
+                    frame_durations.append(image.info.get("duration", 0))
                 if selected is MediaFormat.GIF:
-                    facts["duration_seconds"] = duration_ms / 1000.0
+                    facts["frame_durations_ms"] = frame_durations
+                    facts["duration_seconds"] = sum(frame_durations) / 1000.0
         except (OSError, ValueError) as exc:
             raise MediaInspectionError(f"cannot decode image artifact {path}: {exc}") from exc
         return InspectionResult(selected, BackendKind.PILLOW, "image" if selected is MediaFormat.PNG else "video", facts)
@@ -103,9 +108,11 @@ def inspect_media(path: Path, format_name: str | MediaFormat | None = None) -> I
                     raise TypeError("NPZ metadata must contain an object")
                 facts = {"arrays": sorted(key for key in archive.files if key != "metadata_json"), "metadata": metadata}
                 for key in facts["arrays"]:
-                    facts[f"{key}_shape"] = list(archive[key].shape)
+                    values = _canonical_npz_array(archive, key)
+                    facts[f"{key}_shape"] = list(values.shape)
+                    facts[f"{key}_dtype"] = values.dtype.str
                 _add_npz_derived_facts(facts)
-        except (OSError, ValueError, KeyError, TypeError, EOFError, zipfile.BadZipFile, zlib.error) as exc:
+        except (OSError, ValueError, KeyError, TypeError, OverflowError, RecursionError, EOFError, zipfile.BadZipFile, zlib.error) as exc:
             raise MediaInspectionError(f"cannot decode NPZ artifact {path}: {exc}") from exc
         return InspectionResult(selected, BackendKind.NUMPY, str(facts["metadata"].get("kind", "unknown")), facts)
     if selected is MediaFormat.MP4:
@@ -150,7 +157,8 @@ def _inspect_mp4(path: Path) -> InspectionResult:
             facts["audio_onset_seconds"] = float(packets[0]["pts_time"]) + 1024.0 / float(audio["sample_rate"])
         except (OSError, subprocess.CalledProcessError, subprocess.TimeoutExpired, ValueError, KeyError, IndexError, TypeError) as exc:
             raise MediaInspectionError(f"ffprobe could not inspect AAC onset in {path}: {exc}") from exc
-    kind = "audiovisual" if {stream.get("codec_type") for stream in streams} == {"audio", "video"} else "video"
+    stream_kinds = {stream.get("codec_type") for stream in streams}
+    kind = "audiovisual" if stream_kinds == {"audio", "video"} else next(iter(stream_kinds)) if len(stream_kinds) == 1 else "unknown"
     return InspectionResult(MediaFormat.MP4, BackendKind.FFMPEG, kind, facts)
 
 
@@ -185,6 +193,7 @@ def verify_manifest(path: Path) -> dict[str, object]:
         raise VerificationError("manifest output must remain within the manifest directory")
     checks: list[str] = []
     errors: list[str] = []
+    unavailable: list[str] = []
     if isinstance(payload.get("output"), str) and payload["output"]:
         declared_output_path = Path(payload["output"])
         if not declared_output_path.is_absolute():
@@ -228,37 +237,104 @@ def verify_manifest(path: Path) -> dict[str, object]:
     if not isinstance(expected_artifact, Mapping):
         errors.append("manifest artifact summary is missing or malformed")
     else:
-        _compare_expected_facts(expected_artifact, inspection, errors, checks)
+        try:
+            _compare_expected_facts(expected_artifact, inspection, errors, checks)
+        except (KeyError, TypeError, ValueError, OverflowError) as exc:
+            errors.append(f"manifest artifact facts cannot be compared: {exc}")
     if actual_format is MediaFormat.NPZ:
-        try:
-            observed_canonical_digest = canonical_digest(read_npz(output_path))
-        except (DuckRabbitError, OSError, KeyError, TypeError, ValueError) as exc:
-            errors.append(f"canonical NPZ could not be reconstructed: {exc}")
-        else:
-            declared_canonical_digest = payload.get("canonical_digest")
-            canonical_record = payload.get("canonical")
-            if not isinstance(declared_canonical_digest, str) and isinstance(canonical_record, Mapping):
-                declared_canonical_digest = canonical_record.get("digest")
-            if not isinstance(declared_canonical_digest, str):
-                errors.append("manifest canonical digest is missing")
-            elif observed_canonical_digest != declared_canonical_digest:
-                errors.append("canonical digest does not match decoded NPZ artifact")
-            else:
-                checks.append("canonical_digest")
-    if not legacy:
-        try:
-            validate_manifest_payload(payload)
-        except ManifestValidationError as exc:
-            errors.append(f"manifest validation failed: {exc}")
-    status = VerificationStatus.FAILED if errors else VerificationStatus.VERIFIED
+        _compare_npz_canonical(output_path, payload, errors, checks, unavailable, legacy=legacy)
+    try:
+        validate_manifest_payload(payload)
+    except ManifestValidationError as exc:
+        errors.append(f"manifest validation failed: {exc}")
+    status = VerificationStatus.FAILED if errors else VerificationStatus.UNVERIFIED if unavailable else VerificationStatus.VERIFIED
     return {
         "status": status.value,
         "checks": checks,
         "errors": errors,
+        "unavailable": unavailable,
         "manifest": str(manifest_path),
         "output": str(output_path),
         "inspection": inspection.to_dict(),
     }
+
+
+def _compare_npz_canonical(path: Path, payload: Mapping[str, object], errors: list[str], checks: list[str], unavailable: list[str], *, legacy: bool = False) -> None:
+    """Bind an exact archive to its full summary and framed canonical bytes."""
+    from .render import artifact_summary
+
+    try:
+        artifact = read_npz(path)
+        digest, byte_count = canonical_digest_and_size(artifact)
+    except (DuckRabbitError, OSError, KeyError, TypeError, ValueError) as exc:
+        errors.append(f"canonical NPZ could not be reconstructed: {exc}")
+        return
+    record = payload.get("canonical")
+    declared_digest = payload.get("canonical_digest")
+    if not isinstance(declared_digest, str) and isinstance(record, Mapping):
+        declared_digest = record.get("digest")
+    if not isinstance(declared_digest, str):
+        errors.append("manifest canonical digest is missing")
+    elif digest != declared_digest:
+        errors.append("canonical digest does not match decoded NPZ artifact")
+    else:
+        checks.append("canonical_digest")
+    # v1 has no framed byte-count field; do not certify its synthesized value.
+    if not legacy:
+        if not isinstance(record, Mapping) or record.get("byte_count") != byte_count:
+            errors.append("canonical byte_count does not match decoded NPZ artifact")
+        else:
+            checks.append("canonical_byte_count")
+    if jsonable(artifact_summary(artifact)) != jsonable(payload.get("artifact")):
+        errors.append("canonical full summary does not match decoded NPZ artifact")
+    else:
+        checks.append("canonical_full_summary")
+    _compare_npz_metrics(artifact, payload.get("metrics"), errors, checks, unavailable)
+
+
+def _compare_npz_metrics(artifact, declared: object, errors: list[str], checks: list[str], unavailable: list[str]) -> None:
+    """Replay supported declarations; never relabel historical computations."""
+    from .metrics import COMPUTATION_VERSION, measure_artifact
+
+    if declared is None:
+        return
+    if not isinstance(declared, Mapping):
+        errors.append("canonical metrics must contain an object or null")
+        return
+    if declared.get("computation_version") != COMPUTATION_VERSION:
+        unavailable.append("canonical_metrics: unsupported computation_version")
+        return
+    expected = jsonable(measure_artifact(artifact).to_dict())
+    records = declared.get("records")
+    if not isinstance(records, (list, tuple)) or not all(isinstance(record, Mapping) and isinstance(record.get("name"), str) for record in records):
+        errors.append("canonical metric records are malformed")
+        return
+    names = [record["name"] for record in records]
+    expected_records = {record["name"]: record for record in expected["records"]}
+    if len(names) != len(set(names)) or set(names) != set(expected_records):
+        errors.append("canonical metric records are missing, duplicated, or unknown")
+        return
+    for record in records:
+        provenance = record.get("provenance")
+        if not isinstance(provenance, Mapping) or not all(isinstance(provenance.get(key), str) for key in ("source_sha256", "numpy_version")):
+            errors.append("canonical metric computation identity is malformed")
+            return
+        supported = expected_records[record["name"]]["provenance"]
+        if any(provenance[key] != supported[key] for key in ("source_sha256", "numpy_version")):
+            unavailable.append("canonical_metrics: implementation or NumPy identity is unsupported")
+            return
+    actual = jsonable(declared)
+    actual["records"] = sorted(actual["records"], key=lambda record: record["name"])
+    expected["records"] = sorted(expected["records"], key=lambda record: record["name"])
+    try:
+        agrees = json.dumps(actual, sort_keys=True, allow_nan=False) == json.dumps(expected, sort_keys=True, allow_nan=False)
+    except (TypeError, ValueError, OverflowError) as exc:
+        errors.append(f"canonical metrics cannot be compared: {exc}")
+        return
+    if agrees:
+        checks.append("canonical_metrics")
+    else:
+        errors.append("canonical metrics do not match decoded NPZ artifact and trusted definitions")
 
 
 def _compare_value(label: str, expected_value: object, observed_value: object, errors: list[str], checks: list[str], *, tolerance: float = 0.0) -> None:
@@ -292,9 +368,14 @@ def _compare_image_facts(expected: Mapping[str, object], inspection: InspectionR
         if field in facts:
             _compare_value(field, expected[field], facts[field], errors, checks)
     mode = facts.get("mode")
-    observed_channels = 3 if mode in {"RGB", "RGBA"} else 1 if isinstance(mode, str) else None
+    observed_channels = {"L": 1, "RGB": 3}.get(mode) if isinstance(mode, str) else None
+    if inspection.format is MediaFormat.PNG:
+        _compare_value("mode", expected.get("mode", mode), mode, errors, checks)
+        if facts.get("has_transparency"):
+            errors.append("decoded PNG transparency is incompatible with canonical L/RGB images")
+        _compare_value("image_frame_count", 1, facts.get("frames"), errors, checks)
     shape = _npz_shape(facts, "pixels")
-    if shape is not None:
+    if shape is not None and len(shape) in (2, 3):
         _compare_value("height", expected["height"], shape[0], errors, checks)
         _compare_value("width", expected["width"], shape[1], errors, checks)
         if observed_channels is None:
@@ -319,7 +400,7 @@ def _compare_audio_facts(expected: Mapping[str, object], inspection: InspectionR
     else:
         _compare_value("samples", expected["samples"], facts["frames"], errors, checks)
     shape = _npz_shape(facts, "samples")
-    if shape is not None:
+    if shape is not None and len(shape) in (1, 2):
         _compare_value("samples", expected["samples"], shape[0], errors, checks)
         _compare_value("channels", expected["channels"], shape[1] if len(shape) > 1 else 1, errors, checks)
     if "duration_seconds" not in facts:
@@ -339,10 +420,20 @@ def _compare_video_facts(expected: Mapping[str, object], inspection: InspectionR
         else:
             _compare_value(field, expected[field], facts[field], errors, checks)
     shape = _npz_shape(facts, "frames")
-    if shape is not None:
+    if shape is not None and len(shape) in (3, 4):
         _compare_value("frames", expected["frames"], shape[0], errors, checks)
         _compare_value("height", expected["height"], shape[1], errors, checks)
         _compare_value("width", expected["width"], shape[2], errors, checks)
+    if inspection.format is MediaFormat.GIF:
+        ticks = 100.0 / float(expected["frame_rate"])
+        durations = [
+            10 * (round((index + 1) * ticks) - round(index * ticks))
+            for index in range(int(expected["frames"]))
+        ]
+        _compare_value("gif_frame_durations_ms", durations, list(facts.get("frame_durations_ms", ())), errors, checks)
+        if "decoded_gif_frame_durations_ms" in checks:
+            checks.extend(("decoded_frame_rate", "decoded_duration_seconds"))
+        return
     observed_frame_rate = _frame_rate_from_inspection(facts)
     if observed_frame_rate is None:
         errors.append("decoded frame_rate is unavailable")
@@ -399,6 +490,7 @@ def _compare_encoded_audiovisual(expected: Mapping[str, object], inspection: Ins
     audio = next((stream for stream in streams if isinstance(stream, Mapping) and stream.get("codec_type") == "audio"), None)
     video = next((stream for stream in streams if isinstance(stream, Mapping) and stream.get("codec_type") == "video"), None)
     if not isinstance(audio, Mapping) or not isinstance(video, Mapping):
+        errors.append("decoded audiovisual artifact requires one audio and one video stream")
         return
     audio_start = _stream_float(audio, "start_time", 0.0)
     video_start = _stream_float(video, "start_time", 0.0)
@@ -428,6 +520,26 @@ def _compare_audiovisual_facts(expected: Mapping[str, object], inspection: Inspe
 
 def _compare_expected_facts(expected: Mapping[str, object], inspection: InspectionResult, errors: list[str], checks: list[str]) -> None:
     kind = expected.get("type")
+    if inspection.kind != kind:
+        errors.append("decoded artifact kind does not match manifest")
+    allowed = {
+        MediaFormat.PNG: {"image"}, MediaFormat.GIF: {"video"},
+        MediaFormat.WAV: {"audio"}, MediaFormat.MP4: {"video", "audiovisual"},
+        MediaFormat.NPZ: {"image", "audio", "video", "audiovisual"},
+    }
+    if kind not in allowed[inspection.format]:
+        errors.append("decoded container format is incompatible with manifest artifact kind")
+        return
+    if inspection.format in (MediaFormat.PNG, MediaFormat.GIF):
+        if inspection.facts.get("container_format") != inspection.format.value.upper():
+            errors.append("decoded Pillow container format does not match declared format")
+    if inspection.format is MediaFormat.MP4:
+        streams = inspection.facts.get("streams", ())
+        observed = sorted(stream.get("codec_type", "unknown") for stream in streams if isinstance(stream, Mapping))
+        required = ["audio", "video"] if kind == "audiovisual" else ["video"]
+        if observed != required or len(streams) != len(required):
+            errors.append("decoded MP4 stream kind/count does not match manifest")
+            return
     if kind == "image":
         _compare_image_facts(expected, inspection, errors, checks)
     elif kind == "audio":
@@ -446,6 +558,23 @@ def _add_npz_derived_facts(facts: dict[str, object]) -> None:
     if not isinstance(metadata, Mapping):
         return
     kind = metadata.get("kind")
+    required_arrays = {
+        "image": {"pixels": (2, 3)}, "audio": {"samples": (1, 2)},
+        "video": {"frames": (3, 4)}, "audiovisual": {"samples": (1, 2), "frames": (3, 4)},
+    }
+    if kind not in required_arrays:
+        raise ValueError("NPZ metadata kind is unsupported")
+    required = required_arrays[kind]
+    if set(facts["arrays"]) != set(required):
+        raise ValueError("NPZ arrays do not match the declared artifact kind")
+    for name, ranks in required.items():
+        shape = facts[f"{name}_shape"]
+        if len(shape) not in ranks or any(size <= 0 for size in shape):
+            raise ValueError(f"NPZ {name} rank/shape is invalid for {kind}")
+    if kind in {"audio", "audiovisual"}:
+        facts["sample_rate"] = SampleRate(metadata["sample_rate"]).value
+    if kind in {"video", "audiovisual"}:
+        facts["frame_rate"] = FrameRate(metadata["frame_rate"]).value
     for key in ("mode", "sample_rate", "frame_rate", "sync_offset_ms", "spatial_offset"):
         if key in metadata:
             facts[key] = metadata[key]
@@ -457,25 +586,21 @@ def _add_npz_derived_facts(facts: dict[str, object]) -> None:
         shape = facts.get("samples_shape")
         if isinstance(shape, list) and shape:
             facts.update({"frames": shape[0], "channels": shape[1] if len(shape) > 1 else 1})
-            if isinstance(metadata.get("sample_rate"), (int, float)) and float(metadata["sample_rate"]) > 0:
-                facts["duration_seconds"] = float(shape[0]) / float(metadata["sample_rate"])
+            facts["duration_seconds"] = shape[0] / facts["sample_rate"]
     elif kind == "video":
         shape = facts.get("frames_shape")
         if isinstance(shape, list) and len(shape) >= 3:
             facts.update({"frames": shape[0], "height": shape[1], "width": shape[2]})
-            if isinstance(metadata.get("frame_rate"), (int, float)) and float(metadata["frame_rate"]) > 0:
-                facts["duration_seconds"] = float(shape[0]) / float(metadata["frame_rate"])
+            facts["duration_seconds"] = shape[0] / facts["frame_rate"]
     elif kind == "audiovisual":
         audio_shape = facts.get("samples_shape")
         video_shape = facts.get("frames_shape")
         if isinstance(audio_shape, list) and audio_shape:
             facts.update({"audio_frames": audio_shape[0], "audio_channels": audio_shape[1] if len(audio_shape) > 1 else 1})
-            if isinstance(metadata.get("sample_rate"), (int, float)) and float(metadata["sample_rate"]) > 0:
-                facts["audio_duration_seconds"] = float(audio_shape[0]) / float(metadata["sample_rate"])
+            facts["audio_duration_seconds"] = audio_shape[0] / facts["sample_rate"]
         if isinstance(video_shape, list) and len(video_shape) >= 3:
             facts.update({"video_frames": video_shape[0], "video_height": video_shape[1], "video_width": video_shape[2]})
-            if isinstance(metadata.get("frame_rate"), (int, float)) and float(metadata["frame_rate"]) > 0:
-                facts["video_duration_seconds"] = float(video_shape[0]) / float(metadata["frame_rate"])
+            facts["video_duration_seconds"] = video_shape[0] / facts["frame_rate"]
 
 
 def _stream_float(stream: Mapping[str, object], key: str, default: float) -> float:

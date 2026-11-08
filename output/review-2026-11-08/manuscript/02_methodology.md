@@ -1,0 +1,202 @@
+# Methodology {#sec:methodology}
+
+## Request and canonical artifact
+
+DuckRabbit starts from a typed request
+
+$$
+q = (i, \theta, s, e)
+$$ {#eq:typed_request}
+
+where $i$ is an illusion identifier, $\theta$ is an immutable parameter
+object, $s$ is a deterministic seed, and $e$ is an optional encoding
+request. A registered generator maps the request to a canonical artifact:
+
+$$
+A = G_i(\theta; s), \qquad A \in \{I, X, V, AV\}
+$$ {#eq:canonical_generation}
+
+The four artifact types are an image frame $I$, audio buffer $X$, video
+sequence $V$, and audiovisual timeline $AV$. The generator core is
+independent of Pillow, WAV containers, GIF, MP4, and ffmpeg. Each artifact
+retains its shape, dtype, units, clock, channels, and timing offsets.
+
+## Typed parameter domains
+
+Value objects validate finite ranges at construction time. Image parameters
+include dimensions, color mode, luminance bounds, grayscale levels, and
+quantization levels. Audio parameters include frequency, phase, amplitude,
+duration, envelope, sample rate, channel count, and PCM depth. Video parameters
+include dimensions, rational frame rate, frame count, and temporal offsets.
+Audiovisual parameters compose audio and video clocks with declared
+synchronization and spatial discrepancies.
+
+The canonical sample count and frame timestamps are explicit. For audio
+duration $T$ and sample rate $f_s$, $N$ is rounded once at construction. For a
+video with frame rate $f_r$, frame index $k$ is timestamped on the presentation
+clock. The audio-minus-video sign convention is explicit:
+
+$$
+N = \operatorname{round}(f_s T), \qquad t_k = k/f_r, \qquad
+\Delta_{AV} = t_{\mathrm{audio}} - t_{\mathrm{video}}
+$$ {#eq:clock_definition}
+
+The package rejects non-finite values, invalid shapes, out-of-range samples,
+aliasing frequencies, incompatible channel layouts, impossible frame rates,
+and contradictory encoding requests.
+
+## Canonical serialization and provenance
+
+Canonical arrays are contiguous little-endian float32 buffers with explicit
+metadata. Serialization includes the array values, shape, clock, and units;
+metadata are part of the identity rather than an informal annotation:
+
+$$
+c(A) = \operatorname{Serialize}_{\mathrm{LE,float32}}
+ (A, \mathrm{shape}, \mathrm{clock}, \mathrm{units}),
+\qquad h_c(A) = H(c(A))
+$$ {#eq:canonical_digest}
+
+The canonical digest is independent of PNG, WAV, GIF, MP4, and NPZ delivery
+choices. The v2 manifest records the parameter schema, serialized parameters,
+taxonomy, evidence boundary, canonical facts, objective metrics, encoding
+profile, backend identity, decoded inspection, and verification status. A v1
+reader remains available and marks upconverted records unverified until the
+encoded file is re-inspected.
+
+This separation follows a reproducibility principle from computational
+research: a result is not made reproducible merely by publishing a final file;
+the executable inputs, transformation steps, versioned software, and provenance
+must remain identifiable [@sandve2013simple; @wilson2014bestpractices]. The
+manifest therefore records the construction identity and delivery identity
+separately. A downstream user can cite the software version and regenerate the
+canonical object, or cite a particular encoded artifact when the delivery file
+itself is the relevant research object [@smith2016software].
+
+The distinction also follows the older psychophysical problem of relating a
+controlled physical increment to a measured sensation. Fechner's 1860 treatise
+made measurement, stimulus control, and response comparison explicit parts of
+the scientific object [@fechner1860psychophysics]. DuckRabbit adopts the
+stimulus-control and provenance aspects of that tradition, but it does not
+pretend that a canonical digest or media metric is a sensation measurement:
+observer data still require a task, presentation conditions, and a registered
+analysis.
+
+## Encoding and verification
+
+For an encoding request $e$, the delivered file $F$ and decoded inspection $I$
+are:
+
+$$
+F = E_e(A), \qquad I = D(F), \qquad V(F,M) \in \{\mathrm{verified},\mathrm{failed},\mathrm{unverified}\}
+$$ {#eq:encoding_verification}
+
+The manifest $M$ binds $A$, $F$, and $I$ through hashes, typed summaries, and
+format-specific tolerances. PNG, GIF, WAV, and NPZ use local deterministic
+adapters. MP4 and muxed
+audiovisual output use an optional ffmpeg backend. Missing backends are
+reported as capability errors. Writes are atomic, parent directories are
+created, overwrite behavior is explicit, and a conflicting format argument is
+rejected.
+
+Canonical NPZ arrays must retain little-endian float32 storage; the reader and
+inspector reject float64, big-endian or integer replacements instead of silently
+coercing their values into a canonical-looking artifact.
+
+For NPZ, verification replays declared metrics only under the supported
+computation, implementation-source and NumPy identities. Missing optional
+metrics receive no metric-verification claim; unsupported historical identities
+remain `unverified`, not relabeled current or falsely classified as corruption.
+A metric-specific successful check is required to infer measured-value agreement.
+Other encodings retain their disclosed quantization/decoded-fact boundary.
+
+## Objective metric definitions {#sec:objective_metric_definitions}
+
+`MetricRecord` and `MetricSuite` carry a metric name, value, unit, computation
+version, source artifact, tolerance, and claim level. Luminance statistics,
+quantization levels, RMS and peak amplitude, spectral summaries, frame deltas,
+stream durations, and synchronization offsets are physical or decoded-media
+facts. They are not observer responses and cannot by themselves establish an
+illusion effect. For canonical image samples $y_1,\ldots,y_n$, audio samples
+$x_1,\ldots,x_n$, and adjacent video frames $Y_k,Y_{k+1}$, the principal
+metrics are:
+
+For images, $y$ is the grayscale code value or the Rec. 709-weighted RGB
+channel-value proxy; no RGB transfer decoding or display calibration is assumed.
+The name `mean_luminance` is an API label, not a photometric measurement.
+For temporal differences, $Y_k$ denotes the complete raw channel array, not
+the image luminance proxy. RGB audiovisual plots reuse the image proxy.
+Adjacent-frame subtraction and its float32 mean use C-contiguous scratch space,
+matching the canonical layout. This removes layout-dependent summary drift
+across exact NPZ round trips; Fortran/mixed-layout input rounding can therefore
+differ from older versions, without changing pixels or canonical byte identity.
+
+$$
+\mu_Y = \frac{1}{n}\sum_{j=1}^{n} y_j, \qquad
+\sigma_Y = \sqrt{\frac{1}{n}\sum_{j=1}^{n}(y_j-\mu_Y)^2}, \qquad
+RMS_X = \sqrt{\frac{1}{n}\sum_{j=1}^{n}x_j^2}
+$$ {#eq:objective_statistics}
+
+$$
+D_k = \frac{1}{\lvert Y\rvert}\sum_{p}\lvert Y_{k+1}(p)-Y_k(p)\rvert, \qquad
+\mathrm{centroid}(X) = \frac{\sum_f f\,M_X(f)}{\max(\sum_f M_X(f),10^{-12})}
+$$ {#eq:temporal_spectral_metrics}
+
+Here $M_X(f)=C^{-1}\sum_{c=1}^{C}|\operatorname{rFFT}(X_c)(f)|$
+is the mean of the channel-wise magnitudes of the unwindowed, one-sided real
+FFT, including DC and the Nyquist bin when present. It is not a power or
+energy spectrum, nor the FFT of a channel-averaged waveform. Frequencies are
+in Hz at the canonical sample rate; the same magnitude weights define the
+spectral bandwidth. The denominator floor yields a zero centroid for silence.
+The illustrative audio atlas uses separately disclosed display-band
+aggregation; it does not replace this full-resolution metric computation.
+
+The level count is the cardinality of the finite-value set after canonical
+quantization; an empty or non-finite artifact is invalid rather than assigned
+a default statistic. Every generated metric carries units, full-window and
+channel/transfer definitions, NumPy and implementation identity, and SHA-256
+hashes of the computation/window definitions. The implementation fingerprint
+covers `metrics.py` and `artifacts.py`, not NumPy binaries, CPU behavior or a
+historical platform. These identify the calculation, not stimulus bytes
+(identified separately by canonical digest), calibration, or authorship.
+Observer interpretations remain separate typed claims.
+
+For a future observer study, the estimand is defined by the protocol rather
+than by the generator itself:
+
+$$
+\psi = \mathbb{E}[Y \mid \mathrm{condition},\ \mathrm{protocol}]
+$$ {#eq:observer_estimand}
+
+This symbol names a planned analysis target only. DuckRabbit ships no human
+responses, fitted coefficients, or validated observer-level estimate.
+
+### Synthetic psychophysics boundary
+
+DuckRabbit's transparent synthetic-psychophysics diagnostic supports
+method orchestration. It is a hand-specified feature observer, not a
+pretrained vision model and not an empirical psychophysics substitute. Let
+$\phi(A)$ be the bounded feature vector extracted from a canonical artifact,
+$w$ the code-owned feature weights, and $\tau>0$ the declared temperature:
+
+$$
+p_M(c\mid A_r,A_c) =
+\sigma\left(\operatorname{clip}\left(\frac{w^\mathsf{T}\phi(A_c)-w^\mathsf{T}\phi(A_r)}{\tau},-60,60\right)\right)
+$$ {#eq:synthetic_observer}
+
+The enclosing diagnostic serializes model identity/version and fingerprint,
+actual feature values, weights, temperature, seed, calibration statement,
+canonical digests, numerical clipping/tie rules and `human_data=false`.
+Detached predictions retain scores and feature names but require that enclosing
+specification to reconstruct the model. Exact-self and all-zero-weight controls
+yield 0.5; ties choose the comparison deterministically.
+
+The default sweep also zeroes each declared feature weight and varies temperature
+by factors 0.5, 1 and 2. Five image features are active; nine other ablations and
+the 1-times temperature reproduce existing curves rather than independent evidence.
+The displayed min/max range covers only these declared configurations, including
+the null. It is model sensitivity, not an empirical confidence interval, a human
+psychometric function, or uncertainty over all possible models. Joint perturbations,
+preprocessing/quantization sensitivity, calibration and observer variation are not
+covered. Human work still requires task, consent, calibrated presentation,
+preregistration and actual response data.

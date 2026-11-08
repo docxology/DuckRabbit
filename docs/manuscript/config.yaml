@@ -1,8 +1,8 @@
 paper:
   title: "DuckRabbit: Typed Multimodal Illusion Generator"
   subtitle: "Deterministic visual, auditory, temporal, and audio-visual stimulus construction"
-  version: "0.5.0"
-  date: "2026-07-15"
+  version: "0.6.0"
+  date: "2026-11-07"
   cover:
     image: "figures/cover_visualization.png"
 
@@ -13,11 +13,9 @@ authors:
     corresponding: true
 
 publication:
-  doi: "10.5281/zenodo.21419693"
-  doi_status: "published"
+  doi: ""
+  doi_status: "forthcoming"
   repository: "https://github.com/docxology/DuckRabbit"
-  version_doi: "10.5281/zenodo.21419694"
-  version_record: "https://zenodo.org/records/21419694"
 
 keywords:
   - "perceptual illusions"

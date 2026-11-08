@@ -1,0 +1,2 @@
+error: Failed to query Python interpreter at `/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/.venv/bin/python`
+  cause: Operation not permitted (os error 1)

@@ -1,0 +1,13 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_________ test_person_and_group_authors_require_exact_ordered_identity _________
+tests/test_scholarship_audit.py:103: in test_person_and_group_authors_require_exact_ordered_identity
+    assert compare_doi_metadata(source, {**_metadata(), "author": authors}) is SourceVerificationStatus.DOI_METADATA_MATCH
+E   AssertionError: assert <SourceVerificationStatus.METADATA_MISMATCH: 'metadata_mismatch'> is <SourceVerificationStatus.DOI_METADATA_MATCH: 'doi_metadata_match'>
+E    +  where <SourceVerificationStatus.METADATA_MISMATCH: 'metadata_mismatch'> = compare_doi_metadata(SourceRecord(key='test_source', citation_key='testsource1997', title='Visual Capture of Gravity', source_type='primary...'>, verified_on=None, resolver='offline_snapshot', authors=('Ada Example', 'Example Methods Working Group'), year=1997), {'DOI': 'https://doi.org/10.1234/ABC', 'title': ['Visual Capture of Gravity!'], 'published-print': {'date-parts': [[1997, 5, 1]]}, 'author': [{'family': 'Example', 'given': 'Ada'}, {'name': 'Example Methods Working Group'}]})
+E    +  and   <SourceVerificationStatus.DOI_METADATA_MATCH: 'doi_metadata_match'> = SourceVerificationStatus.DOI_METADATA_MATCH
+=========================== short test summary info ============================
+FAILED tests/test_scholarship_audit.py::test_person_and_group_authors_require_exact_ordered_identity - AssertionError: assert <SourceVerificationStatus.METADATA_MISMATCH: 'metadata_mismatch'> is <SourceVerificationStatus.DOI_METADATA_MATCH: 'doi_metadata_match'>
+ +  where <SourceVerificationStatus.METADATA_MISMATCH: 'metadata_mismatch'> = compare_doi_metadata(SourceRecord(key='test_source', citation_key='testsource1997', title='Visual Capture of Gravity', source_type='primary...'>, verified_on=None, resolver='offline_snapshot', authors=('Ada Example', 'Example Methods Working Group'), year=1997), {'DOI': 'https://doi.org/10.1234/ABC', 'title': ['Visual Capture of Gravity!'], 'published-print': {'date-parts': [[1997, 5, 1]]}, 'author': [{'family': 'Example', 'given': 'Ada'}, {'name': 'Example Methods Working Group'}]})
+ +  and   <SourceVerificationStatus.DOI_METADATA_MATCH: 'doi_metadata_match'> = SourceVerificationStatus.DOI_METADATA_MATCH
+1 failed in 0.03s

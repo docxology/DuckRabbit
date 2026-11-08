@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>06_scope_and_related_work</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../web/assets/reveal.js-5.2.1/dist/reset.css">
+  <link rel="stylesheet" href="../web/assets/reveal.js-5.2.1/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../web/assets/reveal.js-5.2.1/dist/theme/white.css" id="theme">
+  <link rel="stylesheet" href="digital-review.css"/>
+<script data-template-mathjax-config>
+window.MathJax = window.MathJax || {};
+window.MathJax.loader = Object.assign({},window.MathJax.loader,{paths:{mathjax:new URL("../web/assets/mathjax-4.0.0/mathjax",document.baseURI).href}});
+window.MathJax.chtml = Object.assign({}, window.MathJax.chtml, {
+  fontURL: new URL("../web/assets/mathjax-4.0.0/newcm/chtml/woff2",document.baseURI).href,
+  dynamicPrefix: new URL("../web/assets/mathjax-4.0.0/newcm/chtml/dynamic",document.baseURI).href
+});
+var templateMathOutput = window.MathJax.output || {};
+window.MathJax.output = Object.assign({}, templateMathOutput, {
+  displayOverflow: "linebreak",
+  linebreaks: Object.assign({}, templateMathOutput.linebreaks, {
+    inline: true,
+    width: "100%",
+    lineleading: 0.5
+  })
+});
+window.normalizeTemplateMathJaxAria = function () {
+  document.querySelectorAll("mjx-speech[aria-roledescription]").forEach(function (node) {
+    var roleDescription = node.getAttribute("aria-roledescription") || "";
+    if (/[-]/.test(roleDescription)) {
+      node.setAttribute("aria-roledescription", "mathematical expression");
+    }
+  });
+};
+window.MathJax.startup = Object.assign({}, window.MathJax.startup, {
+  ready: function () {
+    var measuredWidth = document.documentElement.clientWidth;
+    var reflowQueued = false;
+    window.MathJax.startup.defaultReady();
+    window.templateMathJaxReflowPromise = window.MathJax.startup.promise.then(
+      window.normalizeTemplateMathJaxAria
+    );
+    function reflowDisplayMath() {
+      if (reflowQueued || document.documentElement.clientWidth === measuredWidth) return;
+      reflowQueued = true;
+      window.templateMathJaxReflowPromise = window.templateMathJaxReflowPromise
+        .catch(function () { /* A later resize may retry a failed render. */ })
+        .then(async function () {
+          var width = document.documentElement.clientWidth;
+          try {
+            // MathJax 4 MathItem.STATE.METRICS = 110. The default RERENDER
+            // state retains old container metrics and cannot reflow on zoom.
+            await window.MathJax.startup.document.rerenderPromise(110);
+            window.normalizeTemplateMathJaxAria();
+            window.templateMathJaxReflowError = null;
+          } catch (error) {
+            window.templateMathJaxReflowError = String(error);
+            console.error("MathJax viewport reflow failed", error);
+            throw error;
+          } finally {
+            measuredWidth = width;
+            reflowQueued = false;
+          }
+        })
+        .then(reflowDisplayMath);
+      // Keep failure observable to callers without an unhandled rejection.
+      window.templateMathJaxReflowPromise.catch(function () {});
+    }
+    window.addEventListener("resize", reflowDisplayMath);
+    // Also cover a resize that happened during the initial asynchronous render.
+    window.templateMathJaxReflowPromise.then(reflowDisplayMath);
+  }
+});
+</script>
+<script src="../web/assets/mathjax-4.0.0/mathjax/tex-chtml.js" integrity="sha384-2BWc4dVaHADUocwKrUrK9u3iDwHxVMKXWEcoRmUkXYSFKhAsgVAYClu9ydNuo5Oz" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section>
+<section id="sec:scope" class="title-slide slide level1">
+<h1>Scope, Related Work, and Limitations</h1>
+<p>Numbered-table references point to the <a
+href="../web/index.html">canonical manuscript</a>; they are not
+standalone local deck numbers.</p>
+</section>
+<section id="scope-and-epistemic-boundary" class="slide level2">
+<h2>Scope and epistemic boundary</h2>
+<p>DuckRabbit is a typed, reproducible stimulus-construction platform.
+Its unit of work is an immutable request that yields a canonical image,
+audio buffer, video sequence, or audiovisual timeline, together with
+objective measurements and provenance. It is not an exhaustive ontology
+of all illusions, a perceptual theory, a participant database, or a
+substitute for a controlled psychophysics experiment. The live registry
+is therefore a deliberately bounded catalog: it enumerates the families
+for which this release has both a generator contract and a stated
+evidence boundary. Appendix A gives the complete current matrix; the
+absence of a family from that matrix is not a claim that the family is
+unimportant or unsupported in the wider literature.</p>
+<p>The central distinction is between a construction and an observation.
+A DuckRabbit generator can establish the dimensions, pixel values,
+sample values, frequency components, frame clock, declared
+synchronization offset, encoded hash, and decoded media facts of its
+output. It cannot, from those facts alone, establish what a person sees,
+hears, counts, localizes, groups, or reports. Every figure caption,
+evidence record, and claim-ledger entry preserves this boundary. In
+particular, a literature citation establishes a source-supported
+statement about a stimulus family or result under that source’s
+conditions; it does not certify pixel- or task-identical replication by
+a DuckRabbit artifact.</p>
+<p>The historical foundation is intentionally worldwide and layered. The
+package does not present a single invention narrative: it places ancient
+Greek, medieval Arabic, classical Chinese, and early-modern European
+sources beside nineteenth-century psychophysics and modern experimental
+work. This is a scholarly orientation for separating physical
+construction, interpretation, and observer evidence; it is not a claim
+that the current source set exhausts the visual, auditory, or perceptual
+traditions of any region.</p>
+</section>
+<section id="visual-families" class="slide level2">
+<h2>Visual families</h2>
+<p>The modern label “visual illusion” sits on a longer experimental
+history than the package’s contemporary review sources alone suggest.
+Oppel’s mid-century catalogue of geometrical-optical illusions is now
+accessible with translation and commentary <span class="citation"
+data-cites="wade2017oppel">(Wade et al. 2017)</span>, and the primary
+nineteenth-century records include Zöllner’s account of crossing-line
+distortions and Müller-Lyer’s report of the arrow-wing configuration
+<span class="citation"
+data-cites="zoellner1860pseudoscopy mullerlyer1889optical">(Zöllner
+1860; Müller-Lyer 1889)</span>. These sources are treated as historical
+anchors, not as evidence that a present-day raster is identical to an
+original plate or that its observer effect is invariant across
+conditions.</p>
+<p>Gregory’s classification is useful as a historical and conceptual
+orientation, but it is not a universally agreed ontology. DuckRabbit
+consequently stores visual modality, mechanism, perceptual signature,
+stimulus requirements, and evidence status as separate facets rather
+than treating a single label as an explanation <span class="citation"
+data-cites="gregory1997visual">(Gregory 1997)</span>. The visual atlas
+covers the implemented families currently registered in the package:
+ambiguous figure, contrast, apparent motion, Müller-Lyer, Poggendorff,
+Ponzo, Kanizsa-type subjective contour, Ebbinghaus contextual size, and
+Zöllner/Judd orientation-related geometry. “Coverage” here means one
+deterministic representative per live entry, not a claim that one raster
+captures the historical stimulus space.</p>
+<p>The duck/rabbit construction is an explicit example of why that
+distinction matters. Brugger’s historical analysis discusses variation
+among figure variants and observers; DuckRabbit therefore exposes a
+blend parameter and labels its output as a construction rather than
+promising a fixed alternation rate or universal bistability <span
+class="citation" data-cites="brugger1999duckrabbit">(Brugger
+1999)</span>. The Müller-Lyer entry uses typed arrow geometry. Its
+engineering form is compatible with a family whose image statistics have
+been analyzed as potentially informative about image-source
+relationships, but the implementation does not adjudicate that account
+or infer a perceived-length report <span class="citation"
+data-cites="mullerlyer1889optical howe2005muller">(Müller-Lyer 1889;
+Howe and Purves 2005)</span>.</p>
+<p>The Poggendorff generator makes the occluding geometry and
+virtual-line orientation explicit. This is appropriate to a literature
+in which orientation estimation and filtering accounts are theoretically
+relevant, while avoiding the stronger claim that a particular raster
+reproduces a published bias without the same observers, viewing
+conditions, and response task <span class="citation"
+data-cites="morgan1999poggendorff">(Morgan 1999)</span>. The Ponzo
+construction is similarly bounded: the converging context and test bars
+are deterministic, whereas the literature contains multiple explanations
+of Ponzo-like effects rather than one settled mechanism <span
+class="citation" data-cites="fisher1967ponzo yildiz2022ponzo">(Fisher
+1967; Yildiz et al. 2022)</span>.</p>
+<p>Kanizsa-style subjective contours are represented as an
+illusory-contour construction with explicit inducer geometry. The
+historical account motivates the family label, while modern reviews
+place contour completion within a wider literature on grouping,
+figure-ground organization, attention, and neural mechanisms <span
+class="citation"
+data-cites="kanizsa1976contours wagemans2012gestalt">(Kanizsa 1976;
+Wagemans et al. 2012)</span>. Neither source licenses a claim that the
+generated mask produces a uniform contour percept across observers. The
+Ebbinghaus entry controls target and surround geometry; classic work
+demonstrates that judged size depends on context, contour, and
+comparison conditions, while later work shows that motion and other
+parameters can alter the effect <span class="citation"
+data-cites="weintraub1979ebbinghaus mruczek2015ebbinghaus">(Weintraub
+1979; Mruczek et al. 2015)</span>. DuckRabbit’s static default is
+therefore an engineering baseline rather than a task-identical
+replication. Zöllner/Judd geometry is likewise retained as a
+source-linked line arrangement. Zöllner’s 1860 report supplies the
+historical primary anchor, while later work supplies a modern analysis
+of spatial filtering <span class="citation"
+data-cites="zoellner1860pseudoscopy earle1995zollner">(Zöllner 1860;
+Earle and Maskell 1995)</span>. Its typed line lengths and orientations
+make the spatial stimulus auditable, while orientation judgments remain
+outside the package contract.</p>
+<p>Finally, apparent motion is included in the visual coverage panel
+because its defining engineering object is temporal succession, not
+merely a static pattern. The package verifies frame order, frame rate,
+timestamps, and frame-to-frame differences. Wertheimer’s foundational
+work and Sekuler’s later analysis motivate the family distinction;
+neither source turns a generated frame strip into a universal report of
+motion <span class="citation"
+data-cites="wertheimer1912motion sekuler1996wertheimer">(Wertheimer
+1912; Sekuler 1996)</span>.</p>
+</section>
+<section id="auditory-families" class="slide level2">
+<h2>Auditory families</h2>
+<p>The auditory catalog separates harmonic construction, spectral
+completion, pitch-class context, dichotic channel assignment, and
+continuity/masking. A Shepard-like signal is represented through
+additive partials and explicit envelopes, following a historical
+literature of tone psychology and later work on assimilation to an
+internalized musical scale <span class="citation"
+data-cites="stumpf1883tonpsychology shepard1984scale">(Stumpf 1883;
+Shepard and Jordan 1984)</span>. The canonical buffer exposes sample
+rate, amplitude bounds, channel count, partial frequencies, and envelope
+parameters. It does not determine a listener’s perceived pitch height or
+direction.</p>
+<p>The missing-fundamental construction removes a low component while
+retaining harmonically related partials. This makes the spectral
+condition reproducible; the associated pitch interpretation remains a
+listener-level question <span class="citation"
+data-cites="zatorre2005missing">(Zatorre 2005)</span>. Tritone and
+octave entries preserve channel structure, phase, frequency
+relationships, and timing in typed parameters. Deutsch’s foundational
+accounts and Repp’s analysis of spectral-envelope and context effects
+motivate the evidence records, while also making listener and context
+dependence central limitations <span class="citation"
+data-cites="deutsch1986tritone repp1997tritone deutsch1974octave">(Deutsch
+1986, 1974; Repp 1997)</span>.</p>
+<p>Auditory continuity is represented as an interrupted target with a
+typed masker and gap. Warren’s classic perceptual-restoration result and
+Riecke and colleagues’ separation of sensory and decisional
+contributions justify the family’s inclusion, but a generated masker is
+not evidence that a listener will report an uninterrupted sound <span
+class="citation"
+data-cites="warren1970continuity riecke2011continuity">(Warren 1970;
+Riecke et al. 2011)</span>. The audio atlas therefore reports RMS, peak,
+spectral centroid, bandwidth, channel layout, and exact sample-level
+provenance—not continuity, pitch, or stream judgments.</p>
+</section>
+<section id="audiovisual-and-temporal-binding-families"
+class="slide level2">
+<h2>Audiovisual and temporal binding families</h2>
+<p>Audiovisual constructions require a shared clock and an explicit sign
+convention for offsets. The sound-induced-flash entry creates a typed
+visual event and one or more audio events; the evidence record links it
+to the primary demonstration and to a review of the broader literature
+<span class="citation" data-cites="shams2000sifi hirst2020sound">(Shams
+et al. 2000; Hirst et al. 2020)</span>. The package can verify event
+timestamps, sample/frame clocks, and declared offsets. It does not infer
+a reported flash count, and it does not assume that the same temporal
+window applies across displays, headphones, latencies, or observers.</p>
+<p>The spatial ventriloquist construction treats spatial discrepancy as
+a parameter and records the channel and display requirements. Reviews
+describe the ventriloquist illusion as a tool for studying multisensory
+processing, but the review’s scope is not a license to claim spatial
+capture from a file alone <span class="citation"
+data-cites="bruns2019ventriloquist">(Bruns 2019)</span>. More general
+audiovisual accounts describe integration and segregation as a
+causal-inference problem shaped by temporal regularities and signal
+reliability <span class="citation"
+data-cites="noppeney2018causal">(Noppeney and Lee 2018)</span>. That
+framework clarifies why a declared offset is an experimental input, not
+an observer-level outcome. Temporal ventriloquism receives a separate
+temporal-binding signature rather than being collapsed into spatial
+capture. Vroomen and de Gelder manipulated sound–flash timing in a
+flash-lag task and reported timing-dependent changes under those
+experimental conditions; Hartcher-O’Brien and Alais studied temporal
+ventriloquism in a purely temporal context <span class="citation"
+data-cites="vroomen2004temporal hartcherobrien2011temporal">(Vroomen and
+Gelder 2004; Hartcher-O’Brien and Alais 2011)</span>. DuckRabbit
+implements the stimulus-side timing contract and leaves the
+observer-side temporal-recalibration estimate to a future study.</p>
+<p>McGurk remains <code>input_required</code>. The classic speech study
+motivates the family, but a lawful and reproducible implementation
+requires checksummed speech and video fixtures, licensing or consent
+records, a precise preprocessing contract, and an ethical validation
+protocol <span class="citation" data-cites="mcgurk1976speech">(McGurk
+and MacDonald 1976)</span>. Cataloguing the gap is more informative than
+silently substituting an unrelated synthetic voice or claiming that a
+generic audiovisual mismatch is a McGurk replication.</p>
+</section>
+<section id="from-literature-to-engineering-contract"
+class="slide level2">
+<h2>From literature to engineering contract</h2>
+<p>For each entry, the evidence matrix records a source role, exact
+source-supported claim, engineering basis, limitation, and audit status.
+The roles distinguish primary demonstration, review or synthesis,
+theoretical account, engineering basis, limitation, and input gap. This
+prevents three common category errors: treating a theory as settled
+mechanism, treating a review as validation of new code, and treating a
+generator’s deterministic output as a participant result.</p>
+<p>The package’s literature fidelity is therefore best described as
+“family-linked, parameterized engineering construction.” Some defaults
+are historically motivated; none should be read as a claim of pixel
+identity unless that identity is separately established. The checked-in
+scholarship snapshot provides offline structural validation, including
+citation-key and DOI/URL format checks. The explicit network audit adds
+resolver observations and metadata matching; reachability alone is not
+treated as bibliographic verification. This is a reproducible evidence
+boundary, not a claim that every source is equally accessible or that
+theoretical disputes have been resolved.</p>
+</section>
+<section id="limitations-and-future-observer-work" class="slide level2">
+<h2>Limitations and future observer work</h2>
+<p>The package does not claim clinical validity, universal effect sizes,
+cross-cultural invariance, perceptual equivalence across displays or
+headphones, or observer-level truth from objective media metrics.
+Playback level, gamma and display calibration, viewing distance, refresh
+rate, stereo separation, room acoustics, audio transducer response,
+attention, expectation, language, expertise, and task can all matter.
+Codec behavior and device latency can introduce additional differences
+even when decoded media facts match within the declared tolerance.</p>
+<p>The synthetic observer diagnostic is intentionally not a substitute
+for a real vision model or human data. It is a serialized,
+hand-specified feature function with <code>training_data=none</code>,
+<code>calibration = analytic</code>, and <code>human_data=false</code>;
+its metamorphic and sensitivity checks test orchestration, not visual
+consciousness or human discrimination. A future observer study must
+pre-register the response scale, reference condition, estimand,
+exclusions, missing-data rule, randomization seed, display and playback
+controls, and uncertainty procedure. It must also report the participant
+and item sampling frame rather than importing a model-output probability
+as an assumed effect size. The observer harness is consequently an
+illustrative protocol and analysis contract, not a preregistration-ready
+study or result set.</p>
+<p>No participant data are bundled with DuckRabbit. The
+data-availability boundary is intentional: canonical artifacts, encoded
+fixtures where lawful, source-data sidecars, and deterministic synthetic
+diagnostics are software outputs; observer outcomes require separately
+governed data collection. Daniel Ari Friedman authors the package. DOI
+<code>10.5281/zenodo.21419693</code> identifies the historical v0.5.0
+archive, not the current forthcoming version. Current release metadata
+and software-citation guidance use the same manuscript identity
+contract.</p>
+</section></section>
+    </div>
+  </div>
+
+  <script src="../web/assets/reveal.js-5.2.1/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="../web/assets/reveal.js-5.2.1/plugin/notes/notes.js"></script>
+  <script src="../web/assets/reveal.js-5.2.1/plugin/search/search.js"></script>
+  <script src="../web/assets/reveal.js-5.2.1/plugin/zoom/zoom.js"></script>
+  
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>

@@ -1,0 +1,16 @@
+[
+  {
+    "artifact": "github-v0.5.0.pdf",
+    "url": "https://github.com/docxology/DuckRabbit/releases/download/v0.5.0/DuckRabbit_combined.pdf",
+    "bytes": 3938173,
+    "sha256": "16ba8eb28d29bc4de641abcc854e5fb3543889bb108c890ec13ae31a79c5574c",
+    "md5": "9e1f36d50d27eeb6675dff4a0e5e32d6",
+    "status": "downloaded_and_hashed"
+  },
+  {
+    "artifact": "zenodo-21419694.pdf",
+    "status": "failed",
+    "error_type": "HTTPError",
+    "http_status": 406
+  }
+]

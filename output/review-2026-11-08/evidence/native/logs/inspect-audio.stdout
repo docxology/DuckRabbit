@@ -1,0 +1,12 @@
+{
+  "backend": "python_wave",
+  "facts": {
+    "channels": 1,
+    "duration_seconds": 0.5,
+    "frames": 4000,
+    "sample_rate": 8000,
+    "sample_width_bytes": 2
+  },
+  "format": "wav",
+  "kind": "audio"
+}

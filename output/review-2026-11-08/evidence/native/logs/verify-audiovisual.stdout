@@ -1,0 +1,55 @@
+{
+  "checks": [
+    "encoded_sha256",
+    "encoded_size_bytes",
+    "decoded_media",
+    "decoded_channels",
+    "decoded_sample_rate",
+    "decoded_samples",
+    "decoded_duration_seconds",
+    "decoded_width",
+    "decoded_height",
+    "decoded_frames",
+    "decoded_frame_rate",
+    "decoded_duration_seconds",
+    "decoded_presentation_duration_seconds",
+    "decoded_sync_offset_ms"
+  ],
+  "errors": [],
+  "inspection": {
+    "backend": "ffmpeg",
+    "facts": {
+      "audio_onset_seconds": 0.0,
+      "duration_seconds": 0.5,
+      "streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "duration": "0.500000",
+          "height": 256,
+          "nb_frames": "6",
+          "pix_fmt": "yuv420p",
+          "r_frame_rate": "12/1",
+          "start_time": "0.000000",
+          "width": 256
+        },
+        {
+          "channels": 1,
+          "codec_name": "aac",
+          "codec_type": "audio",
+          "duration": "0.500000",
+          "nb_frames": "5",
+          "r_frame_rate": "0/0",
+          "sample_rate": "8000",
+          "start_time": "0.000000"
+        }
+      ]
+    },
+    "format": "mp4",
+    "kind": "audiovisual"
+  },
+  "manifest": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/audiovisual/audiovisual_sound_induced_flash.mp4.json",
+  "output": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/audiovisual/audiovisual_sound_induced_flash.mp4",
+  "status": "verified",
+  "unavailable": []
+}

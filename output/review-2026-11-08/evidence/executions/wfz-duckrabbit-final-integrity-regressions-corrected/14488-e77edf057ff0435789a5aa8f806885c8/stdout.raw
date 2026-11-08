@@ -1,0 +1,25 @@
+.......................FF............................................... [ 32%]
+........................................................................ [ 64%]
+........................................................................ [ 97%]
+......                                                                   [100%]
+=================================== FAILURES ===================================
+____ test_release_rejects_equal_valued_json_type_substitution[human_data-0] ____
+tests/test_final_integrity.py:141: in test_release_rejects_equal_valued_json_type_substitution
+    next(row for row in registry["figures"] if row["stem"] == "synthetic_psychophysics")["source_data_sha256"] = hashlib.sha256(sidecar.read_bytes()).hexdigest()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_final_integrity.py:141: in <genexpr>
+    next(row for row in registry["figures"] if row["stem"] == "synthetic_psychophysics")["source_data_sha256"] = hashlib.sha256(sidecar.read_bytes()).hexdigest()
+                                               ^^^^^^^^^^^
+E   KeyError: 'stem'
+_____ test_release_rejects_equal_valued_json_type_substitution[seed-False] _____
+tests/test_final_integrity.py:141: in test_release_rejects_equal_valued_json_type_substitution
+    next(row for row in registry["figures"] if row["stem"] == "synthetic_psychophysics")["source_data_sha256"] = hashlib.sha256(sidecar.read_bytes()).hexdigest()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_final_integrity.py:141: in <genexpr>
+    next(row for row in registry["figures"] if row["stem"] == "synthetic_psychophysics")["source_data_sha256"] = hashlib.sha256(sidecar.read_bytes()).hexdigest()
+                                               ^^^^^^^^^^^
+E   KeyError: 'stem'
+=========================== short test summary info ============================
+FAILED tests/test_final_integrity.py::test_release_rejects_equal_valued_json_type_substitution[human_data-0] - KeyError: 'stem'
+FAILED tests/test_final_integrity.py::test_release_rejects_equal_valued_json_type_substitution[seed-False] - KeyError: 'stem'
+2 failed, 220 passed in 20.92s

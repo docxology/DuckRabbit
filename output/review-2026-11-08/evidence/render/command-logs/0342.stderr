@@ -1,0 +1,17 @@
+[WARNING] Deprecated: --mathjax. Use --math-method=mathjax[:URL] instead.
+[WARNING] Citeproc: citation eq:canonical_digest not found
+[WARNING] Citeproc: citation eq:canonical_generation not found
+[WARNING] Citeproc: citation eq:clock_definition not found
+[WARNING] Citeproc: citation eq:encoding_verification not found
+[WARNING] Citeproc: citation eq:objective_statistics not found
+[WARNING] Citeproc: citation eq:observer_estimand not found
+[WARNING] Citeproc: citation eq:synthetic_observer not found
+[WARNING] Citeproc: citation eq:temporal_spectral_metrics not found
+[WARNING] Citeproc: citation eq:typed_request not found
+[WARNING] Citeproc: citation fig:claim_boundary not found
+[WARNING] Citeproc: citation fig:formalism_traceability not found
+[WARNING] Citeproc: citation fig:metrics_dashboard not found
+[WARNING] Citeproc: citation fig:observer_protocol not found
+[WARNING] Citeproc: citation fig:parameter_domains not found
+[WARNING] Citeproc: citation fig:scholarship_map not found
+[WARNING] Citeproc: citation fig:synthetic_psychophysics not found

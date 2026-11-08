@@ -3,12 +3,12 @@
 DuckRabbit is authored by Daniel Ari Friedman of the Active Inference Institute
 (ORCID
 [`0000-0001-6232-9096`](https://orcid.org/0000-0001-6232-9096)). The package
-version is synchronized at `0.5.0` across `pyproject.toml`, the manuscript,
-CITATION.cff, codemeta, and Zenodo metadata. v0.5.0 is published: the
-publication metadata carries the real, minted concept DOI
-[`10.5281/zenodo.21419693`](https://doi.org/10.5281/zenodo.21419693)
-(version DOI [`10.5281/zenodo.21419694`](https://doi.org/10.5281/zenodo.21419694))
-and `doi_status: published`.
+version is synchronized at `0.6.0` across `pyproject.toml`, the manuscript,
+CITATION.cff, codemeta, and Zenodo metadata. This candidate has
+`doi_status: forthcoming` and no assigned DOI. The immutable v0.5.0 release
+retains concept DOI [`10.5281/zenodo.21419693`](https://doi.org/10.5281/zenodo.21419693)
+and version DOI [`10.5281/zenodo.21419694`](https://doi.org/10.5281/zenodo.21419694);
+those identifiers must not be presented as an archive of 0.6.0.
 The public software repository is
 the [DuckRabbit public GitHub repository](https://github.com/docxology/DuckRabbit).
 
@@ -26,18 +26,28 @@ uv run python -m duckrabbit audit --output-root output --release
 `generate_publication_outputs.py` (also exposed as `duckrabbit publish`)
 regenerates the 15 scientific figures, 10 tables, source-data
 sidecars, figure registry, cover variants, and visual-QA report. The cover is
-an editorial charcoal illustration with recorded provenance; it is not a
-scientific stimulus or observer result. Scientific captions state controls,
-units or non-applicability, source-data lineage, limitations, and the boundary
-between deterministic media facts and future observer hypotheses.
+an editorial charcoal illustration; its reported generation history is
+unverified, while packaged source bytes and derived variants are checked.
+It is not a scientific stimulus, authenticated model record, or observer result.
+Each scientific caption records units or non-applicability, source-data lineage,
+limitations, and the boundary between deterministic media facts and future observer hypotheses.
 
 Audiovisual traces use actual sample/frame timestamps on one seconds axis and
-frame-held video luminance, including declared stream starts. Audio display
+frame-held Rec.709-weighted RGB channel proxies (no transfer-function or display
+calibration), including declared stream starts. Audio display
 bands retain their frequency edges, peak-magnitude aggregation, channel rule,
 normalization, and plotted values in the sidecar. These are illustrative
 summaries, not a replacement for the full-resolution magnitude-weighted
 spectral metrics. PNG quantizes canonical float32 pixels to uint8; provenance
 retains the canonical digest, while NPZ preserves exact canonical arrays.
+
+`--clean` recursively removes generated figures/data; use only a wholly owned
+output tree or preserve unrelated content first. Strict release auditing now
+replays all 15 source-owned builders and checks exact hydrated manuscript,
+variables, preamble, config, and bibliography. This is same-code consistency,
+not an independent scientific replication or authentication of authorship.
+Synthetic ablations and temperature ranges describe a finite hand-specified
+model sensitivity envelope, not a confidence interval or human uncertainty.
 
 The checked-in v0.5.0 PDF is an archived artifact. Current development prose,
 figures, and validation receipts do not certify that it was rebuilt or create
@@ -50,6 +60,19 @@ The later [October 19 review build](rendering-2026-10-19.md) uses a declared
 isolated overlay and distinct renderer snapshot. Its separately named PDF
 supports digital review; residual figure-text and editorial limitations are
 recorded rather than presented as archival or print-layout certification.
+
+The [November 8 audit](audit-2026-11-08.md) records the current candidate and
+fresh proof. The tagged/GitHub v0.5.0 PDF, the retained root PDF and the Zenodo
+PDF are distinct byte identities; prior workflow descriptions do not establish
+their equivalence. Preserve all three rather than rewriting historical artifacts.
+
+The [current-source candidate bundle](../output/review-2026-11-08/) is separate
+from all preserved historical output files. Its top-level manuscript, figures,
+data and native reports are canonical; declared typesetting adaptations and
+evidence are separate. It can be checked with
+`uv run python -m duckrabbit audit --output-root output/review-2026-11-08 --release`.
+That same-code check is not the unresolved live identity gate or authorization
+to create a tag, release or DOI.
 
 The complete catalog/source-tier matrix is rendered in the standalone
 `docs/manuscript/09_appendix_catalog.md` section rather than embedded in the main
@@ -64,8 +87,10 @@ The checked-in scholarship matrix is an offline snapshot. It validates source
 shape, bibliography linkage, exact supported claims, and evidence gaps without
 pretending that a URL is currently reachable. The explicit network audit
 (`scripts/audit_scholarship.py`) distinguishes DOI metadata matches,
-access-controlled pages, unresolved reachable URLs, mismatches, unavailable
-records, and DOI-less archival sources.
+access-controlled pages, unresolved reachable URLs, mismatches and unavailable
+records. A successful HEAD request to a DOI-less archive remains unresolved;
+it cannot certify title/author/year identity. The release-time command fails
+unless every source has identity evidence; do not lower this gate to publish.
 
 Release requires no participant data, no universal perceptual claim, no stale
 hash, and no unresolved manuscript token. A future observer study needs its own

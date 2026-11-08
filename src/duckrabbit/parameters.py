@@ -8,7 +8,8 @@ from dataclasses import dataclass, fields, is_dataclass, replace
 from enum import Enum
 from numbers import Integral, Real
 from fractions import Fraction
-from typing import Any, TypeVar
+from types import UnionType
+from typing import Any, TypeVar, Union, get_args, get_origin, get_type_hints
 
 from .errors import ParameterValidationError
 
@@ -16,7 +17,10 @@ from .errors import ParameterValidationError
 def _finite(value: float, name: str) -> float:
     if isinstance(value, bool) or not isinstance(value, Real):
         raise ParameterValidationError(f"{name} must be a real number, got {value!r}")
-    value = float(value)
+    try:
+        value = float(value)
+    except OverflowError as exc:
+        raise ParameterValidationError(f"{name} must be representable as a finite float") from exc
     if not math.isfinite(value):
         raise ParameterValidationError(f"{name} must be finite, got {value!r}")
     return value
@@ -569,6 +573,17 @@ class AudioConfig:
             raise ParameterValidationError("audio phase must be PhaseRadians")
         if not isinstance(self.envelope, Envelope):
             raise ParameterValidationError("audio envelope must be an Envelope")
+        _ = self.sample_count
+
+    @property
+    def sample_count(self) -> SampleCount:
+        """Bounded, nearest-even rounded sample count, validated before allocation."""
+        count = self.sample_rate.value * self.duration.value
+        if not math.isfinite(count) or count > SampleCount.maximum + 0.5:
+            raise ParameterValidationError(
+                f"audio sample count must round into [{SampleCount.minimum}, {SampleCount.maximum}]"
+            )
+        return SampleCount(round(count))
 
 
 @dataclass(frozen=True)
@@ -624,8 +639,28 @@ class AudiovisualConfig:
 ConfigT = TypeVar("ConfigT", ImageConfig, AudioConfig, VideoConfig, AudiovisualConfig)
 
 
-def _coerce(current: Any, value: Any) -> Any:
-    """Coerce JSON-friendly scalar overrides using an existing typed default."""
+def _optional_type(annotation: object) -> object | None:
+    """Return the single declared non-null type of an Optional annotation."""
+    if get_origin(annotation) in (Union, UnionType):
+        members = get_args(annotation)
+        non_null = tuple(member for member in members if member is not type(None))
+        if len(non_null) == 1 and len(members) == 2:
+            return non_null[0]
+    return None
+
+
+def _coerce(current: Any, value: Any, annotation: object = None) -> Any:
+    """Coerce JSON overrides using defaults and declared optional value types."""
+    optional_type = _optional_type(annotation)
+    if optional_type is not None:
+        if value is None:
+            return None
+        if is_dataclass(optional_type) and tuple(field.name for field in fields(optional_type)) == ("value",):
+            if isinstance(value, Mapping):
+                if set(value) != {"value"}:
+                    raise ParameterValidationError("optional value objects must contain only 'value'")
+                value = value["value"]
+            return optional_type(value)
     if isinstance(
         current,
         (
@@ -649,8 +684,9 @@ def _coerce(current: Any, value: Any) -> Any:
         unknown = sorted(set(value) - allowed)
         if unknown:
             raise ParameterValidationError(f"unknown configuration field(s): {', '.join(unknown)}")
+        hints = get_type_hints(type(current))
         updates = {
-            field.name: _coerce(getattr(current, field.name), value[field.name])
+            field.name: _coerce(getattr(current, field.name), value[field.name], hints.get(field.name))
             for field in fields(current)
             if field.name in value
         }
@@ -722,8 +758,9 @@ def replace_from_mapping(parameters: Any, mapping: Mapping[str, Any]) -> Any:
     unknown = sorted(set(mapping) - allowed)
     if unknown:
         raise ParameterValidationError(f"unknown parameter field(s): {', '.join(unknown)}")
+    hints = get_type_hints(type(parameters))
     updates = {
-        field.name: _coerce(getattr(parameters, field.name), mapping[field.name])
+        field.name: _coerce(getattr(parameters, field.name), mapping[field.name], hints.get(field.name))
         for field in fields(parameters)
         if field.name in mapping
     }

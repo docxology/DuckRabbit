@@ -1,0 +1,2215 @@
+{
+  "data": {
+    "stimuli": [
+      {
+        "canonical_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+        "illusion_id": "visual.duck_rabbit",
+        "metrics": {
+          "artifact_type": "image",
+          "computation_version": "duckrabbit/metrics/v3",
+          "records": [
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "3f3ecee7880d7cbbf9dc54c2f8fe8a3270776e869e9f4135e4857852de0d1b7d",
+              "name": "width",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "b380947c73dc435f21213db0c3deb078d6af1be69e5de33da9bf3497e52d7632",
+              "name": "height",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "ccb8afa64754e32c4718b4a700f5c45f7cde5ece44053b015dcb48eaa22cf419",
+              "name": "channels",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "channels",
+              "value": 1,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "86267c993199fa50433c8e124b380529ae391ac3115ecbd2a6b0915af8e1ae3a",
+              "name": "mean_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.7769991755485535,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "3a3c05234d8f18ee70e971f12adedbfbb154389b3fc095a9e9182ec00883b8dd",
+              "name": "std_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.370724618434906,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "693741c305f0f96de270a5a0cd7c931a6da59bcec2d49a22d88979da8d6964d4",
+              "name": "unique_values",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "levels",
+              "value": 3,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "819fbedb063c3d7239c8f0c0b5f1025609a6b0422024659ed63e4e5364f54e71",
+              "name": "min_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.0,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "45780ec82affd05c77ada3f5afeb9a7c76e877ad3189f6d950f7d7135bf2c041",
+              "name": "max_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 1.0,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "6e2bd39bf189177a25c07027475e0f95809291bec9257df485d8d40a3f770408",
+              "name": "effective_dynamic_range",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 1.0,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            }
+          ],
+          "values": {
+            "channels": 1,
+            "effective_dynamic_range": 1.0,
+            "height": 256,
+            "max_luminance": 1.0,
+            "mean_luminance": 0.7769991755485535,
+            "min_luminance": 0.0,
+            "std_luminance": 0.370724618434906,
+            "unique_values": 3,
+            "width": 256
+          }
+        },
+        "parameters": {
+          "config": {
+            "grayscale_levels": {
+              "value": 256
+            },
+            "height": 256,
+            "luminance_range": {
+              "maximum": {
+                "value": 1.0
+              },
+              "minimum": {
+                "value": 0.0
+              }
+            },
+            "mode": "L",
+            "quantization_levels": {
+              "value": 256
+            },
+            "width": 256
+          },
+          "duck_weight": {
+            "value": 0.5
+          }
+        },
+        "seed": 0
+      },
+      {
+        "canonical_digest": "696ba38b0a6172f8d8a44f14d0a917179efaa7badd30b1b03ac52e1f8341c294",
+        "illusion_id": "visual.simultaneous_contrast",
+        "metrics": {
+          "artifact_type": "image",
+          "computation_version": "duckrabbit/metrics/v3",
+          "records": [
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "3f3ecee7880d7cbbf9dc54c2f8fe8a3270776e869e9f4135e4857852de0d1b7d",
+              "name": "width",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "b380947c73dc435f21213db0c3deb078d6af1be69e5de33da9bf3497e52d7632",
+              "name": "height",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "ccb8afa64754e32c4718b4a700f5c45f7cde5ece44053b015dcb48eaa22cf419",
+              "name": "channels",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "channels",
+              "value": 1,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "86267c993199fa50433c8e124b380529ae391ac3115ecbd2a6b0915af8e1ae3a",
+              "name": "mean_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.5002451539039612,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "3a3c05234d8f18ee70e971f12adedbfbb154389b3fc095a9e9182ec00883b8dd",
+              "name": "std_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.3283127546310425,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "693741c305f0f96de270a5a0cd7c931a6da59bcec2d49a22d88979da8d6964d4",
+              "name": "unique_values",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "levels",
+              "value": 3,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "819fbedb063c3d7239c8f0c0b5f1025609a6b0422024659ed63e4e5364f54e71",
+              "name": "min_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.14901961386203766,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "45780ec82affd05c77ada3f5afeb9a7c76e877ad3189f6d950f7d7135bf2c041",
+              "name": "max_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.8509804010391235,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "6e2bd39bf189177a25c07027475e0f95809291bec9257df485d8d40a3f770408",
+              "name": "effective_dynamic_range",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.7019607871770859,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            }
+          ],
+          "values": {
+            "channels": 1,
+            "effective_dynamic_range": 0.7019607871770859,
+            "height": 256,
+            "max_luminance": 0.8509804010391235,
+            "mean_luminance": 0.5002451539039612,
+            "min_luminance": 0.14901961386203766,
+            "std_luminance": 0.3283127546310425,
+            "unique_values": 3,
+            "width": 256
+          }
+        },
+        "parameters": {
+          "center_luminance": {
+            "value": 0.5
+          },
+          "config": {
+            "grayscale_levels": {
+              "value": 256
+            },
+            "height": 256,
+            "luminance_range": {
+              "maximum": {
+                "value": 1.0
+              },
+              "minimum": {
+                "value": 0.0
+              }
+            },
+            "mode": "L",
+            "quantization_levels": {
+              "value": 256
+            },
+            "width": 256
+          },
+          "left_surround": {
+            "value": 0.15
+          },
+          "patch_fraction": {
+            "value": 0.25
+          },
+          "right_surround": {
+            "value": 0.85
+          }
+        },
+        "seed": 0
+      },
+      {
+        "canonical_digest": "acc31937b46e7e39b36d44b6c119971734374beb87b644e5f541d77451174eff",
+        "illusion_id": "visual.apparent_motion",
+        "metrics": {
+          "artifact_type": "video",
+          "computation_version": "duckrabbit/metrics/v3",
+          "records": [
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "1a7265f0b00def8e08f37fcd51a506b428a7635ab0a592886eeab6a3bbf0bfab",
+              "name": "width",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "all_channels_adjacent_frame_absolute_difference",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "C_contiguous_float32_absolute_difference_mean",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "all_adjacent_frames; frames=6; frame_rate_hz=12.0; shape=(256, 256)"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256,
+              "window_sha256": "99b62046ea991d9de236f773cbdc657611eece0786d5e1ff560a5930c4668e8c"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "b0db994bfbb135c41fe4b6ce29e479fb1621bc6cc0f2b821eb512b12ecbe7394",
+              "name": "height",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "all_channels_adjacent_frame_absolute_difference",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "C_contiguous_float32_absolute_difference_mean",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "all_adjacent_frames; frames=6; frame_rate_hz=12.0; shape=(256, 256)"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256,
+              "window_sha256": "99b62046ea991d9de236f773cbdc657611eece0786d5e1ff560a5930c4668e8c"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "33107d8a42e0215add2a800e3f2288a1faa79c37337e2c5e70d39e6cdb70c809",
+              "name": "frames",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "all_channels_adjacent_frame_absolute_difference",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "C_contiguous_float32_absolute_difference_mean",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "all_adjacent_frames; frames=6; frame_rate_hz=12.0; shape=(256, 256)"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "frames",
+              "value": 6,
+              "window_sha256": "99b62046ea991d9de236f773cbdc657611eece0786d5e1ff560a5930c4668e8c"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "c670cc8783aac07e51f4496aa96640f85150f7027a0ec7c266a389f3a64f75e3",
+              "name": "frame_rate",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "all_channels_adjacent_frame_absolute_difference",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "C_contiguous_float32_absolute_difference_mean",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "all_adjacent_frames; frames=6; frame_rate_hz=12.0; shape=(256, 256)"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "frames/second",
+              "value": 12.0,
+              "window_sha256": "99b62046ea991d9de236f773cbdc657611eece0786d5e1ff560a5930c4668e8c"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "a4b41ee3901f1cf86cad27d01f653000d8dd04ff6bebf6b051e7a807ae43a86e",
+              "name": "duration_seconds",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "all_channels_adjacent_frame_absolute_difference",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "C_contiguous_float32_absolute_difference_mean",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "all_adjacent_frames; frames=6; frame_rate_hz=12.0; shape=(256, 256)"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "seconds",
+              "value": 0.5,
+              "window_sha256": "99b62046ea991d9de236f773cbdc657611eece0786d5e1ff560a5930c4668e8c"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "dc1c05d3b495d08cf9e03804150b3438313dc77000be19a660cb5264968c12bf",
+              "name": "mean_temporal_delta",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "all_channels_adjacent_frame_absolute_difference",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "C_contiguous_float32_absolute_difference_mean",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "all_adjacent_frames; frames=6; frame_rate_hz=12.0; shape=(256, 256)"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_pixel_difference",
+              "value": 0.2421875,
+              "window_sha256": "99b62046ea991d9de236f773cbdc657611eece0786d5e1ff560a5930c4668e8c"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "c015e71a3ecc8396eada586936e53882cc7168bc660cc98499ec36cc87384279",
+              "name": "temporal_deltas",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "all_channels_adjacent_frame_absolute_difference",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "C_contiguous_float32_absolute_difference_mean",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "all_adjacent_frames; frames=6; frame_rate_hz=12.0; shape=(256, 256)"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_pixel_difference",
+              "value": [
+                0.2421875,
+                0.2421875,
+                0.2421875,
+                0.2421875,
+                0.2421875
+              ],
+              "window_sha256": "99b62046ea991d9de236f773cbdc657611eece0786d5e1ff560a5930c4668e8c"
+            }
+          ],
+          "values": {
+            "duration_seconds": 0.5,
+            "frame_rate": 12.0,
+            "frames": 6,
+            "height": 256,
+            "mean_temporal_delta": 0.2421875,
+            "temporal_deltas": [
+              0.2421875,
+              0.2421875,
+              0.2421875,
+              0.2421875,
+              0.2421875
+            ],
+            "width": 256
+          }
+        },
+        "parameters": {
+          "bar_width": {
+            "value": 0.12
+          },
+          "config": {
+            "frame_count": 6,
+            "frame_rate": {
+              "value": 12.0
+            },
+            "height": 256,
+            "width": 256
+          },
+          "displacement": {
+            "value": 0.55
+          }
+        },
+        "seed": 0
+      },
+      {
+        "canonical_digest": "8edb97646f6f1ea470da77c15556fd3190bb25e8e03935a46620327febbdfe61",
+        "illusion_id": "visual.muller_lyer",
+        "metrics": {
+          "artifact_type": "image",
+          "computation_version": "duckrabbit/metrics/v3",
+          "records": [
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "3f3ecee7880d7cbbf9dc54c2f8fe8a3270776e869e9f4135e4857852de0d1b7d",
+              "name": "width",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "b380947c73dc435f21213db0c3deb078d6af1be69e5de33da9bf3497e52d7632",
+              "name": "height",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "ccb8afa64754e32c4718b4a700f5c45f7cde5ece44053b015dcb48eaa22cf419",
+              "name": "channels",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "channels",
+              "value": 1,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "86267c993199fa50433c8e124b380529ae391ac3115ecbd2a6b0915af8e1ae3a",
+              "name": "mean_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.02740478515625,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "3a3c05234d8f18ee70e971f12adedbfbb154389b3fc095a9e9182ec00883b8dd",
+              "name": "std_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.16325980424880981,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "693741c305f0f96de270a5a0cd7c931a6da59bcec2d49a22d88979da8d6964d4",
+              "name": "unique_values",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "levels",
+              "value": 2,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "819fbedb063c3d7239c8f0c0b5f1025609a6b0422024659ed63e4e5364f54e71",
+              "name": "min_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.0,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "45780ec82affd05c77ada3f5afeb9a7c76e877ad3189f6d950f7d7135bf2c041",
+              "name": "max_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 1.0,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "6e2bd39bf189177a25c07027475e0f95809291bec9257df485d8d40a3f770408",
+              "name": "effective_dynamic_range",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 1.0,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            }
+          ],
+          "values": {
+            "channels": 1,
+            "effective_dynamic_range": 1.0,
+            "height": 256,
+            "max_luminance": 1.0,
+            "mean_luminance": 0.02740478515625,
+            "min_luminance": 0.0,
+            "std_luminance": 0.16325980424880981,
+            "unique_values": 2,
+            "width": 256
+          }
+        },
+        "parameters": {
+          "arrow_angle": {
+            "value": 30.0
+          },
+          "arrow_length": {
+            "value": 0.1
+          },
+          "config": {
+            "grayscale_levels": {
+              "value": 256
+            },
+            "height": 256,
+            "luminance_range": {
+              "maximum": {
+                "value": 1.0
+              },
+              "minimum": {
+                "value": 0.0
+              }
+            },
+            "mode": "L",
+            "quantization_levels": {
+              "value": 256
+            },
+            "width": 256
+          },
+          "line_length": {
+            "value": 0.48
+          },
+          "separation": {
+            "value": 0.25
+          },
+          "tip_inward": true
+        },
+        "seed": 0
+      },
+      {
+        "canonical_digest": "10374fb3187dc6bfa5b3505b8e48ba68c1679ce3d74ef7ad109320e882869693",
+        "illusion_id": "visual.poggendorff",
+        "metrics": {
+          "artifact_type": "image",
+          "computation_version": "duckrabbit/metrics/v3",
+          "records": [
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "3f3ecee7880d7cbbf9dc54c2f8fe8a3270776e869e9f4135e4857852de0d1b7d",
+              "name": "width",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "b380947c73dc435f21213db0c3deb078d6af1be69e5de33da9bf3497e52d7632",
+              "name": "height",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "ccb8afa64754e32c4718b4a700f5c45f7cde5ece44053b015dcb48eaa22cf419",
+              "name": "channels",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "channels",
+              "value": 1,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "86267c993199fa50433c8e124b380529ae391ac3115ecbd2a6b0915af8e1ae3a",
+              "name": "mean_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.8984388709068298,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "3a3c05234d8f18ee70e971f12adedbfbb154389b3fc095a9e9182ec00883b8dd",
+              "name": "std_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.21523305773735046,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "693741c305f0f96de270a5a0cd7c931a6da59bcec2d49a22d88979da8d6964d4",
+              "name": "unique_values",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "levels",
+              "value": 3,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "819fbedb063c3d7239c8f0c0b5f1025609a6b0422024659ed63e4e5364f54e71",
+              "name": "min_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.0,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "45780ec82affd05c77ada3f5afeb9a7c76e877ad3189f6d950f7d7135bf2c041",
+              "name": "max_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 1.0,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "6e2bd39bf189177a25c07027475e0f95809291bec9257df485d8d40a3f770408",
+              "name": "effective_dynamic_range",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 1.0,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            }
+          ],
+          "values": {
+            "channels": 1,
+            "effective_dynamic_range": 1.0,
+            "height": 256,
+            "max_luminance": 1.0,
+            "mean_luminance": 0.8984388709068298,
+            "min_luminance": 0.0,
+            "std_luminance": 0.21523305773735046,
+            "unique_values": 3,
+            "width": 256
+          }
+        },
+        "parameters": {
+          "config": {
+            "grayscale_levels": {
+              "value": 256
+            },
+            "height": 256,
+            "luminance_range": {
+              "maximum": {
+                "value": 1.0
+              },
+              "minimum": {
+                "value": 0.0
+              }
+            },
+            "mode": "L",
+            "quantization_levels": {
+              "value": 256
+            },
+            "width": 256
+          },
+          "line_angle": {
+            "value": 28.0
+          },
+          "occluder_fraction": {
+            "value": 0.18
+          }
+        },
+        "seed": 0
+      },
+      {
+        "canonical_digest": "e5a04c8921001f4740de3eb46327122f9d650e13587bdcee547a282ac603f4fc",
+        "illusion_id": "visual.ponzo",
+        "metrics": {
+          "artifact_type": "image",
+          "computation_version": "duckrabbit/metrics/v3",
+          "records": [
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "3f3ecee7880d7cbbf9dc54c2f8fe8a3270776e869e9f4135e4857852de0d1b7d",
+              "name": "width",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "b380947c73dc435f21213db0c3deb078d6af1be69e5de33da9bf3497e52d7632",
+              "name": "height",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "ccb8afa64754e32c4718b4a700f5c45f7cde5ece44053b015dcb48eaa22cf419",
+              "name": "channels",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "channels",
+              "value": 1,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "86267c993199fa50433c8e124b380529ae391ac3115ecbd2a6b0915af8e1ae3a",
+              "name": "mean_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.95794677734375,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "3a3c05234d8f18ee70e971f12adedbfbb154389b3fc095a9e9182ec00883b8dd",
+              "name": "std_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.20071060955524445,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "693741c305f0f96de270a5a0cd7c931a6da59bcec2d49a22d88979da8d6964d4",
+              "name": "unique_values",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "levels",
+              "value": 2,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "819fbedb063c3d7239c8f0c0b5f1025609a6b0422024659ed63e4e5364f54e71",
+              "name": "min_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.0,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "45780ec82affd05c77ada3f5afeb9a7c76e877ad3189f6d950f7d7135bf2c041",
+              "name": "max_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 1.0,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "6e2bd39bf189177a25c07027475e0f95809291bec9257df485d8d40a3f770408",
+              "name": "effective_dynamic_range",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 1.0,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            }
+          ],
+          "values": {
+            "channels": 1,
+            "effective_dynamic_range": 1.0,
+            "height": 256,
+            "max_luminance": 1.0,
+            "mean_luminance": 0.95794677734375,
+            "min_luminance": 0.0,
+            "std_luminance": 0.20071060955524445,
+            "unique_values": 2,
+            "width": 256
+          }
+        },
+        "parameters": {
+          "config": {
+            "grayscale_levels": {
+              "value": 256
+            },
+            "height": 256,
+            "luminance_range": {
+              "maximum": {
+                "value": 1.0
+              },
+              "minimum": {
+                "value": 0.0
+              }
+            },
+            "mode": "L",
+            "quantization_levels": {
+              "value": 256
+            },
+            "width": 256
+          },
+          "convergence": {
+            "value": 0.18
+          },
+          "target_separation": {
+            "value": 0.28
+          }
+        },
+        "seed": 0
+      },
+      {
+        "canonical_digest": "7b24eae3a35eb38b71b2dca1813599103257d87b5ce97cc2d4a8a5cecc02eabd",
+        "illusion_id": "visual.kanizsa_triangle",
+        "metrics": {
+          "artifact_type": "image",
+          "computation_version": "duckrabbit/metrics/v3",
+          "records": [
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "3f3ecee7880d7cbbf9dc54c2f8fe8a3270776e869e9f4135e4857852de0d1b7d",
+              "name": "width",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "b380947c73dc435f21213db0c3deb078d6af1be69e5de33da9bf3497e52d7632",
+              "name": "height",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "ccb8afa64754e32c4718b4a700f5c45f7cde5ece44053b015dcb48eaa22cf419",
+              "name": "channels",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "channels",
+              "value": 1,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "86267c993199fa50433c8e124b380529ae391ac3115ecbd2a6b0915af8e1ae3a",
+              "name": "mean_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.922088623046875,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "3a3c05234d8f18ee70e971f12adedbfbb154389b3fc095a9e9182ec00883b8dd",
+              "name": "std_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.2680320739746094,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "693741c305f0f96de270a5a0cd7c931a6da59bcec2d49a22d88979da8d6964d4",
+              "name": "unique_values",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "levels",
+              "value": 2,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "819fbedb063c3d7239c8f0c0b5f1025609a6b0422024659ed63e4e5364f54e71",
+              "name": "min_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.0,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "45780ec82affd05c77ada3f5afeb9a7c76e877ad3189f6d950f7d7135bf2c041",
+              "name": "max_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 1.0,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "6e2bd39bf189177a25c07027475e0f95809291bec9257df485d8d40a3f770408",
+              "name": "effective_dynamic_range",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 1.0,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            }
+          ],
+          "values": {
+            "channels": 1,
+            "effective_dynamic_range": 1.0,
+            "height": 256,
+            "max_luminance": 1.0,
+            "mean_luminance": 0.922088623046875,
+            "min_luminance": 0.0,
+            "std_luminance": 0.2680320739746094,
+            "unique_values": 2,
+            "width": 256
+          }
+        },
+        "parameters": {
+          "config": {
+            "grayscale_levels": {
+              "value": 256
+            },
+            "height": 256,
+            "luminance_range": {
+              "maximum": {
+                "value": 1.0
+              },
+              "minimum": {
+                "value": 0.0
+              }
+            },
+            "mode": "L",
+            "quantization_levels": {
+              "value": 256
+            },
+            "width": 256
+          },
+          "gap_fraction": {
+            "value": 0.3
+          },
+          "inducer_radius": {
+            "value": 0.1
+          }
+        },
+        "seed": 0
+      },
+      {
+        "canonical_digest": "7611966d0f6176fab5c6ba07077540c4c0fd69ce587a0fb2be35b409e11d9a38",
+        "illusion_id": "visual.ebbinghaus",
+        "metrics": {
+          "artifact_type": "image",
+          "computation_version": "duckrabbit/metrics/v3",
+          "records": [
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "3f3ecee7880d7cbbf9dc54c2f8fe8a3270776e869e9f4135e4857852de0d1b7d",
+              "name": "width",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "b380947c73dc435f21213db0c3deb078d6af1be69e5de33da9bf3497e52d7632",
+              "name": "height",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "ccb8afa64754e32c4718b4a700f5c45f7cde5ece44053b015dcb48eaa22cf419",
+              "name": "channels",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "channels",
+              "value": 1,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "86267c993199fa50433c8e124b380529ae391ac3115ecbd2a6b0915af8e1ae3a",
+              "name": "mean_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.4235880970954895,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "3a3c05234d8f18ee70e971f12adedbfbb154389b3fc095a9e9182ec00883b8dd",
+              "name": "std_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.09018751233816147,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "693741c305f0f96de270a5a0cd7c931a6da59bcec2d49a22d88979da8d6964d4",
+              "name": "unique_values",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "levels",
+              "value": 3,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "819fbedb063c3d7239c8f0c0b5f1025609a6b0422024659ed63e4e5364f54e71",
+              "name": "min_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.14901961386203766,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "45780ec82affd05c77ada3f5afeb9a7c76e877ad3189f6d950f7d7135bf2c041",
+              "name": "max_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.6509804129600525,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "6e2bd39bf189177a25c07027475e0f95809291bec9257df485d8d40a3f770408",
+              "name": "effective_dynamic_range",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.5019607990980148,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            }
+          ],
+          "values": {
+            "channels": 1,
+            "effective_dynamic_range": 0.5019607990980148,
+            "height": 256,
+            "max_luminance": 0.6509804129600525,
+            "mean_luminance": 0.4235880970954895,
+            "min_luminance": 0.14901961386203766,
+            "std_luminance": 0.09018751233816147,
+            "unique_values": 3,
+            "width": 256
+          }
+        },
+        "parameters": {
+          "center_radius": {
+            "value": 0.08
+          },
+          "config": {
+            "grayscale_levels": {
+              "value": 256
+            },
+            "height": 256,
+            "luminance_range": {
+              "maximum": {
+                "value": 1.0
+              },
+              "minimum": {
+                "value": 0.0
+              }
+            },
+            "mode": "L",
+            "quantization_levels": {
+              "value": 256
+            },
+            "width": 256
+          },
+          "context_count": 8,
+          "left_context_radius": {
+            "value": 0.045
+          },
+          "right_context_radius": {
+            "value": 0.15
+          }
+        },
+        "seed": 0
+      },
+      {
+        "canonical_digest": "917daad5dcb02ed3cc5c125888f865240b272d3b81cd1a936af8c05ca4223c6a",
+        "illusion_id": "visual.zollner",
+        "metrics": {
+          "artifact_type": "image",
+          "computation_version": "duckrabbit/metrics/v3",
+          "records": [
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "3f3ecee7880d7cbbf9dc54c2f8fe8a3270776e869e9f4135e4857852de0d1b7d",
+              "name": "width",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "b380947c73dc435f21213db0c3deb078d6af1be69e5de33da9bf3497e52d7632",
+              "name": "height",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "pixels",
+              "value": 256,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "ccb8afa64754e32c4718b4a700f5c45f7cde5ece44053b015dcb48eaa22cf419",
+              "name": "channels",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "channels",
+              "value": 1,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "86267c993199fa50433c8e124b380529ae391ac3115ecbd2a6b0915af8e1ae3a",
+              "name": "mean_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.9374847412109375,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "3a3c05234d8f18ee70e971f12adedbfbb154389b3fc095a9e9182ec00883b8dd",
+              "name": "std_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.24208903312683105,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "693741c305f0f96de270a5a0cd7c931a6da59bcec2d49a22d88979da8d6964d4",
+              "name": "unique_values",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "levels",
+              "value": 2,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "819fbedb063c3d7239c8f0c0b5f1025609a6b0422024659ed63e4e5364f54e71",
+              "name": "min_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 0.0,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "45780ec82affd05c77ada3f5afeb9a7c76e877ad3189f6d950f7d7135bf2c041",
+              "name": "max_luminance",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 1.0,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            },
+            {
+              "claim_level": "physical_metric",
+              "computation_sha256": "6e2bd39bf189177a25c07027475e0f95809291bec9257df485d8d40a3f770408",
+              "name": "effective_dynamic_range",
+              "provenance": {
+                "algorithm": "duckrabbit/metrics/v3",
+                "channel_rule": "Rec.709_coefficients_on_RGB_values; grayscale_identity",
+                "color_space": "uncalibrated_normalized_channel_values",
+                "implementation_sources": "metrics.py; artifacts.py",
+                "numpy_version": "2.4.2",
+                "source_sha256": "b9343630db49d242257d92b33bded8cd71ecb25c4434ff579cff9efcdce1181d",
+                "spectral_window": "not_applicable",
+                "temporal_reduction": "not_applicable",
+                "transfer_function": "none_applied; not_display_calibrated",
+                "window": "full_image; shape=(256, 256); grayscale_identity_or_RGB_weighted_proxy"
+              },
+              "source": "canonical_artifact",
+              "tolerance": null,
+              "unit": "normalized_luminance",
+              "value": 1.0,
+              "window_sha256": "c07e058255ab1c35d2bd759fb8011a288520e933931b4e9bc2127156a1d288b9"
+            }
+          ],
+          "values": {
+            "channels": 1,
+            "effective_dynamic_range": 1.0,
+            "height": 256,
+            "max_luminance": 1.0,
+            "mean_luminance": 0.9374847412109375,
+            "min_luminance": 0.0,
+            "std_luminance": 0.24208903312683105,
+            "unique_values": 2,
+            "width": 256
+          }
+        },
+        "parameters": {
+          "config": {
+            "grayscale_levels": {
+              "value": 256
+            },
+            "height": 256,
+            "luminance_range": {
+              "maximum": {
+                "value": 1.0
+              },
+              "minimum": {
+                "value": 0.0
+              }
+            },
+            "mode": "L",
+            "quantization_levels": {
+              "value": 256
+            },
+            "width": 256
+          },
+          "inducer_angle": {
+            "value": 30.0
+          },
+          "inducer_count": 5,
+          "inducer_length": {
+            "value": 0.1
+          },
+          "inducer_spacing": {
+            "value": 0.14
+          },
+          "line_count": 4,
+          "line_spacing": {
+            "value": 0.16
+          }
+        },
+        "seed": 0
+      }
+    ]
+  },
+  "figure_label": "fig:visual_panel",
+  "figure_stem": "visual_panel",
+  "generator": "duckrabbit.publication._visual_panel",
+  "parameters": {
+    "figure_stem": "visual_panel",
+    "seed": 0
+  },
+  "schema_version": "duckrabbit/figure-source/v1",
+  "seed": 0
+}

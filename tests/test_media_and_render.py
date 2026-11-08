@@ -6,6 +6,7 @@ import json
 import shutil
 import subprocess
 import wave
+import warnings
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -64,6 +65,44 @@ def test_wav_pcm_depths_are_real_and_size_consistent(tmp_path: Path):
 
     with pytest.raises(MediaEncodingError, match="AudioEncoding"):
         media.write_wav(audio, tmp_path / "invalid.wav", encoding=object())  # type: ignore[arg-type]
+
+
+@pytest.mark.parametrize("channels", [1, 2])
+def test_pcm32_real_wav_decodes_symmetric_full_and_near_endpoints_without_warnings(tmp_path: Path, channels: int):
+    samples = np.array([-1.0, np.nextafter(np.float32(-1.0), np.float32(0.0)), -0.5, 0.0, 0.5, np.nextafter(np.float32(1.0), np.float32(0.0)), 1.0], dtype=np.float32)
+    expected = np.array([-2147483647, -2147483519, -1073741824, 0, 1073741824, 2147483519, 2147483647], dtype=np.int64)
+    if channels == 2:
+        samples = np.column_stack((samples, samples[::-1]))
+        expected = np.column_stack((expected, expected[::-1]))
+    audio = AudioBuffer(samples, SampleRate(8000))
+    with warnings.catch_warnings():
+        warnings.simplefilter("error", RuntimeWarning)
+        path = media.write_wav(audio, tmp_path / f"endpoints_{channels}.wav", encoding=AudioEncoding(PcmBitDepth(32)))
+    with wave.open(str(path), "rb") as decoded:
+        assert decoded.getsampwidth() == 4
+        assert decoded.getnchannels() == channels
+        assert decoded.getnframes() == 7
+        values = np.frombuffer(decoded.readframes(7), dtype="<i4").reshape(7, channels)
+    np.testing.assert_array_equal(values, expected.reshape(7, channels))
+
+
+@pytest.mark.parametrize("offset", [None, 0.0, -0.2, 0.2])
+def test_optional_visual_offset_completes_json_npz_manifest_roundtrip(tmp_path: Path, offset):
+    from duckrabbit.inspection import verify_manifest
+    from duckrabbit.manifest import read_manifest
+
+    supplied = None if offset is None else {"value": offset}
+    parameters = parameters_from_json("audiovisual.ventriloquist", {"visual_offset": supplied})
+    timeline, payload = generate_artifact("audiovisual.ventriloquist", parameters, output_dir=tmp_path, format_name="npz")
+    path = Path(payload["manifest"])
+    loaded = read_manifest(path)
+    assert loaded["parameters"]["visual_offset"] == supplied
+    effective = parameters.config.spatial_offset.value if offset is None else offset
+    assert timeline.spatial_offset.value == effective
+    restored = media.read_npz(Path(payload["output"]))
+    assert restored.spatial_offset.value == effective
+    assert artifact_digest(restored) == artifact_digest(timeline)
+    assert verify_manifest(path)["status"] == "verified"
 
 
 def test_manifest_and_digest_are_stable(tmp_path: Path):

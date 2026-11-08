@@ -1,0 +1,8 @@
+Resolved 1 package in 0.66ms
+   Building duckrabbit @ file:///Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+      Built duckrabbit @ file:///Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+Prepared 1 package in 214ms
+Uninstalled 1 package in 1ms
+Installed 1 package in 3ms
+ - duckrabbit==0.5.0 (from file:///Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit)
+ + duckrabbit==0.6.0 (from file:///Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit)

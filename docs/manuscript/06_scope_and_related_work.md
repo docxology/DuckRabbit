@@ -207,13 +207,13 @@ pre-register the response scale, reference condition, estimand, exclusions,
 missing-data rule, randomization seed, display and playback controls, and
 uncertainty procedure. It must also report the participant and item sampling
 frame rather than importing a model-output probability as an assumed effect
-size. The observer harness is consequently study-ready scaffolding, not a
-result set.
+size. The observer harness is consequently an illustrative protocol and analysis
+contract, not a preregistration-ready study or result set.
 
 No participant data are bundled with DuckRabbit. The data-availability boundary
 is intentional: canonical artifacts, encoded fixtures where lawful, source-data
 sidecars, and deterministic synthetic diagnostics are software outputs;
-observer outcomes require separately governed data collection. The package is
-authored by Daniel Ari Friedman and is archived under DOI
-`10.5281/zenodo.21419693`; release metadata and software-citation guidance are
-generated from the same identity contract as the manuscript.
+observer outcomes require separately governed data collection. Daniel Ari
+Friedman authors the package. DOI `10.5281/zenodo.21419693` identifies the
+historical v0.5.0 archive, not the current forthcoming version. Current release
+metadata and software-citation guidance use the same manuscript identity contract.

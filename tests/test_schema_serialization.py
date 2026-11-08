@@ -13,9 +13,9 @@ import pytest
 from duckrabbit.artifacts import ImageFrame, VideoSequence
 from duckrabbit.canonical import canonical_bytes, canonical_chunks, canonical_digest, canonical_digest_and_size
 from duckrabbit.errors import ParameterValidationError
-from duckrabbit.generators import default_parameters
-from duckrabbit.parameters import FrameRate, replace_from_mapping
-from duckrabbit.schema import parameter_payload, parameter_schema
+from duckrabbit.generators import VentriloquistParams, default_parameters
+from duckrabbit.parameters import FrameRate, SpatialOffset, replace_from_mapping
+from duckrabbit.schema import _validate_json_value, parameter_payload, parameter_schema
 from duckrabbit.serialization import jsonable
 from duckrabbit.render import build_manifest_v2
 from duckrabbit.taxonomy import taxonomy_entries
@@ -147,3 +147,33 @@ def test_manifest_hash_and_byte_count_are_streamed() -> None:
 def test_parameter_overrides_reject_ambiguous_scalar_types(payload: dict) -> None:
     with pytest.raises(ParameterValidationError):
         replace_from_mapping(default_parameters("audio.shepard_tone"), payload)
+
+
+@pytest.mark.parametrize("default", [None, SpatialOffset(0.2)])
+@pytest.mark.parametrize("value", [None, {"value": 0.0}, {"value": -0.35}, {"value": 0.35}])
+def test_schema_validates_optional_value_objects_independently_of_default(default, value):
+    parameters = VentriloquistParams(visual_offset=default)
+    payload = parameter_payload(parameters)
+    payload["visual_offset"] = value
+    parameter_schema(parameters).validate_payload(payload)
+    restored = _validate_json_value("visual_offset", default, value, SpatialOffset | None)
+    assert restored == (None if value is None else SpatialOffset(value["value"]))
+
+
+@pytest.mark.parametrize("value", [0.2, True, "0.2", [], {}, {"value": 0.2, "extra": 1}, {"value": None}, {"value": float("nan")}, {"value": 2.0}])
+def test_optional_schema_rejects_noncanonical_or_invalid_serialized_values(value):
+    parameters = VentriloquistParams()
+    payload = parameter_payload(parameters)
+    payload["visual_offset"] = value
+    with pytest.raises(ParameterValidationError, match="visual_offset"):
+        parameter_schema(parameters).validate_payload(payload)
+
+
+def test_runtime_parameter_annotations_do_not_change_serialized_schema_fields():
+    schema = parameter_schema(VentriloquistParams())
+    for field in jsonable(schema)["fields"]:
+        assert set(field) == {"name", "type_name", "required", "default", "constraints"}
+    optional = next(field for field in schema.to_json()["fields"] if field["name"] == "visual_offset")
+    assert optional["default"] is None
+    audio = parameter_payload(default_parameters("audio.missing_fundamental"))["config"]
+    assert set(audio) == {"sample_rate", "channels", "duration", "amplitude", "phase", "envelope"}

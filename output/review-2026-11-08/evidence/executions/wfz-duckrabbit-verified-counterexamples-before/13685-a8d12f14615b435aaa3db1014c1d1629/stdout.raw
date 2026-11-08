@@ -1,0 +1,16 @@
+missing_audio verified
+transparent_png verified
+legacy_downgrade verified
+pcm32 {'samples': [-2147483648, 0, 2147483647], 'warnings': ['invalid value encountered in cast']}
+optional_visual_offset {'exception': 'ManifestValidationError', 'error': 'invalid v2 manifest: VentriloquistParams.visual_offset must be SpatialOffset'}
+short_gif {'checks': ['encoded_sha256', 'decoded_media', 'decoded_width', 'decoded_height', 'decoded_frames', 'decoded_duration_seconds'], 'errors': ['decoded frame_rate does not match manifest'], 'status': 'failed'}
+npz_summary verified
+npz_byte_count verified
+npz_observer_claim verified
+npz_rank {'exception': 'IndexError', 'error': 'list index out of range'}
+duration_overflow {'exception': 'OverflowError', 'error': 'cannot convert float infinity to integer'}
+false_cover_provenance False
+evidence_edge accepted unrelated speech source
+html_comment accepted comment without links
+observer_missing_reference [{'name': 'sifi_flash_count_contrast', 'response_kind': 'event_count', 'model': 'poisson_or_ordinal', 'primary_contrast': 'two-beep minus one-beep event-count response', 'reference_condition': 'absent', 'uncertainty': '95% confidence interval', 'multiplicity': 'Holm correction across confirmatory contrasts'}]
+zero_binary_labels [{'condition_id': 'c', 'label': 'duck', 'count': 8, 'total': 8, 'proportion': 1.0, 'interval_low': 0.67559243511612, 'interval_high': 1.0}]

@@ -1,0 +1,82 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.15.2, pytest-9.0.2, pluggy-1.6.0
+rootdir: /Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit
+configfile: pyproject.toml
+plugins: cov-7.0.0
+collected 540 items
+
+tests/test_catalog_contracts.py ....                                     [  0%]
+tests/test_cli.py ..........                                             [  2%]
+tests/test_evidence_contracts.py .........                               [  4%]
+tests/test_experiment_contracts.py ..........                            [  6%]
+tests/test_fixtures.py .......                                           [  7%]
+tests/test_generators.py .............................                   [ 12%]
+tests/test_import_boundaries.py .....                                    [ 13%]
+tests/test_io.py ......                                                  [ 14%]
+tests/test_manuscript_hydration.py ....                                  [ 15%]
+tests/test_media_and_render.py ...............                           [ 18%]
+tests/test_media_integrity.py .........................................  [ 25%]
+tests/test_metadata_integrity.py ..........                              [ 27%]
+tests/test_metrics_statistics.py ...........                             [ 29%]
+tests/test_observer_integrity.py ....................................... [ 37%]
+......................................................                   [ 47%]
+tests/test_packaging_contracts.py ...                                    [ 47%]
+tests/test_parameters.py ......................                          [ 51%]
+tests/test_performance.py ...................................            [ 58%]
+tests/test_project_audit.py ...                                          [ 58%]
+tests/test_publication_integrity.py .................................... [ 65%]
+......................                                                   [ 69%]
+tests/test_publication_v05.py .........                                  [ 71%]
+tests/test_publication_visualizations.py ...............                 [ 73%]
+tests/test_release_contracts.py ......                                   [ 75%]
+tests/test_schema_serialization.py ..................................... [ 81%]
+..                                                                       [ 82%]
+tests/test_scholarship_audit.py ........                                 [ 83%]
+tests/test_stimulus_integrity.py ....................................... [ 90%]
+....                                                                     [ 91%]
+tests/test_synthetic_psychophysics.py ....................               [ 95%]
+tests/test_v03_contracts.py ................                             [ 98%]
+tests/test_v04_scholarly.py .........                                    [100%]
+
+================================ tests coverage ================================
+_______________ coverage: platform darwin, python 3.15.2-final-0 _______________
+
+Name                                        Stmts   Miss Branch BrPart   Cover   Missing
+----------------------------------------------------------------------------------------
+src/duckrabbit/artifacts.py                   420      9    166      9  96.93%   25, 352, 354, 391, 393, 395, 397, 403, 413
+src/duckrabbit/audit.py                       112      6     32      5  90.97%   103-104, 116, 124, 134, 157
+src/duckrabbit/canonical.py                    51      0     14      0 100.00%
+src/duckrabbit/claims.py                       56      0     16      0 100.00%
+src/duckrabbit/cli.py                         136      5     36      3  95.35%   32, 101-103, 105
+src/duckrabbit/cover.py                        93      6     46      4  92.81%   52, 61-63, 113, 115, 131->145
+src/duckrabbit/errors.py                       10      0      0      0 100.00%
+src/duckrabbit/evidence.py                    360     37    168     26  88.07%   25, 62, 64, 66, 204, 213, 260, 266, 270, 274, 278, 281, 299, 304, 322, 326, 359-360, 367-368, 374, 376, 378, 386-387, 394, 398, 404, 417-418, 446-447, 465-466, 479, 505, 509
+src/duckrabbit/fixtures.py                     61      5     32      5  89.25%   52, 61, 63, 72, 100
+src/duckrabbit/formalism.py                    55      7     26      7  82.72%   31, 33, 35, 72, 78, 84, 103
+src/duckrabbit/generators.py                  613     37    176     34  91.00%   124, 126, 128, 130, 171, 173, 175, 208, 240, 283, 310, 411, 413, 492, 494, 525, 527, 568, 570, 574, 633, 637, 639, 641, 643, 684, 686, 690, 692-695, 721, 739, 745, 779, 902
+src/duckrabbit/inspection.py                  425     31    190     36  88.78%   113, 151-152, 163, 190->192, 229, 235-236, 241, 248->253, 292->291, 301, 303, 311, 314, 318, 326, 335, 338, 348, 353, 367, 373-374, 397-398, 402, 447, 453-455, 458->exit, 460->exit, 464->exit, 466->exit, 468->exit, 471->475, 473->475, 475->exit, 477->exit, 524, 526->528, 528->533, 531-532, 533->535
+src/duckrabbit/io.py                           28      0      6      1  97.06%   27->29
+src/duckrabbit/manifest.py                    245     10    104     12  93.70%   57, 59, 61, 63, 188->exit, 216, 218, 220, 247, 313->315, 326, 342
+src/duckrabbit/manuscript_variables.py         63      1     22      1  97.65%   32
+src/duckrabbit/media.py                       211     11     60     10  92.25%   53, 55, 57, 96, 110->112, 138, 209->211, 226, 281, 320-323, 386->399
+src/duckrabbit/metadata.py                    153     11     66      7  91.78%   18-19, 80-81, 91, 102, 112, 119, 140, 184, 250
+src/duckrabbit/metrics.py                      93      3     34      3  95.28%   39, 96, 107
+src/duckrabbit/observer.py                    109      3     48      3  96.18%   62, 106, 112
+src/duckrabbit/observer_analysis.py           437     45    188     41  85.92%   124->126, 205, 239, 241, 243, 245, 265, 267, 285, 287, 289, 344, 346, 351, 375, 378, 400, 402, 404, 406-407, 410, 413, 415, 418, 447, 449, 452, 454, 456, 459, 476, 520, 538, 578, 609, 611, 613, 618, 649, 654, 670, 675, 686, 688, 709
+src/duckrabbit/parameters.py                  441     36    130     17  89.67%   143, 193, 206, 219, 221, 232, 251, 255, 258, 268, 271, 296, 304, 356, 448, 481, 494, 506, 611, 613, 615, 645, 647, 661-662, 687-694, 701, 704, 718
+src/duckrabbit/performance.py                 257     22     96     13  88.39%   74, 113->133, 123, 146, 156-159, 186, 197, 200, 203, 206, 238, 261, 301, 308, 311-312, 333-336
+src/duckrabbit/publication.py                 844     35    236     24  94.17%   76-78, 89, 133, 175, 184->186, 210-211, 458, 493, 523, 556, 869, 889, 895-896, 910, 912, 916-920, 952, 955-956, 980, 983, 984->923, 993, 995, 1002-1003, 1005, 1026, 1328
+src/duckrabbit/publication_specs.py            68     11     28     10  78.12%   75, 78, 80, 82, 84, 88, 93, 95, 99, 124, 146
+src/duckrabbit/registry.py                     62      6     16      5  85.90%   35, 37, 39, 41, 61, 85
+src/duckrabbit/render.py                      135      7     46      6  90.61%   122, 135-137, 264-266, 271->325, 376->386, 394->402
+src/duckrabbit/schema.py                      116     13     58     12  84.48%   38, 47, 49->48, 78, 111, 136, 139, 150, 161, 164-166, 169, 176
+src/duckrabbit/scholarship.py                  95      0     36      1  99.24%   69->94
+src/duckrabbit/serialization.py                37      0     24      0 100.00%
+src/duckrabbit/synthetic_psychophysics.py     188     10     76     12  91.67%   130, 144, 214->216, 216->218, 246, 253, 301, 375, 377, 379, 381, 402
+src/duckrabbit/taxonomy.py                    152     23     56     21  78.85%   135, 137, 139, 146, 148, 150, 152, 154, 162, 165-166, 168, 427, 438, 440, 445, 447, 449, 451, 462, 464, 466, 471
+src/duckrabbit/urls.py                          5      0      0      0 100.00%
+src/duckrabbit/version.py                       2      0      0      0 100.00%
+----------------------------------------------------------------------------------------
+TOTAL                                        6133    390   2232    328  91.08%
+Required test coverage of 90% reached. Total coverage: 91.08%
+======================== 540 passed in 74.39s (0:01:14) ========================

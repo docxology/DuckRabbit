@@ -1,0 +1,261 @@
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex)
+entering extended mode
+(./_combined_manuscript.tex
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/base/size10.clo)) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/graphics-def/xetex.def) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/graphics/mathcolor.ltx)) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty)) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty)) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.sty)) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/l3kernel/l3backend-xetex.def)) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math-xetex.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/l3packages/xparse/xparse.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec.cfg))) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/base/fix-cm.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/base/ts1enc.def)) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math-table.tex))) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/upquote/upquote.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/base/textcomp.sty)) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/microtype/microtype.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/microtype/microtype-xetex.def) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/microtype/microtype.cfg)) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/parskip/parskip.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty))) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/tools/array.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/caption/caption.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/caption/caption3.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/caption/ltcaption.sty)) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/tools/calc.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/graphics/trig.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/graphics-cfg/graphics.cfg))) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/generic/babel/babel.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/generic/babel/xebabel.def) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/generic/babel/locale/en/babel-english.tex) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/generic/babel-english/english.ldf)) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/natbib/natbib.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/caption/subcaption.sty)
+==> First Aid for subcaption.sty applied!
+(/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/float/float.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/bookmark/bookmark.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescape.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty))) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/nameref/nameref.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty)) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hxetex.def (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty))) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/bookmark/bkm-xetex.def)) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/xurl/xurl.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/seqsplit/seqsplit.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/amscls/amsthm.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/geometry/geometry.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifvtex.sty)) (/Users/friedman/Documents/Codex/2026-10-17/fix/work/duckrabbit-tex-unblock/texmf/tex/latex/algorithm2e/algorithm2e.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/base/ifthen.sty) (/Users/friedman/Documents/Codex/2026-10-17/fix/work/duckrabbit-tex-unblock/texmf/tex/latex/ifoddpage/ifoddpage.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/tools/xspace.sty) (/Users/friedman/Documents/Codex/2026-10-17/fix/work/duckrabbit-tex-unblock/texmf/tex/latex/relsize/relsize.sty)) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/listings/listings.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/listings/lstpatch.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/listings/lstmisc.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/listings/listings.cfg)) (/Users/friedman/Documents/Codex/2026-10-17/fix/work/duckrabbit-tex-unblock/texmf/tex/latex/siunitx/siunitx.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/translations/translations.sty)
+Include code introduced on 2026-09-12
+
+Package siunitx Warning: Option "binary-units" has been removed in this
+(siunitx)                release.
+
+) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/cleveref/cleveref.sty) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/firstaid/latex-firstaid-pkg-cleveref.ltx
+==> First Aid for cleveref.sty applied!
+) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/fvextra/fvextra.sty (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/lineno/lineno.sty)) (./_combined_manuscript.aux) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/microtype/mt-LatinModernRoman.cfg)
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+(/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl) [1] (./_combined_manuscript.toc (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/microtype/mt-msa.cfg) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd) (/Users/friedman/Library/TinyTeX/texmf-dist/tex/latex/microtype/mt-msb.cfg)) [1] [2]
+
+Package natbib Warning: Citation `gregory1997visual' on page 3 undefined on input line 333.
+
+
+Package natbib Warning: Citation `hirst2020sound' on page 3 undefined on input line 339.
+
+
+Package natbib Warning: Citation `shams2000sifi' on page 3 undefined on input line 339.
+
+
+Package natbib Warning: Citation `sandve2013simple' on page 3 undefined on input line 352.
+
+
+Package natbib Warning: Citation `wilson2014bestpractices' on page 3 undefined on input line 352.
+
+
+Package natbib Warning: Citation `wilkinson2016fair' on page 3 undefined on input line 356.
+
+
+Package natbib Warning: Citation `lamprecht2020fairsoftware' on page 3 undefined on input line 356.
+
+
+Package natbib Warning: Citation `smith2016software' on page 3 undefined on input line 356.
+
+
+Package natbib Warning: Citation `fechner1860psychophysics' on page 3 undefined on input line 385.
+
+
+Package natbib Warning: Citation `wheatstone1838binocular' on page 3 undefined on input line 385.
+
+
+Package natbib Warning: Citation `helmholtz1867optics' on page 3 undefined on input line 388.
+
+
+Package natbib Warning: Citation `ptolemy1996optics' on page 3 undefined on input line 398.
+
+
+Package natbib Warning: Citation `alhazen1989optics' on page 3 undefined on input line 398.
+
+
+Package natbib Warning: Citation `mozi2023canons' on page 3 undefined on input line 398.
+
+
+Package natbib Warning: Citation `dai2015chinesescience' on page 3 undefined on input line 398.
+
+
+Package natbib Warning: Citation `kircher1646light' on page 3 undefined on input line 404.
+
+
+Package natbib Warning: Citation `berkeley1709vision' on page 3 undefined on input line 404.
+
+
+Package natbib Warning: Citation `molyneux2020problem' on page 3 undefined on input line 404.
+
+
+Package natbib Warning: Citation `cheselden1728sight' on page 3 undefined on input line 404.
+
+[3]
+
+Package natbib Warning: Citation `sandve2013simple' on page 4 undefined on input line 486.
+
+
+Package natbib Warning: Citation `wilson2014bestpractices' on page 4 undefined on input line 486.
+
+
+Package natbib Warning: Citation `smith2016software' on page 4 undefined on input line 491.
+
+
+Package natbib Warning: Citation `fechner1860psychophysics' on page 4 undefined on input line 497.
+
+[4] [5] [6] [7]
+
+Package natbib Warning: Citation `vroomen2004temporal' on page 8 undefined on input line 788.
+
+[8] [9] [10] [11] [12]
+
+Package natbib Warning: Citation `bruns2019ventriloquist' on page 13 undefined on input line 1068.
+
+
+Package natbib Warning: Citation `vroomen2004temporal' on page 13 undefined on input line 1068.
+
+[13] [14] [15] [16] [17]
+
+Package natbib Warning: Citation `sandve2013simple' on page 18 undefined on input line 1439.
+
+
+Package natbib Warning: Citation `wilson2014bestpractices' on page 18 undefined on input line 1439.
+
+
+Package natbib Warning: Citation `wilkinson2016fair' on page 18 undefined on input line 1443.
+
+
+Package natbib Warning: Citation `lamprecht2020fairsoftware' on page 18 undefined on input line 1443.
+
+[18]
+
+Package natbib Warning: Citation `smith2016software' on page 19 undefined on input line 1530.
+
+[19]
+
+Package natbib Warning: Citation `wade2017oppel' on page 20 undefined on input line 1579.
+
+
+Package natbib Warning: Citation `zoellner1860pseudoscopy' on page 20 undefined on input line 1582.
+
+
+Package natbib Warning: Citation `mullerlyer1889optical' on page 20 undefined on input line 1582.
+
+
+Package natbib Warning: Citation `gregory1997visual' on page 20 undefined on input line 1592.
+
+
+Package natbib Warning: Citation `brugger1999duckrabbit' on page 20 undefined on input line 1605.
+
+
+Package natbib Warning: Citation `mullerlyer1889optical' on page 20 undefined on input line 1610.
+
+
+Package natbib Warning: Citation `howe2005muller' on page 20 undefined on input line 1610.
+
+
+Package natbib Warning: Citation `morgan1999poggendorff' on page 20 undefined on input line 1617.
+
+
+Package natbib Warning: Citation `fisher1967ponzo' on page 20 undefined on input line 1621.
+
+
+Package natbib Warning: Citation `yildiz2022ponzo' on page 20 undefined on input line 1621.
+
+
+Package natbib Warning: Citation `kanizsa1976contours' on page 20 undefined on input line 1628.
+
+
+Package natbib Warning: Citation `wagemans2012gestalt' on page 20 undefined on input line 1628.
+
+
+Package natbib Warning: Citation `weintraub1979ebbinghaus' on page 20 undefined on input line 1634.
+
+
+Package natbib Warning: Citation `mruczek2015ebbinghaus' on page 20 undefined on input line 1634.
+
+
+Package natbib Warning: Citation `zoellner1860pseudoscopy' on page 20 undefined on input line 1639.
+
+
+Package natbib Warning: Citation `earle1995zollner' on page 20 undefined on input line 1639.
+
+[20]
+
+Package natbib Warning: Citation `wertheimer1912motion' on page 21 undefined on input line 1650.
+
+
+Package natbib Warning: Citation `sekuler1996wertheimer' on page 21 undefined on input line 1650.
+
+
+Package natbib Warning: Citation `stumpf1883tonpsychology' on page 21 undefined on input line 1660.
+
+
+Package natbib Warning: Citation `shepard1984scale' on page 21 undefined on input line 1660.
+
+
+Package natbib Warning: Citation `zatorre2005missing' on page 21 undefined on input line 1668.
+
+
+Package natbib Warning: Citation `deutsch1986tritone' on page 21 undefined on input line 1674.
+
+
+Package natbib Warning: Citation `repp1997tritone' on page 21 undefined on input line 1674.
+
+
+Package natbib Warning: Citation `deutsch1974octave' on page 21 undefined on input line 1674.
+
+
+Package natbib Warning: Citation `warren1970continuity' on page 21 undefined on input line 1681.
+
+
+Package natbib Warning: Citation `riecke2011continuity' on page 21 undefined on input line 1681.
+
+
+Package natbib Warning: Citation `shams2000sifi' on page 21 undefined on input line 1693.
+
+
+Package natbib Warning: Citation `hirst2020sound' on page 21 undefined on input line 1693.
+
+
+Package natbib Warning: Citation `bruns2019ventriloquist' on page 21 undefined on input line 1702.
+
+
+Package natbib Warning: Citation `noppeney2018causal' on page 21 undefined on input line 1705.
+
+
+Package natbib Warning: Citation `vroomen2004temporal' on page 21 undefined on input line 1713.
+
+
+Package natbib Warning: Citation `hartcherobrien2011temporal' on page 21 undefined on input line 1713.
+
+
+Package natbib Warning: Citation `mcgurk1976speech' on page 21 undefined on input line 1721.
+
+[21] [22] [23] [24]
+
+Package natbib Warning: Citation `brugger1999duckrabbit' on page 25 undefined on input line 1878.
+
+
+Package natbib Warning: Citation `yildiz2022ponzo' on page 25 undefined on input line 1881.
+
+
+Package natbib Warning: Citation `repp1997tritone' on page 25 undefined on input line 1882.
+
+
+Package natbib Warning: Citation `wilkinson2016fair' on page 25 undefined on input line 1888.
+
+
+Package natbib Warning: Citation `smith2016software' on page 25 undefined on input line 1888.
+
+[25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36] [37] [38] [39] [40] [41] [42] [43] [44] [45] [46] [47] [48] [49] [50] [51] [52] [53]
+
+Package natbib Warning: Citation `smith2016software' on page 54 undefined on input line 3250.
+
+
+Package natbib Warning: Citation `wilkinson2016fair' on page 54 undefined on input line 3250.
+
+
+Package natbib Warning: Citation `lamprecht2020fairsoftware' on page 54 undefined on input line 3250.
+
+[54] [55] [56] [57] (./_combined_manuscript.bbl [58] [59])
+
+Package natbib Warning: There were undefined citations.
+
+[60] (./_combined_manuscript.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+) )
+(see the transcript file for additional information)
+Output written on _combined_manuscript.pdf (61 pages).
+Transcript written on _combined_manuscript.log.

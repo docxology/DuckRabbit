@@ -1,0 +1,44 @@
+{
+  "checks": [
+    "encoded_sha256",
+    "encoded_size_bytes",
+    "decoded_media",
+    "decoded_width",
+    "decoded_height",
+    "decoded_frames",
+    "decoded_gif_frame_durations_ms",
+    "decoded_frame_rate",
+    "decoded_duration_seconds"
+  ],
+  "errors": [],
+  "inspection": {
+    "backend": "pillow",
+    "facts": {
+      "bands": [
+        "L"
+      ],
+      "container_format": "GIF",
+      "duration_ms": 80,
+      "duration_seconds": 0.5,
+      "frame_durations_ms": [
+        80,
+        90,
+        80,
+        80,
+        90,
+        80
+      ],
+      "frames": 6,
+      "has_transparency": false,
+      "height": 256,
+      "mode": "L",
+      "width": 256
+    },
+    "format": "gif",
+    "kind": "video"
+  },
+  "manifest": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/temporal/visual_apparent_motion.gif.json",
+  "output": "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/artifacts/media-citation-final/temporal/visual_apparent_motion.gif",
+  "status": "verified",
+  "unavailable": []
+}

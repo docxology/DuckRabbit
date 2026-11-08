@@ -1,0 +1,284 @@
+"""Cross-file publication metadata validation.
+
+The project intentionally keeps metadata in the formats expected by the
+Python package, citation managers, Zenodo, codemeta, and the manuscript
+renderer.  This module is the small, dependency-free consistency oracle that
+prevents those copies from silently drifting.
+"""
+
+from __future__ import annotations
+
+from dataclasses import dataclass
+import json
+from pathlib import Path
+import re
+
+import tomllib
+
+from .version import __version__
+from .urls import DOI_RESOLVER_PREFIX, ORCID_PREFIX
+
+
+EXPECTED_AUTHOR = "Daniel Ari Friedman"
+EXPECTED_ORCID = "0000-0001-6232-9096"
+EXPECTED_VERSION = __version__
+EXPECTED_TITLE = "DuckRabbit: Typed Multimodal Illusion Generator"
+EXPECTED_LICENSE = "MIT"
+
+
+@dataclass(frozen=True)
+class PublicationMetadata:
+    """Normalized identity fields collected from one project checkout."""
+
+    author: str
+    orcid: str
+    version: str
+    title: str
+    license: str
+    doi: str
+    doi_status: str
+
+
+@dataclass(frozen=True)
+class MetadataAuditReport:
+    """Machine-readable result of a cross-file metadata audit."""
+
+    status: str
+    metadata: PublicationMetadata
+    files: tuple[str, ...]
+    errors: tuple[str, ...]
+
+    def __post_init__(self) -> None:
+        if self.status not in {"passed", "failed"}:
+            raise ValueError("metadata audit status must be passed or failed")
+
+    def to_dict(self) -> dict[str, object]:
+        return {
+            "schema_version": "duckrabbit/metadata-audit/v1",
+            "status": self.status,
+            "metadata": {
+                "author": self.metadata.author,
+                "orcid": self.metadata.orcid,
+                "version": self.metadata.version,
+                "title": self.metadata.title,
+                "license": self.metadata.license,
+                "doi": self.metadata.doi,
+                "doi_status": self.metadata.doi_status,
+            },
+            "files": list(self.files),
+            "errors": list(self.errors),
+        }
+
+
+def _json(root: Path, name: str) -> dict[str, object]:
+    path = root / name
+    try:
+        value = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ValueError(f"cannot read {name}: {exc}") from exc
+    if not isinstance(value, dict):
+        raise ValueError(f"{name} must contain an object")
+    return value
+
+
+def _yaml_scalar(text: str, key: str, *, allow_empty: bool = False) -> str:
+    value_pattern = r"([^\"'\n#]*?)" if allow_empty else r"([^\"'\n#]+?)"
+    match = re.search(rf"^\s*{re.escape(key)}:\s*[\"']?{value_pattern}[\"']?\s*$", text, re.MULTILINE)
+    if not match:
+        raise ValueError(f"manuscript/config.yaml is missing {key}")
+    return match.group(1).strip()
+
+
+def _single_yaml_author_block(text: str, source: str) -> str:
+    """This release has one named author across every metadata surface."""
+    block = re.search(r"^authors:[ \t]*\n(.*?)(?=^[A-Za-z][A-Za-z0-9_-]*:|\Z)", text, re.MULTILINE | re.DOTALL)
+    if block is None or len(re.findall(r"^[ \t]*-[ \t]+", block[1], re.MULTILINE)) != 1:
+        raise ValueError(f"{source} must declare exactly one author")
+    return block[1]
+
+
+def _yaml_author(text: str) -> tuple[str, str]:
+    text = _single_yaml_author_block(text, "manuscript/config.yaml")
+    match = re.search(
+        r"^\s*- name:\s*[\"']?([^\"'\n]+?)[\"']?\s*$.*?^\s+orcid:\s*[\"']?([^\"'\n]+?)[\"']?\s*$",
+        text,
+        re.MULTILINE | re.DOTALL,
+    )
+    if not match:
+        raise ValueError("manuscript/config.yaml must declare author name and ORCID")
+    return match.group(1).strip(), match.group(2).strip()
+
+
+def _cff(text: str) -> dict[str, object]:
+    def scalar(key: str, *, required: bool = True) -> str:
+        match = re.search(rf"^\s*{re.escape(key)}:\s*[\"']?([^\"'\n]+?)[\"']?\s*$", text, re.MULTILINE)
+        if not match:
+            if not required:
+                return ""
+            raise ValueError(f"CITATION.cff is missing {key}")
+        return match.group(1).strip()
+
+    authors = _single_yaml_author_block(text, "CITATION.cff")
+    family = re.search(r"^\s*-\s*family-names:\s*([^\n]+)$", authors, re.MULTILINE)
+    given = re.search(r"^\s+given-names:\s*([^\n]+)$", authors, re.MULTILINE)
+    orcid = re.search(r"^\s+orcid:\s*[\"']?([^\"'\n]+?)[\"']?\s*$", authors, re.MULTILINE)
+    if not family or not given or not orcid:
+        raise ValueError("CITATION.cff must declare family, given, and ORCID")
+    return {
+        "title": scalar("title"),
+        "version": scalar("version"),
+        "license": scalar("license"),
+        "author": f"{given.group(1).strip()} {family.group(1).strip()}",
+        "orcid": orcid.group(1).strip().removeprefix(ORCID_PREFIX),
+        "doi": scalar("doi", required=False),
+        "identifier_dois": tuple(re.findall(r"^\s+value:\s*[\"']?([^\"'\n]+?)[\"']?\s*$", text, re.MULTILINE)),
+    }
+
+
+def _first_record(payload: dict[str, object], key: str, source: str) -> dict[str, object]:
+    records = payload.get(key)
+    if not isinstance(records, list) or len(records) != 1 or not isinstance(records[0], dict):
+        raise ValueError(f"{source} {key} must contain exactly one author object")
+    return records[0]
+
+
+def _normalized_author(value: object) -> str:
+    if not isinstance(value, str):
+        return ""
+    return " ".join(value.split())
+
+
+def default_manuscript_dir(project_root: Path | None = None) -> Path:
+    """Canonical manuscript directory with legacy fallback.
+
+    The manuscript lives at ``docs/manuscript/``; the legacy top-level
+    ``manuscript/`` path is still accepted for checkouts that have not been
+    relocated. docs-first matches the resolver convention used across the
+    sibling template ecosystem. ``project_root`` defaults to this package's
+    own repository; audits over a copied tree must pass the copy's root so the
+    copied tree's own manuscript directory is audited, not this repo's.
+    """
+    root = Path(project_root) if project_root is not None else Path(__file__).resolve().parents[2]
+    relocated = root / "docs" / "manuscript"
+    if relocated.is_dir():
+        return relocated
+    return root / "manuscript"
+
+
+def validate_project_metadata(project_root: Path | None = None) -> MetadataAuditReport:
+    """Validate identity, version, license, and DOI status across sidecars."""
+    root = Path(project_root) if project_root is not None else Path(__file__).resolve().parents[2]
+    errors: list[str] = []
+    manuscript_config = default_manuscript_dir(root) / "config.yaml"
+    files = ("pyproject.toml", "CITATION.cff", "codemeta.json", ".zenodo.json", manuscript_config.relative_to(root).as_posix())
+    try:
+        pyproject = tomllib.loads((root / "pyproject.toml").read_text(encoding="utf-8"))
+        config_text = manuscript_config.read_text(encoding="utf-8")
+        cff = _cff((root / "CITATION.cff").read_text(encoding="utf-8"))
+        codemeta = _json(root, "codemeta.json")
+        zenodo = _json(root, ".zenodo.json")
+        config_author, config_orcid = _yaml_author(config_text)
+        config = {
+            "title": _yaml_scalar(config_text, "title"),
+            "version": _yaml_scalar(config_text, "version"),
+            "doi": _yaml_scalar(config_text, "doi", allow_empty=True),
+            "doi_status": _yaml_scalar(config_text, "doi_status"),
+            "license": _yaml_scalar(config_text, "license"),
+            "author": config_author,
+            "orcid": config_orcid,
+        }
+        for key in ("version_doi", "version_record"):
+            if re.search(rf"^\s*{key}:", config_text, re.MULTILINE):
+                config[key] = _yaml_scalar(config_text, key, allow_empty=True)
+        project = pyproject.get("project", {})
+        if not isinstance(project, dict):
+            raise ValueError("pyproject project must contain an object")
+        project_author = _first_record(project, "authors", "pyproject")
+        codemeta_author = _first_record(codemeta, "author", "codemeta")
+        zenodo_author = _first_record(zenodo, "creators", "Zenodo")
+        normalized = PublicationMetadata(
+            author=EXPECTED_AUTHOR,
+            orcid=EXPECTED_ORCID,
+            version=str(project.get("version", "")),
+            title=str(project.get("name", "")),
+            license=str(project.get("license", "")),
+            doi=str(config["doi"]),
+            doi_status=str(config["doi_status"]),
+        )
+        comparisons = {
+            "config author": config_author,
+            "CITATION author": cff["author"],
+            "codemeta author": f"{codemeta_author.get('givenName', '')} {codemeta_author.get('familyName', '')}".strip(),
+            "Zenodo author": (
+                " ".join(reversed([part.strip() for part in str(zenodo_author.get("name", "")).split(",", 1)]))
+                if "," in str(zenodo_author.get("name", ""))
+                else str(zenodo_author.get("name", ""))
+            ),
+            "pyproject author": str(project_author.get("name", "")),
+        }
+        for source, value in comparisons.items():
+            if _normalized_author(value) != EXPECTED_AUTHOR:
+                errors.append(f"{source} disagrees with {EXPECTED_AUTHOR!r}: {value!r}")
+        orcids = {
+            "config": config_orcid,
+            "CITATION": cff["orcid"],
+            "codemeta": str(codemeta_author.get("@id", "")).removeprefix(ORCID_PREFIX),
+            "Zenodo": str(zenodo_author.get("orcid", "")),
+        }
+        for source, value in orcids.items():
+            if value != EXPECTED_ORCID:
+                errors.append(f"{source} ORCID disagrees with {EXPECTED_ORCID}: {value!r}")
+        versions = {"pyproject": str(project.get("version", "")), "config": config["version"], "CITATION": cff["version"], "codemeta": str(codemeta.get("version", "")), "codemeta softwareVersion": str(codemeta.get("softwareVersion", "")), "Zenodo": str(zenodo.get("version", ""))}
+        for source, value in versions.items():
+            if value != EXPECTED_VERSION:
+                errors.append(f"{source} version disagrees with {EXPECTED_VERSION}: {value!r}")
+        titles = {"config": config["title"], "CITATION": cff["title"], "codemeta": str(codemeta.get("name", "")), "Zenodo": str(zenodo.get("title", ""))}
+        for source, value in titles.items():
+            if value != EXPECTED_TITLE:
+                errors.append(f"{source} title disagrees with expected title: {value!r}")
+        licenses = {"config": config["license"], "CITATION": cff["license"], "codemeta": "MIT" if str(codemeta.get("license", "")).endswith("/MIT.html") else str(codemeta.get("license", "")), "Zenodo": str(zenodo.get("license", "")), "pyproject": str(project.get("license", ""))}
+        for source, value in licenses.items():
+            if value != EXPECTED_LICENSE:
+                errors.append(f"{source} license disagrees with {EXPECTED_LICENSE}: {value!r}")
+        if config["doi"] == "":
+            if config["doi_status"] != "forthcoming":
+                errors.append("publication doi_status must be forthcoming while DOI is empty")
+        else:
+            if not re.fullmatch(r"10\.5281/zenodo\.\d+", config["doi"]):
+                errors.append(f"publication DOI does not look like a real Zenodo DOI: {config['doi']!r}")
+            if config["doi_status"] != "published":
+                errors.append("publication doi_status must be published once a DOI is set")
+        concept_dois = {"Zenodo": zenodo.get("doi", ""), "codemeta": str(codemeta.get("@id", "")).removeprefix(DOI_RESOLVER_PREFIX)}
+        for source, value in concept_dois.items():
+            if value != config["doi"]:
+                errors.append(f"{source} concept DOI disagrees with manuscript DOI: {value!r}")
+        version_doi = cff["doi"]
+        codemeta_version_doi = str(codemeta.get("identifier", "")).removeprefix(DOI_RESOLVER_PREFIX)
+        if version_doi != codemeta_version_doi:
+            errors.append("CITATION and codemeta version DOI disagree")
+        if "version_doi" in config and config["version_doi"] != version_doi:
+            errors.append("manuscript version_doi disagrees with CITATION version DOI")
+        expected_record = f"https://zenodo.org/records/{version_doi.rsplit('.', 1)[-1]}" if version_doi else ""
+        if "version_record" in config and config["version_record"] != expected_record:
+            errors.append("manuscript version_record disagrees with version DOI")
+        identifier_dois = cff["identifier_dois"]
+        if len(identifier_dois) != len(set(identifier_dois)):
+            errors.append("CITATION DOI identifiers must not contain duplicates")
+        if config["doi"]:
+            if not isinstance(version_doi, str) or not re.fullmatch(r"10\.5281/zenodo\.\d+", version_doi):
+                errors.append("version DOI must be a well-formed Zenodo DOI")
+            if version_doi == config["doi"]:
+                errors.append("concept and version DOI must be distinct")
+            if len(identifier_dois) != 2 or set(identifier_dois) != {config["doi"], version_doi}:
+                errors.append("CITATION DOI identifiers must include exactly the concept and version DOI")
+        elif version_doi or identifier_dois:
+            errors.append("forthcoming metadata must not retain published DOI identifiers")
+        if "XXXX" in config["doi"] or "placeholder" in config["doi"].lower():
+            errors.append("fake DOI placeholder detected")
+    except (OSError, KeyError, TypeError, ValueError, tomllib.TOMLDecodeError) as exc:
+        errors.append(str(exc))
+        normalized = PublicationMetadata("", "", "", "", "", "", "")
+    return MetadataAuditReport("failed" if errors else "passed", normalized, files, tuple(errors))
+
+
+__all__ = ["EXPECTED_AUTHOR", "EXPECTED_ORCID", "EXPECTED_VERSION", "EXPECTED_TITLE", "EXPECTED_LICENSE", "MetadataAuditReport", "PublicationMetadata", "validate_project_metadata"]

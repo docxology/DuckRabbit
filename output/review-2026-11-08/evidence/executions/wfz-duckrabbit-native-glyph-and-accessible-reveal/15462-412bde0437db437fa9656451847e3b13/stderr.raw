@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/native_render_finish.py", line 35, in <module>
+    text=pandoc(json.dumps(document),"json",adapter._WRITER);decoded=json.loads(pandoc(text,adapter._READER,"json"));adapter._require_equal(blocks,decoded["blocks"],"glyph-format source body")
+                                                                                                                     ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/friedman/Documents/Git/gitvault/Username/docxology/Public/DuckRabbit/dist/wfz-release/build_slide_overlay.py", line 76, in _require_equal
+    raise ValueError(description + ": semantic JSON changed (expected " +
+                     _digest(_normalize(expected)) + ", got " +
+                     _digest(_normalize(actual)) + ")")
+ValueError: glyph-format source body: semantic JSON changed (expected d02089249fd97c8d8ebdbbf1e4fb06a2377ac986320f71daab48d27cf8b5f5fa, got 27e7d6d7787b237b15e560742d084cfbe3fcd0266090389c62c45972b96aa12e)

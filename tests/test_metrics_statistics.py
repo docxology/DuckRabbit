@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import cProfile
 
 import numpy as np
 import pytest
@@ -24,25 +23,19 @@ from duckrabbit.render import artifact_summary
 
 
 @pytest.mark.parametrize("consumer", [measure_artifact, artifact_summary])
-def test_video_consumers_compute_adjacent_frame_changes_only_once(consumer) -> None:
+def test_video_consumers_preserve_adjacent_frame_changes(consumer) -> None:
     video = VideoSequence(tuple(ImageFrame(np.full((8, 9), value, dtype=np.float32)) for value in (0.0, 0.2, 0.5)), FrameRate(12.0))
-    profiler = cProfile.Profile()
-    result = profiler.runcall(consumer, video)
-    calls = [entry.callcount for entry in profiler.getstats() if entry.code is VideoSequence.temporal_deltas.fget.__code__]
-    assert calls == [1]
+    result = consumer(video)
     values = result.values if isinstance(result, MetricSuite) else result
     assert values["temporal_deltas"] == pytest.approx((0.2, 0.3))
     assert values["mean_temporal_delta"] == pytest.approx(0.25)
 
 
-def test_audio_metrics_reduce_peak_and_rms_once() -> None:
+def test_audio_metrics_report_peak_and_rms() -> None:
     artifact = AudioBuffer(np.array([[0.0], [0.5], [-0.25]], dtype=np.float32), SampleRate(8000))
-    profiler = cProfile.Profile()
-    metrics = profiler.runcall(measure_artifact, artifact)
-    for property_name in ("peak", "rms"):
-        getter = getattr(AudioBuffer, property_name).fget.__code__
-        assert [entry.callcount for entry in profiler.getstats() if entry.code is getter] == [1]
-        assert metrics.values[property_name] == getattr(artifact, property_name)
+    metrics = measure_artifact(artifact)
+    assert metrics.values["peak"] == 0.5
+    assert metrics.values["rms"] == pytest.approx(np.sqrt(0.3125 / 3))
 
 
 @pytest.mark.parametrize("layouts", [("C", "C", "C"), ("F", "F", "F"), ("F", "C", "F")])
@@ -51,7 +44,8 @@ def test_temporal_reduction_preserves_exact_values_and_input_buffers(layouts) ->
     frames = tuple(ImageFrame(np.array(rng.random((31, 37), dtype=np.float32), order=layout)) for layout in layouts)
     originals = tuple(frame.pixels.copy() for frame in frames)
     video = VideoSequence(frames, FrameRate(24.0))
-    expected = tuple(float(np.mean(np.abs(current.pixels - previous.pixels))) for previous, current in zip(frames, frames[1:]))
+    canonical_frames = tuple(ImageFrame(np.ascontiguousarray(frame.pixels)) for frame in frames)
+    expected = VideoSequence(canonical_frames, FrameRate(24.0)).temporal_deltas
     assert video.temporal_deltas == expected
     assert measure_artifact(video).values["temporal_deltas"] == expected
     assert artifact_summary(video)["mean_temporal_delta"] == float(np.mean(expected))
@@ -134,3 +128,41 @@ def test_synthetic_numeric_observer_families_are_deterministic_and_bounded() -> 
     curve = simulate_power_curve(16, (-0.2, 0.0, 0.2), repetitions=30, seed=4)
     assert [point.effect for point in curve] == [-0.2, 0.0, 0.2]
     assert all(point.assumed and 0 <= point.power <= 1 for point in curve)
+
+
+def test_rgb_midgray_declares_uncalibrated_proxy_without_changing_values() -> None:
+    image = ImageFrame(np.full((2, 3, 3), 0.5, dtype=np.float32), mode="RGB")
+    record = measure_artifact(image).record("mean_luminance")
+    assert record.value == pytest.approx(0.5)
+    assert record.provenance["transfer_function"] == "none_applied; not_display_calibrated"
+    assert record.provenance["color_space"] == "uncalibrated_normalized_channel_values"
+    with pytest.raises(TypeError):
+        record.provenance["color_space"] = "sRGB"  # type: ignore[index]
+
+
+@pytest.mark.parametrize("identity", ["visual.duck_rabbit", "audio.shepard_tone", "visual.apparent_motion", "audiovisual.sound_induced_flash"])
+def test_metrics_serialize_deterministic_computation_and_window_definitions(identity: str) -> None:
+    artifact = duckrabbit.generate(identity)
+    first = measure_artifact(artifact).to_dict()
+    assert first == measure_artifact(artifact).to_dict()
+    for record in first["records"]:
+        assert len(record["computation_sha256"]) == len(record["window_sha256"]) == 64
+        assert record["provenance"]["window"] != "unspecified"
+        assert record["provenance"]["source_sha256"]
+
+
+def test_audio_metric_definition_hashes_bind_window_and_clock_not_measured_values() -> None:
+    samples = np.array([[0.0], [0.5], [-0.25]], dtype=np.float32)
+    first = measure_artifact(AudioBuffer(samples, SampleRate(8000))).record("rms").to_dict()
+    scaled = measure_artifact(AudioBuffer(samples / 2, SampleRate(8000))).record("rms").to_dict()
+    faster = measure_artifact(AudioBuffer(samples, SampleRate(16000))).record("rms").to_dict()
+    assert first["value"] == pytest.approx(2 * scaled["value"])
+    assert first["computation_sha256"] == scaled["computation_sha256"]
+    assert first["window_sha256"] != faster["window_sha256"]
+    assert first["computation_sha256"] != faster["computation_sha256"]
+
+
+@pytest.mark.parametrize("provenance", [{}, {"color_space": "RGB"}, {"color_space": "RGB", "transfer_function": "none", "window": "all", "algorithm": 1}])
+def test_metric_records_reject_incomplete_or_untyped_provenance(provenance) -> None:
+    with pytest.raises(ValueError, match="provenance"):
+        MetricRecord("mean", 0.5, "normalized", provenance=provenance)

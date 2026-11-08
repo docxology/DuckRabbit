@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>01_introduction</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../web/assets/reveal.js-5.2.1/dist/reset.css">
+  <link rel="stylesheet" href="../web/assets/reveal.js-5.2.1/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../web/assets/reveal.js-5.2.1/dist/theme/white.css" id="theme">
+  <link rel="stylesheet" href="digital-review.css"/>
+<script data-template-mathjax-config>
+window.MathJax = window.MathJax || {};
+window.MathJax.loader = Object.assign({},window.MathJax.loader,{paths:{mathjax:new URL("../web/assets/mathjax-4.0.0/mathjax",document.baseURI).href}});
+window.MathJax.chtml = Object.assign({}, window.MathJax.chtml, {
+  fontURL: new URL("../web/assets/mathjax-4.0.0/newcm/chtml/woff2",document.baseURI).href,
+  dynamicPrefix: new URL("../web/assets/mathjax-4.0.0/newcm/chtml/dynamic",document.baseURI).href
+});
+var templateMathOutput = window.MathJax.output || {};
+window.MathJax.output = Object.assign({}, templateMathOutput, {
+  displayOverflow: "linebreak",
+  linebreaks: Object.assign({}, templateMathOutput.linebreaks, {
+    inline: true,
+    width: "100%",
+    lineleading: 0.5
+  })
+});
+window.normalizeTemplateMathJaxAria = function () {
+  document.querySelectorAll("mjx-speech[aria-roledescription]").forEach(function (node) {
+    var roleDescription = node.getAttribute("aria-roledescription") || "";
+    if (/[-]/.test(roleDescription)) {
+      node.setAttribute("aria-roledescription", "mathematical expression");
+    }
+  });
+};
+window.MathJax.startup = Object.assign({}, window.MathJax.startup, {
+  ready: function () {
+    var measuredWidth = document.documentElement.clientWidth;
+    var reflowQueued = false;
+    window.MathJax.startup.defaultReady();
+    window.templateMathJaxReflowPromise = window.MathJax.startup.promise.then(
+      window.normalizeTemplateMathJaxAria
+    );
+    function reflowDisplayMath() {
+      if (reflowQueued || document.documentElement.clientWidth === measuredWidth) return;
+      reflowQueued = true;
+      window.templateMathJaxReflowPromise = window.templateMathJaxReflowPromise
+        .catch(function () { /* A later resize may retry a failed render. */ })
+        .then(async function () {
+          var width = document.documentElement.clientWidth;
+          try {
+            // MathJax 4 MathItem.STATE.METRICS = 110. The default RERENDER
+            // state retains old container metrics and cannot reflow on zoom.
+            await window.MathJax.startup.document.rerenderPromise(110);
+            window.normalizeTemplateMathJaxAria();
+            window.templateMathJaxReflowError = null;
+          } catch (error) {
+            window.templateMathJaxReflowError = String(error);
+            console.error("MathJax viewport reflow failed", error);
+            throw error;
+          } finally {
+            measuredWidth = width;
+            reflowQueued = false;
+          }
+        })
+        .then(reflowDisplayMath);
+      // Keep failure observable to callers without an unhandled rejection.
+      window.templateMathJaxReflowPromise.catch(function () {});
+    }
+    window.addEventListener("resize", reflowDisplayMath);
+    // Also cover a resize that happened during the initial asynchronous render.
+    window.templateMathJaxReflowPromise.then(reflowDisplayMath);
+  }
+});
+</script>
+<script src="../web/assets/mathjax-4.0.0/mathjax/tex-chtml.js" integrity="sha384-2BWc4dVaHADUocwKrUrK9u3iDwHxVMKXWEcoRmUkXYSFKhAsgVAYClu9ydNuo5Oz" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="sec:introduction" class="title-slide slide level1">
+<h1>Introduction</h1>
+<p>Numbered-table references point to the <a
+href="../web/index.html">canonical manuscript</a>; they are not
+standalone local deck numbers.</p>
+<p>An illusion stimulus is not the same thing as an illusion report. A
+stimulus can be physically specified, generated, encoded, and inspected
+without establishing what every observer will see or hear. This
+distinction is central to reproducible cognitive science: the physical
+manipulation must be auditable, while observer-level effects require a
+task, calibrated presentation conditions, randomization, and data.</p>
+<p>Visual illusion classifications are useful maps rather than
+exhaustive or universally agreed ontologies <span class="citation"
+data-cites="gregory1997visual">(Gregory 1997)</span>. Auditory and
+audiovisual families add spectral structure, channel separation,
+temporal coincidence, and spatial alignment. The Sound-Induced Flash
+literature illustrates the boundary particularly clearly: the physical
+contrast is a flash paired with different beep counts, while the
+perceptual claim requires a listener, timing, and a response task <span
+class="citation" data-cites="hirst2020sound shams2000sifi">(Hirst et al.
+2020; Shams et al. 2000)</span>.</p>
+<p>DuckRabbit therefore treats an illusion as a typed
+stimulus-construction problem. Each catalog entry declares modality,
+mechanism, perceptual signature, cognitive process, requirements,
+evidence status, output kind, and implementation status. The taxonomy is
+orthogonal and explicitly provisional; it is an engineering index linked
+to sources, not a replacement for domain-specific theory.</p>
+<p>The release also treats the package as research software rather than
+as an unannotated collection of media files. Reproducible computational
+research depends on preserving the code, inputs, environment
+assumptions, and execution path needed to recreate a result <span
+class="citation"
+data-cites="sandve2013simple wilson2014bestpractices">(Sandve et al.
+2013; Wilson et al. 2014)</span>. The FAIR literature extends that
+responsibility to algorithms, tools, and workflows, while
+software-citation guidance emphasizes identifying the exact software
+object and version used <span class="citation"
+data-cites="wilkinson2016fair lamprecht2020fairsoftware smith2016software">(Wilkinson
+et al. 2016; Lamprecht et al. 2020; Smith et al. 2016)</span>.
+DuckRabbit applies these principles narrowly: it makes the construction
+pipeline and its generated artifacts citable and inspectable, but it
+does not treat metadata quality as evidence of a perceptual effect.</p>
+<p>The package is organized around three falsifiable engineering
+hypotheses:</p>
+<ol type="1">
+<li>Identical typed requests produce identical canonical arrays and
+canonical digests.</li>
+<li>Encoders and decoders preserve declared media facts within an
+explicit format-specific tolerance, or verification fails.</li>
+<li>Parameter manipulations change measurable physical stimulus
+properties; any observer-level interpretation remains a preregistered
+hypothesis until data exist.</li>
+</ol>
+<p>This boundary has a nineteenth-century scientific lineage. Fechner’s
+<em>Elemente der Psychophysik</em> formalized the problem of relating
+controlled stimulus differences to measured sensation, while
+Wheatstone’s binocular-vision experiments made the distinction between
+the physical images delivered to two eyes and the resulting depth
+interpretation experimentally explicit <span class="citation"
+data-cites="fechner1860psychophysics wheatstone1838binocular">(Fechner
+1860; Wheatstone 1838)</span>. Helmholtz’s physiological optics then
+integrated measurement of the eye, visual geometry, and theories of
+perceptual inference <span class="citation"
+data-cites="helmholtz1867optics">(Helmholtz 1867)</span>. DuckRabbit
+does not reproduce those historical experiments; it inherits their
+methodological lesson that stimulus conditions and observer inferences
+must be represented as distinct objects.</p>
+<p>That lineage has deeper and less geographically narrow roots.
+Ptolemy’s ancient <em>Optics</em>, Ibn al-Haytham’s medieval Arabic
+optics, and the Mohist Canon’s early Chinese discussions of optics and
+mechanics show that questions about image formation, geometry,
+knowledge, and evidence were developed across multiple intellectual
+traditions <span class="citation"
+data-cites="ptolemy1996optics alhazen1989optics mozi2023canons dai2015chinesescience">(Ptolemy
+1996; <span class="nocase">al-Haytham</span> 1989; Schemmel and Boltz
+2022; Dai 2015)</span>. Early-modern discussions sharpened the
+distinction between a physical presentation and an inferred percept:
+Kircher documented optical display, Berkeley analyzed learned spatial
+inference, and the Molyneux–Cheselden record made cross-sensory transfer
+and observer testimony explicit problems <span class="citation"
+data-cites="kircher1646light berkeley1709vision molyneux2020problem cheselden1728sight">(Kircher
+1646; Berkeley 1709; Degenaar and Lokhorst 2020; Cheselden 1728)</span>.
+DuckRabbit cites these sources as historical and methodological
+precedents, not as evidence that its generated files reproduce ancient,
+early-modern, or clinical observations.</p>
+<p>The present catalog contains 18 entries, of which 17 are implemented,
+0 are planned, and 1 require external fixtures. This status vocabulary
+makes breadth visible without claiming that a finite package covers all
+known phenomena.</p>
+</section>
+    </div>
+  </div>
+
+  <script src="../web/assets/reveal.js-5.2.1/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="../web/assets/reveal.js-5.2.1/plugin/notes/notes.js"></script>
+  <script src="../web/assets/reveal.js-5.2.1/plugin/search/search.js"></script>
+  <script src="../web/assets/reveal.js-5.2.1/plugin/zoom/zoom.js"></script>
+  
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
