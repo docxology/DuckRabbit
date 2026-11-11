@@ -139,3 +139,7 @@ see `docs/scholarship.md`, `docs/audit-2026-11-08.md` and the retained
   1 input-required") above and in README are now guarded by a drift-guard
   test that enforces `experiment_plan.yaml`, `domain_profile.yaml`, and the
   claim ledger against the live registries (added this pass).
+
+## Workflowz review — 2026-11-10
+
+Coverage: reviewed the supplied project metadata/guidance and bounded excerpts from 22 of 77 Python source files, with emphasis on runtime contracts, validation, compatibility fallbacks, optional backends, and production-vs-diagnostic behavior. No concrete source-grounded improvement survived; partial excerpts cannot establish whole-file or whole-repository correctness, and no test suite or runtime probe was executed. Re-review on a concrete failure or a source change affecting an inspected contract.
