@@ -1,0 +1,146 @@
+{
+  "claim_boundary": "synthetic stimulus constructions and canonical measurements; not observer evidence",
+  "delivery_status": "adapter contract only; no encoding executed for this figure",
+  "figure_id": "fig:graphical_abstract",
+  "generator_authority": "src/duckrabbit/publication.py:_graphical_abstract",
+  "human_data": false,
+  "metrics_version": "duckrabbit/metrics/v3",
+  "schema_version": "duckrabbit/graphical-abstract-summary/v1",
+  "seed": 0,
+  "stimuli": [
+    {
+      "artifact_type": "image",
+      "canonical_digest": "dde9d5ecda5dad10eb79036763b33662d5066da250fd0dee345e16bba6acb984",
+      "illusion_id": "visual.duck_rabbit",
+      "metrics": {
+        "channels": 1,
+        "effective_dynamic_range": 1.0,
+        "height": 256,
+        "max_luminance": 1.0,
+        "mean_luminance": 0.7769991755485535,
+        "min_luminance": 0.0,
+        "std_luminance": 0.370724618434906,
+        "unique_values": 3,
+        "width": 256
+      },
+      "parameters": {
+        "config": {
+          "grayscale_levels": 256,
+          "height": 256,
+          "luminance_range": [0.0, 1.0],
+          "mode": "L",
+          "quantization_levels": 256,
+          "width": 256
+        },
+        "duck_weight": 0.5
+      },
+      "seed": 0
+    },
+    {
+      "artifact_type": "audio",
+      "canonical_digest": "6d37ffc494b304c7cab5840eb9d69dcb302861a7a739e9c9baa0ff1d3756b6e8",
+      "illusion_id": "audio.missing_fundamental",
+      "metrics": {
+        "channels": 1,
+        "crest_factor": 3.7806551246858002,
+        "dominant_frequency_hz": 440.0,
+        "duration_seconds": 0.5,
+        "peak": 0.5573328137397766,
+        "rms": 0.14741699397563934,
+        "sample_rate": 8000,
+        "samples": 4000,
+        "spectral_bandwidth_hz": 240.4137215696757,
+        "spectral_centroid_hz": 685.7146494705653
+      },
+      "parameters": {
+        "config": {
+          "amplitude": 0.5,
+          "channels": 1,
+          "duration": 0.5,
+          "envelope": "sine_squared",
+          "phase": 0.0,
+          "sample_rate": 8000
+        },
+        "fundamental": 220.0,
+        "harmonics": [2, 3, 4, 5]
+      },
+      "seed": 0
+    },
+    {
+      "artifact_type": "video",
+      "canonical_digest": "acc31937b46e7e39b36d44b6c119971734374beb87b644e5f541d77451174eff",
+      "displayed_frame_indices": [0, 1, 2, 3],
+      "illusion_id": "visual.apparent_motion",
+      "metrics": {
+        "duration_seconds": 0.5,
+        "frame_rate": 12.0,
+        "frames": 6,
+        "height": 256,
+        "mean_temporal_delta": 0.2421875,
+        "temporal_deltas": [0.2421875, 0.2421875, 0.2421875, 0.2421875, 0.2421875],
+        "width": 256
+      },
+      "parameters": {
+        "bar_width": 0.12,
+        "config": {
+          "frame_count": 6,
+          "frame_rate": 12.0,
+          "height": 256,
+          "width": 256
+        },
+        "displacement": 0.55
+      },
+      "seed": 0
+    },
+    {
+      "artifact_type": "audiovisual",
+      "canonical_digest": "474ee8f0e8d904a220d79ed949de3da393390e379ca0a92dc2feed643fb8903c",
+      "illusion_id": "audiovisual.sound_induced_flash",
+      "metrics": {
+        "audio_rms": 0.08242791891098022,
+        "duration_seconds": 0.5,
+        "presentation_duration_seconds": 0.5,
+        "spatial_offset": 0.0,
+        "sync_offset_ms": 0.0,
+        "video_mean_temporal_delta": 0.36765551567077637
+      },
+      "parameters": {
+        "beep_count": 2,
+        "config": {
+          "audio": {
+            "amplitude": 0.5,
+            "channels": 1,
+            "duration": 0.5,
+            "envelope": "sine_squared",
+            "phase": 0.0,
+            "sample_rate": 8000
+          },
+          "spatial_offset": 0.0,
+          "sync_offset": 0.0,
+          "video": {
+            "frame_count": 6,
+            "frame_rate": 12.0,
+            "height": 256,
+            "width": 256
+          }
+        },
+        "flash_count": 1
+      },
+      "seed": 0
+    }
+  ],
+  "story": [
+    {
+      "detail": "Registry ID + validated immutable parameters + seed; output format is separate.",
+      "stage": "1  Typed request"
+    },
+    {
+      "detail": "Deterministic float32 arrays + explicit clocks -> canonical SHA-256 identity.",
+      "stage": "2  Canonical artifact"
+    },
+    {
+      "detail": "Adapter contract: encode -> decode / inspect -> manifest checks. NPZ alone retains exact arrays.",
+      "stage": "3  Delivery / verification"
+    }
+  ]
+}

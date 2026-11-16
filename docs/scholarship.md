@@ -164,7 +164,7 @@ not a fresh live audit of subsequent source. The retained
 the adjunct re-evaluation reused observed metadata, not a second network visit.
 Those unresolved identities remain release blockers unless cleared by new
 identity evidence; neither refreshed graphics nor offline replay clears them.
-The [current visual-review bundle](../output/visual-review-2026-11-08/) requires
+The current visual-review bundle (`output/visual-review-2026-11-08/`) requires
 its own source binding and reports; graphics cannot substitute for live identity.
 
 Ordered author comparison includes exact corporate author names. A record with

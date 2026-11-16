@@ -1,0 +1,199 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 780" width="1200" height="780" role="img" aria-labelledby="ga-title ga-desc">
+  <title id="ga-title">DuckRabbit: Deterministic Multimodal Stimulus Construction and Verification</title>
+  <desc id="ga-desc">Four source-derived panels summarize canonical visual, auditory, temporal, and audiovisual constructions at seed 0 alongside the typed-request to canonical-artifact to delivery-contract pipeline; synthetic constructions only (human_data = false).</desc>
+  <defs>
+    <style>
+      .bg { fill: #F8FAFC; }
+      .card { fill: #FFFFFF; stroke: #CBD5E1; stroke-width: 1.5; rx: 10; }
+      .stage-card { fill: #F1F5F9; stroke: #94A3B8; stroke-width: 1.5; rx: 8; }
+      .banner { fill: #FEFce8; stroke: #CA8A04; stroke-width: 1.25; rx: 6; }
+      .h1 { font: 700 22px ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; fill: #0F172A; }
+      .sub { font: 400 13px ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; fill: #334155; }
+      .stage-title { font: 700 13px ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; fill: #0F172A; }
+      .stage-body { font: 400 11.5px ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; fill: #334155; }
+      .panel-tag { font: 700 11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #FFFFFF; }
+      .panel-title { font: 700 15px ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; fill: #0F172A; }
+      .mono { font: 500 11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #1E293B; }
+      .mono-dim { font: 400 10.5px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #475569; }
+      .axis { stroke: #64748B; stroke-width: 1.2; fill: none; }
+      .grid { stroke: #E2E8F0; stroke-width: 1; stroke-dasharray: 3 3; fill: none; }
+      .foot { font: 500 11.5px ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; fill: #475569; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8.5 5 L 0 8.5 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- Canvas -->
+  <rect class="bg" x="0" y="0" width="1200" height="780" rx="12"/>
+
+  <!-- Header -->
+  <text class="h1" x="32" y="38">DuckRabbit — Deterministic Multimodal Stimulus Construction &amp; Verification</text>
+  <text class="sub" x="32" y="59">Four canonical generators evaluated at default typed parameters (seed = 0, human_data = false, metrics = duckrabbit/metrics/v3)</text>
+
+  <!-- 3-Stage Pipeline Strip -->
+  <rect class="stage-card" x="32" y="74" width="356" height="62"/>
+  <text class="stage-title" x="48" y="96">1 · Typed Request</text>
+  <text class="stage-body" x="48" y="114">Registry ID + validated immutable dataclass + seed;</text>
+  <text class="stage-body" x="48" y="128">stimulus semantics stay independent of output format.</text>
+
+  <line x1="392" y1="105" x2="416" y2="105" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect class="stage-card" x="422" y="74" width="356" height="62"/>
+  <text class="stage-title" x="438" y="96">2 · Canonical In-Memory Artifact</text>
+  <text class="stage-body" x="438" y="114">Deterministic float32 arrays + explicit sample/frame clocks</text>
+  <text class="stage-body" x="438" y="128">bound by content-addressed canonical SHA-256 digest.</text>
+
+  <line x1="782" y1="105" x2="806" y2="105" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect class="stage-card" x="812" y="74" width="356" height="62"/>
+  <text class="stage-title" x="828" y="96">3 · Delivery &amp; Manifest Verification</text>
+  <text class="stage-body" x="828" y="114">Adapter contract: encode → decode/inspect → manifest check.</text>
+  <text class="stage-body" x="828" y="128">NPZ retains exact float32; PNG/WAV/GIF/MP4 quantize.</text>
+
+  <!-- ==================== PANEL A: VISUAL ==================== -->
+  <g transform="translate(32, 152)">
+    <rect class="card" x="0" y="0" width="556" height="266"/>
+    <rect x="16" y="14" width="66" height="22" rx="4" fill="#1D4ED8"/>
+    <text class="panel-tag" x="49" y="29" text-anchor="middle">VISUAL</text>
+    <text class="panel-title" x="92" y="30">visual.duck_rabbit (ImageFrame · 256×256 · mode L)</text>
+
+    <!-- Stylized deterministic 3-level grayscale raster diagram -->
+    <rect x="20" y="48" width="184" height="164" fill="#E2E8F0" stroke="#94A3B8" stroke-width="1.2" rx="4"/>
+    <rect x="28" y="56" width="168" height="148" fill="#EBEFF5"/>
+    <!-- Ambiguous duck-bill (left) / rabbit-ears (left) + head/eye geometry -->
+    <path d="M 118 86 C 148 86, 168 106, 166 134 C 164 160, 142 178, 112 178 C 92 178, 78 166, 76 148 L 42 142 C 38 140, 38 134, 44 132 L 78 126 L 44 106 C 39 102, 42 96, 49 98 L 86 112 C 94 94, 104 86, 118 86 Z" fill="#1E293B"/>
+    <circle cx="122" cy="118" r="6.5" fill="#F8FAFC"/>
+    <circle cx="122" cy="118" r="2.8" fill="#64748B"/>
+    <text class="mono-dim" x="112" y="227" text-anchor="middle">3 canonical gray levels ∈ [0.0, 1.0]</text>
+
+    <!-- Exact parameters & metrics -->
+    <text class="mono" x="222" y="68">seed = 0  |  duck_weight = 0.50</text>
+    <text class="mono" x="222" y="90">quantization_levels = 256  |  channels = 1</text>
+    <text class="mono" x="222" y="116">mean_luminance       = 0.7770 (uncalibrated)</text>
+    <text class="mono" x="222" y="136">std_luminance        = 0.3707</text>
+    <text class="mono" x="222" y="156">dynamic_range        = 1.0000 (min 0, max 1)</text>
+    <text class="mono" x="222" y="176">unique_values        = 3</text>
+    <rect x="222" y="192" width="316" height="44" rx="4" fill="#F8FAFC" stroke="#CBD5E1"/>
+    <text class="mono-dim" x="230" y="209">canonical SHA-256:</text>
+    <text class="mono" x="230" y="226">dde9d5ecda5dad10…bba6acb984</text>
+  </g>
+
+  <!-- ==================== PANEL B: AUDITORY ==================== -->
+  <g transform="translate(612, 152)">
+    <rect class="card" x="0" y="0" width="556" height="266"/>
+    <rect x="16" y="14" width="76" height="22" rx="4" fill="#047857"/>
+    <text class="panel-tag" x="54" y="29" text-anchor="middle">AUDITORY</text>
+    <text class="panel-title" x="102" y="30">audio.missing_fundamental (AudioBuffer · 8 kHz)</text>
+
+    <!-- Harmonic spectrum + envelope plot -->
+    <rect x="20" y="48" width="212" height="164" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1.2" rx="4"/>
+    <line class="grid" x1="36" y1="90" x2="220" y2="90"/>
+    <line class="grid" x1="36" y1="130" x2="220" y2="130"/>
+    <line class="axis" x1="36" y1="184" x2="220" y2="184"/>
+    <line class="axis" x1="36" y1="62" x2="36" y2="184"/>
+    <!-- Missing f0 = 220 Hz dashed slot -->
+    <line x1="62" y1="82" x2="62" y2="184" stroke="#DC2626" stroke-width="2" stroke-dasharray="4 3"/>
+    <text class="mono-dim" x="62" y="76" text-anchor="middle" fill="#DC2626">f₀</text>
+    <!-- Present harmonics 2f0..5f0 (440, 660, 880, 1100 Hz) -->
+    <rect x="94" y="84" width="14" height="100" fill="#047857" rx="2"/>
+    <rect x="128" y="102" width="14" height="82" fill="#059669" rx="2"/>
+    <rect x="162" y="118" width="14" height="66" fill="#10B981" rx="2"/>
+    <rect x="196" y="132" width="14" height="52" fill="#34D399" rx="2"/>
+    <text class="mono-dim" x="62" y="198" text-anchor="middle">220</text>
+    <text class="mono-dim" x="101" y="198" text-anchor="middle">440</text>
+    <text class="mono-dim" x="135" y="198" text-anchor="middle">660</text>
+    <text class="mono-dim" x="169" y="198" text-anchor="middle">880</text>
+    <text class="mono-dim" x="203" y="198" text-anchor="middle">1100</text>
+    <text class="mono-dim" x="126" y="227" text-anchor="middle">f₀=220 Hz omitted; harmonics 2–5 Hz</text>
+
+    <!-- Exact parameters & metrics -->
+    <text class="mono" x="246" y="68">seed = 0  |  4,000 samples (0.50 s)</text>
+    <text class="mono" x="246" y="90">envelope = sine_squared  |  harmonics = [2,3,4,5]</text>
+    <text class="mono" x="246" y="116">dominant_freq_hz     = 440.0 Hz</text>
+    <text class="mono" x="246" y="136">spectral_centroid_hz = 685.7 Hz (BW 240.4 Hz)</text>
+    <text class="mono" x="246" y="156">rms / peak           = 0.1474 / 0.5573</text>
+    <text class="mono" x="246" y="176">crest_factor         = 3.7807</text>
+    <rect x="246" y="192" width="294" height="44" rx="4" fill="#F8FAFC" stroke="#CBD5E1"/>
+    <text class="mono-dim" x="254" y="209">canonical SHA-256:</text>
+    <text class="mono" x="254" y="226">6d37ffc494b304c7…d3756b6e8</text>
+  </g>
+
+  <!-- ==================== PANEL C: TEMPORAL ==================== -->
+  <g transform="translate(32, 434)">
+    <rect class="card" x="0" y="0" width="556" height="266"/>
+    <rect x="16" y="14" width="80" height="22" rx="4" fill="#B45309"/>
+    <text class="panel-tag" x="56" y="29" text-anchor="middle">TEMPORAL</text>
+    <text class="panel-title" x="106" y="30">visual.apparent_motion (VideoSequence · 12 fps)</text>
+
+    <!-- 4 displayed frames strip f0..f3 -->
+    <g transform="translate(20, 54)">
+      <rect x="0" y="0" width="46" height="132" fill="#F1F5F9" stroke="#94A3B8" rx="3"/>
+      <rect x="8" y="18" width="9" height="96" fill="#B45309"/>
+      <text class="mono-dim" x="23" y="148" text-anchor="middle">f₀ 0.00s</text>
+
+      <rect x="52" y="0" width="46" height="132" fill="#F1F5F9" stroke="#94A3B8" rx="3"/>
+      <rect x="29" y="18" width="9" height="96" fill="#B45309" transform="translate(52,0)"/>
+      <text class="mono-dim" x="75" y="148" text-anchor="middle">f₁ 0.08s</text>
+
+      <rect x="104" y="0" width="46" height="132" fill="#F1F5F9" stroke="#94A3B8" rx="3"/>
+      <rect x="8" y="18" width="9" height="96" fill="#B45309" transform="translate(104,0)"/>
+      <text class="mono-dim" x="127" y="148" text-anchor="middle">f₂ 0.17s</text>
+
+      <rect x="156" y="0" width="46" height="132" fill="#F1F5F9" stroke="#94A3B8" rx="3"/>
+      <rect x="29" y="18" width="9" height="96" fill="#B45309" transform="translate(156,0)"/>
+      <text class="mono-dim" x="179" y="148" text-anchor="middle">f₃ 0.25s</text>
+    </g>
+    <text class="mono-dim" x="121" y="227" text-anchor="middle">Alternating bar frames (f₀–f₃ of 6)</text>
+
+    <!-- Exact parameters & metrics -->
+    <text class="mono" x="238" y="68">seed = 0  |  6 frames @ 12.0 fps (0.50 s)</text>
+    <text class="mono" x="238" y="90">256×256 px  |  bar_width = 0.12  |  Δx = 0.55</text>
+    <text class="mono" x="238" y="116">mean_temporal_delta  = 0.2421875</text>
+    <text class="mono" x="238" y="136">adjacent_deltas (×5) = 0.2421875 constant</text>
+    <text class="mono" x="238" y="156">frame_interval       = 83.33 ms (1/12 s)</text>
+    <text class="mono" x="238" y="176">displayed_indices    = [0, 1, 2, 3]</text>
+    <rect x="238" y="192" width="300" height="44" rx="4" fill="#F8FAFC" stroke="#CBD5E1"/>
+    <text class="mono-dim" x="246" y="209">canonical SHA-256:</text>
+    <text class="mono" x="246" y="226">acc31937b46e7e39…451174eff</text>
+  </g>
+
+  <!-- ==================== PANEL D: AUDIOVISUAL ==================== -->
+  <g transform="translate(612, 434)">
+    <rect class="card" x="0" y="0" width="556" height="266"/>
+    <rect x="16" y="14" width="98" height="22" rx="4" fill="#6D28D9"/>
+    <text class="panel-tag" x="65" y="29" text-anchor="middle">AUDIOVISUAL</text>
+    <text class="panel-title" x="124" y="30">audiovisual.sound_induced_flash (Shared Clock)</text>
+
+    <!-- Shared-clock step-hold video flash + 2 audio beeps -->
+    <rect x="20" y="48" width="212" height="164" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1.2" rx="4"/>
+    <line class="grid" x1="34" y1="112" x2="220" y2="112"/>
+    <line class="axis" x1="34" y1="186" x2="220" y2="186"/>
+    <!-- Video step-hold trace (1 flash centered) -->
+    <path d="M 38 104 L 106 104 L 106 64 L 142 64 L 142 104 L 216 104" fill="none" stroke="#1D4ED8" stroke-width="2.2"/>
+    <text class="mono-dim" x="42" y="74" fill="#1D4ED8">1 video flash</text>
+    <!-- Audio 2-beep envelope trace -->
+    <path d="M 38 178 L 76 178 Q 92 122 108 178 L 140 178 Q 156 122 172 178 L 216 178" fill="none" stroke="#6D28D9" stroke-width="2.2"/>
+    <text class="mono-dim" x="42" y="144" fill="#6D28D9">2 audio beeps</text>
+    <text class="mono-dim" x="38" y="200">0.0s</text>
+    <text class="mono-dim" x="126" y="200" text-anchor="middle">0.25s</text>
+    <text class="mono-dim" x="216" y="200" text-anchor="end">0.50s</text>
+    <text class="mono-dim" x="126" y="227" text-anchor="middle">Shared clock [0.0, 0.5] s · Δt = 0 ms</text>
+
+    <!-- Exact parameters & metrics -->
+    <text class="mono" x="246" y="68">seed = 0  |  flash_count = 1  |  beep_count = 2</text>
+    <text class="mono" x="246" y="90">8 kHz audio + 12 fps 256×256 video (0.50 s)</text>
+    <text class="mono" x="246" y="116">sync_offset_ms       = 0.0 ms</text>
+    <text class="mono" x="246" y="136">spatial_offset       = 0.0</text>
+    <text class="mono" x="246" y="156">audio_rms            = 0.0824</text>
+    <text class="mono" x="246" y="176">video_temporal_delta = 0.3677</text>
+    <rect x="246" y="192" width="294" height="44" rx="4" fill="#F8FAFC" stroke="#CBD5E1"/>
+    <text class="mono-dim" x="254" y="209">canonical SHA-256:</text>
+    <text class="mono" x="254" y="226">474ee8f0e8d904a2…643fb8903c</text>
+  </g>
+
+  <!-- Verification & Claim-Boundary Banner -->
+  <rect class="banner" x="32" y="714" width="1136" height="48"/>
+  <text class="foot" x="48" y="734">Claim boundary: Synthetic stimulus constructions and canonical float32 measurements only (human_data = false); no observer percept or participant data are claimed.</text>
+  <text class="foot" x="48" y="752">Full canonical SHA-256 digests, typed parameters, and physical metrics: docs/assets/graphical_abstract.json · Native 16-figure bundle generator: python -m duckrabbit publish</text>
+</svg>

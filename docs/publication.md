@@ -108,8 +108,8 @@ accessibility, print readiness, or a working browser presentation.
 
 ## Keep the refresh candidate separate from historical evidence
 
-The [visual-review bundle](../output/visual-review-2026-11-08/) is the designated
-current-source delivery. Its own source, native and visual-review receipts—not
+The visual-review staging bundle (`output/visual-review-2026-11-08/`) is the designated
+current-source delivery path. Its own source, native and visual-review receipts—not
 this procedure alone—define acceptance.
 The retained [earlier November bundle](../output/review-2026-11-08/) and
 [November audit](audit-2026-11-08.md) describe prior inputs. The
