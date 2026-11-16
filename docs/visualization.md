@@ -15,8 +15,8 @@ Adding this overview does not add a generator, catalog family, evidence source,
 or participant dataset. Query the live registries for those inventories;
 do not derive them from the number of panels or illustrations.
 
-The [current visual-review bundle](../output/visual-review-2026-11-08/) carries
-its own generation, source, runtime and visual-review receipts; consult their scope.
+The current visual-review staging bundle (`output/visual-review-2026-11-08/`) carries
+its own generation, source, runtime and visual-review receipts when produced locally; consult their scope.
 The [retained November baseline](../output/review-2026-11-08/) contains the
 previous **15** scientific figures. That historical count and its dated
 receipts remain correct for their bound inputs; neither those outputs nor the
@@ -28,7 +28,9 @@ The graphical abstract is a registered, source-owned scientific overview:
 it connects typed requests, canonical image/audio/video/audiovisual media,
 encoding/decoded inspection, and explicit verification/claim boundaries. Its
 PNG and source-data JSON participate in caption, hash, and derivation checks
-like the rest of the scientific roster. It is not an observer experiment or a
+like the rest of the scientific roster (with a tracked SVG/JSON overview at
+[`docs/assets/graphical_abstract.svg`](assets/graphical_abstract.svg) and
+[`docs/assets/graphical_abstract.json`](assets/graphical_abstract.json)). It is not an observer experiment or a
 new empirical result.
 
 The cover is a separate editorial illustration, not a scientific stimulus,

@@ -18,10 +18,10 @@ Start at the **[documentation task index](docs/README.md)**. It separates
 current guides from dated evidence, and directs installation, API use,
 visualization, verification, and release work without duplicating workflows.
 
-![Four source-derived panels summarize canonical visual, auditory, temporal and audiovisual constructions and their verification boundary; no observer data are shown.](output/visual-review-2026-11-08/figures/graphical_abstract.png)
+![Four source-derived panels summarize canonical visual, auditory, temporal and audiovisual constructions and their verification boundary; no observer data are shown.](docs/assets/graphical_abstract.svg)
 
-The [graphical abstract's source data](output/visual-review-2026-11-08/data/graphical_abstract.json)
-retain complete canonical digests, typed parameters and actual plotted arrays.
+The [graphical abstract's source data](docs/assets/graphical_abstract.json)
+retain canonical digests, typed parameters, and physical metrics (`duckrabbit publish` also emits full plotted arrays in `data/graphical_abstract.json` inside a generated bundle).
 
 ## Install and generate a verifiable stimulus
 
@@ -97,8 +97,8 @@ interfaces, signal-display conventions, and readability review criteria.
 and separate typesetting boundary. Figure rendering uses NumPy/Pillow, not
 Matplotlib; font bytes and environment matter for raster replay.
 
-The designated current-source delivery is
-[`output/visual-review-2026-11-08/`](output/visual-review-2026-11-08/); its own
+The designated current-source staging path is `output/visual-review-2026-11-08/`
+(generated locally via [docs/publication.md](docs/publication.md)); its own
 generation, runtime and visual-review receipts define acceptance. The retained
 [`output/review-2026-11-08/`](output/review-2026-11-08/) is the earlier source-bound
 baseline, not validation of subsequent edits. Neither is an archival 0.6.0

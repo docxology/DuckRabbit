@@ -33,8 +33,8 @@ are observations of earlier bound inputs, not evergreen acceptance.
 - [Manuscript source map](manuscript/README.md): chapter/variable ownership;
   use the publication recipe above for non-destructive current commands.
 
-The designated current-source delivery is
-[`output/visual-review-2026-11-08/`](../output/visual-review-2026-11-08/). Its own
+The designated current-source staging path is
+`output/visual-review-2026-11-08/`. Its own
 source, native-gate and visual-review receipts define what was accepted. The retained
 [`output/review-2026-11-08/`](../output/review-2026-11-08/) is the prior
 15-scientific-figure baseline, not proof of the refreshed source. Keep both

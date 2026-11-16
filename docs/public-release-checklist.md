@@ -76,7 +76,7 @@ outcomes tied to exact installed versions and the observation date.
   browser behavior, accessibility, and clipping. See the
   [visual review criteria](visualization.md#inspect-readability-at-delivery-scale).
   Compilation, same-code replay, and `visual_qa` are not visual acceptance.
-- Bind the [current review bundle](../output/visual-review-2026-11-08/) to fresh
+- Bind the current review bundle (`output/visual-review-2026-11-08/`) to fresh
   evidence. The [retained prior baseline](../output/review-2026-11-08/) and all
   [dated receipts](README.md#dated-historical-receipts) verify only their own
   recorded source, not later edits.
