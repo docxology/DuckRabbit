@@ -122,3 +122,34 @@ explains the refreshed versus historical figure roster; the
 [release checklist](public-release-checklist.md) owns compatibility/security,
 external publication, and DOI sequencing. A new local bundle does not create
 a tag, release, archive identity, or participant result.
+
+## Render with the pinned Template
+
+Use Git, uv, Pandoc, matching pandoc-crossref, and TeX with XeLaTeX. Use a
+fresh Template checkout and a clean worktree for the current DuckRabbit commit.
+[Template prerequisites](https://github.com/docxology/template/blob/87704feae0a4490ef7dad9c931d268e8c30273c2/docs/RUN_GUIDE.md)
+
+```sh
+template_dir=/absolute/path/to/template
+project_dir="$template_dir/projects/working/DuckRabbit"
+git -C "$template_dir" switch --detach 87704feae0a4490ef7dad9c931d268e8c30273c2
+mkdir -p "$template_dir/projects/working"
+git worktree add --detach "$project_dir" HEAD
+(
+  cd "$project_dir"
+  uv sync --locked --extra dev
+  uv run --no-sync python -m duckrabbit publish --output-dir output
+  uv run --no-sync python scripts/generate_manuscript_variables.py --output-dir output
+  uv run --no-sync python scripts/validate_scholarship.py
+  uv run --no-sync python -m duckrabbit audit --output-root output --release
+)
+cd "$template_dir"
+uv sync --locked --python 3.14 --no-dev
+uv run --no-sync python scripts/pipeline/stage_03_render.py --project working/DuckRabbit --skip-manuscript-hydration
+uv run --no-sync python scripts/pipeline/stage_04_validate.py --project working/DuckRabbit
+```
+
+The native producer hydrates the canonical sections before the Template stages.
+The rendered PDF, HTML, slides and validation receipts are in the registered
+worktree's `output/` directory. Use this temporary checkout for the render
+since native producers write under `output/`.

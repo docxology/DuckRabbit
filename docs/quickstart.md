@@ -2,7 +2,7 @@
 
 Run these commands from the DuckRabbit checkout root. Python 3.11 is the
 supported floor; `.python-version` selects the 3.15 development line. See
-[standalone use](../STANDALONE.md) for checkout versus installed-wheel scope.
+[standalone use](standalone.md) for checkout versus installed-wheel scope.
 
 ## Install and discover typed requests
 

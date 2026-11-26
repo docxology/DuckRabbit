@@ -8,7 +8,7 @@
   fallback is not a second canonical source.
 - **Structure:** contribution-specific titles preserve explicit section,
   equation, figure and table labels. The complete module map and reading order
-  are in [`README.md`](README.md); syntax rules are in [`SYNTAX.md`](SYNTAX.md).
+  are in [`README.md`](../manuscript/README.md); syntax rules are in [`SYNTAX.md`](../manuscript/SYNTAX.md).
 - **Current source scope:** 17 generators, 18 catalog entries, 36 evidence-source
   records, 47 bibliography entries, 16 scientific figures and 10 tables. The new
   `fig:graphical_abstract` introduces deterministic multimodal construction and
@@ -24,4 +24,4 @@
   15-figure snapshot. `output/visual-review-2026-11-08/` is the designated current
   integration bundle; its own source, runtime and visual receipts determine
   acceptance scope. Prior receipts cannot verify changed source. Follow
-  [`README.md`](README.md) for a separate, wholly owned regeneration root.
+  [`README.md`](../manuscript/README.md) for a separate, wholly owned regeneration root.
