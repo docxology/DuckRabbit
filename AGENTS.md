@@ -8,11 +8,11 @@ checkout is not required for ordinary package development.
 ## Orientation ladder (cold start)
 
 1. **What is this?** Read `README.md` (first 30 lines suffice).
-2. **Current state:** `TODO.md` (backlog + release gate) and `CHANGELOG.md`
+2. **Current state:** `docs/roadmap.md` (backlog and release gate) and `docs/releases/CHANGELOG.md`
    (version history) are the canonical status surfaces. Current source is 0.6.0
    with DOI forthcoming; v0.5.0 remains archived at concept DOI
    `10.5281/zenodo.21419693`. Verify current metadata before publication.
-3. **What to do next:** `TODO.md` "Future research and optional improvements"
+3. **What to do next:** `docs/roadmap.md` "Future research and optional improvements"
    and "Evidence gates" sections are the single authoritative pointer.
 4. **Primary verification:** `uv run pytest tests/ --cov=src/duckrabbit
    --cov-fail-under=90` (from the project root; slow cold start on external

@@ -8,7 +8,7 @@ historical review bundles remain immutable.
 
 The [publication guide](publication.md) owns native generation and isolated
 rendering; this checklist owns acceptance and external sequencing. Read
-[TODO](../TODO.md) and [CHANGELOG](../CHANGELOG.md) for current status, not a
+[roadmap](roadmap.md) and [release history](releases/CHANGELOG.md) for current status, not a
 historical gate count copied into this checklist.
 
 ## Bind the exact candidate and its public metadata

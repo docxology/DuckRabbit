@@ -28,8 +28,7 @@ changing explicit section, equation, figure, or table identifiers.
 | [`99_references.md`](99_references.md) | Conventional references heading; entries live in `references.bib` |
 
 `config.yaml` supplies identity and render configuration; `preamble.md` supplies
-TeX support, not a scientific section. `README.md`, `SYNTAX.md`,
-`MANUSCRIPT_STATUS.md`, and `AGENTS.md` are contributor guides excluded from
+TeX support. The README, syntax guide, and agent guidance are excluded from
 hydration. See [`SYNTAX.md`](SYNTAX.md) for the label/token contract.
 
 ## Generate and audit a fresh, wholly owned bundle
@@ -56,8 +55,8 @@ post-processing—not hand edits to generated TeX/HTML or scientific records.
 Acceptance requires actual PDF/HTML/slides rendering plus inspection of
 headings, every figure, table placement, citation/reference links and math.
 Source hydration, package tests and a strict audit are distinct evidence and do
-not imply that this renderer stage succeeded. This source refresh claims no
-new rendering or publication-readiness result.
+not imply that this renderer stage succeeded. Follow the [pinned render recipe](../publication.md#render-with-the-pinned-template)
+for a verified local build.
 
 ## Revision identity and immutable prior observations
 

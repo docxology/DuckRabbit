@@ -1,17 +1,17 @@
-# DuckRabbit task index: use, inspect, and release the current source
+# DuckRabbit documentation
 
 This is the entry point for **current, source-owned guidance**. Version 0.6.0
-is **unreleased**, DOI forthcoming. [TODO](../TODO.md) and
-[CHANGELOG](../CHANGELOG.md) own backlog/release status; dated reports below
+is **unreleased**, DOI forthcoming. [Roadmap](roadmap.md) and
+[Release history](releases/CHANGELOG.md) own backlog/release status; dated reports below
 are observations of earlier bound inputs, not evergreen acceptance.
 
 ## Install and use stimuli
 
 - [Quickstart](quickstart.md): locked installation, catalog discovery, typed
   parameter validation, generation, decode inspection, and manifest verification.
-- [Standalone use](../STANDALONE.md): native checkout versus installed-wheel
+- [Standalone use](standalone.md): native checkout versus installed-wheel
   scope, with no external infrastructure prerequisite.
-- [Package overview and Python examples](../README.md): canonical versus encoded
+- [Package overview and Python examples](package-guide.md): canonical versus encoded
   artifacts, scientific limits, authorship, and citation.
 
 ## Understand the API and architecture
